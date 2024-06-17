@@ -1,1 +1,0 @@
-# ghg_frontend
