@@ -1,0 +1,51 @@
+.createacc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10vh 30vw;
+    border-radius: 10px;
+    border: 1px solid var(--Grey-2, #BDBDBD);
+    box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.05);
+    padding: 5vh 3vw;
+    width: 38vw;
+}
+
+.createacc h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00191D;
+}
+
+
+.createacc p {
+    color: var(--Grey-1, #717171);
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 1vh 0vw;
+}
+
+.createacc button {
+    margin: 4.5vh 0vw;
+    display: flex;
+    padding: 1vh 2vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--G-2, linear-gradient(102deg, #369D9C 0%, #28814D 100%));
+    color: #FFFFFF;
+    font-size: 1.1rem;
+}
+
+.createacc span{
+    font-size: 0.9rem;
+}
+
+.input {
+    margin-bottom: 3.5vh;
+}
+
+.colored {
+    color: #3CB477;
+}

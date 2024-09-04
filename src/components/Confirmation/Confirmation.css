@@ -1,0 +1,41 @@
+.confirm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    margin: 25vh 35vw;
+    padding: 5vh 2vw;
+    border-radius: 10px;
+    border: 1px solid var(--Grey-2, #BDBDBD);
+    box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.05);
+
+}
+
+.confirm p {
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 3vh 0vw;
+}
+
+.confirm button {
+    border-radius: 100px;
+    border: 1.5px solid var(--G-2, #369D9C);
+    color: #369D9C;
+    padding: 1.2vh 3.5vw;
+    font-weight: 500;
+}
+
+.confirmtick {
+    margin: 2vh 0vw;
+}
+
+.crossbtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3vh 2vw;
+    cursor: pointer;
+}

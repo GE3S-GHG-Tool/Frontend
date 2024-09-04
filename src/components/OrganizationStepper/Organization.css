@@ -1,0 +1,74 @@
+.organzation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0vh 1vw;
+    border-radius: 10px;
+    padding: 5vh 1vw 5vh 2vw;
+    width: 38vw;
+}
+
+.organzation svg{
+    margin-bottom: 3vh;
+    cursor: pointer;
+}
+ 
+.organzation p {
+    color: var(--Grey-1, #717171);
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 2vh 0.5vw 0vh 0.5vw;
+}
+
+.comp_name{
+    margin: 1vh 0.5vw;
+}
+
+
+.organzation button {
+    margin: 4.5vh 0vw;
+    display: flex;
+    padding: 1vh 2vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--G-2, linear-gradient(102deg, #369D9C 0%, #28814D 100%));
+    color: #FFFFFF;
+    font-size: 1.1rem;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20vw;
+    margin: 4vh 0vw;
+}
+
+.heading h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Poppins;
+    color: #00191D;
+    text-align: center;
+}
+
+.select_emp_cou {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.para_select {
+    display: flex;
+    flex-direction: column;
+    width: 16vw;
+}
+
+.ge3s {
+    width: 18%;
+    margin-bottom: 3vh;
+}

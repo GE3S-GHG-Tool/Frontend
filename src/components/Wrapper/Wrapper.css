@@ -1,0 +1,24 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    padding: 0%;
+    height: 100vh;
+}
+
+.topimg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+}
+
+.bottomimg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+}
+
