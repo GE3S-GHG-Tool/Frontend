@@ -9,6 +9,9 @@ import OrganizationStepper from "./components/OrganizationStepper/OrganizationSt
 import Organization from "./components/OrganizationStepper/Organization";
 import Details from "./components/OrganizationStepper/Details";
 import Goals from "./components/OrganizationStepper/Goals";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
+import VerifyOTP from "./components/VerifyOTP/VerifyOTP";
+import ChangePassword from "./components/ChangePassword/ChangePassword";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/reset-password" element={<ResetPassword/>} />
+      <Route path="/verify-otp" element={<VerifyOTP/>} />
+      <Route path="/change-password" element={<ChangePassword/>} />
       <Route path="/organizationstepper" element={<OrganizationStepper />} />
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />
