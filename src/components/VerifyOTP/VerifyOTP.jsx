@@ -91,7 +91,7 @@ export default function VerifyOTP() {
                     <button
                         onClick={() => navigate("/change-password")}
                         disabled={!isFormValid}
-                        className={isFormValid ? "verify-button-active" : "verify-button-disabled"}
+                        className={!isFormValid ? "verify-button-disabled" : "verify-button-active"}
                     >
                         Verify OTP
                     </button>

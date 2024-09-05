@@ -39,7 +39,7 @@ export default function ChangePassword() {
                     <h1>Change your password</h1>
                     <p className="text-align">Enter a new password below to change your password</p>
 
-                    <div className="input_password">
+                    <div className="input-password">
                         <p>Password</p>
                         <div className="password-container">
                             <TextField
@@ -69,9 +69,6 @@ export default function ChangePassword() {
                                 </svg>
                             </span>
                         </div>
-                    </div>
-
-                    <div className="input_password">
                         <p>Confirm Password</p>
                         <div className="password-container">
                             <TextField
