@@ -23,7 +23,27 @@
   border: 2px solid transparent;
   border-radius: 4px;
 }
+.gradient-focus .MuiOutlinedInput-root {
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #D9D9D9, #D9D9D9);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 4px;
+  transition: background-image 0.3s ease;
+}
 
+.gradient-focus .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.gradient-focus .MuiOutlinedInput-root:hover {
+  background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #B3B3B3, #B3B3B3);
+}
+
+.gradient-focus .MuiOutlinedInput-root.Mui-focused {
+  background-image: linear-gradient(#fff, #fff), 
+                    linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+}
 .error-message {
   color: #f44336;
   font-size: 0.75rem;
@@ -33,6 +53,9 @@
   font-weight: 400;
   line-height: 1.66;
   letter-spacing: 0.03333em;
+}
+.MuiFormHelperText-root {
+  min-height: 1.66em;
 }
 
 .login-container div {

@@ -9,10 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [errors, setErrors] = useState({});
-  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -44,7 +41,7 @@ export default function Login() {
   };
 
 
-  const isFormValid = email && password && !emailError && !passwordError;
+  const isFormValid = email && password ;
 
   return (
     <Wrapper>
