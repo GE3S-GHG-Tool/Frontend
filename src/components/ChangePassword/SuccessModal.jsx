@@ -23,7 +23,6 @@ const svgStyle = {
 };
 
 const buttonStyle = {
-  marginTop: '32px',
   border: '2px solid #28814d',
   color: '#28814d',
   padding: '12px 24px',
@@ -34,7 +33,6 @@ const buttonStyle = {
 };
 
 export default function SuccessModal({ open, handleClose }) {
-    const navigate=useNavigate();
   return (
     <Modal
       open={open}
