@@ -1,13 +1,11 @@
-import React from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 450,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -23,12 +21,12 @@ const svgStyle = {
 };
 
 const buttonStyle = {
-  border: "2px solid #28814d",
-  color: "#28814d",
-  padding: "12px 24px",
-  fontSize: "16px",
-  fontWeight: "bold",
-  borderRadius: "30px",
+  borderRadius: "100px",
+  border: "1px solid #369D9C",
+  color: "#369D9C",
+  padding: "8px 18px",
+  fontSize: "12px",
+  marginTop: "24px",
   background: "#fff",
 };
 
@@ -71,23 +69,15 @@ export default function SuccessModal({ open, handleClose }) {
           </svg>
         </div>
 
-        {/* Success Text */}
         <Typography
           id="modal-title"
-          variant="h5"
+          variant="h6"
           component="h2"
           sx={{ fontWeight: "bold", marginBottom: "16px" }}
         >
-          Password Changed!
-        </Typography>
-        <Typography
-          id="modal-description"
-          sx={{ fontSize: "16px", color: "#6C757D", marginBottom: "16px" }}
-        >
-          Your password has been changed successfully.
+          Your Password have been Changed
         </Typography>
 
-        {/* OK Button */}
         <Button onClick={handleClose} sx={buttonStyle}>
           Go to Dashboard
         </Button>

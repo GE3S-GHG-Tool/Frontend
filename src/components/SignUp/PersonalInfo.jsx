@@ -39,7 +39,7 @@ const PersonalInfo = () => {
         <div className="presonalinfo_page_image">
           <img src={logo} alt="logo" className="brand_logo2" />
         </div>
-        <h1>Create a free account!</h1>
+        <h1>Start creating your account</h1>
         <Box>
           <ImageModal
             open={openImageResizer}
@@ -116,7 +116,7 @@ const PersonalInfo = () => {
             type="submit"
             // disabled={!isFormValid}
             className="green_button"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/createaccount")}
           >
             Create Account
           </button>

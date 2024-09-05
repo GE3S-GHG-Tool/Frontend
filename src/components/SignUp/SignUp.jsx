@@ -21,7 +21,7 @@ export default function SignUp() {
             size="small"
             fullWidth
           />
-          <button onClick={() => navigate("/createaccount")}>Confirm</button>
+          <button onClick={() => navigate("/personalinfo")}>Confirm</button>
         </div>
         <h6>
           Already have an account? <span>Login</span>
