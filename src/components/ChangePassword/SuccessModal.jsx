@@ -6,7 +6,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 450,
+  width: '400px',
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
@@ -27,7 +27,7 @@ const buttonStyle = {
   color: '#369D9C',
   padding: '8px 18px',
   fontSize: '12px',
-  marginTop:'24px',
+  marginTop:'16px',
   background: "#fff",
 };
 
@@ -42,7 +42,7 @@ export default function SuccessModal({ open, handleClose }) {
       <Box sx={style}>
         {/* SVG Icon */}
         <div style={svgStyle}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112" fill="none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 112 112" fill="none">
             <circle cx="56" cy="56" r="56" fill="url(#paint0_linear_1214_40631)" />
             <path d="M33.5957 55.8007L48.5854 70.7904L78.4071 40.9688" stroke="white" strokeWidth="8.83606" />
             <defs>
