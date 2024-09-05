@@ -31,6 +31,11 @@ const buttonStyle = {
   background: "#fff",
 };
 
+const modalTitleStyle={
+  fontSize:'16px',
+  fontWeight:'500'
+}
+
 export default function SuccessModal({ open, handleClose }) {
   return (
     <Modal
@@ -54,9 +59,9 @@ export default function SuccessModal({ open, handleClose }) {
           </svg>
         </div>
 
-        <Typography id="modal-title" variant="h6" component="h2" sx={{ fontWeight: 'bold', marginBottom: '16px' }}>
+        <p id="modal-title" style={modalTitleStyle}>
           Your Password have been Changed
-        </Typography>
+        </p>
 
         <Button onClick={handleClose} sx={buttonStyle}>
           Go to Dashboard
