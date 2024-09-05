@@ -35,6 +35,7 @@ export default function Login() {
     e.preventDefault();
     if (validateForm()) {
       setErrors({ login: "The email or password you entered is incorrect." });
+      navigate("/createaccount");
     }
   };
 
@@ -55,16 +56,9 @@ export default function Login() {
               fullWidth
               placeholder="Email"
               value={email}
-              slotProps={{
-                input: {
-                  style: { paddingLeft: "10px" },
-                  border: "2px solid transparent",
-                },
-              }}
               onChange={(e) => setEmail(e.target.value)}
               error={!!errors.email}
               helperText={errors.email}
-              className="gradient-focus"
             />
           </div>
           <div className="input_login">
@@ -78,17 +72,11 @@ export default function Login() {
                 placeholder="Password"
                 type={showPassword ? "text" : "password"}
                 value={password}
-                slotProps={{
-                  input: {
-                    style: { paddingLeft: "10px" },
-                    border: "2px solid transparent",
-                  },
-                }}
                 onChange={(e) => setPassword(e.target.value)}
                 error={!!errors.password}
                 helperText={errors.password}
-                className="gradient-focus"
               />
+
               <span
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
@@ -100,7 +88,7 @@ export default function Login() {
           {errors.login && <p className="error-message">{errors.login}</p>}
           <button
             onClick={handleSubmit}
-            disabled={!isFormValid}
+            // disabled={!isFormValid}
             className={
               isFormValid ? "login-button-active" : "login-button-disabled"
             }
@@ -110,12 +98,12 @@ export default function Login() {
           <div className="login-footer">
             <p
               className="forgot-password"
-              onClick={() => navigate("/forgot-password")}
+              onClick={() => navigate("/reset-password")}
             >
               Forgot your password?
             </p>
             <p className="signup">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <span onClick={() => navigate("/createaccount")}>Sign Up</span>
             </p>
           </div>

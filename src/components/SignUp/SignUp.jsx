@@ -11,13 +11,7 @@ export default function SignUp() {
         <h1>Create a free account!</h1>
         <div className="email_field">
           <p>Email</p>
-          <TextField
-            id="outlined-size-small"
-            label=""
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
+          <TextField placeholder="Enter Email" size="small" fullWidth />
           <button onClick={() => navigate("/createaccount")}>Sign up</button>
         </div>
       </div>

@@ -2,70 +2,24 @@
   position: relative;
   margin: 15vh auto;
   border-radius: 20px;
-  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
-  background: var(--White, #fff);
-  box-shadow: 6px 89px 56px -38px rgba(89,132,131,0.65);
+  border: 1px solid rgba(217, 217, 217, 0.4);
+  background: #fff;
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
   width: 28vw;
   padding: 48px;
   gap: 8px;
 }
 
-.gradient-focus .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: transparent;
-  border-width: 2px;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
-}
-
-.gradient-focus .MuiOutlinedInput-root.Mui-focused {
-  background: linear-gradient(#fff, #fff) padding-box, 
-              linear-gradient(102deg, #369d9c 0%, #28814d 100%) border-box;
-  border: 2px solid transparent;
-  border-radius: 4px;
-}
-.gradient-focus .MuiOutlinedInput-root {
-  border: 2px solid transparent;
-  background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #D9D9D9, #D9D9D9);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border-radius: 4px;
-  transition: background-image 0.3s ease;
-}
-
-.gradient-focus .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-  border: none;
-}
-
-.gradient-focus .MuiOutlinedInput-root:hover {
-  background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #B3B3B3, #B3B3B3);
-}
-
-.gradient-focus .MuiOutlinedInput-root.Mui-focused {
-  background-image: linear-gradient(#fff, #fff), 
-                    linear-gradient(102deg, #369d9c 0%, #28814d 100%);
-}
 .error-message {
   color: #f44336;
   font-size: 0.75rem;
   margin-top: 3px;
   text-align: left;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
-  line-height: 1.66;
-  letter-spacing: 0.03333em;
-}
-.MuiFormHelperText-root {
-  min-height: 1.66em;
-}
-
-.login-container div {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .login-container div p {
-  color: var(--Grey-1, #717171);
+  color: #717171;
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
@@ -73,29 +27,21 @@
   margin: 1vh 0vw;
 }
 
-.login-container div h1 {
+.login-container h1 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #00191d;
   text-align: center;
 }
 
-.login-container div button {
+.login-container button {
   margin: 2vh 0vw;
-  display: flex;
   padding: 1vh 2vw;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
   font-size: 1.1rem;
-}
-
-.input_login {
-  border-radius: 5px;
-  background: #fff;
-  border: 2px solid transparent;
 }
 
 .ge3s_logo {
