@@ -69,9 +69,6 @@ export default function ChangePassword() {
                                 </svg>
                             </span>
                         </div>
-                    </div>
-
-                    <div className="input_password">
                         <p>Confirm Password</p>
                         <div className="password-container">
                             <TextField
