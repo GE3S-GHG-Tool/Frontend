@@ -34,7 +34,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setErrors({ login: "The email or password you entered is incorrect." });
+      setErrors("");
       navigate("/home");
     }
   };
@@ -57,7 +57,10 @@ export default function Login() {
                 fullWidth
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setErrors("")
+                }}
                 error={!!errors.email}
                 helperText={errors.email}
               />
@@ -73,7 +76,10 @@ export default function Login() {
                   placeholder="Password"
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    setErrors("")
+                  }}
                   error={!!errors.password}
                   helperText={errors.password}
                 />
