@@ -32,7 +32,7 @@ const buttonStyle = {
   background: "#fff",
 };
 
-export default function SuccessModal({ open, handleClose }) {
+export default function VerfiedModal({ open, handleClose }) {
   return (
     <Modal
       open={open}

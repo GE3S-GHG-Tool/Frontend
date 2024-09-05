@@ -2,22 +2,16 @@
   position: relative;
   margin: 15vh auto;
   border-radius: 20px;
-  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
-  background: var(--White, #fff);
+  border: 1px solid  rgba(217, 217, 217, 0.4);
+  background:  #fff;
   box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
   width: 28vw;
   padding: 48px;
   gap: 8px;
 }
 
-.verify-container div {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.verify-container div p {
-  color: var(--Grey-1, #717171);
+.verify-container p {
+  color: #717171;
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
@@ -25,7 +19,11 @@
   margin: 1vh 0vw;
 }
 
-.verify-container div h1 {
+.ge3s_logo {
+  display: flex;
+}
+
+.verify-container h1 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #00191d;
@@ -40,7 +38,7 @@
 }
 
 #email-address #email {
-  color: var(--Grey-1, #717171);
+  color: #717171;
 }
 
 #email-address #edit-email-link {
@@ -77,20 +75,21 @@
   height: 45px;
   text-align: center;
   font-size: 1.2rem;
-  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  border: 1px solid  rgba(217, 217, 217, 0.4);
   border-radius: 4px;
   padding: 0;
   margin: 0;
 }
 
-.verify-container div button {
+.verify-container button {
   margin: 2vh 0vw;
   display: flex;
   padding: 1vh 2vw;
   justify-content: center;
   align-items: center;
+  width: 100%;
   border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
+  background:  linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
   font-size: 1.1rem;
 }
@@ -133,7 +132,7 @@
   }
 
   .ge3s_logo {
-    width: 35%;
+    display: flex;
   }
 
   .verify-container div button {
