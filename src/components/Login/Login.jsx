@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./Login.css";
 import logo from "../../assets/images/ge3s.png";
@@ -31,8 +31,6 @@ export default function Login() {
     return Object.keys(newErrors).length === 0;
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -40,8 +38,7 @@ export default function Login() {
     }
   };
 
-
-  const isFormValid = email && password ;
+  const isFormValid = email && password;
 
   return (
     <Wrapper>
@@ -59,11 +56,11 @@ export default function Login() {
               placeholder="Email"
               value={email}
               slotProps={{
-                  input: {
-                    style: { paddingLeft: '10px' },
-                    border:"2px solid transparent"
-                  }
-                }}
+                input: {
+                  style: { paddingLeft: "10px" },
+                  border: "2px solid transparent",
+                },
+              }}
               onChange={(e) => setEmail(e.target.value)}
               error={!!errors.email}
               helperText={errors.email}
@@ -83,9 +80,9 @@ export default function Login() {
                 value={password}
                 slotProps={{
                   input: {
-                    style: { paddingLeft: '10px' },
-                    border:"2px solid transparent"
-                  }
+                    style: { paddingLeft: "10px" },
+                    border: "2px solid transparent",
+                  },
                 }}
                 onChange={(e) => setPassword(e.target.value)}
                 error={!!errors.password}
@@ -104,13 +101,23 @@ export default function Login() {
           <button
             onClick={handleSubmit}
             disabled={!isFormValid}
-            className={isFormValid ? "login-button-active" : "login-button-disabled"}
+            className={
+              isFormValid ? "login-button-active" : "login-button-disabled"
+            }
           >
             Login
           </button>
           <div className="login-footer">
-            <p className="forgot-password" onClick={() => navigate("/forgot-password")}>Forgot your password?</p>
-            <p className="signup">Don't have an account? <span onClick={() => navigate("/createaccount")}>Sign Up</span></p>
+            <p
+              className="forgot-password"
+              onClick={() => navigate("/forgot-password")}
+            >
+              Forgot your password?
+            </p>
+            <p className="signup">
+              Don't have an account?{" "}
+              <span onClick={() => navigate("/createaccount")}>Sign Up</span>
+            </p>
           </div>
         </div>
       </div>

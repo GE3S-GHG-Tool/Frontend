@@ -22,9 +22,9 @@ function App() {
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/reset-password" element={<ResetPassword/>} />
-      <Route path="/verify-otp" element={<VerifyOTP/>} />
-      <Route path="/change-password" element={<ChangePassword/>} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/verify-otp" element={<VerifyOTP />} />
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/organizationstepper" element={<OrganizationStepper />} />
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />

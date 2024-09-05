@@ -8,8 +8,7 @@ export default function SignUp() {
   return (
     <Wrapper>
       <div className="signup_page">
-        <h1>Welcome!</h1>
-        <p className="descrip">Produce Reports swiftly and effortlessly!</p>
+        <h1>Create a free account!</h1>
         <div className="email_field">
           <p>Email</p>
           <TextField
