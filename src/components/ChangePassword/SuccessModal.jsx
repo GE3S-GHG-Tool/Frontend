@@ -25,8 +25,9 @@ const buttonStyle = {
   borderRadius: '100px',
   border: '1px solid #369D9C',
   color: '#369D9C',
-  padding: '12px 24px',
-  fontSize: '16px',
+  padding: '8px 18px',
+  fontSize: '12px',
+  marginTop:'24px',
   background: "#fff",
 };
 
