@@ -1,17 +1,22 @@
-.login {
+.login-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 15vh 30vw;
-  border-radius: 10px;
-  border: 1px solid var(--Grey-2, #bdbdbd);
-  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.05);
-  padding: 3vh 2.5vw;
-  width: 42vw;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89,132,131,0.65);
+  width: 28vw;
+  padding: 48px;
+  gap: 8px;
 }
 
-.login p {
+.login-container div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-container div p {
   color: var(--Grey-1, #717171);
   font-size: 0.9rem;
   font-style: normal;
@@ -20,14 +25,14 @@
   margin: 1vh 0vw;
 }
 
-.login h1 {
-  font-size: 1.6rem;
+.login-container div h1 {
+  font-size: 1.2rem;
   font-weight: 700;
   color: #00191d;
   text-align: center;
 }
 
-.login button {
+.login-container div button {
   margin: 2vh 0vw;
   display: flex;
   padding: 1vh 2vw;
@@ -40,10 +45,82 @@
 }
 
 .input_login {
-  margin: 2vh 0vw;
+  border-radius: 5px;
+  background: #fff;
 }
 
 .ge3s_logo {
-  width: 22%;
-  margin: 2vh auto;
+  width: 28%;
+  margin: 0 auto;
+}
+
+.login-container .password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-container .toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.login-button-active {
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px !important;
+}
+
+.login-button-disabled {
+  background: linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%) !important;
+  color: #838383;
+  cursor: not-allowed;
+  border: none;
+  padding: 12px !important;
+}
+
+.login-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forgot-password,
+.signup span {
+  color: #3cb477 !important;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .login-container {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 84vw;
+    padding: 24px;
+  }
+
+  .login-container div h1 {
+    font-size: 1.4rem;
+  }
+
+  .ge3s_logo {
+    width: 35%;
+  }
+
+  .login-container div button {
+    font-size: 1rem;
+  }
 }
