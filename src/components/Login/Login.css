@@ -6,7 +6,7 @@
   background: #fff;
   box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
   width: 36vw;
-  padding: 48px;
+  padding: 24px;
   gap: 8px;
 }
 
@@ -37,7 +37,7 @@
   margin-top: 48px;
 }
 .login-container button {
-  margin: 2vh 0vw;
+  margin-top: 24px;
   padding: 10px !important;
   width: 100%;
   border-radius: 100px;
@@ -51,12 +51,10 @@
 .login-container .password-container {
   position: relative;
   display: flex;
-  align-items: center;
 }
 
 .login-container .toggle-password {
   position: absolute;
-  right: 10px;
   cursor: pointer;
 }
 
@@ -84,9 +82,13 @@
 .signup span {
   color: #3cb477 !important;
   cursor: pointer;
-  font-size: 1rem;
 }
-
+.signup span{
+  font-weight: 500;
+}
+.signup{
+  padding:0px;
+}
 @media (max-width: 1024px) {
   .login-container {
     width: 50vw;

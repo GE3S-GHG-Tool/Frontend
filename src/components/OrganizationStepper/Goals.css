@@ -16,25 +16,31 @@
 .para_select_det {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
-.para_rad {
+.radio_button_goals {
   display: flex;
   border-radius: 5px;
-  border: 1px solid var(--Grey-2, #bdbdbd);
+  border: 1px solid #bdbdbd;
   background: #fff;
+  max-width: 100%;
+  padding-right: 15px;
+  cursor: pointer;
 }
-
-.para_rad h1 {
-  color: var(--Dark, #00191d);
+.radio_button_goals svg {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.radio_button_goals h1 {
+  color: #00191d;
   font-size: 0.9rem;
+  margin-top: 12px;
   font-weight: 400;
-  padding: 1.5vh 1vw 1.5vh 0vw;
-  text-align: center;
+  margin-bottom: 0;
 }
 
 .options {
-  background: red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,13 +49,12 @@
 }
 
 .goals button {
-  margin: 4.5vh 0vw;
-  display: flex;
-  padding: 1vh 2vw;
-  justify-content: center;
-  align-items: center;
+  margin-top: 10vh;
+  padding: 1.8vh 0;
   border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
-  font-size: 1.1rem;
+  width: 100%;
+  border: none;
+  font-size: 0.9rem;
 }

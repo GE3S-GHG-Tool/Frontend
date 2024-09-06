@@ -5,7 +5,6 @@ import logo from "../../assets/images/ge3s_logo.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { green } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
 export default function Goals({ activeStep, setActiveStep }) {
@@ -32,7 +31,7 @@ export default function Goals({ activeStep, setActiveStep }) {
   return (
     <div className="goals">
       <div className="heading">
-        <img src={logo} alt="" className="ge3s_logo_1" />
+        <img src={logo} alt="" className="ge3s_logo1" />
         <h1>What are your Goals? Let us help you out.</h1>
       </div>
       <div className="para_select_det">
@@ -58,37 +57,37 @@ export default function Goals({ activeStep, setActiveStep }) {
       </div>
       <p>Have you ever calculated carbon footprint before ?</p>
       <div className="options">
-        <div className="para_rad">
+        <div className="radio_button_goals">
           <Radio
             {...controlProps("e")}
             sx={{
-              color: green[800],
+              color: "#3CB477",
               "&.Mui-checked": {
-                color: green[600],
+                color: "#3CB477",
               },
             }}
           />
           <h1>No,Never</h1>
         </div>
-        <div className="para_rad">
+        <div className="radio_button_goals">
           <Radio
             {...controlProps("f")}
             sx={{
-              color: green[800],
+              color: "#3CB477",
               "&.Mui-checked": {
-                color: green[600],
+                color: "#3CB477",
               },
             }}
           />
           <h1>Once or Twice</h1>
         </div>
-        <div className="para_rad">
+        <div className="radio_button_goals">
           <Radio
             {...controlProps("g")}
             sx={{
-              color: green[800],
+              color: "#3CB477",
               "&.Mui-checked": {
-                color: green[600],
+                color: "#3CB477",
               },
             }}
           />
@@ -97,7 +96,8 @@ export default function Goals({ activeStep, setActiveStep }) {
       </div>
       <button
         onClick={() => {
-          navigate("/confirmation");
+          //   navigate("/confirmation");
+          setActiveStep(3);
         }}
       >
         Next

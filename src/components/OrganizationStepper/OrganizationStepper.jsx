@@ -4,6 +4,7 @@ import Wrapper from "../Wrapper/Wrapper";
 import Organization from "./Organization";
 import Details from "./Details";
 import Goals from "./Goals";
+import Invite from "./Invite";
 
 export default function OrganizationStepper() {
   const [activeStep, setActiveStep] = useState(0);
@@ -19,6 +20,9 @@ export default function OrganizationStepper() {
         )}
         {activeStep === 2 && (
           <Goals activeStep={activeStep} setActiveStep={setActiveStep} />
+        )}
+        {activeStep === 3 && (
+          <Invite activeStep={activeStep} setActiveStep={setActiveStep} />
         )}
         <div className="seperate"></div>
         <div className="stepper_comp">
