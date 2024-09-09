@@ -34,3 +34,8 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.Mui-selected {
+  color: '#2e7d32' !important;
+  font-weight: 500 !important;
+}

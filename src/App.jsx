@@ -12,6 +12,14 @@ import Goals from "./components/OrganizationStepper/Goals";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import VerifyOTP from "./components/VerifyOTP/VerifyOTP";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
+import DashboardLayout from "./components/Dashboard/DashboardLayout";
+import Dashboard from "./components/Dashboard/Dashboard";
+import TeamMembers from "./components/Dashboard/TeamMembers";
+import Facilities from "./components/Dashboard/Facilities";
+import Survey from "./components/Dashboard/Survey";
+import Report from "./components/Dashboard/Report";
+import Analytics from "./components/Dashboard/Analytics";
+
 
 function App() {
   return (
@@ -29,6 +37,16 @@ function App() {
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />
       <Route path="/goals" element={<Goals />} />
+
+      {/* Dashboard routes */}
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="team-member" element={<TeamMembers />} />
+        <Route path="facilities" element={<Facilities />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="survey" element={<Survey />} />
+        <Route path="report" element={<Report />} />
+      </Route>
     </Routes>
   );
 }
