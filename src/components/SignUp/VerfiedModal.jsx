@@ -1,11 +1,13 @@
+import React from "react";
 import { Modal, Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "400px",
+  width: 400,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -21,16 +23,16 @@ const svgStyle = {
 };
 
 const buttonStyle = {
-  borderRadius: "100px",
-  border: "1px solid #369D9C",
-  color: "#369D9C",
-  padding: "8px 18px",
-  fontSize: "12px",
-  marginTop: "16px",
+  border: "2px solid #28814d",
+  color: "#28814d",
+  padding: "12px 24px",
+  fontSize: "16px",
+  fontWeight: "bold",
+  borderRadius: "30px",
   background: "#fff",
 };
 
-export default function SuccessModal({ open, handleClose }) {
+export default function VerfiedModal({ open, handleClose }) {
   return (
     <Modal
       open={open}
@@ -41,13 +43,7 @@ export default function SuccessModal({ open, handleClose }) {
       <Box sx={style}>
         {/* SVG Icon */}
         <div style={svgStyle}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="96"
-            height="96"
-            viewBox="0 0 112 112"
-            fill="none"
-          >
+          <svg width="112" height="112" viewBox="0 0 112 112" fill="none">
             <circle
               cx="56"
               cy="56"
@@ -75,15 +71,23 @@ export default function SuccessModal({ open, handleClose }) {
           </svg>
         </div>
 
+        {/* Success Text */}
         <Typography
           id="modal-title"
-          variant="h6"
+          variant="h5"
           component="h2"
           sx={{ fontWeight: "bold", marginBottom: "16px" }}
         >
-          Your Password have been Changed
+          Password Changed!
+        </Typography>
+        <Typography
+          id="modal-description"
+          sx={{ fontSize: "16px", color: "#6C757D", marginBottom: "16px" }}
+        >
+          Your password has been changed successfully.
         </Typography>
 
+        {/* OK Button */}
         <Button onClick={handleClose} sx={buttonStyle}>
           Go to Dashboard
         </Button>

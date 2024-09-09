@@ -20,6 +20,7 @@ import Survey from "./components/Dashboard/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics";
 
+import PersonalInfo from "./components/SignUp/PersonalInfo";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Route index path="/" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
       <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/personalinfo" element={<PersonalInfo />} />
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/login" element={<Login />} />

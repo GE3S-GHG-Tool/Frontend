@@ -6,6 +6,10 @@ body {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
+button {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
 button:active {
   transform: translateY(2px);
 }
@@ -34,8 +38,25 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
-.Mui-selected {
-  color: '#2e7d32' !important;
-  font-weight: 500 !important;
+.ge3s_button {
+  margin-top: 4vh;
+  padding: 1.8vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.9rem;
+  border: none;
+  width: 100%;
+  font-weight: 500;
+}
+.ge3s_button:disabled {
+  margin-top: 4vh;
+  padding: 1.8vh 0;
+  border-radius: 100px;
+  background: #e7e7e7;
+  color: #838383;
+  font-size: 0.9rem;
+  border: none;
+  width: 100%;
+  font-weight: 500;
 }

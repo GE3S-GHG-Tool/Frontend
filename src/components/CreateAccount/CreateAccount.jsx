@@ -1,12 +1,15 @@
-import React from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./CreateAccount.css";
 import Radio from "@mui/material/Radio";
 import Wrapper from "../Wrapper/Wrapper";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../../assets/images/ge3s_logo.png";
+import PasswordInput from "../common/PasswordInput";
 export default function CreateAccount() {
-  const [selectedValue, setSelectedValue] = React.useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -17,62 +20,68 @@ export default function CreateAccount() {
   return (
     <Wrapper>
       <div className="createacc">
+        <img src={logo} alt="logo" width={45} />
         <h1>Start creating your account</h1>
-        <div className="input_fields">
+        <div>
           <div className="input">
-            <p>Full Name</p>
+            <p>Verified Email Address</p>
             <TextField
-              id="outlined-size-small"
-              label=""
+              value={"unmoy@growhut.in"}
               variant="outlined"
               size="small"
               fullWidth
-              placeholder="Name"
+              sx={{
+                "& .MuiInputBase-input": {
+                  color: " #3CB477",
+                },
+              }}
             />
           </div>
           <div className="input">
-            <p>Password</p>
-            <TextField
-              id="outlined-size-small"
-              label=""
-              type="password"
-              variant="outlined"
-              size="small"
-              fullWidth
-              placeholder="Password"
+            <PasswordInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              // error={error.password}
+              // helperText={helperText.password}
+              placeholder={"Password"}
             />
           </div>
           <div className="input">
-            <p>Re-Enter Password</p>
-            <TextField
-              id="outlined-size-small"
-              label=""
-              type="password"
-              variant="outlined"
-              size="small"
-              fullWidth
-              placeholder="Password"
+            <PasswordInput
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              // error={error.password}
+              // helperText={helperText.password}
+              placeholder={"Re-enter Password"}
             />
           </div>
         </div>
-        <div>
+        <div className="radio_field">
           <Radio
             checked={selectedValue === "a"}
             onChange={handleChange}
             value="a"
             name="radio-buttons"
             inputProps={{ "aria-label": "A" }}
+            size="small"
+            sx={{
+              color: "#ddd",
+              "&.Mui-checked": {
+                color: "#3CB477",
+              },
+            }}
           />
-          <span>I agree to the</span>
-          {"  "}
-          <span className="colored">Terms and Conditions</span>
+          <span>I agree to the </span>
+          <span className="colored">terms and conditions</span>
         </div>
         <button
+          // disabled
+          className="ge3s_button"
           onClick={() => {
             navigate("/organizationstepper");
           }}
         >
-          Create Acccount
+          Create Account
         </button>
       </div>
     </Wrapper>
