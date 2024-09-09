@@ -5,12 +5,10 @@ import logo from "../../assets/images/ge3s_logo.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useNavigate } from "react-router-dom";
 
-export default function Goals({ activeStep, setActiveStep }) {
+export default function Goals({ setActiveStep }) {
   const [selectedValue, setSelectedValue] = React.useState("a");
   const [age, setAge] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -96,7 +94,6 @@ export default function Goals({ activeStep, setActiveStep }) {
       </div>
       <button
         onClick={() => {
-          //   navigate("/confirmation");
           setActiveStep(3);
         }}
       >

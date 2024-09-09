@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Cropper from "react-easy-crop";
 import {
   Box,
@@ -9,26 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    height: "70vh",
-    width: "auto",
-    transform: "translate(-50%, -50%)",
-    background: "#fff",
-    borderRadius: "15px",
-  },
-  overlay: {
-    backgroundColor: "rgba(30, 30, 30, 0.50)",
-  },
-};
-
 const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
-  // console.log(imageUrl);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
@@ -241,7 +222,6 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
                   backgroundClip: "text",
                   "-webkitBackgroundClip": "text",
                   "-webkitTextFillColor": "transparent",
-                  border: "1px solid  #369D9C",
                   ":hover": {
                     border: "1px solid #369D9C",
                   },

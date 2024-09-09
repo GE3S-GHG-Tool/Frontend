@@ -1,12 +1,15 @@
-import React from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./CreateAccount.css";
 import Radio from "@mui/material/Radio";
 import Wrapper from "../Wrapper/Wrapper";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/ge3s_logo.png";
+import PasswordInput from "../common/PasswordInput";
 export default function CreateAccount() {
-  const [selectedValue, setSelectedValue] = React.useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -35,21 +38,21 @@ export default function CreateAccount() {
             />
           </div>
           <div className="input">
-            <TextField
-              type="password"
-              variant="outlined"
-              size="small"
-              fullWidth
-              placeholder="Password"
+            <PasswordInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              // error={error.password}
+              // helperText={helperText.password}
+              placeholder={"Password"}
             />
           </div>
           <div className="input">
-            <TextField
-              type="password"
-              variant="outlined"
-              size="small"
-              fullWidth
-              placeholder="Re-enter Password"
+            <PasswordInput
+              value={confirmpassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              // error={error.password}
+              // helperText={helperText.password}
+              placeholder={"Re-enter Password"}
             />
           </div>
         </div>
@@ -72,6 +75,8 @@ export default function CreateAccount() {
           <span className="colored">terms and conditions</span>
         </div>
         <button
+          // disabled
+          className="ge3s_button"
           onClick={() => {
             navigate("/organizationstepper");
           }}

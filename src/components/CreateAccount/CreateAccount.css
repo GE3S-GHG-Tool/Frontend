@@ -23,18 +23,6 @@
   margin: 1vh 0vw;
 }
 
-.createacc button {
-  margin: 4vh 0vw;
-  padding: 1.8vh 0;
-  border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
-  color: #ffffff;
-  font-size: 1rem;
-  border: none;
-  width: 100%;
-  font-weight: 500;
-}
-
 .createacc span {
   font-size: 0.9rem;
 }
