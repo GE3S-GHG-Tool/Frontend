@@ -2,22 +2,24 @@
   position: relative;
   margin: 15vh auto;
   border-radius: 20px;
-  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
-  background: var(--White, #fff);
-  box-shadow: 6px 89px 56px -38px rgba(89,132,131,0.65);
-  width: 28vw;
-  padding: 48px;
+  border: 1px solid rgba(217, 217, 217, 0.4);
+  background: #fff;
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 36vw;
+  padding: 24px;
   gap: 8px;
 }
 
-.login-container div {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.error-message {
+  color: #f44336;
+  font-size: 0.75rem;
+  margin-top: 3px;
+  text-align: left;
+  font-weight: 400;
 }
 
-.login-container div p {
-  color: var(--Grey-1, #717171);
+.login-container p {
+  color: #717171;
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
@@ -25,71 +27,95 @@
   margin: 1vh 0vw;
 }
 
-.login-container div h1 {
+.login-container h1 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #00191d;
   text-align: center;
 }
-
-.login-container div button {
-  margin: 2vh 0vw;
-  display: flex;
-  padding: 1vh 2vw;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
-  color: #ffffff;
-  font-size: 1.1rem;
+.login-inputs {
+  margin-top: 48px;
 }
-
-.input_login {
-  border-radius: 5px;
-  background: #fff;
+.login-container button {
+  margin-top: 24px;
+  padding: 10px !important;
+  width: 100%;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
 }
 
 .ge3s_logo {
-  width: 28%;
-  margin: 0 auto;
+  display: flex;
 }
 
 .login-container .password-container {
   position: relative;
   display: flex;
-  align-items: center;
 }
 
 .login-container .toggle-password {
   position: absolute;
-  right: 10px;
   cursor: pointer;
 }
 
 .login-button-active {
   background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
-  border: none;
-  padding: 12px !important;
+  border: 2px solid transparent;
 }
 
 .login-button-disabled {
   background: linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%) !important;
   color: #838383;
   cursor: not-allowed;
-  border: none;
-  padding: 12px !important;
+  border: 2px solid transparent;
 }
 
 .login-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 }
 
 .forgot-password,
 .signup span {
   color: #3cb477 !important;
   cursor: pointer;
-  font-size: 1rem;
-} 
+}
+.signup span {
+  font-weight: 500;
+}
+.signup {
+  padding: 0px;
+}
+@media (max-width: 1024px) {
+  .login-container {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    width: 84vw;
+    padding: 24px;
+  }
+
+  .login-container div h1 {
+    font-size: 1.4rem;
+  }
+
+  .ge3s_logo {
+    width: 35%;
+  }
+
+  .login-container div button {
+    font-size: 1rem;
+  }
+}

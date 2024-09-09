@@ -14,8 +14,8 @@ import VerifyOTP from "./components/VerifyOTP/VerifyOTP";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
 import AccountCreationHeader from "./components/AccountCreationHeader/AccountCreationHeader";
 import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
-import CreateAccountSucessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
 import GenerateReports from "./components/GenerateReports/GenerateReport";
+import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
 
 function App() {
   return (
@@ -26,16 +26,16 @@ function App() {
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/reset-password" element={<ResetPassword/>} />
-      <Route path="/verify-otp" element={<VerifyOTP/>} />
-      <Route path="/change-password" element={<ChangePassword/>} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/verify-otp" element={<VerifyOTP />} />
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/organizationstepper" element={<OrganizationStepper />} />
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />
       <Route path="/goals" element={<Goals />} />
       <Route path="/account-creation-header" element={<AccountCreationHeader/>}/>
       <Route path="/account-Intro" element={<AccountCreationIntro/>}/>
-      <Route path="/create-account-successfully" element={<CreateAccountSucessfully/>}/>
+      <Route path="/create-account-successfully" element={<CreateAccountSuccessfully/>}/>
       <Route path="/generate-reports" element={<GenerateReports/>}/>
     </Routes>
   );

@@ -18,6 +18,10 @@ export default function VerifyOTP() {
         }
     }, [timeLeft]);
 
+    useEffect(() => {
+        document.getElementById("otp-input-0")?.focus();
+    }, []);
+
     const handleChange = (e, index) => {
         const value = e.target.value;
         if (/^[0-9]$/.test(value) || value === "") {
@@ -50,17 +54,17 @@ export default function VerifyOTP() {
                         <span id="edit-email-link" className="theme-color">Edit Email ID</span>
                     </span>
                     <p className="timer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
-                                <g clip-path="url(#clip0_1214_40831)">
-                                    <path d="M12.5 21.4248C17.4706 21.4248 21.5 17.3954 21.5 12.4248C21.5 7.45424 17.4706 3.4248 12.5 3.4248C7.52944 3.4248 3.5 7.45424 3.5 12.4248C3.5 17.3954 7.52944 21.4248 12.5 21.4248Z" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12.5 7.1748V12.4248H17.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_1214_40831">
-                                        <rect width="24" height="24" fill="white" transform="translate(0.5 0.424805)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 25" fill="none">
+                            <g clip-path="url(#clip0_1214_40831)">
+                                <path d="M12.5 21.4248C17.4706 21.4248 21.5 17.3954 21.5 12.4248C21.5 7.45424 17.4706 3.4248 12.5 3.4248C7.52944 3.4248 3.5 7.45424 3.5 12.4248C3.5 17.3954 7.52944 21.4248 12.5 21.4248Z" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.5 7.1748V12.4248H17.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1214_40831">
+                                    <rect width="24" height="24" fill="white" transform="translate(0.5 0.424805)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
                         <span className="theme-color">{timeLeft}s</span>
                         <span
                             className="resend-otp theme-color"
@@ -87,7 +91,7 @@ export default function VerifyOTP() {
                     <button
                         onClick={() => navigate("/change-password")}
                         disabled={!isFormValid}
-                        className={isFormValid ? "verify-button-active" : "verify-button-disabled"}
+                        className={!isFormValid ? "verify-button-disabled" : "verify-button-active"}
                     >
                         Verify OTP
                     </button>

@@ -15,7 +15,7 @@ export default function GenerateReports() {
 
   return (
     <Wrapper>
-      <div className="login-container">
+      <div className="login-container-2">
         <div>
           <img src={logo} alt="" className="ge3s_logo" />
           <h1>Generate reports quick and easy!</h1>

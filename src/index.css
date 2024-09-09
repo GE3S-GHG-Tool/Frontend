@@ -5,9 +5,9 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
-  min-height: 100vh; /* Make body full height to vertically center */
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
 }
 button:active {
   transform: translateY(2px);

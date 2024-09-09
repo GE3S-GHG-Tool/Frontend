@@ -1,0 +1,496 @@
+// Adjust this value as needed
+ 
+ // Checked color
+ 
+// Unchecked color
+ 
+// import React from "react";
+// import TextField from "@mui/material/TextField";
+// import Radio from "@mui/material/Radio";
+// import Wrapper from "../Wrapper/Wrapper";
+// import logo from "../../assets/images/ge3s_logo.png";
+// import "./AccountCreationIntro.css";
+// import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+
+// export default function AccountCreationIntro() {
+//   const navigate = useNavigate();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [confirmPassword, setConfirmPassword] = useState("");
+//   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+//   const isFormValid = () => {
+//     return (
+//       email.trim() !== "" &&
+//       password.trim() !== "" &&
+//       confirmPassword.trim() !== "" &&
+//       password === confirmPassword &&
+//       isTermsAccepted
+//     );
+//   };
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (isFormValid()) {
+//       alert("Form is valid and ready for submission!");
+//     } else {
+//       alert("Please fill in all fields correctly and agree to the terms.");
+//     }
+//   };
+//   return (
+//     <Wrapper>
+//       <div className="registration-container">
+//         <form className="registration-form" onSubmit={handleSubmit}>
+//           <div className="registration-card">
+//             <div className="registration-header">
+//               <img src={logo} alt="logo" className="header-logo" />
+//               <h2>Start Creating Your Account</h2>
+//             </div>
+//             <div className="form-field">
+//               <p>Verified Email Address</p>
+//               <TextField
+//                 id="email-field"
+//                 variant="outlined"
+//                 size="small"
+//                 fullWidth
+//                 required
+//                 name="email"
+//                 placeholder="Email"
+//                 type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//               />
+//             </div>
+//             <div className="form-field">
+//               <TextField
+//                 id="outlined-size-small"
+//                 variant="outlined"
+//                 size="small"
+//                 fullWidth
+//                 placeholder="Password"
+//                 type={showPassword ? "text" : "password"}
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 slotProps={{
+//                   input: {
+//                     style: { paddingLeft: "10px" },
+//                   },
+//                 }}
+//               />
+//               <span
+//                 className="toggle-password-2"
+//                 onClick={() => setShowPassword(!showPassword)}
+//               >
+//                 <svg
+//                   xmlns="http://www.w3.org/2000/svg"
+//                   width="25"
+//                   height="24"
+//                   viewBox="0 0 25 24"
+//                   fill="none"
+//                 >
+//                   <g clip-path="url(#clip0_1214_40689)">
+//                     <path
+//                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
+//                       stroke="#969696"
+//                       stroke-miterlimit="10"
+//                     />
+//                     <path
+//                       d="M12.5 16.9551C15.3995 16.9551 17.75 14.7025 17.75 11.9238C17.75 9.14515 15.3995 6.89258 12.5 6.89258C9.60051 6.89258 7.25 9.14515 7.25 11.9238C7.25 14.7025 9.60051 16.9551 12.5 16.9551Z"
+//                       stroke="#969696"
+//                       stroke-miterlimit="10"
+//                     />
+//                     <path
+//                       d="M12.5 12.6426C12.9142 12.6426 13.25 12.3208 13.25 11.9238C13.25 11.5269 12.9142 11.2051 12.5 11.2051C12.0858 11.2051 11.75 11.5269 11.75 11.9238C11.75 12.3208 12.0858 12.6426 12.5 12.6426Z"
+//                       stroke="#969696"
+//                       stroke-width="2"
+//                       stroke-miterlimit="10"
+//                     />
+//                   </g>
+//                   <defs>
+//                     <clipPath id="clip0_1214_40689">
+//                       <rect
+//                         width="24"
+//                         height="23"
+//                         fill="white"
+//                         transform="translate(0.5 0.423828)"
+//                       />
+//                     </clipPath>
+//                   </defs>
+//                 </svg>
+//               </span>
+//             </div>
+
+//             <div className="form-field">
+//               <TextField
+//                 id="confirm-password-field"
+//                 variant="outlined"
+//                 size="small"
+//                 fullWidth
+//                 placeholder="Confirm-Password"
+//                 type={showConfirmPassword ? "text" : "password"}
+//                 value={confirmPassword}
+//                 onChange={(e) => setConfirmPassword(e.target.value)}
+//                 slotProps={{
+//                   input: {
+//                     style: { paddingLeft: "10px" },
+//                   },
+//                 }}
+//               />
+//               <span
+//                 className="toggle-password-2"
+//                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+//               >
+//                 <svg
+//                   xmlns="http://www.w3.org/2000/svg"
+//                   width="25"
+//                   height="24"
+//                   viewBox="0 0 25 24"
+//                   fill="none"
+//                 >
+//                   <g clip-path="url(#clip0_1214_40689)">
+//                     <path
+//                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
+//                       stroke="#969696"
+//                       stroke-miterlimit="10"
+//                     />
+//                     <path
+//                       d="M12.5 16.9551C15.3995 16.9551 17.75 14.7025 17.75 11.9238C17.75 9.14515 15.3995 6.89258 12.5 6.89258C9.60051 6.89258 7.25 9.14515 7.25 11.9238C7.25 14.7025 9.60051 16.9551 12.5 16.9551Z"
+//                       stroke="#969696"
+//                       stroke-miterlimit="10"
+//                     />
+//                     <path
+//                       d="M12.5 12.6426C12.9142 12.6426 13.25 12.3208 13.25 11.9238C13.25 11.5269 12.9142 11.2051 12.5 11.2051C12.0858 11.2051 11.75 11.5269 11.75 11.9238C11.75 12.3208 12.0858 12.6426 12.5 12.6426Z"
+//                       stroke="#969696"
+//                       stroke-width="2"
+//                       stroke-miterlimit="10"
+//                     />
+//                   </g>
+//                   <defs>
+//                     <clipPath id="clip0_1214_40689">
+//                       <rect
+//                         width="24"
+//                         height="23"
+//                         fill="white"
+//                         transform="translate(0.5 0.423828)"
+//                       />
+//                     </clipPath>
+//                   </defs>
+//                 </svg>
+//               </span>
+
+//               <div className="terms-checkbox">
+//                 <Radio
+//                   value="agree"
+//                   required
+//                   name="terms-radio"
+//                   inputProps={{ "aria-label": "Agree" }}
+//                   checked={isTermsAccepted}
+//                   onChange={(e) => setIsTermsAccepted(e.target.checked)}
+//                 />
+//                 <span>I agree to the </span>
+//                 <span className="terms-highlight">Terms and Conditions</span>
+//               </div>
+//             </div>
+
+//             <Link to="/create-account-successfully">
+//               <button
+//                 type="submit"
+//                 disabled={!isFormValid()}
+//                 className={
+//                   isFormValid() ? "acc-button-active" : "acc-button-disabled"
+//                 }
+//               >
+//                 Submit
+//               </button>
+//             </Link>
+//           </div>
+//         </form>
+//       </div>
+//     </Wrapper>
+//   );
+// }
+
+ 
+
+import logo from "../../images/ge3s_logo.png";
+ 
+
+import Wrapper from "../../Wrapper/Wrapper";
+ 
+CreateAcc
+ 
+// Disable button if the form is not valid
+ 
+// The button will trigger form submission
+ 
+// Fixed value here
+ 
+ // Fixed toggle logic here
+ 
+
+            {/* This is the form section */}
+ 
+
+            {/* This is the header section */}
+ 
+
+        {/* This is the card component */}
+ 
+ // Proceed with form submission or further processing
+      // For example, you might use navigate() here if you're using React Router
+ 
+// Check if the email field is not empty
+ 
+// import React from "react";
+// import TextField from "@mui/material/TextField";
+// import "./AccountCreationHeader.css";
+// import Wrapper from "../Wrapper/Wrapper";
+// import { useNavigate } from "react-router-dom";
+// import logo from "../../assets/images/ge3s_logo.png";
+// import { PiUploadLight } from "react-icons/pi";
+
+// export default function AccountCreationHeader() {
+//   const navigate = useNavigate();
+
+//   return (
+//     <Wrapper>
+//       <div className="main-container">
+//         <div className="logo-container">
+//           <img src={logo} alt="Logo" className="logo" />
+//           <h1 className="header">Start creating your account</h1>
+//         </div>
+
+//         <div className="middle-container">
+//           <div className="profile-section">
+//             <img
+//               src="\src\assets\images\profile-logo.png"
+//               alt="Profile Icon"
+//               className="profile-icon"
+//             />
+//             <button class="upload-button">
+//               <PiUploadLight class="icon" />
+//               <span class="text">Upload Photo</span>
+//             </button>
+//           </div>
+
+//           <div className="input">
+//             <TextField
+//               id="outlined-size-small"
+//               label=""
+//               variant="outlined"
+//               size="small"
+//               fullWidth
+//               placeholder="FullName"
+//             />
+//           </div>
+//         </div>
+
+//         <button
+//           onClick={() => {
+//             navigate("");
+//           }}
+//           className="create-account-btn"
+//         >
+//           Create Account
+//         </button>
+//       </div>
+//     </Wrapper>
+//   );
+// }
+
+// import React from "react";
+// import "./AccountCreationHeader.css";
+// import profile from "../../assets/images/profile.svg";
+// import TextField from "@mui/material/TextField";
+// import logo from "../../assets/images/ge3s_logo.png";
+// import upload from "../../assets/images/Upload.svg";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import Wrapper from "../Wrapper/Wrapper";
+
+// function AccountCreationHeader() {
+//   const handleButtonClick = () => {
+//     const fileInput = document.createElement("input");
+//     fileInput.type = "file";
+//     fileInput.onchange = (event) => {
+//       const file = event.target.files[0];
+//       if (file) {
+//         alert("File selected: " + file.name);
+//       }
+//     };
+//     fileInput.click();
+//   };
+//   const [email, setEmail] = useState("");
+//   const navigate = useNavigate();
+
+//   // Check if the email field is not empty
+//   const isFormValid = email.trim() !== "";
+//   return (
+//     <Wrapper>
+//       <div className="form-container">
+//         <div className="form-card">
+//           {/* Header Section */}
+//           <div className="header-section">
+//             <img src={logo} alt="logo" className="header-logo" />
+//             <h2 className="header-title">Start creating your account</h2>
+//           </div>
+//           {/* Profile Section */}
+//           <div className="profile-section">
+//             <img src={profile} alt="profile" className="profile-image" />
+//             <button className="upload-button" onClick={handleButtonClick}>
+//               <img src={upload} className="upload-icon" />
+//               <span className="upload-text">Upload Photo</span>
+//             </button>
+//             <div className="input_login">
+//               <TextField
+//                 id="outlined-size-small"
+//                 variant="outlined"
+//                 size="small"
+//                 fullWidth
+//                 required
+//                 name="email"
+//                 placeholder="Email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 slotProps={{
+//                   input: {
+//                     style: { paddingLeft: "10px" },
+//                   },
+//                 }}
+//               />
+//             </div>
+//             <button
+//               onClick={() => navigate("/account-Intro")}
+//               disabled={!isFormValid}
+//               className={
+//                 isFormValid ? "acc-button-active" : "acc-button-disabled"
+//               }
+//             >
+//               Create Account
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </Wrapper>
+//   );
+// }
+
+// export default AccountCreationHeader;
+ 
+
+    height: "420px",
+    width: "430px",
+ 
+
+import upload from "../../images/Upload.svg";
+ 
+
+import profile from "./../../images/profile.svg";
+ 
+
+import logo from "../../assets/images/ge3s_logo";
+ 
+CreateHeader
+ 
+../../Wrapper/Wrapper
+ 
+// import "./CreateAccountSuccessfully.css";
+// import Wrapper from "../../components/Wrapper/Wrapper";
+// import { Link } from "react-router-dom";
+
+// export default function CreateAccountSuccessfully() {
+//   return (
+//     <Wrapper>
+//       <div className="confirm">
+//         <div className="crossbtn">
+//           <Link to="/generate-reports">
+//             <svg width="25" height="25" viewBox="0 0 32 32" fill="none">
+//               <g id="X">
+//                 <path
+//                   id="Vector"
+//                   d="M25.7081 24.2925C25.801 24.3854 25.8747 24.4957 25.9249 24.6171C25.9752 24.7385 26.0011 24.8686 26.0011 25C26.0011 25.1314 25.9752 25.2615 25.9249 25.3829C25.8747 25.5043 25.801 25.6146 25.7081 25.7075C25.6151 25.8004 25.5048 25.8741 25.3835 25.9244C25.2621 25.9747 25.132 26.0006 25.0006 26.0006C24.8692 26.0006 24.7391 25.9747 24.6177 25.9244C24.4963 25.8741 24.386 25.8004 24.2931 25.7075L16.0006 17.4138L7.70806 25.7075C7.52042 25.8951 7.26592 26.0006 7.00056 26.0006C6.73519 26.0006 6.4807 25.8951 6.29306 25.7075C6.10542 25.5199 6 25.2654 6 25C6 24.7346 6.10542 24.4801 6.29306 24.2925L14.5868 16L6.29306 7.70751C6.10542 7.51987 6 7.26537 6 7.00001C6 6.73464 6.10542 6.48015 6.29306 6.29251C6.4807 6.10487 6.73519 5.99945 7.00056 5.99945C7.26592 5.99945 7.52042 6.10487 7.70806 6.29251L16.0006 14.5863L24.2931 6.29251C24.4807 6.10487 24.7352 5.99945 25.0006 5.99945C25.2659 5.99945 25.5204 6.10487 25.7081 6.29251C25.8957 6.48015 26.0011 6.73464 26.0011 7.00001C26.0011 7.26537 25.8957 7.51987 25.7081 7.70751L17.4143 16L25.7081 24.2925Z"
+//                   fill="black"
+//                 />
+//               </g>
+//             </svg>
+//           </Link>
+//         </div>
+//         <div className="confirmtick">
+//           <svg width="75" height="90" viewBox="0 0 113 113" fill="none">
+//             <circle
+//               cx="56.5"
+//               cy="56.5"
+//               r="56"
+//               fill="url(#paint0_linear_939_5057)"
+//             />
+//             <path
+//               d="M34.0957 56.3002L49.0854 71.29L78.9071 41.4683"
+//               stroke="white"
+//               strokeWidth="8.83606"
+//             />
+//             <defs>
+//               <linearGradient
+//                 id="paint0_linear_939_5057"
+//                 x1="0.5"
+//                 y1="0.5"
+//                 x2="130.171"
+//                 y2="27.4392"
+//                 gradientUnits="userSpaceOnUse"
+//               >
+//                 <stop stopColor="#51ADAC" />
+//                 <stop offset="1" stopColor="#4FA874" />
+//               </linearGradient>
+//             </defs>
+//           </svg>
+//         </div>
+//         <div className="confirm-footer">
+//           <p>Your account has been created sucessfully </p>
+//           <Link to="/generate-reports">
+//             <button>Continue</button>
+//           </Link>
+//         </div>
+//       </div>
+//     </Wrapper>
+//   );
+// }
+
+ 
+ color: " #000000",
+                  fontSize: "18px",
+                  fontWeight: "550",
+                  lineHeight: "36px",
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+ 
+
+                  letterSpacing: "-0.02em",
+ 
+
+                  fontfamily: Inter
+ 
+
+font-size: 24px;
+font-weight: 500;
+line-height: 36px;
+ 
+
+text-align: center;
+ 
+#00000background:
+ 
+
+import CreateAccountSucessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
+ 
+SuceesfullyMui
+ 
+
+import Wrapper from "../../Wrapper/Wrapper";
+ 
+ /* Optional: Add ellipsis if text overflows */
+ 
+ /* Hide any overflow text */
+ 

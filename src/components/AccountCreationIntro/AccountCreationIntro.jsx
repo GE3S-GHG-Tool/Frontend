@@ -1,19 +1,29 @@
 import React from "react";
+import Wrapper from "../Wrapper/Wrapper";
+import { Button, Grid2, Paper, Typography } from "@mui/material";
+import logo from "../../assets/images/ge3s_logo.png";
 import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
-import Wrapper from "../Wrapper/Wrapper";
-import logo from "../../assets/images/ge3s_logo.png";
-import "./AccountCreationIntro.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Visibility } from "@mui/icons-material";
+import { VisibilityOff } from "@mui/icons-material";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
-export default function AccountCreationIntro() {
+function AccountCreationIntro() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
-  // Check if the email field is not empty
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
+  const handleMouseDownPassword = (event) => event.preventDefault();
+  const handleMouseDownConfirmPassword = (event) => event.preventDefault();
   const isFormValid = () => {
     return (
       email.trim() !== "" &&
@@ -23,103 +33,202 @@ export default function AccountCreationIntro() {
       isTermsAccepted
     );
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isFormValid()) {
-      alert("Form is valid and ready for submission!");
-      // Proceed with form submission or further processing
-    } else {
-      alert("Please fill in all fields correctly and agree to the terms.");
-    }
+  const paperStyle = {
+    height: "485px",
+    width: "480px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "20px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    padding: "38px 47px 38px 47px",
+    gap: "26px",
   };
   return (
-    <Wrapper>
-      <div className="registration-container">
-        {/* This is the card component */}
-        <form className="registration-form" onSubmit={handleSubmit}>
-          <div className="registration-card">
-            {/* This is the header section */}
-            <div className="registration-header">
-              <img src={logo} alt="logo" className="header-logo" />
-              <h2>Start Creating Your Account</h2>
-            </div>
-            {/* This is the form section */}
-            <div className="form-field">
-              <p>Verified Email Address</p>
+    <div>
+      <Wrapper>
+        <Grid2>
+          <Paper style={paperStyle}>
+            <Grid2
+              sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+            >
+              <Grid2 item>
+                <img src={logo} height="57px" width="60px" alt="logo" />
+              </Grid2>
+              <Grid2 item>
+                <Typography
+                  variant="p"
+                  fontSize="26px"
+                  letterSpacing="-1"
+                  width="416px"
+                  fontWeight="600"
+                  lineHeight="48px"
+                >
+                  Start creating your account
+                </Typography>
+              </Grid2>
+            </Grid2>
+            <Grid2
+              sx={{ display: "flex", flexDirection: "column", gap: "4px" }}
+            >
+              <Typography
+                variant="p"
+                fontWeight="400"
+                fontSize="14px"
+                lineHeight="24px"
+                color="#717171"
+              >
+                Verified Email Address
+              </Typography>
               <TextField
-                id="email-field"
-                variant="outlined"
+                placeholder="email"
                 size="small"
-                fullWidth
                 required
-                name="email"
-                placeholder="Email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-field">
+                padding="10px 16px 10px 16px"
+                border="1px solid #D9D9D9"
+                sx={{
+                  height: "42px", // Adjust this value as needed
+                }}
+              ></TextField>
+            </Grid2>
+            <Grid2
+              sx={{ display: "flex", flexDirection: "column", gap: "26px" }}
+            >
               <TextField
-                id="password-field"
-                type="password"
-                variant="outlined"
+                placeholder="Password"
+                size="small"
                 required
                 name="password"
-                size="small"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                fullWidth
-                placeholder="Password"
-              />
-            </div>
-            <div className="form-field">
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  height: "42px", // Adjust this value as needed
+                }}
+              ></TextField>
               <TextField
-                id="confirm-password-field"
-                type="password"
-                variant="outlined"
+                placeholder="Re-Password"
                 size="small"
-                fullWidth
+                name="re-password"
                 required
-                placeholder="Confirm Password" // Updated placeholder text
-                value={confirmPassword}
+                value={confirmPassword} // Fixed value here
                 onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <div className="terms-checkbox">
-                <Radio
-                  value="agree"
-                  required
-                  name="terms-radio"
-                  inputProps={{ "aria-label": "Agree" }}
-                  checked={isTermsAccepted}
-                  onChange={(e) => setIsTermsAccepted(e.target.checked)}
-                />
-                <span>I agree to the </span>
-                <span className="terms-highlight">Terms and Conditions</span>
-              </div>
-            </div>
-            <button
-              type="submit" // Change to "submit" to use form submission
-              onClick={(e) => {
-                if (isFormValid()) {
-                  navigate("/create-account-successfully");
-                } else {
-                  e.preventDefault(); // Prevent navigation if form is not valid
-                  alert(
-                    "Please fill in all fields correctly and agree to the terms."
-                  );
-                }
+                type={showConfirmPassword ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownConfirmPassword}
+                        edge="end"
+                      >
+                        {showConfirmPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                sx={{
+                  height: "42px", 
+                }}
+              ></TextField>
+            </Grid2>
+            <Grid2
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "2px",
+                marginTop: "-16px",
+                marginLeft: "-10px",
               }}
-              disabled={!isFormValid()} // Call function to get boolean value
-              className={
-                isFormValid() ? "acc-button-active" : "acc-button-disabled"
-              }
             >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </Wrapper>
+              <Radio
+                value="agree"
+                required
+                name="terms-radio"
+                checked={isTermsAccepted}
+                onChange={(e) => setIsTermsAccepted(e.target.checked)}
+                sx={{
+                  color: "#3CB457", 
+                  "&.Mui-checked": {
+                    color: "#4FA874",
+                  },
+                }}
+              />
+              <Typography variant="p" fontWeight="400" fontSize="18px">
+                I agree to the{" "}
+              </Typography>
+              <Typography
+                variant="p"
+                fontWeight="500"
+                fontSize="18px"
+                color="#3CB457"
+              >
+                Terms and Conditions.
+              </Typography>
+            </Grid2>
+            <Grid2>
+              <Button
+                onClick={() => navigate("/create-account-successfully")}
+                disabled={!isFormValid()}
+                sx={{
+                  width: "100%",
+                  fontSize: "16px",
+                  borderRadius: "32px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontWeight: "600",
+                  lineHeight: "12px",
+                  padding: "20px 62px 20px 62px",
+                  backgroundColor: "#E7E7E7",
+                  // color: "#838383",
+                  height: "42px",
+                  textTransform: "capitalize",
+                  background: isFormValid()
+                    ? "linear-gradient(102deg, #369d9c 0%, #28814d 100%)"
+                    : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+                  color: isFormValid ? "#ffffff" : "#838383",
+                  border: isFormValid
+                    ? "1px solid rgba(217, 217, 217, 0.4)"
+                    : "none",
+                  cursor: isFormValid ? "pointer" : "not-allowed",
+                  "&:hover": {
+                    background: isFormValid
+                      ? "linear-gradient(102deg, #28814d 0%, #369d9c 100%)"
+                      : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+                  },
+                }}
+              >
+                Create account
+              </Button>
+            </Grid2>
+          </Paper>
+        </Grid2>
+      </Wrapper>
+    </div>
   );
 }
+
+export default AccountCreationIntro;
