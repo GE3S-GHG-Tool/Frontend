@@ -30,7 +30,7 @@ const buttonStyle = {
   background: "#fff",
 };
 
-export default function SuccessModal({ open, handleClose }) {
+const SuccessAnimation = ({ open, handleClose }) => {
   return (
     <Modal
       open={open}
@@ -41,7 +41,7 @@ export default function SuccessModal({ open, handleClose }) {
       <Box sx={style}>
         {/* SVG Icon */}
         <div style={svgStyle}>
-          <svg width="96" height="96" viewBox="0 0 112 112" fill="none">
+          <svg width="85" height="85" viewBox="0 0 112 112" fill="none">
             <circle
               cx="56"
               cy="56"
@@ -73,9 +73,9 @@ export default function SuccessModal({ open, handleClose }) {
           id="modal-title"
           variant="h6"
           component="h2"
-          sx={{ fontWeight: "bold", marginBottom: "16px" }}
+          sx={{ fontWeight: "500", marginBottom: "12px" }}
         >
-          Your Password have been Changed
+          Invitation has been sent successfully.
         </Typography>
 
         <Button onClick={handleClose} sx={buttonStyle}>
@@ -84,4 +84,6 @@ export default function SuccessModal({ open, handleClose }) {
       </Box>
     </Modal>
   );
-}
+};
+
+export default SuccessAnimation;

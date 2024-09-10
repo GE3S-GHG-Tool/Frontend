@@ -10,12 +10,10 @@ import {
   ListItemText,
   IconButton,
 } from "@mui/material";
-import { Check, Close } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  //   backgroundColor: "rgba(0, 0, 0, 0.7)",
-  color: "white",
   borderRadius: "16px",
   overflow: "visible",
 }));
@@ -60,6 +58,7 @@ const PricingCard = ({
       maxWidth: 320,
       width: "100%",
       m: 2,
+      border: "1px solid rgba(255, 255, 255, 0.40)",
       color: isActive ? "#000" : "#fff",
       backgroundColor: isActive ? "#fff" : "rgba(27, 26, 29, 0.40)",
       //   height: "fit-content",
@@ -98,7 +97,27 @@ const PricingCard = ({
         {features.map((feature, index) => (
           <StyledListItem key={index}>
             <StyledListItemIcon>
-              <Check sx={{ color: "#06b6d4", fontSize: "1rem" }} />
+              <svg width="23" height="24" viewBox="0 0 23 24" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M11.0781 20.3085C15.6668 20.3085 19.3866 16.5886 19.3866 12C19.3866 7.41127 15.6668 3.69141 11.0781 3.69141C6.4894 3.69141 2.76953 7.41127 2.76953 12C2.76953 16.5886 6.4894 20.3085 11.0781 20.3085ZM10.8641 15.3605L15.48 9.82143L14.0616 8.63943L10.0929 13.4019L8.03816 11.3472L6.7326 12.6527L9.50212 15.4222L10.2169 16.1371L10.8641 15.3605Z"
+                  fill="url(#paint0_linear_1214_40191)"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_1214_40191"
+                    x1="2.76953"
+                    y1="3.69141"
+                    x2="22.0085"
+                    y2="7.68829"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#369D9C" />
+                    <stop offset="1" stopColor="#28814D" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </StyledListItemIcon>
             <StyledListItemText primary={feature} />
           </StyledListItem>
@@ -128,10 +147,11 @@ const PricingModal = ({ open, handleClose }) => {
               CarbonZero!
             </Typography>
             <IconButton
+              onClick={handleClose}
               sx={{
                 position: "absolute",
-                top: -40,
-                right: 0,
+                top: 5,
+                right: 10,
                 color: "white",
               }}
             >

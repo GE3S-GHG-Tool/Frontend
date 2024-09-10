@@ -16,13 +16,20 @@ import AccountCreationHeader from "./components/AccountCreationHeader/AccountCre
 import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
 import GenerateReports from "./components/GenerateReports/GenerateReport";
 import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
+import DashboardLayout from "./components/Dashboard/DashboardLayout";
+import Dashboard from "./components/Dashboard/Dashboard";
+import TeamMembers from "./components/Dashboard/TeamMembers";
+import Facilities from "./components/Dashboard/Facilities";
+import Survey from "./components/Dashboard/Survey";
+import Report from "./components/Dashboard/Report";
+import Analytics from "./components/Dashboard/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 
 function App() {
   return (
     <Routes>
-      <Route index path="/" element={<SignUp />} />
+      <Route index path="/signup" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/personalinfo" element={<PersonalInfo />} />
@@ -41,6 +48,16 @@ function App() {
       <Route path="/create-account-successfully" element={<CreateAccountSuccessfully/>}/>
       <Route path="/generate-reports" element={<GenerateReports/>}/>
       <Route path="/reports-state" element={<ReportStateEmpty/>}/>
+
+      {/* Dashboard routes */}
+      <Route path="/" element={<DashboardLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="team-member" element={<TeamMembers />} />
+        <Route path="facilities" element={<Facilities />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="survey" element={<Survey />} />
+        <Route path="report" element={<Report />} />
+      </Route>
     </Routes>
   );
 }
