@@ -46,7 +46,14 @@ export default function VerifyOTP() {
   return (
     <Wrapper>
       <div className="verify-container">
-        <div>
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          background: 'white',
+          borderRadius: '20px',
+          gap: '8px',
+          padding: '24px'
+        }}>
           <img src={logo} alt="" className="ge3s_logo" />
           <h1>Enter the OTP sent to your Email ID</h1>
           <span id="email-address">
@@ -123,6 +130,19 @@ export default function VerifyOTP() {
             Verify OTP
           </button>
         </div>
+        <div style={{
+          width: '80%',
+          height: '16vh',
+          borderRadius: '50%',
+          margin: '0 auto',
+          position: 'absolute',
+          bottom: '-12px',
+          left: '10%',
+          background: '#598483',
+          filter: 'blur(20px)',
+          opacity: 0.8,
+          zIndex: 0,
+        }}></div>
       </div>
     </Wrapper>
   );

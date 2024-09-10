@@ -1,13 +1,10 @@
 .login-container {
   position: relative;
   margin: 15vh auto;
-  border-radius: 20px;
-  border: 1px solid rgba(217, 217, 217, 0.4);
   background: #fff;
-  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
   width: 36vw;
-  padding: 24px;
-  gap: 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(217, 217, 217, 0.40);
 }
 
 .error-message {
@@ -33,7 +30,7 @@
   color: #00191d;
   text-align: center;
 }
-.login-inputs{
+.login-inputs {
   margin-top: 48px;
 }
 .login-container button {
@@ -55,6 +52,7 @@
 
 .login-container .toggle-password {
   position: absolute;
+  top: 0.68rem;
   cursor: pointer;
 }
 
@@ -83,11 +81,11 @@
   color: #3cb477 !important;
   cursor: pointer;
 }
-.signup span{
+.signup span {
   font-weight: 500;
 }
-.signup{
-  padding:0px;
+.signup {
+  padding: 0px;
 }
 @media (max-width: 1024px) {
   .login-container {

@@ -1,6 +1,4 @@
-.table-container {
-  padding: 1rem;
-}
+
 
 .facility-table {
   width: 100%;
@@ -11,7 +9,7 @@
 .facility-table thead th {
   text-align: left;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   padding: 10px;
   color: #717171;
 }
@@ -29,8 +27,8 @@
 
 .facility-table td {
   padding: 0.7rem;
-  font-weight: 400;
-  font-size: 0.9rem;
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 
 .facility-table td:first-child {

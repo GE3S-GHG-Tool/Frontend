@@ -1,4 +1,6 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
+import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
+import { Close } from '@mui/icons-material';
+import { styled } from '@mui/system';
 
 const style = {
   position: "absolute",
@@ -38,7 +40,19 @@ export default function SuccessModal({ open, handleClose }) {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
+
       <Box sx={style}>
+        <button style={{
+          position: 'absolute',
+          right: '10px',
+          top: '10px',
+          color: '#000',
+          border:"none",
+          background:'transparent'
+
+        }} onClick={handleClose}>
+          <Close  />
+        </button>
         {/* SVG Icon */}
         <div style={svgStyle}>
           <svg
@@ -79,7 +93,7 @@ export default function SuccessModal({ open, handleClose }) {
           id="modal-title"
           variant="h6"
           component="h2"
-          sx={{ fontWeight: "bold", marginBottom: "16px" }}
+          sx={{ fontWeight: "500", marginBottom: "16px" }}
         >
           Your Password have been Changed
         </Typography>
