@@ -29,7 +29,14 @@ export default function ResetPassword() {
   return (
     <Wrapper>
       <div className="reset-container">
-        <div>
+        <div style={{
+          position: 'relative',
+          zIndex: 1,
+          background: 'white',
+          borderRadius: '20px',
+          gap: '8px',
+          padding: '24px'
+        }}>
           <img src={logo} alt="Logo" className="ge3s_logo" />
           <h1>Reset Your Password</h1>
           <p id="otp-heading">We will send you OTP on your email ID</p>
@@ -58,6 +65,19 @@ export default function ResetPassword() {
             Send
           </button>
         </div>
+        <div style={{
+          width: '80%',
+          height: '16vh',
+          borderRadius: '50%',
+          margin: '0 auto',
+          position: 'absolute',
+          bottom: '-12px',
+          left: '10%',
+          background: '#598483',
+          filter: 'blur(20px)',
+          opacity: 0.8,
+          zIndex: 0,
+        }}></div>
       </div>
     </Wrapper>
   );
