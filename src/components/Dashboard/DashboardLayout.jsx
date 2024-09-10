@@ -6,15 +6,10 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import Divider from '@mui/material/Divider';
 import { Toolbar, IconButton, Badge, Avatar } from '@mui/material';
 import avatar from '../../assets/images/userimg.png';
-import TeamMembers from './TeamMembers';
-import Facilities from './Facilities';
-import Survey from './Survey';
+import logo from "../../assets/images/ge3s.png"
+
 
 const navMenu = [
-  {
-    kind: 'header',
-    title: 'Main items',
-  },
   {
     segment: 'dashboard',
     title: 'Dashboard',
@@ -25,7 +20,7 @@ const navMenu = [
     </svg>,
   },
   {
-    segment: 'dashboard/report',
+    segment: 'report',
     title: 'Report',
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
       <g clip-path="url(#clip0_1521_24370)">
@@ -46,7 +41,7 @@ const navMenu = [
     </svg>,
   },
   {
-    segment: 'dashboard/facilities',
+    segment: 'facilities',
     title: 'Facilities',
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
       <g clip-path="url(#clip0_1521_24382)">
@@ -64,14 +59,14 @@ const navMenu = [
     </svg>,
   },
   {
-    segment: 'dashboard/team-member',
+    segment: 'team-member',
     title: 'Team Member',
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" height="35" viewBox="0 0 35 35" fill="none">
       <path d="M7.875 11.8125C7.875 10.7682 8.28984 9.76669 9.02827 9.02827C9.76669 8.28984 10.7682 7.875 11.8125 7.875C12.8568 7.875 13.8583 8.28984 14.5967 9.02827C15.3352 9.76669 15.75 10.7682 15.75 11.8125C15.75 12.8568 15.3352 13.8583 14.5967 14.5967C13.8583 15.3352 12.8568 15.75 11.8125 15.75C10.7682 15.75 9.76669 15.3352 9.02827 14.5967C8.28984 13.8583 7.875 12.8568 7.875 11.8125ZM11.8125 6.125C10.3041 6.125 8.85744 6.72422 7.79083 7.79083C6.72422 8.85744 6.125 10.3041 6.125 11.8125C6.125 13.3209 6.72422 14.7676 7.79083 15.8342C8.85744 16.9008 10.3041 17.5 11.8125 17.5C13.3209 17.5 14.7676 16.9008 15.8342 15.8342C16.9008 14.7676 17.5 13.3209 17.5 11.8125C17.5 10.3041 16.9008 8.85744 15.8342 7.79083C14.7676 6.72422 13.3209 6.125 11.8125 6.125ZM21.7648 26.5037C22.7063 26.8888 23.891 27.125 25.375 27.125C28.6667 27.125 30.4867 25.956 31.4457 24.6155C31.9472 23.9126 32.261 23.0935 32.3575 22.2355C32.3661 22.1558 32.3719 22.0758 32.375 21.9958V21.875C32.375 21.5303 32.3071 21.1889 32.1752 20.8705C32.0433 20.552 31.8499 20.2626 31.6062 20.0188C31.3624 19.7751 31.073 19.5817 30.7545 19.4498C30.4361 19.3179 30.0947 19.25 29.75 19.25H21.6475C22.0675 19.7575 22.3825 20.3507 22.5662 21H29.75C29.9821 21 30.2046 21.0922 30.3687 21.2563C30.5328 21.4204 30.625 21.6429 30.625 21.875V21.9695L30.6163 22.057C30.5505 22.6122 30.3459 23.1419 30.0213 23.597C29.449 24.4002 28.2065 25.375 25.375 25.375C24.094 25.375 23.1385 25.1755 22.4227 24.8832C22.2792 25.3732 22.071 25.9263 21.7648 26.5037ZM2.625 22.75C2.625 21.8217 2.99375 20.9315 3.65013 20.2751C4.3065 19.6187 5.19674 19.25 6.125 19.25H17.5C18.4283 19.25 19.3185 19.6187 19.9749 20.2751C20.6313 20.9315 21 21.8217 21 22.75V22.897L20.9965 22.967L20.979 23.2032C20.855 24.3374 20.4522 25.4231 19.8065 26.3637C18.5798 28.14 16.2102 29.75 11.8125 29.75C7.41475 29.75 5.04525 28.14 3.8185 26.3655C3.17257 25.4244 2.76975 24.338 2.646 23.2032C2.63602 23.1014 2.62901 22.9993 2.625 22.897V22.75ZM4.375 22.855V22.8865L4.38725 23.0317C4.48221 23.8706 4.78145 24.6734 5.25875 25.3697C6.111 26.6017 7.89775 28 11.8125 28C15.7273 28 17.514 26.6017 18.3663 25.3697C18.8435 24.6734 19.1428 23.8706 19.2378 23.0317C19.2448 22.9653 19.2482 22.9168 19.2482 22.8865L19.25 22.8568V22.75C19.25 22.2859 19.0656 21.8408 18.7374 21.5126C18.4092 21.1844 17.9641 21 17.5 21H6.125C5.66087 21 5.21575 21.1844 4.88756 21.5126C4.55937 21.8408 4.375 22.2859 4.375 22.75V22.855ZM22.75 13.125C22.75 12.4288 23.0266 11.7611 23.5188 11.2688C24.0111 10.7766 24.6788 10.5 25.375 10.5C26.0712 10.5 26.7389 10.7766 27.2312 11.2688C27.7234 11.7611 28 12.4288 28 13.125C28 13.8212 27.7234 14.4889 27.2312 14.9812C26.7389 15.4734 26.0712 15.75 25.375 15.75C24.6788 15.75 24.0111 15.4734 23.5188 14.9812C23.0266 14.4889 22.75 13.8212 22.75 13.125ZM25.375 8.75C24.2147 8.75 23.1019 9.21094 22.2814 10.0314C21.4609 10.8519 21 11.9647 21 13.125C21 14.2853 21.4609 15.3981 22.2814 16.2186C23.1019 17.0391 24.2147 17.5 25.375 17.5C26.5353 17.5 27.6481 17.0391 28.4686 16.2186C29.2891 15.3981 29.75 14.2853 29.75 13.125C29.75 11.9647 29.2891 10.8519 28.4686 10.0314C27.6481 9.21094 26.5353 8.75 25.375 8.75Z" fill="#717171" />
     </svg>,
   },
   {
-    segment: 'dashboard/analytics',
+    segment: 'analytics',
     title: 'Analytics',
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
       <path d="M3.67571 15.9121C3.22011 13.453 3.65725 10.912 4.90844 8.74643C6.15963 6.58091 8.1427 4.93311 10.5007 4.09961V11.9746L3.67571 15.9121Z" stroke="#717171" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
@@ -79,7 +74,7 @@ const navMenu = [
     </svg>,
   },
   {
-    segment: 'dashboard/survey',
+    segment: 'survey',
     title: 'Start Survey',
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
       <path d="M26.0367 3.91699C26.6387 4.2981 27.1344 4.82545 27.4776 5.44987C27.8208 6.0743 28.0002 6.77545 27.9993 7.48797V21.1624C27.9993 24.9391 24.9388 27.9996 21.1621 27.9996H7.48765C6.7748 27.9997 6.07348 27.8197 5.44876 27.4764C4.82404 27.133 4.29615 26.6375 3.91406 26.0357L4.07295 26.0435L4.23183 26.0461H21.1621C22.4573 26.0461 23.6995 25.5316 24.6154 24.6157C25.5313 23.6998 26.0458 22.4576 26.0458 21.1624V4.23216C26.0459 4.12703 26.0429 4.02193 26.0367 3.91699ZM3.90625 14.9763C3.90625 14.1128 4.24927 13.2847 4.85986 12.6741C5.47044 12.0635 6.29857 11.7205 7.16206 11.7205C8.02556 11.7205 8.85369 12.0635 9.46427 12.6741C10.0749 13.2847 10.4179 14.1128 10.4179 14.9763C10.4179 15.8398 10.0749 16.668 9.46427 17.2785C8.85369 17.8891 8.02556 18.2322 7.16206 18.2322C6.29857 18.2322 5.47044 17.8891 4.85986 17.2785C4.24927 16.668 3.90625 15.8398 3.90625 14.9763ZM7.16206 13.674C6.81667 13.674 6.48541 13.8112 6.24118 14.0555C5.99695 14.2997 5.85974 14.6309 5.85974 14.9763C5.85974 15.3217 5.99695 15.653 6.24118 15.8972C6.48541 16.1415 6.81667 16.2787 7.16206 16.2787C7.50746 16.2787 7.83871 16.1415 8.08295 15.8972C8.32718 15.653 8.46439 15.3217 8.46439 14.9763C8.46439 14.6309 8.32718 14.2997 8.08295 14.0555C7.83871 13.8112 7.50746 13.674 7.16206 13.674Z" fill="#717171" />
@@ -90,30 +85,6 @@ const navMenu = [
 ];
 
 
-function DemoPageContent({ pathname }) {
-  if (pathname === '/team-member') {
-    return <TeamMembers />;
-  } else if (pathname === '/facilities') {
-    return <Facilities />;
-  } else if (pathname === '/survey') {
-    return <Survey />;
-  } else {
-    return (
-      <Box
-        sx={{
-          py: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <Typography>Dashboard content for {pathname}</Typography>
-      </Box>
-    );
-  }
-}
-
 
 function DashboardLayout() {
   const location = useLocation();
@@ -121,15 +92,8 @@ function DashboardLayout() {
 
   const [pathname, setPathname] = React.useState('/dashboard');
 
-  const router = React.useMemo(() => {
-    return {
-      pathname,
-      searchParams: new URLSearchParams(),
-      navigate: (path) => setPathname(String(path)),
-    };
-  }, [pathname]);
 
-  // Find the title based on the pathname
+
   const currentNavItem = React.useMemo(() => {
     const findNavItem = (navItems, segment) => {
       for (const item of navItems) {
@@ -146,7 +110,7 @@ function DashboardLayout() {
       return '';
     };
     return findNavItem(navMenu, location.pathname.split('/')[1]) || '';
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <AppProvider
@@ -159,76 +123,101 @@ function DashboardLayout() {
           component="nav"
           sx={{
             width: '240px',
-            padding: '44px 28px',
+            padding: '1.6rem 1.6rem',
             flexShrink: 0,
             bgcolor: 'background.paper',
             borderRight: '1px solid rgba(0, 0, 0, 0.12)',
             display: 'flex',
             flexDirection: 'column',
+            gap: '2.6rem'
           }}
         >
+          <div>
+            <img src={logo} alt="" width={150} style={{ padding: '12px', margin: '0 auto', display: 'flex' }} />
+            <p style={{ border: '2px solid  #F26D58', width: '9rem', margin: '0 auto', textAlign: 'center', display: "flex", gap: '4px', fontSize: '0.8rem', alignItems: "center", justifyContent: 'center', height: '2.2rem', padding: '10px 0px', borderRadius: '37px' }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none">
+                <path d="M12.5006 14.5H12.5096M7.50055 22.5H17.5006M4.01855 10.806C3.63055 9.732 3.43655 9.195 3.51855 8.851C3.60955 8.474 3.87755 8.181 4.21955 8.083C4.53255 7.993 5.01955 8.21 5.99255 8.643C6.85255 9.025 7.28255 9.216 7.68755 9.206C8.13355 9.194 8.56155 9.016 8.90255 8.699C9.21255 8.412 9.41955 7.955 9.83455 7.041L10.7495 5.025C11.5135 3.342 11.8956 2.5 12.5006 2.5C13.1056 2.5 13.4876 3.342 14.2516 5.025L15.1666 7.041C15.5816 7.955 15.7895 8.412 16.0985 8.699C16.4395 9.015 16.8686 9.194 17.3135 9.206C17.7176 9.216 18.1485 9.025 19.0085 8.642C19.9825 8.21 20.4685 7.993 20.7815 8.083C21.1235 8.181 21.3916 8.474 21.4816 8.851C21.5646 9.195 21.3706 9.731 20.9816 10.806L19.3145 15.422C18.6005 17.397 18.2445 18.384 17.4976 18.942C16.7506 19.5 15.7856 19.5 13.8566 19.5H11.1445C9.21455 19.5 8.25055 19.5 7.50455 18.942C6.75755 18.384 6.40055 17.397 5.68655 15.422L4.01855 10.806Z" stroke="url(#paint0_linear_1777_19668)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <defs>
+                  <linearGradient id="paint0_linear_1777_19668" x1="3.5" y1="2.5" x2="21.96" y2="3.03997" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#EABE4B" />
+                    <stop offset="0.333333" stop-color="#EABE4B" />
+                    <stop offset="0.666667" stop-color="#F26D58" />
+                    <stop offset="1" stop-color="#FF300F" />
+                  </linearGradient>
+                </defs>
+              </svg>CarbonZero Plan
+            </p>
+          </div>
           {/* navMenu Items */}
-          {navMenu.map((item, index) => (
-            <React.Fragment key={index}>
-              {item.kind === 'header' ? (
-                <Typography variant="h6" sx={{ padding: '16px' }}>
-                  {item.title}
-                </Typography>
-              ) : item.kind === 'divider' ? (
-                <Divider />
-              ) : (
-                <Box
-                  sx={{
-                    padding: '12px',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    background: ' #E6F8F2',
-                    bgcolor: location.pathname === `/${item.segment}` ? '#E6F8F2' : 'inherit',
-                    borderLeft: location.pathname === `/${item.segment}` ? '3px solid #369D9C' : '3px solid transparent',
-                    fontWeight: location.pathname === `/${item.segment}` ? '600' : 'inherit',
-                    '&:hover': {
-                      bgcolor: '#E6F8F2',
-                      color: 'black'
-                    },
-                  }}
-                  onClick={() => navigate(`/${item.segment}`)}
-                >
-                  {item.icon}
-                  <Typography variant="body1" sx={{
-                    marginLeft: '12px',
-                    fontWeight: "500",
-                    color: location.pathname === `/${item.segment}` ? 'black' : '#717171',
-                  }}>
-                    {item.title}
-                  </Typography>
-                </Box>
-              )}
-            </React.Fragment>
-          ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+            {navMenu.map((item, index) => (
+              <React.Fragment key={index}>
+                {item.kind === 'divider' ? (
+                  <Divider />
+                ) : (
+                  <Box
+                    sx={{
+                      padding: '0.6rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      background: ' #E6F8F2',
+                      bgcolor: location.pathname === `/${item.segment}` ? '#E6F8F2' : 'inherit',
+                      borderLeft: location.pathname === `/${item.segment}` ? '3px solid #369D9C' : '3px solid transparent',
+                      fontWeight: location.pathname === `/${item.segment}` ? '600' : 'inherit',
+                      '&:hover': {
+                        bgcolor: '#E6F8F2',
+                        color: 'black'
+                      },
+                    }}
+                    onClick={() => {
+                      navigate(`/${item.segment}`)
+                      setPathname(item.segment);
+                    }}
+                  >
+                    {item.icon}
+                    <Typography variant="body1" sx={{
+                      marginLeft: '12px',
+                      fontWeight: "500",
+                      color: location.pathname === `/${item.segment}` ? 'black' : '#717171',
+                    }}>
+                      {item.title}
+                    </Typography>
+                  </Box>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </Box>
+
+
 
         {/* Content Area */}
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-          <Box
+          {
+            currentNavItem!=='Start Survey'
+            ?
+            <Box
             component="header"
             sx={{
-              padding: '16px 48px',
+              padding: '0rem 3rem',
               bgcolor: 'background.default',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              borderBottom: '1px solid rgba(217, 217, 217, 0.40)'
             }}
           >
             <Typography variant="h6" sx={{
               color: '#000',
-              fontSize: '24px',
+              fontSize: '1.4rem',
               fontWeight: '500'
-            }}>{currentNavItem}</Typography>
+            }}>{currentNavItem}
+            </Typography>
             <Toolbar sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: '32px',
+              gap: '2rem',
             }}>
               <IconButton color="inherit">
                 <Badge badgeContent={4} color="error">
@@ -247,7 +236,7 @@ function DashboardLayout() {
                 <Avatar src={avatar} alt="User Img" />
                 <Typography sx={{
                   color: '#000',
-                  fontSize: '14px',
+                  fontSize: '0.875rem',
                   fontWeight: '500'
                 }}>Aman</Typography>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -255,9 +244,9 @@ function DashboardLayout() {
                 </svg>
               </div>
             </Toolbar>
-          </Box>
+          </Box>:""
+          }
           <Box sx={{ p: 3, flexGrow: 1, overflow: 'auto' }}>
-            {/* <DemoPageContent pathname={pathname} /> */}
             <Outlet />
           </Box>
         </Box>

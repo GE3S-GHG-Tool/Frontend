@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
 import './FacilityList.css';
-import avatar from '../../../assets/images/userimg.png';
+import avatar from '../../../assets/images/userimg.png'; // Ensure correct path
 
 const facilityData = [
     { name: 'Royal Car Ltd', assigned: 'Aman Upadhyay', sector: 'Industry', industry: 'Manufacturing sector', country: 'India', address: 'Haryana, Gurgaon, Near station' },
-    { name: 'Royal Car Ltd', assigned: 'Aman Upadhyay', sector: 'Industry', industry: 'Manufacturing sector', country: 'India', address: 'Punjab, Gas Station' },
-    { name: 'Royal Car Ltd', assigned: 'Aman Upadhyay', sector: 'Industry', industry: 'Manufacturing sector', country: 'India', address: 'Haryana, Gurgaon, Near station' },
-    { name: 'Royal Car Ltd', assigned: 'Aman Upadhyay', sector: 'Industry', industry: 'Manufacturing sector', country: 'India', address: 'Haryana, Gurgaon, Near station' },
+    { name: 'Fast Wheels', assigned: 'Priya Verma', sector: 'Automobile', industry: 'Vehicle Manufacturing', country: 'USA', address: 'California, LA' },
+    { name: 'Techno Steel', assigned: 'Rohit Sharma', sector: 'Construction', industry: 'Steel Manufacturing', country: 'India', address: 'Noida, Sector 15' },
+    { name: 'Silver Industries', assigned: 'Sana Khan', sector: 'Mining', industry: 'Silver Processing', country: 'Australia', address: 'Sydney, Near Harbour' },
 ];
 
 const FacilityList = ({ searchQuery }) => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedRow, setSelectedRow] = useState(null);
     const [sortedData, setSortedData] = useState(facilityData);
     const [sortConfig, setSortConfig] = useState({ key: '', direction: '' });
+
+    useEffect(() => {
+        handleSearch(searchQuery);
+    }, [searchQuery]);
 
     const handleSort = (columnKey) => {
         let direction = 'ascending';
@@ -36,20 +38,17 @@ const FacilityList = ({ searchQuery }) => {
         setSortConfig({ key: columnKey, direction });
     };
 
-    const handleClick = (event, index) => {
-        setAnchorEl(event.currentTarget);
-        setSelectedRow(index);
+    const handleSearch = (query) => {
+        const filteredData = facilityData.filter((facility) =>
+            facility.name.toLowerCase().includes(query.toLowerCase()) ||
+            facility.assigned.toLowerCase().includes(query.toLowerCase()) ||
+            facility.sector.toLowerCase().includes(query.toLowerCase()) ||
+            facility.industry.toLowerCase().includes(query.toLowerCase()) ||
+            facility.country.toLowerCase().includes(query.toLowerCase()) ||
+            facility.address.toLowerCase().includes(query.toLowerCase())
+        );
+        setSortedData(filteredData);
     };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const filteredMembers = facilityData.filter(member =>
-        member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.facility.toLowerCase().includes(searchQuery.toLowerCase())
-    );
 
     return (
         <div className="table-container">
@@ -57,51 +56,61 @@ const FacilityList = ({ searchQuery }) => {
                 <thead>
                     <tr>
                         <th>Facility Name
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Icon/CaretDoubleVertical">
-                                    <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                            </svg>
+                            <button onClick={() => handleSort('name')} className="sort-button">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Icon/CaretDoubleVertical">
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
                         </th>
                         <th>Assigned
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Icon/CaretDoubleVertical">
-                                    <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                            </svg>
+                            <button onClick={() => handleSort('assigned')} className="sort-button">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Icon/CaretDoubleVertical">
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
                         </th>
                         <th>Sector
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Icon/CaretDoubleVertical">
-                                    <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                            </svg>
+                            <button onClick={() => handleSort('sector')} className="sort-button">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Icon/CaretDoubleVertical">
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
                         </th>
                         <th>Industry
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Icon/CaretDoubleVertical">
-                                    <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                            </svg>
+                            <button onClick={() => handleSort('industry')} className="sort-button">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Icon/CaretDoubleVertical">
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
                         </th>
                         <th>Country
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Icon/CaretDoubleVertical">
-                                    <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </g>
-                            </svg>
+                            <button onClick={() => handleSort('country')} className="sort-button">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Icon/CaretDoubleVertical">
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </g>
+                                </svg>
+                            </button>
                         </th>
                         <th>Address
                             <button onClick={() => handleSort('address')} className="sort-button">
                                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="Icon/CaretDoubleVertical">
-                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     </g>
                                 </svg>
                             </button>
@@ -111,8 +120,8 @@ const FacilityList = ({ searchQuery }) => {
                 <tbody>
                     {sortedData.map((facility, index) => (
                         <tr key={index}>
-                            <td style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                                <Avatar src={avatar} alt="User Img" />
+                            <td style={{ display: 'flex', alignItems: 'center', gap: 4}}>
+                                <Avatar src={avatar} alt="Facility Img" className='avatar' />
                                 {facility.name}
                             </td>
                             <td>{facility.assigned}</td>

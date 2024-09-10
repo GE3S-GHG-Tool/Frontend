@@ -1,62 +1,88 @@
-import React from "react";
-import { Box, Typography, Button, Container } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/system";
+import survey from '../../assets/images/survey.png'
+import CustomModal from "./CustomModal/customModal";
 
-const StyledContainer = styled(Container)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  borderRadius: "18.65px 0px 0px 0px",
-  borderWidth: "0.78px",
-  backgroundColor: "#E8F5E9",
-  paddingTop: "56px",
-  gap: "6.22px",
-  padding: theme.spacing(2),
-}));
+const StyledContainer = {
+  width: '90%',
+  border: '0.777px solid #369D9C',
+  borderRadius: '18.675px',
+
+  background: '#F6FFF9',
+  padding: '3.4rem'
+};
 
 const SurveyCard = styled(Box)(({ theme }) => ({
   textAlign: "center",
-  padding: theme.spacing(4),
-  backgroundColor: "#FFFFFF",
   borderRadius: "18.65px",
-  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  maxWidth: "800px",
-  width: "100%",
+  width: "90%",
+  gap: "1rem",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  margin: '0 auto',
+  background: '#F6FFF9',
 }));
 
-const StyledButton = styled(Button)({
-  background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-  borderRadius: "25px",
-  padding: "10px 24px",
-  color: "#fff",
-  marginTop: "16px",
-  "&:hover": {
-    background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-  },
-});
-
 const Survey = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleAddFacility = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <StyledContainer maxWidth="lg">
-      <SurveyCard>
-        <img
-          src="your-image-url-here"
-          alt="Decarbonization Survey"
-          style={{ marginBottom: "16px", width: "200px" }}
-        />
-        <Typography variant="h5" gutterBottom>
-          Benefits of the Decarbonization Survey
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Our Decarbonization Survey identifies high emission sources and offers
-          tailored reduction strategies. Improve your environmental impact,
-          enhance compliance, boost efficiency, save costs, and strengthen your
-          brand's sustainability and reputation.
-        </Typography>
-        <StyledButton variant="contained">Start Survey</StyledButton>
-      </SurveyCard>
-    </StyledContainer>
+    <>    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+      <div style={StyledContainer}>
+        <SurveyCard>
+          <img
+            src={survey}
+            alt="Decarbonization Survey"
+            style={{ marginBottom: "16px", width: "200px" }}
+          />
+          <Typography gutterBottom style={{ fontSize: "1.5rem", fontWeight: '600', color: 'black' }}>
+            Benefits of the Decarbonization Survey
+          </Typography>
+          <Typography variant="body1" sx={{
+            width: '60%', margin: '0 auto', fontSize: '1rem', fontWeight: '400', color: '#717171'
+          }}>
+            Our Decarbonization Survey identifies high emission sources and offers
+            tailored reduction strategies. Improve your environmental impact,
+            enhance compliance, boost efficiency, save costs, and strengthen your
+            brand's sustainability and reputation.
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#369D9C',
+              textTransform: 'none',
+              borderRadius: '32px',
+              padding: '0.6rem 2.4rem',
+              background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
+              '&:hover': { background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)", },
+            }}
+            onClick={handleOpenModal}
+          >
+            Start Survey
+          </Button>
+        </SurveyCard>
+      </div>
+    </div>
+      <CustomModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        title="Subscribe to addon plan for survey access."
+        description="Invite member"
+        actionText="Get Started"
+        onAction={handleAddFacility}
+        price={20}
+        type="survey"
+        planContains="Invite more members"
+      />
+    </>
   );
 };
 

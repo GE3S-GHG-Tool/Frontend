@@ -19,13 +19,12 @@ import Facilities from "./components/Dashboard/Facilities";
 import Survey from "./components/Dashboard/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics";
-
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 
 function App() {
   return (
     <Routes>
-      <Route index path="/" element={<SignUp />} />
+      <Route index path="/signup" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/personalinfo" element={<PersonalInfo />} />
@@ -41,8 +40,8 @@ function App() {
       <Route path="/goals" element={<Goals />} />
 
       {/* Dashboard routes */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
+      <Route path="/" element={<DashboardLayout />}>
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="team-member" element={<TeamMembers />} />
         <Route path="facilities" element={<Facilities />} />
         <Route path="analytics" element={<Analytics />} />
