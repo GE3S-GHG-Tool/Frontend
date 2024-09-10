@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { useLocation, useNavigate, Outlet } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { AppProvider } from '@toolpad/core/AppProvider';
-import Divider from '@mui/material/Divider';
-import { Toolbar, IconButton, Badge, Avatar } from '@mui/material';
-import avatar from '../../assets/images/userimg.png';
-import logo from "../../assets/images/ge3s.png"
-
+import * as React from "react";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { AppProvider } from "@toolpad/core/AppProvider";
+import Divider from "@mui/material/Divider";
+import { Toolbar, IconButton, Badge, Avatar } from "@mui/material";
+import avatar from "../../assets/images/userimg.png";
+import logo from "../../assets/images/ge3s.png";
 
 const navMenu = [
   {
@@ -84,15 +83,11 @@ const navMenu = [
   }
 ];
 
-
-
 function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [pathname, setPathname] = React.useState('/dashboard');
-
-
+  const [pathname, setPathname] = React.useState("/dashboard");
 
   const currentNavItem = React.useMemo(() => {
     const findNavItem = (navItems, segment) => {
@@ -107,9 +102,9 @@ function DashboardLayout() {
           }
         }
       }
-      return '';
+      return "";
     };
-    return findNavItem(navMenu, location.pathname.split('/')[1]) || '';
+    return findNavItem(navMenu, location.pathname.split("/")[1]) || "";
   }, [pathname]);
 
   return (
@@ -124,11 +119,11 @@ function DashboardLayout() {
             width: '14.8vw',
             padding: '1.6rem 1.4rem 0.2rem 1.4rem',
             flexShrink: 0,
-            bgcolor: 'background.paper',
-            borderRight: '1px solid rgba(0, 0, 0, 0.12)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
+            bgcolor: "background.paper",
+            borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
           <div style={{
@@ -142,7 +137,14 @@ function DashboardLayout() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 25 25" fill="none">
                   <path d="M12.5006 14.5H12.5096M7.50055 22.5H17.5006M4.01855 10.806C3.63055 9.732 3.43655 9.195 3.51855 8.851C3.60955 8.474 3.87755 8.181 4.21955 8.083C4.53255 7.993 5.01955 8.21 5.99255 8.643C6.85255 9.025 7.28255 9.216 7.68755 9.206C8.13355 9.194 8.56155 9.016 8.90255 8.699C9.21255 8.412 9.41955 7.955 9.83455 7.041L10.7495 5.025C11.5135 3.342 11.8956 2.5 12.5006 2.5C13.1056 2.5 13.4876 3.342 14.2516 5.025L15.1666 7.041C15.5816 7.955 15.7895 8.412 16.0985 8.699C16.4395 9.015 16.8686 9.194 17.3135 9.206C17.7176 9.216 18.1485 9.025 19.0085 8.642C19.9825 8.21 20.4685 7.993 20.7815 8.083C21.1235 8.181 21.3916 8.474 21.4816 8.851C21.5646 9.195 21.3706 9.731 20.9816 10.806L19.3145 15.422C18.6005 17.397 18.2445 18.384 17.4976 18.942C16.7506 19.5 15.7856 19.5 13.8566 19.5H11.1445C9.21455 19.5 8.25055 19.5 7.50455 18.942C6.75755 18.384 6.40055 17.397 5.68655 15.422L4.01855 10.806Z" stroke="url(#paint0_linear_1777_19668)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   <defs>
-                    <linearGradient id="paint0_linear_1777_19668" x1="3.5" y1="2.5" x2="21.96" y2="3.03997" gradientUnits="userSpaceOnUse">
+                    <linearGradient
+                      id="paint0_linear_1777_19668"
+                      x1="3.5"
+                      y1="2.5"
+                      x2="21.96"
+                      y2="3.03997"
+                      gradientUnits="userSpaceOnUse"
+                    >
                       <stop stop-color="#EABE4B" />
                       <stop offset="0.333333" stop-color="#EABE4B" />
                       <stop offset="0.666667" stop-color="#F26D58" />
@@ -157,7 +159,7 @@ function DashboardLayout() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.46rem' }}>
               {navMenu.map((item, index) => (
                 <React.Fragment key={index}>
-                  {item.kind === 'divider' ? (
+                  {item.kind === "divider" ? (
                     <Divider />
                   ) : (
                     <Box
@@ -176,7 +178,7 @@ function DashboardLayout() {
                         },
                       }}
                       onClick={() => {
-                        navigate(`/${item.segment}`)
+                        navigate(`/${item.segment}`);
                         setPathname(item.segment);
                       }}
                     >
@@ -211,9 +213,27 @@ function DashboardLayout() {
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 40 40" fill="none">
                   <g clip-path="url(#clip0_1777_24408)">
-                    <path d="M20 22.5V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M33.75 22.5V32.5H6.25V22.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M13.75 11.25L20 5L26.25 11.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                      d="M20 22.5V5"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M33.75 22.5V32.5H6.25V22.5"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M13.75 11.25L20 5L26.25 11.25"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
                   </g>
                   <defs>
                     <clipPath id="clip0_1777_24408">
@@ -235,7 +255,6 @@ function DashboardLayout() {
         </Box>
 
         {/* </div> */}
-
 
         {/* Content Area */}
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

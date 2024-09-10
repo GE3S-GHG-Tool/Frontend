@@ -6,7 +6,7 @@ import Select from "@mui/material/Select";
 import { useState } from "react";
 
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { styled, TextField, Typography } from "@mui/material";
+import { styled, TextField } from "@mui/material";
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip
     placement="top-end"
@@ -14,7 +14,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
     {...props}
     classes={{ popper: className }}
   />
-))(({ theme }) => ({
+))(() => ({
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: "#fff",
     color: "#000",
@@ -32,13 +32,14 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 export default function Details({ activeStep, setActiveStep }) {
-  const [age, setAge] = useState("");
-  const [year, setYear] = useState("");
+  const [employeeCount, setEmployeeCount] = useState("");
+  const [fiscalYear, setFiscalYear] = useState("");
   const [baseMonth, setBaseMonth] = useState("");
+  const [baseYear, setBaseYear] = useState("");
   const [reportYear, setReportYear] = useState("");
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const isFormComplete = () => {
+    return fiscalYear && reportYear && employeeCount && baseYear && baseMonth;
   };
   return (
     <div className="details">
@@ -46,7 +47,7 @@ export default function Details({ activeStep, setActiveStep }) {
         <img src={logo} alt="" className="ge3s_logo1" />
         <h1>Now it’s time to enter some details</h1>
       </div>
-      <div className="select_det">
+      <div className="select_fields">
         <div className="para_select">
           <p>
             Start of Fiscal Year{" "}
@@ -83,13 +84,13 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
-              value={year}
+              value={fiscalYear}
               onChange={(event) => {
-                setYear(event.target.value);
+                setFiscalYear(event.target.value);
               }}
               placeholder="Employee Count"
               size="small"
@@ -109,8 +110,8 @@ export default function Details({ activeStep, setActiveStep }) {
             <HtmlTooltip
               title={
                 <>
-                  The fiscal year start date aligns GHG emissions data with your
-                  reporting period for accurate tracking
+                  The first reporting year sets the baseline for tracking and
+                  comparing your GHG emissions over time
                 </>
               }
             >
@@ -139,7 +140,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
@@ -159,7 +160,7 @@ export default function Details({ activeStep, setActiveStep }) {
           </FormControl>
         </div>{" "}
       </div>
-      <div className="select_det">
+      <div className="select_fields">
         <div className="para_select">
           <p>
             Baseline Year{" "}
@@ -167,7 +168,7 @@ export default function Details({ activeStep, setActiveStep }) {
               title={
                 <>
                   The baseline year establishes a reference point to measure and
-                  track your emissions reduction progress
+                  track your emissions reduction progress.
                 </>
               }
             >
@@ -196,12 +197,14 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
-              value={age}
-              onChange={handleChange}
+              value={baseYear}
+              onChange={(e) => {
+                setBaseYear(e.target.value);
+              }}
               placeholder="Employee Count"
               size="small"
             >
@@ -220,8 +223,8 @@ export default function Details({ activeStep, setActiveStep }) {
             <HtmlTooltip
               title={
                 <>
-                  The fiscal year start date aligns GHG emissions data with your
-                  reporting period for accurate tracking
+                  The baseline month refines your starting point for tracking
+                  emissions within the baseline year
                 </>
               }
             >
@@ -250,7 +253,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
@@ -277,9 +280,13 @@ export default function Details({ activeStep, setActiveStep }) {
           size="small"
           fullWidth
           placeholder="Employee Count"
+          value={employeeCount}
+          onChange={(e) => setEmployeeCount(e.target.value)}
         />
       </div>
       <button
+        disabled={!isFormComplete()}
+        className="ge3s_button"
         onClick={() => {
           setActiveStep(activeStep + 1);
         }}

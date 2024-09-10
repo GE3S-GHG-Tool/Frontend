@@ -1,6 +1,5 @@
+import { Close } from "@mui/icons-material";
 import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
-import { Close } from '@mui/icons-material';
-import { styled } from '@mui/system';
 
 const style = {
   position: "absolute",
@@ -32,7 +31,7 @@ const buttonStyle = {
   background: "#fff",
 };
 
-export default function SuccessModal({ open, handleClose }) {
+const SuccessAnimation = ({ open, handleClose }) => {
   return (
     <Modal
       open={open}
@@ -40,22 +39,10 @@ export default function SuccessModal({ open, handleClose }) {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-
       <Box sx={style}>
-        <button style={{
-          position: 'absolute',
-          right: '10px',
-          top: '10px',
-          color: '#000',
-          border:"none",
-          background:'transparent'
-
-        }} onClick={handleClose}>
-          <Close  />
-        </button>
         {/* SVG Icon */}
         <div style={svgStyle}>
-          <svg width="96" height="96" viewBox="0 0 112 112" fill="none">
+          <svg width="85" height="85" viewBox="0 0 112 112" fill="none">
             <circle
               cx="56"
               cy="56"
@@ -82,14 +69,24 @@ export default function SuccessModal({ open, handleClose }) {
             </defs>
           </svg>
         </div>
-
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            top: 5,
+            right: 10,
+            color: "#000",
+          }}
+        >
+          <Close />
+        </IconButton>
         <Typography
           id="modal-title"
           variant="h6"
           component="h2"
-          sx={{ fontWeight: "500", marginBottom: "16px" }}
+          sx={{ fontWeight: "500", marginBottom: "12px" }}
         >
-          Your Password have been Changed
+          Invitation has been sent successfully.
         </Typography>
 
         <Button onClick={handleClose} sx={buttonStyle}>
@@ -98,4 +95,6 @@ export default function SuccessModal({ open, handleClose }) {
       </Box>
     </Modal>
   );
-}
+};
+
+export default SuccessAnimation;

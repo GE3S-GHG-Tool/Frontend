@@ -40,9 +40,8 @@ const theme = createTheme({
               borderColor: "#D9D9D9",
             },
           },
-          // Adding placeholder size style
           "& input::placeholder": {
-            fontSize: "14px", // Change this to your desired placeholder font size
+            fontSize: "14px",
           },
         },
       },
@@ -52,10 +51,16 @@ const theme = createTheme({
         root: {
           background: "#fff",
           color: "#B7B7B7",
-
           "&.Mui-focused": {
-            color: "#3CB477", // Change this to your desired focused label color
+            color: "#3CB477",
           },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: "red",
         },
       },
     },
@@ -64,6 +69,7 @@ const theme = createTheme({
     fontFamily: "Inter",
   },
 });
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>

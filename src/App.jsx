@@ -12,6 +12,10 @@ import Goals from "./components/OrganizationStepper/Goals";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import VerifyOTP from "./components/VerifyOTP/VerifyOTP";
 import ChangePassword from "./components/ChangePassword/ChangePassword";
+import AccountCreationHeader from "./components/AccountCreationHeader/AccountCreationHeader";
+import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
+import GenerateReports from "./components/GenerateReports/GenerateReport";
+import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import TeamMembers from "./components/Dashboard/TeamMembers";
@@ -20,6 +24,7 @@ import Survey from "./components/Dashboard/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
+import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 
 function App() {
   return (
@@ -38,6 +43,17 @@ function App() {
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />
       <Route path="/goals" element={<Goals />} />
+      <Route
+        path="/account-creation-header"
+        element={<AccountCreationHeader />}
+      />
+      <Route path="/account-Intro" element={<AccountCreationIntro />} />
+      <Route
+        path="/create-account-successfully"
+        element={<CreateAccountSuccessfully />}
+      />
+      <Route path="/generate-reports" element={<GenerateReports />} />
+      <Route path="/reports-state" element={<ReportStateEmpty />} />
 
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
