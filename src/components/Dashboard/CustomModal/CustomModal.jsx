@@ -88,10 +88,7 @@ const CustomModal = ({ open, onClose, title, description, onAction, planContains
                 display: "flex", padding: '1rem 1rem', flexDirection: "column", alignItems: "flex-start", gap: '1rem', borderRadius: '0.6rem',
                 border: '1px solid rgba(255, 255, 255, 0.40)', background: 'rgba(27, 26, 29, 0.40)'
             }}>
-                <div style={{
-                    background: 'radial - gradient(132.61 % 50 % at 50 % 50.13 %, #2E7B54 0 %, #00191D 100 %)',
-                    boxShadow: '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset'
-                }}>
+                <div >
                     <p style={{ margin: '0px 0px 16px 0px', padding: '0px' }}>
                         {description}
                     </p>
