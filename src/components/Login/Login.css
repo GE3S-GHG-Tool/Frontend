@@ -33,7 +33,7 @@
   color: #00191d;
   text-align: center;
 }
-.login-inputs{
+.login-inputs {
   margin-top: 48px;
 }
 .login-container button {
@@ -83,11 +83,11 @@
   color: #3cb477 !important;
   cursor: pointer;
 }
-.signup span{
+.signup span {
   font-weight: 500;
 }
-.signup{
-  padding:0px;
+.signup {
+  padding: 0px;
 }
 @media (max-width: 1024px) {
   .login-container {
