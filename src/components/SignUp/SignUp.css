@@ -6,9 +6,14 @@
   border-radius: 20px;
   border: 1px solid rgba(217, 217, 217, 0.4);
   padding: 2rem;
-  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
+  background: #fff;
+  box-shadow: 0px 50px 50px -38px rgba(89, 132, 131, 0.65);
+  /* background: red; */
+  /* box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03); */
   width: 32vw;
+  position: relative;
 }
+
 .brand_logo {
   width: 4rem;
   margin-bottom: 20px;
@@ -34,9 +39,6 @@
 }
 
 .email_field {
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
   margin: 0vh 2vw;
   width: 100%;
 }
@@ -48,25 +50,15 @@
   margin: 1vh 0vw;
 }
 
-.email_field button {
-  margin-top: 2rem;
-  padding: 1.8vh 2vw;
-  border-radius: 100px;
-  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
-  color: #ffffff;
-  font-size: 1rem;
-  border: none;
-  width: 100%;
-}
 .signup_page h6 {
   color: #717171;
   font-size: 1rem;
   font-weight: 400;
+  margin-right: 3px;
 }
 .signup_page span {
   color: #3cb477;
   font-size: 1rem;
-  margin-left: 10px;
   cursor: pointer;
 }
 .green_button {

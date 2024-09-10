@@ -11,9 +11,18 @@ const Invite = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const [emails, setEmails] = useState(["", "", "", ""]);
   const handleCloseModal = () => {
     setOpenModal(false);
-    navigate("/home");
+    navigate("/");
+  };
+  const handleChange = (index, event) => {
+    const newEmails = [...emails];
+    newEmails[index] = event.target.value;
+    setEmails(newEmails);
+  };
+  const isAnyInputFilled = () => {
+    return emails.some((email) => email.trim() !== "");
   };
   return (
     <div className="invite_Page">
@@ -106,40 +115,28 @@ const Invite = () => {
               Reports.
             </h3>
             <div>
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                margin="normal"
-                placeholder="Enter Email Address"
-              />
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                margin="normal"
-                placeholder="Enter Email Address"
-              />
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                margin="normal"
-                placeholder="Enter Email Address"
-              />
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                margin="normal"
-                placeholder="Enter Email Address"
-              />
+              {emails.map((email, index) => (
+                <TextField
+                  key={index}
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  margin="normal"
+                  placeholder="Enter Email Address"
+                  value={email}
+                  onChange={(event) => handleChange(index, event)}
+                />
+              ))}
             </div>
             <div className="flex_box_invite">
               <button className="skip" onClick={handleOpen}>
                 Skip
               </button>
-              <button className="accept" onClick={() => setScreen(true)}>
+              <button
+                className="accept"
+                disabled={!isAnyInputFilled()}
+                onClick={() => setScreen(true)}
+              >
                 Invite All
               </button>
             </div>

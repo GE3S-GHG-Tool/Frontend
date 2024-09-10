@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import ImageModal from "../common/ImageModal";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Wrapper from "../Wrapper/Wrapper";
 import user from "../../assets/images/defaultUser.png";
 import logo from "../../assets/images/ge3s_logo.png";
@@ -14,6 +14,11 @@ const PersonalInfo = () => {
   const [fullName, setFullName] = useState("");
   const [openImageResizer, SetOpenImageResizer] = useState(false);
   const [key, setKey] = useState(0);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState({
+    fullName: "",
+  });
   const clickInput = () => {
     imageInput.current && imageInput.current.click();
   };
@@ -33,6 +38,16 @@ const PersonalInfo = () => {
     }
   };
   const handleSubmit = () => {};
+
+  useEffect(() => {
+    const isFullNameValid = fullName.trim() !== "";
+    const isProfileSet = imageApi?.length > 0;
+    setError(fullName && !isFullNameValid);
+    setHelperText({
+      fullName: fullName && !isFullNameValid ? "Full Name is required" : "",
+    });
+    setIsFormValid(isFullNameValid && isProfileSet);
+  }, [imageApi, fullName]);
   return (
     <Wrapper>
       <div className="presonalinfo_page">
@@ -108,14 +123,14 @@ const PersonalInfo = () => {
             value={fullName}
             placeholder="Full Name"
             onChange={(e) => setFullName(e.target.value)}
-            // error={error.fullName}
-            // helperText={helperText.fullName}
+            error={error}
+            helperText={helperText.fullName}
           />
 
           <button
             type="submit"
-            // disabled={!isFormValid}
-            className="green_button"
+            disabled={!isFormValid}
+            className="ge3s_button"
             onClick={() => navigate("/createaccount")}
           >
             Create Account

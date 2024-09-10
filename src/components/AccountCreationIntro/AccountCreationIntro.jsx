@@ -150,7 +150,7 @@ function AccountCreationIntro() {
                   ),
                 }}
                 sx={{
-                  height: "42px", 
+                  height: "42px",
                 }}
               ></TextField>
             </Grid2>
@@ -171,7 +171,7 @@ function AccountCreationIntro() {
                 checked={isTermsAccepted}
                 onChange={(e) => setIsTermsAccepted(e.target.checked)}
                 sx={{
-                  color: "#3CB457", 
+                  color: "#3CB457",
                   "&.Mui-checked": {
                     color: "#4FA874",
                   },

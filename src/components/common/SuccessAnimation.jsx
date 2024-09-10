@@ -1,4 +1,5 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -68,7 +69,17 @@ const SuccessAnimation = ({ open, handleClose }) => {
             </defs>
           </svg>
         </div>
-
+        <IconButton
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            top: 5,
+            right: 10,
+            color: "#000",
+          }}
+        >
+          <Close />
+        </IconButton>
         <Typography
           id="modal-title"
           variant="h6"

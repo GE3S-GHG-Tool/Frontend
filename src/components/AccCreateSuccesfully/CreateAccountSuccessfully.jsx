@@ -1,4 +1,3 @@
-import React from "react";
 import Wrapper from "../Wrapper/Wrapper";
 import { Grid2, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -94,7 +93,6 @@ function CreateAccountSuccessfully() {
                 <Button
                   sx={{
                     width: "210px",
-                    fontSize: "14px",
                     borderRadius: "32px",
                     justifyContent: "center",
                     alignItems: "center",

@@ -1,15 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./CreateAccount.css";
 import Radio from "@mui/material/Radio";
 import Wrapper from "../Wrapper/Wrapper";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/ge3s_logo.png";
 import PasswordInput from "../common/PasswordInput";
+import { validatePassword } from "../../util/utils";
 export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    setEmail("unmoy@growhut.in");
+  }, [location]);
+
+  const [helperText, setHelperText] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState({
+    password: false,
+    confirmPassword: false,
+  });
+
+  useEffect(() => {
+    const passwordsMatch = password === confirmPassword;
+    const isPasswordValid = validatePassword(password);
+
+    setHelperText({
+      password:
+        password.trim() !== "" && !isPasswordValid
+          ? "Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long."
+          : "",
+      confirmPassword:
+        confirmPassword.trim() !== "" && !passwordsMatch
+          ? "Passwords don't match"
+          : "",
+    });
+
+    setError({
+      password: password.trim() !== "" && !isPasswordValid,
+      confirmPassword: confirmPassword.trim() !== "" && !passwordsMatch,
+    });
+
+    setIsFormValid(isPasswordValid && passwordsMatch && password.trim() !== "");
+  }, [password, confirmPassword]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -26,7 +65,7 @@ export default function CreateAccount() {
           <div className="input">
             <p>Verified Email Address</p>
             <TextField
-              value={"unmoy@growhut.in"}
+              value={email}
               variant="outlined"
               size="small"
               fullWidth
@@ -41,17 +80,17 @@ export default function CreateAccount() {
             <PasswordInput
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              // error={error.password}
-              // helperText={helperText.password}
+              error={error.password}
+              helperText={helperText.password}
               placeholder={"Password"}
             />
           </div>
           <div className="input">
             <PasswordInput
-              value={confirmpassword}
+              value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              // error={error.password}
-              // helperText={helperText.password}
+              error={error.confirmPassword}
+              helperText={helperText.confirmPassword}
               placeholder={"Re-enter Password"}
             />
           </div>
@@ -72,10 +111,10 @@ export default function CreateAccount() {
             }}
           />
           <span>I agree to the </span>
-          <span className="colored">terms and conditions</span>
+          <span className="colored">Terms and conditions</span>
         </div>
         <button
-          // disabled
+          disabled={!isFormValid}
           className="ge3s_button"
           onClick={() => {
             navigate("/organizationstepper");

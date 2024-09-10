@@ -5,6 +5,7 @@
   box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
   width: 32vw;
   background: #fff;
+  box-shadow: 0px 50px 50px -38px rgba(89, 132, 131, 0.65);
 }
 
 .createacc h1 {
@@ -23,10 +24,6 @@
   margin: 1vh 0vw;
 }
 
-.createacc span {
-  font-size: 0.9rem;
-}
-
 .input {
   margin-bottom: 3.5vh;
 }
@@ -35,6 +32,6 @@
   color: #3cb477;
 }
 .radio_field span {
-  /* margin-top: 0 !important; */
   padding-left: 0 !important;
+  font-size: 0.9rem;
 }

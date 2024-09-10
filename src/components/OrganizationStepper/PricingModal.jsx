@@ -13,7 +13,7 @@ import {
 import { Close } from "@mui/icons-material";
 import { styled } from "@mui/system";
 
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   borderRadius: "16px",
   overflow: "visible",
 }));
@@ -23,22 +23,20 @@ const GradientBackground = styled(Box)({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "85vw",
-  height: "90vh",
+  width: "70vw",
   background: "#181818",
   borderRadius: "16px",
-  boxShadow: "16px 20px 68px 0px rgba(0, 0, 0, 0.25)",
-  p: 2,
+  padding: "2.5rem 1rem",
 });
 const StyledListItemText = styled(ListItemText)({
   "& .MuiListItemText-primary": {
-    fontSize: "0.8rem",
+    fontSize: "0.7rem",
   },
 });
 
 const StyledListItem = styled(ListItem)({
   padding: 0,
-  marginBottom: "0.5rem",
+  marginBottom: "0.2rem",
 });
 
 const StyledListItemIcon = styled(ListItemIcon)({
@@ -55,32 +53,34 @@ const PricingCard = ({
 }) => (
   <StyledCard
     sx={{
-      maxWidth: 320,
+      maxWidth: 270,
       width: "100%",
-      m: 2,
+      mx: 1,
       border: "1px solid rgba(255, 255, 255, 0.40)",
       color: isActive ? "#000" : "#fff",
       backgroundColor: isActive ? "#fff" : "rgba(27, 26, 29, 0.40)",
-      //   height: "fit-content",
-      minHeight: "50vh",
+      // minHeight: "35vh",
     }}
   >
-    <CardContent sx={{ p: 3 }}>
+    <CardContent sx={{ p: 2 }}>
       <Typography
-        sx={{ fontSize: "1.3rem" }}
+        sx={{ fontSize: "1.2rem", fontWeight: 500 }}
         variant="h5"
         component="div"
         gutterBottom
       >
         {title}
       </Typography>
-      <Typography variant="body2" sx={{ mb: 2, fontSize: ".75rem" }}>
+      <Typography
+        variant="body2"
+        sx={{ mb: 2, fontSize: ".75rem", height: "4vh" }}
+      >
         {description}
       </Typography>
       <Typography
         variant="h3"
         component="div"
-        sx={{ mb: 2, fontSize: "2rem", fontWeight: 600 }}
+        sx={{ mb: 2, fontSize: "1.8rem", fontWeight: 600 }}
       >
         ${price}{" "}
         <Typography variant="subtitle1" component="span">
@@ -90,14 +90,17 @@ const PricingCard = ({
       <button className={isActive ? "price_inactive" : "price_active"}>
         {isActive ? "Currently in use" : buttonText}
       </button>
-      <Typography variant="subtitle1" sx={{ mt: 1 }}>
+      <Typography
+        variant="subtitle1"
+        sx={{ mt: 1, fontSize: ".9rem", fontWeight: 500 }}
+      >
         Unlock
       </Typography>
       <List>
         {features.map((feature, index) => (
           <StyledListItem key={index}>
             <StyledListItemIcon>
-              <svg width="23" height="24" viewBox="0 0 23 24" fill="none">
+              <svg width="20" height="20" viewBox="0 0 23 24" fill="none">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -136,12 +139,12 @@ const PricingModal = ({ open, handleClose }) => {
     >
       <GradientBackground>
         <Box>
-          <Box sx={{ position: "relative", mb: 2 }}>
+          <Box sx={{ position: "relative" }}>
             <Typography
               variant="h4"
               component="h1"
               align="center"
-              sx={{ color: "white", mb: 2, fontSize: "20px", pt: 2 }}
+              sx={{ color: "white", mb: 5, fontSize: "20px" }}
             >
               Expand Your Team and Capabilities - Upgrade to Offset or
               CarbonZero!
@@ -150,8 +153,8 @@ const PricingModal = ({ open, handleClose }) => {
               onClick={handleClose}
               sx={{
                 position: "absolute",
-                top: 5,
-                right: 10,
+                top: -30,
+                right: 0,
                 color: "white",
               }}
             >

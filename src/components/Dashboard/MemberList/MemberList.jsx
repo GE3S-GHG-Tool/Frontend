@@ -7,6 +7,7 @@ const members = [
     { name: 'Pranit Gaikar', img: "", email: 'Pranit@growhut.in', facility: 'Jaipur', userType: 'Can Edit', lastActive: '2024-05-05' },
     { name: 'John Doe', img: "", email: 'john@growhut.in', facility: 'Delhi', userType: 'Read Only', lastActive: '2024-04-03' },
     { name: 'Jane Smith', img: "", email: 'jane@growhut.in', facility: 'Mumbai', userType: 'Can Edit', lastActive: '2024-02-10' },
+    { name: 'Jane Smith', img: "", email: 'jane@growhut.in', facility: 'Mumbai', userType: 'Can Edit', lastActive: '2024-02-10' },
 ];
 
 const MemberList = ({ searchQuery }) => {

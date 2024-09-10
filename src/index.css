@@ -5,9 +5,9 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
-  justify-content: center; 
-  align-items: center; 
-  min-height: 100vh; 
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 button {
   cursor: pointer;

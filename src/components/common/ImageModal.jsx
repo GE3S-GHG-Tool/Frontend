@@ -120,29 +120,12 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
         reset();
         setOpen(false);
       }}
-      sx={{
-        ".MuiBackdrop-root": {
-          background: "rgba(0, 0, 0, 0.80)",
-          backdropFilter: "blur(6px)",
-        },
-        ".MuiPaper-root": {
-          width: "550px",
-          height: "680px",
-          borderRadius: "1rem",
-        },
-      }}
     >
-      <DialogContent
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
+      <DialogContent>
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
+            marginBottom: "10px",
             fontWeight: "600",
             fontFamily: "Inter",
           }}
@@ -154,10 +137,6 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
             style={{
               containerStyle: {
                 background: "#000",
-                width: "90%",
-                height: "450px",
-                margin: "auto",
-                marginTop: "5rem",
               },
             }}
             cropShape="round"
@@ -170,90 +149,89 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
           />
-          <Box>
-            <Slider
-              min={1}
-              max={10}
-              value={zoom}
-              onChange={(e) => setZoom(Number(e.target.value))}
-              color={"#B7B7B7"}
-              aria-label="Default"
-              valueLabelDisplay="auto"
+        </div>
+        <Box>
+          <Slider
+            min={1}
+            max={10}
+            value={zoom}
+            onChange={(e) => setZoom(Number(e.target.value))}
+            color={"#B7B7B7"}
+            aria-label="Default"
+            valueLabelDisplay="auto"
+            sx={{
+              width: "97%",
+              margin: "auto",
+              marginLeft: ".7rem",
+              "& .MuiSlider-thumb": {
+                height: 24,
+                width: 24,
+                backgroundColor: "#B7B7B7",
+                boxShadow: "none",
+              },
+            }}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "1rem",
+            }}
+          >
+            <Button
+              variant="outlined"
+              onClick={() => {
+                reset();
+                setOpen(false);
+              }}
               sx={{
-                width: "97%",
-                margin: "auto",
-                marginLeft: ".7rem",
-                "& .MuiSlider-thumb": {
-                  height: 24,
-                  width: 24,
-                  backgroundColor: "#B7B7B7",
-                  boxShadow: "none",
+                fontWeight: 400,
+                fontSize: "14px",
+                padding: ".5rem 1.5rem",
+                fontFamily: "Inter",
+                color: "#FFF",
+                border: "1px solid #DDD",
+                letterSpacing: "0.5px",
+                cursor: "pointer",
+                textTransform: "none",
+                ml: 2,
+                boxShadow: "none",
+                borderRadius: "8px",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                backgroundClip: "text",
+                "-webkitBackgroundClip": "text",
+                "-webkitTextFillColor": "transparent",
+                ":hover": {
+                  border: "1px solid #369D9C",
                 },
               }}
-            />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                marginTop: "1rem",
-              }}
             >
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  reset();
-                  setOpen(false);
-                }}
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  padding: ".5rem 1.5rem",
-                  fontFamily: "Inter",
-                  color: "#FFF",
-                  border: "1px solid #DDD",
-                  letterSpacing: "0.5px",
-                  cursor: "pointer",
-                  textTransform: "none",
-                  ml: 2,
-                  boxShadow: "none",
-                  borderRadius: "8px",
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  backgroundClip: "text",
-                  "-webkitBackgroundClip": "text",
-                  "-webkitTextFillColor": "transparent",
-                  ":hover": {
-                    border: "1px solid #369D9C",
-                  },
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundImage:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  fontWeight: 400,
-                  fontSize: "14px",
-                  padding: ".5rem 1.5rem",
-                  fontFamily: "Inter",
-                  color: "#FFF",
-                  border: "1px solid #DDD",
-                  letterSpacing: "0.5px",
-                  cursor: "pointer",
-                  textTransform: "none",
-                  ml: 2,
-                  boxShadow: "none",
-                  borderRadius: "8px",
-                }}
-                onClick={showCroppedImage}
-              >
-                Upload
-              </Button>
-            </Box>
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundImage:
+                  "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                fontWeight: 400,
+                fontSize: "14px",
+                padding: ".5rem 1.5rem",
+                fontFamily: "Inter",
+                color: "#FFF",
+                border: "1px solid #DDD",
+                letterSpacing: "0.5px",
+                cursor: "pointer",
+                textTransform: "none",
+                ml: 2,
+                boxShadow: "none",
+                borderRadius: "8px",
+              }}
+              onClick={showCroppedImage}
+            >
+              Upload
+            </Button>
           </Box>
-        </div>
+        </Box>
       </DialogContent>
     </Dialog>
   );
