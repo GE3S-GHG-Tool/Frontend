@@ -4,10 +4,29 @@ import { useNavigate } from "react-router-dom";
 import Wrapper from "../Wrapper/Wrapper";
 import logo from "../../assets/images/ge3s_logo.png";
 import VerfiedModal from "./VerfiedModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { validateEmail } from "../../util/utils";
 export default function SignUp() {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [helperText, setHelperText] = useState({
+    email: "",
+  });
+  useEffect(() => {
+    const isEmailValid = email.trim() !== "" && validateEmail(email);
+    const shouldShowError = email.trim() !== "" && !isEmailValid;
+
+    setHelperText({
+      email: shouldShowError ? "Please enter a valid email address" : "",
+    });
+
+    setError(shouldShowError);
+
+    setIsFormValid(isEmailValid);
+  }, [email]);
   return (
     <Wrapper>
       <div className="signup_page">
@@ -20,8 +39,19 @@ export default function SignUp() {
             placeholder="Enter Email"
             size="small"
             fullWidth
+            laebl=""
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={error}
+            helperText={helperText.email}
           />
-          <button onClick={() => navigate("/personalinfo")}>Confirm</button>
+          <button
+            className="ge3s_button"
+            disabled={!isFormValid}
+            onClick={() => navigate("/personalinfo")}
+          >
+            Confirm
+          </button>
         </div>
         <h6>
           Already have an account?{" "}

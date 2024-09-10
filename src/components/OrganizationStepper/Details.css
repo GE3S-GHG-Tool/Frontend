@@ -1,33 +1,21 @@
 .details {
   width: 32vw;
-  /* background: red; */
 }
 
 .details p {
-  color: var(--Grey-1, #717171);
-  font-size: 0.9rem;
+  color: #717171;
+  font-size: 0.8rem;
   font-weight: 400;
-  margin: 2vh 0.5vw 0vh 0.5vw;
+  margin: 0;
 }
 
-.select_det {
+.select_fields {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.details button {
-  margin-top: 4vh;
-  padding: 1.8vh 0;
-  width: 100%;
-  border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
-  color: #ffffff;
-  font-size: 0.9rem;
-  border: none;
-}
-.count_input {
-  margin-top: 20px;
-}
 .count_input p {
   margin-bottom: 8px;
 }

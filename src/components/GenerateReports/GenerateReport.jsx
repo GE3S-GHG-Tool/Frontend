@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./GenerateReports.css";
 import logo from "../../../src/assets/images/ge3s.png";
@@ -56,13 +56,7 @@ export default function GenerateReports() {
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                >
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
                   <g clip-path="url(#clip0_1214_40689)">
                     <path
                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"

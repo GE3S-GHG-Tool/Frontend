@@ -1,4 +1,3 @@
-import React from "react";
 import Wrapper from "../Wrapper/Wrapper";
 import { Grid2, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";

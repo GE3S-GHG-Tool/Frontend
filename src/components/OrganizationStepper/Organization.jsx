@@ -12,23 +12,17 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [city, setCity] = useState("");
   const [industry, setIndustry] = useState("");
   const [sector, setSector] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
-  const handleChange1 = (event) => {
-    setCountry(event.target.value);
+  const handleChange1 = (event) => setCountry(event.target.value);
+  const handleChange2 = (event) => setState(event.target.value);
+  const handleChange3 = (event) => setCity(event.target.value);
+  const handleChange4 = (event) => setIndustry(event.target.value);
+  const handleChange5 = (event) => setSector(event.target.value);
+  const handleCompanyNameChange = (event) => setCompanyName(event.target.value);
+  const isFormComplete = () => {
+    return country && state && city && industry && sector && companyName;
   };
-  const handleChange2 = (event) => {
-    setState(event.target.value);
-  };
-  const handleChange3 = (event) => {
-    setCity(event.target.value);
-  };
-  const handleChange4 = (event) => {
-    setIndustry(event.target.value);
-  };
-  const handleChange5 = (event) => {
-    setSector(event.target.value);
-  };
-
   return (
     <div className="organzation">
       <div className="heading">
@@ -42,6 +36,8 @@ export default function Organization({ activeStep, setActiveStep }) {
           size="small"
           fullWidth
           placeholder="Company Name"
+          value={companyName}
+          onChange={handleCompanyNameChange}
         />
       </div>
       <div className="select_emp_cou">
@@ -55,9 +51,24 @@ export default function Organization({ activeStep, setActiveStep }) {
               onChange={handleChange1}
               placeholder="Employee Count"
               size="small"
+              displayEmpty
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return (
+                    <span style={{ color: "#D9D9D9", fontSize: "14px" }}>
+                      Country
+                    </span>
+                  );
+                }
+                return selected;
+              }}
             >
-              <MenuItem value="">
-                <em>None</em>
+              <MenuItem
+                sx={{ color: "#D9D9D9", fontSize: "14px" }}
+                value=""
+                disabled
+              >
+                <span>Country</span>
               </MenuItem>
               <MenuItem value={10}>less than 20</MenuItem>
               <MenuItem value={20}>21 - 50</MenuItem>
@@ -74,9 +85,24 @@ export default function Organization({ activeStep, setActiveStep }) {
               id="demo-select-small"
               value={state}
               onChange={handleChange2}
+              displayEmpty
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return (
+                    <span style={{ color: "#D9D9D9", fontSize: "14px" }}>
+                      State
+                    </span>
+                  );
+                }
+                return selected;
+              }}
             >
-              <MenuItem value="">
-                <em>None</em>
+              <MenuItem
+                sx={{ color: "#D9D9D9", fontSize: "14px" }}
+                value=""
+                disabled
+              >
+                <span>State</span>
               </MenuItem>
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
@@ -92,9 +118,24 @@ export default function Organization({ activeStep, setActiveStep }) {
               id="demo-select-small"
               value={city}
               onChange={handleChange3}
+              displayEmpty
+              renderValue={(selected) => {
+                if (selected.length === 0) {
+                  return (
+                    <span style={{ color: "#D9D9D9", fontSize: "14px" }}>
+                      City
+                    </span>
+                  );
+                }
+                return selected;
+              }}
             >
-              <MenuItem value="">
-                <em>None</em>
+              <MenuItem
+                sx={{ color: "#D9D9D9", fontSize: "14px" }}
+                value=""
+                disabled
+              >
+                <span>City</span>
               </MenuItem>
               <MenuItem value={10}>Harayana</MenuItem>
               <MenuItem value={20}>Kolkata</MenuItem>
@@ -110,9 +151,20 @@ export default function Organization({ activeStep, setActiveStep }) {
           id="demo-select-small"
           value={industry}
           onChange={handleChange4}
+          displayEmpty
+          renderValue={(selected) => {
+            if (selected.length === 0) {
+              return (
+                <span style={{ color: "gray", fontSize: "14px" }}>
+                  Industry
+                </span>
+              );
+            }
+            return selected;
+          }}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem sx={{ color: "gray", fontSize: "14px" }} value="" disabled>
+            <span>Industry</span>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -122,13 +174,22 @@ export default function Organization({ activeStep, setActiveStep }) {
       <p>Sector</p>
       <FormControl fullWidth sx={{ margin: "10px 0" }} size="small">
         <Select
-          labelId="demo-select-small-label"
-          id="demo-select-small"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={sector}
           onChange={handleChange5}
+          displayEmpty
+          renderValue={(selected) => {
+            if (selected.length === 0) {
+              return (
+                <span style={{ color: "gray", fontSize: "14px" }}>Sector</span>
+              );
+            }
+            return selected;
+          }}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem sx={{ color: "gray", fontSize: "14px" }} value="" disabled>
+            <span>Sector</span>
           </MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -136,6 +197,8 @@ export default function Organization({ activeStep, setActiveStep }) {
         </Select>
       </FormControl>
       <button
+        className="ge3s_button"
+        disabled={!isFormComplete()}
         onClick={() => {
           setActiveStep(activeStep + 1);
         }}
