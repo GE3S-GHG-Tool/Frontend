@@ -1,16 +1,34 @@
 .login-container-2 {
   position: relative;
   margin: 15vh auto;
-  border-radius: 20px;
   border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
-  background: var(--White, #fff);
+  background: #fff;
   box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
-  width: 30vw;
+  width: 350px;
   padding: 35px;
-  gap: 24px;
+  gap: 20px;
   display: flex;
+  border-radius: 20px;
   flex-direction: column;
   height: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.login-container-2::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
+  border-radius: 651px;
+  background: #598483;
+  opacity: 0.3;
+  filter: blur(25px);
+  z-index: -1;
 }
 
 .login-container-2 div {

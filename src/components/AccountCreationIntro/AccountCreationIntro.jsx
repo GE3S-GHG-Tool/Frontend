@@ -41,7 +41,7 @@ function AccountCreationIntro() {
     boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
     display: "flex",
     flexDirection: "column",
-    padding: "38px 47px 38px 47px",
+    padding: "38px 47px",
     gap: "26px",
   };
   return (

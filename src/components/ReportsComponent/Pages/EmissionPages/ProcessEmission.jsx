@@ -126,8 +126,7 @@ function RefrigerantData() {
           "& .MuiDialog-paper": {
             width: "1100px",
             maxWidth: "1000px",
-            height: "89vh",
-            maxHeight: "600px",
+            maxHeight: "89vh",
             borderRadius: "16px",
           },
         }}

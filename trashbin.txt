@@ -1,3 +1,2453 @@
+height: "485px",
+    width: "480px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "20px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    padding: "38px 47px 38px 47px",
+    gap: "26px",
+ 
+const paperStyle = {
+    height: "485px",
+    width: "480px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "20px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    padding: "38px 47px 38px 47px",
+    gap: "26px",
+  };
+ 
+/* Place behind the main content */
+ 
+/* Blur effect */
+ 
+ /* Border opacity */
+ 
+ /* Border color */
+ 
+/* Large border radius */
+ 
+/* Adjust to cover the border area */
+ 
+/* Adjust to cover the border area */
+ 
+/* Adjust to cover the border area */
+ 
+/* Adjust to cover the border area */
+ 
+/* Ensure the pseudo-element doesn’t overflow */
+ 
+/* Center text */
+ 
+/* Center items vertically */
+ 
+ /* Center items horizontally */
+ 
+/* Height */
+ 
+/* Gap between elements */
+ 
+ /* Width */
+ 
+/* Background color */
+ 
+/* .login-container-2 {
+  position: relative;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 30vw;
+  padding: 35px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+} */
+ 
+
+  padding: 60px; /* Padding */
+ 
+
+  border-radius: 16px; /* Maintain the main border-radius */
+ 
+210px; /* Height */
+ 
+.login-container-2 {
+  position: relative;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 30vw;
+  padding: 35px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+ 
+.login-container-2 {
+  position: relative;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 30vw;
+  padding: 35px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+ 
+210px; /* Updated height */
+ 
+.login-container-2 {
+  position: relative;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 30vw;
+  padding: 35px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+ 
+.login-container-2 {
+  position: relative;
+  margin: 15vh auto;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--White, #fff);
+  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  width: 30vw;
+  padding: 35px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+ 
+ // Centers child elements vertically
+ 
+// Centers child elements horizontally
+ 
+        // Allows for absolutely positioned children relative to this element
+ 
+// Sets a gap of 20px between child elements
+ 
+ // Aligns children elements vertically
+ 
+// Centers text horizontally within the element
+ 
+ // Sets the display to flex for layout
+ 
+// Adds a shadow effect
+ 
+// Rounds the corners of the element with a 16px radius
+ 
+/ Creates a light grey border with 40% opacity
+ 
+// Sets the width of the element to 350px
+ 
+// Ensures the element doesn't exceed the width of its container
+ 
+ // Sets padding of 60px on all sides
+ 
+ // Sets the height of the element to 210px
+ 
+ const paperStyle = {
+    height: "210px",
+    padding: "60px 60px 60px 60px", // Updated padding
+    maxWidth: "100%",
+    width: "350px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "16px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    textAlign: "center",
+    flexDirection: "column",
+    gap: "20px",
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+ 
+ // Sets a gap of 32px between flex items
+ 
+ // Aligns flex children vertically in a column
+ 
+ // Sets the display to flex, allowing for flexible box layouts
+ 
+// Applies a shadow effect with specified offsets and color
+ 
+// Rounds the corners of the element with a 28px radius
+ 
+// Creates a light grey border with 40% opacity
+ 
+// Sets the width of the element to 430px
+ 
+  // Sets the height of the element to 440px
+ 
+// Sets top/bottom padding to 2.45rem and left/right padding to 3.5375rem
+ 
+const paperStyle = {
+    padding: "2.45rem 3.5375rem",
+    height: "440px",
+    width: "430px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "28px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "32px",
+  };
+ 
+padding: "2.45rem 3.5375rem",
+    height: "440px",
+    width: "430px",
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "28px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "32px",
+ 
+box-shadow: 
+ 
+6px 89px 56px -38px rgba(89, 132, 131, 0.65)
+ 
+
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+ 
+Grid
+ 
+// import React from "react";
+// import {
+//   Avatar,
+//   Button,
+//   Grid2,
+//   Paper,
+//   TextField,
+//   Typography,
+// } from "@mui/material";
+// import Wrapper from "../Wrapper/Wrapper";
+// import upload from "../../assets/images/Upload.svg";
+// import logo from "../../assets/images/ge3s_logo.png";
+// import profile from "../../assets/images/profile.svg";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// function AccountCreationHeader() {
+//   // Opens a file picker and shows the selected file name.
+//   const handleButtonClick = () => {
+//     const fileInput = document.createElement("input");
+//     fileInput.type = "file";
+//     fileInput.onchange = (event) => {
+//       const file = event.target.files[0];
+//       if (file) {
+//         alert("File selected: " + file.name);
+//       }
+//     };
+//     fileInput.click();
+//   };
+//   const [name, setName] = useState("");
+//   const navigate = useNavigate();
+//   // input condition check
+//   const isFormValid = name.trim().length >= 5;
+
+//   const paperStyle = {
+//     padding: "2.45rem 3.5375rem",
+//     height: "440px", // Roughly 60% of the viewport height (adjust as needed)
+//     width: "430px", // Roughly 40% of the viewport width (adjust as needed)
+//     border: "1px solid rgba(217, 217, 217, 0.4)",
+//     borderRadius: "28px",
+//     boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+//     display: "flex",
+//     flexDirection: "column",
+//     gap: "32px",
+//   };
+//   return (
+//     <Wrapper>
+//       <Grid2>
+//         <Paper style={paperStyle}>
+//           {/* Header Grid */}
+//           <Grid2
+//             align="center"
+//             sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+//           >
+//             <Grid2 item>
+//               <Avatar
+//                 src={logo}
+//                 style={{ height: "55px", width: "58px" }}
+//               ></Avatar>
+//             </Grid2>
+//             <Grid2 item>
+//               <Typography
+//                 variant="h2"
+//                 style={{
+//                   fontSize: "1.5rem",
+//                   fontWeight: "600",
+//                   lineHeight: "3rem",
+//                   width: "380px",
+//                   height: "48px",
+//                   color: "rgba(0, 25, 29, 1)",
+//                   letter: "-1",
+//                   fontFamily: "Inter, sans-serif",
+//                 }}
+//               >
+//                 Start creating your account
+//               </Typography>
+//             </Grid2>
+//           </Grid2>
+//           {/* profile section grid */}
+//           <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+//             <Avatar
+//               src={profile}
+//               style={{ height: "80px", width: "80px" }}
+//             ></Avatar>
+//             <Button
+//               onClick={handleButtonClick}
+//               style={{
+//                 border: "1px solid ",
+//                 width: "165px",
+//                 height: "40px",
+//                 gap: "10px",
+//                 display: "flex",
+//                 flexDirection: "row",
+//                 lineHeight: "16.63px",
+//                 border: "1px solid rgba(217, 217, 217, 0.4)",
+//                 justifyContent: "center",
+//                 alignItems: "center",
+//               }}
+//             >
+//               <img src={upload}></img>
+//               <Typography
+//                 sx={{ textTransform: "capitalize", color: "#717171" }}
+//               >
+//                 Upload Photo
+//               </Typography>
+//             </Button>
+//             <TextField
+//               placeholder="Full Name"
+//               size="small"
+//               value={name}
+//               onChange={(e) => setName(e.target.value)}
+//             ></TextField>
+//           </Grid2>
+//           {/* Submit buttun grid */}
+//           <Grid2>
+//             <Button
+//               onClick={() => navigate("/account-Intro")}
+//               disabled={!isFormValid}
+//               sx={{
+//                 width: "100%",
+//                 fontSize: "14px",
+//                 borderRadius: "32px",
+//                 justifyContent: "center",
+//                 alignItems: "center",
+//                 fontWeight: "600",
+//                 lineHeight: "16px",
+//                 height: "40px",
+//                 mt: "10px",
+//                 textTransform: "capitalize",
+//                 background: isFormValid
+//                   ? "linear-gradient(102deg, #369d9c 0%, #28814d 100%)"
+//                   : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+//                 color: isFormValid ? "#ffffff" : "#838383",
+//                 border: isFormValid
+//                   ? "1px solid rgba(217, 217, 217, 0.4)"
+//                   : "none",
+//                 cursor: isFormValid ? "pointer" : "not-allowed",
+//                 "&:hover": {
+//                   background: isFormValid
+//                     ? "linear-gradient(102deg, #28814d 0%, #369d9c 100%)"
+//                     : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+//                 },
+//               }}
+//             >
+//               Create account
+//             </Button>
+//           </Grid2>
+//         </Paper>
+//       </Grid2>
+//     </Wrapper>
+//   );
+// }
+
+// export default AccountCreationHeader;
+
+
+ 
+
+import Profi
+ 
+import React from "react";
+import {
+  Avatar,
+  Button,
+  Grid2,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import Wrapper from "../Wrapper/Wrapper";
+import upload from "../../assets/images/Upload.svg";
+import logo from "../../assets/images/ge3s_logo.png";
+import profile from "../../assets/images/profile.svg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+function AccountCreationHeader() {
+  // Opens a file picker and shows the selected file name.
+  const handleButtonClick = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.onchange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        alert("File selected: " + file.name);
+      }
+    };
+    fileInput.click();
+  };
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+  // input condition check
+  const isFormValid = name.trim().length >= 5;
+
+  const paperStyle = {
+    padding: "2.45rem 3.5375rem",
+    height: "440px", // Roughly 60% of the viewport height (adjust as needed)
+    width: "430px", // Roughly 40% of the viewport width (adjust as needed)
+    border: "1px solid rgba(217, 217, 217, 0.4)",
+    borderRadius: "28px",
+    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "32px",
+  };
+  return (
+    <Wrapper>
+      <Grid2>
+        <Paper style={paperStyle}>
+          {/* Header Grid */}
+          <Grid2
+            align="center"
+            sx={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            <Grid2 item>
+              <Avatar
+                src={logo}
+                style={{ height: "55px", width: "58px" }}
+              ></Avatar>
+            </Grid2>
+            <Grid2 item>
+              <Typography
+                variant="h2"
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "600",
+                  lineHeight: "3rem",
+                  width: "380px",
+                  height: "48px",
+                  color: "rgba(0, 25, 29, 1)",
+                  letter: "-1",
+                  fontFamily: "Inter, sans-serif",
+                }}
+              >
+                Start creating your account
+              </Typography>
+            </Grid2>
+          </Grid2>
+          {/* profile section grid */}
+          <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "22px" }}>
+            <Avatar
+              src={profile}
+              style={{ height: "80px", width: "80px" }}
+            ></Avatar>
+            <Button
+              onClick={handleButtonClick}
+              style={{
+                border: "1px solid ",
+                width: "165px",
+                height: "40px",
+                gap: "10px",
+                display: "flex",
+                flexDirection: "row",
+                lineHeight: "16.63px",
+                border: "1px solid rgba(217, 217, 217, 0.4)",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img src={upload}></img>
+              <Typography
+                sx={{ textTransform: "capitalize", color: "#717171" }}
+              >
+                Upload Photo
+              </Typography>
+            </Button>
+            <TextField
+              placeholder="Full Name"
+              size="small"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></TextField>
+          </Grid2>
+          {/* Submit buttun grid */}
+          <Grid2>
+            <Button
+              onClick={() => navigate("/account-Intro")}
+              disabled={!isFormValid}
+              sx={{
+                width: "100%",
+                fontSize: "14px",
+                borderRadius: "32px",
+                justifyContent: "center",
+                alignItems: "center",
+                fontWeight: "600",
+                lineHeight: "16px",
+                height: "40px",
+                mt: "10px",
+                textTransform: "capitalize",
+                background: isFormValid
+                  ? "linear-gradient(102deg, #369d9c 0%, #28814d 100%)"
+                  : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+                color: isFormValid ? "#ffffff" : "#838383",
+                border: isFormValid
+                  ? "1px solid rgba(217, 217, 217, 0.4)"
+                  : "none",
+                cursor: isFormValid ? "pointer" : "not-allowed",
+                "&:hover": {
+                  background: isFormValid
+                    ? "linear-gradient(102deg, #28814d 0%, #369d9c 100%)"
+                    : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
+                },
+              }}
+            >
+              Create account
+            </Button>
+          </Grid2>
+        </Paper>
+      </Grid2>
+    </Wrapper>
+  );
+}
+
+export default AccountCreationHeader;
+
+ 
+
+                        position="reletive"
+ 
+
+                        position="reletive"
+ 
+
+                              marginLeft: "18px", // Adjust margin as needed
+ 
+
+                            left="0"
+ 
+ <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column", // Arrange label and input in a column
+                      gap: "4px", // Space between label and input
+                      alignItems: "flex-start", // Ensure alignment is consistent
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      fontSize="12px"
+                      fontWeight="400"
+                      lineHeight="19.6px"
+                    >
+                      Fuel Type
+                    </Typography>
+                    <TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                            style={{
+                              marginLeft: "18px", // Adjust margin as needed
+                            }}
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+                  </Box>
+ 
+ <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column", // Arrange label and input in a column
+                      gap: "4px", // Space between label and input
+                      alignItems: "flex-start", // Ensure alignment is consistent
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      fontSize="12px"
+                      fontWeight="400"
+                      lineHeight="19.6px"
+                    >
+                      Fuel Type
+                    </Typography>
+                    <TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                            style={{
+                              marginLeft: "20px", // Adjust margin as needed
+                            }}
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+                  </Box>
+ 
+ <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column", // Arrange label and input in a column
+                      gap: "4px", // Space between label and input
+                      alignItems: "flex-start", // Ensure alignment is consistent
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      fontSize="12px"
+                      fontWeight="400"
+                      lineHeight="19.6px"
+                    >
+                      Fuel Type
+                    </Typography>
+                    <TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                            style={{
+                              marginLeft: "20px", // Adjust margin as needed
+                            }}
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+                  </Box>
+ 
+<Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column", // Arrange label and input in a column
+                      gap: "4px", // Space between label and input
+                      alignItems: "flex-start", // Ensure alignment is consistent
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      fontSize="12px"
+                      fontWeight="400"
+                      lineHeight="19.6px"
+                    >
+                      Fuel Type
+                    </Typography>
+                    <TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                            style={{
+                              marginLeft: "8px", // Adjust margin as needed
+                            }}
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+                  </Box>
+ 
+alignItems: "flex-start", // Ensure alignment is consistent
+ 
+<TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+ 
+<TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+ 
+<TextField
+                      select
+                      name="fuel"
+                      value={field.fuel}
+                      onChange={(e) => handleChange(index, e)}
+                      sx={{
+                        width: "332.5px",
+                        borderRadius: "5px",
+                        border: "1px solid #D9D9D966",
+                        "& .MuiSelect-icon": {
+                          display: "none",
+                        },
+                        "& .MuiInputBase-input": {
+                          padding: "10px 14px 10px 14px", // Add consistent padding
+                          height: "8px",
+                        },
+                      }}
+                      SelectProps={{
+                        displayEmpty: true,
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <Grid2
+                          flexDirection="row"
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography
+                            fontSize="13px"
+                            fontWeight="500"
+                            lineHeight="22.4px"
+                            color="#B0B0B0"
+                          >
+                            Select Type
+                          </Typography>
+                          <img
+                            src={down_arrow}
+                            width="12px"
+                            height="7px"
+                            alt="Logo"
+                          />
+                        </Grid2>
+                      </MenuItem>
+                      <MenuItem value="Fuel">Gasoline/Petrol</MenuItem>
+                      <MenuItem value="Fuel2">LPG</MenuItem>
+                      <MenuItem value="Fuel3">CNG</MenuItem>
+                    </TextField>
+ 
+
+                            marginLeft="20px"
+ 
+
+            <Grid2
+              container
+              spacing={2}
+              sx={{
+                border:
+                  "1px solid var(--stroke-21, rgba(217, 217, 217, 0.40));",
+                flexDirection: "column",
+                display: "flex",
+                padding: "18px",
+                borderRadius: "8px",
+              }}
+            >
+              {fields.map((field, index) => (
+                <Grid2 item xs={12} key={index}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "20px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        fontSize="12px"
+                        fontWeight="400"
+                        lineHeight="19.6px"
+                      >
+                        Type of Process Emission
+                      </Typography>
+                      <TextField
+                        select
+                        name="fuel"
+                        value={field.fuel}
+                        onChange={(e) => handleChange(index, e)}
+                        sx={{
+                          width: "252px",
+                          borderRadius: "5px",
+                          border: "1px solid #D9D9D966",
+                          "& .MuiSelect-icon": {
+                            display: "none",
+                          },
+                          "& .MuiInputBase-input": {
+                            padding: "10px 14px",
+                            height: "8px",
+                          },
+                        }}
+                        SelectProps={{
+                          displayEmpty: true,
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          <Grid2
+                            flexDirection="row"
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
+                            <Typography
+                              fontSize="13px"
+                              fontWeight="500"
+                              lineHeight="22.4px"
+                              color="#B0B0B0"
+                            >
+                              Waste Gas Disposal
+                            </Typography>
+                            <img
+                              src={down_arrow}
+                              width="12px"
+                              height="7px"
+                              alt="Logo"
+                            />
+                          </Grid2>
+                        </MenuItem>
+                        <MenuItem value="Fuel">Process and Vented</MenuItem>
+                        <MenuItem value="Fuel2">Fugitive</MenuItem>
+                        <MenuItem value="Fuel3">Waste Gas Disposal</MenuItem>
+                      </TextField>
+                    </Box>
+
+                    {field.fuel && (
+                      <>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category of Waste gas disposal
+                          </Typography>
+                          <TextField
+                            name="quantity"
+                            value={field.quantity}
+                            placeholder="Quantity"
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px",
+                                height: "auto",
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category for Flaring
+                          </Typography>
+                          <TextField
+                            select
+                            name="unit"
+                            value={field.unit}
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiSelect-icon": {
+                                display: "none",
+                              },
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px 10px 14px",
+                                height: "8px",
+                              },
+                            }}
+                            SelectProps={{
+                              displayEmpty: true,
+                            }}
+                          >
+                            <MenuItem value="" disabled>
+                              <Grid2
+                                flexDirection="row"
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                              >
+                                <Typography
+                                  fontSize="13px"
+                                  fontWeight="500"
+                                  lineHeight="22.4px"
+                                  color="#B0B0B0"
+                                >
+                                  Flaring
+                                </Typography>
+                                <img
+                                  src={down_arrow}
+                                  width="12px"
+                                  height="7px"
+                                  alt="Logo"
+                                />
+                              </Grid2>
+                            </MenuItem>
+                            <MenuItem value="Unit1">Flaring</MenuItem>
+                            <MenuItem value="Unit2">
+                              Sweet Gas Processing
+                            </MenuItem>
+                            <MenuItem value="Unit3">
+                              Conventional Oil Production
+                            </MenuItem>
+                          </TextField>
+                        </Box>
+                      </>
+                    )}
+                    {field.quantity || field.unit ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          gap: "8px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <img
+                          onClick={() => handleDelete(index)}
+                          src={trash_logo}
+                          alt="Delete"
+                          style={{
+                            width: "20px",
+                            height: "55px",
+                            marginTop: "6px",
+                            marginRight: "15px",
+                          }}
+                        />
+                      </Box>
+                    ) : null}
+                  </Box>
+                </Grid2>
+              ))}
+
+              <Grid2
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  fontSize="12px"
+                  fontWeight="400"
+                  lineHeight="19.6px"
+                >
+                  Quantity of gas production (m3)
+                </Typography>
+                <TextField
+                  placeholder="Quantity of Gas"
+                  type="number"
+                  sx={{
+                    width: "252px",
+                    borderRadius: "5px",
+                    border: "1px solid #D9D9D966",
+                    "& .MuiInputBase-input": {
+                      padding: "10px 14px",
+                      height: "auto",
+                    },
+                  }}
+                />
+              </Grid2>
+            </Grid2>
+ 
+<Grid2
+              container
+              spacing={2}
+              sx={{
+                border:
+                  "1px solid var(--stroke-21, rgba(217, 217, 217, 0.40));",
+                flexDirection: "column",
+                display: "flex",
+                padding: "18px",
+                borderRadius: "8px",
+              }}
+            >
+              {fields.map((field, index) => (
+                <Grid2 item xs={12} key={index}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "20px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        fontSize="12px"
+                        fontWeight="400"
+                        lineHeight="19.6px"
+                      >
+                        Type of Process Emission
+                      </Typography>
+                      <TextField
+                        select
+                        name="fuel"
+                        value={field.fuel}
+                        onChange={(e) => handleChange(index, e)}
+                        sx={{
+                          width: "252px",
+                          borderRadius: "5px",
+                          border: "1px solid #D9D9D966",
+                          "& .MuiSelect-icon": {
+                            display: "none",
+                          },
+                          "& .MuiInputBase-input": {
+                            padding: "10px 14px",
+                            height: "8px",
+                          },
+                        }}
+                        SelectProps={{
+                          displayEmpty: true,
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          <Grid2
+                            flexDirection="row"
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
+                            <Typography
+                              fontSize="13px"
+                              fontWeight="500"
+                              lineHeight="22.4px"
+                              color="#B0B0B0"
+                            >
+                              Waste Gas Disposal
+                            </Typography>
+                            <img
+                              src={down_arrow}
+                              width="12px"
+                              height="7px"
+                              alt="Logo"
+                            />
+                          </Grid2>
+                        </MenuItem>
+                        <MenuItem value="Fuel">Process and Vented</MenuItem>
+                        <MenuItem value="Fuel2">Fugitive</MenuItem>
+                        <MenuItem value="Fuel3">Waste Gas Disposal</MenuItem>
+                      </TextField>
+                    </Box>
+
+                    {field.fuel && (
+                      <>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category of Waste gas disposal
+                          </Typography>
+                          <TextField
+                            name="quantity"
+                            value={field.quantity}
+                            placeholder="Quantity"
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px",
+                                height: "auto",
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category for Flaring
+                          </Typography>
+                          <TextField
+                            select
+                            name="unit"
+                            value={field.unit}
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiSelect-icon": {
+                                display: "none",
+                              },
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px 10px 14px",
+                                height: "8px",
+                              },
+                            }}
+                            SelectProps={{
+                              displayEmpty: true,
+                            }}
+                          >
+                            <MenuItem value="" disabled>
+                              <Grid2
+                                flexDirection="row"
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                              >
+                                <Typography
+                                  fontSize="13px"
+                                  fontWeight="500"
+                                  lineHeight="22.4px"
+                                  color="#B0B0B0"
+                                >
+                                  Flaring
+                                </Typography>
+                                <img
+                                  src={down_arrow}
+                                  width="12px"
+                                  height="7px"
+                                  alt="Logo"
+                                />
+                              </Grid2>
+                            </MenuItem>
+                            <MenuItem value="Unit1">Flaring</MenuItem>
+                            <MenuItem value="Unit2">
+                              Sweet Gas Processing
+                            </MenuItem>
+                            <MenuItem value="Unit3">
+                              Conventional Oil Production
+                            </MenuItem>
+                          </TextField>
+                        </Box>
+                      </>
+                    )}
+                    {field.quantity || field.unit ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          gap: "8px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <img
+                          onClick={() => handleDelete(index)}
+                          src={trash_logo}
+                          alt="Delete"
+                          style={{
+                            width: "20px",
+                            height: "55px",
+                            marginTop: "6px",
+                            marginRight: "15px",
+                          }}
+                        />
+                      </Box>
+                    ) : null}
+                  </Box>
+                </Grid2>
+              ))}
+
+              <Grid2
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  fontSize="12px"
+                  fontWeight="400"
+                  lineHeight="19.6px"
+                >
+                  Quantity of gas production (m3)
+                </Typography>
+                <TextField
+                  placeholder="Quantity of Gas"
+                  type="number"
+                  sx={{
+                    width: "252px",
+                    borderRadius: "5px",
+                    border: "1px solid #D9D9D966",
+                    "& .MuiInputBase-input": {
+                      padding: "10px 14px",
+                      height: "auto",
+                    },
+                  }}
+                />
+              </Grid2>
+            </Grid2>
+ 
+
+  const handleGasProductionChange = (event) => {
+    setGasProduction(event.target.value);
+  };
+ 
+  const [gasProduction, setGasProduction] = useState(""); // New state for gas production quantity
+
+ 
+<Grid2
+              container
+              spacing={2}
+              sx={{
+                border:
+                  "1px solid var(--stroke-21, rgba(217, 217, 217, 0.40));",
+                flexDirection: "column",
+                display: "flex",
+                padding: "18px",
+                borderRadius: "8px",
+              }}
+            >
+              {fields.map((field, index) => (
+                <Grid2 item xs={12} key={index}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "20px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        fontSize="12px"
+                        fontWeight="400"
+                        lineHeight="19.6px"
+                      >
+                        Type of Process Emission
+                      </Typography>
+                      <TextField
+                        select
+                        name="fuel"
+                        value={field.fuel}
+                        onChange={(e) => handleChange(index, e)}
+                        sx={{
+                          width: "252px",
+                          borderRadius: "5px",
+                          border: "1px solid #D9D9D966",
+                          "& .MuiSelect-icon": {
+                            display: "none",
+                          },
+                          "& .MuiInputBase-input": {
+                            padding: "10px 14px",
+                            height: "8px",
+                          },
+                        }}
+                        SelectProps={{
+                          displayEmpty: true,
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          <Grid2
+                            flexDirection="row"
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
+                            <Typography
+                              fontSize="13px"
+                              fontWeight="500"
+                              lineHeight="22.4px"
+                              color="#B0B0B0"
+                            >
+                              Waste Gas Disposal
+                            </Typography>
+                            <img
+                              src={down_arrow}
+                              width="12px"
+                              height="7px"
+                              alt="Logo"
+                            />
+                          </Grid2>
+                        </MenuItem>
+                        <MenuItem value="Fuel">Process and Vented</MenuItem>
+                        <MenuItem value="Fuel2">Fugitive</MenuItem>
+                        <MenuItem value="Fuel3">Waste Gas Disposal</MenuItem>
+                      </TextField>
+                    </Box>
+
+                    {field.fuel && (
+                      <>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category of Waste gas disposal
+                          </Typography>
+                          <TextField
+                            name="quantity"
+                            value={field.quantity}
+                            placeholder="Quantity"
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px",
+                                height: "auto",
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category for Flaring
+                          </Typography>
+                          <TextField
+                            select
+                            name="unit"
+                            value={field.unit}
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiSelect-icon": {
+                                display: "none",
+                              },
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px 10px 14px",
+                                height: "8px",
+                              },
+                            }}
+                            SelectProps={{
+                              displayEmpty: true,
+                            }}
+                          >
+                            <MenuItem value="" disabled>
+                              <Grid2
+                                flexDirection="row"
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                              >
+                                <Typography
+                                  fontSize="13px"
+                                  fontWeight="500"
+                                  lineHeight="22.4px"
+                                  color="#B0B0B0"
+                                >
+                                  Flaring
+                                </Typography>
+                                <img
+                                  src={down_arrow}
+                                  width="12px"
+                                  height="7px"
+                                  alt="Logo"
+                                />
+                              </Grid2>
+                            </MenuItem>
+                            <MenuItem value="Unit1">Flaring</MenuItem>
+                            <MenuItem value="Unit1">
+                              Sweet Gas Processing
+                            </MenuItem>
+                            <MenuItem value="Unit1">
+                              Conventional Oil Production
+                            </MenuItem>
+                          </TextField>
+                        </Box>
+                      </>
+                    )}
+                    {field.quantity || field.unit ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          gap: "8px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <img
+                          onClick={() => handleDelete(index)}
+                          src={trash_logo}
+                          alt="Delete"
+                          style={{
+                            width: "20px",
+                            height: "55px",
+                            marginTop: "6px",
+                            marginRight: "15px",
+                          }}
+                        />
+                      </Box>
+                    ) : null}
+                  </Box>
+                </Grid2>
+              ))}
+
+              <Grid2
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  fontSize="12px"
+                  fontWeight="400"
+                  lineHeight="19.6px"
+                >
+                  Quantity of gas production (m3)
+                </Typography>
+                <TextField
+                  placeholder="Quantity of Gas"
+                  type="number"
+                  sx={{
+                    width: "252px",
+                    borderRadius: "5px",
+                    border: "1px solid #D9D9D966",
+                    "& .MuiInputBase-input": {
+                      padding: "10px 14px",
+                      height: "auto",
+                    },
+                  }}
+                ></TextField>
+              </Grid2>
+            </Grid2>
+ 
+
+  // Initialize fields with one empty row
+  const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
+  const [gasProductionFields, setGasProductionFields] = useState([{ quantity: "" }]);
+
+  const handleChange = (index, event) => {
+    const { name, value } = event.target;
+    const updatedFields = [...fields];
+    updatedFields[index][name] = value;
+    setFields(updatedFields);
+
+    // Check if the current row is complete
+    const isRowComplete =
+      updatedFields[index].fuel &&
+      updatedFields[index].quantity &&
+      updatedFields[index].unit;
+
+    // If the current row is complete and it’s the last row, add a new row
+    if (isRowComplete && index === fields.length - 1) {
+      setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+    }
+  };
+
+  const handleDelete = (index) => {
+    const updatedFields = fields.filter((_, i) => i !== index);
+
+    // Add a new empty row if there are no rows left
+    if (updatedFields.length === 0) {
+      updatedFields.push({ fuel: "", quantity: "", unit: "" });
+    }
+
+    setFields(updatedFields);
+  };
+  const handleChangeGasProduction = (index, event) => {
+    const { name, value } = event.target;
+    const updatedGasProduction = [...gasProductionFields];
+    updatedGasProduction[index][name] = value;
+    setGasProductionFields(updatedGasProduction);
+  };
+
+ 
+ <Grid2
+              sx={{ display: "flex", flexDirection: "column", gap: "4px" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: "6px",
+                  width: "100%",
+                }}
+              >
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <img
+                    src={emisson_logo}
+                    height="15px"
+                    width="10px"
+                    alt="fuel-logo"
+                  />
+                  <h2
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      lineHeight: "28px",
+                      color: "#000000",
+                      margin: 0,
+                    }}
+                  >
+                    Process Emission
+                  </h2>
+                </div>
+                <img
+                  src={x_logo}
+                  onClick={onClose}
+                  alt="dot-icon"
+                  height="24px"
+                  width="24px"
+                  style={{
+                    marginBottom: "30px",
+                    marginRight: "25px",
+                    position: "absolute",
+                    right: "0",
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+              <Typography
+                fontSize="12px"
+                fontWeight="400"
+                lineHeight="22.4px"
+                color="#717171"
+              >
+                Record the type of industrial process and the quantity of
+                product processed to calculate emissions directly related to
+                production activities.
+              </Typography>
+            </Grid2>
+
+            <Grid2
+              container
+              spacing={2}
+              sx={{
+                border:
+                  "1px solid var(--stroke-21, rgba(217, 217, 217, 0.40));",
+                flexDirection: "column",
+                display: "flex",
+                padding: "18px",
+                borderRadius: "8px",
+              }}
+            >
+              {fields.map((field, index) => (
+                <Grid2 item xs={12} key={index}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "20px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "4px",
+                        alignItems: "flex-start",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        fontSize="12px"
+                        fontWeight="400"
+                        lineHeight="19.6px"
+                      >
+                        Type of Process Emission
+                      </Typography>
+                      <TextField
+                        select
+                        name="fuel"
+                        value={field.fuel}
+                        onChange={(e) => handleChange(index, e)}
+                        sx={{
+                          width: "252px",
+                          borderRadius: "5px",
+                          border: "1px solid #D9D9D966",
+                          "& .MuiSelect-icon": {
+                            display: "none",
+                          },
+                          "& .MuiInputBase-input": {
+                            padding: "10px 14px",
+                            height: "8px",
+                          },
+                        }}
+                        SelectProps={{
+                          displayEmpty: true,
+                        }}
+                      >
+                        <MenuItem value="" disabled>
+                          <Grid2
+                            flexDirection="row"
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
+                            <Typography
+                              fontSize="13px"
+                              fontWeight="500"
+                              lineHeight="22.4px"
+                              color="#B0B0B0"
+                            >
+                              Waste Gas Disposal
+                            </Typography>
+                            <img
+                              src={down_arrow}
+                              width="12px"
+                              height="7px"
+                              alt="Logo"
+                            />
+                          </Grid2>
+                        </MenuItem>
+                        <MenuItem value="Fuel">Process and Vented</MenuItem>
+                        <MenuItem value="Fuel2">Fugitive</MenuItem>
+                        <MenuItem value="Fuel3">Waste Gas Disposal</MenuItem>
+                      </TextField>
+                    </Box>
+
+                    {field.fuel && (
+                      <>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category of Waste gas disposal
+                          </Typography>
+                          <TextField
+                            name="quantity"
+                            value={field.quantity}
+                            placeholder="Quantity"
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px",
+                                height: "auto",
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="19.6px"
+                          >
+                            Category for Flaring
+                          </Typography>
+                          <TextField
+                            select
+                            name="unit"
+                            value={field.unit}
+                            onChange={(e) => handleChange(index, e)}
+                            sx={{
+                              width: "252px",
+                              borderRadius: "5px",
+                              border: "1px solid #D9D9D966",
+                              "& .MuiSelect-icon": {
+                                display: "none",
+                              },
+                              "& .MuiInputBase-input": {
+                                padding: "10px 14px 10px 14px",
+                                height: "8px",
+                              },
+                            }}
+                            SelectProps={{
+                              displayEmpty: true,
+                            }}
+                          >
+                            <MenuItem value="" disabled>
+                              <Grid2
+                                flexDirection="row"
+                                display="flex"
+                                justifyContent="space-between"
+                                alignItems="center"
+                              >
+                                <Typography
+                                  fontSize="13px"
+                                  fontWeight="500"
+                                  lineHeight="22.4px"
+                                  color="#B0B0B0"
+                                >
+                                  Flaring
+                                </Typography>
+                                <img
+                                  src={down_arrow}
+                                  width="12px"
+                                  height="7px"
+                                  alt="Logo"
+                                />
+                              </Grid2>
+                            </MenuItem>
+                            <MenuItem value="Unit1">Flaring</MenuItem>
+                            <MenuItem value="Unit1">
+                              Sweet Gas Processing
+                            </MenuItem>
+                            <MenuItem value="Unit1">
+                              Conventional Oil Production
+                            </MenuItem>
+                          </TextField>
+                        </Box>
+                      </>
+                    )}
+                    {field.quantity || field.unit ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          gap: "8px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <img
+                          onClick={() => handleDelete(index)}
+                          src={trash_logo}
+                          alt="Delete"
+                          style={{
+                            width: "20px",
+                            height: "55px",
+                            marginTop: "6px",
+                            marginRight: "15px",
+                          }}
+                        />
+                      </Box>
+                    ) : null}
+                  </Box>
+                </Grid2>
+              ))}
+
+              <Grid2
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  fontSize="12px"
+                  fontWeight="400"
+                  lineHeight="19.6px"
+                >
+                  Quantity of gas production (m3)
+                </Typography>
+                <TextField
+                  placeholder="Quantity of Gas"
+                  type="number"
+                  sx={{
+                    width: "252px",
+                    borderRadius: "5px",
+                    border: "1px solid #D9D9D966",
+                    "& .MuiInputBase-input": {
+                      padding: "10px 14px",
+                      height: "auto",
+                    },
+                  }}
+                ></TextField>
+              </Grid2>
+            </Grid2>
+
+ 
+
+              justifyContent: "flex-end",
+ 
+overflow: "hidden", // Scroll bar ko hide karne ke liye
+ 
+
+          <Grid2
+        sx={{
+          padding: "25px 70px 0px 70px",
+          width: "100%",
+          height: "125px",
+          display: "flex",
+          flexDirection: "row",
+          marginLeft:"50px",
+          gap: "10px",
+          overflow: "hidden",
+          justifyContent: "flex-end", // This moves the buttons to the right
+        }}
+      >
+        <Button
+          sx={{
+            borderRadius: "32px",
+            border: "1px solid #28814D",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            textTransform: "capitalize",
+            color: "#28814D",
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          sx={{
+            borderRadius: "32px",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            background: "#369D9C",
+            textTransform: "capitalize",
+            color: "#FFFFFF",
+          }}
+        >
+          Proceed
+        </Button>
+      </Grid2>
+ 
+
+            ml:"40px"
+ 
+
+            padding: "8px 18px",
+ 
+
+            ml:"40px"
+ 
+ <Button
+          sx={{
+            borderRadius: "32px",
+            border: "1px solid #28814D",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            textTransform: "capitalize",
+            color: "#28814D",
+            ml:"40px"
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          sx={{
+            borderRadius: "32px",
+            padding: "8px 18px",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            background: "#369D9C",
+            textTransform: "capitalize",
+            color: "#FFFFFF",
+            ml:"40px"
+          }}
+        >
+          Proceed
+        </Button>
+ 
+
+            mr:"80px",
+ 
+
+            position:"absolute",
+ 
+
+            marginLeft:"20px"
+ 
+
+            position:"absolute",
+ 
+
+            // left:"0"
+ 
+
+            margin
+ 
+
+            padding: "8px 18px",
+ 
+width: "262px"
+ 
+  sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+ 
+    sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "4px",
+                  alignItems: "flex-start",
+                }}
+ 
+
+import ProcessLastEmisson from "./ProcessLastEmission";
+ 
+ProsessEmissonVenting
+ 
+
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+          alignItems: "flex-start",
+          mt:"20px"
+        }}
+      >
+        <Typography
+          variant="body2"
+          fontSize="12px"
+          fontWeight="400"
+          lineHeight="19.6px"
+        >
+          Quantity of gas production (m3)
+        </Typography>
+        <TextField
+          placeholder="Quantity of Gas"
+          type="number"
+          sx={{
+            width: "272px",
+            borderRadius: "5px",
+            border: "1px solid #D9D9D966",
+            "& .MuiInputBase-input": {
+              padding: "10px 14px",
+              height: "auto",
+            },
+          }}
+        ></TextField>
+      </Grid2>
+ 
+import React from 'react'
+
+function ProcessLastEmission() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default ProcessLastEmission
+
+ 
+ <TextField
+                  placeholder="Quantity of Gas"
+                  type="number"
+                  sx={{
+                    width: "262px", // Reduced the width from 250px to 150px
+                    borderRadius: "5px",
+                    border: "1px solid #D9D9D966",
+                    "& .MuiInputBase-input": {
+                      padding: "6px 12px",
+                      height: "auto",
+                    },
+                  }}
+                />
+ 
+
+              <TextField
+                placeholder="Quantity of Gas"
+                type="number"
+                sx={{
+                  width: "262px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "8px 14px",
+                    height: "auto",
+                  },
+                }}
+              ></TextField>
+ 
+
+              <TextField
+                placeholder="Quantity of Gas"
+                type="number"
+                sx={{
+                  width: "262px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "8px 14px",
+                    height: "auto",
+                  },
+                }}
+              ></TextField>
+ 
+
+              <TextField
+                placeholder="Quantity of Gas"
+                type="number"
+                sx={{
+                  width: "250px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "6px 12px",
+                    height: "auto",
+                  },
+                }}
+              ></TextField>
+ 
+
+              <TextField
+                placeholder="Quantity of Gas"
+                type="number"
+                sx={{
+                  width: "250px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "6px 12px",
+                    height: "auto",
+                  },
+                }}
+              >
+ 
+ <TextField
+                placeholder="Quantity of Gas"
+                type="number"
+                sx={{
+                  width: "250px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "6px 12px",
+                    height: "auto",
+                  },
+                }}
+ 
+<Grid2
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              mt:"25px",
+            }}
+          >
+            <ProsessEmissonVenting></ProsessEmissonVenting>
+          </Grid2>
+ 
+
+                flexDirection:"column",
+ 
+xs={12} key={index}
+ 
+item xs={12} key={index}
+ 
+
+              gap:"30px"
+ 
+
+              mt:""
+ 
+
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: "30px",
+            }}
+ 
+
+            height: "89vh",
+ 
+
+            height: "89vh",
+ 
+
+            height: "89vh",
+ 
+container spacing={4}
+ 
+
+              gap: "30px",
+ 
+ProcessEmission/
+ 
+sx={{display:""}}
+ 
+
+import React, { useState } from "react";
+ 
+
+
+    // Add a new empty row if there are no rows left
+ 
+
+
+    // If the current row is complete and it’s the last row, add a new row
+ 
+
+
+    // Check if the current row is complete
+ 
+
+  // Initialize fields with one empty row
+ 
 ../../../../assets/images/emission_logo.svg
  
 ../../../../assets/images/refri_logo.svg
