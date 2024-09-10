@@ -6,9 +6,28 @@
   border-radius: 20px;
   border: 1px solid rgba(217, 217, 217, 0.4);
   padding: 2rem;
-  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
+  background: #fff;
+  box-shadow: 0px 50px 50px -38px rgba(89, 132, 131, 0.65);
+  /* background: red; */
+  /* box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03); */
   width: 32vw;
+  position: relative;
 }
+/* .signup_page::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  background-image: url("../../assets/images/shadow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  z-index: -1;
+  background: red;
+} */
 .brand_logo {
   width: 4rem;
   margin-bottom: 20px;
@@ -66,7 +85,7 @@
 .signup_page span {
   color: #3cb477;
   font-size: 1rem;
-  margin-left: 10px;
+  margin-left: 4px;
   cursor: pointer;
 }
 .green_button {

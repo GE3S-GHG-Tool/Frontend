@@ -96,7 +96,7 @@ export default function GenerateReports() {
             </div>
           </div>
           <button
-            onClick={() => navigate("/organizationstepper")}
+            onClick={() => navigate("/")}
             disabled={!isFormValid}
             className={
               isFormValid ? "login-button-active" : "login-button-disabled"

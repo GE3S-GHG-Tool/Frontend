@@ -43,11 +43,17 @@ function App() {
       <Route path="/organization" element={<Organization />} />
       <Route path="/details" element={<Details />} />
       <Route path="/goals" element={<Goals />} />
-      <Route path="/account-creation-header" element={<AccountCreationHeader/>}/>
-      <Route path="/account-Intro" element={<AccountCreationIntro/>}/>
-      <Route path="/create-account-successfully" element={<CreateAccountSuccessfully/>}/>
-      <Route path="/generate-reports" element={<GenerateReports/>}/>
-      <Route path="/reports-state" element={<ReportStateEmpty/>}/>
+      <Route
+        path="/account-creation-header"
+        element={<AccountCreationHeader />}
+      />
+      <Route path="/account-Intro" element={<AccountCreationIntro />} />
+      <Route
+        path="/create-account-successfully"
+        element={<CreateAccountSuccessfully />}
+      />
+      <Route path="/generate-reports" element={<GenerateReports />} />
+      <Route path="/reports-state" element={<ReportStateEmpty />} />
 
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>

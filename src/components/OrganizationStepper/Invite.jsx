@@ -13,7 +13,7 @@ const Invite = () => {
   const navigate = useNavigate();
   const handleCloseModal = () => {
     setOpenModal(false);
-    navigate("/home");
+    navigate("/");
   };
   return (
     <div className="invite_Page">

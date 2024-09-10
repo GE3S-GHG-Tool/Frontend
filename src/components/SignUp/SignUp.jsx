@@ -24,7 +24,8 @@ export default function SignUp() {
           <button onClick={() => navigate("/personalinfo")}>Confirm</button>
         </div>
         <h6>
-          Already have an account? <span>Login</span>
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")}>Login</span>
         </h6>
       </div>
       <VerfiedModal open={openModal} handleClose={() => setOpenModal(false)} />

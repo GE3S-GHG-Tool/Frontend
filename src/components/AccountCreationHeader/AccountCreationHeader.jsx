@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Avatar,
   Button,
@@ -15,7 +14,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AccountCreationHeader() {
-  // Opens a file picker and shows the selected file name.
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+  const isFormValid = name.trim().length >= 5;
+
   const handleButtonClick = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
@@ -27,10 +29,6 @@ function AccountCreationHeader() {
     };
     fileInput.click();
   };
-  const [name, setName] = useState("");
-  const navigate = useNavigate();
-  // input condition check
-  const isFormValid = name.trim().length >= 5;
 
   const paperStyle = {
     padding: "2.45rem 3.5375rem",
@@ -85,7 +83,6 @@ function AccountCreationHeader() {
             <Button
               onClick={handleButtonClick}
               style={{
-                border: "1px solid ",
                 width: "165px",
                 height: "40px",
                 gap: "10px",

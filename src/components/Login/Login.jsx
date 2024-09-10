@@ -152,7 +152,7 @@ export default function Login() {
             </p>
             <p className="signup">
               Don&apos;t have an account?{" "}
-              <span onClick={() => navigate("/createaccount")}>Sign Up</span>
+              <span onClick={() => navigate("/signup")}>Sign Up</span>
             </p>
           </div>
         </div>
