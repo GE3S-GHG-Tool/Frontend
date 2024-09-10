@@ -119,132 +119,174 @@ function DashboardLayout() {
     >
       <Box sx={{ display: 'flex', height: '100vh' }}>
         {/* Sidebar */}
+        {/* <div style={{display:'flex',flexDirection:"column",justifyContent:"space-between"}}> */}
         <Box
           component="nav"
           sx={{
             width: '240px',
-            padding: '1.6rem 1.6rem',
+            padding: '1.6rem 1.4rem 0.2rem 1.4rem',
             flexShrink: 0,
             bgcolor: 'background.paper',
             borderRight: '1px solid rgba(0, 0, 0, 0.12)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '2.6rem'
+            justifyContent: 'space-between'
           }}
         >
-          <div>
-            <img src={logo} alt="" width={150} style={{ padding: '12px', margin: '0 auto', display: 'flex' }} />
-            <p style={{ border: '2px solid  #F26D58', width: '9rem', margin: '0 auto', textAlign: 'center', display: "flex", gap: '4px', fontSize: '0.8rem', alignItems: "center", justifyContent: 'center', height: '2.2rem', padding: '10px 0px', borderRadius: '37px' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none">
-                <path d="M12.5006 14.5H12.5096M7.50055 22.5H17.5006M4.01855 10.806C3.63055 9.732 3.43655 9.195 3.51855 8.851C3.60955 8.474 3.87755 8.181 4.21955 8.083C4.53255 7.993 5.01955 8.21 5.99255 8.643C6.85255 9.025 7.28255 9.216 7.68755 9.206C8.13355 9.194 8.56155 9.016 8.90255 8.699C9.21255 8.412 9.41955 7.955 9.83455 7.041L10.7495 5.025C11.5135 3.342 11.8956 2.5 12.5006 2.5C13.1056 2.5 13.4876 3.342 14.2516 5.025L15.1666 7.041C15.5816 7.955 15.7895 8.412 16.0985 8.699C16.4395 9.015 16.8686 9.194 17.3135 9.206C17.7176 9.216 18.1485 9.025 19.0085 8.642C19.9825 8.21 20.4685 7.993 20.7815 8.083C21.1235 8.181 21.3916 8.474 21.4816 8.851C21.5646 9.195 21.3706 9.731 20.9816 10.806L19.3145 15.422C18.6005 17.397 18.2445 18.384 17.4976 18.942C16.7506 19.5 15.7856 19.5 13.8566 19.5H11.1445C9.21455 19.5 8.25055 19.5 7.50455 18.942C6.75755 18.384 6.40055 17.397 5.68655 15.422L4.01855 10.806Z" stroke="url(#paint0_linear_1777_19668)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <defs>
-                  <linearGradient id="paint0_linear_1777_19668" x1="3.5" y1="2.5" x2="21.96" y2="3.03997" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#EABE4B" />
-                    <stop offset="0.333333" stop-color="#EABE4B" />
-                    <stop offset="0.666667" stop-color="#F26D58" />
-                    <stop offset="1" stop-color="#FF300F" />
-                  </linearGradient>
-                </defs>
-              </svg>CarbonZero Plan
-            </p>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2.6rem'
+          }}>
+            <div>
+              <img src={logo} alt="" width={150} style={{ padding: '12px', margin: '0 auto', display: 'flex' }} />
+              <p style={{ border: '2px solid  #F26D58', width: '9rem', margin: '0 auto', textAlign: 'center', display: "flex", gap: '4px', fontSize: '0.8rem', alignItems: "center", justifyContent: 'center', height: '2.2rem', padding: '10px 0px', borderRadius: '37px' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none">
+                  <path d="M12.5006 14.5H12.5096M7.50055 22.5H17.5006M4.01855 10.806C3.63055 9.732 3.43655 9.195 3.51855 8.851C3.60955 8.474 3.87755 8.181 4.21955 8.083C4.53255 7.993 5.01955 8.21 5.99255 8.643C6.85255 9.025 7.28255 9.216 7.68755 9.206C8.13355 9.194 8.56155 9.016 8.90255 8.699C9.21255 8.412 9.41955 7.955 9.83455 7.041L10.7495 5.025C11.5135 3.342 11.8956 2.5 12.5006 2.5C13.1056 2.5 13.4876 3.342 14.2516 5.025L15.1666 7.041C15.5816 7.955 15.7895 8.412 16.0985 8.699C16.4395 9.015 16.8686 9.194 17.3135 9.206C17.7176 9.216 18.1485 9.025 19.0085 8.642C19.9825 8.21 20.4685 7.993 20.7815 8.083C21.1235 8.181 21.3916 8.474 21.4816 8.851C21.5646 9.195 21.3706 9.731 20.9816 10.806L19.3145 15.422C18.6005 17.397 18.2445 18.384 17.4976 18.942C16.7506 19.5 15.7856 19.5 13.8566 19.5H11.1445C9.21455 19.5 8.25055 19.5 7.50455 18.942C6.75755 18.384 6.40055 17.397 5.68655 15.422L4.01855 10.806Z" stroke="url(#paint0_linear_1777_19668)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <defs>
+                    <linearGradient id="paint0_linear_1777_19668" x1="3.5" y1="2.5" x2="21.96" y2="3.03997" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#EABE4B" />
+                      <stop offset="0.333333" stop-color="#EABE4B" />
+                      <stop offset="0.666667" stop-color="#F26D58" />
+                      <stop offset="1" stop-color="#FF300F" />
+                    </linearGradient>
+                  </defs>
+                </svg>CarbonZero Plan
+              </p>
+            </div>
+            {/* navMenu Items */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+              {navMenu.map((item, index) => (
+                <React.Fragment key={index}>
+                  {item.kind === 'divider' ? (
+                    <Divider />
+                  ) : (
+                    <Box
+                      sx={{
+                        padding: '0.6rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        background: ' #E6F8F2',
+                        bgcolor: location.pathname === `/${item.segment}` ? '#E6F8F2' : 'inherit',
+                        borderLeft: location.pathname === `/${item.segment}` ? '3px solid #369D9C' : '3px solid transparent',
+                        fontWeight: location.pathname === `/${item.segment}` ? '600' : 'inherit',
+                        '&:hover': {
+                          bgcolor: '#E6F8F2',
+                          color: 'black'
+                        },
+                      }}
+                      onClick={() => {
+                        navigate(`/${item.segment}`)
+                        setPathname(item.segment);
+                      }}
+                    >
+                      {item.icon}
+                      <Typography variant="body1" sx={{
+                        marginLeft: '12px',
+                        fontWeight: "500",
+                        color: location.pathname === `/${item.segment}` ? 'black' : '#717171',
+                      }}>
+                        {item.title}
+                      </Typography>
+                    </Box>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
-          {/* navMenu Items */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-            {navMenu.map((item, index) => (
-              <React.Fragment key={index}>
-                {item.kind === 'divider' ? (
-                  <Divider />
-                ) : (
-                  <Box
-                    sx={{
-                      padding: '0.6rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      background: ' #E6F8F2',
-                      bgcolor: location.pathname === `/${item.segment}` ? '#E6F8F2' : 'inherit',
-                      borderLeft: location.pathname === `/${item.segment}` ? '3px solid #369D9C' : '3px solid transparent',
-                      fontWeight: location.pathname === `/${item.segment}` ? '600' : 'inherit',
-                      '&:hover': {
-                        bgcolor: '#E6F8F2',
-                        color: 'black'
-                      },
-                    }}
-                    onClick={() => {
-                      navigate(`/${item.segment}`)
-                      setPathname(item.segment);
-                    }}
-                  >
-                    {item.icon}
-                    <Typography variant="body1" sx={{
-                      marginLeft: '12px',
-                      fontWeight: "500",
-                      color: location.pathname === `/${item.segment}` ? 'black' : '#717171',
-                    }}>
-                      {item.title}
-                    </Typography>
-                  </Box>
-                )}
-              </React.Fragment>
-            ))}
+
+          <div style={{
+            width: '100%', display: 'flex', flexDirection: 'column', borderRadius: '32px',
+            background: 'linear-gradient(102deg, #51ADAC 0%, #4FA874 100%)',
+            boxShadow: '8px 12px 36px 0px rgba(15, 15, 15, 0.25)',
+            color: '#fff',
+            gap:'12px',
+            padding:'0.6rem'
+          }}>
+            <div>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <g clip-path="url(#clip0_1777_24408)">
+                    <path d="M20 22.5V5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M33.75 22.5V32.5H6.25V22.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M13.75 11.25L20 5L26.25 11.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1777_24408">
+                      <rect width="40" height="40" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div>
+                <p style={{ fontSize: '0.9rem', fontWeight: '600',padding:'0',margin:'0' }}>Upgrade to Carbonzero</p>
+                <p style={{ fontSize: '0.7rem', fontWeight: '400',padding:'0',margin:'0' }}>Reduce emissions, save costs, protect environment.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '0.4rem' }}>
+              <p style={{ fontSize: '0.875rem', fontWeight: '300',padding:'0',margin:'0 0' }}>Dismiss</p>
+              <p style={{ fontSize: '0.875rem', fontWeight: '400',padding:'0',margin:'0 0' }}>Upgrade Now</p>
+            </div>
           </div>
         </Box>
 
+        {/* </div> */}
 
 
         {/* Content Area */}
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
           {
-            currentNavItem!=='Start Survey'
-            ?
-            <Box
-            component="header"
-            sx={{
-              padding: '0rem 3rem',
-              bgcolor: 'background.default',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              borderBottom: '1px solid rgba(217, 217, 217, 0.40)'
-            }}
-          >
-            <Typography variant="h6" sx={{
-              color: '#000',
-              fontSize: '1.4rem',
-              fontWeight: '500'
-            }}>{currentNavItem}
-            </Typography>
-            <Toolbar sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '2rem',
-            }}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22" fill="none">
-                    <path d="M3.0018 10C3.0018 7.61305 3.95001 5.32387 5.63784 3.63604C7.32566 1.94821 9.61485 1 12.0018 1C14.3887 1 16.6779 1.94821 18.3658 3.63604C20.0536 5.32387 21.0018 7.61305 21.0018 10C21.0018 14.4775 22.0393 18.075 22.8643 19.5C22.9519 19.6518 22.9981 19.8239 22.9983 19.9991C22.9984 20.1744 22.9525 20.3466 22.8652 20.4985C22.7778 20.6504 22.6521 20.7767 22.5006 20.8647C22.349 20.9527 22.177 20.9994 22.0018 21H2.0018C1.82677 20.9989 1.65509 20.952 1.50391 20.8638C1.35272 20.7756 1.22734 20.6492 1.14028 20.4974C1.05323 20.3456 1.00755 20.1735 1.00781 19.9985C1.00808 19.8235 1.05428 19.6516 1.1418 19.5C1.96555 18.075 3.0018 14.4763 3.0018 10Z" stroke="url(#paint0_linear_1551_21164)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <defs>
-                      <linearGradient id="paint0_linear_1551_21164" x1="1.00781" y1="1" x2="26.2497" y2="6.7659" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#369D9C" />
-                        <stop offset="1" stop-color="#28814D" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </Badge>
-              </IconButton>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '124px' }}>
-                <Avatar src={avatar} alt="User Img" className='avatar' />
-                <Typography sx={{
+            currentNavItem !== 'Start Survey'
+              ?
+              <Box
+                component="header"
+                sx={{
+                  padding: '0rem 3rem',
+                  bgcolor: 'background.default',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  borderBottom: '1px solid rgba(217, 217, 217, 0.40)'
+                }}
+              >
+                <Typography variant="h6" sx={{
                   color: '#000',
-                  fontSize: '0.875rem',
+                  fontSize: '1.4rem',
                   fontWeight: '500'
-                }}>Aman</Typography>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13 6L8 11L3 6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </div>
-            </Toolbar>
-          </Box>:""
+                }}>{currentNavItem}
+                </Typography>
+                <Toolbar sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2rem',
+                }}>
+                  <IconButton color="inherit">
+                    <Badge badgeContent={4} color="error">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22" fill="none">
+                        <path d="M3.0018 10C3.0018 7.61305 3.95001 5.32387 5.63784 3.63604C7.32566 1.94821 9.61485 1 12.0018 1C14.3887 1 16.6779 1.94821 18.3658 3.63604C20.0536 5.32387 21.0018 7.61305 21.0018 10C21.0018 14.4775 22.0393 18.075 22.8643 19.5C22.9519 19.6518 22.9981 19.8239 22.9983 19.9991C22.9984 20.1744 22.9525 20.3466 22.8652 20.4985C22.7778 20.6504 22.6521 20.7767 22.5006 20.8647C22.349 20.9527 22.177 20.9994 22.0018 21H2.0018C1.82677 20.9989 1.65509 20.952 1.50391 20.8638C1.35272 20.7756 1.22734 20.6492 1.14028 20.4974C1.05323 20.3456 1.00755 20.1735 1.00781 19.9985C1.00808 19.8235 1.05428 19.6516 1.1418 19.5C1.96555 18.075 3.0018 14.4763 3.0018 10Z" stroke="url(#paint0_linear_1551_21164)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <defs>
+                          <linearGradient id="paint0_linear_1551_21164" x1="1.00781" y1="1" x2="26.2497" y2="6.7659" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#369D9C" />
+                            <stop offset="1" stop-color="#28814D" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </Badge>
+                  </IconButton>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '124px' }}>
+                    <Avatar src={avatar} alt="User Img" className='avatar' />
+                    <Typography sx={{
+                      color: '#000',
+                      fontSize: '0.875rem',
+                      fontWeight: '500'
+                    }}>Aman</Typography>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M13 6L8 11L3 6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </Toolbar>
+              </Box> : ""
           }
           <Box sx={{ p: 3, flexGrow: 1, overflow: 'auto' }}>
             <Outlet />
