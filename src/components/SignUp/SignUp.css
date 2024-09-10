@@ -1,63 +1,81 @@
 .signup_page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    border: 1px solid var(--Grey-2, #BDBDBD);
-    width: fit-content;
-    margin: 20vh 29vw;
-    padding: 6vh 1.5vw 5vh 1.5vw;
-    box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid rgba(217, 217, 217, 0.4);
+  padding: 2rem;
+  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
+  width: 32vw;
 }
-
+.brand_logo {
+  width: 4rem;
+  margin-bottom: 20px;
+}
 .signup_page h1 {
-    text-align: center;
-    font-weight: 600;
-    font-family: Poppins;
-    font-size: 1.6rem;
-    font-style: normal;
-    letter-spacing: -0.32px;
-    color: #00191D;
-    margin: 1vh 2vw
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #00191d;
+  margin: 0 2vw;
+  margin-bottom: 20px;
 }
 
 .descrip {
-    color: var(--Secondry-Text-color, #699191);
-    font-family: "DM Sans";
-    font-size: 0.8rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
-    letter-spacing: 0.04px;
-    margin: 2vh 2vw
+  color: #699191;
+  font-family: "DM Sans";
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.04px;
+  margin: 2vh 2vw;
 }
 
 .email_field {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 31vw;
-    margin: 0vh 2vw;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  margin: 0vh 2vw;
+  width: 100%;
 }
 
 .email_field p {
-    color: var(--Grey-1, #717171);
-    font-family: Inter;
-    font-size: 1rem;
-    font-weight: 400;
-    margin: 1vh 0vw;
+  color: #717171;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 1vh 0vw;
 }
 
 .email_field button {
-    margin: 4.5vh 0vw;
-    display: flex;
-    padding: 1vh 2vw;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    background: var(--G-2, linear-gradient(102deg, #369D9C 0%, #28814D 100%));
-    color: #FFFFFF;
-    font-size: 1.1rem;
+  margin-top: 2rem;
+  padding: 1.8vh 2vw;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  border: none;
+  width: 100%;
+}
+.signup_page h6 {
+  color: #717171;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.signup_page span {
+  color: #3cb477;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.green_button {
+  margin-top: 2rem;
+  padding: 1.8vh 2vw;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  border: none;
+  width: 100%;
 }

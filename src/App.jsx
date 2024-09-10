@@ -16,6 +16,8 @@ import AccountCreationHeader from "./components/AccountCreationHeader/AccountCre
 import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
 import GenerateReports from "./components/GenerateReports/GenerateReport";
 import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
+import PersonalInfo from "./components/SignUp/PersonalInfo";
+import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
       <Route index path="/" element={<SignUp />} />
       <Route path="/home" element={<Home />} />
       <Route path="/onboarding" element={<Onboarding />} />
+      <Route path="/personalinfo" element={<PersonalInfo />} />
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/login" element={<Login />} />
@@ -37,6 +40,7 @@ function App() {
       <Route path="/account-Intro" element={<AccountCreationIntro/>}/>
       <Route path="/create-account-successfully" element={<CreateAccountSuccessfully/>}/>
       <Route path="/generate-reports" element={<GenerateReports/>}/>
+      <Route path="/reports-state" element={<ReportStateEmpty/>}/>
     </Routes>
   );
 }

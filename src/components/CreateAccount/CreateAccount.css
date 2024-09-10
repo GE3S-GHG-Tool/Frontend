@@ -1,40 +1,26 @@
 .createacc {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 10vh 30vw;
-  border-radius: 10px;
-  border: 1px solid var (--Grey-2, #bdbdbd);
-  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.05);
-  padding: 5vh 3vw;
-  width: 38vw;
+  border-radius: 20px;
+  border: 1px solid rgba(217, 217, 217, 0.4);
+  padding: 2rem;
+  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
+  width: 32vw;
+  background: #fff;
 }
 
 .createacc h1 {
   font-size: 1.6rem;
   font-weight: 700;
   color: #00191d;
+  margin-bottom: 30px;
 }
 
 .createacc p {
-  color: var(--Grey-1, #717171);
-  font-size: 0.9rem;
+  color: #717171;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   margin: 1vh 0vw;
-}
-
-.createacc button {
-  margin: 4.5vh 0vw;
-  display: flex;
-  padding: 1vh 2vw;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
-  color: #ffffff;
-  font-size: 1.1rem;
 }
 
 .createacc span {
@@ -47,4 +33,8 @@
 
 .colored {
   color: #3cb477;
+}
+.radio_field span {
+  /* margin-top: 0 !important; */
+  padding-left: 0 !important;
 }
