@@ -29,7 +29,6 @@ function AccountCreationHeader() {
       if (file) {
         const imageUrl = URL.createObjectURL(file); // Create URL for the selected image
         setUploadedImage(imageUrl); // Set the image URL to display in Avatar
-        alert("File selected: " + file.name);
       }
     };
     fileInput.click();
@@ -42,14 +41,14 @@ function AccountCreationHeader() {
     padding: "2.45rem 3.5375rem",
     height: "440px",
     width: "430px",
+    // border: "1px solid rgba(217, 217, 217, 0.4)",
     border: "1px solid rgba(217, 217, 217, 0.4)",
-    // border: 1px solid rgba(217, 217, 217, 0.4);
     borderRadius: "28px",
-    boxShadow: "0px 50px 50px -38px rgba(89, 132, 131, 0.65)",
-    // box-shadow: 0px 50px 50px -38px rgba(89, 132, 131, 0.65);
     display: "flex",
     flexDirection: "column",
     gap: "32px",
+    position: "relative",
+    background: "#fff",
   };
 
   return (
@@ -85,7 +84,7 @@ function AccountCreationHeader() {
           {/* Profile section Grid2 */}
           <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "22px" }}>
             <Avatar
-              src={uploadedImage || profile} // Display uploaded image or default profile
+              src={uploadedImage || profile}
               style={{ height: "80px", width: "80px", objectFit: "cover" }}
             />
             <Button
@@ -150,6 +149,22 @@ function AccountCreationHeader() {
               Create account
             </Button>
           </Grid2>
+          {/* Decorative Blur Effect */}
+          <div
+            style={{
+              width: "80%",
+              height: "16vh",
+              borderRadius: "50%",
+              margin: "0 auto",
+              position: "absolute",
+              bottom: "-20px",
+              left: "10%",
+              background: "#598483",
+              filter: "blur(20px)",
+              opacity: 0.7,
+              zIndex: -3,
+            }}
+          ></div>
         </Paper>
       </Grid2>
     </Wrapper>

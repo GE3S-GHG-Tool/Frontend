@@ -109,6 +109,22 @@ export default function GenerateReports() {
             </p>
           </div>
         </div>
+        {/* Decorative Blur Effect */}
+        <div
+          style={{
+            width: "80%",
+            height: "16vh",
+            borderRadius: "50%",
+            margin: "0 auto",
+            position: "absolute",
+            bottom: "-20px",
+            left: "10%",
+            background: "#598483",
+            filter: "blur(20px)",
+            opacity: 0.7,
+            zIndex: -3,
+          }}
+        ></div>
       </div>
     </Wrapper>
   );
