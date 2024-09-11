@@ -6,11 +6,11 @@ function CreateAccountSuccessfully() {
   const paperStyle = {
     height: "210px",
     padding: "60px",
+    background: "#fff",
     maxWidth: "100%",
     width: "350px",
-    border: "1px solid rgba(217, 217, 217, 0.4)",
+    // border: "1px solid var(--stroke-21, rgba(217, 217, 217, 0.4))",
     borderRadius: "16px",
-    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
     display: "flex",
     textAlign: "center",
     flexDirection: "column",
@@ -75,16 +75,16 @@ function CreateAccountSuccessfully() {
               </svg>
               <Typography
                 style={{
-                  color: "#000000", // Ensure the correct color value as per design
-                  fontFamily: "Inter", // Set the font family to Inter
-                  fontSize: "20px", // Adjusted to match the Figma font size
-                  fontWeight: 500, // Changed to match the Figma font weight
-                  lineHeight: "36px", // Set line height as per Figma design
-                  textAlign: "center", // Center align the text
-                  letterSpacing: "-0.02em", // Adjust letter spacing as specified
-                  whiteSpace: "nowrap", // Keep text on one line
-                  overflow: "hidden", // Hide overflow content
-                  textOverflow: "ellipsis", // Add ellipsis if the text overflows
+                  color: "#000000",
+                  fontFamily: "Inter",
+                  fontSize: "20px",
+                  fontWeight: 500,
+                  lineHeight: "36px",
+                  textAlign: "center",
+                  letterSpacing: "-0.02em",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
                 }}
               >
                 Your account has been created successfully
@@ -111,6 +111,21 @@ function CreateAccountSuccessfully() {
                 </Button>
               </Link>
             </Grid2>
+            <div
+              style={{
+                width: "80%",
+                height: "16vh",
+                borderRadius: "50%",
+                margin: "0 auto",
+                position: "absolute",
+                bottom: "-20px",
+                left: "10%",
+                background: "#598483",
+                filter: "blur(20px)",
+                opacity: 0.7,
+                zIndex: -1,
+              }}
+            ></div>
           </Paper>
         </Grid2>
       </Wrapper>

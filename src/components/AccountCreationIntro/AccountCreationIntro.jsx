@@ -33,17 +33,20 @@ function AccountCreationIntro() {
       isTermsAccepted
     );
   };
+
   const paperStyle = {
     height: "485px",
     width: "480px",
-    border: "1px solid rgba(217, 217, 217, 0.4)",
+    // border: "1px solid rgba(217, 217, 217, 0.4)",
     borderRadius: "20px",
-    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    // boxShadow: "0px 50px 50px -38px rgba(89, 132, 131, 0.65)",
     display: "flex",
     flexDirection: "column",
     padding: "38px 47px",
     gap: "26px",
+    position: "relative", // Ensure the blur effect is correctly positioned
   };
+
   return (
     <div>
       <Wrapper>
@@ -203,7 +206,6 @@ function AccountCreationIntro() {
                   lineHeight: "12px",
                   padding: "20px 62px 20px 62px",
                   backgroundColor: "#E7E7E7",
-                  // color: "#838383",
                   height: "42px",
                   textTransform: "capitalize",
                   background: isFormValid()
@@ -215,7 +217,7 @@ function AccountCreationIntro() {
                     : "none",
                   cursor: isFormValid ? "pointer" : "not-allowed",
                   "&:hover": {
-                    background: isFormValid
+                    background: isFormValid()
                       ? "linear-gradient(102deg, #28814d 0%, #369d9c 100%)"
                       : "linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%)",
                   },
@@ -224,6 +226,21 @@ function AccountCreationIntro() {
                 Create account
               </Button>
             </Grid2>
+            {/* Decorative Blur Effect */} <div
+            style={{
+              width: "80%",
+              height: "16vh",
+              borderRadius: "50%",
+              margin: "0 auto",
+              position: "absolute",
+              bottom: "-20px",
+              left: "10%",
+              background: "#598483",
+              filter: "blur(20px)",
+              opacity: 0.7,
+              zIndex: -3,
+            }}
+          ></div>
           </Paper>
         </Grid2>
       </Wrapper>
