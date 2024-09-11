@@ -43,8 +43,10 @@ function AccountCreationHeader() {
     height: "440px",
     width: "430px",
     border: "1px solid rgba(217, 217, 217, 0.4)",
+    // border: 1px solid rgba(217, 217, 217, 0.4);
     borderRadius: "28px",
-    boxShadow: "6px 89px 56px -38px rgba(89, 132, 131, 0.65)",
+    boxShadow: "0px 50px 50px -38px rgba(89, 132, 131, 0.65)",
+    // box-shadow: 0px 50px 50px -38px rgba(89, 132, 131, 0.65);
     display: "flex",
     flexDirection: "column",
     gap: "32px",
