@@ -3,7 +3,7 @@
   margin: 15vh auto;
   border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
   background: #fff;
-  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
+  /* box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65); */
   width: 350px;
   padding: 35px;
   gap: 20px;
@@ -14,10 +14,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-.login-container-2::before {
+/* .login-container-2::before {
   content: "";
   position: absolute;
   top: -25px;
@@ -29,7 +29,7 @@
   opacity: 0.3;
   filter: blur(25px);
   z-index: -1;
-}
+} */
 
 .login-container-2 div {
   display: flex;

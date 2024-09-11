@@ -57,7 +57,7 @@ export default function GenerateReports() {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
-                  <g clip-path="url(#clip0_1214_40689)">
+                  <g clipPath="url(#clip0_1214_40689)">
                     <path
                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
                       stroke="#969696"
@@ -71,7 +71,7 @@ export default function GenerateReports() {
                     <path
                       d="M12.5 12.6426C12.9142 12.6426 13.25 12.3208 13.25 11.9238C13.25 11.5269 12.9142 11.2051 12.5 11.2051C12.0858 11.2051 11.75 11.5269 11.75 11.9238C11.75 12.3208 12.0858 12.6426 12.5 12.6426Z"
                       stroke="#969696"
-                      stroke-width="2"
+                      strokeWidth="2"
                       stroke-miterlimit="10"
                     />
                   </g>
@@ -106,6 +106,22 @@ export default function GenerateReports() {
               Forgot your password ?
             </p>
           </div>
+
+          <div
+            style={{
+              width: "80%",
+              height: "16vh",
+              borderRadius: "50%",
+              margin: "0 auto",
+              position: "absolute",
+              bottom: "-20px",
+              left: "10%",
+              background: "#598483",
+              filter: "blur(20px)",
+              opacity: 0.8,
+              zIndex: -1,
+            }}
+          ></div>
         </div>
       </div>
     </Wrapper>
