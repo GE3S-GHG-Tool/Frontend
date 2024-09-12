@@ -4,12 +4,14 @@
   border-spacing: 0 8px;
 }
 
-.member-table thead th {
+.member-table thead .member-table-head {
   text-align: left;
   font-weight: 400;
   font-size: 0.8rem;
   padding: 10px;
   color: #717171;
+  min-width: 12rem;
+  background-color: #FAFAFA;
 }
 
 .member-table tbody tr {
@@ -55,15 +57,16 @@
 
 .dropdown-menu {
   position: absolute;
+  right: 2.5rem;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 5px 0;
+  padding: 5px 5px;
   z-index: 1000;
 }
 
 .dropdown-menu button {
-  display: block;
+  display:flex;
   width: 100%;
   padding: 5px 10px;
   text-align: left;
