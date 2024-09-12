@@ -34,7 +34,7 @@ const TeamMembers = () => {
             fontSize: '1.22rem',
             fontWeight: '600',
             lineHeight: '150%',
-            marginTop: '1.38rem'
+            marginTop: '0.38rem'
           }}
         >
           List of Team Members
@@ -52,25 +52,25 @@ const TeamMembers = () => {
               value={value}
               onChange={handleTabChange}
               TabIndicatorProps={{
-                style: { background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)', fontWeight: '500', },
+                style: { background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)', fontWeight: '700', },
               }}
               sx={{
                 '&.Mui-selected': {
                   color: '#369D9C',
-                  fontWeight: '500'
+                  fontWeight: '700'
                 },
               }}
             >
               <Tab label="All Members" sx={{
                 textTransform: 'none', padding: "0", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
                   color: '#369D9C',
-                  fontWeight: '500'
+                  fontWeight: '600'
                 }
               }} />
               <Tab label="Pending Invites" sx={{
                 textTransform: 'none', padding: "10px", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
                   color: '#369D9C',
-                  fontWeight: '500'
+                  fontWeight: '600'
                 }
               }} />
             </Tabs>
@@ -87,7 +87,7 @@ const TeamMembers = () => {
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M3.16732 8.70801C3.16732 5.64743 5.64841 3.16634 8.70898 3.16634C11.7696 3.16634 14.2507 5.64743 14.2507 8.70801C14.2507 10.1991 13.6617 11.5527 12.7038 12.5488C12.6749 12.5707 12.6472 12.5947 12.6209 12.6211C12.5946 12.6473 12.5706 12.675 12.5488 12.7038C11.5527 13.6612 10.1996 14.2497 8.70898 14.2497C5.64841 14.2497 3.16732 11.7686 3.16732 8.70801ZM13.1557 14.2754C11.9369 15.2502 10.391 15.833 8.70898 15.833C4.77396 15.833 1.58398 12.643 1.58398 8.70801C1.58398 4.77298 4.77396 1.58301 8.70898 1.58301C12.644 1.58301 15.834 4.77298 15.834 8.70801C15.834 10.3906 15.2507 11.937 14.2754 13.156L17.1842 16.0648C17.4934 16.374 17.4934 16.8752 17.1842 17.1844C16.875 17.4936 16.3738 17.4936 16.0646 17.1844L13.1557 14.2754Z" fill="#1C1C1C" fill-opacity="0.2" />
                 </svg>
                 <InputBase
-                  sx={{ ml: 1, flex: 1, borderRadius: '6px', alignSelf: 'stretch', background: '#fff', padding: '0.3rem 1rem' }}
+                  sx={{ ml: 1, flex: 1, borderRadius: '6px', alignSelf: 'stretch', background: '#fff', padding: '0.2rem 2.5rem 0.2rem 0.7rem' }}
                   inputProps={{ 'aria-label': 'search' }}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -98,9 +98,9 @@ const TeamMembers = () => {
                 sx={{
                   backgroundColor: '#369D9C',
                   textTransform: 'none',
-                  borderRadius: '32px',
+                  borderRadius: '52px',
                   fontSize: '0.7rem',
-                  padding: '0.6rem 1.2rem',
+                  padding: '0.7rem 1.8rem',
                   background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
                   '&:hover': { backgroundColor: '#28814D' },
                 }}
