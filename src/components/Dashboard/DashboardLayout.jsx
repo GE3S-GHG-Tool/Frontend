@@ -12,21 +12,32 @@ import logo from "../../assets/images/ge3s.png";
 const CustomBadgeIcon = ({ badgeContent, badgeColor, badgeTextColor }) => {
   return (
     <>
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 24 22" fill="none">
-        <path
-          d="M3.0018 10C3.0018 7.61305 3.95001 5.32387 5.63784 3.63604C7.32566 1.94821 9.61485 1 12.0018 1C14.3887 1 16.6779 1.94821 18.3658 3.63604C20.0536 5.32387 21.0018 7.61305 21.0018 10C21.0018 14.4775 22.0393 18.075 22.8643 19.5C22.9519 19.6518 22.9981 19.8239 22.9983 19.9991C22.9984 20.1744 22.9525 20.3466 22.8652 20.4985C22.7778 20.6504 22.6521 20.7767 22.5006 20.8647C22.349 20.9527 22.177 20.9994 22.0018 21H2.0018C1.82677 20.9989 1.65509 20.952 1.50391 20.8638C1.35272 20.7756 1.22734 20.6492 1.14028 20.4974C1.05323 20.3456 1.00755 20.1735 1.00781 19.9985C1.00808 19.8235 1.05428 19.6516 1.1418 19.5C1.96555 18.075 3.0018 14.4763 3.0018 10Z"
-          stroke="url(#paint0_linear_1551_21164)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <defs>
-          <linearGradient id="paint0_linear_1551_21164" x1="1.00781" y1="1" x2="26.2497" y2="6.7659" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#369D9C" />
-            <stop offset="1" stopColor="#28814D" />
-          </linearGradient>
-        </defs>
-      </svg>
+      <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',position:'relative'}}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 24 22" fill="none">
+          <path
+            d="M3.0018 10C3.0018 7.61305 3.95001 5.32387 5.63784 3.63604C7.32566 1.94821 9.61485 1 12.0018 1C14.3887 1 16.6779 1.94821 18.3658 3.63604C20.0536 5.32387 21.0018 7.61305 21.0018 10C21.0018 14.4775 22.0393 18.075 22.8643 19.5C22.9519 19.6518 22.9981 19.8239 22.9983 19.9991C22.9984 20.1744 22.9525 20.3466 22.8652 20.4985C22.7778 20.6504 22.6521 20.7767 22.5006 20.8647C22.349 20.9527 22.177 20.9994 22.0018 21H2.0018C1.82677 20.9989 1.65509 20.952 1.50391 20.8638C1.35272 20.7756 1.22734 20.6492 1.14028 20.4974C1.05323 20.3456 1.00755 20.1735 1.00781 19.9985C1.00808 19.8235 1.05428 19.6516 1.1418 19.5C1.96555 18.075 3.0018 14.4763 3.0018 10Z"
+            stroke="url(#paint0_linear_1551_21164)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <defs>
+            <linearGradient id="paint0_linear_1551_21164" x1="1.00781" y1="1" x2="26.2497" y2="6.7659" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="4" viewBox="0 0 8 4" fill="none" style={{position:'absolute',top:'18px',right:'0.25rem'}}>
+          <path d="M0 0C0 1.06087 0.421427 2.07828 1.17157 2.82843C1.92172 3.57857 2.93913 4 4 4C5.06087 4 6.07828 3.57857 6.82843 2.82843C7.57857 2.07828 8 1.06087 8 0" fill="url(#paint0_linear_2080_5264)" />
+          <defs>
+            <linearGradient id="paint0_linear_2080_5264" x1="0" y1="0" x2="8.23953" y2="3.42352" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#369D9C" />
+              <stop offset="1" stop-color="#28814D" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
       <span className="custom-badge" style={{
         position: 'absolute',
         top: '3px',
