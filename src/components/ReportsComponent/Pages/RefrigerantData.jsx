@@ -146,6 +146,7 @@ function RefrigerantData() {
                         width: "332.5px",
                         borderRadius: "5px",
                         border: "1px solid #D9D9D966",
+                        position:"relative",
                         "& .MuiSelect-icon": {
                           display: "none",
                         },
@@ -178,6 +179,10 @@ function RefrigerantData() {
                             width="12px"
                             height="7px"
                             alt="Logo"
+                            style={{
+                              position:"absolute",
+                              marginLeft:"290px"
+                            }}
                           />
                         </Grid2>
                       </MenuItem>
@@ -211,6 +216,7 @@ function RefrigerantData() {
                           name="quantity"
                           value={field.quantity}
                           placeholder="Quantity"
+                          position="reletive"
                           onChange={(e) => handleChange(index, e)}
                           sx={{
                             width: "332.5px",
@@ -282,6 +288,10 @@ function RefrigerantData() {
                                 width="12px"
                                 height="7px"
                                 alt="Logo"
+                                style={{
+                              position:"absolute",
+                              marginLeft:"290px"
+                            }}
                               />
                             </Grid2>
                           </MenuItem>

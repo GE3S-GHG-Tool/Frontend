@@ -7,7 +7,7 @@ import Goals from "./Goals";
 import Invite from "./Invite";
 
 export default function OrganizationStepper() {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <Wrapper>
@@ -38,6 +38,22 @@ export default function OrganizationStepper() {
           <span className={activeStep >= 3 ? "current_step" : "circle"}>4</span>
           <p>Invite People</p>
         </div>
+
+        <div
+          style={{
+            width: "80%",
+            height: "16vh",
+            borderRadius: "50%",
+            margin: "0 auto",
+            position: "absolute",
+            bottom: "-20px",
+            left: "10%",
+            background: "#598483",
+            filter: "blur(20px)",
+            opacity: 0.8,
+            zIndex: -1,
+          }}
+        ></div>
       </div>
     </Wrapper>
   );

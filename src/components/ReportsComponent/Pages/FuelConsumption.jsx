@@ -146,6 +146,7 @@ function FuelConsumption() {
                         width: "332.5px",
                         borderRadius: "5px",
                         border: "1px solid #D9D9D966",
+                        position: "reletive",
                         "& .MuiSelect-icon": {
                           display: "none",
                         },
@@ -178,6 +179,10 @@ function FuelConsumption() {
                             width="12px"
                             height="7px"
                             alt="Logo"
+                            style={{
+                              position: "absolute",
+                              marginLeft: "290px",
+                            }}
                           />
                         </Grid2>
                       </MenuItem>
@@ -250,6 +255,7 @@ function FuelConsumption() {
                             width: "332.5px",
                             borderRadius: "5px",
                             border: "1px solid #D9D9D966",
+                            position: "reletive",
                             "& .MuiSelect-icon": {
                               display: "none", // Hide the select icon to match the fuel field
                             },
@@ -282,6 +288,10 @@ function FuelConsumption() {
                                 width="12px"
                                 height="7px"
                                 alt="Logo"
+                                style={{
+                                  position: "absolute",
+                                  marginLeft: "290px",
+                                }}
                               />
                             </Grid2>
                           </MenuItem>

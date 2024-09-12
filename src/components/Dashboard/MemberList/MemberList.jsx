@@ -1,54 +1,86 @@
-import React, { useState } from 'react';
-import { Avatar } from '@mui/material';
-import './MemberList.css';
-import avatar from '../../../assets/images/userimg.png';
+import React, { useState } from "react";
+import { Avatar } from "@mui/material";
+import "./MemberList.css";
+import avatar from "../../../assets/images/userimg.png";
 
 const members = [
-    { name: 'Pranit Gaikar', img: "", email: 'Pranit@growhut.in', facility: 'Jaipur', userType: 'Can Edit', lastActive: '2024-05-05' },
-    { name: 'John Doe', img: "", email: 'john@growhut.in', facility: 'Delhi', userType: 'Read Only', lastActive: '2024-04-03' },
-    { name: 'Jane Smith', img: "", email: 'jane@growhut.in', facility: 'Mumbai', userType: 'Can Edit', lastActive: '2024-02-10' },
-    { name: 'Jane Smith', img: "", email: 'jane@growhut.in', facility: 'Mumbai', userType: 'Can Edit', lastActive: '2024-02-10' },
+  {
+    name: "Pranit Gaikar",
+    img: "",
+    email: "Pranit@growhut.in",
+    facility: "Jaipur",
+    userType: "Can Edit",
+    lastActive: "2024-05-05",
+  },
+  {
+    name: "John Doe",
+    img: "",
+    email: "john@growhut.in",
+    facility: "Delhi",
+    userType: "Read Only",
+    lastActive: "2024-04-03",
+  },
+  {
+    name: "Jane Smith",
+    img: "",
+    email: "jane@growhut.in",
+    facility: "Mumbai",
+    userType: "Can Edit",
+    lastActive: "2024-02-10",
+  },
+  {
+    name: "Jane Smith",
+    img: "",
+    email: "jane@growhut.in",
+    facility: "Mumbai",
+    userType: "Can Edit",
+    lastActive: "2024-02-10",
+  },
 ];
 
 const MemberList = ({ searchQuery }) => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedRow, setSelectedRow] = useState(null);
-    const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [sortConfig, setSortConfig] = useState({
+    key: null,
+    direction: "ascending",
+  });
 
-    const handleClick = (event, index) => {
-        setAnchorEl(event.currentTarget);
-        setSelectedRow(index);
-    };
+  const handleClick = (event, index) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedRow(index);
+  };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-    const handleSort = (key) => {
-        let direction = 'ascending';
-        if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-            direction = 'descending';
-        }
-        setSortConfig({ key, direction });
-    };
+  const handleSort = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    setSortConfig({ key, direction });
+  };
 
-    const sortedMembers = [...members].sort((a, b) => {
-        if (sortConfig.key) {
-            if (a[sortConfig.key] < b[sortConfig.key]) {
-                return sortConfig.direction === 'ascending' ? -1 : 1;
-            }
-            if (a[sortConfig.key] > b[sortConfig.key]) {
-                return sortConfig.direction === 'ascending' ? 1 : -1;
-            }
-        }
-        return 0;
-    });
+  const sortedMembers = [...members].sort((a, b) => {
+    if (sortConfig.key) {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+    }
+    return 0;
+  });
 
-    const filteredMembers = sortedMembers.filter(member =>
-        member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        member.facility.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+  const filteredMembers = sortedMembers.filter(
+    (member) =>
+      member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      member.facility.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
     return (
         <div className="table-container">

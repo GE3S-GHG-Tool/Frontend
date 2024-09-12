@@ -1,5 +1,5 @@
 import React from "react";
-// ProcessEmissionReports.js
+import { useState } from "react";
 import {
   DialogTitle,
   DialogContent,
@@ -12,50 +12,58 @@ import {
   Grid2,
 } from "@mui/material";
 import down_arrow from "../../../../assets/images/down_arrow.svg";
-import trash_logo from "../../../../assets/images/TrashS.svg";
-import emisson_logo from "../../../../assets/images/emisson_logo.svg";
+import trash_logo from "../../../../assets/images/TrashS.svg"
+import emisson_logo from "../../../../assets/images/emisson_logo.svg"
 import x_logo from "../../../../assets/images/X_logo.svg";
-import { useState } from "react";
+import ProsessEmissonVenting from "./ProsessEmissonVenting";
 
-function ProsessEmissonVenting() {
-  const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
-
-  const handleChange = (index, event) => {
+function Gas2PopupEmission() {
+  const [gas2Fields, setGas2Fields] = useState([
+    { fuel: "", quantity: "", unit: "" },
+  ]);
+  const handleGas2Change = (index, event) => {
     const { name, value } = event.target;
-    const updatedFields = [...fields];
+    const updatedFields = [...gas2Fields];
     updatedFields[index][name] = value;
-    setFields(updatedFields);
+    setGas2Fields(updatedFields);
 
+    // Check if the current row is complete
     const isRowComplete =
       updatedFields[index].fuel &&
       updatedFields[index].quantity &&
       updatedFields[index].unit;
 
-    if (isRowComplete && index === fields.length - 1) {
-      setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+    // If the current row is complete and it’s the last row, add a new row
+    if (isRowComplete && index === gas2Fields.length - 1) {
+      setGas2Fields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
     }
   };
 
-  const handleDelete = (index) => {
-    const updatedFields = fields.filter((_, i) => i !== index);
+  const handleDeleteGas2 = (index) => {
+    const updatedFields = gas2Fields.filter((_, i) => i !== index);
+
+    // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
       updatedFields.push({ fuel: "", quantity: "", unit: "" });
     }
 
-    setFields(updatedFields);
+    setGas2Fields(updatedFields);
   };
   return (
     <div>
       <Grid2
+        container
+        spacing={2}
         sx={{
-          width: "100%",
-          display: "flex",
+          border: "1px solid var(--stroke-21, rgba(217, 217, 217, 0.40));",
           flexDirection: "column",
-          gap: "30px",
+          display: "flex",
+          padding: "18px",
+          borderRadius: "8px",
         }}
       >
-        {fields.map((field, index) => (
-          <Grid2>
+        {gas2Fields.map((field, index) => (
+          <Grid2 item xs={12} key={index}>
             <Box
               sx={{
                 display: "flex",
@@ -84,11 +92,12 @@ function ProsessEmissonVenting() {
                   select
                   name="fuel"
                   value={field.fuel}
-                  onChange={(e) => handleChange(index, e)}
+                  onChange={(e) => handleGas2Change(index, e)}
                   sx={{
-                    width: "272px",
+                    width: "252px",
                     borderRadius: "5px",
                     border: "1px solid #D9D9D966",
+                    position: "relative",
                     "& .MuiSelect-icon": {
                       display: "none",
                     },
@@ -121,6 +130,10 @@ function ProsessEmissonVenting() {
                         width="12px"
                         height="7px"
                         alt="Logo"
+                        style={{
+                          position: "absolute",
+                          marginLeft: "210px",
+                        }}
                       />
                     </Grid2>
                   </MenuItem>
@@ -152,11 +165,12 @@ function ProsessEmissonVenting() {
                       name="quantity"
                       value={field.quantity}
                       placeholder="Quantity"
-                      onChange={(e) => handleChange(index, e)}
+                      onChange={(e) => handleGas2Change(index, e)}
                       sx={{
-                        width: "272px",
+                        width: "252px",
                         borderRadius: "5px",
                         border: "1px solid #D9D9D966",
+                        position: "reletive",
                         "& .MuiInputBase-input": {
                           padding: "10px 14px",
                           height: "auto",
@@ -185,9 +199,9 @@ function ProsessEmissonVenting() {
                       select
                       name="unit"
                       value={field.unit}
-                      onChange={(e) => handleChange(index, e)}
+                      onChange={(e) => handleGas2Change(index, e)}
                       sx={{
-                        width: "272px",
+                        width: "252px",
                         borderRadius: "5px",
                         border: "1px solid #D9D9D966",
                         "& .MuiSelect-icon": {
@@ -222,12 +236,16 @@ function ProsessEmissonVenting() {
                             width="12px"
                             height="7px"
                             alt="Logo"
+                            style={{
+                              position: "absolute",
+                              marginLeft: "210px",
+                            }}
                           />
                         </Grid2>
                       </MenuItem>
                       <MenuItem value="Unit1">Flaring</MenuItem>
-                      <MenuItem value="Unit1">Sweet Gas Processing</MenuItem>
-                      <MenuItem value="Unit1">
+                      <MenuItem value="Unit2">Sweet Gas Processing</MenuItem>
+                      <MenuItem value="Unit3">
                         Conventional Oil Production
                       </MenuItem>
                     </TextField>
@@ -246,7 +264,7 @@ function ProsessEmissonVenting() {
                   }}
                 >
                   <img
-                    onClick={() => handleDelete(index)}
+                    onClick={() => handleDeleteGas2(index)}
                     src={trash_logo}
                     alt="Delete"
                     style={{
@@ -261,9 +279,40 @@ function ProsessEmissonVenting() {
             </Box>
           </Grid2>
         ))}
+
+        <Grid2
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px",
+            alignItems: "flex-start",
+          }}
+        >
+          <Typography
+            variant="body2"
+            fontSize="12px"
+            fontWeight="400"
+            lineHeight="19.6px"
+          >
+            Quantity of gas production (m3)
+          </Typography>
+          <TextField
+            placeholder="Quantity of Gas"
+            type="number"
+            sx={{
+              width: "252px",
+              borderRadius: "5px",
+              border: "1px solid #D9D9D966",
+              "& .MuiInputBase-input": {
+                padding: "10px 14px",
+                height: "auto",
+              },
+            }}
+          />
+        </Grid2>
       </Grid2>
     </div>
   );
 }
 
-export default ProsessEmissonVenting;
+export default Gas2PopupEmission;

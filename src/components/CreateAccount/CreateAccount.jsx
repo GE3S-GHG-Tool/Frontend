@@ -122,6 +122,22 @@ export default function CreateAccount() {
         >
           Create Account
         </button>
+
+        <div
+          style={{
+            width: "80%",
+            height: "16vh",
+            borderRadius: "50%",
+            margin: "0 auto",
+            position: "absolute",
+            bottom: "-20px",
+            left: "10%",
+            background: "#598483",
+            filter: "blur(20px)",
+            opacity: 0.8,
+            zIndex: -1,
+          }}
+        ></div>
       </div>
     </Wrapper>
   );

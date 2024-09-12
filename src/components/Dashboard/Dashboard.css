@@ -1,0 +1,32 @@
+.sidebar_brand {
+  text-align: center;
+  margin: auto;
+}
+
+.side_chip {
+  margin-top: 10px;
+  border: 2px solid #f26d58;
+  width: fit-content;
+  border-radius: 37px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+}
+.subs_card {
+  position: absolute;
+  bottom: 1rem;
+  margin-top: auto;
+  width: calc(100% - 2rem);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(102deg, #51adac 0%, #4fa874 100%);
+  color: #fff;
+  gap: 0.6rem;
+  padding: 0.9rem;
+  box-shadow: 8px 12px 36px 0px rgba(15, 15, 15, 0.25);
+  border-radius: 24px;
+}

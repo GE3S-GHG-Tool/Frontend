@@ -1,18 +1,21 @@
 .login-container-2 {
   position: relative;
   margin: 15vh auto;
-  border-radius: 20px;
   border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
-  background: var(--White, #fff);
-  box-shadow: 6px 89px 56px -38px rgba(89, 132, 131, 0.65);
-  width: 30vw;
+  background: #fff;
+  /* box-shadow: 0px 40px 56px -50px rgba(89, 140, 135, 5); */
+  width: 350px;
   padding: 35px;
-  gap: 24px;
+  gap: 20px;
   display: flex;
+  border-radius: 20px;
   flex-direction: column;
   height: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* overflow: hidden; */
 }
-
 .login-container-2 div {
   display: flex;
   justify-content: center;

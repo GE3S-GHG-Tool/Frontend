@@ -20,7 +20,7 @@ import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import TeamMembers from "./components/Dashboard/TeamMembers";
 import Facilities from "./components/Dashboard/Facilities";
-import Survey from "./components/Dashboard/Survey";
+import Survey from "./components/Dashboard/Survey/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
@@ -57,7 +57,7 @@ function App() {
 
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<Dashboard />} />
         <Route path="team-member" element={<TeamMembers />} />
         <Route path="facilities" element={<Facilities />} />
         <Route path="analytics" element={<Analytics />} />
