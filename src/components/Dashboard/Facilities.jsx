@@ -19,7 +19,7 @@ const Facilities = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '2rem',
+          gap: '0rem',
         }}
       >
         <Typography

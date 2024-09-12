@@ -23,11 +23,12 @@ const StyledButton = {
     color: '#FFFFFF',
     padding: '0.5rem 1.4rem',
     display: 'flex',
-    height: '2.8rem',
+    height: '2.1rem',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '1.3rem',
     fontVariant: 'unset',
+    fontSize:'0.7rem',
     border: '0.554px solid grey',
     background: 'radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)',
     boxShadow: '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset',
@@ -93,31 +94,31 @@ const CustomModal = ({ open, onClose, title, description, onAction, planContains
                         {description}
                     </p>
                     <div style={{ display: 'flex', alignItems: 'end' }}>
-                        <p style={{ fontSize: '2.5rem', fontWeight: '600', padding: '0', margin: '0' }}>${price}</p>
+                        <p style={{ fontSize: '2.4rem', fontWeight: '600', padding: '0', margin: '0' }}>${price}</p>
                         <p style={{ fontSize: '0.9rem', fontWeight: '300', }}> &nbsp; / per {type}</p>
                     </div>
                 </div>
 
                 {getStarted && (
                     <div style={{
-                        display: 'flex', width: '16vw', padding: '20px 0', flexDirection: 'column', alignItems: "center", gap: '12px', borderRadius: '0.6rem', border: '1px solid #fff',
+                        display: 'flex', width: '16vw', padding: '10px 0', flexDirection: 'column', alignItems: "center", gap: '12px', borderRadius: '0.6rem', border: '1px solid #fff',
                     }}>
                         <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "0px 20px", fontSize: '14px' }}>
                             <div>
                                 Total {type}
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '4px', }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '4px', }}>
                                 <button onClick={handleDecrement} style={{ background: 'transparent', outline: 'none', border: 'none', color: '#fff', fontSize: '16px', padding: 'none', verticalAlign: 'center' }}>-</button>
                                 <Typography>{planCount}</Typography>
                                 <button onClick={handleIncrement} style={{ background: 'transparent', outline: 'none', border: 'none', color: '#fff', fontSize: '16px', padding: 'none', verticalAlign: 'center' }}>+</button>
                             </div>
-                        </div>
+                        </div> <hr style={{width:'100%',padding:'0',margin:'0'}}/>
                         <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: "0px 20px", fontSize: '14px' }}>
                             <div>
                                 Total Amount
                             </div>
-                            <div style={{ fontSize: '1.2rem' }}>
-                                ${totalAmount}
+                            <div style={{ fontSize: '1.1rem' }}>
+                                {totalAmount.toFixed(2)} $
                             </div>
                         </div>
                     </div>
@@ -179,7 +180,7 @@ const CustomModal = ({ open, onClose, title, description, onAction, planContains
                     </div>}
             </div>
         </ModalBox>
-        </Dialog >
+        </Dialog>
     );
 };
 

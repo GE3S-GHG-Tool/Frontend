@@ -60,7 +60,8 @@ const Survey = () => {
               backgroundColor: '#369D9C',
               textTransform: 'none',
               borderRadius: '32px',
-              padding: '0.6rem 2.4rem',
+              padding: '0.6rem 2rem',
+              fontSize:'0.7rem',
               background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
               '&:hover': { background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)", },
             }}

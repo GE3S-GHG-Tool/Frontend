@@ -25,7 +25,7 @@ const TeamMembers = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '2rem',
+          gap: '1rem',
         }}
       >
         <Typography
@@ -55,14 +55,24 @@ const TeamMembers = () => {
                 style: { background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)', fontWeight: '500', },
               }}
               sx={{
-                '& .Mui-selected': {
-                  color: '#2e7d32',
+                '&.Mui-selected': {
+                  color: '#369D9C',
                   fontWeight: '500'
                 },
               }}
             >
-              <Tab label="All Members" sx={{ textTransform: 'none', padding: "0", color: '#BDBDBD', fontSize: '0.8rem' }} />
-              <Tab label="Pending Invites" sx={{ textTransform: 'none', padding: "10px", color: '#BDBDBD', fontSize: '0.8rem' }} />
+              <Tab label="All Members" sx={{
+                textTransform: 'none', padding: "0", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
+                  color: '#369D9C',
+                  fontWeight: '500'
+                }
+              }} />
+              <Tab label="Pending Invites" sx={{
+                textTransform: 'none', padding: "10px", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
+                  color: '#369D9C',
+                  fontWeight: '500'
+                }
+              }} />
             </Tabs>
 
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -90,7 +100,7 @@ const TeamMembers = () => {
                   textTransform: 'none',
                   borderRadius: '32px',
                   fontSize: '0.7rem',
-                  padding: '0.6rem 1.6rem',
+                  padding: '0.6rem 1.2rem',
                   background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
                   '&:hover': { backgroundColor: '#28814D' },
                 }}
