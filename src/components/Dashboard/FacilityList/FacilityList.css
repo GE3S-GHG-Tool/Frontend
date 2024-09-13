@@ -12,6 +12,8 @@
   font-size: 0.8rem;
   padding: 10px;
   color: #717171;
+  min-width: 13rem;
+  background-color: #FAFAFA;
 }
 
 .facility-table tbody tr {

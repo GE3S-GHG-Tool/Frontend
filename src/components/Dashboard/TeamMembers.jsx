@@ -23,18 +23,18 @@ const TeamMembers = () => {
     <>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "2rem",
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
         }}
       >
         <Typography
           sx={{
-            color: "#000000",
-            fontSize: "1.22rem",
-            fontWeight: "600",
-            lineHeight: "150%",
-            marginTop: "1.38rem",
+            color: '#000000',
+            fontSize: '1.22rem',
+            fontWeight: '600',
+            lineHeight: '150%',
+            marginTop: '0.38rem'
           }}
         >
           List of Team Members
@@ -52,37 +52,27 @@ const TeamMembers = () => {
               value={value}
               onChange={handleTabChange}
               TabIndicatorProps={{
-                style: {
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  fontWeight: "500",
-                },
+                style: { background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)', fontWeight: '700', },
               }}
               sx={{
-                "& .Mui-selected": {
-                  color: "#2e7d32",
-                  fontWeight: "500",
+                '&.Mui-selected': {
+                  color: '#369D9C',
+                  fontWeight: '700'
                 },
               }}
             >
-              <Tab
-                label="All Members"
-                sx={{
-                  textTransform: "none",
-                  padding: "0",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
-                }}
-              />
-              <Tab
-                label="Pending Invites"
-                sx={{
-                  textTransform: "none",
-                  padding: "10px",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
-                }}
-              />
+              <Tab label="All Members" sx={{
+                textTransform: 'none', padding: "0", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
+                  color: '#369D9C',
+                  fontWeight: '600'
+                }
+              }} />
+              <Tab label="Pending Invites" sx={{
+                textTransform: 'none', padding: "10px", color: '#BDBDBD', fontSize: '0.8rem', '&.Mui-selected': {
+                  color: '#369D9C',
+                  fontWeight: '600'
+                }
+              }} />
             </Tabs>
 
             <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
@@ -112,15 +102,8 @@ const TeamMembers = () => {
                   />
                 </svg>
                 <InputBase
-                  sx={{
-                    ml: 1,
-                    flex: 1,
-                    borderRadius: "6px",
-                    alignSelf: "stretch",
-                    background: "#fff",
-                    padding: "0.3rem 1rem",
-                  }}
-                  inputProps={{ "aria-label": "search" }}
+                  sx={{ ml: 1, flex: 1, borderRadius: '6px', alignSelf: 'stretch', background: '#fff', padding: '0.2rem 2.5rem 0.2rem 0.7rem' }}
+                  inputProps={{ 'aria-label': 'search' }}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -128,14 +111,13 @@ const TeamMembers = () => {
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: "#369D9C",
-                  textTransform: "none",
-                  borderRadius: "32px",
-                  fontSize: "0.7rem",
-                  padding: "0.6rem 1.6rem",
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  "&:hover": { backgroundColor: "#28814D" },
+                  backgroundColor: '#369D9C',
+                  textTransform: 'none',
+                  borderRadius: '52px',
+                  fontSize: '0.7rem',
+                  padding: '0.7rem 1.8rem',
+                  background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
+                  '&:hover': { backgroundColor: '#28814D' },
                 }}
                 onClick={handleOpenModal}
               >
