@@ -1,13 +1,22 @@
-import * as React from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { AppProvider } from "@toolpad/core/AppProvider";
 import Divider from "@mui/material/Divider";
-import { Toolbar, IconButton, Badge, Avatar } from "@mui/material";
+import {
+  Toolbar,
+  IconButton,
+  Badge,
+  Avatar,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import avatar from "../../assets/images/userimg.png";
 import logo from "../../assets/images/ge3s.png";
 import "./Dashboard.css";
+import { useState, useMemo } from "react";
+import LogoutModal from "../Modals/LogoutModal";
+
 const navMenu = [
   {
     segment: "",
@@ -192,10 +201,18 @@ const navMenu = [
 function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [pathname, setPathname] = useState("/dashboard");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  const [pathname, setPathname] = React.useState("/dashboard");
-
-  const currentNavItem = React.useMemo(() => {
+  const currentNavItem = useMemo(() => {
     const findNavItem = (navItems, segment) => {
       for (const item of navItems) {
         if (item.segment === segment) {
@@ -218,7 +235,7 @@ function DashboardLayout() {
       navMenu={navMenu}
       router={{ pathname: location.pathname, navigate }}
     >
-      <Box sx={{ display: "flex", fontFamily: "Inter" }}>
+      <Box sx={{ display: "flex", fontFamily: "Inter", height: "100vh" }}>
         <Box
           component="nav"
           sx={{
@@ -275,7 +292,7 @@ function DashboardLayout() {
               }}
             >
               {navMenu.map((item, index) => (
-                <React.Fragment key={index}>
+                <div key={index}>
                   {item.kind === "divider" ? (
                     <Divider />
                   ) : (
@@ -338,7 +355,7 @@ function DashboardLayout() {
                       </Typography>
                     </Box>
                   )}
-                </React.Fragment>
+                </div>
               ))}
             </div>
           </div>
@@ -424,22 +441,25 @@ function DashboardLayout() {
           </div>
         </Box>
 
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, overflow: "auto" }}>
           <Box
             sx={{
+              position: "sticky",
+              top: 0,
+              left: 0,
               p: 3,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               borderBottom: "1px solid rgba(217, 217, 217, 0.40)",
               height: "9vh",
+              bgcolor: "#fff",
             }}
           >
             <Typography
               sx={{
                 color: "#000",
                 fontSize: "1.2rem",
-                fontWeight: "500",
               }}
             >
               {currentNavItem}
@@ -452,7 +472,19 @@ function DashboardLayout() {
               }}
             >
               <IconButton color="inherit">
-                <Badge badgeContent={4} color="error">
+                <Badge
+                  badgeContent={9}
+                  color="error"
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      fontSize: ".7rem", // Change the font size
+                      height: "18px", // Change the height
+                      minWidth: "18px", // Change the width
+                      backgroundColor: "#FF3A3A", // Change the background color
+                      color: "#FFFFFF", // Change the text color
+                    },
+                  }}
+                >
                   <svg width="18" height="20" viewBox="0 0 24 22" fill="none">
                     <path
                       d="M3.0018 10C3.0018 7.61305 3.95001 5.32387 5.63784 3.63604C7.32566 1.94821 9.61485 1 12.0018 1C14.3887 1 16.6779 1.94821 18.3658 3.63604C20.0536 5.32387 21.0018 7.61305 21.0018 10C21.0018 14.4775 22.0393 18.075 22.8643 19.5C22.9519 19.6518 22.9981 19.8239 22.9983 19.9991C22.9984 20.1744 22.9525 20.3466 22.8652 20.4985C22.7778 20.6504 22.6521 20.7767 22.5006 20.8647C22.349 20.9527 22.177 20.9994 22.0018 21H2.0018C1.82677 20.9989 1.65509 20.952 1.50391 20.8638C1.35272 20.7756 1.22734 20.6492 1.14028 20.4974C1.05323 20.3456 1.00755 20.1735 1.00781 19.9985C1.00808 19.8235 1.05428 19.6516 1.1418 19.5C1.96555 18.075 3.0018 14.4763 3.0018 10Z"
@@ -478,11 +510,14 @@ function DashboardLayout() {
                 </Badge>
               </IconButton>
               <div
+                onClick={handleClick}
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "13px",
-                  width: "7vw",
+                  gap: "10px",
+                  // background: "red",
+                  // width: "7vw",
+                  cursor: "pointer",
                 }}
               >
                 <Avatar
@@ -501,18 +536,12 @@ function DashboardLayout() {
                 </Typography>
                 <p
                   style={{
-                    fontSize: "0.9rem",
+                    // margin: 0,
                     display: "flex",
                     alignItems: "center",
                   }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
                     <path
                       d="M13 6L8 11L3 6"
                       stroke="black"
@@ -522,7 +551,46 @@ function DashboardLayout() {
                     />
                   </svg>
                 </p>
-              </div>
+              </div>{" "}
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+              >
+                <MenuItem onClick={() => setOpenModal(true)}>
+                  <div className="profile_menu_btn">
+                    <svg width="18" height="18" viewBox="0 0 24 25" fill="none">
+                      <path
+                        d="M9 21.5H5C4.46957 21.5 3.96086 21.2893 3.58579 20.9142C3.21071 20.5391 3 20.0304 3 19.5V5.5C3 4.96957 3.21071 4.46086 3.58579 4.08579C3.96086 3.71071 4.46957 3.5 5 3.5H9"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M16.0002 17.5L21.0002 12.5L16.0002 7.5"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M21 12.5H9"
+                        stroke="black"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span>Logout</span>
+                  </div>
+                </MenuItem>
+              </Menu>{" "}
+              <LogoutModal open={openModal} setOpenModal={setOpenModal} />
             </Toolbar>
           </Box>
 

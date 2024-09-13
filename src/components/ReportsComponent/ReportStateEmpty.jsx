@@ -1,17 +1,16 @@
 import { Button, Grid2, Typography } from "@mui/material";
-import React from "react";
 import lock_Logo from "../../assets/images/Lock.svg";
 import FuelConsumption from "./Pages/FuelConsumption";
 import RefrigerantData from "./Pages/RefrigerantData";
 import ProcessEmission from "./Pages/EmissionPages/ProcessEmission";
+import { useNavigate } from "react-router-dom";
 
 function ReportStateEmpty() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
-        backgroundColor: "#E3E3E3",
-        minHeight: "200vh",
-        height: "auto",
+        backgroundColor: "#F8F8F8",
       }}
     >
       <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "34px" }}>
@@ -254,6 +253,7 @@ function ReportStateEmpty() {
           Cancel
         </Button>
         <Button
+          onClick={() => navigate("/ghgreport")}
           sx={{
             borderRadius: "32px",
             padding: "8px 18px",
