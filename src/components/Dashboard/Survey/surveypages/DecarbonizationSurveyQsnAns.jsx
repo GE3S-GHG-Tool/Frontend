@@ -1,0 +1,447 @@
+import React from "react";
+import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
+import BasicTable from "./TablesDataDecarbonation";
+import BasicTable2 from "./TablesDataDecarbonation2";
+import BasicTable3 from "./DecarbonTablesData3";
+
+const TableComponents = {
+  "Industrial Chiller System": BasicTable,
+  "Refrigerated Storage Area": BasicTable2,
+  "Energy Conservation Techniques and Thermal Insulation": BasicTable3,
+};
+
+const Question = ({
+  questionText,
+  logo,
+  heading,
+  answers,
+  showTable,
+  boldAnswerIndex,
+}) => {
+  const TableComponent = TableComponents[heading];
+
+  return (
+    <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+        {/* Heading Section */}
+        <Grid2
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "12px",
+            mt: "16px",
+            ml: "16px",
+            alignItems: "center",
+          }}
+        >
+          {logo && <img src={logo} alt="logo" width="18px" />}
+          <Typography fontSize="16px" fontWeight="600" color="#000">
+            {heading}
+          </Typography>
+        </Grid2>
+
+        {questionText.map((q, questionIndex) => (
+          <React.Fragment key={questionIndex}>
+            {/* Question Text */}
+            <Grid2
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "12px",
+                ml: "15px",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "37px",
+                  height: "34px",
+                  backgroundColor: "#F7F7F7",
+                  padding: "7px",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                  Q.{questionIndex + 1}
+                </Typography>
+              </Box>
+              <Typography fontSize="14px" fontWeight="500" color="#000">
+                {q}
+              </Typography>
+            </Grid2>
+
+            {/* Answers or Implementation Required */}
+            <Grid2
+              sx={{
+                borderTop: "1px solid #E4E4E4",
+                mt: "8px",
+                mb: "8px",
+                ml: "0px",
+                padding: "10px 19px",
+                borderRadius: "5px",
+              }}
+            >
+              {answers[questionIndex]?.length > 0 ? (
+                // Display Answers
+                <Grid2
+                  sx={{
+                    border: "1px solid var(--Grey-3, #D9D9D9)",
+                    background: "#F7FFFC",
+                    borderRadius: "5px",
+                    padding: "1px 12px",
+                  }}
+                >
+                  {answers[questionIndex].map((answer, answerIndex) => (
+                    <Typography
+                      key={answerIndex}
+                      fontSize="12px"
+                      fontWeight={
+                        boldAnswerIndex === questionIndex ||
+                        boldAnswerIndex >= answers[questionIndex].length
+                          ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
+                          : "500"
+                      }
+                      color="#000"
+                      sx={{ padding: "6px 0" }}
+                    >
+                      {answerIndex + 1}. {answer}
+                    </Typography>
+                  ))}
+                </Grid2>
+              ) : (
+                // Display Implementation Required with Logo
+                <Grid2
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    borderRadius: "5px",
+                    padding: "10px",
+                  }}
+                >
+                  <img
+                    src={magelightBuld}
+                    alt="Implementation Required"
+                    width="18px"
+                  />
+                  <Typography fontSize="12px" fontWeight="500" color="#000">
+                    Implementation Required
+                  </Typography>
+                </Grid2>
+              )}
+            </Grid2>
+
+            {/* Conditional Rendering of Table */}
+            {showTable && questionIndex === 0 && TableComponent && (
+              <Grid2
+                sx={{
+                  mt: "-30px",
+                  mb: "8px",
+                  ml: "0px",
+                  padding: "10px 19px",
+                  borderRadius: "5px",
+                }}
+              >
+                <TableComponent /> {/* Render the selected table component */}
+              </Grid2>
+            )}
+          </React.Fragment>
+        ))}
+      </Paper>
+    </Grid2>
+  );
+};
+
+function SurveyQuestionSection() {
+  const questions = [
+    {
+      text: [
+        "Do you have all motors with efficiency classification IE3 & IE4?",
+      ],
+      answers: [
+        [
+          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial AC Motors",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+      ],
+      answers: [
+        [
+          "Pump sizing and selection must consider all possible scenarios of the operation.",
+          "Right pump technology must be selected based on process requirement.",
+        ],
+        [
+          "Pump with right VFD must be selected for the process with variable flow requirement.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Pumps",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+      ],
+      answers: [
+        [
+          "Fan sizing and selection must consider all possible scenarios of the operation.",
+          "Right fan technology must be selected based on process requirement.",
+          "Fan with right VFD must be selected for the process with variable flow requirement.",
+        ],
+        [],
+      ],
+      logo: "",
+      heading: "Industrial Process Fans",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+        "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+      ],
+      answers: [
+        [],
+        [
+          "Leakage in the compressed air system must be minimized in the existing plant.",
+        ],
+      ],
+      logo: "",
+      heading: "Compressed Air System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a high-efficiency boiler been selected for the plant process?",
+        "Are all the boilers equipped with a smart control system to optimize operational efficiency?",
+      ],
+      answers: [
+        [
+          "Boiler sizing and design operating parameters must consider all possible scenarios of the operation.",
+        ],
+        [
+          "The selected boiler must have smart controls to regulate the fuel and excess air supply to the boiler based on process load variation, thereby achieving higher combustion efficiency.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Boilers",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+      ],
+      answers: [
+        [
+          "Steam distribution system economic insulation requirement must be carried out by a specialist.",
+          "Effectiveness of the insulation must be tested on an annual basis.",
+        ],
+      ],
+      logo: "",
+      heading: "Steam Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All chiller units should meet the Minimum Energy Efficiency Ratio (EER) mentioned in the table.",
+          "Ratio (EER) mentioned in the table",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Chiller System",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+        "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+      ],
+      answers: [[], []],
+      logo: "",
+      heading: "Chilled Water Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All condenser units should meet the Minimum Energy Efficiency Ratio (EER)",
+        ],
+      ],
+      logo: "",
+      heading: "Refrigerated Storage Area",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the electrical system been designed to incorporate control measures?",
+      ],
+      answers: [
+        [
+          "The electrical system must incorporate control measures like",
+          "Distributed Power Flow Controller (DPFC)",
+          "Voltage Optimizer",
+          "Harmonic Filters",
+          "Capacitor Banks",
+          "To maintain high power factor and low hormonic levels, hence power quality",
+        ],
+      ],
+      logo: "",
+      heading: "Power Quality",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+      ],
+      answers: [["Develop Waste heat recovery and utilization strategy"]],
+      logo: "",
+      heading: "Process Waste Heat Recovery",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+        "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+      ],
+      answers: [
+        [
+          "Develop a sub-metering, monitoring and automatic data recording strategy to account for a minimum of the following",
+          "Heating and cooling system",
+          "Internal & External Lighting",
+          "Compressed air system",
+          "Loads above 50KW",
+          "Production line-wise sub-metering",
+        ],
+        [
+          ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+        ],
+      ],
+      logo: "",
+      heading: "Process Energy Sub-Metering",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has the development team considered improving the energy efficiency of the building's envelope?",
+      ],
+      answers: [
+        [
+          "Make Sure that the development team considers the improvement in the energy efficiency of the building's envelope.",
+          "The envelope addresses the following",
+          "Horizontal Opaque elements – Roof, Slabs",
+          "Vertical Opaque element – Wall, door",
+          "Horizontal Glazing – Sky light",
+          "Vertical Glazing – Glass Door, windows.",
+        ],
+        [
+          ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+        ],
+      ],
+      logo: "",
+      heading: "Energy Conservation Techniques and Thermal Insulation",
+      showTable: true,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
+        "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
+      ],
+      answers: [
+        ["The thermography report highlighting"],
+        [
+          "The thermography report highlighting",
+          "The defects in the building envelope",
+          "The leakage spots noticed in the space and,",
+          "Recommendations for rectifications",
+        ],
+      ],
+      logo: "",
+      heading:
+        "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
+      showTable: false,
+      boldAnswerIndex: 4,
+    },
+  ];
+
+  return (
+    <>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        {questions.map((q, index) => (
+          <Question
+            key={index}
+            questionText={q.text}
+            logo={q.logo}
+            heading={q.heading}
+            answers={q.answers}
+            showTable={q.showTable}
+            boldAnswerIndex={q.boldAnswerIndex}
+          />
+        ))}
+      </Grid2>
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          mt: "45px",
+        }}
+      >
+        <Button
+          sx={{
+            borderRadius: "32px",
+            textTransform: "capitalize",
+            justifyContent: "center",
+            alignItems: "center",
+            background:
+              "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
+            padding: "11px 40px",
+          }}
+        >
+          <Typography color="#fff" fontSize="14px" fontWeight="600">
+            Submit Survey
+          </Typography>
+        </Button>
+      </Grid2>
+    </>
+  );
+}
+
+export default SurveyQuestionSection;
+
+// -------------------------------------
