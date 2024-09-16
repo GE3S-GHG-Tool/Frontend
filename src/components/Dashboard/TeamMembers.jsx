@@ -31,9 +31,10 @@ const TeamMembers = () => {
         <Typography
           sx={{
             color: '#000000',
-            fontSize: '1.22rem',
+            fontSize: '1.20rem',
             fontWeight: '600',
             lineHeight: '150%',
+            fontFamily:'Inter',
             marginTop: '0.38rem'
           }}
         >
