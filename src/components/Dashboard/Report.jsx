@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Tabs, Tab, Box, Button, InputBase } from "@mui/material";
 import MemberList from "./MemberList/MemberList";
-import CustomModal from "./CustomModal/customModal";
+// import CustomModal from "./CustomModal/customModal";
 import ReportList from "./ReportList/ReportList";
 
 function Report() {
@@ -122,7 +122,7 @@ function Report() {
         {value === 0 && <ReportList searchQuery={searchQuery} />}
         {value === 1 && <ReportList searchQuery={searchQuery} />}
       </Box>
-
+      {/* 
       <CustomModal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -132,7 +132,7 @@ function Report() {
         type="member"
         onAction={handleInvite}
         planContains="Invite more members"
-      />
+      /> */}
     </>
   );
 }
