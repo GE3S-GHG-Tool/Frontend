@@ -22,8 +22,6 @@ const Facilities = () => {
           gap: '0rem',
         }}
       >
-
-
         <Box>
           <Box
             sx={{
@@ -37,8 +35,9 @@ const Facilities = () => {
               <Typography
                 sx={{
                   color: '#000000',
-                  fontSize: '1.22rem',
+                  fontSize: '1.20rem',
                   fontWeight: '600',
+                  fontFamily:'Inter',
                   lineHeight: '150%',
                 }}
               >
