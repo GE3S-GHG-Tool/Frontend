@@ -17,29 +17,29 @@ const Dashboard = () => {
             <path
               d="M12.5234 9.22266H19.8356"
               stroke="url(#paint1_linear_1214_46428)"
-              stroke-width="2.5077"
-              stroke-linecap="round"
+              strokeWidth="2.5077"
+              strokeLinecap="round"
             />
             <path
               d="M12.5234 12.6289H31.0851"
               stroke="url(#paint2_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M12.5234 16.0312H31.0851"
               stroke="url(#paint3_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M12.5234 19.4375H31.0851"
               stroke="url(#paint4_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M12.5234 22.8438H31.0851"
               stroke="url(#paint5_linear_1214_46428)"
-              stroke-width="2.5077"
-              stroke-linecap="round"
+              strokeWidth="2.5077"
+              strokeLinecap="round"
             />
             <path
               d="M4.04552 10.043L9.88688 32.0377C10.3693 33.8542 12.2198 34.9319 14.0202 34.4455L30.3874 30.0207C32.1878 29.534 33.2562 27.667 32.7738 25.8505L27.5814 6.29925C27.3521 5.43593 26.7956 4.6982 26.0319 4.24524L22.9989 2.44625C22.2194 1.98387 21.2885 1.85646 20.4151 2.09259L6.43189 5.8728C4.63152 6.3595 3.56311 8.22657 4.04552 10.043Z"
@@ -49,27 +49,27 @@ const Dashboard = () => {
             <path
               d="M6.73828 10.0501L13.8013 8.14062"
               stroke="url(#paint7_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M7.61328 13.3392L25.5425 8.49219"
               stroke="url(#paint8_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M8.48828 16.6282L26.4175 11.7812"
               stroke="url(#paint9_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M9.35938 19.9173L27.2886 15.0703"
               stroke="url(#paint10_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M10.2344 23.2063L28.1636 18.3594"
               stroke="url(#paint11_linear_1214_46428)"
-              stroke-linecap="round"
+              strokeLinecap="round"
             />
             <path
               d="M13.7888 33.5521C13.7888 31.75 12.3408 30.2891 10.5545 30.2891C8.76833 30.2891 7.32031 31.75 7.32031 33.5521C7.32031 35.3543 8.76833 36.8152 10.5545 36.8152C12.3408 36.8152 13.7888 35.3543 13.7888 33.5521Z"
@@ -78,7 +78,7 @@ const Dashboard = () => {
             <path
               d="M13.7888 33.5521C13.7888 31.75 12.3408 30.2891 10.5545 30.2891C8.76833 30.2891 7.32031 31.75 7.32031 33.5521C7.32031 35.3543 8.76833 36.8152 10.5545 36.8152C12.3408 36.8152 13.7888 35.3543 13.7888 33.5521Z"
               stroke="url(#paint12_linear_1214_46428)"
-              stroke-width="0.417951"
+              strokeWidth="0.417951"
             />
             <path
               d="M12 33.7294H10.747V35H10.2471V33.7294H9V33.2764H10.2471V32H10.747V33.2764H12V33.7294Z"
@@ -94,8 +94,8 @@ const Dashboard = () => {
               y2="9.74314"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_1214_46428"
@@ -105,8 +105,8 @@ const Dashboard = () => {
               y2="13.2786"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint2_linear_1214_46428"
@@ -116,8 +116,8 @@ const Dashboard = () => {
               y2="18.0761"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint3_linear_1214_46428"
@@ -127,8 +127,8 @@ const Dashboard = () => {
               y2="21.4784"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint4_linear_1214_46428"
@@ -138,8 +138,8 @@ const Dashboard = () => {
               y2="24.8847"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint5_linear_1214_46428"
@@ -149,8 +149,8 @@ const Dashboard = () => {
               y2="28.2909"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint6_linear_1214_46428"
@@ -160,8 +160,8 @@ const Dashboard = () => {
               y2="8.22149"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint7_linear_1214_46428"
@@ -171,8 +171,8 @@ const Dashboard = () => {
               y2="12.2621"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint8_linear_1214_46428"
@@ -182,8 +182,8 @@ const Dashboard = () => {
               y2="18.9543"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint9_linear_1214_46428"
@@ -193,8 +193,8 @@ const Dashboard = () => {
               y2="22.2434"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint10_linear_1214_46428"
@@ -204,8 +204,8 @@ const Dashboard = () => {
               y2="25.5325"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint11_linear_1214_46428"
@@ -215,8 +215,8 @@ const Dashboard = () => {
               y2="28.8215"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint12_linear_1214_46428"
@@ -226,8 +226,8 @@ const Dashboard = () => {
               y2="31.8323"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <linearGradient
               id="paint13_linear_1214_46428"
@@ -237,8 +237,8 @@ const Dashboard = () => {
               y2="32.7216"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#369D9C" />
-              <stop offset="1" stop-color="#28814D" />
+              <stop stopColor="#369D9C" />
+              <stop offset="1" stopColor="#28814D" />
             </linearGradient>
             <clipPath id="clip0_1214_46428">
               <rect

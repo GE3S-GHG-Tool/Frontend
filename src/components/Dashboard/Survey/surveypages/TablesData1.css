@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+table {
+    width: 100%;
+    justify-content: center;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    border: 1px solid;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: lightgreen;
+    color: darkcyan;
+    font-weight: 30px;
+    text-align: center;
+}
+tr {
+    background-color: white;
+}
