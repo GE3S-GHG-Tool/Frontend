@@ -22,7 +22,7 @@ import TeamMembers from "./components/Dashboard/TeamMembers";
 import Facilities from "./components/Dashboard/Facilities";
 import Survey from "./components/Dashboard/Survey";
 import Report from "./components/Dashboard/Report";
-import Analytics from "./components/Dashboard/Analytics";
+import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
