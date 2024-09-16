@@ -36,7 +36,7 @@ export default function Login() {
     e.preventDefault();
     if (validateForm()) {
       setErrors("");
-      navigate("/home");
+      navigate("/");
     }
   };
 
