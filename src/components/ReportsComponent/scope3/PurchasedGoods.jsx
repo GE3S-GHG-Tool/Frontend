@@ -1,16 +1,18 @@
 import { Grid2 } from "@mui/material";
 import React from "react";
 import Typography from "@mui/material/Typography";
-import refri_logo from "../../../assets/images/refri_logo.svg";
+import fuelLogo from "../../../assets/images/fuel_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
 import down_arrow from "../../../assets/images/down_arrow.svg";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
-function RefrigerantData() {
+function FuelConsumption() {
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
+  const [fields, setFields] = useState([
+    { typeOfExpense: "", expenseValue: "", currency: "" },
+  ]);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -19,13 +21,16 @@ function RefrigerantData() {
 
     // Check if the current row is complete
     const isRowComplete =
-      updatedFields[index].fuel &&
-      updatedFields[index].quantity &&
-      updatedFields[index].unit;
+      updatedFields[index].typeOfExpense &&
+      updatedFields[index].expenseValue &&
+      updatedFields[index].currency;
 
     // If the current row is complete and it’s the last row, add a new row
     if (isRowComplete && index === fields.length - 1) {
-      setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+      setFields([
+        ...updatedFields,
+        { typeOfExpense: "", expenseValue: "", currency: "" },
+      ]);
     }
   };
   const handleDelete = (index) => {
@@ -33,7 +38,7 @@ function RefrigerantData() {
 
     // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
-      updatedFields.push({ fuel: "", quantity: "", unit: "" });
+      updatedFields.push({ typeOfExpense: "", expenseValue: "", currency: "" });
     }
 
     setFields(updatedFields);
@@ -76,7 +81,7 @@ function RefrigerantData() {
                 style={{ display: "flex", alignItems: "center", gap: "6px" }}
               >
                 <img
-                  src={refri_logo}
+                  src={fuelLogo}
                   height="15px"
                   width="10px"
                   alt="fuel-logo"
@@ -90,7 +95,7 @@ function RefrigerantData() {
                     margin: 0, // Removes default margin
                   }}
                 >
-                  Refrigerant Data
+                  Purchased Goods
                 </h2>
               </div>
               <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
@@ -103,8 +108,8 @@ function RefrigerantData() {
                 lineHeight="22.4px"
                 color="#717171"
               >
-                Input the type and amount of refrigerant used to account for
-                emissions from refrigerant Consumption.
+                Record expenses & type of goods purchased to calculate supply
+                chain emissions.
               </Typography>
             </div>
           </Grid2>
@@ -135,18 +140,18 @@ function RefrigerantData() {
                       fontWeight="400"
                       lineHeight="19.6px"
                     >
-                      Types of Refrigerant
+                      Type of Expense
                     </Typography>
                     <TextField
                       select
-                      name="fuel"
-                      value={field.fuel}
+                      name="typeOfExpense"
+                      value={field.typeOfExpense}
                       onChange={(e) => handleChange(index, e)}
                       sx={{
                         width: "332.5px",
                         borderRadius: "5px",
                         border: "1px solid #D9D9D966",
-                        position: "relative",
+                        position: "reletive",
                         "& .MuiSelect-icon": {
                           display: "none",
                         },
@@ -186,14 +191,12 @@ function RefrigerantData() {
                           />
                         </Grid2>
                       </MenuItem>
-                      <MenuItem value="Fuel">Fuel</MenuItem>
-                      <MenuItem value="Fuel2">Fuel2</MenuItem>
-                      <MenuItem value="Fuel3">Fuel3</MenuItem>
+                      <MenuItem value="Soyabean">Soyabean</MenuItem>
                     </TextField>
                   </Box>
 
                   {/* Show Quantity and Unit inputs only if Fuel Type is selected */}
-                  {field.fuel && (
+                  {field.typeOfExpense && (
                     <>
                       {/* Quantity Input */}
                       <Box
@@ -210,13 +213,12 @@ function RefrigerantData() {
                           fontWeight="400"
                           lineHeight="19.6px"
                         >
-                          Quantity
+                          Expense value
                         </Typography>
                         <TextField
-                          name="quantity"
-                          value={field.quantity}
-                          placeholder="Quantity"
-                          position="reletive"
+                          name="expenseValue"
+                          value={field.expenseValue}
+                          placeholder="Expense Value"
                           onChange={(e) => handleChange(index, e)}
                           sx={{
                             width: "332.5px",
@@ -245,17 +247,18 @@ function RefrigerantData() {
                           fontWeight="400"
                           lineHeight="19.6px"
                         >
-                          Unit
+                          Currency
                         </Typography>
                         <TextField
                           select
-                          name="unit"
-                          value={field.unit}
+                          name="currency"
+                          value={field.currency}
                           onChange={(e) => handleChange(index, e)}
                           sx={{
                             width: "332.5px",
                             borderRadius: "5px",
                             border: "1px solid #D9D9D966",
+                            position: "reletive",
                             "& .MuiSelect-icon": {
                               display: "none", // Hide the select icon to match the fuel field
                             },
@@ -281,7 +284,7 @@ function RefrigerantData() {
                                 lineHeight="22.4px"
                                 color="#B0B0B0"
                               >
-                                Select Type
+                                Select Currency
                               </Typography>
                               <img
                                 src={down_arrow}
@@ -295,14 +298,13 @@ function RefrigerantData() {
                               />
                             </Grid2>
                           </MenuItem>
-                          <MenuItem value="Fuel">Fuel</MenuItem>
-                          <MenuItem value="Fuel2">Fuel2</MenuItem>
-                          <MenuItem value="Fuel3">Fuel3</MenuItem>
+                          <MenuItem value="USD">US Dollars</MenuItem>
+                          <MenuItem value="INR">Indian Rupees</MenuItem>
                         </TextField>
                       </Box>
                     </>
                   )}
-                  {field.quantity || field.unit ? (
+                  {field.expenseValue || field.currency ? (
                     <Box
                       sx={{
                         display: "flex",
@@ -336,4 +338,4 @@ function RefrigerantData() {
   );
 }
 
-export default RefrigerantData;
+export default FuelConsumption;
