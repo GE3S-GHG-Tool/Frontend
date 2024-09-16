@@ -25,8 +25,8 @@ const companyData = [
         HCFC: "452 tCO2e",
       },
       processEmissions: {
-        wasteDisposal: "1024 tCO2e",
-        processEmission: "1234 tCO2e",
+        waste_gas_disposal: "1024 tCO2e",
+        process_emission: "1234 tCO2e",
         fugitive: "1354 tCO2e",
       },
       electricityConsumption: {
@@ -60,8 +60,8 @@ const companyData = [
         HCFC: "452 tCO2e",
       },
       processEmissions: {
-        wasteDisposal: "1124 tCO2e",
-        processEmission: "1134 tCO2e",
+        waste_gas_disposal: "1124 tCO2e",
+        process_emission: "1134 tCO2e",
         fugitive: "1154 tCO2e",
       },
       electricityConsumption: {
@@ -95,8 +95,8 @@ const companyData = [
         HCFC: "452 tCO2e",
       },
       processEmissions: {
-        wasteDisposal: "1025 tCO2e",
-        processEmission: "1235 tCO2e",
+        waste_gas_disposal: "1025 tCO2e",
+        process_emission: "1235 tCO2e",
         fugitive: "1355 tCO2e",
       },
       electricityConsumption: {
@@ -146,43 +146,44 @@ const FacilityComparison = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
-        <Typography
-          sx={{
-            fontSize: '1rem',
-            fontWeight: '600',
-            fontFamily: 'Inter',
-            padding: '0.5rem',
-          }}
-        >
-          Facility Comparison
-        </Typography>
-        <FacilityFilter onApply={handleApplyFilter} onCancel={handleCancelFilter} />
-      </div>
       {!showComparison && (
         <>
+          <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
+            <Typography
+              sx={{
+                fontSize: '1rem',
+                fontWeight: '600',
+                fontFamily: 'Inter',
+                padding: '0.5rem',
+              }}
+            >
+              Facility Comparison
+            </Typography>
+            <FacilityFilter onApply={handleApplyFilter} onCancel={handleCancelFilter} />
+          </div>
+
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'space-between' }}>
             {selectedCompanies.map((company, index) => (
-              <div key={index} style={{ width: '32%', border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '8px', padding: '1.4rem' }}>
+              <div key={index} style={{ width: '32%', border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '8px', padding: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1.2rem', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                   {company ? (
                     <>
                       <Avatar
                         alt={company.name}
                         src={company.logo}
-                        sx={{ width: 60, height: 60, margin: "0 auto" }}
+                        sx={{ width: 70, height: 70, margin: "0 auto" }}
                       />
                     </>
                   ) : (
                     <>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 89 88" fill="none">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 89 88" fill="none">
                         <rect x="1.11111" y="0.611111" width="86.7778" height="86.7778" rx="43.3889" stroke="#717171" stroke-width="1.22222" stroke-dasharray="2.44 2.44" />
                         <path d="M31.0586 44H57.9475" stroke="#717171" stroke-width="1.22222" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M44.5 30.5547V57.4436" stroke="#717171" stroke-width="1.22222" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </>
                   )}
-                  <Typography style={{ color: '#717171', fontSize: '1rem', fontFamily: 'Inter', fontWeight: '400' }}>
+                  <Typography style={{ color: '#717171', fontSize: '0.875rem', fontFamily: 'Inter', fontWeight: '400' }}>
                     Select Facility for Comparison
                   </Typography>
                   <Select
@@ -194,10 +195,10 @@ const FacilityComparison = () => {
                     IconComponent={KeyboardArrowDownIcon}
                     sx={{
                       margin: '0',
-                      border: '1px solid rgba(217, 217, 217, 0.40)',
+                      border: '1px solid rgba(217, 217, 217, 0.0)',
                       borderRadius: '5px',
                       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(217, 217, 217, 0.40)',
+                        borderColor: 'rgba(217, 217, 217, 0.30)',
                       },
                       '& .MuiSelect-select': {
                         padding: '12px 16px',
@@ -205,7 +206,7 @@ const FacilityComparison = () => {
                     }}
                   >
                     <MenuItem value="" disabled>
-                      <span style={{ color: '#717171' }}>Select Facility</span>
+                      <span style={{ color: 'rgb(228 228 228)',fontSize:'0.875rem' }}>Select Facility</span>
                     </MenuItem>
                     {companyData.map((company) => (
                       <MenuItem key={company.id} value={company.id}>
@@ -219,15 +220,16 @@ const FacilityComparison = () => {
             ))}
           </div>
           {/* Compare Button */}
-          <Grid2 item xs={12} sx={{ textAlign: "center", marginTop: 4 }}>
+          <Grid2 item xs={12} sx={{ textAlign: "center", marginTop: 1 }}>
             <Button
               variant="contained"
               sx={{
-                backgroundColor: '#369D9C',
+                backgroundColor: '#E7E7E7',
                 textTransform: 'none',
+                fontSize:'0.8rem',
                 borderRadius: '52px',
-                padding: '0.7rem 1.8rem',
-                background: !isCompareEnabled ? '#717171' : 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
+                padding: '0.6rem 1.6rem',
+                background: !isCompareEnabled ? '#E7E7E7' : 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
                 '&:hover': { backgroundColor: '#28814D' },
                 color: 'white'
               }}
@@ -244,9 +246,9 @@ const FacilityComparison = () => {
 
       {/* Data display for comparison */}
       {showComparison && (
-        <div style={{ display: 'flex', border: '1px solid rgba(217, 217, 217, 0.40)' }}>
-          <div style={{ width: '30%' }}>
-            <Typography variant="h5" sx={{ margin: 3 }}>
+        <div style={{ display: 'flex', border: '1px solid rgba(217, 217, 217, 0.40)', padding:'0.6rem 0px' }}>
+          <div style={{ width: '27%' }}>
+            <Typography sx={{ margin: 3, fontSize:'1.6rem', fontWeight:'600',fontFamily:'Inter' }}>
               Data Points
             </Typography>
           </div>
@@ -259,9 +261,9 @@ const FacilityComparison = () => {
                       <Avatar
                         alt={company.name}
                         src={company.logo}
-                        sx={{ width: 60, height: 60 }}
+                        sx={{ width: 70, height: 70 }}
                       />
-                      <Typography style={{ color: '#717171', fontSize: '1rem', fontFamily: 'Inter', fontWeight: '400', marginTop: '1.2rem' }}>
+                      <Typography style={{ color: 'black', fontSize: '1rem', fontFamily: 'Inter', fontWeight: '500', marginTop: '1.4rem' }}>
                         {company.name}
                       </Typography>
                     </>

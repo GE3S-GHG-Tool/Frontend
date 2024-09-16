@@ -70,7 +70,7 @@ const Analytics = () => {
                   background: 'transparent',
                   border: 'none',
                   color: '#717171',
-                  fontSize: '0.875rem',
+                  fontSize: '0.8rem',
                   fontStyle: 'Inter',
                   fontWeight: '500',
                   textTransform: 'unset'
@@ -83,11 +83,11 @@ const Analytics = () => {
                 background: 'transparent',
                 border: 'none',
                 color: '#717171',
-                fontSize: '0.875rem',
+                fontSize: '0.8rem',
                 fontStyle: 'Inter',
                 fontWeight: '500',
                 textTransform: 'unset',
-              }} onClick={handleView}>View Less</Button>
+              }} onClick={handleView}>View More</Button>
             </div>
           )}
           <div style={{ marginTop: '2rem' }}>
