@@ -1,3 +1,6039 @@
+
+          background: "red",
+ 
+
+        // background: "red",
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import TablesData from "../../../../ReportsComponent/Pages/TablesData";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+../../../../../assets/images/hand-holding-seeding.svg
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+ 
+../../../../../assets/images/snowblowing.svg
+ 
+../../../../../assets/images/hand-holding-seeding.svg
+ 
+handHolding
+ 
+
+import boiler from "../../../../assets/images/boiler.svg";
+ 
+
+import meter_bolt from "../../../../assets/images/meter-bolt 1.svg";
+import calculator_bill from "../../../../assets/images/calculator-bill 1.svg";
+import hand_holding from "../../../../assets/images/hand-holding-water 1.svg";
+import smoke from "../../../../assets/images/smoke.svg";
+import lightbulb from "../../../../assets/images/lightbulb.svg";
+import insight from "../../../../assets/images/insight.svg";
+import ideaChange from "../../../../assets/images/idea-exchange.svg";
+import lightBulbSetting from "../../../../assets/images/lightbulb-setting.svg";
+import solar_panel from "../../../../assets/images/solar-panel.svg";
+import solarpanel_1 from "../../../../assets/images/solar-panel 1.svg";
+import lightSelling from "../../../../assets/images/light-ceiling 1.svg";
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+from "../../../../assets/images/
+ 
+../../../../assets/images/
+ 
+
+import IndustryTable from "../TablesDataDecarbonation4";
+ 
+
+    width: "950px",
+ 
+
+        maxWidth: "100%",
+ 
+
+    width: "950px",
+ 
+ <Grid2
+    sx={{
+      flexDirection: "column",
+      display: "flex",
+      border: "1px solid #E4E4E4",
+      borderRadius: "5px",
+      borderTop: "3px solid #369D9C",
+      gap: "20px",
+    }}
+  >
+    <Paper
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+      }}
+    >
+ 
+<Grid2
+    sx={{
+      flexDirection: "column",
+      display: "flex",
+      border: "1px solid #E4E4E4",
+      borderRadius: "5px",
+      borderTop: "3px solid #369D9C",
+      gap: "20px",
+    }}
+  >
+ 
+  <Grid2
+    sx={{
+      flexDirection: "column",
+      display: "flex",
+      border: "1px solid #E4E4E4",
+      borderRadius: "5px",
+      borderTop: "3px solid #369D9C",
+      gap: "20px",
+    }}
+  >
+    <Paper
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+      }}
+    >
+ 
+ <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+ 
+ <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+ 
+TTubular daylighting devices
+ 
+Skylights (Passive or Active)
+ 
+imer control for operation at pre-set times
+ 
+Control motion control devices, occupancy sensors (if relevant
+                  to the project).
+ 
+Daylight sensors (for precise switching and control of lights
+                  based on daylight availability).
+ 
+Switching external lighting (or specific circuits of the
+                lighting system as per the project needs) by any of the
+                following ways:
+ 
+
+              Have you confirmed that the external lighting systems incorporate
+              strategies to switch on/off based on specific needs or timings?
+ 
+
+              Control of External lights
+ 
+./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi10
+ 
+
+                Renewable energy system shall be utilized to generate power and cater to select loads of the development such as ventilation load, external security lighting loads, security lamps and any other lighting requirements specific to the project.
+ 
+
+              Has the feasibility of a solar thermal hot water system been
+              assessed, and has the potential reduction in CO2 emissions been
+              estimated?
+ 
+
+              Renewable Power Source - Industrial hot water
+ 
+Has the feasibility of a solar thermal hot water system been
+              assessed, and has the potential reduction in CO2 emissions been
+              estimated?
+ 
+Solar water heating (solar thermal) or solar photovoltaic
+                  system with point of demand heaters shall be employed for
+                  industrial hot water requirements. The solar hot water heating
+                  system must incorporate measures for the efficient
+                  distribution system, pipe insulation, and use of
+                  energy-efficient electric hot water system (which is normally
+                  used as backup).
+ 
+style={{ }}
+ 
+ marginRight: "10px"
+ 
+   <Grid2
+              sx={{
+                border: "1px solid var(--Grey-3, #D9D9D9)",
+                background: "#F7FFFC",
+                borderRadius: "5px",
+                padding: "10px 12px",
+              }}
+            >
+              <Typography
+                fontSize="14px" // Unified font size
+                fontWeight="600" // Unified font weight
+                sx={{
+                  padding: "4px 0", // Reduced padding for closer alignment
+                  marginBottom: "4px", // Reduced margin for closer alignment with list
+                }}
+              >
+                1. Solar water heating (solar thermal) or solar photovoltaic system with point of demand heaters shall be employed for industrial hot water requirements.The solar hot water heating system must incorporate measures for the efficient distribution system, pipe insulation and use of energy-efficient electric hot         water system (which is normally used as backup).
+              </Typography>
+            </Grid2>
+ 
+&nsp;
+ 
+Switching external lighting (or specific circuits of the
+                lighting system as per the project needs) by any of the
+                following ways:
+ 
+
+              <ul
+                style={{
+                  marginTop: "0px",
+                  marginBottom: "0px",
+                  paddingLeft: "18px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                }}
+              >
+                <li>
+                  Daylight sensors (for precise switching and control of lights
+                  based on daylight availability).
+                </li>
+                <li>
+                  Control motion control devices, occupancy sensors (if relevant
+                  to the project).
+                </li>
+                <li>Timer control for operation at pre-set times.</li>
+              </ul>
+ 
+  Have you confirmed that the external lighting systems incorporate
+              strategies to switch on/off based on specific needs or timings?
+ 
+Control of External lights
+ 
+ <Grid2
+            sx={{
+              borderTop: "1px solid #E4E4E4",
+              mt: "8px",
+              mb: "8px",
+              ml: "0px",
+              padding: "10px 19px",
+              borderRadius: "5px",
+            }}
+          >
+            <Grid2
+              sx={{
+                border: "1px solid var(--Grey-3, #D9D9D9)",
+                background: "#F7FFFC",
+                borderRadius: "5px",
+                padding: "10px 12px",
+              }}
+            >
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                1. Switching external lighting (or specific circuits of the lighting system as per the project needs) by any of the following ways:
+                <ul>
+                  <li>Daylight sensors (for precise switching and control of lights based on daylight availability).</li>
+                  <li>Control motion control devices, occupancy sensors (if relevant to the project).</li>
+                  <li>Timer control for operation at pre-set times.</li>
+                </ul>
+              </Typography>
+            </Grid2>
+          </Grid2>
+ 
+
+                // padding: "10px 12px",
+ 
+Pedestrian pathway
+ 
+Workshop area
+ 
+Areas within the industry if relevant and appropriate
+ 
+
+                  <li>Pantry</li>
+ 
+
+                  <li>Prayer room.</li>
+                  <li>Corridor / passage.</li>
+                  <li>Ablution</li>
+                  <li>Other areas if found suitable</li>
+ 
+
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                Exceptions: Process area / Machine area
+              </Typography>
+ 
+ <br />
+                <br />
+                The Occupancy sensors after due consideration shall be provided
+                for the following areas within the facility
+ 
+Installation of occupancy sensors/motion sensors for
+                automated control of internal lighting.
+ 
+Have you considered selecting internal lighting systems that offer
+              flexible control options
+ 
+Automated lighting control / motion sensor for internal lighting
+ 
+./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi10
+ 
+import React from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import TableContainer from "@mui/material/TableContainer";
+
+const StyledTable = styled(Table)({
+  minWidth: 650,
+  borderCollapse: "collapse",
+});
+
+const StyledTableCell = styled(TableCell)({
+  border: "1px solid #ddd", // Border around the cell
+  padding: "8px",
+  textAlign: "center",
+  fontSize: "14px",
+  height: "20px",
+  lineHeight: "2",
+});
+const StyledTableHeadCell = styled(TableCell)({
+  background: "#F7FFFF",
+  fontWeight: "bold",
+  textAlign: "center",
+  border: "1px solid var(--Grey-4, #F4F4F4)",
+  height: "40px", // Set the height of the header cells
+  lineHeight: "1px", // Align text vertically within the header cells
+});
+
+// Define styled components with specific widths
+const StyledTableCellNarrow = styled(TableCell)(({ theme }) => ({
+  width: "10%", // Adjusted width to 10% for the "S.No" and "Chiller Type"
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellWide = styled(TableCell)(({ theme }) => ({
+  width: "20%", // Adjusted width to 20% for other columns
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
+  width: "30%", // Adjusted width to 30% for the "Chiller Type" description
+  border: "1px solid #E4E4E4",
+  textAlign: "left",
+}));
+
+const MyTable7 = () => {
+  return (
+    <TableContainer component={Paper}>
+        <StyledTable aria-label="efficiency table">
+          <TableHead>
+            <TableRow>
+              <StyledTableHeadCell rowSpan={2}>S.No</StyledTableHeadCell>
+              <StyledTableHeadCell rowSpan={2}>Area / Zone</StyledTableHeadCell>
+              <StyledTableHeadCell colSpan={3}>
+              Light Power Density (LPD)
+              </StyledTableHeadCell>
+            </TableRow>
+            <TableRow>
+              <StyledTableHeadCell>w/ m2</StyledTableHeadCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <StyledTableCell>1</StyledTableCell>
+              <StyledTableCell sx={{textAlign:"left"}}>Canopies and overhangs</StyledTableCell>
+              <StyledTableCell>5.0</StyledTableCell>
+            </TableRow>
+          </TableBody>
+        </StyledTable>
+      </TableContainer>
+
+  );
+};
+
+export default MyTable7;
+
+ 
+import React from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import TableContainer from "@mui/material/TableContainer";
+
+const StyledTable = styled(Table)({
+  minWidth: 650,
+  borderCollapse: "collapse",
+});
+
+const StyledTableCell = styled(TableCell)({
+  border: "1px solid #ddd", // Border around the cell
+  padding: "8px",
+  textAlign: "center",
+  fontSize: "14px",
+  height: "20px",
+  lineHeight: "2",
+});
+const StyledTableHeadCell = styled(TableCell)({
+  background: "#F7FFFF",
+  fontWeight: "bold",
+  textAlign: "center",
+  border: "1px solid var(--Grey-4, #F4F4F4)",
+  height: "40px", // Set the height of the header cells
+  lineHeight: "1px", // Align text vertically within the header cells
+});
+
+// Define styled components with specific widths
+const StyledTableCellNarrow = styled(TableCell)(({ theme }) => ({
+  width: "10%", // Adjusted width to 10% for the "S.No" and "Chiller Type"
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellWide = styled(TableCell)(({ theme }) => ({
+  width: "20%", // Adjusted width to 20% for other columns
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
+  width: "30%", // Adjusted width to 30% for the "Chiller Type" description
+  border: "1px solid #E4E4E4",
+  textAlign: "left",
+}));
+
+const MyTable7 = () => {
+  return (
+    <TableContainer component={Paper}>
+        <StyledTable aria-label="efficiency table">
+          <TableHead>
+            <TableRow>
+              <StyledTableHeadCell rowSpan={2}>S.No</StyledTableHeadCell>
+              <StyledTableHeadCell rowSpan={2}>Area / Zone</StyledTableHeadCell>
+              <StyledTableHeadCell colSpan={3}>
+              Light Power Density (LPD)
+              </StyledTableHeadCell>
+            </TableRow>
+            <TableRow>
+              <StyledTableHeadCell>w/ m2</StyledTableHeadCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <StyledTableCell>1</StyledTableCell>
+              <StyledTableCell sx={{textAlign:"left"}}>Canopies and overhangs</StyledTableCell>
+              <StyledTableCell>5.0</StyledTableCell>
+            </TableRow>
+          </TableBody>
+        </StyledTable>
+      </TableContainer>
+
+  );
+};
+
+export default MyTable7;
+
+ 
+&lt;150 TR
+ 
+IPLV
+ 
+ Minimum Efficiency
+ 
+Capacities
+ 
+
+              <StyledTableCell>&gt;2.803</StyledTableCell>
+              <StyledTableCell>&gt;12.5</StyledTableCell>
+ 
+
+              <StyledTableHeadCell>Full Load, EER</StyledTableHeadCell>
+              <StyledTableHeadCell>Full Load, CoP</StyledTableHeadCell>
+ 
+
+            <TableRow>
+              <StyledTableCell>2</StyledTableCell>
+              <StyledTableCell>&gt;150 TR</StyledTableCell>
+              <StyledTableCell>&gt;9.562</StyledTableCell>
+              <StyledTableCell>&gt;2.803</StyledTableCell>
+              <StyledTableCell>&gt;12.5</StyledTableCell>
+            </TableRow>
+ 
+
+import Page
+ 
+
+import { Pages } from "@mui/icons-material/Page";
+ 
+../TablesDataDecarbonation7
+ 
+
+impo styled fr
+ 
+../TablesDataDecarbonation7
+ 
+TablesDataDecarbonation7
+ 
+<TableContainer>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                    <TableCell>
+                        1
+                    </TableCell>
+                    </TableRow>
+                </TableHead>
+            </Table>
+            </TableContainer>
+ 
+<Table
+      sx={{
+        borderCollapse: "collapse",
+        border: "1px solid #F4F4F4",
+        width: "100%",
+      }}
+    >
+      <TableHead>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "left",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              background: "#F7FFFC",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Common Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: "center",
+              width: "30vh",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Building Specific Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Motion Picture Theater
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            // colSpan={2}
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Emergency
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            29
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Transportation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Recovery
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Atrium-First Three Floors
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Nurse station
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+ 
+<Table
+      sx={{
+        borderCollapse: "collapse",
+        border: "1px solid #F4F4F4",
+        width: "100%",
+      }}
+    >
+      <TableHead>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "left",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              background: "#F7FFFC",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Common Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: "center",
+              width: "30vh",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Building Specific Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Motion Picture Theater
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            // colSpan={2}
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Emergency
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            29
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Transportation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Recovery
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Atrium-First Three Floors
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Nurse station
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+ 
+TableHead>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "left",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              background: "#F7FFFC",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Common Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: "center",
+              width: "30vh",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Building Specific Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Motion Picture Theater
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            // colSpan={2}
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Emergency
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            29
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Transportation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Recovery
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Atrium-First Three Floors
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Nurse station
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+      </TableBody>
+ 
+ <TableHead>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "left",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              background: "#F7FFFC",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Common Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: "center",
+              width: "30vh",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Building Specific Space Types
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              background: "#F7FFFC",
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            LPD (W/m2)
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Motion Picture Theater
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            // colSpan={2}
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Emergency
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            29
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Transportation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Recovery
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Atrium-First Three Floors
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Nurse station
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+ 
+
+                        <TableCell sx={{borderBottom: "1px solid #E4E4E4"}}
+                        </TableC>
+ 
+
+            {/* <TablesDataDecarbonation7></TablesDataDecarbonation7> */}
+ 
+
+import TablesData from "../../../../ReportsComponent/Pages/TablesData";
+import TablesDataDecarbonation7 from '../TablesDataDecarbonation7'
+ 
+
+            <TablesDataDecarbonation7></TablesDataDecarbonation7>
+ 
+6
+ 
+hello
+ 
+
+              {/* <TablesDataDecarbonation3></TablesDataDecarbonation3> */}
+              {/* <TablesDataDecarbonation5></TablesDataDecarbonation5> */}
+ 
+
+              <TablesDataDecarbonation6></TablesDataDecarbonation6>
+ 
+
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Atrium-Each Additional Floor
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            2
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Exam/Treatment
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            16
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Lounge / Recreation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            19
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Pharmacy
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Hospital
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Patient Room
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            8
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Dining Area
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            10
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Operating Room
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            24
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Peniteniary
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            14
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Nursery
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Hotel
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Medical Supply
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            15
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Motel
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Physical Therapy
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            10
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Bar Lounge/Leisure Dining
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            15
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Radiology
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            4
+          </TableCell>
+        </TableRow>
+
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Family Dining
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            23
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Laundry.Washing
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Food Preperation
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Laundry.Washing
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            8
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Laboratory
+          </TableCell>
+          <TableCell
+            sx={{
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            15
+          </TableCell>
+          <TableCell
+            colSpan={2} // This makes the cell span across two columns
+            sx={{
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Manufacturing
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Restrooms
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            10
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Low Bay(25 ft Floor to Ceiling Height)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            13
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Dressing /Locker/ Fitting Room
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            High Bay(.25 ft floor to Ceiling Height)
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            18
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Corridor/ Transition
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Detailed Manufacturing
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            23
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Hospital
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Equipment Room
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            For Manufacturing Facility
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Control Room
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            5
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Stairs - Active
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            6
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Hotel / Motel Guest Rooms
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            12
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Active Storage
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            9
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Museum
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            12
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            Inactive storage
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            3
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            General Exhibition
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: 600,
+              fontSize: "12px",
+              border: "1px solid #F4F4F4",
+            }}
+          >
+            11
+          </TableCell>
+        </TableRow>
+ 
+Installation of occupancy sensors/motion sensors for
+                automated control of internal lighting.
+ 
+ Have you considered selecting internal lighting systems that offer
+              flexible control options
+ 
+Automated lighting control / motion sensor for internal lighting
+ 
+Have you considered selecting internal lighting systems that offer
+              flexible control options
+ 
+  <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                Exceptions: Process area / Machine area
+              </Typography>
+ 
+ <br />
+                <br />
+                The Occupancy sensors after due consideration shall be provided
+                for the following areas within the facility
+                <ul>
+                  <li>Areas within the industry if relevant and appropriate</li>
+                  <li>Workshop area</li>
+                  <li>Pedestrian pathway</li>
+                  <li>Pantry</li>
+                  <li>Prayer room.</li>
+                  <li>Corridor / passage.</li>
+                  <li>Ablution</li>
+                  <li>Other areas if found suitable</li>
+                </ul>
+ 
+  <br />
+                <br />
+                The Occupancy sensors after due consideration shall be provided
+                for the following areas within the facility
+                <ul>
+                  <li>Areas within the industry if relevant and appropriate</li>
+                  <li>Workshop area</li>
+                  <li>Pedestrian pathway</li>
+                  <li>Pantry</li>
+                  <li>Prayer room.</li>
+                  <li>Corridor / passage.</li>
+                  <li>Ablution</li>
+                  <li>Other areas if found suitable</li>
+                </ul>
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                Exceptions: Process area / Machine area
+              </Typography>
+ 
+./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi7
+ 
+These tests need to be conducted with the use of a blower door
+                to measure the amount of leakage of an object. If required these
+                tests can be extended to use the techniques such as thermography
+                and smoke simulations to locate any excessive leakages. The air
+                leakage is contained within a maximum of 10 m3/hr/m2 @ 50
+                Pascal.
+                <br />
+                Estidama guideline prescribed in PBRS Version 1 or updated
+                guideline.
+ 
+
+                  Corridor / passage.
+ 
+
+                  Corridor / passage.
+ 
+
+                  Pantry
+ 
+
+                  Pantry
+ 
+Report the results and fill the leaks to ensure that the air
+                    leakage does not exceed the prescribed limit.
+ 
+Record the results on performance testing form
+ 
+Perform the blower door test.
+ 
+Make ready the building for the Pre blower door test.
+ 
+
+                <br />
+ 
+ Set up the blower door.
+ 
+Implementation team / contractor is accountable for the
+                following tasks:
+ 
+Has the industrial facility/warehouse been assessed for envelope
+              airtightness, and have <br /> measures been taken to identify and
+              address any defects or leakages?
+ 
+Envelope Tightness (Performance-based) Blower Door Test Technique
+ 
+import React from "react";
+import IndustryTable from "../TablesDataDecarbonation4";
+import { Grid2, Paper, Typography, Box } from "@mui/material";
+import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+
+function DecarbonizationQsnAnsDiffUi9() {
+  return (
+    <div>
+      <Grid2
+        sx={{
+          flexDirection: "column",
+          display: "flex",
+          border: "1px solid #E4E4E4",
+          borderRadius: "5px",
+          borderTop: "3px solid #369D9C",
+          gap: "20px",
+        }}
+      >
+        <Paper
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}
+        >
+          <Grid2
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "12px",
+              mt: "16px",
+              ml: "16px",
+              alignItems: "center",
+            }}
+          >
+            <img src={handHolding} alt="lg" />
+            <Typography
+              fontSize="16px"
+              fontWeight="600"
+              color="#000"
+              width="600px"
+            >
+             Automated lighting control / motion sensor for internal lighting
+            </Typography>
+          </Grid2>
+          <Grid2
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "12px",
+              ml: "15px",
+            }}
+          >
+            <Box
+              sx={{
+                width: "37px",
+                height: "34px",
+                backgroundColor: "#F7F7F7",
+                padding: "7px",
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                Q.1
+              </Typography>
+            </Box>
+            <Typography fontSize="14px" fontWeight="500" color="#000">
+            Have you considered selecting internal lighting systems that offer flexible control options
+            </Typography>
+          </Grid2>
+
+          <Grid2
+            sx={{
+              borderTop: "1px solid #E4E4E4",
+              mt: "8px",
+              ml: "0px",
+              padding: "10px 19px",
+              borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
+            }}
+          >
+            <Grid2
+              sx={{
+                border: "1px solid var(--Grey-3, #D9D9D9)",
+                background: "#F7FFFC",
+                borderRadius: "5px",
+                padding: "1px 12px",
+              }}
+            >
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+               1. Installation of occupancy sensors/motion sensors for automated control of internal lighting.
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                
+                <br />
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                2. Availability of ERV systems for that capacity.
+                <br />
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                3. Assessment of the benefits.
+                <br />
+              </Typography>
+            </Grid2>
+          </Grid2>
+        </Paper>
+      </Grid2>
+    </div>
+  );
+}
+
+export default DecarbonizationQsnAnsDiffUi9;
+
+ 
+1. Quantity of air extracted.
+ 
+ Energy Recovery Systems (ERV) should be used in all combined
+                supply & extract air handling units where applicable and found
+                practical in terms of
+                <br />
+ 
+Have you considered incorporating design strategies to utilize
+              Energy Recovery Units <br />
+              (ERUs) in the plant?
+ 
+ Installation of Energy Recovery Units and regulated air intake
+              system
+ 
+Decarboni
+ 
+DecarbonizationQsnAnsWithUi5
+ 
+useum
+ 
+Active Storage
+ 
+Hotel / Motel Guest Rooms
+ 
+Stairs - Active
+ 
+Control Room
+ 
+For Manufacturing Facility
+ 
+Equipment Room
+ 
+For Hospital
+ 
+Detailed Manufacturing 
+ 
+
+          Corridor/ Transition
+ 
+High Bay(.25 ft floor to Ceiling Height)
+ 
+
+          Dressing /Locker/ Fitting Room
+ 
+Low Bay(25 ft Floor to Ceiling Height)
+ 
+
+          Restrooms
+ 
+Laundry.Washing
+ 
+
+          Food Preperation
+ 
+
+              Gymnasium/Exercise Center
+ 
+
+              Office - Enclosed
+ 
+
+          Automative-Service Repair
+ 
+
+          Food Preperation
+ 
+
+          For Family Dining
+ 
+Radiology
+ 
+
+          For Bar Lounge/Leisure Dining
+ 
+Physical Therapy
+ 
+
+          For Motel
+ 
+Medical Supply
+ 
+
+          For Hotel
+ 
+Recovery
+ 
+
+          For Transportation
+ 
+
+          Operating Room
+ 
+
+          Dining Area
+ 
+
+            Courthouse
+ 
+
+            For Hotel
+ 
+
+            Fire Stations
+ 
+
+            For Performing Arts Theater
+ 
+
+            Judges Chambers
+ 
+
+            For Hotel
+ 
+
+            Confinement Cells
+ 
+
+            Lobby
+ 
+
+            Courtroom
+ 
+
+            For Penitentiary
+ 
+
+          Atrium-First Three Floors
+ 
+
+          For Transportation
+ 
+
+            colSpan={2}
+ 
+
+            Courthouse/Police Station/Penitentiary
+ 
+
+            Classroom/Lecture/Training
+ 
+
+            Gymnasium/Exercise Center
+ 
+
+            Office - Enclosed
+ 
+
+            Office - Enclosed
+ 
+
+              backgroundColor: "#F7F7F7",
+ 
+
+              textAlign: "left",
+ 
+
+              textAlign: "center",
+ 
+
+              textAlign: "center",
+ 
+
+            Header 4
+ 
+
+            Header 3
+ 
+
+            Header 2
+ 
+
+            Header 1
+ 
+import React from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Typography,
+} from "@mui/material";
+
+const MyTable6 = () => {
+  return (
+    <>
+      <Table
+        sx={{
+          borderCollapse: "collapse",
+          border: "1px solid #F4F4F4",
+          width: "100%",
+        }}
+      >
+      <TableHead>
+  <TableRow>
+    <TableCell
+      sx={{
+        width: "20vh",
+        textAlign: "left",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Header 1
+    </TableCell>
+    <TableCell
+      sx={{
+        width: "30vh",
+        textAlign: "center",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Header 2
+    </TableCell>
+    <TableCell
+      sx={{
+        width: "30vh",
+        textAlign: "left",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Header 3
+    </TableCell>
+    <TableCell
+      sx={{
+        width: "20vh",
+        textAlign: "center",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Header 4
+    </TableCell>
+  </TableRow>
+</TableHead>
+
+        <TableBody><TableRow>
+    <TableCell
+      sx={{
+        width: "30vh",
+        textAlign: "left",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Office - Enclosed
+    </TableCell>
+    <TableCell
+      sx={{
+        width: "30vh",
+        textAlign: "center",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      12
+    </TableCell>
+    <TableCell
+      colSpan={2}
+      sx={{
+        width: "30vh",
+        textAlign: "left",
+        fontWeight: 600,
+        fontSize: "12px",
+        border: "1px solid #F4F4F4",
+      }}
+    >
+      Gymnasium/Exercise Center
+    </TableCell>
+  </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Classroom/Lecture/Training
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              15
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Courthouse/Police Station/Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Courtroom
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              20
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Lobby
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Confinement Cells
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Hotel
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Judges Chambers
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              36
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Fire Stations
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Motion Picture Theater
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Fire Station Engine room
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              9
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Audience/Scaling Area
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Sleeping Quarters
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              3
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Gymnasium
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Post Office - Sorting Area
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              3
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Convention Center-Exhibit Space
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Convention Center
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              6
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Library
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              8
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Card File Cataloguing
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Religious Buildings
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              18
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Stacks
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              4
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Sports Arena
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Reading Area
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              28
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Hospital
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export default MyTable6;
+
+ 
+
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Office - Enclosed
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              colSpan={2} // This makes the cell span across two columns
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Gymnasium/Exercise Center
+            </TableCell>
+          </TableRow>
+
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Office -Open Plan
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Conference/Meeting/Multipurpose
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            ></TableCell>
+          </TableRow>
+ 
+
+        <TableHead>
+          <TableRow sx={{ background: "#F7FFFC" }}>
+            <TableCell
+              sx={{
+                // textAlign: "left",
+                fontSize: "14px",
+                fontWeight: "600",
+                border: "1px solid #F4F4F4",
+                width:"20vw"
+              }}
+            >
+              LPD (W/m2)
+            </TableCell>
+            <TableCell
+              sx={{
+                // textAlign: "center",
+                fontSize: "14px",
+                fontWeight: "600",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+             Common Space Types
+            </TableCell>
+            <TableCell
+              sx={{
+                // textAlign: "center",
+                fontSize: "14px",
+                fontWeight: "600",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+            Building Specific Space Types
+            </TableCell>
+            <TableCell
+              sx={{
+                // textAlign: "center",
+                fontSize: "14px",
+                fontWeight: "600",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+            LPD (W/m2)
+            </TableCell>
+          </TableRow>
+        </TableHead>
+ 
+
+              LPD (W/m²)
+ 
+
+              Building Specific Space Types
+ 
+ LPD (W/m²)
+ 
+Common Space Types
+ 
+
+                m:"10px",
+ 
+
+                textAlign: "left",
+ 
+
+                ml:"20px",
+ 
+
+      <Typography fontSize="12px" fontWeight="600" mb="15px">
+        Internal Lighting - Space by Space Method
+      </Typography>
+ 
+./DecarbonizationQsnAnsDiffUi6
+ 
+ 
+ 
+MyTable
+ 
+
+              borderBottom: "1px solid #E4E4E4",
+ 
+ <TableRow>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              Office -Enclosed
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "left",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+              
+            >
+              Gymnasium/Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{
+                textAlign: "center",
+                fontWeight: 600,
+                fontSize: "12px",
+                border: "1px solid #F4F4F4",
+              }}
+            ></TableCell>
+          </TableRow>
+ 
+
+                borderRight:"-0px solid black"
+ 
+
+                border: "1px solid #F4F4F4",
+ 
+import React from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Typography,
+} from "@mui/material";
+
+const MyTable = () => {
+  return (
+    <>
+      <Typography fontSize="12px" fontWeight="600" mb="15px">
+        Internal Lightning - Space by Space Method
+      </Typography>
+      <Table>
+        <TableHead>
+          <TableRow sx={{ background: "#F7FFFC" }}>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              Common Space Types
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              LPD (W/m²)
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              Building Specific Space Types
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              LPD (W/m²)
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Office -Enclosed
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Gymnassium/Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Office -Open Plan
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Conference/Meeting/Multipurpose
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Classroom/Lecture/Training
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              15
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Courthouse/Police Station/Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Courtroom
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              20
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Lobby
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Confinement Cells
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Hotel
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Judges Chambers
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              36
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Fire Stations
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Motion Picture Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Fire Station Engine room
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              9
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Audience/Scaling Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Sleeping Quarters
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              3
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Gymnasium
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Post Office - Sorting Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              3
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Convention Center-Exhibit Space
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Convention Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              6
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Library
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              8
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Card File Cataloguing
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Religious Buildings
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              18
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Stacks
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Sports Arena
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Reading Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              28
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Hospital
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export default MyTable;
+
+ 
+import React from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Typography,
+} from "@mui/material";
+
+const MyTable = () => {
+  return (
+    <>
+      <Typography fontSize="12px" fontWeight="600" mb="15px">
+        Internal Lightning - Space by Space Method
+      </Typography>
+      <Table>
+        <TableHead>
+          <TableRow sx={{ background: "#F7FFFC" }}>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              Common Space Types
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              LPD (W/m²)
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              Building Specific Space Types
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontSize: "14px", fontWeight: "600" }}
+            >
+              LPD (W/m²)
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Office -Enclosed
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Gymnassium/Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Office -Open Plan
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Conference/Meeting/Multipurpose
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Exercise Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Classroom/Lecture/Training
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              15
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Courthouse/Police Station/Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Courtroom
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              20
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Lobby
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Confinement Cells
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              10
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Hotel
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Judges Chambers
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              36
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Fire Stations
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Motion Picture Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Fire Station Engine room
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              9
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Audience/Scaling Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Sleeping Quarters
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              3
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Gymnasium
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Post Office - Sorting Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Exercise Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              3
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Convention Center-Exhibit Space
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              14
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Convention Center
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              6
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Library
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            ></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Penitentiary
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              8
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Card File Cataloguing
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              12
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Religious Buildings
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              18
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Stacks
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Sports Arena
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              4
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Reading Area
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              For Performing Arts Theater
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              28
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "left", fontWeight: 600, fontSize: "12px" }}
+            >
+              Hospital
+            </TableCell>
+            <TableCell
+              sx={{ textAlign: "center", fontWeight: 600, fontSize: "12px" }}
+            >
+              13
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export default MyTable;
+
+ 
+  <TableBody>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Office -Enclosed</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Gymnassium/Excercise Center</TableCell>
+          <TableCell sx={{ textAlign: "center" }}></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Office -Open Plan</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Excercise Area</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>10</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Conferance/Meeting/Multipurpose</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>14</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Excercise Area</TableCell>
+          <TableCell sx={{ textAlign: "center" }}></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Classroom/Lecture/Training</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>15</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Courthhouse/Police Station/Penitentiary</TableCell>
+          <TableCell sx={{ textAlign: "center" }}></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Penitentiary</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>14</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Courtroom</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>20</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Lobby</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>14</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Confinement Cells</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>10</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Hotel</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Judges Chambers</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>14</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Performing Arts Theater</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>36</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Fire Stations</TableCell>
+          <TableCell sx={{ textAlign: "center" }}></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Motion Picture Theater</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Fire Station Engine room</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>9</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>Audience/Scaling Area</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Sleeping Quarters</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>3</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Gymnasium</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>4</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Post Office - Sorting Area</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>13</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Exercise Center</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>3</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Convention Center-Exhibit Space</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>14</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Convention Center</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>6</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Library</TableCell>
+          <TableCell sx={{ textAlign: "center" }}></TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Penitentiary</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>8</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Card File Cataloguing</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>12</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Religious Buildings</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>18</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Stacks</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>4</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Sports Arena</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>4</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Reading Area</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>13</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell sx={{ textAlign: "left" }}>For Performing Arts Theater</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>28</TableCell>
+          <TableCell sx={{ textAlign: "left" }}>Hospital</TableCell>
+          <TableCell sx={{ textAlign: "center" }}>13</TableCell>
+        </TableRow>
+      </TableBody>
+ 
+sx={{mt:}}
+ 
+mt="10px"
+ 
+var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%));
+ 
+For Religious Buildings
+ 
+<
+ 
+
+          <TableCell sx={{ textAlign: "center" }}>4</TableCell>
+ 
+
+  height: "40px", // Set the height of the header cells
+  lineHeight: "1px", // Align text vertically within the header cells
+ 
+StyledTableHeadCell
+ 
+TableCell
+ 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import React from "react";
+
+const StyledTable = styled(Table)({
+  minWidth: 650,
+  borderCollapse: "collapse",
+});
+
+const StyledTableCell = styled(TableCell)({
+  border: "1px solid #ddd", // Border around the cell
+  padding: "8px",
+  textAlign: "center",
+  fontSize: "14px",
+  height: "20px",
+  lineHeight: "2",
+});
+const StyledTableHeadCell = styled(TableCell)({
+  background: "#F7FFFF",
+  fontWeight: "bold",
+  textAlign: "center",
+  border: "1px solid var(--Grey-4, #F4F4F4)",
+  height: "40px", // Set the height of the header cells
+  lineHeight: "1px", // Align text vertically within the header cells
+});
+
+// Define styled components with specific widths
+const StyledTableCellNarrow = styled(TableCell)(({ theme }) => ({
+  width: "10%", // Adjusted width to 10% for the "S.No" and "Chiller Type"
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellWide = styled(TableCell)(({ theme }) => ({
+  width: "20%", // Adjusted width to 20% for other columns
+  border: "1px solid #E4E4E4",
+  textAlign: "center",
+}));
+
+const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
+  width: "30%", // Adjusted width to 30% for the "Chiller Type" description
+  border: "1px solid #E4E4E4",
+  textAlign: "left",
+}));
+
+function TablesDataDecarbonation5() {
+  return (
+    <div>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ textAlign: "center" }}>
+                Common Space Types
+              </TableCell>
+              <TableCell sx={{ textAlign: "center" }}>LPD (W/m2)</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>
+                Building Specific Space Types
+              </TableCell>
+              <TableCell sx={{ textAlign: "center" }}>LPD (W/m2)</TableCell>
+            </TableRow>
+            <TableBody>
+             <TableRow>
+              <StyledTableCellNarrow>hello</StyledTableCellNarrow>
+             </TableRow>
+            </TableBody>
+          </TableHead>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+}
+
+export default TablesDataDecarbonation5;
+
+ 
+ <TableRow>
+                <StyledTableCell>1</StyledTableCell>
+                <StyledTableCell>&lt;150 TR</StyledTableCell>
+                <StyledTableCell>&gt;9.562</StyledTableCell>
+                <StyledTableCell>&gt;2.803</StyledTableCell>
+                <StyledTableCell>&gt;12.5</StyledTableCell>
+              </TableRow>
+              <TableRow>
+                <StyledTableCell>2</StyledTableCell>
+                <StyledTableCell>&gt;150 TR</StyledTableCell>
+                <StyledTableCell>&gt;9.562</StyledTableCell>
+                <StyledTableCell>&gt;2.803</StyledTableCell>
+                <StyledTableCell>&gt;12.5</StyledTableCell>
+              </TableRow>
+ 
+sx={{textAlign:"center"}}
+ 
+
+                    Common Space Types
+ 
+
+                    Common Space Types
+ 
+
+                    Common Space Types
+ 
+
+                    Common Space Types
+ 
+
+import TablesDataDecarbonation3 from "../TablesDataDecarbonation3";
+ 
+
+        width:"1000px"
+ 
+
+        <DecarbonizationQsnAnsWithUi8></DecarbonizationQsnAnsWithUi8>
+ 
+
+        <DecarbonizationQsnAnsWithUi8></DecarbonizationQsnAnsWithUi8>
+ 
+DecarbonizationQsnAnsDiffWIthUi6
+ 
+Energy Recovery Systems (ERV) should be used in all combined
+                supply & extract air handling units where applicable and found
+                practical in terms of
+ 
+
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                1. Quantity of air extracted.
+                <br />
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                2. Availability of ERV systems for that capacity.
+                <br />
+              </Typography>
+              <Typography
+                fontSize="13px"
+                fontWeight="600"
+                sx={{ padding: "6px 0" }}
+              >
+                3. Assessment of the benefits.
+                <br />
+              </Typography>
+ 
+DecarbonizationQsnAnsWithUi5
+ 
+../TablesDataDecarbonation
+ 
+
+      <h2 style={{ fontSize: "16px", fontWeight: "400", color: "#000000" }}>
+        Air Cooled Chillers
+      </h2>
+ 
+
+      <h2
+        style={{
+          fontSize: "16px",
+          fontWeight: "400",
+          color: "#000000",
+          marginTop: "30px",
+        }}
+      >
+        Water Cooled Chillers
+      </h2>
+ 
+./../../../ReportsComponent/Pages/TablesData
+ 
+./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3
+ 
+
+      hello
+ 
+import React from "react";
+import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
+import BasicTable from "./TablesDataDecarbonation";
+import BasicTable2 from "./TablesDataDecarbonation2";
+import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
+import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
+import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/";
+import DecarbonizationQsnAnsWithUi4 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi4";
+import DecarbonizationQsnAnsWithUi5 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi5";
+import DecarbonizationQsnAnsWithUi6 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi6";
+
+
+const TableComponents = {
+  "Industrial Chiller System": BasicTable,
+  "Refrigerated Storage Area": BasicTable2,
+};
+
+const Question = ({
+  questionText,
+  logo,
+  heading,
+  answers,
+  showTable,
+  boldAnswerIndex,
+}) => {
+  const TableComponent = TableComponents[heading];
+
+  return (
+    <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+        {/* Heading Section */}
+        <Grid2
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "12px",
+            mt: "16px",
+            ml: "16px",
+            alignItems: "center",
+          }}
+        >
+          {logo && <img src={logo} alt="logo" width="18px" />}
+          <Typography fontSize="16px" fontWeight="600" color="#000">
+            {heading}
+          </Typography>
+        </Grid2>
+
+        {questionText.map((q, questionIndex) => (
+          <React.Fragment key={questionIndex}>
+            {/* Question Text */}
+            <Grid2
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "12px",
+                ml: "15px",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "37px",
+                  height: "34px",
+                  backgroundColor: "#F7F7F7",
+                  padding: "7px",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                  Q.{questionIndex + 1}
+                </Typography>
+              </Box>
+              <Typography fontSize="14px" fontWeight="500" color="#000">
+                {q}
+              </Typography>
+            </Grid2>
+
+            {/* Answers or Implementation Required */}
+            <Grid2
+              sx={{
+                borderTop: "1px solid #E4E4E4",
+                mt: "8px",
+                mb: "8px",
+                ml: "0px",
+                padding: "10px 19px",
+                borderRadius: "5px",
+              }}
+            >
+              {answers[questionIndex]?.length > 0 ? (
+                // Display Answers
+                <Grid2
+                  sx={{
+                    border: "1px solid var(--Grey-3, #D9D9D9)",
+                    background: "#F7FFFC",
+                    borderRadius: "5px",
+                    padding: "1px 12px",
+                  }}
+                >
+                  {answers[questionIndex].map((answer, answerIndex) => (
+                    <Typography
+                      key={answerIndex}
+                      fontSize="12px"
+                      fontWeight={
+                        boldAnswerIndex === questionIndex ||
+                        boldAnswerIndex >= answers[questionIndex].length
+                          ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
+                          : "500"
+                      }
+                      color="#000"
+                      sx={{ padding: "6px 0" }}
+                    >
+                      {answerIndex + 1}. {answer}
+                    </Typography>
+                  ))}
+                </Grid2>
+              ) : (
+                // Display Implementation Required with Logo
+                <Grid2
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    borderRadius: "5px",
+                    padding: "10px",
+                  }}
+                >
+                  <img
+                    src={magelightBuld}
+                    alt="Implementation Required"
+                    width="18px"
+                  />
+                  <Typography fontSize="12px" fontWeight="500" color="#000">
+                    Implementation Required
+                  </Typography>
+                </Grid2>
+              )}
+            </Grid2>
+
+            {/* Conditional Rendering of Table */}
+            {showTable && questionIndex === 0 && TableComponent && (
+              <Grid2
+                sx={{
+                  mt: "-30px",
+                  mb: "8px",
+                  ml: "0px",
+                  padding: "10px 19px",
+                  borderRadius: "5px",
+                }}
+              >
+                <TableComponent /> {/* Render the selected table component */}
+              </Grid2>
+            )}
+          </React.Fragment>
+        ))}
+      </Paper>
+    </Grid2>
+  );
+};
+
+function SurveyQuestionSection() {
+  const questions = [
+    {
+      text: [
+        "Do you have all motors with efficiency classification IE3 & IE4?",
+      ],
+      answers: [
+        [
+          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial AC Motors",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+      ],
+      answers: [
+        [
+          "Pump sizing and selection must consider all possible scenarios of the operation.",
+          "Right pump technology must be selected based on process requirement.",
+        ],
+        [
+          "Pump with right VFD must be selected for the process with variable flow requirement.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Pumps",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+      ],
+      answers: [
+        [
+          "Fan sizing and selection must consider all possible scenarios of the operation.",
+          "Right fan technology must be selected based on process requirement.",
+          "Fan with right VFD must be selected for the process with variable flow requirement.",
+        ],
+        [],
+      ],
+      logo: "",
+      heading: "Industrial Process Fans",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+        "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+      ],
+      answers: [
+        [],
+        [
+          "Leakage in the compressed air system must be minimized in the existing plant.",
+        ],
+      ],
+      logo: "",
+      heading: "Compressed Air System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a high-efficiency boiler been selected for the plant process?",
+        "Are all the boilers equipped with a smart control system to optimize operational efficiency?",
+      ],
+      answers: [
+        [
+          "Boiler sizing and design operating parameters must consider all possible scenarios of the operation.",
+        ],
+        [
+          "The selected boiler must have smart controls to regulate the fuel and excess air supply to the boiler based on process load variation, thereby achieving higher combustion efficiency.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Boilers",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+      ],
+      answers: [
+        [
+          "Steam distribution system economic insulation requirement must be carried out by a specialist.",
+          "Effectiveness of the insulation must be tested on an annual basis.",
+        ],
+      ],
+      logo: "",
+      heading: "Steam Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All chiller units should meet the Minimum Energy Efficiency Ratio (EER) mentioned in the table.",
+          "Ratio (EER) mentioned in the table",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Chiller System",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+        "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+      ],
+      answers: [[], []],
+      logo: "",
+      heading: "Chilled Water Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All condenser units should meet the Minimum Energy Efficiency Ratio (EER)",
+        ],
+      ],
+      logo: "",
+      heading: "Refrigerated Storage Area",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the electrical system been designed to incorporate control measures?",
+      ],
+      answers: [
+        [
+          "The electrical system must incorporate control measures like",
+          "Distributed Power Flow Controller (DPFC)",
+          "Voltage Optimizer",
+          "Harmonic Filters",
+          "Capacitor Banks",
+          "To maintain high power factor and low hormonic levels, hence power quality",
+        ],
+      ],
+      logo: "",
+      heading: "Power Quality",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+      ],
+      answers: [["Develop Waste heat recovery and utilization strategy"]],
+      logo: "",
+      heading: "Process Waste Heat Recovery",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+        "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+      ],
+      answers: [
+        [
+          "Develop a sub-metering, monitoring and automatic data recording strategy to account for a minimum of the following",
+          "Heating and cooling system",
+          "Internal & External Lighting",
+          "Compressed air system",
+          "Loads above 50KW",
+          "Production line-wise sub-metering",
+        ],
+        [
+          "In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+        ],
+      ],
+      logo: "",
+      heading: "Process Energy Sub-Metering",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+  ];
+
+  return (
+    <>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        {questions.map((q, index) => (
+          <Question
+            key={index}
+            questionText={q.text}
+            logo={q.logo}
+            heading={q.heading}
+            answers={q.answers}
+            showTable={q.showTable}
+            boldAnswerIndex={q.boldAnswerIndex}
+          />
+        ))}
+      </Grid2>
+     <Grid2 sx={{display:"flex", flexDirection:"column", gap:"20px", mt:"20px"}}>
+     <DecarbonizationQsnAnsWithUl></DecarbonizationQsnAnsWithUl>
+     <DecarbonizationQsnAnsWithUl2></DecarbonizationQsnAnsWithUl2>
+     <DecarbonizationQsnAnsWithUi3></DecarbonizationQsnAnsWithUi3>
+     <DecarbonizationQsnAnsWithUi4></DecarbonizationQsnAnsWithUi4>
+     <DecarbonizationQsnAnsWithUi5></DecarbonizationQsnAnsWithUi5>
+     <DecarbonizationQsnAnsWithUi6></DecarbonizationQsnAnsWithUi6>
+     </Grid2>
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          mt: "45px",
+        }}
+      >
+        <Button
+          sx={{
+            borderRadius: "32px",
+            textTransform: "capitalize",
+            justifyContent: "center",
+            alignItems: "center",
+            background:
+              "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
+            padding: "11px 40px",
+          }}
+        >
+          <Typography color="#fff" fontSize="14px" fontWeight="600">
+            Submit Survey
+          </Typography>
+        </Button>
+      </Grid2>
+    </>
+  );
+}
+
+export default SurveyQuestionSection;
+
+// -------------------------------------
+
+ 
+
+import React from "react";
+import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
+import BasicTable from "./TablesDataDecarbonation";
+import BasicTable2 from "./TablesDataDecarbonation2";
+import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
+import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
+import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3";
+import DecarbonizationQsnAnsWithUi4 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi4";
+import DecarbonizationQsnAnsWithUi5 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi5";
+import DecarbonizationQsnAnsWithUi6 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi6";
+
+
+const TableComponents = {
+  "Industrial Chiller System": BasicTable,
+  "Refrigerated Storage Area": BasicTable2,
+};
+
+const Question = ({
+  questionText,
+  logo,
+  heading,
+  answers,
+  showTable,
+  boldAnswerIndex,
+}) => {
+  const TableComponent = TableComponents[heading];
+
+  return (
+    <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+        {/* Heading Section */}
+        <Grid2
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "12px",
+            mt: "16px",
+            ml: "16px",
+            alignItems: "center",
+          }}
+        >
+          {logo && <img src={logo} alt="logo" width="18px" />}
+          <Typography fontSize="16px" fontWeight="600" color="#000">
+            {heading}
+          </Typography>
+        </Grid2>
+
+        {questionText.map((q, questionIndex) => (
+          <React.Fragment key={questionIndex}>
+            {/* Question Text */}
+            <Grid2
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "12px",
+                ml: "15px",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "37px",
+                  height: "34px",
+                  backgroundColor: "#F7F7F7",
+                  padding: "7px",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                  Q.{questionIndex + 1}
+                </Typography>
+              </Box>
+              <Typography fontSize="14px" fontWeight="500" color="#000">
+                {q}
+              </Typography>
+            </Grid2>
+
+            {/* Answers or Implementation Required */}
+            <Grid2
+              sx={{
+                borderTop: "1px solid #E4E4E4",
+                mt: "8px",
+                mb: "8px",
+                ml: "0px",
+                padding: "10px 19px",
+                borderRadius: "5px",
+              }}
+            >
+              {answers[questionIndex]?.length > 0 ? (
+                // Display Answers
+                <Grid2
+                  sx={{
+                    border: "1px solid var(--Grey-3, #D9D9D9)",
+                    background: "#F7FFFC",
+                    borderRadius: "5px",
+                    padding: "1px 12px",
+                  }}
+                >
+                  {answers[questionIndex].map((answer, answerIndex) => (
+                    <Typography
+                      key={answerIndex}
+                      fontSize="12px"
+                      fontWeight={
+                        boldAnswerIndex === questionIndex ||
+                        boldAnswerIndex >= answers[questionIndex].length
+                          ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
+                          : "500"
+                      }
+                      color="#000"
+                      sx={{ padding: "6px 0" }}
+                    >
+                      {answerIndex + 1}. {answer}
+                    </Typography>
+                  ))}
+                </Grid2>
+              ) : (
+                // Display Implementation Required with Logo
+                <Grid2
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    borderRadius: "5px",
+                    padding: "10px",
+                  }}
+                >
+                  <img
+                    src={magelightBuld}
+                    alt="Implementation Required"
+                    width="18px"
+                  />
+                  <Typography fontSize="12px" fontWeight="500" color="#000">
+                    Implementation Required
+                  </Typography>
+                </Grid2>
+              )}
+            </Grid2>
+
+            {/* Conditional Rendering of Table */}
+            {showTable && questionIndex === 0 && TableComponent && (
+              <Grid2
+                sx={{
+                  mt: "-30px",
+                  mb: "8px",
+                  ml: "0px",
+                  padding: "10px 19px",
+                  borderRadius: "5px",
+                }}
+              >
+                <TableComponent /> {/* Render the selected table component */}
+              </Grid2>
+            )}
+          </React.Fragment>
+        ))}
+      </Paper>
+    </Grid2>
+  );
+};
+
+function SurveyQuestionSection() {
+  const questions = [
+    {
+      text: [
+        "Do you have all motors with efficiency classification IE3 & IE4?",
+      ],
+      answers: [
+        [
+          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial AC Motors",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+      ],
+      answers: [
+        [
+          "Pump sizing and selection must consider all possible scenarios of the operation.",
+          "Right pump technology must be selected based on process requirement.",
+        ],
+        [
+          "Pump with right VFD must be selected for the process with variable flow requirement.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Pumps",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+      ],
+      answers: [
+        [
+          "Fan sizing and selection must consider all possible scenarios of the operation.",
+          "Right fan technology must be selected based on process requirement.",
+          "Fan with right VFD must be selected for the process with variable flow requirement.",
+        ],
+        [],
+      ],
+      logo: "",
+      heading: "Industrial Process Fans",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+        "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+      ],
+      answers: [
+        [],
+        [
+          "Leakage in the compressed air system must be minimized in the existing plant.",
+        ],
+      ],
+      logo: "",
+      heading: "Compressed Air System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a high-efficiency boiler been selected for the plant process?",
+        "Are all the boilers equipped with a smart control system to optimize operational efficiency?",
+      ],
+      answers: [
+        [
+          "Boiler sizing and design operating parameters must consider all possible scenarios of the operation.",
+        ],
+        [
+          "The selected boiler must have smart controls to regulate the fuel and excess air supply to the boiler based on process load variation, thereby achieving higher combustion efficiency.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Boilers",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+      ],
+      answers: [
+        [
+          "Steam distribution system economic insulation requirement must be carried out by a specialist.",
+          "Effectiveness of the insulation must be tested on an annual basis.",
+        ],
+      ],
+      logo: "",
+      heading: "Steam Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All chiller units should meet the Minimum Energy Efficiency Ratio (EER) mentioned in the table.",
+          "Ratio (EER) mentioned in the table",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Chiller System",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+        "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+      ],
+      answers: [[], []],
+      logo: "",
+      heading: "Chilled Water Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All condenser units should meet the Minimum Energy Efficiency Ratio (EER)",
+        ],
+      ],
+      logo: "",
+      heading: "Refrigerated Storage Area",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the electrical system been designed to incorporate control measures?",
+      ],
+      answers: [
+        [
+          "The electrical system must incorporate control measures like",
+          "Distributed Power Flow Controller (DPFC)",
+          "Voltage Optimizer",
+          "Harmonic Filters",
+          "Capacitor Banks",
+          "To maintain high power factor and low hormonic levels, hence power quality",
+        ],
+      ],
+      logo: "",
+      heading: "Power Quality",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+      ],
+      answers: [["Develop Waste heat recovery and utilization strategy"]],
+      logo: "",
+      heading: "Process Waste Heat Recovery",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+        "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+      ],
+      answers: [
+        [
+          "Develop a sub-metering, monitoring and automatic data recording strategy to account for a minimum of the following",
+          "Heating and cooling system",
+          "Internal & External Lighting",
+          "Compressed air system",
+          "Loads above 50KW",
+          "Production line-wise sub-metering",
+        ],
+        [
+          "In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+        ],
+      ],
+      logo: "",
+      heading: "Process Energy Sub-Metering",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+  ];
+
+  return (
+    <>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        {questions.map((q, index) => (
+          <Question
+            key={index}
+            questionText={q.text}
+            logo={q.logo}
+            heading={q.heading}
+            answers={q.answers}
+            showTable={q.showTable}
+            boldAnswerIndex={q.boldAnswerIndex}
+          />
+        ))}
+      </Grid2>
+     <Grid2 sx={{display:"flex", flexDirection:"column", gap:"20px", mt:"20px"}}>
+     <DecarbonizationQsnAnsWithUl></DecarbonizationQsnAnsWithUl>
+     <DecarbonizationQsnAnsWithUl2></DecarbonizationQsnAnsWithUl2>
+     <DecarbonizationQsnAnsWithUi3></DecarbonizationQsnAnsWithUi3>
+     <DecarbonizationQsnAnsWithUi4></DecarbonizationQsnAnsWithUi4>
+     <DecarbonizationQsnAnsWithUi5></DecarbonizationQsnAnsWithUi5>
+     <DecarbonizationQsnAnsWithUi6></DecarbonizationQsnAnsWithUi6>
+     </Grid2>
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          mt: "45px",
+        }}
+      >
+        <Button
+          sx={{
+            borderRadius: "32px",
+            textTransform: "capitalize",
+            justifyContent: "center",
+            alignItems: "center",
+            background:
+              "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
+            padding: "11px 40px",
+          }}
+        >
+          <Typography color="#fff" fontSize="14px" fontWeight="600">
+            Submit Survey
+          </Typography>
+        </Button>
+      </Grid2>
+    </>
+  );
+}
+
+export default SurveyQuestionSection;
+
+// -------------------------------------
+
+ 
+
+import React from "react";
+import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
+import BasicTable from "./TablesDataDecarbonation";
+import BasicTable2 from "./TablesDataDecarbonation2";
+import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
+import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
+import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3";
+import DecarbonizationQsnAnsWithUi4 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi4";
+import DecarbonizationQsnAnsWithUi5 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi5";
+import DecarbonizationQsnAnsWithUi6 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi6";
+
+
+const TableComponents = {
+  "Industrial Chiller System": BasicTable,
+  "Refrigerated Storage Area": BasicTable2,
+};
+
+const Question = ({
+  questionText,
+  logo,
+  heading,
+  answers,
+  showTable,
+  boldAnswerIndex,
+}) => {
+  const TableComponent = TableComponents[heading];
+
+  return (
+    <Grid2
+      sx={{
+        flexDirection: "column",
+        display: "flex",
+        border: "1px solid #E4E4E4",
+        borderRadius: "5px",
+        borderTop: "3px solid #369D9C",
+        gap: "20px",
+      }}
+    >
+      <Paper
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+        {/* Heading Section */}
+        <Grid2
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "12px",
+            mt: "16px",
+            ml: "16px",
+            alignItems: "center",
+          }}
+        >
+          {logo && <img src={logo} alt="logo" width="18px" />}
+          <Typography fontSize="16px" fontWeight="600" color="#000">
+            {heading}
+          </Typography>
+        </Grid2>
+
+        {questionText.map((q, questionIndex) => (
+          <React.Fragment key={questionIndex}>
+            {/* Question Text */}
+            <Grid2
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "12px",
+                ml: "15px",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "37px",
+                  height: "34px",
+                  backgroundColor: "#F7F7F7",
+                  padding: "7px",
+                  borderRadius: "6px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                  Q.{questionIndex + 1}
+                </Typography>
+              </Box>
+              <Typography fontSize="14px" fontWeight="500" color="#000">
+                {q}
+              </Typography>
+            </Grid2>
+
+            {/* Answers or Implementation Required */}
+            <Grid2
+              sx={{
+                borderTop: "1px solid #E4E4E4",
+                mt: "8px",
+                mb: "8px",
+                ml: "0px",
+                padding: "10px 19px",
+                borderRadius: "5px",
+              }}
+            >
+              {answers[questionIndex]?.length > 0 ? (
+                // Display Answers
+                <Grid2
+                  sx={{
+                    border: "1px solid var(--Grey-3, #D9D9D9)",
+                    background: "#F7FFFC",
+                    borderRadius: "5px",
+                    padding: "1px 12px",
+                  }}
+                >
+                  {answers[questionIndex].map((answer, answerIndex) => (
+                    <Typography
+                      key={answerIndex}
+                      fontSize="12px"
+                      fontWeight={
+                        boldAnswerIndex === questionIndex ||
+                        boldAnswerIndex >= answers[questionIndex].length
+                          ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
+                          : "500"
+                      }
+                      color="#000"
+                      sx={{ padding: "6px 0" }}
+                    >
+                      {answerIndex + 1}. {answer}
+                    </Typography>
+                  ))}
+                </Grid2>
+              ) : (
+                // Display Implementation Required with Logo
+                <Grid2
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    borderRadius: "5px",
+                    padding: "10px",
+                  }}
+                >
+                  <img
+                    src={magelightBuld}
+                    alt="Implementation Required"
+                    width="18px"
+                  />
+                  <Typography fontSize="12px" fontWeight="500" color="#000">
+                    Implementation Required
+                  </Typography>
+                </Grid2>
+              )}
+            </Grid2>
+
+            {/* Conditional Rendering of Table */}
+            {showTable && questionIndex === 0 && TableComponent && (
+              <Grid2
+                sx={{
+                  mt: "-30px",
+                  mb: "8px",
+                  ml: "0px",
+                  padding: "10px 19px",
+                  borderRadius: "5px",
+                }}
+              >
+                <TableComponent /> {/* Render the selected table component */}
+              </Grid2>
+            )}
+          </React.Fragment>
+        ))}
+      </Paper>
+    </Grid2>
+  );
+};
+
+function SurveyQuestionSection() {
+  const questions = [
+    {
+      text: [
+        "Do you have all motors with efficiency classification IE3 & IE4?",
+      ],
+      answers: [
+        [
+          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial AC Motors",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+      ],
+      answers: [
+        [
+          "Pump sizing and selection must consider all possible scenarios of the operation.",
+          "Right pump technology must be selected based on process requirement.",
+        ],
+        [
+          "Pump with right VFD must be selected for the process with variable flow requirement.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Pumps",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you involved a specialist in the selection of the pump sizing?",
+        "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+      ],
+      answers: [
+        [
+          "Fan sizing and selection must consider all possible scenarios of the operation.",
+          "Right fan technology must be selected based on process requirement.",
+          "Fan with right VFD must be selected for the process with variable flow requirement.",
+        ],
+        [],
+      ],
+      logo: "",
+      heading: "Industrial Process Fans",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+        "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+      ],
+      answers: [
+        [],
+        [
+          "Leakage in the compressed air system must be minimized in the existing plant.",
+        ],
+      ],
+      logo: "",
+      heading: "Compressed Air System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has a high-efficiency boiler been selected for the plant process?",
+        "Are all the boilers equipped with a smart control system to optimize operational efficiency?",
+      ],
+      answers: [
+        [
+          "Boiler sizing and design operating parameters must consider all possible scenarios of the operation.",
+        ],
+        [
+          "The selected boiler must have smart controls to regulate the fuel and excess air supply to the boiler based on process load variation, thereby achieving higher combustion efficiency.",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Process Boilers",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+      ],
+      answers: [
+        [
+          "Steam distribution system economic insulation requirement must be carried out by a specialist.",
+          "Effectiveness of the insulation must be tested on an annual basis.",
+        ],
+      ],
+      logo: "",
+      heading: "Steam Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All chiller units should meet the Minimum Energy Efficiency Ratio (EER) mentioned in the table.",
+          "Ratio (EER) mentioned in the table",
+        ],
+      ],
+      logo: "",
+      heading: "Industrial Chiller System",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+        "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+      ],
+      answers: [[], []],
+      logo: "",
+      heading: "Chilled Water Distribution System",
+      showTable: false,
+    },
+    {
+      text: [
+        "Have you considered selecting an energy-efficient chiller for all the plant?",
+      ],
+      answers: [
+        [
+          "All condenser units should meet the Minimum Energy Efficiency Ratio (EER)",
+        ],
+      ],
+      logo: "",
+      heading: "Refrigerated Storage Area",
+      showTable: true,
+    },
+    {
+      text: [
+        "Has the electrical system been designed to incorporate control measures?",
+      ],
+      answers: [
+        [
+          "The electrical system must incorporate control measures like",
+          "Distributed Power Flow Controller (DPFC)",
+          "Voltage Optimizer",
+          "Harmonic Filters",
+          "Capacitor Banks",
+          "To maintain high power factor and low hormonic levels, hence power quality",
+        ],
+      ],
+      logo: "",
+      heading: "Power Quality",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+      ],
+      answers: [["Develop Waste heat recovery and utilization strategy"]],
+      logo: "",
+      heading: "Process Waste Heat Recovery",
+      showTable: false,
+    },
+    {
+      text: [
+        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+        "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+      ],
+      answers: [
+        [
+          "Develop a sub-metering, monitoring and automatic data recording strategy to account for a minimum of the following",
+          "Heating and cooling system",
+          "Internal & External Lighting",
+          "Compressed air system",
+          "Loads above 50KW",
+          "Production line-wise sub-metering",
+        ],
+        [
+          "In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+        ],
+      ],
+      logo: "",
+      heading: "Process Energy Sub-Metering",
+      showTable: false,
+      boldAnswerIndex: 0,
+    },
+  ];
+
+  return (
+    <>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        {questions.map((q, index) => (
+          <Question
+            key={index}
+            questionText={q.text}
+            logo={q.logo}
+            heading={q.heading}
+            answers={q.answers}
+            showTable={q.showTable}
+            boldAnswerIndex={q.boldAnswerIndex}
+          />
+        ))}
+      </Grid2>
+     <Grid2 sx={{display:"flex", flexDirection:"column", gap:"20px", mt:"20px"}}>
+     <DecarbonizationQsnAnsWithUl></DecarbonizationQsnAnsWithUl>
+     <DecarbonizationQsnAnsWithUl2></DecarbonizationQsnAnsWithUl2>
+     <DecarbonizationQsnAnsWithUi3></DecarbonizationQsnAnsWithUi3>
+     <DecarbonizationQsnAnsWithUi4></DecarbonizationQsnAnsWithUi4>
+     <DecarbonizationQsnAnsWithUi5></DecarbonizationQsnAnsWithUi5>
+     <DecarbonizationQsnAnsWithUi6></DecarbonizationQsnAnsWithUi6>
+     </Grid2>
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          mt: "45px",
+        }}
+      >
+        <Button
+          sx={{
+            borderRadius: "32px",
+            textTransform: "capitalize",
+            justifyContent: "center",
+            alignItems: "center",
+            background:
+              "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
+            padding: "11px 40px",
+          }}
+        >
+          <Typography color="#fff" fontSize="14px" fontWeight="600">
+            Submit Survey
+          </Typography>
+        </Button>
+      </Grid2>
+    </>
+  );
+}
+
+export default SurveyQuestionSection;
+
+// -------------------------------------
+
+ 
+./DecarbonizationSurveyQsn
+ 
+./components/Dashboard/Survey
+ 
+./surveypages/DecarbonizationSurveyQsn
+ 
+./surveypages/DecarbonizationSurveyQsn
+ 
+../../../assets/images/
+ 
+change
+ 
 "Have the tests and reports been conducted in compliance with the specified conditions?",
  
 "Has the design process considered identifying and evaluating potential waste heat recovery systems based

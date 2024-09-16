@@ -66,14 +66,6 @@ const FacilityList = ({ searchQuery }) => {
                             </button>
                         </th>
                         <th>Assigned
-                            <button onClick={() => handleSort('assigned')} className="sort-button">
-                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Icon/CaretDoubleVertical">
-                                        <path id="Vector" d="M8.25 4.25L6 2L3.75 4.25" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path id="Vector_2" d="M8.25 8.75L6 11L3.75 8.75" stroke="#717171" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </g>
-                                </svg>
-                            </button>
                         </th>
                         <th>Sector
                             <button onClick={() => handleSort('sector')} className="sort-button">

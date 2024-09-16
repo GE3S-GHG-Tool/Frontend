@@ -7,9 +7,20 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "Inter", // Fallback to Arial, sans-serif if Inter is unavailable
+  },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          fontFamily: "Inter", // Apply font globally to the body
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -34,7 +45,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           background: "#fff",
-          fontFamily: "Inter",
+          fontFamily: "Inter", // Apply Inter font to InputBase
           "&.Mui-disabled": {
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: "#D9D9D9",
@@ -51,6 +62,7 @@ const theme = createTheme({
         root: {
           background: "#fff",
           color: "#B7B7B7",
+          fontFamily: "Inter", // Apply Inter font to InputLabel
           "&.Mui-focused": {
             color: "#3CB477",
           },
@@ -61,17 +73,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "red",
+          fontFamily: "Inter", // Apply Inter font to FormHelperText
         },
       },
     },
-  },
-  typography: {
-    fontFamily: "Inter",
   },
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
+    {" "}
+    <CssBaseline />
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
         <App />

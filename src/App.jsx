@@ -20,11 +20,12 @@ import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import TeamMembers from "./components/Dashboard/TeamMembers";
 import Facilities from "./components/Dashboard/Facilities";
-import Survey from "./components/Dashboard/Survey/Survey";
+import Survey from "./components/Dashboard/Survey/surveypages/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
+import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
 
 function App() {
   return (
@@ -53,8 +54,8 @@ function App() {
         element={<CreateAccountSuccessfully />}
       />
       <Route path="/generate-reports" element={<GenerateReports />} />
-      <Route path="/reports-state" element={<ReportStateEmpty />} />
-
+      <Route path="/reportgenerator" element={<ReportStateEmpty />} />
+      <Route path="/ghgreport" element={<GeneratedReport />} />
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />

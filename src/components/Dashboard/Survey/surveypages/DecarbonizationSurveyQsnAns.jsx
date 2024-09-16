@@ -1,10 +1,37 @@
 import React from "react";
 import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
 import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
-import BasicTable from "./TablesDataDecarbonation";
+import BasicTable from "./TablesDataDecarbonation1";
 import BasicTable2 from "./TablesDataDecarbonation2";
-import BasicTable3 from "./DecarbonTablesData3";
-
+import BasicTable3 from "./TablesDataDecarbonation4";
+import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
+import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
+import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3";
+import DecarbonizationQsnAnsWithUi4 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi4";
+import DecarbonizationQsnAnsWithUi5 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi5";
+import DecarbonizationQsnAnsWithUi6 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi6";
+import DecarbonizationQsnAnsWithUi7 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi7";
+import DecarbonizationQsnAnsDiffUi8 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi8";
+import DecarbonizationQsnAnsDiffUi9 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi9";
+import DecarbonizationQsnAnsDiffUi10 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi10";
+import DecarbonizationQsnAnsDiffUi11 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi11";
+import DecarbonizationQsnAnsDiffUi12 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi12";
+import DecarbonizationQsnAnsDiffUi13 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi13";
+import DecarbonizationQsnAnsDiffUi14 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsDiffUi14";
+import ac_motors_logo from "../../../../assets/images/ac-motors_logo.svg";
+import pump2 from "../../../../assets/images/pump2.svg";
+import wind from "../../../../assets/images/wind.svg";
+import tempreture from "../../../../assets/images/temperature.svg";
+import snowflakes from "../../../../assets/images/snowflakes.svg";
+import warehouse from "../../../../assets/images/warehouse.svg";
+import bolt from "../../../../assets/images/bolt.svg";
+import r_bin from "../../../../assets/images/recycle-bin.svg";
+import snow_blowing from "../../../../assets/images/snow-blowing.svg";
+import fan from "../../../../assets/images/fan.svg";
+import alt_1 from "../../../../assets/images/alt_1.svg";
+import heat from "../../../../assets/images/heat.svg";
+import summer from "../../../../assets/images/summer.svg";
+import hand_holding_2 from "../../../../assets/images/hand-holding-2.svg";
 const TableComponents = {
   "Industrial Chiller System": BasicTable,
   "Refrigerated Storage Area": BasicTable2,
@@ -24,12 +51,12 @@ const Question = ({
   return (
     <Grid2
       sx={{
-        flexDirection: "column",
-        display: "flex",
+        // flexDirection: "column",
+        // display: "flex",
         border: "1px solid #E4E4E4",
         borderRadius: "5px",
         borderTop: "3px solid #369D9C",
-        gap: "20px",
+        // gap: "20px",
       }}
     >
       <Paper
@@ -182,7 +209,7 @@ function SurveyQuestionSection() {
           "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
         ],
       ],
-      logo: "",
+      logo: ac_motors_logo,
       heading: "Industrial AC Motors",
       showTable: false,
     },
@@ -200,7 +227,7 @@ function SurveyQuestionSection() {
           "Pump with right VFD must be selected for the process with variable flow requirement.",
         ],
       ],
-      logo: "",
+      logo: pump2,
       heading: "Industrial Process Pumps",
       showTable: false,
     },
@@ -217,7 +244,7 @@ function SurveyQuestionSection() {
         ],
         [],
       ],
-      logo: "",
+      logo: fan,
       heading: "Industrial Process Fans",
       showTable: false,
     },
@@ -232,7 +259,7 @@ function SurveyQuestionSection() {
           "Leakage in the compressed air system must be minimized in the existing plant.",
         ],
       ],
-      logo: "",
+      logo: wind,
       heading: "Compressed Air System",
       showTable: false,
     },
@@ -249,7 +276,7 @@ function SurveyQuestionSection() {
           "The selected boiler must have smart controls to regulate the fuel and excess air supply to the boiler based on process load variation, thereby achieving higher combustion efficiency.",
         ],
       ],
-      logo: "",
+      logo: alt_1,
       heading: "Industrial Process Boilers",
       showTable: false,
     },
@@ -263,7 +290,7 @@ function SurveyQuestionSection() {
           "Effectiveness of the insulation must be tested on an annual basis.",
         ],
       ],
-      logo: "",
+      logo: heat,
       heading: "Steam Distribution System",
       showTable: false,
     },
@@ -277,7 +304,7 @@ function SurveyQuestionSection() {
           "Ratio (EER) mentioned in the table",
         ],
       ],
-      logo: "",
+      logo: tempreture,
       heading: "Industrial Chiller System",
       showTable: true,
     },
@@ -287,7 +314,7 @@ function SurveyQuestionSection() {
         "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
       ],
       answers: [[], []],
-      logo: "",
+      logo: snowflakes,
       heading: "Chilled Water Distribution System",
       showTable: false,
     },
@@ -300,7 +327,7 @@ function SurveyQuestionSection() {
           "All condenser units should meet the Minimum Energy Efficiency Ratio (EER)",
         ],
       ],
-      logo: "",
+      logo: warehouse,
       heading: "Refrigerated Storage Area",
       showTable: true,
     },
@@ -318,7 +345,7 @@ function SurveyQuestionSection() {
           "To maintain high power factor and low hormonic levels, hence power quality",
         ],
       ],
-      logo: "",
+      logo: bolt,
       heading: "Power Quality",
       showTable: false,
       boldAnswerIndex: 0,
@@ -328,7 +355,7 @@ function SurveyQuestionSection() {
         "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
       ],
       answers: [["Develop Waste heat recovery and utilization strategy"]],
-      logo: "",
+      logo: summer,
       heading: "Process Waste Heat Recovery",
       showTable: false,
     },
@@ -350,7 +377,7 @@ function SurveyQuestionSection() {
           ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
         ],
       ],
-      logo: "",
+      logo: r_bin,
       heading: "Process Energy Sub-Metering",
       showTable: false,
       boldAnswerIndex: 0,
@@ -372,7 +399,7 @@ function SurveyQuestionSection() {
           ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
         ],
       ],
-      logo: "",
+      logo: hand_holding_2,
       heading: "Energy Conservation Techniques and Thermal Insulation",
       showTable: true,
       boldAnswerIndex: 0,
@@ -391,7 +418,7 @@ function SurveyQuestionSection() {
           "Recommendations for rectifications",
         ],
       ],
-      logo: "",
+      logo: snow_blowing,
       heading:
         "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
       showTable: false,
@@ -413,6 +440,29 @@ function SurveyQuestionSection() {
             boldAnswerIndex={q.boldAnswerIndex}
           />
         ))}
+      </Grid2>
+      <Grid2
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          mt: "20px",
+        }}
+      >
+        <DecarbonizationQsnAnsWithUl></DecarbonizationQsnAnsWithUl>
+        <DecarbonizationQsnAnsWithUl2></DecarbonizationQsnAnsWithUl2>
+        <DecarbonizationQsnAnsWithUi3></DecarbonizationQsnAnsWithUi3>
+        <DecarbonizationQsnAnsWithUi4></DecarbonizationQsnAnsWithUi4>
+        <DecarbonizationQsnAnsWithUi5></DecarbonizationQsnAnsWithUi5>
+        <DecarbonizationQsnAnsWithUi6></DecarbonizationQsnAnsWithUi6>
+        <DecarbonizationQsnAnsWithUi7></DecarbonizationQsnAnsWithUi7>
+        <DecarbonizationQsnAnsDiffUi8></DecarbonizationQsnAnsDiffUi8>
+        <DecarbonizationQsnAnsDiffUi9></DecarbonizationQsnAnsDiffUi9>
+        <DecarbonizationQsnAnsDiffUi10></DecarbonizationQsnAnsDiffUi10>
+        <DecarbonizationQsnAnsDiffUi11></DecarbonizationQsnAnsDiffUi11>
+        <DecarbonizationQsnAnsDiffUi12></DecarbonizationQsnAnsDiffUi12>
+        <DecarbonizationQsnAnsDiffUi13></DecarbonizationQsnAnsDiffUi13>
+        <DecarbonizationQsnAnsDiffUi14></DecarbonizationQsnAnsDiffUi14>
       </Grid2>
       <Grid2
         sx={{
@@ -444,4 +494,4 @@ function SurveyQuestionSection() {
 
 export default SurveyQuestionSection;
 
-// -------------------------------------
+// // -------------------------------------
