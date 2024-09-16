@@ -1,0 +1,47 @@
+/* Table container to allow for responsive behavior */
+.table-container {
+  display: grid;
+  gap: 10px; /* Gap between each row */
+  overflow-x: auto; /* Horizontal scroll bar */
+  width: 100%;
+  font-size: 10px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* Grid layout for table headings */
+.table-headings {
+  display: contents;
+  /* grid-template-columns: repeat(auto-fit, minmax(150px, auto)); */
+  font-weight: bold;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Style for individual heading cells */
+.table-heading {
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap; /* Prevents headings from wrapping */
+}
+
+/* Grid layout for table rows */
+.table-row {
+  display: contents;
+  /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+  background-color: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Style for individual cells */
+.table-cell {
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap; /* Prevent text wrapping */
+}

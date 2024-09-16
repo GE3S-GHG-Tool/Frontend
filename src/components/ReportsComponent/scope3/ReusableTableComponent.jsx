@@ -1,19 +1,21 @@
 import { Grid2, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
-import porces_Logo from "../../../../assets/images/emisson_logo.svg";
-import dot_Icon from "../../../../assets/images/DotsThreeVertical.svg";
-import TablesData from "../TablesData";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-import { useState } from "react";
-import ProcessEmissionReports from "./ProcessEmissionReports";
-function ProcessEmission() {
-  // State to control dialog visibility
+import { Dialog } from "@mui/material";
+import ReusableTable from "./ReusableTable";
+import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
+import porces_Logo from "../../../assets/images/emisson_logo.svg";
+
+function ReusableTableSection({
+  title,
+  description,
+  icon,
+  headings,
+  tableData,
+  buttonLabel = "Add More", // Default label for the button
+  DialogContentComponent, // The component to display inside the dialog
+  dialogComponentProps = {}, // Props to pass to the dialog content component
+}) {
   const [open, setOpen] = useState(false);
 
   // Function to open the dialog
@@ -25,43 +27,6 @@ function ProcessEmission() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const headings = [
-    "Type of Process Emission",
-    "Category",
-    "Sub Category",
-    "Sub Sub Category",
-    "Sub Sub Sub Category",
-    "Quantity",
-  ];
-
-  const tableData = [
-    [
-      "Waste Gas Disposal",
-      "Flaringy",
-      "Heavy oil/ cold bitumen Production",
-      "-",
-      "-",
-      "56 10^3*m3",
-    ],
-    ["Waste Gas Disposal", "Flaringy", "Refining", "-", "-", "12 10^3*m3"],
-    [
-      "Process and Vented",
-      "Oil and Gas Exploration",
-      "Well Completion",
-      "Offshore",
-      "Gas",
-      "45",
-    ],
-    [
-      "Process and Vented",
-      "Natural Gas Processing",
-      "Natural G...",
-      "Gas-Driv...",
-      "Gas",
-      "68",
-    ],
-  ];
 
   return (
     <div>
@@ -77,7 +42,7 @@ function ProcessEmission() {
           borderRadius: "16px",
         }}
       >
-        {/* inner main */}
+        {/* Inner Main */}
         <Grid2
           sx={{
             width: "100%",
@@ -86,7 +51,7 @@ function ProcessEmission() {
             gap: "30px",
           }}
         >
-          {/* grid header */}
+          {/* Grid Header */}
           <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
             <div
               style={{
@@ -100,12 +65,7 @@ function ProcessEmission() {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "6px" }}
               >
-                <img
-                  src={porces_Logo}
-                  height="15px"
-                  width="10px"
-                  alt="fuel-logo"
-                />
+                <img src={icon} height={18} width={18} alt={title} />
                 <h2
                   style={{
                     fontSize: "16px",
@@ -115,7 +75,7 @@ function ProcessEmission() {
                     margin: 0, // Removes default margin
                   }}
                 >
-                  Process Emission
+                  {title}
                 </h2>
               </div>
               <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
@@ -128,13 +88,14 @@ function ProcessEmission() {
                 lineHeight="22.4px"
                 color="#717171"
               >
-                Input the type and amount of refrigerant used to account for
-                emissions from refrigerant Consumption.
+                {description}
               </Typography>
             </div>
           </Grid2>
-          {/* grid second */}
-          <TablesData data={tableData} headings={headings} />
+
+          {/* Grid Second */}
+          <ReusableTable data={tableData} headings={headings} />
+
           <Grid2>
             <Button
               sx={{
@@ -150,11 +111,12 @@ function ProcessEmission() {
               }}
               onClick={handleClickOpen} // Open the dialog on button click
             >
-              Add More
+              {buttonLabel}
             </Button>
           </Grid2>
         </Grid2>
       </Grid2>
+
       {/* Popup Dialog Component */}
       <Dialog
         open={open}
@@ -169,10 +131,16 @@ function ProcessEmission() {
           },
         }}
       >
-        <ProcessEmissionReports onClose={handleClose} />
+        {/* Render the passed component with its props */}
+        {DialogContentComponent && (
+          <DialogContentComponent
+            onClose={handleClose}
+            {...dialogComponentProps} // Spread the props for the dialog content
+          />
+        )}
       </Dialog>
     </div>
   );
 }
 
-export default ProcessEmission;
+export default ReusableTableSection;
