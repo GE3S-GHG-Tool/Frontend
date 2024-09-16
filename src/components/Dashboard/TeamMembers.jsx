@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Tabs, Tab, Box, Typography, Button, InputBase } from "@mui/material";
 import MemberList from "./MemberList/MemberList";
-import CustomModal from "./CustomModal/customModal";
+// import CustomModal from "./CustomModal/customModal";
 
 const TeamMembers = () => {
   const [value, setValue] = useState(0);
@@ -158,7 +158,7 @@ const TeamMembers = () => {
           </Box>
         </Box>
       </Box>
-      <CustomModal
+      {/* <CustomModal
         open={isModalOpen}
         onClose={handleCloseModal}
         title="Expand your team using our addon plan now."
@@ -167,7 +167,7 @@ const TeamMembers = () => {
         type="member"
         onAction={handleInvite}
         planContains="Invite more members"
-      />
+      /> */}
     </>
   );
 };
