@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, InputBase } from '@mui/material';
 import FacilityList from './FacilityList/FacilityList';
-import CustomModal from './CustomModal/customModal';
+// import CustomModal from './CustomModal/customModal';
 
 const Facilities = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -65,7 +65,7 @@ const Facilities = () => {
           <FacilityList searchQuery={searchQuery} />
         </Box>
       </Box>
-      <CustomModal
+      {/* <CustomModal
         open={isModalOpen}
         onClose={handleCloseModal}
         title="Unlock extra facilities by choosing an addon plan."
@@ -75,7 +75,7 @@ const Facilities = () => {
         price={20}
         type="facilities"
         planContains="Add more facilities"
-      />
+      /> */}
     </>
   );
 };
