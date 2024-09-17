@@ -1,4 +1,4 @@
-import { Grid2 } from "@mui/material";
+import { FormControl, Grid2, Select } from "@mui/material";
 import React from "react";
 import Typography from "@mui/material/Typography";
 import refri_logo from "../../../assets/images/refri_logo.svg";
@@ -8,9 +8,13 @@ import { useState } from "react";
 import down_arrow from "../../../assets/images/down_arrow.svg";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
+
 function RefrigerantData() {
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
+  const [fields, setFields] = useState([
+    { refrigerant: "", quantity: "", unit: "" },
+  ]);
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -19,319 +23,192 @@ function RefrigerantData() {
 
     // Check if the current row is complete
     const isRowComplete =
-      updatedFields[index].fuel &&
+      updatedFields[index].refrigerant &&
       updatedFields[index].quantity &&
       updatedFields[index].unit;
 
     // If the current row is complete and it’s the last row, add a new row
     if (isRowComplete && index === fields.length - 1) {
-      setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+      setFields([
+        ...updatedFields,
+        { refrigerant: "", quantity: "", unit: "" },
+      ]);
     }
   };
+
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
 
     // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
-      updatedFields.push({ fuel: "", quantity: "", unit: "" });
+      updatedFields.push({ refrigerant: "", quantity: "", unit: "" });
     }
 
     setFields(updatedFields);
   };
+
   return (
-    <div>
-      {/* Main Grid */}
-      <Grid2
-        sx={{
-          padding: "25px 45px 25px 45px",
-          width: "90%",
-          bgcolor: "#ffffff",
+    <div
+      style={{
+        width: "90%",
+        margin: "0 auto",
+        padding: "25px 45px",
+        backgroundColor: "#fff",
+        borderRadius: "16px",
+      }}
+    >
+      <div
+        style={{
           display: "flex",
-          flexDirection: "column",
-          margin: "0 auto",
-          borderRadius: "16px",
+          alignItems: "center",
+          gap: "6px",
+          justifyContent: "space-between",
+          marginBottom: "4px",
         }}
       >
-        {/* inner main */}
-        <Grid2
-          sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-          }}
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <img src={refri_logo} height={15} width={15} alt="refrigerant-logo" />
+          <h2
+            style={{
+              fontSize: "16px",
+              fontWeight: "600",
+              lineHeight: "28px",
+              color: "#000000",
+              margin: 0, // Removes default margin
+            }}
+          >
+            Refrigerant Data
+          </h2>
+        </div>
+
+        <div>
+          <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+        </div>
+      </div>
+
+      <Box
+        sx={{
+          marginBottom: "30px",
+        }}
+      >
+        <Typography
+          fontSize="12px"
+          fontWeight="400"
+          lineHeight="22.4px"
+          color="#717171"
         >
-          {/* grid header */}
-          <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          Input the type and amount of refrigerant used to account for emissions
+          from refrigerant consumption.
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}
+      >
+        {fields.map((field, index) => (
+          <Box
+            key={index}
+            sx={{
+              display: "flex",
+              gap: "10px",
+            }}
+          >
+            <Grid2 sx={{ flexGrow: 1 }} container spacing={2.5}>
+              <Grid2 item size={4}>
+                <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+                  Type of Refrigerant
+                </Typography>
+                <FormControl fullWidth>
+                  <Select
+                    name="refrigerant"
+                    value={field.refrigerant}
+                    onChange={(e) => handleChange(index, e)}
+                    displayEmpty
+                    inputProps={{ "aria-label": "Without label" }}
+                  >
+                    <MenuItem disabled value="">
+                      Select Type
+                    </MenuItem>
+                    <MenuItem value={"R134a"}>R134a</MenuItem>
+                    <MenuItem value={"R410a"}>R410a</MenuItem>
+                    <MenuItem value={"R22"}>R22</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid2>
+              {field.refrigerant && (
+                <Grid2 item size={4}>
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 1, fontSize: "0.75rem" }}
+                  >
+                    Quantity
+                  </Typography>
+                  <TextField
+                    name="quantity"
+                    value={field.quantity}
+                    onChange={(e) => handleChange(index, e)}
+                    variant="outlined"
+                    fullWidth
+                    type="number"
+                    placeholder="Enter quantity"
+                  />
+                </Grid2>
+              )}
+              {field.quantity && (
+                <Grid2 item size={4}>
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 1, fontSize: "0.75rem" }}
+                  >
+                    Unit
+                  </Typography>
+                  <FormControl fullWidth>
+                    <Select
+                      name="unit"
+                      value={field.unit}
+                      onChange={(e) => handleChange(index, e)}
+                      displayEmpty
+                      inputProps={{ "aria-label": "Without label" }}
+                    >
+                      <MenuItem disabled value="">
+                        Select Unit
+                      </MenuItem>
+                      <MenuItem value={"kg"}>kg</MenuItem>
+                      <MenuItem value={"lbs"}>lbs</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid2>
+              )}
+            </Grid2>
+
+            {/* Show delete icon only if both refrigerant type and quantity are filled */}
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "6px",
-                width: "100%", // Adjust as needed
+                width: "20px",
+                height: "55px",
               }}
             >
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "6px" }}
-              >
+              {field.refrigerant && field.quantity && (
                 <img
-                  src={refri_logo}
-                  height="15px"
-                  width="10px"
-                  alt="fuel-logo"
-                />
-                <h2
+                  onClick={() => handleDelete(index)}
+                  src={trash} // Path to your SVG delete icon
+                  alt="Delete"
                   style={{
-                    fontSize: "16px",
-                    fontWeight: "600",
-                    lineHeight: "28px",
-                    color: "#000000",
-                    margin: 0, // Removes default margin
-                  }}
-                >
-                  Refrigerant Data
-                </h2>
-              </div>
-              <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+                    width: "20px",
+                    height: "55px",
+                    marginTop: "6px",
+                    cursor: "pointer",
+                  }} // Adjust the size as needed
+                />
+              )}
             </div>
-
-            <div>
-              <Typography
-                fontSize="12px"
-                fontWeight="400"
-                lineHeight="22.4px"
-                color="#717171"
-              >
-                Input the type and amount of refrigerant used to account for
-                emissions from refrigerant Consumption.
-              </Typography>
-            </div>
-          </Grid2>
-          {/* grid input second */}
-          <Grid2 container spacing={2}>
-            {fields.map((field, index) => (
-              <Grid2 item xs={12} key={index}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start", // Align items at the start for better column alignment
-                    gap: "20px", // Space between each input group
-                    flexWrap: "wrap", // Allow wrapping if necessary
-                  }}
-                >
-                  {/* Fuel Type Input */}
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column", // Arrange label and input in a column
-                      gap: "4px", // Space between label and input
-                      alignItems: "flex-start", // Ensure alignment is consistent
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      fontSize="12px"
-                      fontWeight="400"
-                      lineHeight="19.6px"
-                    >
-                      Types of Refrigerant
-                    </Typography>
-                    <TextField
-                      select
-                      name="fuel"
-                      value={field.fuel}
-                      onChange={(e) => handleChange(index, e)}
-                      sx={{
-                        width: "332.5px",
-                        borderRadius: "5px",
-                        border: "1px solid #D9D9D966",
-                        position: "relative",
-                        "& .MuiSelect-icon": {
-                          display: "none",
-                        },
-                        "& .MuiInputBase-input": {
-                          padding: "10px 14px 10px 14px", // Add consistent padding
-                          height: "8px",
-                        },
-                      }}
-                      SelectProps={{
-                        displayEmpty: true,
-                      }}
-                    >
-                      <MenuItem value="" disabled>
-                        <Grid2
-                          flexDirection="row"
-                          display="flex"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Typography
-                            fontSize="13px"
-                            fontWeight="500"
-                            lineHeight="22.4px"
-                            color="#B0B0B0"
-                          >
-                            Select Type
-                          </Typography>
-                          <img
-                            src={down_arrow}
-                            width="12px"
-                            height="7px"
-                            alt="Logo"
-                            style={{
-                              position: "absolute",
-                              marginLeft: "290px",
-                            }}
-                          />
-                        </Grid2>
-                      </MenuItem>
-                      <MenuItem value="Fuel">Fuel</MenuItem>
-                      <MenuItem value="Fuel2">Fuel2</MenuItem>
-                      <MenuItem value="Fuel3">Fuel3</MenuItem>
-                    </TextField>
-                  </Box>
-
-                  {/* Show Quantity and Unit inputs only if Fuel Type is selected */}
-                  {field.fuel && (
-                    <>
-                      {/* Quantity Input */}
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column", // Arrange label and input in a column
-                          gap: "4px", // Space between label and input
-                          alignItems: "flex-start", // Ensure alignment is consistent
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          fontSize="12px"
-                          fontWeight="400"
-                          lineHeight="19.6px"
-                        >
-                          Quantity
-                        </Typography>
-                        <TextField
-                          name="quantity"
-                          value={field.quantity}
-                          placeholder="Quantity"
-                          position="reletive"
-                          onChange={(e) => handleChange(index, e)}
-                          sx={{
-                            width: "332.5px",
-                            borderRadius: "5px",
-                            border: "1px solid #D9D9D966",
-                            "& .MuiInputBase-input": {
-                              padding: "10px 14px", // Add consistent padding
-                              height: "auto", // Allow height to adjust automatically
-                            },
-                          }}
-                        />
-                      </Box>
-
-                      {/* Unit Input */}
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column", // Arrange label and input in a column
-                          gap: "4px", // Space between label and input
-                          alignItems: "flex-start", // Ensure alignment is consistent
-                        }}
-                      >
-                        <Typography
-                          variant="body2"
-                          fontSize="12px"
-                          fontWeight="400"
-                          lineHeight="19.6px"
-                        >
-                          Unit
-                        </Typography>
-                        <TextField
-                          select
-                          name="unit"
-                          value={field.unit}
-                          onChange={(e) => handleChange(index, e)}
-                          sx={{
-                            width: "332.5px",
-                            borderRadius: "5px",
-                            border: "1px solid #D9D9D966",
-                            "& .MuiSelect-icon": {
-                              display: "none", // Hide the select icon to match the fuel field
-                            },
-                            "& .MuiInputBase-input": {
-                              padding: "10px 14px 10px 14px", // Add consistent padding
-                              height: "8px", // Ensure consistent input height
-                            },
-                          }}
-                          SelectProps={{
-                            displayEmpty: true,
-                          }}
-                        >
-                          <MenuItem value="" disabled>
-                            <Grid2
-                              flexDirection="row"
-                              display="flex"
-                              justifyContent="space-between"
-                              alignItems="center"
-                            >
-                              <Typography
-                                fontSize="13px"
-                                fontWeight="500"
-                                lineHeight="22.4px"
-                                color="#B0B0B0"
-                              >
-                                Select Type
-                              </Typography>
-                              <img
-                                src={down_arrow}
-                                width="12px"
-                                height="7px"
-                                alt="Logo"
-                                style={{
-                                  position: "absolute",
-                                  marginLeft: "290px",
-                                }}
-                              />
-                            </Grid2>
-                          </MenuItem>
-                          <MenuItem value="Fuel">Fuel</MenuItem>
-                          <MenuItem value="Fuel2">Fuel2</MenuItem>
-                          <MenuItem value="Fuel3">Fuel3</MenuItem>
-                        </TextField>
-                      </Box>
-                    </>
-                  )}
-                  {field.quantity || field.unit ? (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        gap: "8px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <img
-                        onClick={() => handleDelete(index)}
-                        src={trash} // Path to your SVG delete icon
-                        alt="Delete"
-                        style={{
-                          width: "20px",
-                          height: "55px",
-                          marginTop: "6px",
-                          marginRight: "15px",
-                        }} // Adjust the size as needed
-                      />
-                    </Box>
-                  ) : null}
-                </Box>
-              </Grid2>
-            ))}
-          </Grid2>
-        </Grid2>
-      </Grid2>
+          </Box>
+        ))}
+      </Box>
     </div>
   );
 }

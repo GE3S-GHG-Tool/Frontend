@@ -7,6 +7,14 @@ import fuelRelated from "../../../assets/images/fuelActivities.svg";
 import Investments from "../scope3/Investments";
 import EmployeeCommuting from "../scope3/EmployeeCommuting";
 import DownstreamAssets from "../scope3/DownstreamAssets";
+import WasteGeneratedPopup from "../scope3/WasteGeneratedPopup";
+import BusinessTravelPopup from "../scope3/BusinessTravelPopup";
+import CapitalGoodsPopup from "../scope3/CapitalGoodsPopup";
+import FuelRelatedPopup from "../scope3/FuelRelatedPopup";
+import upstream from "../../../assets/images/upstream.svg";
+import downstream from "../../../assets/images/downstream.svg";
+import UpstreamLeasedPopup from "../scope3/UpstreamLeasedPopup";
+import plane from "../../../assets/images/aeroplane.svg";
 
 const Dummy = () => {
   return <p>Hello</p>;
@@ -202,7 +210,7 @@ const Scope3 = () => {
         icon={wasteGenerated}
         headings={wasteHeadings}
         tableData={wasteData}
-        DialogContentComponent={Dummy}
+        DialogContentComponent={WasteGeneratedPopup}
         // CREATE SEPARATE COMPONENTS LIKE DUMMY FOR THE DIALOG FORMS
       />
 
@@ -211,10 +219,10 @@ const Scope3 = () => {
         description={
           "Enter details about travel type, details of airport, and class (business, economy, first) to calculate emissions from business-related travel."
         }
-        icon={wasteGenerated}
+        icon={plane}
         headings={businessHeadings}
         tableData={businessData}
-        DialogContentComponent={Dummy}
+        DialogContentComponent={BusinessTravelPopup}
       />
 
       <PurchasedGoods />
@@ -227,7 +235,7 @@ const Scope3 = () => {
         icon={capitalGoods}
         headings={capitalGoodsHeadings}
         tableData={capitalGoodsData}
-        DialogContentComponent={Dummy}
+        DialogContentComponent={CapitalGoodsPopup}
       />
 
       <Investments />
@@ -242,7 +250,7 @@ const Scope3 = () => {
         icon={fuelRelated}
         headings={fuelRelatedHeadings}
         tableData={fuelRelatedData}
-        DialogContentComponent={Dummy}
+        DialogContentComponent={FuelRelatedPopup}
       />
 
       <ReusableTableSection
@@ -250,10 +258,10 @@ const Scope3 = () => {
         description={
           "Enter energy consumption details for leased assets used in operations to estimate upstream emissions."
         }
-        icon={fuelRelated}
+        icon={upstream}
         headings={leasedDataHeadings}
         tableData={leasedData}
-        DialogContentComponent={Dummy}
+        DialogContentComponent={UpstreamLeasedPopup}
       />
 
       <DownstreamAssets />

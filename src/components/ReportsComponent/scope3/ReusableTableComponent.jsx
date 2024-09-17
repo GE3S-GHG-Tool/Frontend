@@ -65,7 +65,7 @@ function ReusableTableSection({
               <div
                 style={{ display: "flex", alignItems: "center", gap: "6px" }}
               >
-                <img src={icon} height={18} width={18} alt={title} />
+                <img src={icon} height={20} width={20} alt={title} />
                 <h2
                   style={{
                     fontSize: "16px",
@@ -126,7 +126,7 @@ function ReusableTableSection({
           "& .MuiDialog-paper": {
             width: "1100px",
             maxWidth: "1000px",
-            maxHeight: "89vh",
+            height: "89vh",
             borderRadius: "16px",
           },
         }}
