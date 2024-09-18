@@ -60,9 +60,9 @@ function TablesData({ headings = [], data }) {
         >
           <tbody>
             <tr style={{ border: "1px solid  #EEEEEE" }}>
-              {headings?.map((heading, cellIndex) => (
+              {Object.entries(row).map(([key, value], cellIndex) => (
                 <td
-                  key={cellIndex}
+                  key={`${cellIndex}-${key}`}
                   style={{
                     textAlign: "left",
                     fontWeight: "bold",
@@ -71,8 +71,8 @@ function TablesData({ headings = [], data }) {
                   }}
                 >
                   <Typography fontWeight="400" fontSize="10px">
-                    {row[heading] === "" ? "-" : row[heading]}
-                    {/* Display value for each heading, or "-" if missing */}
+                    {value === "" ? "-" : value}
+                    {/* Display value or "-" if the value is empty */}
                   </Typography>
                 </td>
               ))}
