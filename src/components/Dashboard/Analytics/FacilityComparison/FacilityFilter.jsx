@@ -26,7 +26,7 @@ const FacilityFilter = ({ onApply, onCancel }) => {
 
     return (
         <Box>
-            <Button onClick={() => setIsOpen(!isOpen)} sx={{ border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '10px', textTransform: 'unset', fontFamily: 'Inter', fontWeight: '500', fontSize: '1rem', display: 'flex', gap: '8px', justifyContent: 'center', alignItems: 'center', color: 'black', padding: '0px 12px' }}>
+            <Button onClick={() => setIsOpen(!isOpen)} sx={{ border: '1px solid rgba(217, 217, 217, 0.40)', borderRadius: '8px', textTransform: 'unset', fontFamily: 'Inter', fontWeight: '500', fontSize: '0.875rem', display: 'flex', gap: '8px', justifyContent: 'center', alignItems: 'center', color: 'black', padding: '6px 12px' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <g clip-path="url(#clip0_1214_51328)">
                         <path d="M5 10.625H15" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
@@ -53,9 +53,9 @@ const FacilityFilter = ({ onApply, onCancel }) => {
                 }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                         <Typography sx={{ fontWeight: '600', fontSize: '1.2rem' }}>Filter</Typography>
-                        <Button sx={{ color: '#369D9C', fontFamily: 'Inter', fontWeight: '600', fontSize: '1rem', textTransform: 'unset' }} onClick={handleReset}>Reset all</Button>
+                        <Button sx={{ color: '#369D9C', fontFamily: 'Inter', fontWeight: '600', fontSize: '1rem', textTransform: 'unset', }} onClick={handleReset}>Reset all</Button>
                     </Box>
-                    <Typography sx={{ mb: 1 }}>Period</Typography>
+                    <Typography sx={{ mb: 1, fontWeight:'400',color:'#717171' }}>Period</Typography>
                     <Select
                         value={period}
                         onChange={(e) => setPeriod(e.target.value)}
@@ -65,18 +65,18 @@ const FacilityFilter = ({ onApply, onCancel }) => {
                         placeholder="Period"
                         sx={{
                             margin: '0',
-                            border: '1px solid rgba(217, 217, 217, 0.40)',
+                            border: '1px solid rgba(217, 217, 217, 0.0)',
                             borderRadius: '5px',
                             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                borderColor: 'rgba(217, 217, 217, 0.40)',
+                                borderColor: 'rgba(217, 217, 217, 0.30)',
                             },
                             '& .MuiSelect-select': {
-                                padding: '12px 16px',
+                                padding: '10px 16px',
                             },
                         }}
                     >
                         <MenuItem value="" disabled>
-                            <span style={{ color: 'rgb(173 173 173)' }}>Period</span>
+                            <span style={{ color: 'rgb(228 228 228)',fontSize:'0.875rem' }}>Period</span>
                         </MenuItem>
                         <MenuItem value="Quarterly">Quarterly</MenuItem>
                         <MenuItem value="Yearly">Yearly</MenuItem>
@@ -94,18 +94,18 @@ const FacilityFilter = ({ onApply, onCancel }) => {
                                 placeholder="Period"
                                 sx={{
                                     margin: '0',
-                                    border: '1px solid rgba(217, 217, 217, 0.40)',
+                                    border: '1px solid rgba(217, 217, 217, 0.30)',
                                     borderRadius: '5px',
                                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: 'rgba(217, 217, 217, 0.40)',
+                                        borderColor: 'rgba(217, 217, 217, 0.30)',
                                     },
                                     '& .MuiSelect-select': {
-                                        padding: '12px 16px',
+                                        padding: '10px 16px',
                                     },
                                 }}
                             >
                                 <MenuItem value="" disabled>
-                                    <span style={{ color: 'rgb(173 173 173)' }}>Select Quarter</span>
+                                    <span style={{ color: 'rgb(228 228 228)',fontSize:'0.875rem' }}>Select Quarter</span>
                                 </MenuItem>
                                 <MenuItem value="Q1">Q1</MenuItem>
                                 <MenuItem value="Q2">Q2</MenuItem>
