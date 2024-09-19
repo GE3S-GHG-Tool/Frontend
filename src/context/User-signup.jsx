@@ -6,7 +6,7 @@ const SignupContext = createContext();
 export const SignupProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
-  const [imageApi, setImageApi] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
   const [password, setPassword] = useState("");
   const [organizationName, setOrganizationName] = useState("");
   const [organizationCountry, setOrganizationCountry] = useState("");
@@ -29,8 +29,8 @@ export const SignupProvider = ({ children }) => {
     setEmail,
     fullname,
     setFullname,
-    imageApi,
-    setImageApi,
+    imageUrl,
+    setImageUrl,
     password,
     setPassword,
     organizationName,
