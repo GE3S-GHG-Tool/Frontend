@@ -1,20 +1,27 @@
+/* eslint-disable no-unused-vars */
 import TextField from "@mui/material/TextField";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
 import Wrapper from "../Wrapper/Wrapper";
 import logo from "../../assets/images/ge3s_logo.png";
-import VerfiedModal from "./VerfiedModal";
 import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/utils";
+import axiosInstance from "../../util/axiosInstance";
+import OtpValidationModal from "./OTPModal";
+import { useSignup } from "../../context/User-signup";
+
 export default function SignUp() {
+  const { email, setEmail } = useSignup();
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
-  const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [helperText, setHelperText] = useState({
     email: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
+
   useEffect(() => {
     const isEmailValid = email.trim() !== "" && validateEmail(email);
     const shouldShowError = email.trim() !== "" && !isEmailValid;
@@ -27,6 +34,26 @@ export default function SignUp() {
 
     setIsFormValid(isEmailValid);
   }, [email]);
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    setApiError("");
+
+    try {
+      const response = await axiosInstance.post("/api/user/initiate", {
+        user_email: email,
+      });
+      console.log("Enter Email:", response.data);
+      setOpenModal(true);
+      // navigate("/personalinfo")
+    } catch (error) {
+      console.error("API error:", error);
+      setApiError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Wrapper>
       <div className="signup_page">
@@ -47,10 +74,10 @@ export default function SignUp() {
           />
           <button
             className="ge3s_button"
-            disabled={!isFormValid}
-            onClick={() => navigate("/personalinfo")}
+            disabled={!isFormValid || isLoading}
+            onClick={handleSubmit}
           >
-            Confirm
+            {isLoading ? "Processing..." : "Confirm"}
           </button>
         </div>
         <h6>
@@ -74,7 +101,11 @@ export default function SignUp() {
           }}
         ></div>
       </div>
-      <VerfiedModal open={openModal} handleClose={() => setOpenModal(false)} />
+      <OtpValidationModal
+        email={email}
+        open={openModal}
+        handleClose={() => setOpenModal(false)}
+      />
     </Wrapper>
   );
 }

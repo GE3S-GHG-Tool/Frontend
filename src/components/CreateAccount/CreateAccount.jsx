@@ -3,20 +3,17 @@ import TextField from "@mui/material/TextField";
 import "./CreateAccount.css";
 import Radio from "@mui/material/Radio";
 import Wrapper from "../Wrapper/Wrapper";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/ge3s_logo.png";
 import PasswordInput from "../common/PasswordInput";
 import { validatePassword } from "../../util/utils";
+import { useSignup } from "../../context/User-signup";
 export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
-  const location = useLocation();
-  useEffect(() => {
-    setEmail("unmoy@growhut.in");
-  }, [location]);
+  const { email } = useSignup();
 
   const [helperText, setHelperText] = useState({
     password: "",
