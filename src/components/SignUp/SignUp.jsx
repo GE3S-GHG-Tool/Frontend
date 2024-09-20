@@ -9,6 +9,7 @@ import { validateEmail } from "../../util/utils";
 import axiosInstance from "../../util/axiosInstance";
 import OtpValidationModal from "./OTPModal";
 import { useSignup } from "../../context/User-signup";
+import OtpModal from "../VerifyOTP/VerifyOTP";
 
 export default function SignUp() {
   const { email, setEmail } = useSignup();
@@ -72,9 +73,7 @@ export default function SignUp() {
             error={error}
             helperText={helperText.email}
           />
-          {apiError && (
-            <p>User already exist</p>
-          )}
+          {apiError && <p>User already exist</p>}
           <button
             className="ge3s_button"
             disabled={!isFormValid || isLoading}
@@ -104,7 +103,7 @@ export default function SignUp() {
           }}
         ></div>
       </div>
-      <OtpValidationModal
+      <OtpModal
         email={email}
         open={openModal}
         handleClose={() => setOpenModal(false)}
