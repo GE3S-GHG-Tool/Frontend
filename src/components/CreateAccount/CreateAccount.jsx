@@ -14,9 +14,7 @@ export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
-  const { email, imageUrl, fullname, password, setPassword } = useSignup();
-
-  console.log("ImageFile From Password Page", imageUrl);
+  const { email, password, setPassword } = useSignup();
 
   const [helperText, setHelperText] = useState({
     password: "",
@@ -60,13 +58,8 @@ export default function CreateAccount() {
     if (isFormValid) {
       try {
         const formData = new FormData();
-        formData.append("user_name", fullname);
+        formData.append("user_email", email);
         formData.append("user_password", password);
-
-        if (imageUrl instanceof File) {
-          formData.append("user_profileImage", imageUrl, imageUrl.name);
-        }
-
         const response = await axiosInstance.post("/api/user/1", formData, {
           headers: {
             "Content-Type": "multipart/form-data",

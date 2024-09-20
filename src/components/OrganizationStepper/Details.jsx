@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled, TextField } from "@mui/material";
+import { useSignup } from "../../context/User-signup";
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip
     placement="top-end"
@@ -32,6 +33,24 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   },
 }));
 export default function Details({ activeStep, setActiveStep }) {
+  const {
+    organizationName,
+    organizationCountry,
+    organizationState,
+    organizationCity,
+    organizationIndustry,
+    organizationSector,
+  } = useSignup();
+
+  console.log(
+    organizationName,
+    organizationCountry,
+    organizationState,
+    organizationCity,
+    organizationIndustry,
+    organizationSector
+  );
+
   const [employeeCount, setEmployeeCount] = useState("");
   const [fiscalYear, setFiscalYear] = useState("");
   const [baseMonth, setBaseMonth] = useState("");
