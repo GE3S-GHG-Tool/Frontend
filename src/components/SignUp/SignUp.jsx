@@ -72,7 +72,9 @@ export default function SignUp() {
             error={error}
             helperText={helperText.email}
           />
-          {apiError && <span>User already exist</span>}
+          {apiError && (
+            <p>User already exist</p>
+          )}
           <button
             className="ge3s_button"
             disabled={!isFormValid || isLoading}
