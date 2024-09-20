@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from "react";
-import "./VerifyOTP.css";
+import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import logo from "../../assets/images/ge3s.png";
-import Wrapper from "../Wrapper/Wrapper";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../util/axiosInstance";
+import { useSignup } from "../../context/User-signup";
 
-export default function VerifyOTP() {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 2,
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+
+export default function OtpModal({ email, open, handleClose }) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { setAuthToken } = useSignup();
 
   const isFormValid = otp.every((digit) => digit !== "");
 
@@ -19,8 +39,10 @@ export default function VerifyOTP() {
   }, [timeLeft]);
 
   useEffect(() => {
-    document.getElementById("otp-input-0")?.focus();
-  }, []);
+    if (open) {
+      document.getElementById("otp-input-0")?.focus();
+    }
+  }, [open]);
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -43,111 +65,133 @@ export default function VerifyOTP() {
     }
   };
 
+  const handleVerify = async () => {
+    if (!isFormValid) {
+      setError("Please enter a 6-digit OTP");
+      return;
+    }
+
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const payload = {
+        user_email: email,
+        user_otp: otp.join(""),
+      };
+      const response = await axiosInstance.post(
+        "/api/user/otp_validation",
+        payload
+      );
+      if (response.status === 200) {
+        setAuthToken(response?.data?.data?.token);
+        console.log(response?.data?.data?.token);
+        navigate("/personalinfo");
+      } else {
+        setError("Incorrect OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error("OTP validation error:", error);
+      setError("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <Wrapper>
-      <div className="verify-container">
-        <div
-          style={{
-            position: "relative",
-            zIndex: 1,
-            background: "white",
-            borderRadius: "20px",
-            gap: "8px",
-            padding: "24px",
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
+    >
+      <Box sx={style}>
+        <img
+          src={logo}
+          alt=""
+          style={{ width: "48px", marginBottom: "16px" }}
+        />
+        <Typography
+          variant="h5"
+          component="h2"
+          sx={{ fontWeight: "bold", marginBottom: "16px" }}
+        >
+          Enter the OTP sent to your Email ID
+        </Typography>
+        <Typography
+          sx={{ fontSize: "16px", color: "#6C757D", marginBottom: "16px" }}
+        >
+          {email}
+        </Typography>
+        <Box
+          sx={{ display: "flex", alignItems: "center", marginBottom: "16px" }}
+        >
+          <Typography
+            sx={{ fontSize: "14px", color: "#717171", marginRight: "8px" }}
+          >
+            {timeLeft}s
+          </Typography>
+          <Button
+            onClick={() => setTimeLeft(30)}
+            disabled={timeLeft > 0}
+            sx={{ fontSize: "14px", color: "#28814d" }}
+          >
+            Resend OTP
+          </Button>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            marginBottom: "24px",
           }}
         >
-          <img src={logo} alt="" className="ge3s_logo" />
-          <h1>Enter the OTP sent to your Email ID</h1>
-          <span id="email-address">
-            <span id="email">Aman@gmail.com</span>
-            <span id="edit-email-link" className="theme-color">
-              Edit Email ID
-            </span>
-          </span>
-          <p className="timer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 25 25"
-              fill="none"
-            >
-              <g clipPath="url(#clip0_1214_40831)">
-                <path
-                  d="M12.5 21.4248C17.4706 21.4248 21.5 17.3954 21.5 12.4248C21.5 7.45424 17.4706 3.4248 12.5 3.4248C7.52944 3.4248 3.5 7.45424 3.5 12.4248C3.5 17.3954 7.52944 21.4248 12.5 21.4248Z"
-                  stroke="#717171"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12.5 7.1748V12.4248H17.75"
-                  stroke="#717171"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_1214_40831">
-                  <rect
-                    width="24"
-                    height="24"
-                    fill="white"
-                    transform="translate(0.5 0.424805)"
-                  />
-                </clipPath>
-              </defs>
-            </svg>
-            <span className="theme-color">{timeLeft}s</span>
-            <span
-              className="resend-otp theme-color"
-              onClick={() => setTimeLeft(30)}
-              disabled={timeLeft > 0}
-            >
-              Resend OTP
-            </span>
-          </p>
-          <div className="otp-inputs">
-            {otp.map((digit, index) => (
-              <input
-                key={index}
-                id={`otp-input-${index}`}
-                type="text"
-                maxLength="1"
-                value={digit}
-                onChange={(e) => handleChange(e, index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                className="otp-input"
-              />
-            ))}
-          </div>
-          <button
-            onClick={() => navigate("/change-password")}
-            disabled={!isFormValid}
-            className={
-              !isFormValid ? "verify-button-disabled" : "verify-button-active"
-            }
-          >
-            Verify OTP
-          </button>
-        </div>
-        <div
-          style={{
-            width: "80%",
-            height: "16vh",
-            borderRadius: "50%",
-            margin: "0 auto",
-            position: "absolute",
-            bottom: "-12px",
-            left: "10%",
-            background: "#598483",
-            filter: "blur(20px)",
-            opacity: 0.8,
-            zIndex: 0,
+          {otp.map((digit, index) => (
+            <TextField
+              key={index}
+              id={`otp-input-${index}`}
+              type="text"
+              inputProps={{
+                maxLength: 1,
+                style: { textAlign: "center" },
+              }}
+              value={digit}
+              onChange={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              sx={{ width: "48px" }}
+            />
+          ))}
+        </Box>
+        {error && (
+          <Typography sx={{ color: "error.main", marginBottom: "16px" }}>
+            {error}
+          </Typography>
+        )}
+        <Button
+          onClick={handleVerify}
+          disabled={!isFormValid || isLoading}
+          sx={{
+            border: "2px solid #28814d",
+            color: "#28814d",
+            padding: "12px 24px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            borderRadius: "30px",
+            background: "#fff",
+            "&:hover": {
+              background: "#28814d",
+              color: "#fff",
+            },
+            "&:disabled": {
+              border: "2px solid #ccc",
+              color: "#ccc",
+            },
           }}
-        ></div>
-      </div>
-    </Wrapper>
+        >
+          {isLoading ? "Verifying..." : "Verify OTP"}
+        </Button>
+      </Box>
+    </Modal>
   );
 }

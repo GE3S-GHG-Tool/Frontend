@@ -8,6 +8,7 @@ import {
   ThemeProvider,
 } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { SignupProvider } from "./context/User-signup.jsx";
 
 const theme = createTheme({
   typography: {
@@ -121,9 +122,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <BrowserRouter>
-      <StyledEngineProvider injectFirst>
-        <App />
-      </StyledEngineProvider>
+      <SignupProvider>
+        <StyledEngineProvider injectFirst>
+          <App />
+        </StyledEngineProvider>
+      </SignupProvider>
     </BrowserRouter>
   </ThemeProvider>
 );
