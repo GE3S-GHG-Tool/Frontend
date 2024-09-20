@@ -1,12 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const SignupContext = createContext();
 
 export const SignupProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState();
   const [password, setPassword] = useState("");
   const [organizationName, setOrganizationName] = useState("");
   const [organizationCountry, setOrganizationCountry] = useState("");
@@ -23,6 +23,26 @@ export const SignupProvider = ({ children }) => {
     useState("");
   const [organizationSustainabilityGoals, setOrganizationSustainabilityGoals] =
     useState([]);
+
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token") || null;
+  });
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
+
+  const setAuthToken = (newToken) => {
+    setToken(newToken);
+  };
+
+  const clearAuthToken = () => {
+    setToken(null);
+  };
 
   const contextValue = {
     email,
@@ -57,6 +77,9 @@ export const SignupProvider = ({ children }) => {
     setOrganizationEmployeeCount,
     organizationSustainabilityGoals,
     setOrganizationSustainabilityGoals,
+    token,
+    setAuthToken,
+    clearAuthToken,
   };
 
   return (

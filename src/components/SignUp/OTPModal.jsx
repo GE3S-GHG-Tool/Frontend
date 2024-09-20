@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../util/axiosInstance";
+import { useSignup } from "../../context/User-signup";
 
 const style = {
   position: "absolute",
@@ -40,6 +41,7 @@ const inputStyle = {
 };
 
 export default function OtpValidationModal({ open, handleClose, email }) {
+  const { setAuthToken } = useSignup();
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -64,6 +66,8 @@ export default function OtpValidationModal({ open, handleClose, email }) {
         payload
       );
       if (response.status === 200) {
+        setAuthToken(response?.data?.data?.token);
+        console.log(response?.data?.data?.token);
         navigate("/personalinfo");
       } else {
         setError("Incorrect OTP. Please try again.");
