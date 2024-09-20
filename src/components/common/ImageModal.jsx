@@ -58,25 +58,16 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
       diameter
     );
 
-    return canvas.toDataURL("image/png");
-  };
-
-  const dataURLtoFile = (dataurl, filename) => {
-    let arr = dataurl.split(","),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => {
+        resolve(blob);
+      }, "image/jpeg");
+    });
   };
 
   const reset = () => {
     setZoom(1);
     setCroppedAreaPixels(null);
-    setImageUrl(null);
     setOpen(false);
     setCrop({ x: 0, y: 0 });
   };
@@ -87,31 +78,26 @@ const ImageModal = ({ open, setOpen, imageUrl, setImageUrl, setImageApi }) => {
         throw new Error("No cropped area pixels");
       }
 
-      const croppedImageDataURL = await getCroppedImg(
-        imageUrl,
-        croppedAreaPixels
-      );
+      const croppedImageBlob = await getCroppedImg(imageUrl, croppedAreaPixels);
 
-      if (croppedImageDataURL) {
-        // Convert data URL to File object
-        const croppedImageFile = dataURLtoFile(
-          croppedImageDataURL,
-          "cropped-image.jpg"
+      if (croppedImageBlob) {
+        const croppedImageFile = new File(
+          [croppedImageBlob],
+          "cropped-image.jpg",
+          {
+            type: "image/jpeg",
+            lastModified: new Date().getTime(),
+          }
         );
 
-        if (croppedImageFile) {
-          const url = URL.createObjectURL(croppedImageFile);
-          setImageApi(url);
-          const formData = new FormData();
-          formData.append("image", croppedImageFile);
-          reset();
-        }
+        setImageApi(croppedImageFile);
+        setImageUrl(URL.createObjectURL(croppedImageBlob));
+        reset();
       }
     } catch (e) {
-      reset();
       console.error("Error creating cropped image:", e);
     }
-  }, [imageUrl, croppedAreaPixels, setImageApi]);
+  }, [imageUrl, croppedAreaPixels, setImageApi, setImageUrl]);
 
   return (
     <Dialog

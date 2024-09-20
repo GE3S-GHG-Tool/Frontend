@@ -3,20 +3,18 @@ import TextField from "@mui/material/TextField";
 import "./CreateAccount.css";
 import Radio from "@mui/material/Radio";
 import Wrapper from "../Wrapper/Wrapper";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/ge3s_logo.png";
 import PasswordInput from "../common/PasswordInput";
 import { validatePassword } from "../../util/utils";
+import { useSignup } from "../../context/User-signup";
+import axiosInstance from "../../util/axiosInstance";
+
 export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
-  const location = useLocation();
-  useEffect(() => {
-    setEmail("unmoy@growhut.in");
-  }, [location]);
+  const { email, password, setPassword } = useSignup();
 
   const [helperText, setHelperText] = useState({
     password: "",
@@ -56,6 +54,25 @@ export default function CreateAccount() {
 
   const navigate = useNavigate();
 
+  const handleCreateAccount = async () => {
+    if (isFormValid) {
+      try {
+        const formData = new FormData();
+        formData.append("user_email", email);
+        formData.append("user_password", password);
+        const response = await axiosInstance.post("/api/user/1", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log("Account created successfully:", response.data);
+        navigate("/organizationstepper");
+      } catch (error) {
+        console.error("Error creating account:", error);
+      }
+    }
+  };
+
   return (
     <Wrapper>
       <div className="createacc">
@@ -79,7 +96,9 @@ export default function CreateAccount() {
           <div className="input">
             <PasswordInput
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               error={error.password}
               helperText={helperText.password}
               placeholder={"Password"}
@@ -116,9 +135,7 @@ export default function CreateAccount() {
         <button
           disabled={!isFormValid}
           className="ge3s_button"
-          onClick={() => {
-            navigate("/organizationstepper");
-          }}
+          onClick={handleCreateAccount}
         >
           Create Account
         </button>

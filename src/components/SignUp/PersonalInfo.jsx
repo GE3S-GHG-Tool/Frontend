@@ -1,53 +1,84 @@
+import { useEffect, useRef, useState } from "react";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import ImageModal from "../common/ImageModal";
-import { useEffect, useRef, useState } from "react";
 import Wrapper from "../Wrapper/Wrapper";
 import user from "../../assets/images/defaultUser.png";
 import logo from "../../assets/images/ge3s_logo.png";
 import "./PersonalInfo.css";
 import { useNavigate } from "react-router-dom";
+import { useSignup } from "../../context/User-signup";
+import axiosInstance from "../../util/axiosInstance"; // Import your axios instance
+
 const PersonalInfo = () => {
+  const { fullname, setFullname, setImageUrl } = useSignup();
   const imageInput = useRef();
   const navigate = useNavigate();
-  const [userProfile, setUserProfile] = useState(null);
-  const [imageApi, setImageApi] = useState(null);
-  const [fullName, setFullName] = useState("");
-  const [openImageResizer, SetOpenImageResizer] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [openImageResizer, setOpenImageResizer] = useState(false);
   const [key, setKey] = useState(0);
   const [isFormValid, setIsFormValid] = useState(false);
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState({
     fullName: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
   const clickInput = () => {
     imageInput.current && imageInput.current.click();
   };
 
   const onFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        setUserProfile(reader.result?.toString() || "");
-        SetOpenImageResizer(true);
-      });
-      reader.readAsDataURL(e.target.files[0]);
-
-      // Reset the file input
+      const file = e.target.files[0];
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+      setOpenImageResizer(true);
       e.target.value = "";
       setKey((prevKey) => prevKey + 1);
     }
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      setIsLoading(true);
+      try {
+        const formData = new FormData();
+        formData.append("user_name", fullname);
+        if (selectedFile) {
+          formData.append("user_profileImage", selectedFile);
+        }
+
+        const response = await axiosInstance.post("api/user/2", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log("Submission successful:", response.data);
+        setFullname(fullname);
+        setImageUrl(selectedFile);
+        navigate("/createaccount");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        // Handle error (e.g., show error message to user)
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    const isFullNameValid = fullName.trim() !== "";
-    const isProfileSet = imageApi?.length > 0;
-    setError(fullName && !isFullNameValid);
+    const isFullNameValid = fullname.trim() !== "";
+    const isProfileSet = selectedFile !== null;
+    setError(fullname && !isFullNameValid);
     setHelperText({
-      fullName: fullName && !isFullNameValid ? "Full Name is required" : "",
+      fullName: fullname && !isFullNameValid ? "Full Name is required" : "",
     });
     setIsFormValid(isFullNameValid && isProfileSet);
-  }, [imageApi, fullName]);
+  }, [selectedFile, fullname]);
+
   return (
     <Wrapper>
       <div className="presonalinfo_page">
@@ -58,15 +89,18 @@ const PersonalInfo = () => {
         <Box>
           <ImageModal
             open={openImageResizer}
-            setOpen={SetOpenImageResizer}
-            imageUrl={userProfile}
-            setImageUrl={setUserProfile}
-            setImageApi={setImageApi}
+            setOpen={setOpenImageResizer}
+            imageUrl={previewUrl}
+            setImageUrl={setPreviewUrl}
+            setImageApi={(file) => {
+              setSelectedFile(file);
+              setPreviewUrl(URL.createObjectURL(file));
+            }}
           />
           <Avatar
             onClick={clickInput}
             alt="placeholder"
-            src={!imageApi ? user : imageApi}
+            src={previewUrl || user}
             sx={{
               width: 65,
               height: 65,
@@ -103,12 +137,12 @@ const PersonalInfo = () => {
                 fill="#26203B"
               />
             </svg>
-            {userProfile ? "Re upload photo" : "Upload photo"}
+            {previewUrl ? "Re upload photo" : "Upload photo"}
             <input
               key={key}
               type="file"
               hidden
-              accept="image/png, image/jpeg"
+              accept="image/*"
               ref={imageInput}
               onChange={onFileChange}
             />
@@ -120,37 +154,24 @@ const PersonalInfo = () => {
             variant="outlined"
             required
             size="small"
-            value={fullName}
+            value={fullname}
             placeholder="Full Name"
-            onChange={(e) => setFullName(e.target.value)}
+            onChange={(e) => {
+              setFullname(e.target.value);
+              console.log("Fullname set:", e.target.value);
+            }}
             error={error}
             helperText={helperText.fullName}
           />
 
           <button
             type="submit"
-            disabled={!isFormValid}
+            disabled={!isFormValid || isLoading}
             className="ge3s_button"
-            onClick={() => navigate("/createaccount")}
           >
-            Create Account
+            {isLoading ? "Submitting..." : "Create Account"}
           </button>
         </form>
-        <div
-          style={{
-            width: "80%",
-            height: "16vh",
-            borderRadius: "50%",
-            margin: "0 auto",
-            position: "absolute",
-            bottom: "-20px",
-            left: "10%",
-            background: "#598483",
-            filter: "blur(20px)",
-            opacity: 0.8,
-            zIndex: -1,
-          }}
-        ></div>
       </div>
     </Wrapper>
   );
