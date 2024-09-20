@@ -1,7 +1,16 @@
-import React, { useState } from "react";
-import { Tabs, Tab, Box, Typography, Button, InputBase } from "@mui/material";
+import { useState } from "react";
+import {
+  Tabs,
+  Tab,
+  Box,
+  Typography,
+  Button,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import MemberList from "./MemberList/MemberList";
-// import CustomModal from "./CustomModal/customModal";
+import PendingInvites from "./PendingInvites";
+import SendInviteModal from "../Modals/SendInviteModal";
 
 const TeamMembers = () => {
   const [value, setValue] = useState(0);
@@ -20,142 +29,104 @@ const TeamMembers = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-        }}
-      >
+      <Box>
         <Typography
           sx={{
-            color: "#000000",
             fontSize: "1.20rem",
-            fontWeight: "600",
-            lineHeight: "150%",
-            fontFamily: "Inter",
-            marginTop: "0.38rem",
+            fontWeight: 600,
+            my: "1rem",
           }}
         >
           List of Team Members
         </Typography>
 
-        <Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Tabs
+            value={value}
+            onChange={handleTabChange}
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: "#369D9C",
+              },
             }}
           >
-            <Tabs
-              value={value}
-              onChange={handleTabChange}
-              TabIndicatorProps={{
-                style: {
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  fontWeight: "700",
-                },
-              }}
+            <Tab
+              label="All Members"
               sx={{
+                textTransform: "none",
+                color: "#666666",
                 "&.Mui-selected": {
                   color: "#369D9C",
-                  fontWeight: "700",
+                  fontWeight: 500,
                 },
               }}
+            />
+            <Tab
+              label="Pending Invites"
+              sx={{
+                textTransform: "none",
+                color: "#666666",
+                "&.Mui-selected": {
+                  color: "#369D9C",
+                  fontWeight: 500,
+                },
+              }}
+            />
+          </Tabs>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <TextField
+              size="small"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <svg
+                        width="19"
+                        height="19"
+                        viewBox="0 0 19 19"
+                        fill="none"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M3.16732 8.70898C3.16732 5.64841 5.64841 3.16732 8.70898 3.16732C11.7696 3.16732 14.2507 5.64841 14.2507 8.70898C14.2507 10.2001 13.6617 11.5537 12.7038 12.5498C12.6749 12.5716 12.6472 12.5957 12.6209 12.622C12.5946 12.6483 12.5706 12.676 12.5488 12.7048C11.5527 13.6621 10.1996 14.2507 8.70898 14.2507C5.64841 14.2507 3.16732 11.7696 3.16732 8.70898ZM13.1557 14.2764C11.9369 15.2511 10.391 15.834 8.70898 15.834C4.77396 15.834 1.58398 12.644 1.58398 8.70898C1.58398 4.77396 4.77396 1.58398 8.70898 1.58398C12.644 1.58398 15.834 4.77396 15.834 8.70898C15.834 10.3916 15.2507 11.938 14.2754 13.157L17.1842 16.0658C17.4934 16.3749 17.4934 16.8762 17.1842 17.1854C16.875 17.4945 16.3738 17.4945 16.0646 17.1854L13.1557 14.2764Z"
+                          fill="#1C1C1C"
+                          fillOpacity="0.2"
+                        />
+                      </svg>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
+            <Button
+              variant="contained"
+              sx={{
+                boxShadow: "none",
+                textTransform: "none",
+                borderRadius: "52px",
+                fontSize: "0.7rem",
+                padding: "0.6rem 1.7rem",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              }}
+              onClick={handleOpenModal}
             >
-              <Tab
-                label="All Members"
-                sx={{
-                  textTransform: "none",
-                  padding: "0",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
-                  "&.Mui-selected": {
-                    color: "#369D9C",
-                    fontWeight: "600",
-                  },
-                }}
-              />
-              <Tab
-                label="Pending Invites"
-                sx={{
-                  textTransform: "none",
-                  padding: "10px",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
-                  "&.Mui-selected": {
-                    color: "#369D9C",
-                    fontWeight: "600",
-                  },
-                }}
-              />
-            </Tabs>
-
-            <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  bgcolor: "#fff",
-                  borderRadius: "6px",
-                  border: "1px solid rgba(217, 217, 217, 0.40)",
-                }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="19"
-                  height="19"
-                  style={{ paddingLeft: "5px" }}
-                  viewBox="0 0 19 19"
-                  fill="none"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clip-rule="evenodd"
-                    d="M3.16732 8.70801C3.16732 5.64743 5.64841 3.16634 8.70898 3.16634C11.7696 3.16634 14.2507 5.64743 14.2507 8.70801C14.2507 10.1991 13.6617 11.5527 12.7038 12.5488C12.6749 12.5707 12.6472 12.5947 12.6209 12.6211C12.5946 12.6473 12.5706 12.675 12.5488 12.7038C11.5527 13.6612 10.1996 14.2497 8.70898 14.2497C5.64841 14.2497 3.16732 11.7686 3.16732 8.70801ZM13.1557 14.2754C11.9369 15.2502 10.391 15.833 8.70898 15.833C4.77396 15.833 1.58398 12.643 1.58398 8.70801C1.58398 4.77298 4.77396 1.58301 8.70898 1.58301C12.644 1.58301 15.834 4.77298 15.834 8.70801C15.834 10.3906 15.2507 11.937 14.2754 13.156L17.1842 16.0648C17.4934 16.374 17.4934 16.8752 17.1842 17.1844C16.875 17.4936 16.3738 17.4936 16.0646 17.1844L13.1557 14.2754Z"
-                    fill="#1C1C1C"
-                    fillOpacity="0.2"
-                  />
-                </svg>
-                <InputBase
-                  sx={{
-                    ml: 1,
-                    flex: 1,
-                    borderRadius: "6px",
-                    alignSelf: "stretch",
-                    background: "#fff",
-                    padding: "0.2rem 2.5rem 0.2rem 0.7rem",
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </Box>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#369D9C",
-                  textTransform: "none",
-                  borderRadius: "52px",
-                  fontSize: "0.7rem",
-                  padding: "0.7rem 1.8rem",
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  "&:hover": { backgroundColor: "#28814D" },
-                }}
-                onClick={handleOpenModal}
-              >
-                Add Members
-              </Button>
-            </Box>
+              Add Members
+            </Button>
           </Box>
+        </Box>
 
-          <Box sx={{ marginTop: "1rem" }}>
-            {value === 0 && <MemberList searchQuery={searchQuery} />}
-            {value === 1 && <Typography>Pending Invites Content</Typography>}
-          </Box>
+        <Box sx={{ marginTop: "1rem" }}>
+          {value === 0 && <MemberList searchQuery={searchQuery} />}
+          {value === 1 && <PendingInvites searchQuery={searchQuery} />}
         </Box>
       </Box>
       {/* <CustomModal
@@ -168,6 +139,8 @@ const TeamMembers = () => {
         onAction={handleInvite}
         planContains="Invite more members"
       /> */}
+
+      <SendInviteModal open={isModalOpen} setOpenModal={setIsModalOpen} />
     </>
   );
 };

@@ -109,3 +109,12 @@
   display: flex;
   justify-content: space-between;
 }
+.team_members_actions_cta {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 2rem;
+}
+.team_members_actions_cta svg {
+  cursor: pointer;
+}

@@ -39,7 +39,6 @@ export default function SignUp() {
             placeholder="Enter Email"
             size="small"
             fullWidth
-            laebl=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             error={error}

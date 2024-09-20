@@ -6,9 +6,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="create_report_cta">
+      <div onClick={() => setOpenModal(true)} className="create_report_cta">
         <svg width="35" height="35" viewBox="0 0 37 37" fill="none">
-          <g clip-path="url(#clip0_1214_46428)">
+          <g clipPath="url(#clip0_1214_46428)">
             <path
               d="M9.92188 8.51433V31.285C9.92188 33.1655 11.4329 34.6901 13.2967 34.6901H30.2413C32.1052 34.6901 33.6162 33.1655 33.6162 31.285V11.044C33.6162 10.1502 33.2678 9.29231 32.6464 8.65537L30.1783 6.12569C29.5439 5.47551 28.6774 5.10938 27.7732 5.10938H13.2967C11.4329 5.10938 9.92188 6.63381 9.92188 8.51433Z"
               fill="white"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, IconButton, InputAdornment } from "@mui/material";
+import { TextField, InputAdornment } from "@mui/material";
 
 const PasswordInput = ({ value, onChange, error, helperText, placeholder }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,7 @@ const PasswordInput = ({ value, onChange, error, helperText, placeholder }) => {
     <TextField
       size="small"
       type={showPassword ? "text" : "password"}
-      label={placeholder}
+      // label={placeholder}
       variant="outlined"
       fullWidth
       required
@@ -52,14 +52,18 @@ const PasswordInput = ({ value, onChange, error, helperText, placeholder }) => {
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
+            <div
               onClick={handleClickShowPassword}
               onMouseDown={handleMouseDownPassword}
-              edge="end"
             >
               {showPassword ? (
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
+                <svg
+                  style={{ cursor: "pointer" }}
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                >
                   <g clipPath="url(#clip0_1214_40689)">
                     <path
                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
@@ -90,7 +94,13 @@ const PasswordInput = ({ value, onChange, error, helperText, placeholder }) => {
                   </defs>
                 </svg>
               ) : (
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none">
+                <svg
+                  style={{ cursor: "pointer" }}
+                  width="25"
+                  height="24"
+                  viewBox="0 0 25 24"
+                  fill="none"
+                >
                   <g clipPath="url(#clip0_1214_40689)">
                     <path
                       d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
@@ -121,7 +131,7 @@ const PasswordInput = ({ value, onChange, error, helperText, placeholder }) => {
                   </defs>
                 </svg>
               )}
-            </IconButton>
+            </div>
           </InputAdornment>
         ),
       }}

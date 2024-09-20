@@ -19,13 +19,14 @@ import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateA
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
 import TeamMembers from "./components/Dashboard/TeamMembers";
-import Facilities from "./components/Dashboard/Facilities";
+import Facilities from "./components/Dashboard/Facilities/Facilities";
 import Survey from "./components/Dashboard/Survey/surveypages/Survey";
 import Report from "./components/Dashboard/Report";
 import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
+import { Typography } from "@mui/material";
 
 function App() {
   return (
@@ -55,7 +56,8 @@ function App() {
       />
       <Route path="/generate-reports" element={<GenerateReports />} />
       <Route path="/reportgenerator" element={<ReportStateEmpty />} />
-      <Route path="/ghgreport" element={<GeneratedReport />} />
+      <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
+      <Route path="app" element={<Typography>avavav</Typography>} />
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />

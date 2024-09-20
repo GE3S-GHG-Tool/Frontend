@@ -14,6 +14,7 @@
 }
 
 .stepper_comp {
+  /* background: red; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,10 +24,9 @@
 }
 
 .stepper_comp p {
-  color: var(--Dark, #00191d);
+  color: #00191d;
   text-align: center;
-  font-family: Inter;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
   margin-bottom: 0;
 }

@@ -6,7 +6,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "320px",
+  width: "350px",
   bgcolor: "#fff",
   px: 3,
   py: 4,
@@ -37,7 +37,7 @@ const buttonStyle2 = {
   marginTop: "16px",
   background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
 };
-const LogoutModal = ({ open, setOpenModal }) => {
+const ConfirmationModal = ({ open, setOpenModal, title, confirm }) => {
   const navigate = useNavigate();
   return (
     <Modal
@@ -57,9 +57,9 @@ const LogoutModal = ({ open, setOpenModal }) => {
         </div>
 
         <Typography
-          sx={{ fontWeight: 500, marginBottom: "8px", fontSize: "18px" }}
+          sx={{ fontWeight: 500, marginBottom: "8px", fontSize: "16px" }}
         >
-          Are you sure want to log out ?
+          {title}
         </Typography>
 
         <div
@@ -73,7 +73,7 @@ const LogoutModal = ({ open, setOpenModal }) => {
           <Button onClick={() => setOpenModal(false)} sx={buttonStyle}>
             Cancel
           </Button>
-          <Button onClick={() => navigate("/login")} sx={buttonStyle2}>
+          <Button onClick={confirm} sx={buttonStyle2}>
             Confirm
           </Button>
         </div>
@@ -82,4 +82,4 @@ const LogoutModal = ({ open, setOpenModal }) => {
   );
 };
 
-export default LogoutModal;
+export default ConfirmationModal;

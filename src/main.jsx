@@ -11,13 +11,13 @@ import { CssBaseline } from "@mui/material";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Inter", // Fallback to Arial, sans-serif if Inter is unavailable
+    fontFamily: "Inter, Arial, sans-serif", // Fallback to Arial, sans-serif if Inter is unavailable
   },
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          fontFamily: "Inter", // Apply font globally to the body
+          fontFamily: "Inter, Arial, sans-serif", // Apply font globally to the body
         },
       },
     },
@@ -45,7 +45,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           background: "#fff",
-          fontFamily: "Inter", // Apply Inter font to InputBase
+          fontFamily: "Inter, Arial, sans-serif", // Apply Inter font to InputBase
           "&.Mui-disabled": {
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: "#D9D9D9",
@@ -62,7 +62,7 @@ const theme = createTheme({
         root: {
           background: "#fff",
           color: "#B7B7B7",
-          fontFamily: "Inter", // Apply Inter font to InputLabel
+          fontFamily: "Inter, Arial, sans-serif", // Apply Inter font to InputLabel
           "&.Mui-focused": {
             color: "#3CB477",
           },
@@ -72,8 +72,45 @@ const theme = createTheme({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
-          color: "red",
-          fontFamily: "Inter", // Apply Inter font to FormHelperText
+          fontFamily: "Inter, Arial, sans-serif", // Apply Inter font to FormHelperText
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "#D9D9D9", // Default border color
+            },
+            "&:hover fieldset": {
+              borderColor: "#D9D9D9", // Border color on hover
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#D9D9D9", // Border color when focused
+            },
+            "&.Mui-disabled fieldset": {
+              borderColor: "#D9D9D9", // Border color when disabled
+            },
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& fieldset": {
+            borderColor: "#D9D9D9", // Ensures OutlinedInput gets #D9D9D9 border
+          },
+          "&:hover fieldset": {
+            borderColor: "#D9D9D9", // Hover state for OutlinedInput
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "#D9D9D9", // Focus state for OutlinedInput
+          },
+          "&.Mui-disabled fieldset": {
+            borderColor: "#D9D9D9", // Disabled state for OutlinedInput
+          },
         },
       },
     },
@@ -82,7 +119,6 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={theme}>
-    {" "}
     <CssBaseline />
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
