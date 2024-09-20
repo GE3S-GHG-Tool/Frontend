@@ -1,13 +1,13 @@
+import { useState, useEffect } from "react";
 import "./Details.css";
 import logo from "../../assets/images/ge3s_logo.png";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useState } from "react";
-
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled, TextField } from "@mui/material";
 import { useSignup } from "../../context/User-signup";
+
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip
     placement="top-end"
@@ -19,7 +19,7 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: "#fff",
     color: "#000",
-    fontFamity: "Inter",
+    fontFamily: "Inter",
     maxWidth: 300,
     padding: "10px",
     fontSize: ".8rem",
@@ -29,42 +29,50 @@ const HtmlTooltip = styled(({ className, ...props }) => (
     boxShadow: "0px 0px 2px 0px rgba(0, 0, 0, 0.25)",
   },
   [`& .${tooltipClasses.arrow}`]: {
-    color: "#fff", // This sets the arrow color to white
+    color: "#fff",
   },
 }));
+
 export default function Details({ activeStep, setActiveStep }) {
   const {
-    organizationName,
-    organizationCountry,
-    organizationState,
-    organizationCity,
-    organizationIndustry,
-    organizationSector,
+    organizationFiscalYear,
+    setOrganizationFiscalYear,
+    organizationStartingYear,
+    setOrganizationStartingYear,
+    organizationBaselineYear,
+    setOrganizationBaselineYear,
+    organizationBaselineMonth,
+    setOrganizationBaselineMonth,
+    organizationEmployeeCount,
+    setOrganizationEmployeeCount,
   } = useSignup();
 
-  console.log(
-    organizationName,
-    organizationCountry,
-    organizationState,
-    organizationCity,
-    organizationIndustry,
-    organizationSector
-  );
+  const [yearOptions, setYearOptions] = useState([]);
 
-  const [employeeCount, setEmployeeCount] = useState("");
-  const [fiscalYear, setFiscalYear] = useState("");
-  const [baseMonth, setBaseMonth] = useState("");
-  const [baseYear, setBaseYear] = useState("");
-  const [reportYear, setReportYear] = useState("");
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const years = Array.from(
+      { length: currentYear - 1979 },
+      (_, index) => currentYear - index
+    );
+    setYearOptions(years);
+  }, []);
 
   const isFormComplete = () => {
-    return fiscalYear && reportYear && employeeCount && baseYear && baseMonth;
+    return (
+      organizationFiscalYear &&
+      organizationStartingYear &&
+      organizationEmployeeCount &&
+      organizationBaselineYear &&
+      organizationBaselineMonth
+    );
   };
+
   return (
     <div className="details">
       <div className="heading">
         <img src={logo} alt="" className="ge3s_logo1" />
-        <h1>Now it’s time to enter some details</h1>
+        <h1>Now it&apos;s time to enter some details</h1>
       </div>
       <div className="select_fields">
         <div className="para_select">
@@ -78,51 +86,56 @@ export default function Details({ activeStep, setActiveStep }) {
                 </>
               }
             >
-              <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                <g clipPath="url(#clip0_1214_40409)">
-                  <path
-                    d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 12V9M9 6H9.0075"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1214_40409">
-                    <rect width="18" height="18" fill="white" />
-                  </clipPath>
-                </defs>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 12.4V9"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 5.60001H9.008"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </HtmlTooltip>
           </p>
           <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={fiscalYear}
-              onChange={(event) => {
-                setFiscalYear(event.target.value);
-              }}
-              placeholder="Employee Count"
+              labelId="fiscal-year-label"
+              id="fiscal-year-select"
+              value={organizationFiscalYear}
+              onChange={(event) =>
+                setOrganizationFiscalYear(event.target.value)
+              }
+              placeholder="Fiscal Year"
               size="small"
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>2023</MenuItem>
-              <MenuItem value={2}>2022</MenuItem>
-              <MenuItem value={3}>2021</MenuItem>
+              {yearOptions.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-        </div>{" "}
+        </div>
         <div className="para_select">
           <p>
             First Reporting Year{" "}
@@ -134,50 +147,53 @@ export default function Details({ activeStep, setActiveStep }) {
                 </>
               }
             >
-              <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                <g clipPath="url(#clip0_1214_40409)">
-                  <path
-                    d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 12V9M9 6H9.0075"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1214_40409">
-                    <rect width="18" height="18" fill="white" />
-                  </clipPath>
-                </defs>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 12.4V9"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 5.60001H9.008"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </HtmlTooltip>
           </p>
           <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={reportYear}
-              onChange={(e) => {
-                setReportYear(e.target.value);
-              }}
+              labelId="reporting-year-label"
+              id="reporting-year-select"
+              value={organizationStartingYear}
+              onChange={(e) => setOrganizationStartingYear(e.target.value)}
               size="small"
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>2023</MenuItem>
-              <MenuItem value={2}>2022</MenuItem>
-              <MenuItem value={3}>2021</MenuItem>
+              {yearOptions.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-        </div>{" "}
+        </div>
       </div>
       <div className="select_fields">
         <div className="para_select">
@@ -191,54 +207,57 @@ export default function Details({ activeStep, setActiveStep }) {
                 </>
               }
             >
-              <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                <g clipPath="url(#clip0_1214_40409)">
-                  <path
-                    d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 12V9M9 6H9.0075"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1214_40409">
-                    <rect width="18" height="18" fill="white" />
-                  </clipPath>
-                </defs>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 12.4V9"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 5.60001H9.008"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </HtmlTooltip>
           </p>
           <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={baseYear}
-              onChange={(e) => {
-                setBaseYear(e.target.value);
-              }}
-              placeholder="Employee Count"
+              labelId="baseline-year-label"
+              id="baseline-year-select"
+              value={organizationBaselineYear}
+              onChange={(e) => setOrganizationBaselineYear(e.target.value)}
+              placeholder="Baseline Year"
               size="small"
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>India</MenuItem>
-              <MenuItem value={20}>America</MenuItem>
-              <MenuItem value={30}>UAE</MenuItem>
+              {yearOptions.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
         <div className="para_select">
           <p>
-            BaseLine Month{" "}
+            Baseline Month{" "}
             <HtmlTooltip
               title={
                 <>
@@ -247,39 +266,40 @@ export default function Details({ activeStep, setActiveStep }) {
                 </>
               }
             >
-              <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-                <g clipPath="url(#clip0_1214_40409)">
-                  <path
-                    d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 12V9M9 6H9.0075"
-                    stroke="#BDBDBD"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1214_40409">
-                    <rect width="18" height="18" fill="white" />
-                  </clipPath>
-                </defs>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 12.4V9"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 5.60001H9.008"
+                  stroke="#666666"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </HtmlTooltip>
           </p>
           <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
             <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              value={baseMonth}
-              onChange={(e) => {
-                setBaseMonth(e.target.value);
-              }}
+              labelId="baseline-month-label"
+              id="baseline-month-select"
+              value={organizationBaselineMonth}
+              onChange={(e) => setOrganizationBaselineMonth(e.target.value)}
               size="small"
             >
               <MenuItem value="">
@@ -288,6 +308,15 @@ export default function Details({ activeStep, setActiveStep }) {
               <MenuItem value={1}>January</MenuItem>
               <MenuItem value={2}>February</MenuItem>
               <MenuItem value={3}>March</MenuItem>
+              <MenuItem value={4}>April</MenuItem>
+              <MenuItem value={5}>May</MenuItem>
+              <MenuItem value={6}>June</MenuItem>
+              <MenuItem value={7}>July</MenuItem>
+              <MenuItem value={8}>August</MenuItem>
+              <MenuItem value={9}>September</MenuItem>
+              <MenuItem value={10}>October</MenuItem>
+              <MenuItem value={11}>November</MenuItem>
+              <MenuItem value={12}>December</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -299,8 +328,8 @@ export default function Details({ activeStep, setActiveStep }) {
           size="small"
           fullWidth
           placeholder="Employee Count"
-          value={employeeCount}
-          onChange={(e) => setEmployeeCount(e.target.value)}
+          value={organizationEmployeeCount}
+          onChange={(e) => setOrganizationEmployeeCount(e.target.value)}
         />
       </div>
       <button
