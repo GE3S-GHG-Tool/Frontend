@@ -26,6 +26,7 @@ import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
+import EmissionsInventoryReport from "./components/EmissionsInventoryReport/EmissionsInventoryReport";
 import { Typography } from "@mui/material";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -63,6 +64,10 @@ function App() {
         <Route path="/reportgenerator" element={<ReportStateEmpty />} />
         <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
         <Route path="app" element={<Typography>avavav</Typography>} />
+        <Route
+          path="/ghg-emissions-inventory-report"
+          element={<EmissionsInventoryReport />}
+        />
         {/* Dashboard routes */}
         <Route
           path="/"

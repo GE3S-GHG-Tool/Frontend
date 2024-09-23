@@ -116,8 +116,23 @@ export default function ResetOTP() {
                 </clipPath>
               </defs>
             </svg>
-            <span className="theme-color">{timeLeft}s</span>
-            <span className="resend-otp theme-color" onClick={handleResend}>
+            <span style={{ minWidth: "30px" }} className="theme-color">
+              {timeLeft}s
+            </span>
+            <span
+              style={{
+                marginLeft: "5px",
+                cursor: timeLeft === 0 ? "pointer" : "default",
+                color: timeLeft === 0 ? "#28814d" : "#717171",
+              }}
+              onClick={() => {
+                if (timeLeft === 0) {
+                  handleResend();
+                } else {
+                  console.log("Resend OTP after timer is finised");
+                }
+              }}
+            >
               Resend OTP
             </span>
           </p>

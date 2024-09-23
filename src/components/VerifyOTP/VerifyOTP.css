@@ -83,9 +83,7 @@
   cursor: not-allowed;
   border: none;
 }
-.resend-otp {
-  cursor: pointer;
-}
+
 @media (max-width: 1024px) {
   .verify-container {
     width: 50vw;

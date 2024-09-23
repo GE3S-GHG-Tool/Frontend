@@ -1,0 +1,272 @@
+.charts-container h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 14px;
+  }
+  
+  .sustainability-section_heading {
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 22px;
+    margin-bottom: 20px;
+  }
+  
+
+  .sustainability-heading_title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .sustainability-heading_title h1 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  .sustainability-heading_title h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .sustain-subheading-h2 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  
+  .chart-left-label {
+    font-weight: 600;
+    font-size: 12px;
+  }
+  
+  .sustain-base-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr; /* 1st column is small, next 2 columns are equal width */
+    gap: 16px; /* Optional: Add some spacing between columns */
+    width: 100%; /* Ensures the grid takes up the full width of its container */
+  }
+  
+  .sustain-base-grid-item {
+    padding: 16px;
+    border: 1px solid #ddd; /* Optional: Border for grid items */
+  }
+  
+  .sustain-base-small-column {
+    grid-column: 1 / 2; /* Specifies the 1st column */
+  }
+  
+  .sustain-base-equal-column {
+    grid-column: span 1; /* Specifies the 2nd and 3rd columns */
+  }
+  
+  .sustain-environmental-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr; /* 1st column is small, next 2 columns are equal width */
+    gap: 16px; /* Optional: Add some spacing between columns */
+    width: 100%; /* Ensures the grid takes up the full width of its container */
+  }
+  
+  .sustain-environmental-grid-item {
+    padding: 16px;
+    border: 1px solid #ddd; /* Optional: Border for grid items */
+  }
+  
+  .sustain-environmental-small-column {
+    grid-column: 1 / 2;
+    padding: 16px;
+  }
+  
+  .sustain-environmental-equal-column {
+    grid-column: span 1; /* Specifies the 2nd and 3rd columns */
+  }
+  
+  .half-doughnut-legend {
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .base-sector-card_title {
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .base-sector-card_grade {
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .grading-section {
+    margin-bottom: 60px;
+  }
+  
+  .disclaimer-div {
+    margin-top: 60px;
+    margin-bottom: 15%;
+  }
+  
+  .disclaimer-div h3 {
+    margin: 0 0 10px 0;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 16.94px;
+  }
+  
+  .disclaimer-div ul {
+    margin-left: 15px;
+    list-style: decimal;
+  }
+  
+  .disclaimer-div ul li {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .sustainability-bottom_div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    padding: 10px 90px;
+    border-top: 1px solid #dbdbdb;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+  }
+  
+  .sustainability-bottom_div-container {
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #dbdbdb;
+    background-color: #fff;
+  }
+  
+  .sustainability-bottom_div1 {
+    width: 96%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+  }
+  
+  .verification-btn {
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  }
+  
+  /* .btn-no_borders {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 24px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  } */
+  
+  .btn-no_borders {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 24px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    background-clip: text;
+  }
+  
+  .btn-no_borders::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    height: 1.5px;
+    width: 100%;
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+  
+  .btn-no_borders:hover {
+    background: linear-gradient(101.74deg, #369d9c 0%, #28814d 100%);
+    -webkit-background-clip: text;
+    color: transparent; /* This makes sure the gradient is visible */
+  }
+  
+  .btn-no_borders:hover::after {
+    background: linear-gradient(101.74deg, #369d9c 0%, #28814d 100%);
+  }
+  
+  .expert-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #dbdbdb;
+    padding: 10px 15px;
+    position: fixed;
+    bottom: 10%;
+    left: 50%; /* Center horizontally */
+    transform: translateX(
+      -50%
+    ); /* Center by shifting left by 50% of the element's width */
+    width: 96%;
+    background-color: #fff;
+    border-radius: 12px;
+  }
+  
+  .expert-left_div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .expert-left_div h2 {
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 24px;
+  }
+  
+  .expert-left_div h3 {
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 24px;
+    color: #699191;
+  }
+  
+  .expert-right_div {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 0 10px 0 0;
+  }
+  
+  .expert-right_div .book-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px solid #699191;
+    font-size: 0.8rem;
+    padding: 12px;
+    color: #699191;
+    width: 100px;
+  }
+  
+  .expert-right_div .close-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+  
