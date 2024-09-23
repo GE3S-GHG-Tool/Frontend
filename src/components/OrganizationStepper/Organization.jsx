@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./Organization.css";
 import logo from "../../assets/images/ge3s_logo.png";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,7 +7,11 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { useState, useEffect } from "react";
 import { useSignup } from "../../context/User-signup";
-import axiosInstance from "../../util/axiosInstance";
+import {
+  fetchCities,
+  fetchInitialOrganizationData,
+  fetchStates,
+} from "../../api/auth";
 
 export default function Organization({ activeStep, setActiveStep }) {
   const {
@@ -32,25 +37,19 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchInitialData = async () => {
+    const loadInitialData = async () => {
       try {
-        const [countriesResponse, industriesResponse, sectorsResponse] =
-          await Promise.all([
-            axiosInstance.get("api/user/getCountries"),
-            axiosInstance.get("api/industry"),
-            axiosInstance.get("api/sector"),
-          ]);
-        setCountryOptions(countriesResponse.data);
-        console.log(countriesResponse.data);
-        setIndustryOptions(industriesResponse.data);
-        setSectorOptions(sectorsResponse.data);
+        const { countries, industries, sectors } =
+          await fetchInitialOrganizationData();
+        setCountryOptions(countries);
+        setIndustryOptions(industries);
+        setSectorOptions(sectors);
       } catch (error) {
-        console.error("Error fetching initial data:", error);
-        setError("Failed to load initial data. Please try again.");
+        setError(error.message);
       }
     };
 
-    fetchInitialData();
+    loadInitialData();
   }, []);
 
   const handleCountryChange = async (event) => {
@@ -62,13 +61,10 @@ export default function Organization({ activeStep, setActiveStep }) {
     setCityOptions([]);
 
     try {
-      const response = await axiosInstance.get(
-        `api/user/getstates/${selectedCountry}`
-      );
-      setStateOptions(response.data);
+      const states = await fetchStates(selectedCountry);
+      setStateOptions(states);
     } catch (error) {
-      console.error("Error fetching states:", error);
-      setError("Failed to load states. Please try again.");
+      setError(error.message);
     }
   };
 
@@ -79,13 +75,10 @@ export default function Organization({ activeStep, setActiveStep }) {
     setCityOptions([]);
 
     try {
-      const response = await axiosInstance.get(
-        `api/user/getcities/${selectedState}`
-      );
-      setCityOptions(response.data);
+      const cities = await fetchCities(selectedState);
+      setCityOptions(cities);
     } catch (error) {
-      console.error("Error fetching cities:", error);
-      setError("Failed to load cities. Please try again.");
+      setError(error.message);
     }
   };
 
@@ -137,7 +130,6 @@ export default function Organization({ activeStep, setActiveStep }) {
         <img src={logo} alt="" className="ge3s_logo1" />
         <h1>Time to enter your organization details </h1>
       </div>
-      {error && <div className="error-message">{error}</div>}
       <p>Company Name</p>
       <div className="comp_name">
         <TextField

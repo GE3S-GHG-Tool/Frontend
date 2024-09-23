@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import "./Goals.css";
 import Radio from "@mui/material/Radio";
@@ -6,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSignup } from "../../context/User-signup";
-import axiosInstance from "../../util/axiosInstance";
+import { fetchSustainabilityGoals, submitGoalsData } from "../../api/auth";
 
 export default function Goals({ setActiveStep }) {
   const {
@@ -43,19 +44,20 @@ export default function Goals({ setActiveStep }) {
   const [selectedValue, setSelectedValue] = useState("e");
   const [age, setAge] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchSustainabilityGoals();
-  }, []);
+    const loadSustainabilityGoals = async () => {
+      try {
+        const goals = await fetchSustainabilityGoals();
+        setOrganizationSustainabilityGoals(goals);
+      } catch (error) {
+        setError("Failed to load sustainability goals. Please try again.");
+      }
+    };
 
-  const fetchSustainabilityGoals = async () => {
-    try {
-      const response = await axiosInstance.get("/api/sustainabilitygoal/");
-      setOrganizationSustainabilityGoals(response.data);
-    } catch (error) {
-      console.error("Error fetching sustainability goals:", error);
-    }
-  };
+    loadSustainabilityGoals();
+  }, [setOrganizationSustainabilityGoals]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -81,33 +83,27 @@ export default function Goals({ setActiveStep }) {
   };
 
   const handleNextClick = async () => {
-    const carbonFootprintMap = {
-      e: "No",
-      f: "Yes",
-      g: "Frequently",
-    };
-    try {
-      const payload = {
-        organization_name: organizationName,
-        organization_country: organizationCountry,
-        organization_state: organizationState,
-        organization_city: organizationCity,
-        organization_sector: organizationSector,
-        organization_industry: organizationIndustry,
-        organization_fiscalyear: organizationFiscalYear,
-        organization_startingyear: organizationStartingYear,
-        organization_baselineyear: organizationBaselineYear,
-        organization_baselinemonth: organizationBaselineMonth,
-        organization_sustainabilitygoals: selectedGoal,
-        organization_employeecount: organizationEmployeeCount,
-        organization_carbonfootprint: carbonFootprintMap[selectedValue],
-      };
+    if (isFormComplete()) {
+      try {
+        const organizationData = {
+          organizationName,
+          organizationCountry,
+          organizationState,
+          organizationCity,
+          organizationSector,
+          organizationIndustry,
+          organizationFiscalYear,
+          organizationStartingYear,
+          organizationBaselineYear,
+          organizationBaselineMonth,
+          organizationEmployeeCount,
+        };
 
-      const response = await axiosInstance.post("/api/user/3", payload);
-      console.log("API response:", response.data);
-      setActiveStep(3);
-    } catch (error) {
-      console.error("Error posting user data:", error);
+        await submitGoalsData(organizationData, selectedGoal, selectedValue);
+        setActiveStep(3);
+      } catch (error) {
+        setError("Failed to submit data. Please try again.");
+      }
     }
   };
 

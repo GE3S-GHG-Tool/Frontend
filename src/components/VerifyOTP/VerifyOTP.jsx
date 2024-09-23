@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import logo from "../../assets/images/ge3s.png";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../util/axiosInstance";
 import { useSignup } from "../../context/User-signup";
+import { verifyOtp } from "../../api/auth";
 
 const style = {
   position: "absolute",
@@ -74,28 +74,15 @@ export default function OtpModal({ email, open, handleClose }) {
     setError("");
     setIsLoading(true);
 
-    try {
-      const payload = {
-        user_email: email,
-        user_otp: otp.join(""),
-      };
-      const response = await axiosInstance.post(
-        "/api/user/otp_validation",
-        payload
-      );
-      if (response.status === 200) {
-        setAuthToken(response?.data?.data?.token);
-        console.log(response?.data?.data?.token);
-        navigate("/personalinfo");
-      } else {
-        setError("Incorrect OTP. Please try again.");
-      }
-    } catch (error) {
-      console.error("OTP validation error:", error);
-      setError("An error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
+    const result = await verifyOtp(email, otp.join(""), setAuthToken);
+
+    if (result.success) {
+      navigate("/personalinfo");
+    } else {
+      setError(result.error);
     }
+
+    setIsLoading(false);
   };
 
   return (
