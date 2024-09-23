@@ -53,15 +53,7 @@ const TeamMembers = () => {
               onChange={handleTabChange}
               TabIndicatorProps={{
                 style: {
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                  fontWeight: "700",
-                },
-              }}
-              sx={{
-                "&.Mui-selected": {
-                  color: "#369D9C",
-                  fontWeight: "700",
+                  backgroundColor: "#369D9C",
                 },
               }}
             >
@@ -69,12 +61,10 @@ const TeamMembers = () => {
                 label="All Members"
                 sx={{
                   textTransform: "none",
-                  padding: "0",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
+                  color: "#666666",
+                  fontWeight: 500,
                   "&.Mui-selected": {
                     color: "#369D9C",
-                    fontWeight: "600",
                   },
                 }}
               />
@@ -82,12 +72,10 @@ const TeamMembers = () => {
                 label="Pending Invites"
                 sx={{
                   textTransform: "none",
-                  padding: "10px",
-                  color: "#BDBDBD",
-                  fontSize: "0.8rem",
+                  color: "#666666",
+                  fontWeight: 500,
                   "&.Mui-selected": {
                     color: "#369D9C",
-                    fontWeight: "600",
                   },
                 }}
               />
@@ -157,7 +145,7 @@ const TeamMembers = () => {
             {value === 1 && <Typography>Pending Invites Content</Typography>}
           </Box>
         </Box>
-      </Box>
+      </Box >
       {/* <CustomModal
         open={isModalOpen}
         onClose={handleCloseModal}

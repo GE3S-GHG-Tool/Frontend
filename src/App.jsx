@@ -26,6 +26,7 @@ import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
+import EmissionsInventoryReport from "./components/EmissionsInventoryReport/EmissionsInventoryReport";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
       <Route path="/generate-reports" element={<GenerateReports />} />
       <Route path="/reportgenerator" element={<ReportStateEmpty />} />
       <Route path="/ghgreport" element={<GeneratedReport />} />
+      <Route path="/ghg-emissions-inventory-report" element={<EmissionsInventoryReport />} />
       {/* Dashboard routes */}
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
