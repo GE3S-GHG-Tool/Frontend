@@ -8,7 +8,7 @@ import logo from "../../assets/images/ge3s_logo.png";
 import PasswordInput from "../common/PasswordInput";
 import { validatePassword } from "../../util/utils";
 import { useSignup } from "../../context/User-signup";
-import axiosInstance from "../../util/axiosInstance";
+import { createAccount } from "../../api/auth";
 
 export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
@@ -56,19 +56,11 @@ export default function CreateAccount() {
 
   const handleCreateAccount = async () => {
     if (isFormValid) {
-      try {
-        const formData = new FormData();
-        formData.append("user_email", email);
-        formData.append("user_password", password);
-        const response = await axiosInstance.post("/api/user/1", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        console.log("Account created successfully:", response.data);
+      const result = await createAccount(email, password);
+      if (result.success) {
         navigate("/organizationstepper");
-      } catch (error) {
-        console.error("Error creating account:", error);
+      } else {
+        console.error("Error creating account:", result.error);
       }
     }
   };
