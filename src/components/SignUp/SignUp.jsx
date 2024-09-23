@@ -10,6 +10,7 @@ import axiosInstance from "../../util/axiosInstance";
 import OtpValidationModal from "./OTPModal";
 import { useSignup } from "../../context/User-signup";
 import OtpModal from "../VerifyOTP/VerifyOTP";
+import { initiateSignup } from "../../api/auth";
 
 export default function SignUp() {
   const { email, setEmail } = useSignup();
@@ -40,19 +41,13 @@ export default function SignUp() {
     setIsLoading(true);
     setApiError("");
 
-    try {
-      const response = await axiosInstance.post("/api/user/initiate", {
-        user_email: email,
-      });
-      console.log("Enter Email:", response.data);
-      setOpenModal(true);
-      // navigate("/personalinfo")
-    } catch (error) {
-      console.error("API error:", error);
-      setApiError("An error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
+    const success = await initiateSignup(email, setOpenModal, setApiError);
+
+    if (!success) {
+      setApiError("User already exists");
     }
+
+    setIsLoading(false);
   };
 
   return (
