@@ -18,7 +18,7 @@ const ChartTooltip = ({ data }) => (
   </Paper>);
 
 const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = false }) => {
-  const [tooltipOpen, setTooltipOpen] = useState(true);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipLeft, setTooltipLeft] = useState(0);
   const [tooltipTop, setTooltipTop] = useState(0);
   const svgRef = useRef(null);
@@ -45,12 +45,12 @@ const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = fa
   };
 
   const handleMouseLeave = () => {
-    setTooltipOpen(true);
+    setTooltipOpen(false);
   };
 
-  useEffect(() => {
-    updateTooltipPosition();
-  }, [centerX, centerY, radius]);
+  // useEffect(() => {
+  //   updateTooltipPosition();
+  // }, [centerX, centerY, radius]);
 
   const updateTooltipPosition = () => {
     if (svgRef.current) {

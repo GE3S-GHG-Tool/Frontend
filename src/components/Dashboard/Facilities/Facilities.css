@@ -1,0 +1,174 @@
+.stepper_facility {
+  display: flex;
+  justify-content: space-between;
+  /* background: rebeccapurple; */
+  /* background: green; */
+  /* position: relative; */
+}
+.stepper_box_facility {
+  border-radius: 16px;
+  border: 1px solid rgba(217, 217, 217, 0.4);
+  background: #fbfbfb;
+  min-width: 42vw;
+}
+.facility_logo_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.facility_logo_page p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+.ge3s_button_small {
+  margin-top: 0.5rem;
+  padding: 1vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.9rem;
+  border: none;
+  width: 80%;
+  font-weight: 500;
+}
+.facilty_basic_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.basic_facilty_page {
+  padding: 1rem 2rem;
+}
+.basic_facilty_page h1 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.faciltyBtn_content {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.ge3s_button_2 {
+  margin-top: 1.5rem;
+  padding: 1.2vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.9rem;
+  border: none;
+  width: 17%;
+  font-weight: 500;
+  position: absolute;
+  bottom: 2.5rem;
+}
+.assignee_box {
+  min-width: 32vw;
+  height: 30vh;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid #e8e8e8;
+  position: relative;
+  background: #fff;
+}
+.assignee_box h2 {
+  font-size: 1rem;
+}
+.assignee_box button {
+  padding: 1.2vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.9rem;
+  border: none;
+  width: 22%;
+  font-weight: 500;
+  position: absolute;
+  bottom: -3.5rem;
+  right: 0;
+}
+.facility_update_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  /* background: green; */
+}
+
+.facility_logo {
+  background: red;
+  width: 38vw;
+  border-radius: 16px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  padding: 1rem;
+  /* flex: 1; */
+}
+.add_member_box {
+  height: 100%;
+  width: 25vw;
+  /* background: blue; */
+}
+.member_card {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px dashed var(--grad-3, #369d9c);
+  background: var(--green-shade-1, #f9fffc);
+  text-align: center;
+}
+.member_card p {
+  color: #717171;
+  font-size: 0.8rem;
+  max-width: 200px;
+  margin: 0 auto 1rem auto;
+}
+.member_card h2 {
+  font-size: 0.9rem;
+  margin: 0.5rem;
+  font-weight: 500;
+}
+.member_card button {
+  padding: 1.2vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.7rem;
+  border: none;
+  width: 35%;
+  font-weight: 500;
+}
+.facilty_input_box_button {
+  padding: 1.5vh 0;
+  border-radius: 100px;
+  background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  color: #ffffff;
+  font-size: 0.7rem;
+  border: none;
+  width: 15%;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.facilty_input_box {
+  border-radius: 16px;
+  border: 1px solid #e8e8e8;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.facilty_input_box h2 {
+  color: #232526;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+.facilty_input_box label {
+  color: #717171;
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+}

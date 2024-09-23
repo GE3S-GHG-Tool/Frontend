@@ -231,7 +231,7 @@ const CustomModal = ({
                   viewBox="0 0 21 20"
                   fill="none"
                 >
-                  <g clip-path="url(#clip0_1850_19597)">
+                  <g clipPath="url(#clip0_1850_19597)">
                     <path
                       d="M3.62695 10H17.377"
                       stroke="white"
@@ -281,7 +281,7 @@ const CustomModal = ({
                 viewBox="0 0 21 20"
                 fill="none"
               >
-                <g clip-path="url(#clip0_1850_19597)">
+                <g clipPath="url(#clip0_1850_19597)">
                   <path
                     d="M3.62695 10H17.377"
                     stroke="white"
@@ -333,16 +333,10 @@ const CustomModal = ({
                   fontSize: "0.6rem",
                 }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 23 23"
-                  fill="none"
-                >
+                <svg width="20" height="20" viewBox="0 0 23 23" fill="none">
                   <path
                     fillRule="evenodd"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                     d="M11.5781 19.3866C16.1668 19.3866 19.8866 15.6668 19.8866 11.0781C19.8866 6.4894 16.1668 2.76953 11.5781 2.76953C6.9894 2.76953 3.26953 6.4894 3.26953 11.0781C3.26953 15.6668 6.9894 19.3866 11.5781 19.3866ZM11.3641 14.4386L15.98 8.89955L14.5616 7.71755L10.5929 12.48L8.53816 10.4253L7.2326 11.7309L10.0021 14.5004L10.7169 15.2152L11.3641 14.4386Z"
                     fill="url(#paint0_linear_1728_20142)"
                   />
