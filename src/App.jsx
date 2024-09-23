@@ -26,6 +26,7 @@ import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
+import EmissionsInventoryReport from "./components/EmissionsInventoryReport/EmissionsInventoryReport";
 import { Typography } from "@mui/material";
 
 function App() {
@@ -56,6 +57,8 @@ function App() {
       />
       <Route path="/generate-reports" element={<GenerateReports />} />
       <Route path="/reportgenerator" element={<ReportStateEmpty />} />
+      <Route path="/ghgreport" element={<GeneratedReport />} />
+      <Route path="/ghg-emissions-inventory-report" element={<EmissionsInventoryReport />} />
       <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
       <Route path="app" element={<Typography>avavav</Typography>} />
       {/* Dashboard routes */}

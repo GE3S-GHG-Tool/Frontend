@@ -139,7 +139,6 @@ const TeamMembers = () => {
         onAction={handleInvite}
         planContains="Invite more members"
       /> */}
-
       <SendInviteModal open={isModalOpen} setOpenModal={setIsModalOpen} />
     </>
   );
