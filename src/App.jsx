@@ -27,47 +27,60 @@ import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
 import { Typography } from "@mui/material";
+import PrivateRoute from "./components/common/PrivateRoute";
+import { AuthProvider } from "./context/AuthContext";
+import ResetOTP from "./components/ResetPassword/ResetOTP";
 
 function App() {
   return (
-    <Routes>
-      <Route index path="/signup" element={<SignUp />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/personalinfo" element={<PersonalInfo />} />
-      <Route path="/createaccount" element={<CreateAccount />} />
-      <Route path="/confirmation" element={<Confirmation />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/verify-otp" element={<VerifyOTP />} />
-      <Route path="/change-password" element={<ChangePassword />} />
-      <Route path="/organizationstepper" element={<OrganizationStepper />} />
-      <Route path="/organization" element={<Organization />} />
-      <Route path="/details" element={<Details />} />
-      <Route path="/goals" element={<Goals />} />
-      <Route
-        path="/account-creation-header"
-        element={<AccountCreationHeader />}
-      />
-      <Route path="/account-Intro" element={<AccountCreationIntro />} />
-      <Route
-        path="/create-account-successfully"
-        element={<CreateAccountSuccessfully />}
-      />
-      <Route path="/generate-reports" element={<GenerateReports />} />
-      <Route path="/reportgenerator" element={<ReportStateEmpty />} />
-      <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
-      <Route path="app" element={<Typography>avavav</Typography>} />
-      {/* Dashboard routes */}
-      <Route path="/" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="team-member" element={<TeamMembers />} />
-        <Route path="facilities" element={<Facilities />} />
-        <Route path="analytics" element={<Analytics />} />
-        <Route path="survey" element={<Survey />} />
-        <Route path="report" element={<Report />} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route index path="/signup" element={<SignUp />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/personalinfo" element={<PersonalInfo />} />
+        <Route path="/createaccount" element={<CreateAccount />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/otppage" element={<ResetOTP />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/organizationstepper" element={<OrganizationStepper />} />
+        <Route path="/organization" element={<Organization />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/goals" element={<Goals />} />
+        <Route
+          path="/account-creation-header"
+          element={<AccountCreationHeader />}
+        />
+        <Route path="/account-Intro" element={<AccountCreationIntro />} />
+        <Route
+          path="/create-account-successfully"
+          element={<CreateAccountSuccessfully />}
+        />
+        <Route path="/generate-reports" element={<GenerateReports />} />
+        <Route path="/reportgenerator" element={<ReportStateEmpty />} />
+        <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
+        <Route path="app" element={<Typography>avavav</Typography>} />
+        {/* Dashboard routes */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <DashboardLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="team-member" element={<TeamMembers />} />
+          <Route path="facilities" element={<Facilities />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="survey" element={<Survey />} />
+          <Route path="report" element={<Report />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

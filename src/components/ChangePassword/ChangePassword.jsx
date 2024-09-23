@@ -1,34 +1,86 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import "./ChangePassword.css";
 import SuccessModal from "./SuccessModal";
 import logo from "../../assets/images/ge3s.png";
 import Wrapper from "../Wrapper/Wrapper";
 import { useNavigate } from "react-router-dom";
+import PasswordInput from "../common/PasswordInput";
+import axios from "axios";
+import constant from "../../constant";
 
 export default function ChangePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState({
+    password: false,
+    confirmPassword: false,
+  });
+  const [helperText, setHelperText] = useState({
+    password: "",
+    confirmPassword: "",
+  });
   const [openModal, setOpenModal] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const token = localStorage.getItem("resettoken");
+  useEffect(() => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  const isFormValid = password && confirmPassword;
+    const isPasswordValid = passwordRegex.test(password);
+    const isConfirmPasswordValid = password === confirmPassword;
 
+    setError({
+      password: password && !isPasswordValid,
+      confirmPassword: confirmPassword && !isConfirmPasswordValid,
+    });
+
+    setHelperText({
+      password:
+        password && !isPasswordValid
+          ? "Password must be at least 8 characters long, contain uppercase and lowercase letters, a number, and a special character"
+          : "",
+      confirmPassword:
+        confirmPassword && !isConfirmPasswordValid
+          ? "Passwords do not match"
+          : "",
+    });
+
+    setIsFormValid(isPasswordValid && isConfirmPasswordValid);
+  }, [password, confirmPassword]);
+
+  const handleChangePassword = async () => {
+    const data = {
+      user_password: password,
+      user_confirm_password: confirmPassword,
+    };
+
+    try {
+      const res = await axios.post(
+        `${constant.BACKEDN_BASE_URL}api/user/reset-password`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("reset", res);
+      if (res?.status === 200) {
+        setOpenModal(true);
+      } else {
+        throw new Error("Could not reset password");
+      }
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+      setErrorMessage(error?.response?.data?.message);
+    }
+  };
   const handleCloseModal = () => {
     setOpenModal(false);
-    navigate("/home");
-  };
-
-  const handleChangePassword = () => {
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match!");
-      return;
-    }
-    setErrorMessage("");
-    setOpenModal(true);
+    navigate("/login");
   };
 
   return (
@@ -53,112 +105,26 @@ export default function ChangePassword() {
           <div className="input-password">
             <p>Password</p>
             <div className="password-container">
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                placeholder="Password"
-                type={showPassword ? "text" : "password"}
+              <PasswordInput
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                error={error.password}
+                helperText={helperText.password}
+                placeholder={"Password"}
               />
-              <span
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                >
-                  <g clipPath="url(#clip0_1214_40689)">
-                    <path
-                      d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
-                      stroke="#969696"
-                      strokeMiterlimit="10"
-                    />
-                    <path
-                      d="M12.5 16.9551C15.3995 16.9551 17.75 14.7025 17.75 11.9238C17.75 9.14515 15.3995 6.89258 12.5 6.89258C9.60051 6.89258 7.25 9.14515 7.25 11.9238C7.25 14.7025 9.60051 16.9551 12.5 16.9551Z"
-                      stroke="#969696"
-                      strokeMiterlimit="10"
-                    />
-                    <path
-                      d="M12.5 12.6426C12.9142 12.6426 13.25 12.3208 13.25 11.9238C13.25 11.5269 12.9142 11.2051 12.5 11.2051C12.0858 11.2051 11.75 11.5269 11.75 11.9238C11.75 12.3208 12.0858 12.6426 12.5 12.6426Z"
-                      stroke="#969696"
-                      strokeWidth="2"
-                      strokeMiterlimit="10"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1214_40689">
-                      <rect
-                        width="24"
-                        height="23"
-                        fill="white"
-                        transform="translate(0.5 0.423828)"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
             </div>
             <p>Confirm Password</p>
             <div className="password-container">
-              <TextField
-                variant="outlined"
-                size="small"
-                fullWidth
-                placeholder="Confirm Password"
-                type={showConfirmPassword ? "text" : "password"}
+              <PasswordInput
                 value={confirmPassword}
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
-                  setErrorMessage("");
                 }}
+                error={error.password}
+                helperText={helperText.confirmPassword}
               />
-              <span
-                className="toggle-password"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
-                  fill="none"
-                >
-                  <g clipPath="url(#clip0_1214_40689)">
-                    <path
-                      d="M12.5 6.89258C18.5 6.89258 23.375 11.9238 23.375 11.9238C23.375 11.9238 18.5 16.9551 12.5 16.9551C6.5 16.9551 1.625 11.9238 1.625 11.9238C1.625 11.9238 6.5 6.89258 12.5 6.89258Z"
-                      stroke="#969696"
-                      strokeMiterlimit="10"
-                    />
-                    <path
-                      d="M12.5 16.9551C15.3995 16.9551 17.75 14.7025 17.75 11.9238C17.75 9.14515 15.3995 6.89258 12.5 6.89258C9.60051 6.89258 7.25 9.14515 7.25 11.9238C7.25 14.7025 9.60051 16.9551 12.5 16.9551Z"
-                      stroke="#969696"
-                      strokeMiterlimit="10"
-                    />
-                    <path
-                      d="M12.5 12.6426C12.9142 12.6426 13.25 12.3208 13.25 11.9238C13.25 11.5269 12.9142 11.2051 12.5 11.2051C12.0858 11.2051 11.75 11.5269 11.75 11.9238C11.75 12.3208 12.0858 12.6426 12.5 12.6426Z"
-                      stroke="#969696"
-                      strokeWidth="2"
-                      strokeMiterlimit="10"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1214_40689">
-                      <rect
-                        width="24"
-                        height="23"
-                        fill="white"
-                        transform="translate(0.5 0.423828)"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
             </div>
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}

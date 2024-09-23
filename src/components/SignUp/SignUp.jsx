@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import TextField from "@mui/material/TextField";
 import "./SignUp.css";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +6,6 @@ import logo from "../../assets/images/ge3s_logo.png";
 import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/utils";
 import axiosInstance from "../../util/axiosInstance";
-import OtpValidationModal from "./OTPModal";
 import { useSignup } from "../../context/User-signup";
 import OtpModal from "../VerifyOTP/VerifyOTP";
 

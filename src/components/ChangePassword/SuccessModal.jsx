@@ -1,6 +1,6 @@
 import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
-import { Close } from '@mui/icons-material';
-import { styled } from '@mui/system';
+import { Close } from "@mui/icons-material";
+import { styled } from "@mui/system";
 
 const style = {
   position: "absolute",
@@ -40,18 +40,19 @@ export default function SuccessModal({ open, handleClose }) {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-
       <Box sx={style}>
-        <button style={{
-          position: 'absolute',
-          right: '10px',
-          top: '10px',
-          color: '#000',
-          border:"none",
-          background:'transparent'
-
-        }} onClick={handleClose}>
-          <Close  />
+        <button
+          style={{
+            position: "absolute",
+            right: "10px",
+            top: "10px",
+            color: "#000",
+            border: "none",
+            background: "transparent",
+          }}
+          onClick={handleClose}
+        >
+          <Close />
         </button>
         {/* SVG Icon */}
         <div style={svgStyle}>
