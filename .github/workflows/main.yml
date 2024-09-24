@@ -34,8 +34,7 @@ jobs:
         run: |
           sudo npm i
           sudo npm run build
-          ls -la ./build  # List contents of the build directory
-          zip -r project.zip ./build/*
+          zip -r project.zip ./dist/*
 
       - name: Delete existing build files
         run: |
