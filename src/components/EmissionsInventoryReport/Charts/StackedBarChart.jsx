@@ -86,7 +86,7 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
                         x={xScale(d.name)}
                         y={barY}
                         height={barHeight}
-                        width={xScale.bandwidth()}
+                        width={xScale.bandwidth()-16}
                         fill={colorScale(key)}
                         onMouseEnter={() => {
                           showTooltip({
