@@ -48,7 +48,7 @@
   background: #fff;
   border: 1px dashed #369d9c;
   color: #fff;
-  width: fit-content;
+  width: 15vw;
   font-weight: 500;
   font-size: 0.8rem;
   cursor: pointer;
@@ -117,4 +117,49 @@
 }
 .team_members_actions_cta svg {
   cursor: pointer;
+}
+.dashboard_top_cards {
+  display: flex;
+  height: 100%;
+  gap: 1.5vw;
+  /* background: blue; */
+}
+.top_header_draft {
+  margin-left: 16.5vw;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.view_all_report_cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: var(--grad-1, linear-gradient(102deg, #51adac 0%, #4fa874 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.dashboard_reports_header {
+  /* background-color: red; */
+}
+.dashboard_reports_header {
+  margin: 2.5vh 0 1vh 0;
+  font-weight: 500;
+  font-weight: 1.2rem;
+  color: #000;
+}
+.reports_viewall_cta {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 10px;
+}
+.reports_viewall_cta span {
+  color: #717171;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
