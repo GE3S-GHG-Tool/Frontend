@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Pie } from '@visx/shape';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
@@ -6,16 +6,11 @@ import { Box, Paper } from '@mui/material';
 
 // Reusable tooltip component (unchanged)
 const ChartTooltip = ({ data }) => (
-  <Paper sx={{ zIndex: '1000000', whiteSpace: 'nowrap', padding: '5px' }}>
+  <Paper sx={{ zIndex: '100000', whiteSpace: 'nowrap', padding: '5px' }}>
     {data.map((item, i) => (
       <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '7px' }}>
         <Box sx={{ width: 12, height: 12, backgroundColor: item.color, mr: 1 }} />
-        <span style={{
-          color: '#BDBDBD', fontSize: '0.6rem',
-          // width: '100px',
-          // wordBreak: 'break-word',
-          // whiteSpace: 'normal',
-        }}>{item.label}</span>
+        <span style={{ color: '#BDBDBD', fontSize: '0.6rem' }}>{item.label}</span>
         <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', color: '#717171', fontWeight: '500' }}>
           {item.key}
         </span>
@@ -27,15 +22,15 @@ const ChartTooltip = ({ data }) => (
   </Paper>
 );
 
-const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = false }) => {
+const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = false }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipLeft, setTooltipLeft] = useState(0);
   const [tooltipTop, setTooltipTop] = useState(0);
   const svgRef = useRef(null);
 
   const radius = Math.min(width, height) / 2;
-  const centerY = height / 1.35;
-  const centerX = width / 1.8;
+  const centerY = height / 2;
+  const centerX = width / 2;
 
   const colorScale = scaleOrdinal({
     domain: data.map(d => d.label),
@@ -67,11 +62,8 @@ const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = fa
           <Pie
             data={data}
             pieValue={(d) => d.value}
-            outerRadius={radius - 20}
+            outerRadius={radius - 30}
             innerRadius={radius - 85}
-            startAngle={-Math.PI / 2}
-            endAngle={Math.PI / 2}
-            padAngle={0}
           >
             {(pie) => (
               <Group
@@ -113,7 +105,7 @@ const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = fa
             position: 'absolute',
             top: tooltipTop,
             left: tooltipLeft,
-            transform: 'translate(-10%, -100%)',
+            transform: 'translate(-10%, 0%)',
             pointerEvents: 'none',
           }}
         >
@@ -124,4 +116,4 @@ const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = fa
   );
 };
 
-export default SemiCirclePieChart;
+export default FullCircleDonutChart;

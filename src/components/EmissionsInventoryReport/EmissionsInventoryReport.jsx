@@ -5,19 +5,38 @@ import logo from "../../assets/images/starbucksLogo.png"
 import ge3s from "../../assets/images/ge3s.png"
 import backgroundImage from "../../assets/images/sustainabilityHeading.png"
 import SemiCirclePieChart from "./Charts/SemiCirclePieChart";
-import DirectFootPrintChart from "./Charts/DirectFootPrintChart";
 import RefrigerantConsumptionChart from "./Charts/RefrigerantConsumptionChart";
 import FuelConsumptionChart from "./Charts/FuelConsumptionChart";
 import RefrigerantEmissionsChart from "./Charts/RefrigerantEmissionsChart";
 import ConfirmEditReportModal from "./Modals/ConfirmEditReportModal";
 import ShareReportModal from "./Modals/ShareReportModal";
+import ScopeData from "./components/ScopeData";
 
-
-const FootPrintData = [
+const Scope1Data = [
     { label: 'Food Consumption', value: 340345, color: '#028A60', key: '60%' },
     { label: 'Refrigerant Data', value: 245845, color: '#02B880', key: '25%' },
     { label: 'Process Emission', value: 681447, color: '#B1E9D8', key: '15%' },
 ];
+
+const Scope1SVGs = [
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="30" viewBox="0 0 22 32" fill="none">
+        <path d="M12.0495 0.534683L12.6021 1.30422L12.8726 1.6848L13.4019 2.43692L13.6607 2.80911L14.1654 3.54447L14.6552 4.2695L15.1289 4.98292L15.587 5.68602L15.8096 6.03305L16.2438 6.71873L16.6624 7.39345L17.0655 8.05656L17.4518 8.70934C17.8181 9.3332 18.1736 9.96329 18.5182 10.5993L18.8417 11.2076L18.9976 11.5076L19.2979 12.0991C21.0993 15.7113 22 18.6895 22 21.0342C22 27.0906 17.0752 32 11 32C4.92476 32 0 27.0906 0 21.0342C0 18.6895 0.900706 15.7113 2.70212 12.0991L3.00235 11.5076L3.15765 11.2076L3.48182 10.6C3.82638 9.96372 4.18189 9.33342 4.54818 8.70934L4.93447 8.05656L5.33759 7.39345L5.75624 6.71873L6.18976 6.03305L6.413 5.68537L6.87112 4.98292L7.34476 4.2695L7.83459 3.54511L8.33929 2.80976L8.86082 2.06215L9.12741 1.6848L9.67224 0.921065L9.95047 0.535328C10.0704 0.369619 10.2281 0.234674 10.4105 0.141603C10.593 0.0485331 10.795 0 11 0C11.205 0 11.407 0.0485331 11.5895 0.141603C11.7719 0.234674 11.9296 0.368974 12.0495 0.534683ZM11 3.51608L10.4888 4.2495L9.99318 4.97066L9.51371 5.68021L9.28012 6.03047L8.82524 6.72196L8.38588 7.40119L7.96335 8.06881L7.75759 8.39779L7.359 9.04735L7.16618 9.36794L6.79088 9.99879L6.43306 10.618C6.25771 10.9238 6.08818 11.2257 5.92512 11.523L5.60677 12.1107L5.30459 12.6867C5.20624 12.8763 5.11047 13.064 5.01794 13.2498L4.74812 13.8L4.49382 14.3387C4.32947 14.6934 4.17612 15.0392 4.03312 15.3772L3.82606 15.8764C3.00041 17.9335 2.58824 19.6577 2.58824 21.0342C2.58824 25.6657 6.35412 29.4198 11 29.4198C15.6459 29.4198 19.4118 25.6657 19.4118 21.0342C19.4118 19.6577 19.0002 17.9335 18.1733 15.8758L17.9669 15.3759C17.8245 15.0385 17.6705 14.6921 17.5062 14.3374L17.2519 13.7994L16.9821 13.2492C16.8878 13.0608 16.7922 12.8731 16.6954 12.6861L16.3932 12.11L16.0749 11.5224C15.9118 11.2257 15.7423 10.9231 15.5669 10.6167L15.2085 9.99815L14.8338 9.36729L14.4436 8.72354C14.3088 8.50455 14.1732 8.28609 14.0366 8.06817L13.6141 7.40055L13.1748 6.72131L12.7199 6.02983L12.4869 5.67957L12.0068 4.97002L11.5118 4.24885C11.3436 4.00632 11.1734 3.76249 11 3.51608ZM17.7754 20.4479C17.7779 20.4898 17.7773 20.5317 17.7734 20.573C17.5664 22.7713 16.8598 24.471 15.6536 25.6734C14.498 26.8261 12.8836 27.5208 10.8104 27.7582L10.5374 27.7866C10.4207 27.7975 10.303 27.7831 10.1924 27.7444C10.0818 27.7057 9.98089 27.6435 9.89667 27.5623C9.81244 27.481 9.74686 27.3825 9.70443 27.2736C9.66201 27.1647 9.64374 27.0479 9.65088 26.9312C9.66459 26.7053 9.76684 26.4938 9.93559 26.3423C10.1043 26.1909 10.326 26.1116 10.5529 26.1217C12.0114 26.1862 13.3171 25.6444 14.4708 24.4943C15.5721 23.3964 16.1182 22.1605 16.1085 20.7852L16.1034 20.5885C16.0931 20.3623 16.1725 20.1411 16.3244 19.9727C16.4764 19.8044 16.6886 19.7023 16.9154 19.6887C17.0219 19.6821 17.1287 19.6966 17.2296 19.7312C17.3306 19.7658 17.4237 19.8199 17.5036 19.8904C17.5835 19.9609 17.6487 20.0465 17.6955 20.1421C17.7422 20.2378 17.7689 20.3417 17.7754 20.4479Z" fill="#028A60" />
+    </svg>,
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 31 32" fill="none">
+        <path d="M11.3846 0.939453L16 5.55484M16 5.55484L20.6154 0.939453M16 5.55484V26.3241M1 20.5548L5.61538 15.9395M5.61538 15.9395L1 11.3241M5.61538 15.9395H26.3846M20.6154 30.9395L16 26.3241M16 26.3241L11.3846 30.9395M31 11.3241L26.3846 15.9395M26.3846 15.9395L31 20.5548M7.92308 7.86253L11.3846 11.3241M11.3846 20.5548L7.92308 24.0164M24.0769 7.86253L20.6154 11.3241M20.6154 20.5548L24.0769 24.0164" stroke="#02B880" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>,
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="27" viewBox="0 0 20 31" fill="none">
+        <g clip-path="url(#clip0_1214_49609)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.07772 16.2891L0 15.5298L6.69681 0.878906H15.8524L10.6611 9.28467L20 10.3174L2.85714 30.8789L8.07772 16.2891Z" fill="#B1E9D8" />
+        </g>
+        <defs>
+            <clipPath id="clip0_1214_49609">
+                <rect width="20" height="30" fill="white" transform="translate(0 0.878906)" />
+            </clipPath>
+        </defs>
+    </svg>
+]
+
 
 const FuelTypeEmissionBreakdownData = [
     { label: 'Deisel', value: 150000, color: '#028A60', key: '15%' },
@@ -50,13 +69,12 @@ const RefrigerantEmissionsData = [
 ]
 
 const RefrigerantConsumptionData = [
-    { refrigerant: 'R410a', consumption: 5200 },
-    { refrigerant: 'R22', consumption: 8100 },
-    { refrigerant: 'R134a', consumption: 3000 },
-    { refrigerant: 'HFC-23', consumption: 8500 },
-    { refrigerant: 'HFC-245fa', consumption: 5000 },
+    { label: 'R410a', value: 5200, color: '#006D4F' },
+    { label: 'R22', value: 8100, color: '#00A86B' },
+    { label: 'R134a', value: 3000, color: '#7FFFD4' },
+    { label: 'HFC-23', value: 8500, color: '#E0FFFF' },
+    { label: 'HFC-245fa', value: 5000, color: '#B0E0E6' },
 ];
-
 const EmissionsInventoryReport = () => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -266,7 +284,7 @@ const EmissionsInventoryReport = () => {
                                 </h2>
                             </div>
                         </div>
-                        <div style={{ display: "flex", alignItems: 'center', position: 'absolute', right: '2rem', gap:'0.8rem' }}>
+                        <div style={{ display: "flex", alignItems: 'center', position: 'absolute', right: '2rem', gap: '0.8rem' }}>
                             <Typography sx={{ fontSize: '0.8rem', fontWeight: '600' }}>Powered by</Typography>
                             <img
                                 src={ge3s}
@@ -295,94 +313,41 @@ const EmissionsInventoryReport = () => {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <div style={{ padding: '2.6rem 2.2rem', display: 'flex' }}>
-                            <div style={{ width: '80%' }}>
-                                <div>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px' }}>Scope 1 Emissions: Your Direct Footprint</Typography>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '0.875rem', fontWeight: '500', wordSpacing: '0px', color: '#717171', width: '35%' }}>
-                                        Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles.
-                                    </Typography>
-                                </div>
-                                <div style={{ display: 'flex' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', marginTop: '4rem', gap: '0.8rem', width: '30%' }}>
-                                        <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderBottom: '1px solid rgba(217, 217, 217, 0.40)' }}>
-                                            <div style={{ width: '1rem', height: '1rem', background: '#028A60' }}></div>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '1rem', fontWeight: '600', wordSpacing: '0px' }}>Food Consumption : 60%</Typography>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderBottom: '1px solid rgba(217, 217, 217, 0.40)' }}>
-                                            <div style={{ width: '1rem', height: '1rem', background: '#02B880' }}></div>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '1rem', fontWeight: '600', wordSpacing: '0px' }}>Refrigent data : 25%</Typography>
-                                        </div>
-                                        <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderBottom: '1px solid rgba(217, 217, 217, 0.40)' }}>
-                                            <div style={{ width: '1rem', height: '1rem', background: '#B1E9D8' }}></div>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '1rem', fontWeight: '600', wordSpacing: '0px' }}>Process Emission : 15%</Typography>
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '70%' }}>
-                                        <DirectFootPrintChart data={FootPrintData} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ width: '20%' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '7rem', justifyContent: "space-between", }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="30" viewBox="0 0 22 32" fill="none">
-                                                <path d="M12.0495 0.534683L12.6021 1.30422L12.8726 1.6848L13.4019 2.43692L13.6607 2.80911L14.1654 3.54447L14.6552 4.2695L15.1289 4.98292L15.587 5.68602L15.8096 6.03305L16.2438 6.71873L16.6624 7.39345L17.0655 8.05656L17.4518 8.70934C17.8181 9.3332 18.1736 9.96329 18.5182 10.5993L18.8417 11.2076L18.9976 11.5076L19.2979 12.0991C21.0993 15.7113 22 18.6895 22 21.0342C22 27.0906 17.0752 32 11 32C4.92476 32 0 27.0906 0 21.0342C0 18.6895 0.900706 15.7113 2.70212 12.0991L3.00235 11.5076L3.15765 11.2076L3.48182 10.6C3.82638 9.96372 4.18189 9.33342 4.54818 8.70934L4.93447 8.05656L5.33759 7.39345L5.75624 6.71873L6.18976 6.03305L6.413 5.68537L6.87112 4.98292L7.34476 4.2695L7.83459 3.54511L8.33929 2.80976L8.86082 2.06215L9.12741 1.6848L9.67224 0.921065L9.95047 0.535328C10.0704 0.369619 10.2281 0.234674 10.4105 0.141603C10.593 0.0485331 10.795 0 11 0C11.205 0 11.407 0.0485331 11.5895 0.141603C11.7719 0.234674 11.9296 0.368974 12.0495 0.534683ZM11 3.51608L10.4888 4.2495L9.99318 4.97066L9.51371 5.68021L9.28012 6.03047L8.82524 6.72196L8.38588 7.40119L7.96335 8.06881L7.75759 8.39779L7.359 9.04735L7.16618 9.36794L6.79088 9.99879L6.43306 10.618C6.25771 10.9238 6.08818 11.2257 5.92512 11.523L5.60677 12.1107L5.30459 12.6867C5.20624 12.8763 5.11047 13.064 5.01794 13.2498L4.74812 13.8L4.49382 14.3387C4.32947 14.6934 4.17612 15.0392 4.03312 15.3772L3.82606 15.8764C3.00041 17.9335 2.58824 19.6577 2.58824 21.0342C2.58824 25.6657 6.35412 29.4198 11 29.4198C15.6459 29.4198 19.4118 25.6657 19.4118 21.0342C19.4118 19.6577 19.0002 17.9335 18.1733 15.8758L17.9669 15.3759C17.8245 15.0385 17.6705 14.6921 17.5062 14.3374L17.2519 13.7994L16.9821 13.2492C16.8878 13.0608 16.7922 12.8731 16.6954 12.6861L16.3932 12.11L16.0749 11.5224C15.9118 11.2257 15.7423 10.9231 15.5669 10.6167L15.2085 9.99815L14.8338 9.36729L14.4436 8.72354C14.3088 8.50455 14.1732 8.28609 14.0366 8.06817L13.6141 7.40055L13.1748 6.72131L12.7199 6.02983L12.4869 5.67957L12.0068 4.97002L11.5118 4.24885C11.3436 4.00632 11.1734 3.76249 11 3.51608ZM17.7754 20.4479C17.7779 20.4898 17.7773 20.5317 17.7734 20.573C17.5664 22.7713 16.8598 24.471 15.6536 25.6734C14.498 26.8261 12.8836 27.5208 10.8104 27.7582L10.5374 27.7866C10.4207 27.7975 10.303 27.7831 10.1924 27.7444C10.0818 27.7057 9.98089 27.6435 9.89667 27.5623C9.81244 27.481 9.74686 27.3825 9.70443 27.2736C9.66201 27.1647 9.64374 27.0479 9.65088 26.9312C9.66459 26.7053 9.76684 26.4938 9.93559 26.3423C10.1043 26.1909 10.326 26.1116 10.5529 26.1217C12.0114 26.1862 13.3171 25.6444 14.4708 24.4943C15.5721 23.3964 16.1182 22.1605 16.1085 20.7852L16.1034 20.5885C16.0931 20.3623 16.1725 20.1411 16.3244 19.9727C16.4764 19.8044 16.6886 19.7023 16.9154 19.6887C17.0219 19.6821 17.1287 19.6966 17.2296 19.7312C17.3306 19.7658 17.4237 19.8199 17.5036 19.8904C17.5835 19.9609 17.6487 20.0465 17.6955 20.1421C17.7422 20.2378 17.7689 20.3417 17.7754 20.4479Z" fill="#028A60" />
-                                            </svg>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '0.8rem', fontWeight: '600', wordSpacing: '0px' }}>Food Consumption</Typography>
-                                        </div>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px' }}>344tCO2e</Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 31 32" fill="none">
-                                                <path d="M11.3846 0.939453L16 5.55484M16 5.55484L20.6154 0.939453M16 5.55484V26.3241M1 20.5548L5.61538 15.9395M5.61538 15.9395L1 11.3241M5.61538 15.9395H26.3846M20.6154 30.9395L16 26.3241M16 26.3241L11.3846 30.9395M31 11.3241L26.3846 15.9395M26.3846 15.9395L31 20.5548M7.92308 7.86253L11.3846 11.3241M11.3846 20.5548L7.92308 24.0164M24.0769 7.86253L20.6154 11.3241M20.6154 20.5548L24.0769 24.0164" stroke="#02B880" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '0.8rem', fontWeight: '600', wordSpacing: '0px' }}>Refrigerant Data</Typography></div>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px' }}>100tCO2e</Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="27" viewBox="0 0 20 31" fill="none">
-                                                <g clip-path="url(#clip0_1214_49609)">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.07772 16.2891L0 15.5298L6.69681 0.878906H15.8524L10.6611 9.28467L20 10.3174L2.85714 30.8789L8.07772 16.2891Z" fill="#B1E9D8" />
-                                                </g>
-                                                <defs>
-                                                    <clipPath id="clip0_1214_49609">
-                                                        <rect width="20" height="30" fill="white" transform="translate(0 0.878906)" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                            <Typography sx={{ fontFamily: 'Inter', fontSize: '0.8rem', fontWeight: '600', wordSpacing: '0px' }}>Process Emission</Typography>
-                                        </div>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px' }}>456tCO2e</Typography>
-                                    </div>
-                                </div>
-                            </div>
+                            <ScopeData title="Scope 1 Emissions: Your Direct Footprint" desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles." svgs={Scope1SVGs} data={Scope1Data} type='scope-1' />
                         </div>
-                        <div style={{ padding: '2.6rem 2.2rem 0 2.2rem' }}>
-                            <div style={{ display: 'flex', gap: '4rem', justifyContent: 'space-between', overflow: 'hidden' }}>
-                                <div style={{ width: '32%', padding: '0', position: 'relative' }}>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px' }}>Fuel Type Emissions Breakdown</Typography>
-                                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} />
+                        <div style={{ padding: '2.6rem 2.2rem 0 2.2rem', width: '100%' }}>
+                            <div style={{ display: 'flex', gap: '4rem', justifyContent: 'space-between', margin: '0 auto', }}>
+                                <div style={{ width: '32%', padding: '0' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Fuel Type Emissions Breakdown</Typography>
+                                        <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} />
+                                    </div>
                                 </div>
-                                <div style={{ width: '32%', padding: '0', position: 'relative' }}>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px' }}>Refrigerant Emissions by Type</Typography>
-                                    <RefrigerantEmissionsChart data={RefrigerantEmissionsData} />
+                                <div style={{ width: '32%', padding: '0' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Refrigerant Emissions by Type</Typography>
+                                        <RefrigerantEmissionsChart data={RefrigerantEmissionsData} />
+                                    </div>
                                 </div>
-                                <div style={{ width: '32%', padding: '0', position: 'relative' }}>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px' }}>Process Emission Breakdown</Typography>
-                                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} />
+                                <div style={{ width: '32%', padding: '0' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Process Emission Breakdown</Typography>
+                                        <SemiCirclePieChart data={ProcessEmissionBreakdownData} />
+                                    </div>
                                 </div>
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div style={{ width: '35%' }}>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px' }}>Fuel Consumption Breakdown</Typography>
-                                    <FuelConsumptionChart data={FuelConsumptionBreakdown} />
+                                    <div style={{ textAlign: 'center' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Fuel Consumption Breakdown</Typography>
+                                        <FuelConsumptionChart data={FuelConsumptionBreakdown} />
+                                    </div>
                                 </div>
-                                <div style={{ width: '55%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0', position: 'relative' }}>
-                                    <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px' }}>Refrigerant Consumption Breakdown</Typography>
-                                    <RefrigerantConsumptionChart data={RefrigerantConsumptionData} />
+                                <div style={{ width: '55%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0', }}>
+                                    <div style={{ textAlign: 'center', position: 'relative' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Refrigerant Consumption Breakdown</Typography>
+                                        <RefrigerantConsumptionChart data={RefrigerantConsumptionData} width={750} height={300} type="scope-1" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -391,7 +356,6 @@ const EmissionsInventoryReport = () => {
             </div>
             <ConfirmEditReportModal open={openEditModal} setOpenModal={setOpenEditModal} />
             <ShareReportModal open={openShareModal} setOpenModal={setOpenShareModal} />
-            
         </div>
     );
 };

@@ -5,69 +5,57 @@ import { scaleBand, scaleLinear } from '@visx/scale';
 import { Text } from '@visx/text';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 
-// Define chart dimensions and margins
-const width = 750;
-const height = 300;
 const margin = { top: 20, right: 20, bottom: 60, left: 60 };
 
 // Accessors
-const getRefrigerant = (d) => d.refrigerant;
-const getConsumption = (d) => d.consumption;
+const getLabel = (d) => d.label;
+const getValue = (d) => d.value;
+const getColor = (d) => d.color;
 
-const RefrigerantConsumptionChart = ({ data }) => {
+const RefrigerantConsumptionChart = ({ data, width, height, type }) => {
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } = useTooltip();
 
     // Scales
     const xScale = scaleBand({
         range: [margin.left, width - margin.right],
-        domain: data.map(getRefrigerant),
+        domain: data.map(getLabel),
         padding: 0.5, // Increased padding to make bars thinner
     });
 
     const yScale = scaleLinear({
         range: [height - margin.bottom, margin.top],
-        domain: [0, Math.max(...data.map(getConsumption))],
+        domain: [0, Math.max(...data.map(getValue))],
         nice: true,
     });
 
-    // Color scale
-    const colorScale = (refrigerant) => {
-        const colors = {
-            'R410a': '#006D4F',
-            'R22': '#00A86B',
-            'R134a': '#7FFFD4',
-            'HFC-23': '#E0FFFF',
-            'HFC-245fa': '#B0E0E6',
-        };
-        return colors[refrigerant] || '#000000';
-    };
+
 
     return (
         <>
             <svg width={width} height={height}>
                 <Group>
                     {data.map((d) => {
-                        const refrigerant = getRefrigerant(d);
+                        const label = getLabel(d);
                         const barWidth = xScale.bandwidth();
-                        const barHeight = height - margin.bottom - yScale(getConsumption(d));
-                        const barX = xScale(refrigerant);
+                        const barHeight = height - margin.bottom - yScale(getValue(d));
+                        const barX = xScale(label);
                         const barY = height - margin.bottom - barHeight;
 
                         return (
                             <Bar
-                                key={`bar-${refrigerant}`}
+                                key={`bar-${label}`}
                                 x={barX}
                                 y={barY}
                                 width={1 * barWidth}
                                 height={barHeight}
-                                fill={colorScale(refrigerant)}
+                                fill={getColor(d)}
                                 rx={4} // Adding border radius
                                 ry={4} // Adding border radius
                                 onMouseEnter={() => {
                                     showTooltip({
                                         tooltipData: d,
                                         tooltipTop: barY,
-                                        tooltipLeft: barX + barWidth / 2,
+                                        tooltipLeft: barX + barWidth/2 ,
                                     });
                                 }}
                                 onMouseLeave={hideTooltip}
@@ -93,14 +81,14 @@ const RefrigerantConsumptionChart = ({ data }) => {
                 {/* X-axis labels */}
                 {data.map((d) => (
                     <Text
-                        key={getRefrigerant(d)}
-                        x={xScale(getRefrigerant(d)) + xScale.bandwidth() / 2}
+                        key={getLabel(d)}
+                        x={xScale(getLabel(d)) + xScale.bandwidth() / 2}
                         y={height - margin.bottom + 10}
                         textAnchor="middle"
                         verticalAnchor="start"
                         fontSize={10}
                     >
-                        {getRefrigerant(d)}
+                        {getLabel(d)}
                     </Text>
                 ))}
 
@@ -112,7 +100,9 @@ const RefrigerantConsumptionChart = ({ data }) => {
                     textAnchor="middle"
                     fontSize={12}
                 >
-                    Kg
+                    {
+                        type === "scope-1" ? "Kg" : "tCO2e"
+                    }
                 </Text>
             </svg>
             {tooltipData && (
@@ -127,9 +117,14 @@ const RefrigerantConsumptionChart = ({ data }) => {
                         borderRadius: '4px',
                     }}
                 >
-                    <div style={{display:'flex', gap:'0.7rem', fontSize:'0.8rem'}}>
-                        <span style={{color:'#717171'}}>{getRefrigerant(tooltipData)}</span>
-                        <div>{getConsumption(tooltipData).toFixed(1)/1000 + 'K'} Kg</div>
+                    <div style={{ display: 'flex', gap: '0.7rem', fontSize: '0.8rem' }}>
+                        <div style={{ width: '10px', height: '10px', color: `${getColor(tooltipData)}` }}></div>
+                        <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span>
+                        <div>{getValue(tooltipData).toFixed(1) / 1000 + 'K'}
+                            {
+                                type === "scope-1" ? "Kg" : "tCO2e"
+                            }
+                        </div>
                     </div>
                 </Tooltip>
             )}

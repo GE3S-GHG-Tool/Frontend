@@ -31,6 +31,7 @@ import { Typography } from "@mui/material";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import ResetOTP from "./components/ResetPassword/ResetOTP";
+import TotalEmissionsInventoryReport from "./components/EmissionsInventoryReport/TotalEmissionsInventoryReport";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
           path="/ghg-emissions-inventory-report"
           element={<EmissionsInventoryReport />}
         />
+        <Route path="/ghg-emissions-inventory-report-all-scopes" element={<TotalEmissionsInventoryReport />} />
         {/* Dashboard routes */}
         <Route
           path="/"
