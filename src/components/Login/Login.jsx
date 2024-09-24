@@ -41,30 +41,24 @@ export default function Login() {
     setIsFormValid(isEmailValid && isPasswordValid);
   }, [email, password]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const payload = {
       user_email: email,
       user_password: password,
     };
-    // console.log(payload);
-
-    // console.log("sendEmailOTP", response);
     try {
       const response = await axios.post(
         `${constant.BACKEDN_BASE_URL}api/auth/login`,
         payload
       );
-      // console.log("sendEmailOTP", response);
       if (response.status === 200) {
+        // console.log("sendEmailOTP", response);
         localStorage.setItem("token", response?.data?.data?.token);
         navigate("/");
       }
     } catch (err) {
       alert(err?.response?.data.message);
       setPassword("");
-      // console.log("Error from sendEmailOTP ", err?.response?.data.message);
     }
   };
 

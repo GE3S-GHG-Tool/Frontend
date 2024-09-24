@@ -7,7 +7,7 @@ import logo from "../../assets/images/ge3s_logo.png";
 import "./PersonalInfo.css";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../context/User-signup";
-import axiosInstance from "../../util/axiosInstance"; // Import your axios instance
+import { submitPersonalInfo } from "../../api/auth";
 
 const PersonalInfo = () => {
   const { fullname, setFullname, setImageUrl } = useSignup();
@@ -44,25 +44,14 @@ const PersonalInfo = () => {
     if (isFormValid) {
       setIsLoading(true);
       try {
-        const formData = new FormData();
-        formData.append("user_name", fullname);
-        if (selectedFile) {
-          formData.append("user_profileImage", selectedFile);
+        const result = await submitPersonalInfo(fullname, selectedFile);
+        if (result.success) {
+          setFullname(fullname);
+          setImageUrl(selectedFile);
+          navigate("/createaccount");
+        } else {
+          console.error("Error submitting form:", result.error);
         }
-
-        const response = await axiosInstance.post("api/user/2", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        console.log("Submission successful:", response.data);
-        setFullname(fullname);
-        setImageUrl(selectedFile);
-        navigate("/createaccount");
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        // Handle error (e.g., show error message to user)
       } finally {
         setIsLoading(false);
       }
