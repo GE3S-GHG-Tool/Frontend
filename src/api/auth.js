@@ -1,18 +1,15 @@
 import api from ".";
-import axiosInstance from "../util/axiosInstance";
 
-export const initiateSignup = async (email, setOpenModal, setApiError) => {
+export const initiateSignup = async (email) => {
   try {
     const response = await api.post("/user/initiate", {
       user_email: email,
     });
-    console.log("Enter Email:", response.data);
-    setOpenModal(true);
-    return true;
+    console.log("response:", response);
+    if (response) return response;
   } catch (error) {
     console.error("API error:", error);
-    setApiError("An error occurred. Please try again.");
-    return false;
+    return error;
   }
 };
 
@@ -22,7 +19,7 @@ export const verifyOtp = async (email, otp, setAuthToken) => {
       user_email: email,
       user_otp: otp,
     };
-    const response = await axiosInstance.post("/user/otp_validation", payload);
+    const response = await api.post("/user/otp_validation", payload);
     if (response.status === 200) {
       setAuthToken(response?.data?.data?.token);
       return { success: true, token: response?.data?.data?.token };
@@ -43,7 +40,7 @@ export const submitPersonalInfo = async (fullname, selectedFile) => {
       formData.append("user_profileImage", selectedFile);
     }
 
-    const response = await axiosInstance.post("/user/2", formData, {
+    const response = await api.post("/user/2", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -62,7 +59,7 @@ export const createAccount = async (email, password) => {
     const formData = new FormData();
     formData.append("user_email", email);
     formData.append("user_password", password);
-    const response = await axiosInstance.post("/user/1", formData, {
+    const response = await api.post("/user/1", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -79,9 +76,9 @@ export const fetchInitialOrganizationData = async () => {
   try {
     const [countriesResponse, industriesResponse, sectorsResponse] =
       await Promise.all([
-        axiosInstance.get("/user/getCountries"),
-        axiosInstance.get("/industry"),
-        axiosInstance.get("/sector"),
+        api.get("/user/getCountries"),
+        api.get("/industry"),
+        api.get("/sector"),
       ]);
 
     return {
@@ -97,7 +94,7 @@ export const fetchInitialOrganizationData = async () => {
 
 export const fetchStates = async (countryId) => {
   try {
-    const response = await axiosInstance.get(`/user/getstates/${countryId}`);
+    const response = await api.get(`/user/getstates/${countryId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching states:", error);
@@ -107,7 +104,7 @@ export const fetchStates = async (countryId) => {
 
 export const fetchCities = async (stateId) => {
   try {
-    const response = await axiosInstance.get(`/user/getcities/${stateId}`);
+    const response = await api.get(`/user/getcities/${stateId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching cities:", error);
@@ -117,7 +114,7 @@ export const fetchCities = async (stateId) => {
 
 export const fetchSustainabilityGoals = async () => {
   try {
-    const response = await axiosInstance.get("/sustainabilitygoal/");
+    const response = await api.get("/sustainabilitygoal/");
     return response.data;
   } catch (error) {
     console.error("Error fetching sustainability goals:", error);
@@ -153,7 +150,7 @@ export const submitGoalsData = async (
       organization_carbonfootprint: carbonFootprintMap[selectedValue],
     };
 
-    const response = await axiosInstance.post("/user/3", payload);
+    const response = await api.post("/user/3", payload);
     console.log("API response:", response.data);
     return response.data;
   } catch (error) {

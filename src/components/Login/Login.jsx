@@ -76,7 +76,7 @@ export default function Login() {
           }}
         >
           <img src={logo} alt="" className="ge3s_logo" />
-          <h1>Generate reports quick and easy!</h1>
+          <h1>Unified GHG Reporting Tool</h1>
           <div className="login-inputs">
             <div className="input_login">
               <p>Email</p>

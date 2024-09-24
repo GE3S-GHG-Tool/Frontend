@@ -59,7 +59,7 @@ input[type="number"] {
 
 .ge3s_button {
   margin-top: 4vh;
-  padding: 1.8vh 0;
+  padding: 1.5vh 0;
   border-radius: 100px;
   background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
@@ -71,7 +71,7 @@ input[type="number"] {
 
 .ge3s_button:disabled {
   margin-top: 4vh;
-  padding: 1.8vh 0;
+  padding: 1.5vh 0;
   border-radius: 100px;
   background: #e7e7e7;
   color: #838383;

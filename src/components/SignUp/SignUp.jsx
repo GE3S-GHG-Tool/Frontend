@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/utils";
 import axiosInstance from "../../util/axiosInstance";
 import { useSignup } from "../../context/User-signup";
-import OtpModal from "../VerifyOTP/VerifyOTP";
+// import VerifyModal from "../VerifyOTP/VerifyOTP";
 import { initiateSignup } from "../../api/auth";
+import VerifyOTP from "../VerifyOTP/VerifyOTP";
 
 export default function SignUp() {
   const { email, setEmail } = useSignup();
@@ -39,12 +40,16 @@ export default function SignUp() {
     setIsLoading(true);
     setApiError("");
 
-    const success = await initiateSignup(email, setOpenModal, setApiError);
+    const response = await initiateSignup(email);
+    console.log(response);
 
-    if (!success) {
-      setApiError("User already exists");
+    if (response.status === 200) {
+      navigate("/verify-otp", {
+        state: { email },
+      });
+    } else {
+      setApiError(response?.response?.data?.message);
     }
-
     setIsLoading(false);
   };
 
@@ -61,11 +66,14 @@ export default function SignUp() {
             size="small"
             fullWidth
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setApiError("");
+              setEmail(e.target.value);
+            }}
             error={error}
             helperText={helperText.email}
           />
-          {apiError && <p>User already exist</p>}
+          {apiError && <span className="error-text">{apiError}</span>}
           <button
             className="ge3s_button"
             disabled={!isFormValid || isLoading}
@@ -76,7 +84,7 @@ export default function SignUp() {
         </div>
         <h6>
           Already have an account?{" "}
-          <span onClick={() => navigate("/login")}>Login</span>
+          <h5 onClick={() => navigate("/login")}>Login</h5>
         </h6>
 
         <div
@@ -95,11 +103,6 @@ export default function SignUp() {
           }}
         ></div>
       </div>
-      <OtpModal
-        email={email}
-        open={openModal}
-        handleClose={() => setOpenModal(false)}
-      />
     </Wrapper>
   );
 }
