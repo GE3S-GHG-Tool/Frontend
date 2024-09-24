@@ -163,3 +163,28 @@
   font-weight: 500;
   font-size: 0.9rem;
 }
+.scope_box {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  margin-right: 10px;
+}
+.scope_box p {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.chart_box {
+  border-radius: 16px;
+  border:
+    1px solid,
+    rgba(217, 217, 217, 0.4);
+  background: #fff;
+  padding: 1rem;
+  margin-top: 2rem;
+}

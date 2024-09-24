@@ -6,19 +6,12 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
-const colors = ["#02B880", "#6c5efb", "#c998ff"];
+const colors = ["#FFC8BF", "#AFC6FF", "#B1E9D8"];
 // Tooltip styles
-const purple1 = "#6c5efb";
-const purple2 = "#c998ff";
+
 export const purple3 = "#a44afe";
 export const background = "#fff";
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 }; // Increased left margin for label space
-const tooltipStyles = {
-  ...defaultStyles,
-  minWidth: 100,
-  backgroundColor: "white",
-  color: "black",
-};
 
 // accessors
 const getQuarter = (d) => d.quarter;
@@ -43,7 +36,7 @@ const FootprintChart = ({
   //   colors,
   events = false,
   //   width = "1000",
-  height = 300,
+  height = 200,
   margin = defaultMargin,
   //   animate = true,
   leftLabel = "tCO2e",
@@ -66,8 +59,10 @@ const FootprintChart = ({
   useEffect(() => {
     const handleResize = () => {
       if (box.current) {
-        console.log("currr", box.current.offsetWidth);
-        setWidth(box.current.offsetWidth);
+        const containerWidth = box.current.offsetWidth;
+        const padding =
+          parseFloat(getComputedStyle(box.current).paddingLeft) * 2;
+        setWidth(containerWidth - padding);
       }
     };
 
@@ -102,15 +97,34 @@ const FootprintChart = ({
 
   return (
     <div ref={box} style={{ position: "relative", width: "100%" }}>
-      <svg width={width} height={height}>
-        <rect
-          x={0}
-          y={0}
-          width={width}
-          height={height}
-          fill={background}
-          rx={14}
-        />
+      <div className="scope_box">
+        <p>
+          <svg width="16" height="17" viewBox="0 0 16 17" fill="none">
+            <rect y="0.5" width="16" height="16" fill="#B1E9D8" />
+          </svg>
+          Scope1
+        </p>
+        <p>
+          <svg width="16" height="17" viewBox="0 0 16 17" fill="none">
+            <rect y="0.5" width="16" height="16" fill="#AFC6FF" />
+          </svg>
+          Scope2
+        </p>
+        <p>
+          <svg
+            width="16"
+            height="17"
+            viewBox="0 0 16 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="0.5" width="16" height="16" fill="#FFC8BF" />
+          </svg>
+          Scope3
+        </p>
+      </div>
+      <svg ref={containerRef} width={width} height={height}>
+        <rect x={0} y={0} width={width} height={height} fill={background} />
 
         <Group left={margin.left} top={margin.top}>
           <BarStack
@@ -124,17 +138,34 @@ const FootprintChart = ({
             {(barStacks) =>
               barStacks.map((barStack) =>
                 barStack.bars.map((bar) => {
-                  const isTopBar = barStack.index === 2;
+                  // console.log("bar", barStack);
+                  const isTopBar = barStack.index === 2; // Topmost bar in the stack
+                  const barWidth = bar.width;
+                  const barHeight = bar.height;
+                  const barX = bar.x;
+                  const barY = bar.y;
+                  const radius = 6; // Define the corner radius
+                  const path = isTopBar
+                    ? `
+            M ${barX},${barY + barHeight} 
+            L ${barX},${barY + radius} 
+            Q ${barX},${barY} ${barX + radius},${barY} 
+            L ${barX + barWidth - radius},${barY} 
+            Q ${barX + barWidth},${barY} ${barX + barWidth},${barY + radius} 
+            L ${barX + barWidth},${barY + barHeight} 
+            Z
+          `
+                    : `
+            M ${barX},${barY + barHeight} 
+            L ${barX},${barY} 
+            L ${barX + barWidth},${barY} 
+            L ${barX + barWidth},${barY + barHeight} 
+            Z
+          `;
                   return (
-                    <rect
+                    <path
                       key={`bar-stack-${barStack.index}-${bar.index}`}
-                      x={bar.x}
-                      y={bar.y}
-                      height={bar.height}
-                      width={bar.width}
-                      // width={"50"}
-                      rx={isTopBar ? 6 : 0} // Add border radius only to the top bar
-                      ry={isTopBar ? 6 : 0} // Add border radius only to the top bar
+                      d={path}
                       fill={bar.color}
                       onClick={() => {
                         if (events) alert(`clicked: ${JSON.stringify(bar)}`);
@@ -194,7 +225,6 @@ const FootprintChart = ({
           tickFormat={(value) => `${value / 1000}k`}
         />
       </svg>
-
       {tooltipOpen && tooltipData && (
         <TooltipInPortal
           top={tooltipTop}

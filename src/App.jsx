@@ -69,7 +69,10 @@ function App() {
           path="/ghg-emissions-inventory-report"
           element={<EmissionsInventoryReport />}
         />
-        <Route path="/ghg-emissions-inventory-report-all-scopes" element={<TotalEmissionsInventoryReport />} />
+        <Route
+          path="/ghg-emissions-inventory-report-all-scopes"
+          element={<TotalEmissionsInventoryReport />}
+        />
         {/* Dashboard routes */}
         <Route
           path="/"

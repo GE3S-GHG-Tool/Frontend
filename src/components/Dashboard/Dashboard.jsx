@@ -279,7 +279,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div style={{ background: "" }}>
+      <div className="chart_box" style={{ background: "" }}>
         <FootprintChart />
       </div>
 
@@ -289,13 +289,13 @@ const Dashboard = () => {
         <button onClick={() => setOpenModal(true)}>Create GHG Report</button>
       </div>{" "} */}
 
-      {/* <div>
+      <div>
         <h3 className="dashboard_reports_header">Generated reports </h3>
         <ReportList searchQuery={""} />
         <div className="reports_viewall_cta">
           <span onClick={() => navigate("/report")}>View All</span>{" "}
         </div>
-      </div> */}
+      </div>
       <StartReportModal open={openModal} setOpenModal={setOpenModal} />
     </div>
   );

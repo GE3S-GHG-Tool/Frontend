@@ -1,7 +1,8 @@
 import axios from "axios";
+import constant from "../constant";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/",
+  baseURL: `${constant.VITE_APP_BACKEND_BASE_URL}`,
 });
 
 axiosInstance.interceptors.request.use(
