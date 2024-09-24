@@ -89,8 +89,8 @@ const StartReportModal = ({ open, setOpenModal }) => {
             size="small"
             fullWidth
             placeholder="Name"
-            value={employeeCount}
-            onChange={(e) => setEmployeeCount(e.target.value)}
+            // value={employeeCount}
+            // onChange={(e) => setEmployeeCount(e.target.value)}
           />
         </div>
         <div className="report_input">
@@ -100,8 +100,8 @@ const StartReportModal = ({ open, setOpenModal }) => {
             size="small"
             fullWidth
             placeholder="Select Facility"
-            value={employeeCount}
-            onChange={(e) => setEmployeeCount(e.target.value)}
+            // value={employeeCount}
+            // onChange={(e) => setEmployeeCount(e.target.value)}
           />
         </div>
 
@@ -112,7 +112,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
-                value={year}
+                // value={year}
                 onChange={(e) => {
                   setYear(e.target.value);
                 }}
@@ -157,7 +157,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
             <Select
               labelId="demo-select-small-label"
               id="demo-select-small"
-              value={year}
+              // value={year}
               onChange={(e) => {
                 setYear(e.target.value);
               }}

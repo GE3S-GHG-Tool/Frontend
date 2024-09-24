@@ -1,6 +1,5 @@
-import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { styled } from "@mui/system";
 
 const style = {
   position: "absolute",

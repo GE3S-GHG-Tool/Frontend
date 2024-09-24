@@ -1,0 +1,64 @@
+.draft_card {
+  border-radius: 10px;
+  border: 1px solid var(--stroke-21, rgba(217, 217, 217, 0.4));
+  background: var(--green-shade-1, #f9fffc);
+  padding: 1rem 1rem 0.8rem 1rem;
+  height: 100%;
+  width: 18vw;
+}
+.draft_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.draft_header label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #000;
+}
+.report_card-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  /* background: red; */
+}
+
+.progress-bar {
+  width: 45px; /* Adjust width */
+  height: 45px; /* Adjust height */
+  border-radius: 100%;
+  background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(#369d9c 0%, #28814d 75%, #c8ecfb 75%);
+  position: relative; /* Position relative to position the text absolutely */
+  display: flex; /* Flexbox to center the text */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  box-shadow: 0px 3.94px 3.94px 0px #228d8c54;
+}
+
+.progress-text {
+  position: absolute; /* Absolutely positioned relative to .progress-bar */
+  font-size: 10px; /* Adjust text size */
+  font-weight: 400; /* Adjust font weight */
+  color: #000; /* Adjust text color */
+}
+
+.report_card-status {
+  color: #464646;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.report_card-edit_container {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+
+.edited-status {
+  font-size: 11px;
+  font-weight: 400;
+  color: #699191;
+}
