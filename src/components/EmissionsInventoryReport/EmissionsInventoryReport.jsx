@@ -316,22 +316,36 @@ const EmissionsInventoryReport = () => {
                             <ScopeData title="Scope 1 Emissions: Your Direct Footprint" desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles." svgs={Scope1SVGs} data={Scope1Data} type='scope-1' />
                         </div>
                         <div style={{ padding: '2.6rem 2.2rem 0 2.2rem', width: '100%' }}>
-                            <div style={{ display: 'flex', gap: '4rem', justifyContent: 'space-between', margin: '0 auto', }}>
-                                <div style={{ width: '32%', padding: '0' }}>
-                                    <div style={{ textAlign: 'center', position: 'relative' }}>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Fuel Type Emissions Breakdown</Typography>
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    gap: '4rem',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center', // Ensure vertical centering
+                                    margin: '0 auto',
+                                }}
+                            >
+                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
+                                            Fuel Type Emissions Breakdown
+                                        </Typography>
                                         <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} />
                                     </div>
                                 </div>
-                                <div style={{ width: '32%', padding: '0' }}>
-                                    <div style={{ textAlign: 'center', position: 'relative' }}>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Refrigerant Emissions by Type</Typography>
+                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
+                                            Refrigerant Emissions by Type
+                                        </Typography>
                                         <RefrigerantEmissionsChart data={RefrigerantEmissionsData} />
                                     </div>
                                 </div>
-                                <div style={{ width: '32%', padding: '0' }}>
-                                    <div style={{ textAlign: 'center', position: 'relative' }}>
-                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Process Emission Breakdown</Typography>
+                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
+                                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
+                                            Process Emission Breakdown
+                                        </Typography>
                                         <SemiCirclePieChart data={ProcessEmissionBreakdownData} />
                                     </div>
                                 </div>
