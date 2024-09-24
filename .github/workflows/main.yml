@@ -1,0 +1,62 @@
+name: Deploy to EC2 (Main)
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EC2_HOST: 3.108.168.86
+  EC2_USERNAME: ubuntu
+  VITE_APP_BACKEND_BASE_URL: https://backend.ghg.ge3s.org/
+  VITE_APP_AWS_IMAGE_URL: https://annual-reports-si-tool.s3.ap-south-1.amazonaws.com
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: make .env
+        run: |
+          echo "VITE_APP_BACKEND_BASE_URL=${{env.VITE_APP_BACKEND_BASE_URL}}" >> .env
+          echo "VITE_APP_AWS_IMAGE_URL=${{env.VITE_APP_AWS_IMAGE_URL}}" >> .env
+
+      - name: Create SSH key file from GitHub secret
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SECRET }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Zip the project
+        run: |
+          sudo npm i
+          sudo npm run build
+          zip -r project.zip ./dist/*
+
+      - name: Delete existing build files
+        run: |
+          ssh -i ~/.ssh/id_rsa -o "StrictHostKeyChecking=no" ${{ env.EC2_USERNAME }}@${{ env.EC2_HOST }} << 'ENDSSH'
+          cd ~/
+          sudo rm -rf ge3s-ghg-frontend
+          sudo mkdir ge3s-ghg-frontend
+          sudo chown ubuntu:ubuntu ge3s-ghg-frontend
+          ENDSSH
+
+      - name: Copy build files to EC2 instance
+        run: sudo scp -i ~/.ssh/id_rsa -o "StrictHostKeyChecking=no" -v -r .env project.zip ${{ env.EC2_USERNAME }}@${{ env.EC2_HOST }}:~/ge3s-ghg-frontend
+
+      - name: SSH into EC2 and deploy
+        run: |
+          ssh -i ~/.ssh/id_rsa -o "StrictHostKeyChecking=no" ${{ env.EC2_USERNAME }}@${{ env.EC2_HOST }} << 'ENDSSH'
+          cd ~/ge3s-ghg-frontend
+          unzip project.zip
+          rm -rf project.zip
+          sudo rm -rf /var/www/ge3s-ghg-frontend
+          sudo mkdir -p /var/www/ge3s-ghg-frontend
+          sudo cp -r ./dist/* /var/www/ge3s-ghg-frontend
+          sudo chown ubuntu:ubuntu /var/www/ge3s-ghg-frontend
+          sudo rm -rf ~/ge3s-ghg-frontend
+          ENDSSH
