@@ -16,7 +16,7 @@ const tooltipStyles = {
 };
 
 const FuelConsumptionChart = ({
-    width = 550,
+    width = 500,
     height = 300,
     data,
     margin = { top: 40, right: 30, bottom: 20, left: 50 }
