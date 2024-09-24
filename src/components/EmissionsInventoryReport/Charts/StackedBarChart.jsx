@@ -10,6 +10,7 @@ const defaultMargin = { top: 20, right: 20, bottom: 40, left: 60 };
 const defaultColors = ['#FFAC9F', '#FF9989', '#F26D58'];
 
 const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
+  const [toggle, setTooltip] = useState(false);
   const {
     showTooltip,
     hideTooltip,
@@ -86,16 +87,16 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
                         x={xScale(d.name)}
                         y={barY}
                         height={barHeight}
-                        width={xScale.bandwidth()-16}
+                        width={xScale.bandwidth() - 16}
                         fill={colorScale(key)}
                         onMouseEnter={() => {
                           showTooltip({
                             tooltipData: d,
                             tooltipTop: barY + margin.top,
                             tooltipLeft: xScale(d.name) + xScale.bandwidth() / 2 + margin.left
-                          });
+                          })
                         }}
-                        onMouseLeave={() => hideTooltip()}
+                        onMouseLeave={() => setTooltip(prev => !prev)}
                       />
                     );
                   })}
@@ -104,7 +105,7 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
             })}
           </Group>
         </svg>
-        {tooltipData && (
+        {toggle && tooltipData && (
           <Tooltip
             top={tooltipTop}
             left={tooltipLeft}
@@ -114,11 +115,11 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
               padding: '0.5rem',
               borderRadius: '4px',
               transform: 'translate(-50%, -100%)',
-              minWidth:'160px'
+              minWidth: '160px'
             }}
           >
             {['building', 'vehicle', 'equipment'].map((key) => (
-              <div key={key} style={{ display: 'flex', gap: '1rem', alignItems:'center' }}>
+              <div key={key} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <div style={{ width: '10px', height: '10px', backgroundColor: colorScale(key) }}></div>
                 <span style={{ fontFamily: 'Inter', fontSize: '0.7rem', color: '#BDBDBD', fontWeight: '400', textTransform: 'capitalize' }}>
                   {key}: {tooltipData[key]} tCO2e
@@ -132,7 +133,7 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
   };
 
   return (
-    <div style={{ width: '100%', height: `${height}px` }}>
+    <div style={{ width: '100%', height: `${height}px`, position: 'relative' }}>
       <ParentSize>
         {({ width }) => <Chart width={width} />}
       </ParentSize>
