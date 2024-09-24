@@ -56,7 +56,7 @@ jobs:
           rm -rf project.zip
           sudo rm -rf /var/www/ge3s-ghg-frontend
           sudo mkdir -p /var/www/ge3s-ghg-frontend
-          sudo cp -r ./build/* /var/www/ge3s-ghg-frontend
+          sudo cp -r ./dist/* /var/www/ge3s-ghg-frontend
           sudo chown ubuntu:ubuntu /var/www/ge3s-ghg-frontend
           sudo rm -rf ~/ge3s-ghg-frontend
           ENDSSH
