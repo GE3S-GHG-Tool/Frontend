@@ -5,7 +5,7 @@ const DraftCard = () => {
   const conicEnd = `${percentage}%`;
   const conicGradient = `conic-gradient(#368B9D 0%, #368B9D ${conicEnd}, #c8ecfb ${conicEnd})`;
 
-  console.log(percentage);
+  // console.log(percentage);
   return (
     <div className="draft_card">
       <div className="draft_header">

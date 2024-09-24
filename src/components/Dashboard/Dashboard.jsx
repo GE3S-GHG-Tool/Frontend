@@ -279,7 +279,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div style={{ background: "Red" }}>
+      <div style={{ background: "" }}>
         <FootprintChart />
       </div>
 

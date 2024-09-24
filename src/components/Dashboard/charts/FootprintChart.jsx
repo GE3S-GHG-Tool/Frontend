@@ -1,30 +1,53 @@
-import React from "react";
-import { BarGroup } from "@visx/shape";
+import React, { useEffect, useRef, useState } from "react";
+import { BarStack } from "@visx/shape";
 import { Group } from "@visx/group";
+// import { Grid, GridRows } from "@visx/grid";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
-import { animated, useTransition } from "@react-spring/web";
+const colors = ["#02B880", "#6c5efb", "#c998ff"];
+// Tooltip styles
+const purple1 = "#6c5efb";
+const purple2 = "#c998ff";
+export const purple3 = "#a44afe";
+export const background = "#fff";
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 }; // Increased left margin for label space
+const tooltipStyles = {
+  ...defaultStyles,
+  minWidth: 100,
+  backgroundColor: "white",
+  color: "black",
+};
+
+// accessors
+const getQuarter = (d) => d.quarter;
+
+let tooltipTimeout;
 const barData = [
-  { quarter: "Q1 2023", sox: 0, nox: 10 },
-  { quarter: "Q2 2023", sox: 20, nox: 30 },
-  { quarter: "Q3 2023", sox: 25, nox: 35 },
-  { quarter: "Q4 2023", sox: 10, nox: 40 },
-  { quarter: "Q1 2024", sox: 30, nox: 50 },
-  { quarter: "Q2 2024", sox: 15, nox: 40 },
+  { quarter: "January", sox: 2000, nox: 1000, tox: 1000 },
+  { quarter: "February", sox: 2000, nox: 3000, tox: 1000 },
+  { quarter: "March", sox: 2500, nox: 3500, tox: 1000 },
+  { quarter: "April", sox: 1000, nox: 4000, tox: 1000 },
+  { quarter: "May", sox: 1000, nox: 4000, tox: 1000 },
+  { quarter: "June", sox: 3000, nox: 1000, tox: 1000 },
+  { quarter: "July", sox: 1500, nox: 1000, tox: 1000 },
+  { quarter: "August", sox: 3500, nox: 1000, tox: 1000 },
+  { quarter: "September", sox: 1000, nox: 1000, tox: 1000 },
+  { quarter: "October", sox: 1000, nox: 1000, tox: 1000 },
+  { quarter: "November", sox: 1000, nox: 1000, tox: 1000 },
+  { quarter: "December", sox: 3000, nox: 1000, tox: 1000 },
 ];
-const defaultMargin = { top: 30, right: 0, bottom: 30, left: 40 };
 const FootprintChart = ({
   data = barData,
-  colors,
-  width = 500,
-  height = 500,
+  //   colors,
+  events = false,
+  //   width = "1000",
+  height = 300,
   margin = defaultMargin,
-  animate = true,
-  labelLeft = "Emissions (in %)",
+  //   animate = true,
+  leftLabel = "tCO2e",
 }) => {
-  // Tooltip setup
   const {
     tooltipOpen,
     tooltipLeft,
@@ -37,183 +60,179 @@ const FootprintChart = ({
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
     scroll: true,
   });
+  const box = useRef(null);
+  const [width, setWidth] = useState(500);
 
-  if (width < 10) return null;
+  useEffect(() => {
+    const handleResize = () => {
+      if (box.current) {
+        console.log("currr", box.current.offsetWidth);
+        setWidth(box.current.offsetWidth);
+      }
+    };
 
-  const keys = ["sox", "nox"];
-  const xMax = width - margin.left - margin.right;
-  const yMax = height - margin.top - margin.bottom;
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  //   const containerRef = useRef(null);
+  if (width < 10 || data.length === 0) return null;
 
   // Scales
-  const x0Scale = scaleBand({
-    domain: data.map((d) => d.quarter),
-    padding: 0.3, // Increase padding between groups
-    range: [0, xMax],
+  const dateScale = scaleBand({
+    domain: data.map(getQuarter),
+    padding: 0.5,
   });
 
-  const x1Scale = scaleBand({
-    domain: keys,
-    padding: 0.1, // Add padding between bars within the same group
-    range: [0, x0Scale.bandwidth()],
-  });
-
-  const yScale = scaleLinear({
-    domain: [0, 80],
+  const yMax = height - margin.top - 30;
+  const temperatureScale = scaleLinear({
+    domain: [0, 8000], // Adjust this based on the maximum possible value in the data
     nice: true,
-    range: [yMax, 0],
   });
 
   const colorScale = scaleOrdinal({
-    domain: keys,
+    domain: ["sox", "nox"], // Stack both "sox" and "nox"
     range: colors,
   });
 
+  // bounds
+  const xMax = width - margin.left;
+  dateScale.rangeRound([0, xMax]);
+  temperatureScale.range([yMax, 0]);
+
   return (
-    <div>
-      <div style={{ position: "relative" }}>
-        <svg width={width} height={height} ref={containerRef}>
-          <Group top={margin.top} left={margin.left}>
-            {/* Left Label */}
-            {/* <text
-            x={-yMax / 2} // Center label vertically along the axis
-            y={-margin.left + 20} // Adjust label position relative to the margin
-            transform="rotate(-90)" // Rotate the label
-            fontSize={9}
-            fill="#333"
-            textAnchor="middle"
-            fontWeight={600}
-          >
-            {labelLeft}
-          </text> */}
+    <div ref={box} style={{ position: "relative", width: "100%" }}>
+      <svg width={width} height={height}>
+        <rect
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          fill={background}
+          rx={14}
+        />
 
-            <BarGroup
-              data={data}
-              keys={keys}
-              height={yMax}
-              x0={(d) => d.quarter}
-              x0Scale={x0Scale}
-              x1Scale={x1Scale}
-              yScale={yScale}
-              color={colorScale}
-            >
-              {(barGroups) =>
-                barGroups.map((barGroup) => (
-                  <Group
-                    key={`bar-group-${barGroup.index}-${barGroup.x0}`}
-                    left={barGroup.x0}
-                  >
-                    {barGroup.bars.map((bar) => (
-                      <AnimatedBar
-                        key={`bar-group-bar-${barGroup.index}-${bar.index}`}
-                        bar={bar}
-                        animate={animate}
-                        onMouseMove={(event) => {
-                          const eventSvgCoords = localPoint(event);
-                          showTooltip({
-                            tooltipData: bar,
-                            tooltipTop: eventSvgCoords.y + 10,
-                            tooltipLeft: eventSvgCoords.x + 10,
-                          });
-                        }}
-                        onMouseLeave={() => {
+        <Group left={margin.left} top={margin.top}>
+          <BarStack
+            data={data}
+            keys={["sox", "nox", "tox"]} // Stack both "sox" and "nox"
+            x={getQuarter}
+            xScale={dateScale}
+            yScale={temperatureScale}
+            color={colorScale}
+          >
+            {(barStacks) =>
+              barStacks.map((barStack) =>
+                barStack.bars.map((bar) => {
+                  const isTopBar = barStack.index === 2;
+                  return (
+                    <rect
+                      key={`bar-stack-${barStack.index}-${bar.index}`}
+                      x={bar.x}
+                      y={bar.y}
+                      height={bar.height}
+                      width={bar.width}
+                      // width={"50"}
+                      rx={isTopBar ? 6 : 0} // Add border radius only to the top bar
+                      ry={isTopBar ? 6 : 0} // Add border radius only to the top bar
+                      fill={bar.color}
+                      onClick={() => {
+                        if (events) alert(`clicked: ${JSON.stringify(bar)}`);
+                      }}
+                      onMouseLeave={() => {
+                        tooltipTimeout = window.setTimeout(() => {
                           hideTooltip();
-                        }}
-                        onClick={() => alert(`Clicked: ${JSON.stringify(bar)}`)}
-                      />
-                    ))}
-                  </Group>
-                ))
-              }
-            </BarGroup>
-            <AxisLeft
-              hideAxisLine
-              tickLineProps={{ display: "none" }}
-              scale={yScale}
-              tickValues={[0, 20, 40, 60, 80]}
-              stroke="#333"
-              label={labelLeft}
-              tickStroke="#333"
-              labelProps={{
-                dx: "1.15em",
-              }}
-              tickLabelProps={() => ({
-                fill: "#333",
-                fontSize: 9,
-                textAnchor: "end",
-                dy: "0.33em",
-              })}
-            />
-            <AxisBottom
-              tickLineProps={{ display: "none" }}
-              hideAxisLine
-              top={yMax}
-              scale={x0Scale}
-              stroke="#333"
-              tickStroke="#333"
-              tickLabelProps={() => ({
-                fill: "#333",
-                fontSize: 9,
-                textAnchor: "middle",
-              })}
-            />
-          </Group>
-        </svg>
+                        }, 300);
+                      }}
+                      onMouseMove={(event) => {
+                        if (tooltipTimeout) clearTimeout(tooltipTimeout);
+                        const eventSvgCoords = localPoint(event);
+                        const left = bar.x + bar.width / 2;
+                        showTooltip({
+                          tooltipData: bar,
+                          tooltipTop: eventSvgCoords?.y + 10,
+                          tooltipLeft: left - 30,
+                        });
+                      }}
+                    />
+                  );
+                })
+              )
+            }
+          </BarStack>
+        </Group>
 
-        {tooltipOpen && tooltipData && (
-          <TooltipInPortal
-            top={tooltipTop}
-            left={tooltipLeft}
+        <AxisBottom
+          hideTicks
+          hideAxisLine
+          top={yMax + margin.top}
+          left={margin.left}
+          scale={dateScale}
+          numTicks={width > 520 ? 10 : 5}
+          tickLabelProps={{
+            fontSize: 9,
+          }}
+        />
+        <AxisLeft
+          hideTicks
+          hideAxisLine
+          left={margin.left}
+          top={margin.top}
+          scale={temperatureScale}
+          tickValues={[0, 2000, 4000, 6000, 8000]}
+          // numTicks={data.length}
+          label={leftLabel}
+          labelProps={{
+            dx: "1.15em",
+            fontWeight: 600,
+            fontSize: 12,
+          }}
+          tickLabelProps={{
+            dx: "0.5em",
+            fontSize: 12,
+          }}
+          tickFormat={(value) => `${value / 1000}k`}
+        />
+      </svg>
+
+      {tooltipOpen && tooltipData && (
+        <TooltipInPortal
+          top={tooltipTop}
+          left={tooltipLeft}
+          style={{
+            ...defaultStyles,
+            width: 100,
+            padding: 12,
+            backgroundColor: "white",
+            color: "black",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: 12,
+          }}
+        >
+          {/* <div style={{ color: colorScale(tooltipData.key) }}>
+            <strong>{tooltipData.key}</strong>
+          </div>
+          <div>{tooltipData.bar.data[tooltipData.key]}</div>
+          <div>
+            <small>{tooltipData.bar.data.quarter}</small>
+          </div> */}
+          <div
             style={{
-              ...defaultStyles,
-              width: 100,
-              padding: 12,
-              backgroundColor: "white",
-              color: "black",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              fontSize: 12,
+              backgroundColor: colorScale(tooltipData.key),
+              height: 15,
+              width: 15,
             }}
-          >
-            <div
-              style={{
-                backgroundColor: colorScale(tooltipData.key),
-                height: 15,
-                width: 15,
-              }}
-            ></div>
-            <div>
-              <span>{tooltipData.key}</span>
-            </div>
-            <div>{tooltipData.value}</div>
-          </TooltipInPortal>
-        )}
-      </div>
+          ></div>
+          <div>
+            <span>{tooltipData.key}</span>
+          </div>
+          <div>{tooltipData.bar.data[tooltipData.key]}</div>
+        </TooltipInPortal>
+      )}
     </div>
   );
 };
 
 export default FootprintChart;
-
-function AnimatedBar({ bar, animate, onMouseMove, onMouseLeave, onClick }) {
-  const transitions = useTransition(bar.height, {
-    from: { height: 0, y: bar.y + bar.height },
-    enter: { height: bar.height, y: bar.y },
-    update: { height: bar.height, y: bar.y },
-    leave: { height: 0, y: bar.y + bar.height },
-  });
-
-  return transitions((props, item, state, key) => (
-    <animated.rect
-      key={key}
-      x={bar.x}
-      y={props.y}
-      width={bar.width}
-      height={props.height}
-      fill={bar.color}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
-    />
-  ));
-}
