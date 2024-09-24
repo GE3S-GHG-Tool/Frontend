@@ -6,13 +6,18 @@ const api = axios.create({
 });
 
 //  Add authorization header to all requests
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers["Authorization"] = `Bear ${token}`;
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bear ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 //  dont thow error on 4XX status codes
 api.interceptors.response.use(
