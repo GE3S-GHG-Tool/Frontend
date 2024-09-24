@@ -54,7 +54,7 @@ function genPolygonPoints(dataArray, scale, getValue) {
 
 const defaultMargin = { top: 40, left: 80, right: 40, bottom: 0 };
 
-const RefrigerantEmissionsChart = ({ width = 350, height = 350, levels = 5, margin = defaultMargin, data }) => {
+const RefrigerantEmissionsChart = ({ width = 350, height = 260, levels = 5, margin = defaultMargin, data }) => {
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } = useTooltip();
 
     const xMax = width - margin.left - margin.right;
