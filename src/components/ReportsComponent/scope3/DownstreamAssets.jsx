@@ -105,6 +105,20 @@ function DownstreamAssets() {
                 variant="outlined"
                 fullWidth
                 placeholder="Enter sum of scopes"
+                sx={{
+                  margin: '0',
+                  border: '1px solid rgba(217, 217, 217, 0.0)',
+                  borderRadius: '5px',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '11px 16px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                }}
               />
             </Grid2>
 
@@ -120,6 +134,20 @@ function DownstreamAssets() {
                 fullWidth
                 type="number"
                 placeholder="Enter total physical area"
+                sx={{
+                  margin: '0',
+                  border: '1px solid rgba(217, 217, 217, 0.0)',
+                  borderRadius: '5px',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '11px 16px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                }}
               />
             </Grid2>
 
@@ -135,6 +163,20 @@ function DownstreamAssets() {
                 fullWidth
                 type="number"
                 placeholder="Enter physical area of leased asset"
+                sx={{
+                  margin: '0',
+                  border: '1px solid rgba(217, 217, 217, 0.0)',
+                  borderRadius: '5px',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '11px 16px',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                }}
               />
             </Grid2>
           </Grid2>

@@ -8,10 +8,11 @@ const Scope2 = () => {
   return (
     <div
       style={{
-        display: "flex",
+       display: "flex",
         flexDirection: "column",
         gap: "1.5rem",
         width: "100%",
+        padding: '0 1rem'
       }}
     >
       <ElecticityConsumption />

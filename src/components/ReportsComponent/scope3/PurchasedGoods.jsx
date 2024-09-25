@@ -5,7 +5,7 @@ import goods from "../../../assets/images/goods.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import down_arrow from "../../../assets/images/down_arrow.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
 
@@ -132,10 +132,22 @@ function PurchasedGoods() {
                       value={field.typeOfExpense}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Type"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        },
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Type
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                       </MenuItem>
                       <MenuItem value={"Soyabean"}>Soyabean</MenuItem>
                       <MenuItem value={"Electronics"}>Electronics</MenuItem>
@@ -160,6 +172,20 @@ function PurchasedGoods() {
                       fullWidth
                       placeholder="Enter expense value"
                       type="number"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -178,10 +204,22 @@ function PurchasedGoods() {
                         value={field.currency}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
+                        placeholder="Select Currency"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          },
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Currency
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Currency</span>
                         </MenuItem>
                         <MenuItem value={"USD"}>US Dollars</MenuItem>
                         <MenuItem value={"INR"}>Indian Rupees</MenuItem>
@@ -190,8 +228,6 @@ function PurchasedGoods() {
                   </Grid2>
                 )}
               </Grid2>
-
-              {/* Show delete icon only if both typeOfExpense and expenseValue are filled */}
               <div
                 style={{
                   width: "20px",
@@ -201,14 +237,14 @@ function PurchasedGoods() {
                 {field.typeOfExpense && field.expenseValue && (
                   <img
                     onClick={() => handleDelete(index)}
-                    src={trash} // Path to your SVG delete icon
+                    src={trash}
                     alt="Delete"
                     style={{
                       width: "20px",
                       height: "55px",
                       marginTop: "6px",
                       cursor: "pointer",
-                    }} // Adjust the size as needed
+                    }}
                   />
                 )}
               </div>

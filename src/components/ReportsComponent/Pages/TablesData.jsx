@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid2, Typography } from "@mui/material";
+import { Grid2, Typography, Tooltip } from "@mui/material";
 
 function TablesData({ headings, data }) {
   return (
@@ -38,7 +38,7 @@ function TablesData({ headings, data }) {
                     marginRight: "10px",
                   }}
                 >
-                  <Typography fontWeight="400" fontSize="10px">
+                  <Typography fontWeight="500" fontSize="12px">
                     {heading}
                   </Typography>
                 </th>
@@ -60,20 +60,35 @@ function TablesData({ headings, data }) {
             }}
           >
             <tbody>
-              <tr style={{ border: "1px solid  #EEEEEE" }}>
+              <tr style={{ border: "1px solid #EEE" }}>
                 {row.map((cell, cellIndex) => (
                   <td
                     key={cellIndex}
                     style={{
                       textAlign: "left",
                       fontWeight: "bold",
-                      padding: "10px",
+                      padding: "12px",
                       marginRight: "10px",
+                      whiteSpace: "nowrap", // Prevents wrapping
+                      overflow: "hidden", // Hides overflowing text
+                      textOverflow: "ellipsis", // Adds "..."
+                      maxWidth: "100px", // Set your fixed width here
                     }}
                   >
-                    <Typography fontWeight="400" fontSize="10px">
-                      {cell}
-                    </Typography>
+                    {/* Tooltip for hover */}
+                    <Tooltip title={cell} arrow>
+                      <Typography
+                        fontWeight="500"
+                        fontSize="12px"
+                        sx={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {cell}
+                      </Typography>
+                    </Tooltip>
                   </td>
                 ))}
               </tr>

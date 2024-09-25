@@ -5,9 +5,9 @@ import refri_logo from "../../../assets/images/refri_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import down_arrow from "../../../assets/images/down_arrow.svg";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function RefrigerantData() {
   // Initialize fields with one empty row
@@ -63,7 +63,7 @@ function RefrigerantData() {
         }}
       >
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <img src={refri_logo} height={15} width={15} alt="refrigerant-logo" />
+          <img src={refri_logo} height={18} width={18} alt="refrigerant-logo" />
           <h2
             style={{
               fontSize: "16px",
@@ -124,10 +124,22 @@ function RefrigerantData() {
                     value={field.refrigerant}
                     onChange={(e) => handleChange(index, e)}
                     displayEmpty
-                    inputProps={{ "aria-label": "Without label" }}
+                    placeholder="Select Type"
+                    IconComponent={KeyboardArrowDownIcon}
+                    sx={{
+                      margin: '0',
+                      border: '1px solid rgba(217, 217, 217, 0.0)',
+                      borderRadius: '5px',
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(217, 217, 217, 0.30)',
+                      },
+                      '& .MuiSelect-select': {
+                        padding: '11px 16px',
+                      },
+                    }}
                   >
-                    <MenuItem disabled value="">
-                      Select Type
+                    <MenuItem value="" disabled>
+                      <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                     </MenuItem>
                     <MenuItem value={"R134a"}>R134a</MenuItem>
                     <MenuItem value={"R410a"}>R410a</MenuItem>
@@ -153,6 +165,20 @@ function RefrigerantData() {
                     fullWidth
                     type="number"
                     placeholder="Enter quantity"
+                    sx={{
+                      margin: '0',
+                      border: '1px solid rgba(217, 217, 217, 0.0)',
+                      borderRadius: '5px',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(217, 217, 217, 0.30)',
+                      },
+                      '& .MuiOutlinedInput-input': {
+                        padding: '11px 16px',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(217, 217, 217, 0.30)',
+                      },
+                    }}
                   />
                 </Grid2>
               )}
@@ -171,6 +197,25 @@ function RefrigerantData() {
                       disabled
                       variant="outlined"
                       fullWidth
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiInputBase-input.Mui-disabled': {
+                          color: 'grey !important',
+                          WebkitTextFillColor: 'black !important',
+                          opacity: 1,
+                        },
+                      }}
                     />
                   </FormControl>
                 </Grid2>
@@ -187,14 +232,14 @@ function RefrigerantData() {
               {field.refrigerant && field.quantity && (
                 <img
                   onClick={() => handleDelete(index)}
-                  src={trash} // Path to your SVG delete icon
+                  src={trash}
                   alt="Delete"
                   style={{
                     width: "20px",
                     height: "55px",
                     marginTop: "6px",
                     cursor: "pointer",
-                  }} // Adjust the size as needed
+                  }}
                 />
               )}
             </div>

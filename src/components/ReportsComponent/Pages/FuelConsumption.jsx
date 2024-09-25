@@ -6,30 +6,13 @@ import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
 import down_arrow from "../../../assets/images/down_arrow.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
 
 function FuelConsumption() {
   // Initialize fields with one empty row
   const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
-
-  // const handleChange = (index, event) => {
-  //   const { name, value } = event.target;
-  //   const updatedFields = [...fields];
-  //   updatedFields[index][name] = value;
-  //   setFields(updatedFields);
-
-  //   // Check if the current row is complete
-  //   const isRowComplete =
-  //     updatedFields[index].fuel &&
-  //     updatedFields[index].quantity &&
-  //     updatedFields[index].unit;
-
-  //   // If the current row is complete and it’s the last row, add a new row
-  //   if (isRowComplete && index === fields.length - 1) {
-  //     setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
-  //   }
-  // };
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -89,7 +72,7 @@ function FuelConsumption() {
         }}
       >
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <img src={fuelLogo} height={15} width={15} alt="fuel-logo" />
+          <img src={fuelLogo} height={20} width={18} alt="fuel-logo" />
           <h2
             style={{
               fontSize: "16px",
@@ -150,14 +133,26 @@ function FuelConsumption() {
                   </Typography>
                   <FormControl fullWidth>
                     <Select
-                      name="fuel"
                       value={field.fuel}
+                      name="fuel"
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Type"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Type
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                       </MenuItem>
                       <MenuItem value={"Petrol"}>Petrol</MenuItem>
                       <MenuItem value={"CNG"}>CNG</MenuItem>
@@ -183,6 +178,20 @@ function FuelConsumption() {
                       fullWidth
                       type="number"
                       placeholder="Enter quantity"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -195,13 +204,31 @@ function FuelConsumption() {
                       Unit
                     </Typography>
                     <FormControl fullWidth>
-
                       <TextField
                         name="unit"
                         value={field.unit}
                         disabled
                         variant="outlined"
                         fullWidth
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '& .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiOutlinedInput-input': {
+                            padding: '11px 16px',
+                          },
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiInputBase-input.Mui-disabled': {
+                            color: 'grey !important',
+                            WebkitTextFillColor: 'black !important',
+                            opacity: 1,
+                          },
+                        }}
                       />
                     </FormControl>
                   </Grid2>

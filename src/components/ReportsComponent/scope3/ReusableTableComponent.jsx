@@ -101,15 +101,15 @@ function ReusableTableSection({
               sx={{
                 borderRadius: "32px",
                 border: "1px solid #28814D",
-                padding: "8px 18px",
-                height: "38px",
+                padding: "4px 12px",
+                height: "36px",
                 fontWeight: "400",
                 fontSize: "12px",
                 width: "100px",
                 textTransform: "capitalize",
                 color: "#28814D",
               }}
-              onClick={handleClickOpen} // Open the dialog on button click
+              onClick={handleClickOpen}
             >
               {buttonLabel}
             </Button>

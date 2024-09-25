@@ -61,6 +61,7 @@ function ProcessEmission() {
       "Gas",
       "68",
     ],
+  
   ];
 
   return (
@@ -102,8 +103,8 @@ function ProcessEmission() {
               >
                 <img
                   src={porces_Logo}
-                  height="15px"
-                  width="10px"
+                 width={18}
+                 height={20}
                   alt="fuel-logo"
                 />
                 <h2
@@ -138,10 +139,10 @@ function ProcessEmission() {
           <Grid2>
             <Button
               sx={{
-                borderRadius: "32px",
+               borderRadius: "32px",
                 border: "1px solid #28814D",
-                padding: "8px 18px",
-                height: "38px",
+                padding: "4px 12px",
+                height: "36px",
                 fontWeight: "400",
                 fontSize: "12px",
                 width: "100px",

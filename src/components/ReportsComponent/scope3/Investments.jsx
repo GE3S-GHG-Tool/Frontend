@@ -91,6 +91,20 @@ function Investments() {
               variant="outlined"
               fullWidth
               placeholder="Enter investment value or percentage"
+              sx={{
+                margin: '0',
+                border: '1px solid rgba(217, 217, 217, 0.0)',
+                borderRadius: '5px',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(217, 217, 217, 0.30)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  padding: '11px 16px',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(217, 217, 217, 0.30)',
+                },
+              }}
             />
           </Grid2>
 
@@ -106,6 +120,20 @@ function Investments() {
               fullWidth
               type="number"
               placeholder="Enter emissions"
+              sx={{
+                margin: '0',
+                border: '1px solid rgba(217, 217, 217, 0.0)',
+                borderRadius: '5px',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(217, 217, 217, 0.30)',
+                },
+                '& .MuiOutlinedInput-input': {
+                  padding: '11px 16px',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(217, 217, 217, 0.30)',
+                },
+              }}
             />
           </Grid2>
         </Grid2>

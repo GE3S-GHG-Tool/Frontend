@@ -11,6 +11,7 @@ const Scope1 = () => {
         flexDirection: "column",
         gap: "1.5rem",
         width: "100%",
+        padding: '0 1rem'
       }}
     >
       <FuelConsumption />
