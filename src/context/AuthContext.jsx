@@ -7,17 +7,33 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 export const AuthProvider = ({ children }) => {
-  const localToken = localStorage.getItem("token");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  // const localToken = localStorage.getItem("token");
+
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
   console.log("isAuthenticated", isAuthenticated);
+  console.log("localToken", token);
   useEffect(() => {
-    if (localToken) {
+    // Update authentication state when token changes
+    if (token) {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
-  }, [localToken]);
+  }, [token]);
+  useEffect(() => {
+    // Set up an event listener to catch changes to localStorage
+    const handleStorageChange = () => {
+      setToken(localStorage.getItem("token"));
+    };
 
+    window.addEventListener("storage", handleStorageChange);
+
+    // Clean up the listener when the component unmounts
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   const value = {
     isAuthenticated,
     setIsAuthenticated,
