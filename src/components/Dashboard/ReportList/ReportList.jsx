@@ -234,6 +234,7 @@ const ReportList = ({ searchQuery }) => {
               <td>{member.year}</td>
               <td>{member.month}</td>
               <td>{member.date}</td>
+              <td>122</td>
             </tr>
           ))}
         </tbody>

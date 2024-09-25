@@ -18,7 +18,7 @@
 }
 .subs_card {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   margin-top: auto;
   width: calc(100% - 2rem);
   display: flex;
@@ -167,14 +167,14 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
   margin-right: 10px;
 }
 .scope_box p {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   margin-bottom: 0;
   font-size: 0.8rem;
   font-weight: 500;
@@ -186,5 +186,11 @@
     rgba(217, 217, 217, 0.4);
   background: #fff;
   padding: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+.chart_header_box {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  align-items: center;
 }

@@ -674,7 +674,7 @@ function DashboardLayout() {
             <p
               style={{
                 fontSize: "0.7rem",
-                fontWeight: "400",
+                fontWeight: "700",
                 padding: "0",
                 margin: "0 0",
                 cursor: "pointer",

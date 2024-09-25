@@ -5,9 +5,11 @@ import DraftCard from "./DraftCard";
 import { useNavigate } from "react-router-dom";
 import ReportList from "./ReportList/ReportList";
 import FootprintChart from "./charts/FootprintChart";
+import { FormControl, MenuItem, Select } from "@mui/material";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
+  const [year, setYear] = useState(false);
 
   return (
     <div>
@@ -278,8 +280,25 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      <div className="chart_box" style={{ background: "" }}>
+      {/* <div className="chart_header_box">
+        <h3 className="dashboard_reports_header">Carbon Tracker</h3>
+        <FormControl sx={{ minWidth: 100 }} size="small">
+          <Select
+            labelId="fiscal-year-label"
+            id="fiscal-year-select"
+            value={year}
+            onChange={(event) => setYear(event.target.value)}
+            placeholder="Fiscal Year"
+            size="small"
+          >
+            <MenuItem value="2021">2021</MenuItem>
+            <MenuItem value="2022">2022</MenuItem>
+            <MenuItem value="2023">2023</MenuItem>
+            <MenuItem value="2024"> 2024</MenuItem>
+          </Select>
+        </FormControl>
+      </div> */}
+      <div className="chart_box">
         <FootprintChart />
       </div>
 
@@ -290,7 +309,7 @@ const Dashboard = () => {
       </div>{" "} */}
 
       <div>
-        <h3 className="dashboard_reports_header">Generated reports </h3>
+        <h3 className="dashboard_reports_header">Generated reports</h3>
         <ReportList searchQuery={""} />
         <div className="reports_viewall_cta">
           <span onClick={() => navigate("/report")}>View All</span>{" "}

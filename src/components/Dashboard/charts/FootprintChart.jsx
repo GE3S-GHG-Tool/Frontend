@@ -18,18 +18,18 @@ const getQuarter = (d) => d.quarter;
 
 let tooltipTimeout;
 const barData = [
-  { quarter: "January", sox: 2000, nox: 1000, tox: 1000 },
-  { quarter: "February", sox: 2000, nox: 3000, tox: 1000 },
-  { quarter: "March", sox: 2500, nox: 3500, tox: 1000 },
-  { quarter: "April", sox: 1000, nox: 4000, tox: 1000 },
-  { quarter: "May", sox: 1000, nox: 4000, tox: 1000 },
-  { quarter: "June", sox: 3000, nox: 1000, tox: 1000 },
-  { quarter: "July", sox: 1500, nox: 1000, tox: 1000 },
-  { quarter: "August", sox: 3500, nox: 1000, tox: 1000 },
-  { quarter: "September", sox: 1000, nox: 1000, tox: 1000 },
-  { quarter: "October", sox: 1000, nox: 1000, tox: 1000 },
-  { quarter: "November", sox: 1000, nox: 1000, tox: 1000 },
-  { quarter: "December", sox: 3000, nox: 1000, tox: 1000 },
+  { quarter: "January", Scope1: 2000, Scope2: 1000, Scope3: 1000 },
+  { quarter: "February", Scope1: 2000, Scope2: 3000, Scope3: 1000 },
+  { quarter: "March", Scope1: 2500, Scope2: 3500, Scope3: 1000 },
+  { quarter: "April", Scope1: 1000, Scope2: 4000, Scope3: 1000 },
+  { quarter: "May", Scope1: 1000, Scope2: 4000, Scope3: 1000 },
+  { quarter: "June", Scope1: 3000, Scope2: 1000, Scope3: 1000 },
+  { quarter: "July", Scope1: 1500, Scope2: 1000, Scope3: 1000 },
+  { quarter: "August", Scope1: 3500, Scope2: 1000, Scope3: 1000 },
+  { quarter: "September", Scope1: 1000, Scope2: 1000, Scope3: 1000 },
+  { quarter: "October", Scope1: 1000, Scope2: 1000, Scope3: 1000 },
+  { quarter: "November", Scope1: 1000, Scope2: 1000, Scope3: 1000 },
+  { quarter: "December", Scope1: 3000, Scope2: 1000, Scope3: 1000 },
 ];
 const FootprintChart = ({
   data = barData,
@@ -86,7 +86,7 @@ const FootprintChart = ({
   });
 
   const colorScale = scaleOrdinal({
-    domain: ["sox", "nox"], // Stack both "sox" and "nox"
+    domain: ["Scope1", "Scope2", "Scope3"], // Stack both "Scope1" and "Scope2"
     range: colors,
   });
 
@@ -129,7 +129,7 @@ const FootprintChart = ({
         <Group left={margin.left} top={margin.top}>
           <BarStack
             data={data}
-            keys={["sox", "nox", "tox"]} // Stack both "sox" and "nox"
+            keys={["Scope1", "Scope2", "Scope3"]} // Stack both "Scope1" and "Scope2"
             x={getQuarter}
             xScale={dateScale}
             yScale={temperatureScale}
@@ -231,34 +231,43 @@ const FootprintChart = ({
           left={tooltipLeft}
           style={{
             ...defaultStyles,
-            width: 100,
+            width: "fit-content",
             padding: 12,
+            borderRadius: 5,
             backgroundColor: "white",
-            color: "black",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            color: "#000",
+            // display: "flex",
+            // justifyContent: "space-between",
+            // alignItems: "center",
             fontSize: 12,
           }}
         >
-          {/* <div style={{ color: colorScale(tooltipData.key) }}>
-            <strong>{tooltipData.key}</strong>
-          </div>
-          <div>{tooltipData.bar.data[tooltipData.key]}</div>
-          <div>
-            <small>{tooltipData.bar.data.quarter}</small>
-          </div> */}
-          <div
-            style={{
-              backgroundColor: colorScale(tooltipData.key),
-              height: 15,
-              width: 15,
-            }}
-          ></div>
-          <div>
-            <span>{tooltipData.key}</span>
-          </div>
-          <div>{tooltipData.bar.data[tooltipData.key]}</div>
+          {Object.keys(tooltipData.bar.data)
+            .filter((key) => key !== "quarter")
+            .map((key, index, array) => (
+              <div
+                key={key}
+                style={{
+                  marginBottom: index === array.length - 1 ? 0 : 8, // Set marginBottom to 0 for the last item
+                  display: "flex",
+                  justifyContent: "start",
+                  gap: "10px",
+                  alignItems: "start",
+                }}
+              >
+                <div
+                  style={{
+                    backgroundColor: colorScale(key),
+                    height: 15,
+                    width: 15,
+                  }}
+                ></div>
+                <div style={{ minWidth: "45px" }}>
+                  <span>{key}</span>
+                </div>
+                <div>{tooltipData.bar.data[key] / 1000}k tCO2e</div>
+              </div>
+            ))}
         </TooltipInPortal>
       )}
     </div>

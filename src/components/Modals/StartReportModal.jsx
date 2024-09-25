@@ -1,10 +1,7 @@
-import { Close } from "@mui/icons-material";
 import {
   Modal,
   Box,
   Typography,
-  Button,
-  IconButton,
   TextField,
   FormControl,
   Select,
@@ -25,31 +22,47 @@ const style = {
   border: "1px solid #fff",
 };
 
-const buttonStyle = {
-  borderRadius: "100px",
-  border: "1px solid #369D9C",
-  color: "#369D9C",
-  padding: "8px 18px",
-  fontSize: "12px",
-  marginTop: "16px",
-  background: "#fff",
-  width: "100%",
-};
-const buttonStyle2 = {
-  borderRadius: "100px",
-  border: "1px solid #369D9C",
-  color: "#fff",
-  padding: "8px 18px",
-  fontSize: "12px",
-  marginTop: "16px",
+const quarterMenu = [
+  { id: 1, name: "Q1" },
+  { id: 2, name: "Q2" },
+  { id: 3, name: "Q3" },
+  { id: 4, name: "Q4" },
+];
+const halfyearlyMenu = [
+  { id: 1, name: "H1" },
+  { id: 2, name: "H2" },
+];
+const monthlyMenu = [
+  { id: 1, name: "January" },
+  { id: 2, name: "February" },
+  { id: 3, name: "March" },
+  { id: 4, name: "April" },
+  { id: 5, name: "May" },
+  { id: 6, name: "June" },
+  { id: 7, name: "July" },
+  { id: 8, name: "August" },
+  { id: 9, name: "September" },
+  { id: 10, name: "November" },
+  { id: 11, name: "October" },
+  { id: 12, name: "December" },
+];
 
-  width: "100%",
-  background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-};
 const StartReportModal = ({ open, setOpenModal }) => {
   const navigate = useNavigate();
-  const [employeeCount, setEmployeeCount] = useState("");
+  const [period, setPeriod] = useState("");
   const [year, setYear] = useState("");
+  const [name, setName] = useState("");
+  const [value, setValue] = useState("");
+  const menuItems =
+    period == 1
+      ? monthlyMenu
+      : period == 2
+        ? quarterMenu
+        : period == 3
+          ? halfyearlyMenu
+          : null;
+
+  const isFormComplete = name && year && period && value;
 
   return (
     <Modal
@@ -89,11 +102,11 @@ const StartReportModal = ({ open, setOpenModal }) => {
             size="small"
             fullWidth
             placeholder="Name"
-            // value={employeeCount}
-            // onChange={(e) => setEmployeeCount(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="report_input">
+        {/* <div className="report_input">
           <label>Facility</label>
           <TextField
             variant="outlined"
@@ -103,7 +116,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
             // value={employeeCount}
             // onChange={(e) => setEmployeeCount(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="report_input_2">
           <div className="report_input">
@@ -112,15 +125,12 @@ const StartReportModal = ({ open, setOpenModal }) => {
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
-                // value={year}
+                value={year}
                 onChange={(e) => {
                   setYear(e.target.value);
                 }}
                 size="small"
               >
-                {/* <MenuItem value="">
-                  <em>None</em>
-                </MenuItem> */}
                 <MenuItem value={1}>January</MenuItem>
                 <MenuItem value={2}>February</MenuItem>
                 <MenuItem value={3}>March</MenuItem>
@@ -133,15 +143,12 @@ const StartReportModal = ({ open, setOpenModal }) => {
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
-                // value={year}
+                value={period}
                 onChange={(e) => {
-                  setYear(e.target.value);
+                  setPeriod(e.target.value);
                 }}
                 size="small"
               >
-                {/* <MenuItem value="">
-                  <em>None</em>
-                </MenuItem> */}
                 <MenuItem value={1}>Monthly</MenuItem>
                 <MenuItem value={2}>Quarterly</MenuItem>
                 <MenuItem value={3}>Half-Yearly</MenuItem>
@@ -151,45 +158,48 @@ const StartReportModal = ({ open, setOpenModal }) => {
           </div>
         </div>
 
-        <div className="report_input">
-          <label>Quarter</label>
-          <FormControl fullWidth size="small">
-            <Select
-              labelId="demo-select-small-label"
-              id="demo-select-small"
-              // value={year}
-              onChange={(e) => {
-                setYear(e.target.value);
-              }}
-              size="small"
-            >
-              {/* <MenuItem value="">
-                <em>None</em>
-              </MenuItem> */}
-              <MenuItem value={1}>January</MenuItem>
-              <MenuItem value={2}>February</MenuItem>
-              <MenuItem value={3}>March</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
+        {period !== 4 && period !== "" && (
+          <div className="report_input">
+            <label>
+              {period == 1
+                ? "Month"
+                : period == 2
+                  ? "Quarter"
+                  : period == 3
+                    ? "Half-Yearly"
+                    : null}
+            </label>
+            <FormControl fullWidth size="small">
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
+                size="small"
+              >
+                {menuItems?.map((item, index) => (
+                  <MenuItem key={index} value={index + 1}>
+                    {item?.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        )}
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "20px",
             marginTop: "15px",
           }}
         >
-          <Button onClick={() => setOpenModal(false)} sx={buttonStyle}>
-            Add Facility
-          </Button>
-          <Button
+          <button
+            className="ge3s_button"
+            disabled={!isFormComplete}
             onClick={() => navigate("/reportgenerator")}
-            sx={buttonStyle2}
           >
             Confirm
-          </Button>
+          </button>
         </div>
       </Box>
     </Modal>
