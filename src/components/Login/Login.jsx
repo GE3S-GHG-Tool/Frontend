@@ -7,11 +7,13 @@ import { useNavigate } from "react-router-dom";
 import PasswordInput from "../common/PasswordInput";
 import axios from "axios";
 import constant from "../../constant";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setIsAuthenticated } = useAuth();
   const [error, setError] = useState({
     email: false,
     password: false,
@@ -54,6 +56,7 @@ export default function Login() {
       if (response.status === 200) {
         // console.log("sendEmailOTP", response);
         localStorage.setItem("token", response?.data?.data?.token);
+        setIsAuthenticated(true);
         navigate("/");
       }
     } catch (err) {

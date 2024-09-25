@@ -5,16 +5,12 @@ import Wrapper from "../Wrapper/Wrapper";
 import logo from "../../assets/images/ge3s_logo.png";
 import { useEffect, useState } from "react";
 import { validateEmail } from "../../util/utils";
-import axiosInstance from "../../util/axiosInstance";
 import { useSignup } from "../../context/User-signup";
-// import VerifyModal from "../VerifyOTP/VerifyOTP";
 import { initiateSignup } from "../../api/auth";
-import VerifyOTP from "../VerifyOTP/VerifyOTP";
 
 export default function SignUp() {
   const { email, setEmail } = useSignup();
   const navigate = useNavigate();
-  const [openModal, setOpenModal] = useState(false);
   const [error, setError] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [helperText, setHelperText] = useState({

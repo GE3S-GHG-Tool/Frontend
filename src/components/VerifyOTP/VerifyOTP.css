@@ -5,6 +5,7 @@
   border: 1px solid rgba(217, 217, 217, 0.4);
   background: #fff;
   width: 36vw;
+  box-shadow: 12px 12px 20px 0px rgba(0, 0, 0, 0.03);
 }
 
 .verify-container h1 {
@@ -27,6 +28,7 @@
 
 #email-address #edit-email-link {
   cursor: pointer;
+  /* font-size: 1rem; */
 }
 
 .theme-color {

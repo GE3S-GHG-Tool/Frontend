@@ -9,7 +9,7 @@ export function useAuth() {
 export const AuthProvider = ({ children }) => {
   const localToken = localStorage.getItem("token");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  console.log("isAuthenticated", isAuthenticated);
   useEffect(() => {
     if (localToken) {
       setIsAuthenticated(true);
@@ -18,10 +18,9 @@ export const AuthProvider = ({ children }) => {
     }
   }, [localToken]);
 
-  // verify otp
-
   const value = {
     isAuthenticated,
+    setIsAuthenticated,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

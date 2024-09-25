@@ -31,7 +31,10 @@
   text-align: center;
 }
 .login-inputs {
-  margin-top: 48px;
+  margin-top: 1.5rem;
+}
+.input_login {
+  margin-top: 1rem;
 }
 .login-container button {
   margin-top: 24px;
@@ -43,6 +46,9 @@
 
 .ge3s_logo {
   display: flex;
+  width: 25%;
+  margin: auto;
+  margin-bottom: 1rem;
 }
 
 .login-container .password-container {
@@ -107,10 +113,6 @@
 
   .login-container div h1 {
     font-size: 1.4rem;
-  }
-
-  .ge3s_logo {
-    width: 35%;
   }
 
   .login-container div button {

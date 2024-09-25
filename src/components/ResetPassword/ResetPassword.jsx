@@ -56,14 +56,13 @@ export default function ResetPassword() {
           style={{
             position: "relative",
             zIndex: 1,
-            background: "white",
+            background: "#fff",
             borderRadius: "20px",
-            gap: "8px",
-            padding: "24px",
+            padding: "1.8rem",
           }}
         >
           <img src={logo} alt="Logo" className="ge3s_logo" />
-          <h1>Reset Your Password</h1>
+          <h1>Reset your password</h1>
           <p id="otp-heading">We will send you OTP on your email ID</p>
           <div className="input_reset">
             <p>Email</p>
