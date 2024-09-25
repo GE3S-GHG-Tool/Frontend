@@ -21,9 +21,9 @@ export default function OrganizationStepper() {
         {activeStep === 2 && (
           <Goals activeStep={activeStep} setActiveStep={setActiveStep} />
         )}
-        {activeStep === 3 && (
+        {/* {activeStep === 3 && (
           <Invite activeStep={activeStep} setActiveStep={setActiveStep} />
-        )}
+        )} */}
         <div className="seperate"></div>
         <div className="stepper_comp">
           <span className={activeStep >= 0 ? "current_step" : "circle"}>1</span>
@@ -34,9 +34,9 @@ export default function OrganizationStepper() {
           <div className="lines"></div>
           <span className={activeStep >= 2 ? "current_step" : "circle"}>3</span>
           <p>Goals</p>
-          <div className="lines"></div>
+          {/* <div className="lines"></div>
           <span className={activeStep >= 3 ? "current_step" : "circle"}>4</span>
-          <p>Invite People</p>
+          <p>Invite People</p> */}
         </div>
 
         <div

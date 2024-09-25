@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import "./DraftCard.css";
 const DraftCard = () => {
+  const navigate = useNavigate();
   let percentage = ((10 / 20) * 100)?.toFixed(0) || 0;
   percentage = isNaN(percentage) ? 0 : percentage;
   const conicEnd = `${percentage}%`;
@@ -7,7 +9,7 @@ const DraftCard = () => {
 
   // console.log(percentage);
   return (
-    <div className="draft_card">
+    <div className="draft_card" onClick={() => navigate("/reportgenerator")}>
       <div className="draft_header">
         <label>Delhi Q3 2024</label>
         <svg

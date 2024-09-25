@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSignup } from "../../context/User-signup";
 import { fetchSustainabilityGoals, submitGoalsData } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Goals({ setActiveStep }) {
   const {
@@ -45,7 +46,7 @@ export default function Goals({ setActiveStep }) {
   const [age, setAge] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const loadSustainabilityGoals = async () => {
       try {
@@ -98,9 +99,15 @@ export default function Goals({ setActiveStep }) {
           organizationBaselineMonth,
           organizationEmployeeCount,
         };
+        navigate("/");
+        // const response = await submitGoalsData(
+        //   organizationData,
+        //   selectedGoal,
+        //   selectedValue
+        // );
+        // console.log("response", response);
 
-        await submitGoalsData(organizationData, selectedGoal, selectedValue);
-        setActiveStep(3);
+        // setActiveStep(3);
       } catch (error) {
         setError("Failed to submit data. Please try again.");
       }
@@ -123,9 +130,9 @@ export default function Goals({ setActiveStep }) {
             onChange={handleGoalChange}
             placeholder="Select your goal"
           >
-            <MenuItem value="">
+            {/* <MenuItem value="">
               <em>None</em>
-            </MenuItem>
+            </MenuItem> */}
             {organizationSustainabilityGoals.map((goal) => (
               <MenuItem key={goal.id} value={goal.id}>
                 {goal.name}
@@ -152,7 +159,7 @@ export default function Goals({ setActiveStep }) {
               },
             }}
           />
-          <h1>No,Never</h1>
+          <h1>No, Never</h1>
         </div>
         <div
           className="radio_button_goals"

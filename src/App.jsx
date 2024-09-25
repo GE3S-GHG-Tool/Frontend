@@ -61,7 +61,7 @@ function App() {
           path="/create-account-successfully"
           element={<CreateAccountSuccessfully />}
         />
-        <Route path="/generate-reports" element={<GenerateReports />} />
+        {/* <Route path="/generate-reports" element={<GenerateReports />} /> */}
         <Route path="/reportgenerator" element={<ReportStateEmpty />} />
         <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
         <Route path="app" element={<Typography>avavav</Typography>} />
@@ -70,7 +70,7 @@ function App() {
           element={<EmissionsInventoryReport />}
         />
         <Route
-          path="/ghg-emissions-inventory-report-all-scopes"
+          path="/emissionreport"
           element={<TotalEmissionsInventoryReport />}
         />
         {/* Dashboard routes */}

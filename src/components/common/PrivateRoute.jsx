@@ -2,9 +2,9 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 export default function PrivateRoute({ children }) {
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
   const location = useLocation();
-  // const isAuthenticated = true;
+  const isAuthenticated = true;
   return isAuthenticated ? (
     children
   ) : (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Avatar } from "@mui/material";
 import avatar from "../../../assets/images/userimg.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const members = [
   {
@@ -40,6 +40,7 @@ const members = [
 
 const ReportList = ({ searchQuery }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
@@ -73,6 +74,7 @@ const ReportList = ({ searchQuery }) => {
   );
   const membersToShow =
     location.pathname === "/" ? filteredMembers.slice(0, 2) : filteredMembers;
+
   return (
     <div className="table-container">
       <table className="member-table">
@@ -223,7 +225,7 @@ const ReportList = ({ searchQuery }) => {
         </thead>
         <tbody>
           {membersToShow.map((member, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() => navigate("/reportgenerator")}>
               <td style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <Avatar src={avatar} alt="User Img" className="avatar" />
                 {member.name}

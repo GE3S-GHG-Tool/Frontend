@@ -240,7 +240,7 @@ function ReportStateEmpty() {
 
           {isLastTab && (
             <Button
-              onClick={() => navigate("/ghgreport")}
+              onClick={() => navigate("/emissionreport")}
               // onClick={handleNextTab}
               sx={{
                 borderRadius: "32px",
