@@ -49,7 +49,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
             <div style={{ display: 'flex', width: '100%' }}>
                 <div style={{ width: '80%' }}>
                     <div>
-                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px' }}>{title}</Typography>
+                        <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px', padding:'1rem 0' }}>{title}</Typography>
                         <Typography sx={{ fontFamily: 'Inter', fontSize: '0.875rem', fontWeight: '500', wordSpacing: '0px', color: '#717171', width: '40%' }}>
                             {desc}
                         </Typography>
@@ -98,7 +98,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                     type === 'scope-3' ?
                         <>
                             <div style={{ width: '30%' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '9rem', gap: '0.6rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '11rem', gap: '0.6rem' }}>
                                     {data.map((item, index) =>
                                         index > 3 ? (
                                             <div
