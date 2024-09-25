@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 
 function ElectricityConsumption() {
   // Initialize fields with quantity and unit
-  const [field, setField] = useState({ quantity: "", unit: "" });
+  const [field, setField] = useState({ quantity: "", unit: "KWh" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -108,23 +108,16 @@ function ElectricityConsumption() {
 
             <Grid2 item size={4}>
               <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-                Unute
+                Unit
               </Typography>
               <FormControl fullWidth>
-                <Select
+                <TextField
                   name="unit"
                   value={field.unit}
-                  onChange={handleChange}
-                  displayEmpty
-                  inputProps={{ "aria-label": "Without label" }}
-                >
-                  <MenuItem disabled value="">
-                    Select Type
-                  </MenuItem>
-                  <MenuItem value={"Petrol"}>Petrol</MenuItem>
-                  <MenuItem value={"CNG"}>CNG</MenuItem>
-                  <MenuItem value={"Diesel"}>Diesel</MenuItem>
-                </Select>
+                  disabled
+                  variant="outlined"
+                  fullWidth
+                />
               </FormControl>
             </Grid2>
           </Grid2>

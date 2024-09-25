@@ -13,23 +13,49 @@ function FuelConsumption() {
   // Initialize fields with one empty row
   const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
 
+  // const handleChange = (index, event) => {
+  //   const { name, value } = event.target;
+  //   const updatedFields = [...fields];
+  //   updatedFields[index][name] = value;
+  //   setFields(updatedFields);
+
+  //   // Check if the current row is complete
+  //   const isRowComplete =
+  //     updatedFields[index].fuel &&
+  //     updatedFields[index].quantity &&
+  //     updatedFields[index].unit;
+
+  //   // If the current row is complete and it’s the last row, add a new row
+  //   if (isRowComplete && index === fields.length - 1) {
+  //     setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+  //   }
+  // };
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
+
+    if (name === "fuel") {
+      // Set the unit based on the fuel type
+      if (value === "Petrol" || value === "Diesel" || value === "LPG") {
+        updatedFields[index].unit = "Gallons";
+      } else if (value === "CNG") {
+        updatedFields[index].unit = "m3";
+      } else if (value === "HFO") {
+        updatedFields[index].unit = "Barrels";
+      } else {
+        updatedFields[index].unit = "";
+      }
+    }
+
     updatedFields[index][name] = value;
     setFields(updatedFields);
 
-    // Check if the current row is complete
-    const isRowComplete =
-      updatedFields[index].fuel &&
-      updatedFields[index].quantity &&
-      updatedFields[index].unit;
-
-    // If the current row is complete and it’s the last row, add a new row
+    const isRowComplete = updatedFields[index].fuel;
     if (isRowComplete && index === fields.length - 1) {
       setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
     }
-  };
+  }
 
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
@@ -136,6 +162,8 @@ function FuelConsumption() {
                       <MenuItem value={"Petrol"}>Petrol</MenuItem>
                       <MenuItem value={"CNG"}>CNG</MenuItem>
                       <MenuItem value={"Diesel"}>Diesel</MenuItem>
+                      <MenuItem value={"HFO"}>HFO</MenuItem>
+                      <MenuItem value={"LPG"}>LPG</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -158,7 +186,7 @@ function FuelConsumption() {
                     />
                   </Grid2>
                 )}
-                {field.quantity && (
+                {field.fuel && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -167,19 +195,14 @@ function FuelConsumption() {
                       Unit
                     </Typography>
                     <FormControl fullWidth>
-                      <Select
+
+                      <TextField
                         name="unit"
                         value={field.unit}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        inputProps={{ "aria-label": "Without label" }}
-                      >
-                        <MenuItem disabled value="">
-                          Select Unit
-                        </MenuItem>
-                        <MenuItem value={"Litre"}>Litre</MenuItem>
-                        <MenuItem value={"m3"}>m3</MenuItem>
-                      </Select>
+                        disabled
+                        variant="outlined"
+                        fullWidth
+                      />
                     </FormControl>
                   </Grid2>
                 )}
