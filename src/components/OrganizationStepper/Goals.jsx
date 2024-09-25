@@ -27,21 +27,21 @@ export default function Goals({ setActiveStep }) {
     setOrganizationSustainabilityGoals,
   } = useSignup();
 
-  console.log(
-    organizationName,
-    organizationCountry,
-    organizationState,
-    organizationCity,
-    organizationIndustry,
-    organizationSector,
-    organizationFiscalYear,
-    organizationStartingYear,
-    organizationBaselineYear,
-    organizationBaselineMonth,
-    organizationEmployeeCount,
-    organizationSustainabilityGoals,
-    setOrganizationSustainabilityGoals
-  );
+  // console.log(
+  //   organizationName,
+  //   organizationCountry,
+  //   organizationState,
+  //   organizationCity,
+  //   organizationIndustry,
+  //   organizationSector,
+  //   organizationFiscalYear,
+  //   organizationStartingYear,
+  //   organizationBaselineYear,
+  //   organizationBaselineMonth,
+  //   organizationEmployeeCount,
+  //   organizationSustainabilityGoals,
+  //   setOrganizationSustainabilityGoals
+  // );
   const [selectedValue, setSelectedValue] = useState("e");
   const [age, setAge] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
@@ -99,14 +99,14 @@ export default function Goals({ setActiveStep }) {
           organizationBaselineMonth,
           organizationEmployeeCount,
         };
-        navigate("/");
-        // const response = await submitGoalsData(
-        //   organizationData,
-        //   selectedGoal,
-        //   selectedValue
-        // );
-        // console.log("response", response);
 
+        const response = await submitGoalsData(
+          organizationData,
+          selectedGoal,
+          selectedValue
+        );
+        // console.log("response", response);
+        navigate("/");
         // setActiveStep(3);
       } catch (error) {
         setError("Failed to submit data. Please try again.");

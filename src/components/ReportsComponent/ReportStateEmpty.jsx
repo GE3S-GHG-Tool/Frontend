@@ -204,6 +204,7 @@ function ReportStateEmpty() {
           }}
         >
           <Button
+            onClick={() => navigate("/")}
             sx={{
               borderRadius: "32px",
               border: "1px solid #28814D",
@@ -248,13 +249,13 @@ function ReportStateEmpty() {
                 height: "38px",
                 fontWeight: "400",
                 fontSize: "12px",
-                width: "100px",
+                width: "150px",
                 background: "#369D9C",
                 textTransform: "capitalize",
                 color: "#FFFFFF",
               }}
             >
-              Proceed
+              Generate Report
             </Button>
           )}
         </Grid2>

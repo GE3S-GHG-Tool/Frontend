@@ -8,11 +8,9 @@ export function useAuth() {
 }
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  // const localToken = localStorage.getItem("token");
 
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("localToken", token);
+
   useEffect(() => {
     // Update authentication state when token changes
     if (token) {
@@ -21,6 +19,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
     }
   }, [token]);
+
   useEffect(() => {
     // Set up an event listener to catch changes to localStorage
     const handleStorageChange = () => {
@@ -34,6 +33,7 @@ export const AuthProvider = ({ children }) => {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
+
   const value = {
     isAuthenticated,
     setIsAuthenticated,

@@ -118,9 +118,9 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 }}
                 size="small"
               >
-                <MenuItem value="">
+                {/* <MenuItem value="">
                   <em>None</em>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem value={1}>January</MenuItem>
                 <MenuItem value={2}>February</MenuItem>
                 <MenuItem value={3}>March</MenuItem>
@@ -133,15 +133,15 @@ const StartReportModal = ({ open, setOpenModal }) => {
               <Select
                 labelId="demo-select-small-label"
                 id="demo-select-small"
-                value={year}
+                // value={year}
                 onChange={(e) => {
                   setYear(e.target.value);
                 }}
                 size="small"
               >
-                <MenuItem value="">
+                {/* <MenuItem value="">
                   <em>None</em>
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem value={1}>Monthly</MenuItem>
                 <MenuItem value={2}>Quarterly</MenuItem>
                 <MenuItem value={3}>Half-Yearly</MenuItem>
@@ -163,9 +163,9 @@ const StartReportModal = ({ open, setOpenModal }) => {
               }}
               size="small"
             >
-              <MenuItem value="">
+              {/* <MenuItem value="">
                 <em>None</em>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem value={1}>January</MenuItem>
               <MenuItem value={2}>February</MenuItem>
               <MenuItem value={3}>March</MenuItem>

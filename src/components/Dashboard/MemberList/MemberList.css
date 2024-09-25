@@ -15,6 +15,7 @@
 }
 
 .member-table tbody tr {
+  cursor: pointer;
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(217, 217, 217, 0.4);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EmissionsInventoryReport.css";
 import { Box, Button, Typography, Paper } from "@mui/material";
 import logo from "../../assets/images/starbucksLogo.png";
@@ -464,7 +464,9 @@ const TotalEmissionsInventoryReport = () => {
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div
       style={{

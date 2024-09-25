@@ -9,8 +9,10 @@ import { useState, useEffect } from "react";
 import { useSignup } from "../../context/User-signup";
 import {
   fetchCities,
-  fetchInitialOrganizationData,
   fetchStates,
+  getCountries,
+  getIndustries,
+  getSectors,
 } from "../../api/auth";
 
 export default function Organization({ activeStep, setActiveStep }) {
@@ -37,20 +39,51 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const loadInitialData = async () => {
-      try {
-        const { countries, industries, sectors } =
-          await fetchInitialOrganizationData();
-        setCountryOptions(countries);
-        setIndustryOptions(industries);
-        setSectorOptions(sectors);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
+    // const loadInitialData = async () => {
+    //   try {
+    //     const { countries, industries, sectors } =
+    //       await fetchInitialOrganizationData();
+    //     console.log("countries", countries);
+    //     console.log("industries", industries);
+    //     console.log("sectors", sectors);
+    //     setCountryOptions(countries);
+    //     setIndustryOptions(industries);
+    //     setSectorOptions(sectors);
+    //   } catch (error) {
+    //     setError(error.message);
+    //   }
+    // };
 
-    loadInitialData();
+    // loadInitialData();
+    getAllCountries();
+    getAllSectors();
+    // getAllIndustries();
   }, []);
+  useEffect(() => {
+    if (organizationSector.length) getAllIndustries(organizationSector);
+  }, [organizationSector]);
+
+  async function getAllCountries() {
+    const response = await getCountries();
+    if (response?.status === 200) {
+      console.log(response);
+      setCountryOptions(response.data);
+    }
+  }
+  async function getAllSectors() {
+    const response = await getSectors();
+    if (response?.status === 200) {
+      console.log(response);
+      setSectorOptions(response.data);
+    }
+  }
+  async function getAllIndustries(id) {
+    const response = await getIndustries(id);
+    if (response?.status === 200) {
+      console.log(response);
+      setIndustryOptions(response.data);
+    }
+  }
 
   const handleCountryChange = async (event) => {
     const selectedCountry = event.target.value;
@@ -85,8 +118,12 @@ export default function Organization({ activeStep, setActiveStep }) {
   const handleCityChange = (event) => setOrganizationCity(event.target.value);
   const handleIndustryChange = (event) =>
     setOrganizationIndustry(event.target.value);
-  const handleSectorChange = (event) =>
+
+  const handleSectorChange = (event) => {
+    console.log("organizationSector", event.target.value);
     setOrganizationSector(event.target.value);
+  };
+
   const handleCompanyNameChange = (event) =>
     setOrganizationName(event.target.value);
 
@@ -271,6 +308,42 @@ export default function Organization({ activeStep, setActiveStep }) {
           </FormControl>
         </div>
       </div>
+      <p>Sector</p>
+      <FormControl fullWidth size="small">
+        <Select
+          value={organizationSector}
+          onChange={handleSectorChange}
+          displayEmpty
+          renderValue={(selected) => {
+            if (!selected) {
+              return <span style={{ color: "#D9D9D9" }}>Sector</span>;
+            }
+            const selectedSector = sectorOptions.find(
+              (sector) => sector.id === selected
+            );
+            return selectedSector ? (
+              <span style={{ color: "black" }}>{selectedSector.name}</span>
+            ) : (
+              ""
+            );
+          }}
+          sx={selectStyles}
+        >
+          {/* <MenuItem
+            value=""
+            disabled
+            sx={{ ...menuItemStyles, color: "#D9D9D9" }}
+          >
+            Sector
+          </MenuItem> */}
+
+          {sectorOptions.map((sector) => (
+            <MenuItem key={sector.id} value={sector.id} sx={menuItemStyles}>
+              {sector.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <p>Industry</p>
       <FormControl fullWidth size="small">
         <Select
@@ -306,41 +379,7 @@ export default function Organization({ activeStep, setActiveStep }) {
           ))}
         </Select>
       </FormControl>
-      <p>Sector</p>
-      <FormControl fullWidth sx={{ margin: "10px 0" }} size="small">
-        <Select
-          value={organizationSector}
-          onChange={handleSectorChange}
-          displayEmpty
-          renderValue={(selected) => {
-            if (!selected) {
-              return <span style={{ color: "#D9D9D9" }}>Sector</span>;
-            }
-            const selectedSector = sectorOptions.find(
-              (sector) => sector.id === selected
-            );
-            return selectedSector ? (
-              <span style={{ color: "black" }}>{selectedSector.name}</span>
-            ) : (
-              ""
-            );
-          }}
-          sx={selectStyles}
-        >
-          <MenuItem
-            value=""
-            disabled
-            sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-          >
-            Sector
-          </MenuItem>
-          {sectorOptions.map((sector) => (
-            <MenuItem key={sector.id} value={sector.id} sx={menuItemStyles}>
-              {sector.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+
       <button
         className="ge3s_button"
         disabled={!isFormComplete()}

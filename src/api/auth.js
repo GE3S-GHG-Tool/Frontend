@@ -72,25 +72,55 @@ export const createAccount = async (email, password) => {
   }
 };
 
-export const fetchInitialOrganizationData = async () => {
+export async function getCountries() {
   try {
-    const [countriesResponse, industriesResponse, sectorsResponse] =
-      await Promise.all([
-        api.get("/user/getCountries"),
-        api.get("/industry"),
-        api.get("/sector"),
-      ]);
-
-    return {
-      countries: countriesResponse.data,
-      industries: industriesResponse.data,
-      sectors: sectorsResponse.data,
-    };
-  } catch (error) {
-    console.error("Error fetching initial data:", error);
-    throw new Error("Failed to load initial data. Please try again.");
+    const response = await api.get(`/user/getCountries`);
+    if (response) return response;
+    else throw new Error("Could not get country");
+  } catch (err) {
+    console.log(err);
+    return err.response;
   }
-};
+}
+export async function getSectors() {
+  try {
+    const response = await api.get(`/sector`);
+    if (response) return response;
+    else throw new Error("Could not get country");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getIndustries(id) {
+  try {
+    const response = await api.get(`/industry/${id}`);
+    if (response) return response;
+    else throw new Error("Could not get country");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+// export const fetchInitialOrganizationData = async () => {
+//   try {
+//     const [countriesResponse, industriesResponse, sectorsResponse] =
+//       await Promise.all([
+//         api.get("/user/getCountries"),
+//         api.get("/industry"),
+//         api.get("/sector"),
+//       ]);
+
+//     return {
+//       countries: countriesResponse.data,
+//       industries: industriesResponse.data,
+//       sectors: sectorsResponse.data,
+//     };
+//   } catch (error) {
+//     console.error("Error fetching initial data:", error);
+//     throw new Error("Failed to load initial data. Please try again.");
+//   }
+// };
 
 export const fetchStates = async (countryId) => {
   try {
