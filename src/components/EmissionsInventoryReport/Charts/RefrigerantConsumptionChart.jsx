@@ -50,16 +50,15 @@ const Chart = ({ data, width, type }) => {
                 width={barWidth}
                 height={barHeight}
                 fill={getColor(d)}
-                rx={4}
-                ry={4}
+                onMouseLeave={hideTooltip}
                 onMouseEnter={() => {
                   showTooltip({
                     tooltipData: d,
                     tooltipTop: barY,
-                    tooltipLeft: barX + barWidth / 2,
+                    tooltipLeft: barX,
                   });
                 }}
-                onMouseLeave={hideTooltip}
+
               />
             );
           })}
@@ -116,8 +115,8 @@ const Chart = ({ data, width, type }) => {
             borderRadius: '4px'
           }}
         >
-          <div style={{ display: 'flex', gap: '0.7rem', fontSize: '0.8rem' }}>
-            <div style={{ width: '10px', height: '10px', backgroundColor: `${getColor(tooltipData)}` }}></div>
+          <div style={{ display: 'flex', gap: '0.7rem', fontSize: '0.8rem', alignItems: "center" }}>
+            <div style={{ width: '12px', height: '12px', backgroundColor: `${getColor(tooltipData)}` }}></div>
             <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span>
             <div>
               {getValue(tooltipData).toFixed(1) / 1000 + 'K'}
