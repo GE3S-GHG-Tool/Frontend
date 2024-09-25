@@ -18,23 +18,19 @@ function RefrigerantData() {
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
+
+    if (name === "refrigerant") {
+      updatedFields[index].unit = "Kg";
+    }
+
     updatedFields[index][name] = value;
     setFields(updatedFields);
 
-    // Check if the current row is complete
-    const isRowComplete =
-      updatedFields[index].refrigerant &&
-      updatedFields[index].quantity &&
-      updatedFields[index].unit;
-
-    // If the current row is complete and it’s the last row, add a new row
+    const isRowComplete = updatedFields[index].refrigerant;
     if (isRowComplete && index === fields.length - 1) {
-      setFields([
-        ...updatedFields,
-        { refrigerant: "", quantity: "", unit: "" },
-      ]);
+      setFields([...updatedFields, { refrigerant: "", quantity: "", unit: "" }]);
     }
-  };
+  }
 
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
@@ -136,6 +132,8 @@ function RefrigerantData() {
                     <MenuItem value={"R134a"}>R134a</MenuItem>
                     <MenuItem value={"R410a"}>R410a</MenuItem>
                     <MenuItem value={"R22"}>R22</MenuItem>
+                    <MenuItem value={"HFC-23"}>HFC-23</MenuItem>
+                    <MenuItem value={"HFC-245fa"}>HFC-245fa</MenuItem>
                   </Select>
                 </FormControl>
               </Grid2>
@@ -158,7 +156,7 @@ function RefrigerantData() {
                   />
                 </Grid2>
               )}
-              {field.quantity && (
+              {field.refrigerant && (
                 <Grid2 item size={4}>
                   <Typography
                     variant="body1"
@@ -167,19 +165,13 @@ function RefrigerantData() {
                     Unit
                   </Typography>
                   <FormControl fullWidth>
-                    <Select
+                    <TextField
                       name="unit"
                       value={field.unit}
-                      onChange={(e) => handleChange(index, e)}
-                      displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
-                    >
-                      <MenuItem disabled value="">
-                        Select Unit
-                      </MenuItem>
-                      <MenuItem value={"kg"}>kg</MenuItem>
-                      <MenuItem value={"lbs"}>lbs</MenuItem>
-                    </Select>
+                      disabled
+                      variant="outlined"
+                      fullWidth
+                    />
                   </FormControl>
                 </Grid2>
               )}

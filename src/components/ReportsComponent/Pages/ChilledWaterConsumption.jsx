@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 
 function ChilledWaterConsumption() {
   // Initialize fields with quantity and unit
-  const [field, setField] = useState({ quantity: "", unit: "" });
+  const [field, setField] = useState({ quantity: "", unit: "Ton-Hour" });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -109,19 +109,14 @@ function ChilledWaterConsumption() {
                 Unit
               </Typography>
               <FormControl fullWidth>
-                <Select
+
+                <TextField
                   name="unit"
                   value={field.unit}
-                  onChange={handleChange}
-                  displayEmpty
-                  inputProps={{ "aria-label": "Without label" }}
-                >
-                  <MenuItem disabled value="">
-                    Select Unit
-                  </MenuItem>
-                  <MenuItem value={"litres"}>Litres</MenuItem>
-                  <MenuItem value={"gallons"}>Gallons</MenuItem>
-                </Select>
+                  disabled
+                  variant="outlined"
+                  fullWidth
+                />
               </FormControl>
             </Grid2>
           </Grid2>
