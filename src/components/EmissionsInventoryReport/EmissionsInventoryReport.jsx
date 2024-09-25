@@ -86,7 +86,10 @@ const EmissionsInventoryReport = () => {
     };
 
     return (
-        <div>
+        <div style={{
+             backgroundColor: "#FBFBFB"
+            // backgroundColor: "grey"
+        }}>
             <div
                 id="top-heading"
                 style={{
@@ -258,6 +261,7 @@ const EmissionsInventoryReport = () => {
                         position: 'relative',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: 'white',
+                        borderRadius: '16px',
                         backgroundImage: `url(${backgroundImage})`
                     }}>
                         <div className="sustainability-heading" style={{
@@ -293,7 +297,7 @@ const EmissionsInventoryReport = () => {
                             />
                         </div>
                     </div>
-                    <div style={{ padding: '1rem 2.2rem' }}>
+                    <div style={{ padding: '1rem 2.2rem', background: 'white', borderRadius: '16px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             <div>
                                 <Typography sx={{ fontFamily: 'Inter', fontSize: '1.5rem', fontWeight: '500', wordSpacing: '0px' }}>GHG Emission Distribution</Typography>
@@ -312,20 +316,13 @@ const EmissionsInventoryReport = () => {
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div style={{ padding: '2.6rem 2.2rem', display: 'flex' }}>
+                        <div style={{ padding: '2rem 2.2rem', display: 'flex', borderRadius: '16px', background: "white" }}>
                             <ScopeData title="Scope 1 Emissions: Your Direct Footprint" desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles." svgs={Scope1SVGs} data={Scope1Data} type='scope-1' />
                         </div>
-                        <div style={{ padding: '2.6rem 2.2rem 0 2.2rem', width: '100%' }}>
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    gap: '4rem',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center', // Ensure vertical centering
-                                    margin: '0 auto',
-                                }}
-                            >
-                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+
+                        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                <div style={{ width: '32.5%', padding: '2rem 2.2rem', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '16px', background: "white" }}>
                                     <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
                                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
                                             Fuel Type Emissions Breakdown
@@ -333,7 +330,7 @@ const EmissionsInventoryReport = () => {
                                         <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} />
                                     </div>
                                 </div>
-                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <div style={{ width: '32.5%', padding: '2rem 2.2rem', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '16px', background: "white" }}>
                                     <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
                                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
                                             Refrigerant Emissions by Type
@@ -341,7 +338,7 @@ const EmissionsInventoryReport = () => {
                                         <RefrigerantEmissionsChart data={RefrigerantEmissionsData} />
                                     </div>
                                 </div>
-                                <div style={{ width: '32%', height: '350px', padding: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <div style={{ width: '32.5%', padding: '2rem 2.2rem', height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '16px', background: "white" }}>
                                     <div style={{ textAlign: 'center', position: 'relative', width: '100%', height: '100%' }}>
                                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>
                                             Process Emission Breakdown
@@ -350,17 +347,18 @@ const EmissionsInventoryReport = () => {
                                     </div>
                                 </div>
                             </div>
+
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <div style={{ width: '35%' }}>
-                                    <div style={{ textAlign: 'center' }}>
+                                <div style={{ width: '40%', borderRadius: '16px', background: "white", padding: '2rem 2.2rem', }}>
+                                    <div style={{ textAlign: 'center', }}>
                                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Fuel Consumption Breakdown</Typography>
                                         <FuelConsumptionChart data={FuelConsumptionBreakdown} />
                                     </div>
                                 </div>
-                                <div style={{ width: '55%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0', }}>
-                                    <div style={{ textAlign: 'center', position: 'relative' }}>
+                                <div style={{ width: '58%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '0', borderRadius: '16px', background: "white" }}>
+                                    <div style={{ textAlign: 'center', position: 'relative', padding: '2rem 2.2rem', }}>
                                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.2rem', fontWeight: '600', wordSpacing: '0px', textAlign: 'start' }}>Refrigerant Consumption Breakdown</Typography>
-                                        <RefrigerantConsumptionChart data={RefrigerantConsumptionData} width={750} height={300} type="scope-1" />
+                                        <RefrigerantConsumptionChart data={RefrigerantConsumptionData} width={700} height={300} type="scope-1" />
                                     </div>
                                 </div>
                             </div>
