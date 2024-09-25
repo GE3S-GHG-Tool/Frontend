@@ -20,8 +20,10 @@ import ideaChange from "../../../../assets/images/idea-exchange.svg";
 import lightBulbSetting from "../../../../assets/images/lightbulb-setting.svg";
 import solar_panel from "../../../../assets/images/solar-panel.svg";
 import solarpanel_1 from "../../../../assets/images/solar-panel 1.svg";
+import info_icon from "../../../../assets/images/info_icon.svg";
 import lightSelling from "../../../../assets/images/light-ceiling 1.svg";
 import { useState } from "react";
+import Tooltip from '@mui/material/Tooltip';
 import DecarbonizationSurveyQsnAns from "./DecarbonizationSurveyQsnAns";
 
 const Question = ({
@@ -47,9 +49,10 @@ const Question = ({
       sx={{
         flexDirection: "column",
         display: "flex",
-        border: "1px solid #E4E4E4",
+        borderRight: "1px solid #E4E4E4",
         borderRadius: "5px",
-        borderTop: "3px solid #369D9C",
+        borderTop: "5px solid #369D9C",
+        borderLeft: '1px solid #E4E4E4',
         gap: "20px",
       }}
     >
@@ -58,6 +61,7 @@ const Question = ({
           display: "flex",
           flexDirection: "column",
           gap: "15px",
+          boxShadow: 'none'
         }}
       >
         {/* Heading Section */}
@@ -69,13 +73,14 @@ const Question = ({
             mt: "16px",
             ml: "16px",
             alignItems: "center",
-            width:"800px"
+            width: "800px"
           }}
         >
           {logo && <img src={logo} alt="logo" width="18px" />}
           <Typography fontSize="16px" fontWeight="600" color="#000">
             {heading}
           </Typography>
+          <Tooltip title="Dummy Text" placement="top">{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
         </Grid2>
 
         {/* Questions and Buttons */}
@@ -89,7 +94,7 @@ const Question = ({
                 alignItems: "center",
                 gap: "12px",
                 ml: "15px",
-                width:"900px"
+                width: "900px"
               }}
             >
               <Box
@@ -114,23 +119,20 @@ const Question = ({
             </Grid2>
 
             {/* Buttons */}
-            <Grid2
-              sx={{
-                borderTop: "1px solid #E4E4E4",
-                borderBottom: "1px solid #E4E4E4",
-              }}
-            >
-              <Grid2
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "8px",
-                  mt: "10px",
-                  ml: "16px",
-                  mb: "12px",
-                }}
+
+            {["Yes", "No", "N/A"].map((answer, i) => (
+              <Grid2 sx={{ borderTop: '1px solid 1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4', borderRadius: '5px' }}
               >
-                {["Yes", "No", "N/A"].map((answer, i) => (
+                <Grid2
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: "8px",
+                    mt: "10px",
+                    ml: "16px",
+                    mb: "12px",
+                  }}
+                >
                   <Button
                     key={i}
                     onClick={() => handleButtonClick(answer, q.qsnId)}
@@ -155,9 +157,10 @@ const Question = ({
                       {answer}
                     </Typography>
                   </Button>
-                ))}
+
+                </Grid2>
               </Grid2>
-            </Grid2>
+            ))}
           </React.Fragment>
         ))}
       </Paper>
@@ -274,7 +277,7 @@ function SurveyQuestionSection() {
       id: 7,
       text: [
         {
-          qsnText:"Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+          qsnText: "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
           qsnId: 1,
         }
       ],
@@ -285,11 +288,11 @@ function SurveyQuestionSection() {
       id: 8,
       text: [
         {
-          qsnText:"Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+          qsnText: "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
           qsnId: 1,
         },
         {
-          qsnText:"Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+          qsnText: "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
           qsnId: 2,
         }
       ],
@@ -300,7 +303,7 @@ function SurveyQuestionSection() {
       id: 9,
       text: [
         {
-          qsnText:"Has a high-efficiency condenser suitable for the plant been selected?",
+          qsnText: "Has a high-efficiency condenser suitable for the plant been selected?",
           qsnId: 1,
         }
       ],
@@ -311,7 +314,7 @@ function SurveyQuestionSection() {
       id: 10,
       text: [
         {
-          qsnText:"Has the electrical system been designed to incorporate control measures?",
+          qsnText: "Has the electrical system been designed to incorporate control measures?",
           qsnId: 1,
         }
       ],
@@ -321,10 +324,10 @@ function SurveyQuestionSection() {
     {
       id: 11,
       text: [
-       {
-        qsnText: "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
-        qsnId: 1,
-       }
+        {
+          qsnText: "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+          qsnId: 1,
+        }
       ],
       logo: tempreture,
       heading: "Power Quality",
@@ -332,13 +335,13 @@ function SurveyQuestionSection() {
     {
       id: 12,
       text: [
-       {
-        qsnText: "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
-        qsnId: 1,
-       },{
-        qsnText: "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
-        qsnId: 2,
-       }
+        {
+          qsnText: "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+          qsnId: 1,
+        }, {
+          qsnText: "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+          qsnId: 2,
+        }
       ],
       logo: r_bin,
       heading: "Process Energy Sub-Metering",
@@ -347,7 +350,7 @@ function SurveyQuestionSection() {
       id: 13,
       text: [
         {
-          qsnText:"Has the development team considered improving the energy efficiency of the buildings envelope?",
+          qsnText: "Has the development team considered improving the energy efficiency of the buildings envelope?",
           qsnId: 1,
         }
       ],
@@ -358,14 +361,14 @@ function SurveyQuestionSection() {
     {
       id: 14,
       text: [
-       {
-        qsnText: "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
-        qsnId: 1,
-       },
-       {
-        qsnText: "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
-        qsnId: 2,
-       },
+        {
+          qsnText: "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
+          qsnId: 1,
+        },
+        {
+          qsnText: "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
+          qsnId: 2,
+        },
       ],
       logo: snow_blowing,
       heading:
@@ -374,10 +377,10 @@ function SurveyQuestionSection() {
     {
       id: 15,
       text: [
-       {
-        qsnText: "Has the industrial facility/warehouse been assessed for envelope airtightness, and have measures been taken to identify and address any defects or leakages?",
-        qsnId: 1,
-       }
+        {
+          qsnText: "Has the industrial facility/warehouse been assessed for envelope airtightness, and have measures been taken to identify and address any defects or leakages?",
+          qsnId: 1,
+        }
       ],
       logo: meter_bolt,
       heading:
@@ -387,7 +390,7 @@ function SurveyQuestionSection() {
       id: 16,
       text: [
         {
-          qsnText:"Have you evaluated the potential impact of different HVAC systems on energy efficiency and operating costs to inform your selection?",
+          qsnText: "Have you evaluated the potential impact of different HVAC systems on energy efficiency and operating costs to inform your selection?",
           qsnId: 1,
         }
       ],
@@ -398,7 +401,7 @@ function SurveyQuestionSection() {
       id: 17,
       text: [
         {
-          qsnText:"Have you considered incorporating design strategies to utilize Energy Recovery Units (ERUs) in the plant?",
+          qsnText: "Have you considered incorporating design strategies to utilize Energy Recovery Units (ERUs) in the plant?",
           qsnId: 1,
         }
       ],
@@ -409,10 +412,10 @@ function SurveyQuestionSection() {
     {
       id: 18,
       text: [
-       {
-        qsnText: "Have you confirmed that the energy-efficient cooling equipment to be procured and installed is consistent with the capacities specified in the 'Optimal System Sizing - HVAC' section?",
-        qsnId: 1,
-       }
+        {
+          qsnText: "Have you confirmed that the energy-efficient cooling equipment to be procured and installed is consistent with the capacities specified in the 'Optimal System Sizing - HVAC' section?",
+          qsnId: 1,
+        }
       ],
       logo: hand_holding,
       heading:
@@ -422,7 +425,7 @@ function SurveyQuestionSection() {
       id: 19,
       text: [
         {
-          qsnText:"Have you considered incorporating the necessary strategies into the HVAC system design to ensure efficient control and operation of the units?",
+          qsnText: "Have you considered incorporating the necessary strategies into the HVAC system design to ensure efficient control and operation of the units?",
           qsnId: 1,
         }
       ],
@@ -432,10 +435,10 @@ function SurveyQuestionSection() {
     {
       id: 20,
       text: [
-       {
-        qsnText: "Have you considered conducting a feasibility study to explore the potential of generating renewable power on-site?",
-        qsnId: 1,
-       }
+        {
+          qsnText: "Have you considered conducting a feasibility study to explore the potential of generating renewable power on-site?",
+          qsnId: 1,
+        }
       ],
       logo: solarpanel_1,
       heading: "Onsite Renewable Energy Generation",
@@ -444,7 +447,7 @@ function SurveyQuestionSection() {
       id: 21,
       text: [
         {
-          qsnText:"Have you explored the possibility of incorporating daylighting technologies into the industrial design?",
+          qsnText: "Have you explored the possibility of incorporating daylighting technologies into the industrial design?",
           qsnId: 1,
         }
       ],

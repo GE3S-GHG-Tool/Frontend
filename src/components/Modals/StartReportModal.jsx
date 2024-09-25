@@ -131,9 +131,9 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 }}
                 size="small"
               >
-                <MenuItem value={1}>January</MenuItem>
-                <MenuItem value={2}>February</MenuItem>
-                <MenuItem value={3}>March</MenuItem>
+                <MenuItem value={1}>2021</MenuItem>
+                <MenuItem value={2}>2022</MenuItem>
+                <MenuItem value={3}>2023</MenuItem>
               </Select>
             </FormControl>
           </div>
