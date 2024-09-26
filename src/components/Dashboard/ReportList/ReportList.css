@@ -1,0 +1,30 @@
+.scope_tag1 {
+  border-radius: 8px;
+  background: #b1e9d8;
+  padding: 0.3rem 0.8rem;
+  color: #028a60;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+.scope_tag2 {
+  border-radius: 8px;
+  background: #acc4ff;
+  padding: 0.3rem 0.8rem;
+  color: #2e59c5;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+.scope_tag3 {
+  border-radius: 8px;
+  background: #ffcbc3;
+  padding: 0.3rem 0.8rem;
+  color: #f26d58;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+.scope_tags {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}

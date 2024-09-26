@@ -1,23 +1,17 @@
 import { useState } from "react";
-import { Avatar } from "@mui/material";
-import avatar from "../../../assets/images/userimg.png";
 
 const members = [
   {
-    name: "Pranit Gaikar",
-    img: "",
     reportName: "Report 2022",
     year: "2020",
     month: "January",
-    date: "2024-02-10",
+    date: "3 days ago",
   },
   {
-    name: "John Doe",
-    img: "",
     reportName: "Report 2022",
     year: "2020",
     month: "January",
-    date: "2024-02-10",
+    date: "5 days ago",
   },
 ];
 
@@ -47,130 +41,20 @@ const DraftList = ({ searchQuery }) => {
     return 0;
   });
 
-  const filteredMembers = sortedMembers.filter(
-    (member) =>
-      member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.facility.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredMembers = sortedMembers.filter(
+  //   (member) =>
+  //     member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     member.facility.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   return (
     <div className="table-container">
       <table className="member-table">
         <thead>
           <tr>
-            <th className="member-table-head">
-              Facility Name
-              <button
-                onClick={() => handleSort("name")}
-                className="sort-button"
-              >
-                <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
-                  <g id="Icon/CaretDoubleVertical">
-                    <path
-                      id="Vector"
-                      d="M8.25 4.25L6 2L3.75 4.25"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      id="Vector_2"
-                      d="M8.25 8.75L6 11L3.75 8.75"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </th>
-            <th className="member-table-head">
-              Report Name
-              <button
-                onClick={() => handleSort("email")}
-                className="sort-button"
-              >
-                <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
-                  <g id="Icon/CaretDoubleVertical">
-                    <path
-                      id="Vector"
-                      d="M8.25 4.25L6 2L3.75 4.25"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      id="Vector_2"
-                      d="M8.25 8.75L6 11L3.75 8.75"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </th>
-            <th className="member-table-head">
-              Year
-              <button
-                onClick={() => handleSort("facility")}
-                className="sort-button"
-              >
-                <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
-                  <g id="Icon/CaretDoubleVertical">
-                    <path
-                      id="Vector"
-                      d="M8.25 4.25L6 2L3.75 4.25"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      id="Vector_2"
-                      d="M8.25 8.75L6 11L3.75 8.75"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </th>
-            <th className="member-table-head">
-              Month
-              <button
-                onClick={() => handleSort("userType")}
-                className="sort-button"
-              >
-                <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
-                  <g id="Icon/CaretDoubleVertical">
-                    <path
-                      id="Vector"
-                      d="M8.25 4.25L6 2L3.75 4.25"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      id="Vector_2"
-                      d="M8.25 8.75L6 11L3.75 8.75"
-                      stroke="#717171"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                </svg>
-              </button>
-            </th>
+            <th className="member-table-head">Report Name</th>
+            <th className="member-table-head">Year</th>
+            <th className="member-table-head">Period</th>
             <th className="member-table-head">
               Last Edit
               <button
@@ -199,16 +83,11 @@ const DraftList = ({ searchQuery }) => {
                 </svg>
               </button>
             </th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          {filteredMembers.map((member, index) => (
+          {sortedMembers.map((member, index) => (
             <tr key={index}>
-              <td style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <Avatar src={avatar} alt="User Img" className="avatar" />
-                {member.name}
-              </td>
               <td>{member.reportName}</td>
               <td>{member.year}</td>
               <td>{member.month}</td>

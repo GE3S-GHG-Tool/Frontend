@@ -69,7 +69,7 @@ function ReportStateEmpty() {
             bgcolor: "#ffffff",
             display: "flex",
             flexDirection: "column",
-            gap: '1rem'
+            gap: "1rem",
           }}
         >
           <Grid2
@@ -138,8 +138,8 @@ function ReportStateEmpty() {
                   flexDirection: "column",
                   mt: "6px",
                   gap: "0.5rem",
-                  paddingBottom: '10px',
-                  position: 'relative',
+                  paddingBottom: "10px",
+                  position: "relative",
                   height: "4.5rem",
                   backgroundColor: activeTab === tab.id ? "#F9FFFC" : "",
                   cursor: "pointer",
@@ -166,7 +166,7 @@ function ReportStateEmpty() {
                         width: "12px",
                         height: "15px",
                         display: "inline-block",
-                        padding: '0'
+                        padding: "0",
                       }}
                     />
                   )}
@@ -181,12 +181,20 @@ function ReportStateEmpty() {
                 >
                   {tab.description}
                 </Typography>
-                {
-                  activeTab === tab.id ?
-                    <div style={{ height: '4px', width: '100%', background: '#369D9C', border: 'none', position: "absolute", bottom: '0', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}>
-
-                    </div> : null
-                }
+                {activeTab === tab.id ? (
+                  <div
+                    style={{
+                      height: "4px",
+                      width: "100%",
+                      background: "#369D9C",
+                      border: "none",
+                      position: "absolute",
+                      bottom: "0",
+                      borderTopLeftRadius: "8px",
+                      borderTopRightRadius: "8px",
+                    }}
+                  ></div>
+                ) : null}
               </Grid2>
             ))}
           </Grid2>

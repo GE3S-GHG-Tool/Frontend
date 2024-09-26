@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Typography, Box, Button } from "@mui/material";
 import OverallSummary from "./SummaryCard/OverallSummary";
 import ScopeIntensity from "./ScopeIntensity/ScopeIntensity";
-import FacilityComparison from "./FacilityComparison/FacilityComparison";
 
 const mockData = {
   overallAverage: {
@@ -22,32 +21,31 @@ const mockData = {
     revenue: 3434, // tCO2e/$
     employee: 3434, // tCO2e/employee
     production: 3434, // tCO2e/tonne
-  }
+  },
 };
-
 
 const Analytics = () => {
   const [scopeView, setScopeView] = useState(false);
 
   const handleView = () => {
     setScopeView((prev) => !prev);
-  }
+  };
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
       }}
     >
       <Typography
         sx={{
-          color: '#000000',
-          fontSize: '1.20rem',
-          fontWeight: '600',
-          fontFamily: 'Inter',
-          lineHeight: '150%',
-          marginTop: '0.38rem'
+          color: "#000000",
+          fontSize: "1.20rem",
+          fontWeight: "600",
+          fontFamily: "Inter",
+          lineHeight: "150%",
+          marginTop: "0.38rem",
         }}
       >
         Overall Average Intensity
@@ -57,46 +55,64 @@ const Analytics = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: 'column',
+            flexDirection: "column",
           }}
         >
           <OverallSummary data={mockData.overallAverage} />
           {scopeView ? (
             <>
-              <ScopeIntensity scopeData={mockData.scope1Intensity} scopeName="Scope 1" bgColor="#E6F8F2" />
-              <ScopeIntensity scopeData={mockData.scope2Intensity} scopeName="Scope 2" bgColor="#E9EFFF" />
-              <div style={{ display: 'block', margin: '10px auto' }}>
-                <Button sx={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#717171',
-                  fontSize: '0.8rem',
-                  fontStyle: 'Inter',
-                  fontWeight: '500',
-                  textTransform: 'unset'
-                }} onClick={handleView}>View Less</Button>
+              <ScopeIntensity
+                scopeData={mockData.scope1Intensity}
+                scopeName="Scope 1"
+                bgColor="#E6F8F2"
+              />
+              <ScopeIntensity
+                scopeData={mockData.scope2Intensity}
+                scopeName="Scope 2"
+                bgColor="#E9EFFF"
+              />
+              <div style={{ display: "block", margin: "10px auto" }}>
+                <Button
+                  sx={{
+                    background: "transparent",
+                    border: "none",
+                    color: "#717171",
+                    fontSize: "0.8rem",
+                    fontStyle: "Inter",
+                    fontWeight: "500",
+                    textTransform: "unset",
+                  }}
+                  onClick={handleView}
+                >
+                  View Less
+                </Button>
               </div>
             </>
           ) : (
-            <div style={{ display: 'block', margin: '10px auto' }}>
-              <Button sx={{
-                background: 'transparent',
-                border: 'none',
-                color: '#717171',
-                fontSize: '0.8rem',
-                fontStyle: 'Inter',
-                fontWeight: '500',
-                textTransform: 'unset',
-              }} onClick={handleView}>View More</Button>
+            <div style={{ display: "block", margin: "10px auto" }}>
+              <Button
+                sx={{
+                  background: "transparent",
+                  border: "none",
+                  color: "#717171",
+                  fontSize: "0.8rem",
+                  fontStyle: "Inter",
+                  fontWeight: "500",
+                  textTransform: "unset",
+                }}
+                onClick={handleView}
+              >
+                View More
+              </Button>
             </div>
           )}
-          <div style={{ marginTop: '2rem' }}>
+          {/* <div style={{ marginTop: "2rem" }}>
             <FacilityComparison />
-          </div>
+          </div> */}
         </Box>
       </Box>
     </Box>
-  )
+  );
 };
 
 export default Analytics;
