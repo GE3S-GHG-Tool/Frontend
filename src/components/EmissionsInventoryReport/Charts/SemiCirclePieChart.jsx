@@ -3,18 +3,19 @@ import { Pie } from '@visx/shape';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { Box, Paper } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
 
 const ChartTooltip = ({ data }) => (
   <Paper sx={{ zIndex: '1000000', whiteSpace: 'nowrap', padding: '5px' }}>
     {data.map((item, i) => (
-      <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '7px' }}>
+      <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '0.2rem', padding: '7px' }}>
         <Box sx={{ width: 12, height: 12, backgroundColor: item.color, mr: 1 }} />
         <span style={{
           color: '#BDBDBD', fontSize: '0.6rem',
-        }}>{item.label}</span>
+        }}>{item.label}</span> <img src={dot} width={3} height={3}/>
         <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', color: '#717171', fontWeight: '500' }}>
           {item.key}
-        </span>
+        </span><img src={dot} width={3} height={3}/>
         <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', fontWeight: '500' }}>
           {item.value.toLocaleString()} tCO2e
         </span>
@@ -23,14 +24,14 @@ const ChartTooltip = ({ data }) => (
   </Paper>
 );
 
-const SemiCirclePieChart = ({ width = 350, height = 350, data, fixedTooltip = false }) => {
+const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = false }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [tooltipLeft, setTooltipLeft] = useState(0);
   const [tooltipTop, setTooltipTop] = useState(0);
   const svgRef = useRef(null);
 
   const radius = Math.min(width, height) / 2;
-  const centerY = height / 1.5; // Adjusted to center the semi-circle more evenly
+  const centerY = height / 1.3;
   const centerX = width / 2;
 
   const colorScale = scaleOrdinal({

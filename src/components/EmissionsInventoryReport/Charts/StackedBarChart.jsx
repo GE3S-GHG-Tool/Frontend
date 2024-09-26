@@ -5,6 +5,7 @@ import { AxisLeft, AxisBottom } from '@visx/axis';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { ParentSize } from '@visx/responsive';
+import dot from "../../../assets/images/dot.svg"
 
 const defaultMargin = { top: 20, right: 20, bottom: 40, left: 60 };
 const defaultColors = ['#FFAC9F', '#FF9989', '#F26D58'];
@@ -119,10 +120,14 @@ const StackedBarChart = ({ data, height = 300, margin = defaultMargin }) => {
             }}
           >
             {['building', 'vehicle', 'equipment'].map((key) => (
-              <div key={key} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <div key={key} style={{ display: 'flex', gap: '0.3rem', alignItems: 'center' }}>
                 <div style={{ width: '10px', height: '10px', backgroundColor: colorScale(key) }}></div>
                 <span style={{ fontFamily: 'Inter', fontSize: '0.7rem', color: '#BDBDBD', fontWeight: '400', textTransform: 'capitalize' }}>
-                  {key}: {tooltipData[key]} tCO2e
+                  {key}
+                </span>
+                <img src={dot} width={3} height={3} />
+                <span style={{ fontFamily: 'Inter', fontSize: '0.7rem', color: '#717171', fontWeight: '400', textTransform: 'capitalize' }}>
+                  {tooltipData[key]} tCO2e
                 </span>
               </div>
             ))}

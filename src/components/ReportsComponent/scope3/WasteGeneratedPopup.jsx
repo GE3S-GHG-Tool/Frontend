@@ -258,8 +258,8 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           }
                         }}
                       >
-                        <MenuItem disabled value="">
-                          Select Method
+                       <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Method</span>
                         </MenuItem>
                         <MenuItem value={"Landfilled"}>Landfilled</MenuItem>
                         <MenuItem value={"Recycling"}>Recycling</MenuItem>

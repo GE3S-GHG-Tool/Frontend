@@ -3,17 +3,19 @@ import { Pie } from '@visx/shape';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { Box, Paper } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
+
 
 // Reusable tooltip component (unchanged)
 const ChartTooltip = ({ data }) => (
   <Paper sx={{ zIndex: '100000', whiteSpace: 'nowrap', padding: '5px' }}>
     {data.map((item, i) => (
-      <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '7px' }}>
+      <Box key={i} sx={{ display: 'flex', alignItems: 'center',gap:"0.2rem", padding: '7px' }}>
         <Box sx={{ width: 12, height: 12, backgroundColor: item.color, mr: 1 }} />
-        <span style={{ color: '#BDBDBD', fontSize: '0.6rem' }}>{item.label}</span>
+        <span style={{ color: '#BDBDBD', fontSize: '0.6rem' }}>{item.label}</span><img src={dot} width={3} height={3}/>
         <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', color: '#717171', fontWeight: '500' }}>
           {item.key}
-        </span>
+        </span><img src={dot} width={3} height={3}/>
         <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', fontWeight: '500' }}>
           {item.value.toLocaleString()} tCO2e
         </span>
@@ -105,7 +107,7 @@ const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = 
             position: 'absolute',
             top: tooltipTop,
             left: tooltipLeft,
-            transform: 'translate(-10%, 0%)',
+            transform: 'translate(-20%, -80%)',
             pointerEvents: 'none',
           }}
         >

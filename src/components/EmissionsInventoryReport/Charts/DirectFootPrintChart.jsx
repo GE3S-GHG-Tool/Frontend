@@ -92,18 +92,7 @@ const DirectFootPrintChart = ({
                 </Group>
             </svg>
             {tooltipOpen && tooltipData && (
-                <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
-
-                    <div style={{ display: 'flex', alignItems: 'center', marginTop: 5 }}>
-                        <div style={{ width: 12, height: 12, backgroundColor: tooltipData.color, marginRight: 5 }} />
-                        <div style={{ color: tooltipData.color }}>
-                            <strong>{tooltipData.label}</strong>
-                        </div>
-                    </div>
-                    <div>{tooltipData.value.toLocaleString()} units</div>
-                    <div>{tooltipData.key}</div>
-
-                </Tooltip>
+               <></>
             )}
         </Box>
     );

@@ -23,6 +23,7 @@ const Scope1Data = [
   { label: "Refrigerant Data", value: 245, color: "#02B880", key: "25%" },
   { label: "Process Emission", value: 681, color: "#B1E9D8", key: "15%" },
 ];
+
 const Scope2Data = [
   {
     label: "Chilled Water Consumption",
@@ -1373,6 +1374,9 @@ const TotalEmissionsInventoryReport = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1.5rem",
+                  background: 'white',
+                  padding:'3rem 1rem',
+                  borderRadius:'16px'
                 }}
               >
                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>

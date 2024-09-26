@@ -5,7 +5,7 @@ import { scaleLinear } from '@visx/scale';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { Point } from '@visx/point';
-import { Box } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
 
 // Colors
 const orange = '#60B59B';
@@ -171,12 +171,12 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 260, levels = 5, marg
                         pointerEvents: 'none',
                     }}
                 >
-                    <div style={{ display: 'flex', gap: '0.6rem' }}>
-                        <div style={{display:'flex', gap:'6px', alignItems:'center'}}>
-                            <div style={{ width: '10px', height: '10px', backgroundColor: 'rgb(96, 181, 155)' }}></div>
-                            <span style={{ color: '#717171' }}>{tooltipData.label}</span>
+                    <div style={{ display: 'flex', gap: '0.1rem' }}>
+                        <div style={{display:'flex', gap:'3px', alignItems:'center'}}>
+                            <div style={{ width: '10px', height: '10px', backgroundColor: 'rgb(96, 181, 155)' }}></div> &nbsp;
+                            <span style={{ color: '#BDBDBD', fontSize:'0.7rem' }}>{tooltipData.label}</span><img src={dot} width={3} height={3}/>
                         </div>
-                        <span>{tooltipData.value}k tCO2e</span>
+                        <span style={{ color: '#717171', fontSize:'0.7rem' }}>{tooltipData.value}k tCO2e</span>
                     </div>
                 </TooltipWithBounds>
             )}

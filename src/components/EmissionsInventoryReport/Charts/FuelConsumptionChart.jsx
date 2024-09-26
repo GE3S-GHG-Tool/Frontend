@@ -6,6 +6,7 @@ import { Text } from '@visx/text';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { Box, Typography } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
 
 
 const tooltipStyles = {
@@ -94,11 +95,11 @@ const FuelConsumptionChart = ({
             </svg>
             {tooltipOpen && tooltipData && (
                 <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
                         <div style={{ width: 12, height: 12, backgroundColor: tooltipData.color, display: 'inline-block', marginRight: 5 }} />
-                        <div style={{ color: tooltipData.color }}>
-                            <strong>{tooltipData.fuel}</strong>
-                        </div>
+                        <div style={{ color: "#BDBDBD" }}>
+                            <span>{tooltipData.fuel}</span>
+                        </div><img src={dot} width={3} height={3} />
                         <div>{tooltipData.value} Gallons</div>
                     </div>
 
