@@ -94,7 +94,23 @@ function HeatConsumption() {
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
+                type="number"
                 placeholder="Enter quantity"
+                sx={{
+                  margin: '0',
+                  border: '1px solid rgba(217, 217, 217, 0.0)',
+                  borderRadius: '5px',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '11px 16px',
+                    color: 'black', // Set the text color to black
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  }
+                }}
               />
             </Grid2>
 
@@ -103,13 +119,33 @@ function HeatConsumption() {
                 Unit
               </Typography>
               <FormControl fullWidth>
-              <TextField
-                        name="unit"
-                        value={field.unit}
-                        disabled
-                        variant="outlined"
-                        fullWidth
-                      />
+                <TextField
+                  name="unit"
+                  value={field.unit}
+                  disabled
+                  variant="outlined"
+                  fullWidth
+                  sx={{
+                    margin: '0',
+                    border: '1px solid rgba(217, 217, 217, 0.0)',
+                    borderRadius: '5px',
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    },
+                    '& .MuiOutlinedInput-input': {
+                      padding: '11px 16px',
+                      color: 'black', 
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    },
+                    '& .MuiInputBase-input.Mui-disabled': {
+                      color: 'grey !important',
+                      WebkitTextFillColor: 'black !important',
+                      opacity: 1,
+                    },
+                  }}
+                />
               </FormControl>
             </Grid2>
           </Grid2>

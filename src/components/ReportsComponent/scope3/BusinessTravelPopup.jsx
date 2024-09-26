@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import airplane from "../../../assets/images/aeroplane.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const BusinessTravelPopup = ({ onClose }) => {
   // State with one initial row
@@ -162,10 +163,22 @@ const BusinessTravelPopup = ({ onClose }) => {
                       value={field.travelClass}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Class"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Class
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Class</span>
                       </MenuItem>
                       <MenuItem value={"Economy"}>Economy</MenuItem>
                       <MenuItem value={"Business"}>Business</MenuItem>
@@ -189,9 +202,22 @@ const BusinessTravelPopup = ({ onClose }) => {
                         value={field.origin}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Origin"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Origin
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Origin</span>
                         </MenuItem>
                         <MenuItem value={"New York"}>New York</MenuItem>
                         <MenuItem value={"Los Angeles"}>Los Angeles</MenuItem>
@@ -218,9 +244,22 @@ const BusinessTravelPopup = ({ onClose }) => {
                         value={field.destination}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Destination"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Destination
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Destination</span>
                         </MenuItem>
                         <MenuItem value={"London"}>London</MenuItem>
                         <MenuItem value={"Tokyo"}>Tokyo</MenuItem>
@@ -240,14 +279,28 @@ const BusinessTravelPopup = ({ onClose }) => {
                       Connection Type
                     </Typography>
                     <FormControl fullWidth>
+                      
                       <Select
                         name="connectionDirect"
                         value={field.connectionDirect}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Connection type"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Connection Type
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Connection type</span>
                         </MenuItem>
                         <MenuItem value="Direct">Direct</MenuItem>
                         <MenuItem value="1 Stop">1 Stop</MenuItem>
@@ -274,6 +327,20 @@ const BusinessTravelPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Enter number of trips"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}

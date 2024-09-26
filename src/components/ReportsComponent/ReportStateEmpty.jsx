@@ -63,12 +63,13 @@ function ReportStateEmpty() {
       <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "34px" }}>
         <Grid2
           sx={{
-            padding: "25px 70px 0px 70px",
+            padding: "2.2rem 6rem 0px 6rem",
             width: "100%",
-            height: "125px",
+            height: "170px",
             bgcolor: "#ffffff",
             display: "flex",
             flexDirection: "column",
+            gap: '1rem'
           }}
         >
           <Grid2
@@ -83,8 +84,8 @@ function ReportStateEmpty() {
             <Typography
               variant="h1"
               style={{
-                fontSize: "20px",
-                fontWeight: "500",
+                fontSize: "1.4rem",
+                fontWeight: "600",
                 lineHeight: "33.89px",
               }}
             >
@@ -93,30 +94,30 @@ function ReportStateEmpty() {
             <Typography
               variant="p"
               style={{
-                fontSize: "18px",
+                fontSize: "1.4rem",
                 fontWeight: "400",
                 lineHeight: "33.89px",
               }}
             >
-              I Delhi
+              &nbsp;I &nbsp;Delhi
             </Typography>
-            <div style={{ marginLeft: "auto" }}>
+            {/* <div style={{ marginLeft: "auto" }}>
               <Button
                 sx={{
                   borderRadius: "32px",
                   border: "1px solid #28814D",
-                  padding: "12px 28px 12px 28px",
+                  // padding: "12px 12px 12px 12px",
                   height: "38px",
                   fontWeight: "400",
-                  fontSize: "12px",
+                  fontSize: "11px",
                   width: "135px",
-                  textTransform: "capitalize",
+                  textTransform: "unset",
                   color: "#28814D",
                 }}
               >
                 Add member
               </Button>
-            </div>
+            </div> */}
           </Grid2>
 
           {/* Mapping through tabs */}
@@ -124,36 +125,32 @@ function ReportStateEmpty() {
             sx={{
               display: "flex",
               flexDirection: "row",
-              gap: "55px",
             }}
           >
             {tabs.map((tab) => (
               <Grid2
                 key={tab.id}
                 sx={{
-                  width: "29%",
+                  width: "33%",
                   textAlign: "center",
                   justifyContent: "center",
                   display: "flex",
                   flexDirection: "column",
                   mt: "6px",
-                  gap: "2px",
-                  height: "50px",
+                  gap: "0.5rem",
+                  paddingBottom: '10px',
+                  position: 'relative',
+                  height: "4.5rem",
                   backgroundColor: activeTab === tab.id ? "#F9FFFC" : "",
                   cursor: "pointer",
-                  borderBottom:
-                    activeTab === tab.id
-                      ? "3px solid #369D9C"
-                      : "3px solid transparent",
                 }}
                 onClick={() => setActiveTab(tab.id)}
               >
                 <Typography
                   variant="h1"
                   sx={{
-                    fontSize: "12px",
+                    fontSize: "0.9rem",
                     fontWeight: "600",
-                    lineHeight: "18px",
                     color: activeTab === tab.id ? "#369D9C" : "#808080",
                     display: "flex",
                     alignItems: "center",
@@ -166,9 +163,10 @@ function ReportStateEmpty() {
                       src={lock_Logo}
                       alt="Lock Logo"
                       style={{
-                        width: "10px",
-                        height: "16px",
+                        width: "12px",
+                        height: "15px",
                         display: "inline-block",
+                        padding: '0'
                       }}
                     />
                   )}
@@ -177,13 +175,18 @@ function ReportStateEmpty() {
 
                 <Typography
                   variant="body1"
-                  fontSize="9px"
-                  fontWeight="400"
-                  lineHeight="14px"
+                  fontSize="0.72rem"
+                  fontWeight="300"
                   color="#808080"
                 >
                   {tab.description}
                 </Typography>
+                {
+                  activeTab === tab.id ?
+                    <div style={{ height: '4px', width: '100%', background: '#369D9C', border: 'none', position: "absolute", bottom: '0', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}>
+
+                    </div> : null
+                }
               </Grid2>
             ))}
           </Grid2>
@@ -194,7 +197,7 @@ function ReportStateEmpty() {
 
         <Grid2
           sx={{
-            padding: "25px 70px 0px 70px",
+            padding: "25px 6rem 0px 6rem",
             width: "100%",
             height: "125px",
             display: "flex",
@@ -230,7 +233,7 @@ function ReportStateEmpty() {
                 fontWeight: "400",
                 fontSize: "12px",
                 width: "100px",
-                background: "#369D9C",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
                 textTransform: "capitalize",
                 color: "#FFFFFF",
               }}
@@ -250,7 +253,7 @@ function ReportStateEmpty() {
                 fontWeight: "400",
                 fontSize: "12px",
                 width: "150px",
-                background: "#369D9C",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
                 textTransform: "capitalize",
                 color: "#FFFFFF",
               }}

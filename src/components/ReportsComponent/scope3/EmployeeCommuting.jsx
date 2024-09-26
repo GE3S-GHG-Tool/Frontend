@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import employee from "../../../assets/images/employee.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
-import down_arrow from "../../../assets/images/down_arrow.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
 
@@ -113,10 +113,22 @@ function EmployeeCommuting() {
                     value={field.vehicleType}
                     onChange={(e) => handleChange(index, e)}
                     displayEmpty
-                    inputProps={{ "aria-label": "Without label" }}
+                    placeholder="Select Type"
+                    IconComponent={KeyboardArrowDownIcon}
+                    sx={{
+                      margin: '0',
+                      border: '1px solid rgba(217, 217, 217, 0.0)',
+                      borderRadius: '5px',
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'rgba(217, 217, 217, 0.30)',
+                      },
+                      '& .MuiSelect-select': {
+                        padding: '11px 16px',
+                      },
+                    }}
                   >
-                    <MenuItem disabled value="">
-                      Select Type
+                    <MenuItem value="" disabled>
+                      <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                     </MenuItem>
                     <MenuItem value={"Bike"}>Bike</MenuItem>
                     <MenuItem value={"Car"}>Car</MenuItem>
@@ -142,6 +154,20 @@ function EmployeeCommuting() {
                       fullWidth
                       type="number"
                       placeholder="Enter number of trips"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
 
@@ -160,6 +186,20 @@ function EmployeeCommuting() {
                       fullWidth
                       type="number"
                       placeholder="Enter distance traveled"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 </>
