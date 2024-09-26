@@ -5,7 +5,6 @@ import fuelLogo from "../../../assets/images/fuel_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import down_arrow from "../../../assets/images/down_arrow.svg";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";

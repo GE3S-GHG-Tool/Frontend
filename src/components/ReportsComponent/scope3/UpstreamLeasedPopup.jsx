@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import upstream from "../../../assets/images/upstream.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const UpstreamLeasedPopup = ({ onClose }) => {
   // State with one initial row
@@ -162,15 +163,28 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                     Asset Type
                   </Typography>
                   <FormControl fullWidth>
+
                     <Select
                       name="assetType"
                       value={field.assetType}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Type"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Asset Type
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                       </MenuItem>
                       <MenuItem value={"Building"}>Building</MenuItem>
                       <MenuItem value={"Vehicle"}>Vehicle</MenuItem>
@@ -194,9 +208,22 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                         value={field.sourceOfEnergy}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Source of Energy"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Source of Energy
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Source of Energy</span>
                         </MenuItem>
                         <MenuItem value={"Electricity"}>Electricity</MenuItem>
                         <MenuItem value={"Diesel"}>Diesel</MenuItem>
@@ -223,6 +250,20 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Enter quantity"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -242,9 +283,22 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                         value={field.unit}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Unit"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Unit
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Unit</span>
                         </MenuItem>
                         <MenuItem value="Kilowatt-Hours">
                           Kilowatt-Hours

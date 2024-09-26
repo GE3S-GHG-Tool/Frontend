@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import capital from "../../../assets/images/capitalGoods.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const CapitalGoodsPopup = ({ onClose }) => {
   // State with one initial row
@@ -159,10 +160,22 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       value={field.assetType}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Asset Type"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Asset Type
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Asset Type</span>
                       </MenuItem>
                       <MenuItem value={"Machinery"}>Machinery</MenuItem>
                       <MenuItem value={"Vehicles"}>Vehicles</MenuItem>
@@ -186,9 +199,22 @@ const CapitalGoodsPopup = ({ onClose }) => {
                         value={field.assetCategory}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Asset Category"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Asset Category
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Asset Category</span>
                         </MenuItem>
                         <MenuItem value={"Industrial Equipment"}>
                           Industrial Equipment
@@ -221,6 +247,20 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Enter expenses"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -235,19 +275,33 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       Currency
                     </Typography>
                     <FormControl fullWidth>
+                      
                       <Select
-                        name="currency"
+                       name="currency"
                         value={field.currency}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
-                      >
-                        <MenuItem disabled value="">
-                          Select Currency
-                        </MenuItem>
-                        <MenuItem value="USD">USD</MenuItem>
+                      placeholder="Select Currency"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Currency</span>
+                      </MenuItem>
+                      <MenuItem value="USD">USD</MenuItem>
                         <MenuItem value="EUR">EUR</MenuItem>
                         <MenuItem value="GBP">GBP</MenuItem>
-                      </Select>
+                    </Select>
                     </FormControl>
                   </Grid2>
                 )}

@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import waste from "../../../assets/images/wasteGenerated.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const WasteGeneratedPopup = ({ onClose }) => {
   // State with one initial row
@@ -166,10 +167,22 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       value={field.wasteCategory}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Type"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Type
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                       </MenuItem>
                       <MenuItem value={"Organic"}>Organic</MenuItem>
                       <MenuItem value={"Plastic"}>Plastic</MenuItem>
@@ -187,14 +200,28 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       Sub Categories
                     </Typography>
                     <FormControl fullWidth>
+
                       <Select
                         name="subCategory"
                         value={field.subCategory}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Type"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Category
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                         </MenuItem>
                         <MenuItem value={"Newspaper"}>Newspaper</MenuItem>
                         <MenuItem value={"Glass"}>Glass</MenuItem>
@@ -218,6 +245,18 @@ const WasteGeneratedPopup = ({ onClose }) => {
                         value={field.disposalMethod}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
                         <MenuItem disabled value="">
                           Select Method
@@ -246,6 +285,20 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Enter distance"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -265,6 +318,18 @@ const WasteGeneratedPopup = ({ onClose }) => {
                         value={field.fuelType}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
                         <MenuItem disabled value="">
                           Select Fuel
@@ -293,6 +358,20 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Number of trips"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -314,6 +393,20 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       fullWidth
                       type="text"
                       placeholder="10 tonnes"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}

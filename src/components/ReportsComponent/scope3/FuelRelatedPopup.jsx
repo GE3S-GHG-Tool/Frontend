@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import fuelRelated from "../../../assets/images/fuelActivities.svg";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const FuelRelatedPopup = ({ onClose }) => {
   // State with one initial row
@@ -161,10 +162,22 @@ const FuelRelatedPopup = ({ onClose }) => {
                       value={field.category}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
-                      inputProps={{ "aria-label": "Without label" }}
+                      placeholder="Select Category"
+                      IconComponent={KeyboardArrowDownIcon}
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiSelect-select': {
+                          padding: '11px 16px',
+                        }
+                      }}
                     >
-                      <MenuItem disabled value="">
-                        Select Category
+                      <MenuItem value="" disabled>
+                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Category</span>
                       </MenuItem>
                       <MenuItem value={"Fossil Fuels"}>Fossil Fuels</MenuItem>
                       <MenuItem value={"Biofuels"}>Biofuels</MenuItem>
@@ -187,9 +200,22 @@ const FuelRelatedPopup = ({ onClose }) => {
                         value={field.subCategory}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Sub Category"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Sub Category
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Sub Category</span>
                         </MenuItem>
                         <MenuItem value={"Gasoline"}>Gasoline</MenuItem>
                         <MenuItem value={"Diesel"}>Diesel</MenuItem>
@@ -214,9 +240,22 @@ const FuelRelatedPopup = ({ onClose }) => {
                         value={field.subSubCategory}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Sub Sub Category"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Sub Sub Category
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Sub Sub Category</span>
                         </MenuItem>
                         <MenuItem value={"Regular"}>Regular</MenuItem>
                         <MenuItem value={"Premium"}>Premium</MenuItem>
@@ -242,6 +281,20 @@ const FuelRelatedPopup = ({ onClose }) => {
                       fullWidth
                       type="number"
                       placeholder="Enter quantity"
+                      sx={{
+                        margin: '0',
+                        border: '1px solid rgba(217, 217, 217, 0.0)',
+                        borderRadius: '5px',
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                        '& .MuiOutlinedInput-input': {
+                          padding: '11px 16px',
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        },
+                      }}
                     />
                   </Grid2>
                 )}
@@ -261,9 +314,22 @@ const FuelRelatedPopup = ({ onClose }) => {
                         value={field.unit}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
+                        placeholder="Select Type"
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          margin: '0',
+                          border: '1px solid rgba(217, 217, 217, 0.0)',
+                          borderRadius: '5px',
+                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          },
+                          '& .MuiSelect-select': {
+                            padding: '11px 16px',
+                          }
+                        }}
                       >
-                        <MenuItem disabled value="">
-                          Select Unit
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Unit</span>
                         </MenuItem>
                         <MenuItem value="Liters">Liters</MenuItem>
                         <MenuItem value="Gallons">Gallons</MenuItem>

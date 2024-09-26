@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import { Dialog } from "@mui/material";
 import ReusableTable from "./ReusableTable";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
-import porces_Logo from "../../../assets/images/emisson_logo.svg";
 
 function ReusableTableSection({
   title,
