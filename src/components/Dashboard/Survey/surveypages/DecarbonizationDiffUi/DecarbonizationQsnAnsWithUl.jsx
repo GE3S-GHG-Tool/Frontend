@@ -2,6 +2,8 @@ import React from "react";
 import IndustryTable from "../TablesDataDecarbonation4";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 function DecarbonizationQsnAnsWithUl() {
   return (
     <div>
@@ -11,7 +13,7 @@ function DecarbonizationQsnAnsWithUl() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -20,6 +22,7 @@ function DecarbonizationQsnAnsWithUl() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow:'none'
           }}
         >
           <Grid2
@@ -37,13 +40,13 @@ function DecarbonizationQsnAnsWithUl() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Energy Conservation Techniques and Thermal Insulation
               <br />
               (Applicable for both Air-conditioned and Non-Air-Conditioned
               buildings)
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -70,7 +73,7 @@ function DecarbonizationQsnAnsWithUl() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="14px" fontWeight="normal" color="#000">
               Has the development team considered improving the energy
               efficiency of the building's envelope?
             </Typography>

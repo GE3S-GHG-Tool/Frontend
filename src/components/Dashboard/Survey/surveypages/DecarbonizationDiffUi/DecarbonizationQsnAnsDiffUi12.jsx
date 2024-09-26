@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import solarpanel from "../../../../../assets/images/solar-panel.svg"
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 
 function DecarbonizationQsnAnsWithUi12() {
   return (
@@ -11,7 +13,7 @@ function DecarbonizationQsnAnsWithUi12() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -20,6 +22,7 @@ function DecarbonizationQsnAnsWithUi12() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow:'none'
           }}
         >
           <Grid2
@@ -37,10 +40,10 @@ function DecarbonizationQsnAnsWithUi12() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Renewable Power Source - Industrial hot water
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -67,7 +70,7 @@ function DecarbonizationQsnAnsWithUi12() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="14px" fontWeight="normal" color="#000">
               Has the feasibility of a solar thermal hot water system been
               assessed, and has the potential reduction in CO2 emissions been
               estimated?

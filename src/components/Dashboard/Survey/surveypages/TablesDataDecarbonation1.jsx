@@ -59,7 +59,7 @@ function EfficiencyTable() {
       <h2 style={{ fontSize: "16px", fontWeight: "400", color: "#000000" }}>
         Air Cooled Chillers
       </h2>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
         <StyledTable aria-label="efficiency table">
           <TableHead>
             <TableRow>

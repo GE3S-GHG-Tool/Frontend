@@ -78,7 +78,7 @@ const tableData = [
 
 function IndustryTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ textAlign: "center" }}>

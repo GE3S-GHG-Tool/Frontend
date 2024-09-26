@@ -56,7 +56,7 @@ const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
 function EfficiencyTable() {
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
         <StyledTable aria-label="efficiency table">
           <TableHead>
             <TableRow>

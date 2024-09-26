@@ -20,10 +20,10 @@ import ideaChange from "../../../../assets/images/idea-exchange.svg";
 import lightBulbSetting from "../../../../assets/images/lightbulb-setting.svg";
 import solar_panel from "../../../../assets/images/solar-panel.svg";
 import solarpanel_1 from "../../../../assets/images/solar-panel 1.svg";
-import info_icon from "../../../../assets/images/info_icon.svg";
 import lightSelling from "../../../../assets/images/light-ceiling 1.svg";
 import { useState } from "react";
 import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../assets/images/info_icon.svg";
 import DecarbonizationSurveyQsnAns from "./DecarbonizationSurveyQsnAns";
 
 const Question = ({
@@ -61,7 +61,7 @@ const Question = ({
           display: "flex",
           flexDirection: "column",
           gap: "15px",
-          boxShadow: 'none'
+          boxShadow: 'none',
         }}
       >
         {/* Heading Section */}
@@ -73,14 +73,14 @@ const Question = ({
             mt: "16px",
             ml: "16px",
             alignItems: "center",
-            width: "800px"
+            width: "800px",
           }}
         >
           {logo && <img src={logo} alt="logo" width="18px" />}
           <Typography fontSize="16px" fontWeight="600" color="#000">
             {heading}
           </Typography>
-          <Tooltip title="Dummy Text" placement="top">{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+          <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
         </Grid2>
 
         {/* Questions and Buttons */}
@@ -113,54 +113,42 @@ const Question = ({
                   Q.{index + 1}
                 </Typography>
               </Box>
-              <Typography fontSize="14px" fontWeight="500" color="#000">
+              <Typography fontSize="14px" fontWeight="normal" color="#000">
                 {q.qsnText}
               </Typography>
             </Grid2>
+            <div style={{borderTop:'1px solid #E4E4E4', borderBottom:'1px solid #E4E4E4', padding:'10px',borderRadius:'4px'}}>
+              {/* Buttons */}
+              {["Yes", "No", "N/A"].map((answer, i) => (
 
-            {/* Buttons */}
-
-            {["Yes", "No", "N/A"].map((answer, i) => (
-              <Grid2 sx={{ borderTop: '1px solid 1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4', borderRadius: '5px' }}
-              >
-                <Grid2
+                <Button
+                  key={i}
+                  onClick={() => handleButtonClick(answer, q.qsnId)}
                   sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "8px",
-                    mt: "10px",
-                    ml: "16px",
-                    mb: "12px",
+                    background:
+                      selectedAnswer[q.qsnId] === answer
+                        ? `var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))`
+                        : "#FFF",
+                    color:
+                      selectedAnswer[q.qsnId] === answer ? "#FFF" : "#474747",
+                    border:
+                      selectedAnswer[q.qsnId] === answer
+                        ? "none"
+                        : "1px solid #369D9C",
+                    padding: "6px 22px",
+                    borderRadius: "32px",
+                    textTransform: "capitalize",
+                    transition: "background 0.3s ease",
+                    ml:'10px'
                   }}
                 >
-                  <Button
-                    key={i}
-                    onClick={() => handleButtonClick(answer, q.qsnId)}
-                    sx={{
-                      background:
-                        selectedAnswer[q.qsnId] === answer
-                          ? `var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))`
-                          : "#FFF",
-                      color:
-                        selectedAnswer[q.qsnId] === answer ? "#FFF" : "#474747",
-                      border:
-                        selectedAnswer[q.qsnId] === answer
-                          ? "none"
-                          : "1px solid #369D9C",
-                      padding: "6px 22px",
-                      borderRadius: "32px",
-                      textTransform: "capitalize",
-                      transition: "background 0.3s ease",
-                    }}
-                  >
-                    <Typography fontSize="14px" fontWeight="500">
-                      {answer}
-                    </Typography>
-                  </Button>
+                  <Typography fontSize="14px" fontWeight="500">
+                    {answer}
+                  </Typography>
+                </Button>
 
-                </Grid2>
-              </Grid2>
-            ))}
+              ))}
+            </div>
           </React.Fragment>
         ))}
       </Paper>
@@ -493,7 +481,7 @@ function SurveyQuestionSection() {
                 padding: "11px 40px",
               }}
             >
-              <Typography color="#fff" fontSize="14px" fontWeight="600">
+              <Typography color="#fff" fontSize="13px" fontWeight="normal">
                 Submit Survey
               </Typography>
             </Button>

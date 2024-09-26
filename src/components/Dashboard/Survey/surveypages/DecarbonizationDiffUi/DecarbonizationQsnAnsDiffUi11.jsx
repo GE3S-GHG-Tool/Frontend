@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import lightBulbSetting from "../../../../../assets/images/lightbulb-setting.svg"
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 
 function DecarbonizationQsnAnsWithUi11() {
   return (
@@ -11,7 +13,7 @@ function DecarbonizationQsnAnsWithUi11() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -20,6 +22,7 @@ function DecarbonizationQsnAnsWithUi11() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow:'none'
           }}
         >
           <Grid2
@@ -37,10 +40,10 @@ function DecarbonizationQsnAnsWithUi11() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Control of External lights
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -67,7 +70,7 @@ function DecarbonizationQsnAnsWithUi11() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="14px" fontWeight="normal" color="#000">
               Have you confirmed that the external lighting systems incorporate
               strategies to switch on/off based on specific needs or timings?
             </Typography>

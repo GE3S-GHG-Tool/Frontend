@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import { Box, Grid2, Paper, Typography, Button, Tooltip } from "@mui/material";
 import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
 import BasicTable from "./TablesDataDecarbonation1";
 import BasicTable2 from "./TablesDataDecarbonation2";
 import BasicTable3 from "./TablesDataDecarbonation4";
+import info_icon from "../../../../assets/images/info_icon.svg";
 import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
 import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
 import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3";
@@ -55,8 +56,8 @@ const Question = ({
         // display: "flex",
         border: "1px solid #E4E4E4",
         borderRadius: "5px",
-        borderTop: "3px solid #369D9C",
-        // gap: "20px",
+        borderTop: "5px solid #369D9C",
+        boxShadow:'none'
       }}
     >
       <Paper
@@ -64,6 +65,7 @@ const Question = ({
           display: "flex",
           flexDirection: "column",
           gap: "15px",
+           boxShadow:'none'
         }}
       >
         {/* Heading Section */}
@@ -81,6 +83,7 @@ const Question = ({
           <Typography fontSize="16px" fontWeight="600" color="#000">
             {heading}
           </Typography>
+          <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
         </Grid2>
 
         {questionText.map((q, questionIndex) => (
@@ -111,7 +114,7 @@ const Question = ({
                   Q.{questionIndex + 1}
                 </Typography>
               </Box>
-              <Typography fontSize="14px" fontWeight="500" color="#000">
+              <Typography fontSize="14px" fontWeight="normal" color="#000">
                 {q}
               </Typography>
             </Grid2>
@@ -143,7 +146,7 @@ const Question = ({
                       fontSize="12px"
                       fontWeight={
                         boldAnswerIndex === questionIndex ||
-                        boldAnswerIndex >= answers[questionIndex].length
+                          boldAnswerIndex >= answers[questionIndex].length
                           ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
                           : "500"
                       }
@@ -176,8 +179,6 @@ const Question = ({
                 </Grid2>
               )}
             </Grid2>
-
-            {/* Conditional Rendering of Table */}
             {showTable && questionIndex === 0 && TableComponent && (
               <Grid2
                 sx={{
@@ -188,7 +189,7 @@ const Question = ({
                   borderRadius: "5px",
                 }}
               >
-                <TableComponent /> {/* Render the selected table component */}
+                <TableComponent />
               </Grid2>
             )}
           </React.Fragment>
@@ -428,7 +429,7 @@ function SurveyQuestionSection() {
 
   return (
     <>
-      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px", border: '1px solid red' }}>
         {questions.map((q, index) => (
           <Question
             key={index}
