@@ -21,7 +21,7 @@ function DecarbonizationQsnAnsWithUi14() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -74,53 +74,39 @@ function DecarbonizationQsnAnsWithUi14() {
               technologies into the industrial design?
             </Typography>
           </Grid2>
-
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "8px 16px", // Equal space around the grid
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "10px 12px",
+                padding: '25px'
               }}
             >
               <Typography
-                fontSize="14px" // Unified font size
-                fontWeight="600" // Unified font weight
-                sx={{
-                  padding: "4px 0", // Reduced padding for closer alignment
-                  marginBottom: "4px", // Reduced margin for closer alignment with list
-                }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 1. The design should seek to embrace a judicial mix of solar
                 daylighting systems i.e. systems/technologies and Architecture
                 manifested in one of the following ways
+                <ul>
+                  <li>Daylight optimized building footprint</li>
+                  <li>Skylights (Passive or Active)</li>
+                  <li>Tubular daylighting devices </li>
+                  <li>Daylight redirection devices </li>
+                  <li>Solar Exterior shading and control devices.</li>
+                  <li>The reflectance of room surfaces"</li>
+                </ul>
               </Typography>
-              <ul
-                style={{
-                  marginTop: "0px",
-                  marginBottom: "0px",
-                  paddingLeft: "18px",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
-                <li>Daylight optimized building footprint</li>
-                <li>Skylights (Passive or Active)</li>
-                <li>Tubular daylighting devices </li>
-                <li>Daylight redirection devices </li>
-                <li>Solar Exterior shading and control devices.</li>
-                <li>The reflectance of room surfaces"</li>
-              </ul>
+             
             </Grid2>
           </Grid2>
         </Paper>

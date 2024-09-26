@@ -23,7 +23,7 @@ function DecarbonizationQsnAnsWithUl2() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -67,11 +67,11 @@ function DecarbonizationQsnAnsWithUl2() {
                 justifyContent: "center",
               }}
             >
-              <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+              <Typography color="#5B5B5B" fontSize="0.875rem" fontWeight="400">
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="normal" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Has interior thermal imaging been conducted for
               air-conditioned/climate-controlled spaces to identify potential
               building defects?
@@ -81,28 +81,27 @@ function DecarbonizationQsnAnsWithUl2() {
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "15px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px 20px 0 20px",
               borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
+              // borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
-                mt: "15px",
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                1.Thermal imaging carried out by a qualified thermographer.
+                <ol>
+                  <li>
+                    Thermal imaging carried out by a qualified thermographer.
+                  </li>
+                </ol>
               </Typography>
             </Grid2>
 
@@ -127,11 +126,11 @@ function DecarbonizationQsnAnsWithUl2() {
                   justifyContent: "center",
                 }}
               >
-                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                <Typography color="#5B5B5B" fontSize="0.875rem" fontWeight="400">
                   Q.2.1
                 </Typography>
               </Box>
-              <Typography fontSize="14px" fontWeight="normal" color="#000">
+              <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
                 Has interior thermal imaging been conducted for
                 air-conditioned/climate-controlled spaces to identify potential
                 building defects?
@@ -172,31 +171,35 @@ function DecarbonizationQsnAnsWithUl2() {
           </Grid2>
           <Grid2
             sx={{
-              border: "1px solid var(--Grey-3, #D9D9D9)",
-              background: "#F7FFFC",
+              borderTop: "1px solid #E4E4E4",
+              padding: "20px",
               borderRadius: "5px",
-              padding: "1px 12px",
-              mt: "15px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "5px",
-              width: "98%",
-              mb: "18px",
-              ml: "15px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
-            <Typography
-              sx={{ fontSize: "14px", ml: "4px", mt: "10px", fontWeight: 600 }}
+            <Grid2
+              sx={{
+                border: "1px solid #D9D9D9",
+                background: "#F7FFFC",
+                borderRadius: "5px",
+                display: "flex",
+                flexDirection: "column",
+                padding:'15px'
+              }}
             >
-              The thermography report highlighting
-            </Typography>
-            <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
-              <ul>
-                <li>The defects in the building envelope</li>
-                <li>The leakage spots noticed in the space and.</li>
-                <li>Recommendations for rectifications</li>
-              </ul>
-            </Typography>
+              <Typography
+                sx={{ fontSize: "0.85rem", ml: "4px", mt: "8px", fontWeight: 400 }}
+              >
+                The thermography report highlighting
+              </Typography>
+              <Typography sx={{ fontSize: "0.85rem", fontWeight: 400 }}>
+                <ul>
+                  <li style={{ lineHeight: '1.5rem' }}>The defects in the building envelope</li>
+                  <li style={{ lineHeight: '1.5rem' }}>The leakage spots noticed in the space and.</li>
+                  <li style={{ lineHeight: '1.5rem' }}>Recommendations for rectifications</li>
+                </ul>
+              </Typography>
+            </Grid2>
           </Grid2>
         </Paper>
       </Grid2>

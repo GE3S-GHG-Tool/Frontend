@@ -117,7 +117,7 @@ const Question = ({
                 {q.qsnText}
               </Typography>
             </Grid2>
-            <div style={{borderTop:'1px solid #E4E4E4', borderBottom:'1px solid #E4E4E4', padding:'10px',borderRadius:'4px'}}>
+            <div style={{borderTop:'1px solid #E4E4E4', borderBottom:'1px solid #E4E4E4', padding:'14px',borderRadius:'4px'}}>
               {/* Buttons */}
               {["Yes", "No", "N/A"].map((answer, i) => (
 
@@ -135,11 +135,11 @@ const Question = ({
                       selectedAnswer[q.qsnId] === answer
                         ? "none"
                         : "1px solid #369D9C",
-                    padding: "6px 22px",
+                    padding: "4px 22px",
                     borderRadius: "32px",
                     textTransform: "capitalize",
                     transition: "background 0.3s ease",
-                    ml:'10px'
+                    ml:'12px'
                   }}
                 >
                   <Typography fontSize="14px" fontWeight="500">

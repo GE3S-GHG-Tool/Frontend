@@ -76,42 +76,34 @@ function DecarbonizationQsnAnsWithUi13() {
             </Typography>
           </Grid2>
 
+         
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "8px 16px", // Equal space around the grid
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "10px 12px",
               }}
             >
               <Typography
-                fontSize="14px" // Unified font size
-                fontWeight="600" // Unified font weight
-                sx={{
-                  padding: "4px 0", // Padding for spacing
-                  marginBottom: "4px", // Margin for spacing
-                  display: "flex", // Use flex for alignment
-                  alignItems: "flex-start", // Align items to the start
-                }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                <span>1.</span>
-                <span>
+                <ol style={{ padding: '5px 20px 5px 40px'}}>
+                  <li style={{lineHeight: '1.5rem' }}>
                   Renewable energy system shall be utilized to generate power
                   and cater to select loads of the development such as
                   ventilation load, external security lighting loads, security
                   lamps and any other lighting requirements specific to the
-                  project.
-                </span>
+                  project.</li>
+                </ol>
               </Typography>
             </Grid2>
           </Grid2>

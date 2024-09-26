@@ -27,11 +27,11 @@ const StyledTableCell = styled(TableCell)({
 });
 const StyledTableHeadCell = styled(TableCell)({
   background: "#F7FFFF",
-  fontWeight: "bold",
   textAlign: "center",
   border: "1px solid var(--Grey-4, #F4F4F4)",
   height: "40px", // Set the height of the header cells
   lineHeight: "1px", // Align text vertically within the header cells
+  color: '#28814D'
 });
 
 // Define styled components with specific widths
@@ -58,7 +58,7 @@ function EfficiencyTable() {
     <>
       <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
         <StyledTable aria-label="efficiency table">
-          <TableHead>
+          <TableHead >
             <TableRow>
               <StyledTableHeadCell rowSpan={2}>S.No</StyledTableHeadCell>
               <StyledTableHeadCell rowSpan={2}>Capacities</StyledTableHeadCell>
@@ -93,7 +93,7 @@ function EfficiencyTable() {
 
 
       <Grid2 sx={{ marginTop: "30px" }}>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{boxShadow:'none'}}>
           <StyledTable aria-label="efficiency table">
             <TableHead>
               <TableRow>

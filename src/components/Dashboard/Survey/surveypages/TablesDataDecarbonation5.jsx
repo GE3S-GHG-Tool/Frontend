@@ -11,7 +11,7 @@ import {
 const MyTable = () => {
   return (
     <>
-      <Typography fontSize="12px" fontWeight="600" mb="15px">
+      <Typography fontSize="13px" fontWeight="500" mb="15px" mt="15px">
         Internal Lighting - Space by Space Method
       </Typography>
       <Table
@@ -27,8 +27,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
                 border: "1px solid #F4F4F4",
+                color: '#28814D',
               }}
             >
               Common Space Types
@@ -37,8 +37,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
                 border: "1px solid #F4F4F4",
+                color: '#28814D',
               }}
             >
               LPD (W/m²)
@@ -47,8 +47,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
                 border: "1px solid #F4F4F4",
+                color: '#28814D',
               }}
             >
               Building Specific Space Types
@@ -57,8 +57,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
                 border: "1px solid #F4F4F4",
+                color: '#28814D',
               }}
             >
               LPD (W/m²)
@@ -70,7 +70,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -80,7 +80,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -91,7 +91,7 @@ const MyTable = () => {
               colSpan={2} // This makes the cell span across two columns
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -104,7 +104,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -114,7 +114,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -124,7 +124,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -134,7 +134,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -146,7 +146,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -156,7 +156,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -166,7 +166,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -176,7 +176,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -186,7 +186,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -196,7 +196,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -206,7 +206,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -216,7 +216,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -226,7 +226,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -236,7 +236,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -246,7 +246,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -256,7 +256,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -268,7 +268,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -278,7 +278,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -288,7 +288,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+              fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -298,7 +298,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -310,7 +310,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -320,7 +320,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -330,7 +330,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -340,7 +340,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -352,7 +352,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -362,7 +362,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -372,7 +372,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -382,7 +382,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -392,7 +392,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -402,7 +402,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -412,7 +412,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -422,7 +422,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -434,7 +434,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -444,7 +444,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -454,7 +454,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -464,7 +464,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -476,7 +476,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -486,7 +486,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -496,7 +496,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -506,7 +506,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -518,7 +518,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -528,7 +528,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -538,7 +538,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -548,7 +548,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -560,7 +560,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -570,7 +570,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -580,7 +580,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -590,7 +590,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -600,7 +600,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -610,7 +610,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -620,7 +620,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -630,7 +630,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -642,7 +642,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -652,7 +652,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -662,7 +662,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -672,7 +672,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -684,7 +684,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -694,7 +694,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -704,7 +704,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -714,7 +714,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -726,7 +726,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -736,7 +736,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -746,7 +746,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}
@@ -756,7 +756,7 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
                 border: "1px solid #F4F4F4",
               }}

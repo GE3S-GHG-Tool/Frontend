@@ -13,7 +13,7 @@ function DecarbonizationQsnAnsWithUi9() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-         borderTop: "5px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi9() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -79,25 +79,22 @@ function DecarbonizationQsnAnsWithUi9() {
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
+                padding: '25px'
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 1. Installation of occupancy sensors/motion sensors for
                 automated control of internal lighting.
@@ -117,9 +114,8 @@ function DecarbonizationQsnAnsWithUi9() {
                 </ul>
               </Typography>
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 Exceptions: Process area / Machine area
               </Typography>

@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi4() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -70,65 +70,48 @@ function DecarbonizationQsnAnsWithUi4() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="normal" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Have you evaluated the potential impact of different HVAC systems
               on energy efficiency and operating costs to inform your selection?
             </Typography>
-            
-          </Grid2>
 
+          </Grid2>
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
               borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                1. Zoning the condition area
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                2. Perform the Heat load calculations
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                3. Select the Air- Conditioning equipment
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                4. Design consideration of heat recovery units. Ventilation
-                calculation should be carried out and the results of such
-                calculations should be used for sizing the fresh air systems,
-                exhaust systems and Energy Recovery Units etc.
-                <br />
+                <ol style={{ padding: '5px 20px 5px 40px' }}>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Zoning the condition area.
+                  </li>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Select the Air- Conditioning equipment.
+                  </li>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Select the Air- Conditioning equipment
+                  </li>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Design consideration of heat recovery units. Ventilation
+                    calculation should be carried out and the results of such
+                    calculations should be used for sizing the fresh air systems,
+                    exhaust systems and Energy Recovery Units etc.
+                  </li>
+                </ol>
               </Typography>
             </Grid2>
           </Grid2>

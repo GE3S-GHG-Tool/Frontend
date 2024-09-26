@@ -80,41 +80,32 @@ function DecarbonizationQsnAnsWithUi12() {
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "8px 16px", // Equal space around the grid
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "10px 12px",
               }}
             >
               <Typography
-                fontSize="14px" // Unified font size
-                fontWeight="600" // Unified font weight
-                sx={{
-                  padding: "4px 0", // Padding for spacing
-                  marginBottom: "4px", // Margin for spacing
-                  display: "flex", // Use flex for alignment
-                  alignItems: "flex-start", // Align items to the start
-                }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                <span>1.</span>
-                <span>
+                <ol style={{ padding: '5px 20px 5px 40px'}}>
+                  <li style={{lineHeight: '1.5rem' }}>
                   Solar water heating (solar thermal) or solar photovoltaic
                   system with point of demand heaters shall be employed for
                   industrial hot water requirements. The solar hot water heating
                   system must incorporate measures for the efficient
                   distribution system, pipe insulation, and use of
                   energy-efficient electric hot water system (which is normally
-                  used as backup).
-                </span>
+                  used as backup).</li>
+                </ol>
               </Typography>
             </Grid2>
           </Grid2>

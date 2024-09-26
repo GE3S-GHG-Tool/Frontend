@@ -27,11 +27,11 @@ const StyledTableCell = styled(TableCell)({
 });
 const StyledTableHeadCell = styled(TableCell)({
   background: "#F7FFFF",
-  fontWeight: "bold",
   textAlign: "center",
-  border: "1px solid var(--Grey-4, #F4F4F4)",
+  border: "1px solid  #F4F4F4",
   height: "40px", // Set the height of the header cells
   lineHeight: "1px", // Align text vertically within the header cells
+  color: '#28814D'
 });
 
 // Define styled components with specific widths
@@ -56,10 +56,10 @@ const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
 function EfficiencyTable() {
   return (
     <>
-      <h2 style={{ fontSize: "16px", fontWeight: "400", color: "#000000" }}>
+      <h2 style={{ fontSize: "16px", fontWeight: "400", color: "#000000", padding: '20px 0' }}>
         Air Cooled Chillers
       </h2>
-      <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
+      <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
         <StyledTable aria-label="efficiency table">
           <TableHead>
             <TableRow>
@@ -99,13 +99,13 @@ function EfficiencyTable() {
           fontSize: "16px",
           fontWeight: "400",
           color: "#000000",
-          marginTop: "30px",
+          padding: '20px 0'
         }}
       >
         Water Cooled Chillers
       </h2>
-      <Grid2 sx={{ marginTop: "30px" }}>
-        <TableContainer component={Paper}>
+      <Grid2>
+        <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
           <StyledTable aria-label="efficiency table">
             <TableHead>
               <TableRow>
@@ -153,9 +153,9 @@ function EfficiencyTable() {
               <TableRow>
                 <StyledTableCellNarrow rowSpan={3}>2</StyledTableCellNarrow>{" "}
                 {/* Spans three rows */}
-                <StyledTableCellNarrow rowSpan={3}>
+                <StyledTableCellMedium rowSpan={3}>
                   Water cooled, electrically operated, centrifugal
-                </StyledTableCellNarrow>{" "}
+                </StyledTableCellMedium>{" "}
                 {/* Spans three rows */}
                 <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
                 <StyledTableCellWide>&gt;2.803</StyledTableCellWide>

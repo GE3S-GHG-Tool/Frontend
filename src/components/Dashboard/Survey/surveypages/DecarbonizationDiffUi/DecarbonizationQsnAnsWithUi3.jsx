@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi3() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -69,42 +69,35 @@ function DecarbonizationQsnAnsWithUi3() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="normal" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Has the industrial facility/warehouse been assessed for envelope
-              airtightness, and have <br /> measures been taken to identify and
+              airtightness, and have measures been taken to identify and
               address any defects or leakages?
             </Typography>
           </Grid2>
-
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
+                padding: '25px'
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 Implementation team / contractor is accountable for the
-                following tasks:
-                <br />
-                <br />
+                following tasks: <br /> <br />
                 Set up the blower door.
-                <br />
                 <ul>
                   <li>Make ready the building for the Pre blower door test.</li>
                   <li>Perform the blower door test.</li>
@@ -116,9 +109,8 @@ function DecarbonizationQsnAnsWithUi3() {
                 </ul>
               </Typography>
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 These tests need to be conducted with the use of a blower door
                 to measure the amount of leakage of an object. If required these
@@ -126,9 +118,6 @@ function DecarbonizationQsnAnsWithUi3() {
                 and smoke simulations to locate any excessive leakages. The air
                 leakage is contained within a maximum of 10 m3/hr/m2 @ 50
                 Pascal.
-                <br />
-                Estidama guideline prescribed in PBRS Version 1 or updated
-                guideline.
               </Typography>
             </Grid2>
           </Grid2>

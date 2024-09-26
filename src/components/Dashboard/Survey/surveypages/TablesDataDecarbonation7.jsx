@@ -34,26 +34,9 @@ const StyledTableHeadCell = styled(TableCell)({
   height: "25px", // Reduced height for header cells
   padding: "4px", // Reduced padding for header cells
   lineHeight: "1.2", // Adjusted line height for text alignment
+  color:'#28814D'
 });
 
-// Define styled components with specific widths
-const StyledTableCellNarrow = styled(TableCell)(({ theme }) => ({
-  width: "10%", // Adjusted width to 10% for the "S.No" and "Chiller Type"
-  border: "1px solid #E4E4E4",
-  textAlign: "center",
-}));
-
-const StyledTableCellWide = styled(TableCell)(({ theme }) => ({
-  width: "20%", // Adjusted width to 20% for other columns
-  border: "1px solid #E4E4E4",
-  textAlign: "center",
-}));
-
-const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
-  width: "30%", // Adjusted width to 30% for the "Chiller Type" description
-  border: "1px solid #E4E4E4",
-  textAlign: "left",
-}));
 
 const MyTable7 = () => {
   return (
