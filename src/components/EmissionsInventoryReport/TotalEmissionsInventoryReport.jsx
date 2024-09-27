@@ -515,6 +515,10 @@ const TotalEmissionsInventoryReport = () => {
               borderRadius: "32px",
               fontSize: "0.7rem",
               padding: "0.5rem 1.2rem",
+              '&:hover': {
+                background:
+                  "rgba(177, 233, 216, 0.30)",
+              },
             }}
             onClick={() => setOpenEditModal((prev) => !prev)}
           >
@@ -529,8 +533,13 @@ const TotalEmissionsInventoryReport = () => {
               borderRadius: "5rem",
               fontSize: "0.7rem",
               padding: "0.6rem 1.6rem",
+              boxShadow: 'none',
               background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              "&:hover": { backgroundColor: "#28814D" },
+              '&:hover': {
+                background:
+                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: 'none'
+              },
             }}
           >
             Go to home
@@ -600,6 +609,10 @@ const TotalEmissionsInventoryReport = () => {
                   justifyContent: "start",
                   gap: "0.5rem",
                   cursor: "pointer",
+                  '&:hover': {
+                    background:
+                      "rgba(177, 233, 216, 0.30)",
+                  }
                 }}
                 onClick={() => {
                   setOpenShareModal((prev) => !prev);
@@ -1375,8 +1388,8 @@ const TotalEmissionsInventoryReport = () => {
                   flexDirection: "column",
                   gap: "1.5rem",
                   background: 'white',
-                  padding:'3rem 1rem',
-                  borderRadius:'16px'
+                  padding: '3rem 1rem',
+                  borderRadius: '16px'
                 }}
               >
                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>
