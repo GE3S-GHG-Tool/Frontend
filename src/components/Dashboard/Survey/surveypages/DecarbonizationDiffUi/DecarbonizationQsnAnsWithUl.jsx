@@ -2,6 +2,8 @@ import React from "react";
 import IndustryTable from "../TablesDataDecarbonation4";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import handHolding from "../../../../../assets/images/hand-holding-seeding.svg";
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 function DecarbonizationQsnAnsWithUl() {
   return (
     <div>
@@ -11,7 +13,7 @@ function DecarbonizationQsnAnsWithUl() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -20,6 +22,7 @@ function DecarbonizationQsnAnsWithUl() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -37,13 +40,13 @@ function DecarbonizationQsnAnsWithUl() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Energy Conservation Techniques and Thermal Insulation
               <br />
               (Applicable for both Air-conditioned and Non-Air-Conditioned
               buildings)
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -70,52 +73,48 @@ function DecarbonizationQsnAnsWithUl() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Has the development team considered improving the energy
               efficiency of the building's envelope?
             </Typography>
           </Grid2>
-
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
+              // borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
+                padding: '25px'
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 1. Make Sure that the development team considers the improvement
                 in the energy efficiency of the building's envelope.
                 <br />
                 <br />
                 The envelope addresses the following
-                <br />
                 <ul>
                   <li>Horizontal Opaque elements - Roof, Slabs</li>
                   <li>Vertical Opaque element – Wall, door.</li>
                   <li>Horizontal Glazing – Sky light.</li>
-                  <li>Vertical Glazing – Glass Door, windows. </li>
+                  <li>
+                    Vertical Glazing – Glass Door, windows.
+                  </li>
                 </ul>
               </Typography>
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
                 Rest other buildings in the industries, e.g. Admin and office
                 building shall adhere to mandatory
@@ -129,7 +128,6 @@ function DecarbonizationQsnAnsWithUl() {
           {/* Conditional Rendering of Table */}
           <Grid2
             sx={{
-              mt: "-30px",
               mb: "8px",
               ml: "0px",
               padding: "10px 19px",

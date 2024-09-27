@@ -2,6 +2,8 @@ import React from "react";
 import IndustryTable from "../TablesDataDecarbonation4";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import handHolding from "../../../../../assets/images/hand-holding-water 1.svg";
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 
 function DecarbonizationQsnAnsWithUi5() {
   return (
@@ -12,7 +14,7 @@ function DecarbonizationQsnAnsWithUi5() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -21,6 +23,7 @@ function DecarbonizationQsnAnsWithUi5() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -38,11 +41,11 @@ function DecarbonizationQsnAnsWithUi5() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Installation of Energy Recovery Units and regulated air intake
               system
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -69,64 +72,47 @@ function DecarbonizationQsnAnsWithUi5() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Have you considered incorporating design strategies to utilize
-              Energy Recovery Units <br />
+              Energy Recovery Units
               (ERUs) in the plant?
             </Typography>
           </Grid2>
-
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
               borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
+                position="relative"
               >
-                Energy Recovery Systems (ERV) should be used in all combined
-                supply & extract air handling units where applicable and found
-                practical in terms of
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                1. Quantity of air extracted.
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                2. Availability of ERV systems for that capacity.
-                <br />
-              </Typography>
-              <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
-              >
-                3. Assessment of the benefits.
-                <br />
+                <span style={{position:'absolute', top:'5px', left:'15px'}}>
+                  Energy Recovery Systems (ERV) should be used in all combined
+                  supply & extract air handling units where applicable and found
+                  practical in terms of</span>
+                <ol style={{ padding: '30px 20px 5px 40px' }}>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Quantity of air extracted.
+                  </li>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Availability of ERV systems for that capacity.
+                  </li>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    Assessment of the benefits.
+                  </li>
+                </ol>
               </Typography>
             </Grid2>
           </Grid2>

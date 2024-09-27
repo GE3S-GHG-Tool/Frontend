@@ -9,6 +9,7 @@ const styles = {
         gridTemplateColumns: 'repeat(4, 1fr)', // 4 columns for the first row
         gridAutoFlow: 'row', // Flow cards into the next row
         width: '100%',
+        background:'#fbfbfb'
     },
     card: {
         display: 'flex',
@@ -16,6 +17,7 @@ const styles = {
         gap: '1rem',
         padding: '1rem',
         borderRadius: '8px',
+        background:'white'
     },
     secondRow: {
         gridColumn: 'span 4', // This ensures the second row takes full width
@@ -98,7 +100,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                     type === 'scope-3' ?
                         <>
                             <div style={{ width: '30%' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '11rem', gap: '0.6rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '12rem', gap: '0.6rem' }}>
                                     {data.map((item, index) =>
                                         index > 3 ? (
                                             <div
@@ -123,10 +125,10 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                             </div>
                         </>
                         :
-                        <div style={{ width: '20%' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', justifyContent: "space-between" }}>
+                        <div style={{ width: '20%'}}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem', justifyContent: "space-between", background:'#FBFBFB'}}>
                                 {data.map((item, index) => (
-                                    <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                    <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background:"white" , padding:"1rem 0.4rem", borderRadius:'16px'}}>
                                         <div>
                                             {svgs[index]}
                                             <Typography sx={{ fontFamily: 'Inter', fontSize: '0.8rem', fontWeight: '600', wordSpacing: '0px' }}>{item.label}</Typography>

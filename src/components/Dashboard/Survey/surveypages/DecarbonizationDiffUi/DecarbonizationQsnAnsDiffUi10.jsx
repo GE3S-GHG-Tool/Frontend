@@ -1,7 +1,9 @@
 import React from "react";
-import { Grid2, Paper, Typography, Box, Table, TableContainer, TableHead,TableRow,TableCell, styled } from "@mui/material";
+import { Grid2, Paper, Typography, Box, Table, TableContainer, TableHead, TableRow, TableCell, styled } from "@mui/material";
 import ideaExcahnge from "../../../../../assets/images/idea-exchange.svg"
 import TabledDataDecarbonation7 from '../TablesDataDecarbonation7'
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 function DecarbonizationQsnAnsDiffUi10() {
   return (
     <div>
@@ -11,7 +13,7 @@ function DecarbonizationQsnAnsDiffUi10() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -20,6 +22,7 @@ function DecarbonizationQsnAnsDiffUi10() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -37,10 +40,10 @@ function DecarbonizationQsnAnsDiffUi10() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Exterior Light Power Density
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -67,39 +70,38 @@ function DecarbonizationQsnAnsDiffUi10() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
-            Have you confirmed that the exterior lighting levels have been improved and do not exceed the specified limits?
+            <Typography fontSize="14px" fontWeight="normal" color="#000">
+              Have you confirmed that the exterior lighting levels have been improved and do not exceed the specified limits?
             </Typography>
           </Grid2>
 
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              mb: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
+              borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                1. The Exterior lighting levels in the industry development should comply with the limits specified in Table (attched in the next cell)
+                <ol style={{ padding: '5px 20px 5px 40px' }}>
+                  <li style={{ lineHeight: '1.5rem' }}>
+                    The Exterior lighting levels in the industry development should comply with the limits specified in Table (attched in the next cell)</li>
+                </ol>
               </Typography>
             </Grid2>
-            <Grid2 sx={{ mt: "20px", display:"flex", flexDirection:"column", gap:"20px"}}>
-            <TabledDataDecarbonation7></TabledDataDecarbonation7>
+            <Grid2 sx={{ mt: "20px", display: "flex", flexDirection: "column", gap: "20px" }}>
+              <TabledDataDecarbonation7></TabledDataDecarbonation7>
             </Grid2>
           </Grid2>
         </Paper>

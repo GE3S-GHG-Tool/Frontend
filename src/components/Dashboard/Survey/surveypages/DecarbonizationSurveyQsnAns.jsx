@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
+import { Box, Grid2, Paper, Typography, Button, Tooltip } from "@mui/material";
 import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
 import BasicTable from "./TablesDataDecarbonation1";
 import BasicTable2 from "./TablesDataDecarbonation2";
 import BasicTable3 from "./TablesDataDecarbonation4";
+import info_icon from "../../../../assets/images/info_icon.svg";
 import DecarbonizationQsnAnsWithUl from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUl";
 import DecarbonizationQsnAnsWithUl2 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi2";
 import DecarbonizationQsnAnsWithUi3 from "./DecarbonizationDiffUi/DecarbonizationQsnAnsWithUi3";
@@ -44,19 +45,16 @@ const Question = ({
   heading,
   answers,
   showTable,
-  boldAnswerIndex,
 }) => {
   const TableComponent = TableComponents[heading];
 
   return (
     <Grid2
       sx={{
-        // flexDirection: "column",
-        // display: "flex",
         border: "1px solid #E4E4E4",
         borderRadius: "5px",
-        borderTop: "3px solid #369D9C",
-        // gap: "20px",
+        borderTop: "5px solid #369D9C",
+        boxShadow: 'none'
       }}
     >
       <Paper
@@ -64,6 +62,7 @@ const Question = ({
           display: "flex",
           flexDirection: "column",
           gap: "15px",
+          boxShadow: 'none'
         }}
       >
         {/* Heading Section */}
@@ -81,6 +80,7 @@ const Question = ({
           <Typography fontSize="16px" fontWeight="600" color="#000">
             {heading}
           </Typography>
+          <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
         </Grid2>
 
         {questionText.map((q, questionIndex) => (
@@ -107,11 +107,11 @@ const Question = ({
                   justifyContent: "center",
                 }}
               >
-                <Typography color="#5B5B5B" fontSize="14px" fontWeight="400">
+                <Typography color="#5B5B5B" fontSize="0.875rem" fontWeight="400">
                   Q.{questionIndex + 1}
                 </Typography>
               </Box>
-              <Typography fontSize="14px" fontWeight="500" color="#000">
+              <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
                 {q}
               </Typography>
             </Grid2>
@@ -121,9 +121,9 @@ const Question = ({
               sx={{
                 borderTop: "1px solid #E4E4E4",
                 mt: "8px",
-                mb: "8px",
+                // mb: "8px",
                 ml: "0px",
-                padding: "10px 19px",
+                padding: "10px",
                 borderRadius: "5px",
               }}
             >
@@ -134,19 +134,15 @@ const Question = ({
                     border: "1px solid var(--Grey-3, #D9D9D9)",
                     background: "#F7FFFC",
                     borderRadius: "5px",
-                    padding: "1px 12px",
+                    padding: "15px",
+                    margin: '10px'
                   }}
                 >
                   {answers[questionIndex].map((answer, answerIndex) => (
                     <Typography
                       key={answerIndex}
-                      fontSize="12px"
-                      fontWeight={
-                        boldAnswerIndex === questionIndex ||
-                        boldAnswerIndex >= answers[questionIndex].length
-                          ? "700" // Apply bold if boldAnswerIndex matches or exceeds total answers
-                          : "500"
-                      }
+                      fontSize="0.85rem"
+                      fontWeight='400'
                       color="#000"
                       sx={{ padding: "6px 0" }}
                     >
@@ -165,19 +161,19 @@ const Question = ({
                     padding: "10px",
                   }}
                 >
-                  <img
-                    src={magelightBuld}
-                    alt="Implementation Required"
-                    width="18px"
-                  />
-                  <Typography fontSize="12px" fontWeight="500" color="#000">
+                  <div style={{ background: '#FFF7F2', width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '5px' }}>
+                    <img
+                      src={magelightBuld}
+                      alt="Implementation Required"
+                      width="18px"
+                    />
+                  </div>
+                  <Typography fontSize="14px" fontWeight="500" color="#717171">
                     Implementation Required
                   </Typography>
                 </Grid2>
               )}
             </Grid2>
-
-            {/* Conditional Rendering of Table */}
             {showTable && questionIndex === 0 && TableComponent && (
               <Grid2
                 sx={{
@@ -188,7 +184,7 @@ const Question = ({
                   borderRadius: "5px",
                 }}
               >
-                <TableComponent /> {/* Render the selected table component */}
+                <TableComponent />
               </Grid2>
             )}
           </React.Fragment>
@@ -198,7 +194,7 @@ const Question = ({
   );
 };
 
-function SurveyQuestionSection() {
+function SurveyQuestionSection({handleResetSurvey}) {
   const questions = [
     {
       text: [
@@ -206,7 +202,7 @@ function SurveyQuestionSection() {
       ],
       answers: [
         [
-          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance.",
+          "Upgrade to IE3 and IE4 motors for increased energy efficiency and optimal performance. Select the right VFD for your variable speed processes for seamless integration and cost savings.",
         ],
       ],
       logo: ac_motors_logo,
@@ -428,7 +424,7 @@ function SurveyQuestionSection() {
 
   return (
     <>
-      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
         {questions.map((q, index) => (
           <Question
             key={index}
@@ -473,25 +469,50 @@ function SurveyQuestionSection() {
         }}
       >
         <Button
+          variant="outlined"
           sx={{
+            border: '1px solid #369D9C',
+            borderRadius: "32px",
+            textTransform: "capitalize",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "11px 25px",
+            marginRight: '10px',
+            '&:hover': {
+              background:
+                "rgba(177, 233, 216, 0.30)",
+            },
+          }}
+          onClick={handleResetSurvey}
+        >
+          <Typography color="#369D9C" fontSize="12px">
+            Reset
+          </Typography>
+        </Button>
+        <Button
+          sx={{
+            border: '1px solid #369D9C',
             borderRadius: "32px",
             textTransform: "capitalize",
             justifyContent: "center",
             alignItems: "center",
             background:
               "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
-            padding: "11px 40px",
+            padding: "11px 25px",
+            '&:hover': {
+              background:
+                "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+            },
           }}
         >
-          <Typography color="#fff" fontSize="14px" fontWeight="600">
-            Submit Survey
+          <Typography color="#fff" fontSize="12px">
+            Survey Completed
           </Typography>
         </Button>
+
       </Grid2>
     </>
   );
 }
 
 export default SurveyQuestionSection;
-
-// // -------------------------------------

@@ -78,14 +78,14 @@ const tableData = [
 
 function IndustryTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ boxShadow:'none'}}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow sx={{ textAlign: "center" }}>
             <TableCell
               sx={{
                 bgcolor: "#F7FFFC",
-                color: "black",
+                color: '#28814D',
                 textAlign: "center",
                 border: "1px solid #F4F4F4",
                 width: "33.33%",
@@ -97,7 +97,7 @@ function IndustryTable() {
             <TableCell
               sx={{
                 bgcolor: "#F7FFFC",
-                color: "black",
+                color: '#28814D',
                 textAlign: "center",
                 border: "1px solid #F4F4F4",
                 width: "33.33%",
@@ -108,7 +108,7 @@ function IndustryTable() {
             <TableCell
               sx={{
                 bgcolor: "#F7FFFC",
-                color: "black",
+                color: '#28814D',
                 textAlign: "center",
                 border: "1px solid #F4F4F4",
                 width: "33.33%",
@@ -126,6 +126,7 @@ function IndustryTable() {
                   sx={{
                     bgcolor: "#EDFCF7",
                     color: "#000",
+                    fontWeight:'500',
                     border: "1px solid #F4F4F4",
                     width: "33.33%",
                   }}

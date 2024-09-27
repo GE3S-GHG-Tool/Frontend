@@ -5,11 +5,12 @@ import { scaleLinear } from '@visx/scale';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { Point } from '@visx/point';
-import { Box } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
 
 // Colors
 const orange = '#60B59B';
 const pumpkin = '#60B59B';
+const black="#000"
 const silver = '#d9d9d9';
 const background = '#fff';
 const tooltipBg = 'rgba(255, 255, 255, 0.9)';
@@ -52,13 +53,13 @@ function genPolygonPoints(dataArray, scale, getValue) {
     return { points, pointString };
 }
 
-const defaultMargin = { top: 40, left: 80, right: 40, bottom: 0 };
+const defaultMargin = { top: 0, left: 80, right: 40, bottom: 0 };
 
-const RefrigerantEmissionsChart = ({ width = 350, height = 260, levels = 5, margin = defaultMargin, data }) => {
+const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, margin = defaultMargin, data }) => {
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } = useTooltip();
 
     const xMax = width - margin.left - margin.right;
-    const yMax = height - margin.top - margin.bottom;
+    const yMax = height - margin.top - margin.bottom - 100;
     const radius = Math.min(xMax, yMax) / 2;
 
     const radialScale = scaleLinear({
@@ -144,7 +145,7 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 260, levels = 5, marg
                                 dy={angle > Math.PI / 2 || angle < -Math.PI / 2 ? '0.5em' : '-0.5em'}
                                 textAnchor="middle"
                                 fill={pumpkin}
-                                fontSize={12}
+                                fontSize={14}
                             >
                                 {d.label}
                             </text>
@@ -171,12 +172,12 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 260, levels = 5, marg
                         pointerEvents: 'none',
                     }}
                 >
-                    <div style={{ display: 'flex', gap: '0.6rem' }}>
-                        <div style={{display:'flex', gap:'6px', alignItems:'center'}}>
-                            <div style={{ width: '10px', height: '10px', backgroundColor: 'rgb(96, 181, 155)' }}></div>
-                            <span style={{ color: '#717171' }}>{tooltipData.label}</span>
+                    <div style={{ display: 'flex', gap: '0.1rem' }}>
+                        <div style={{ display: 'flex', gap: '3px', alignItems: 'center' }}>
+                            <div style={{ width: '10px', height: '10px', backgroundColor: 'rgb(96, 181, 155)' }}></div> &nbsp;
+                            <span style={{ color: '#BDBDBD', fontSize: '0.7rem' }}>{tooltipData.label}</span><img src={dot} width={3} height={3} />
                         </div>
-                        <span>{tooltipData.value}k tCO2e</span>
+                        <span style={{ color: '#717171', fontSize: '0.7rem' }}>{tooltipData.value}k tCO2e</span>
                     </div>
                 </TooltipWithBounds>
             )}

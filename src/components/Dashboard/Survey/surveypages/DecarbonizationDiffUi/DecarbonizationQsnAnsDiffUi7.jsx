@@ -1,8 +1,8 @@
 import React from "react";
-import IndustryTable from "../TablesDataDecarbonation4";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
 import smoke from "../../../../../assets/images/smoke.svg"
-
+import Tooltip from '@mui/material/Tooltip';
+import info_icon from "../../../../../assets/images/info_icon.svg";
 function DecarbonizationQsnAnsDiffUi7() {
   return (
     <div>
@@ -12,7 +12,7 @@ function DecarbonizationQsnAnsDiffUi7() {
           display: "flex",
           border: "1px solid #E4E4E4",
           borderRadius: "5px",
-          borderTop: "3px solid #369D9C",
+          borderTop: "5px solid #369D9C",
           gap: "20px",
         }}
       >
@@ -21,6 +21,7 @@ function DecarbonizationQsnAnsDiffUi7() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
+            boxShadow: 'none'
           }}
         >
           <Grid2
@@ -38,11 +39,11 @@ function DecarbonizationQsnAnsDiffUi7() {
               fontSize="16px"
               fontWeight="600"
               color="#000"
-              width="600px"
             >
               Installation of Energy Recovery Units and regulated air intake
               system
             </Typography>
+            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -69,9 +70,9 @@ function DecarbonizationQsnAnsDiffUi7() {
                 Q.1
               </Typography>
             </Box>
-            <Typography fontSize="14px" fontWeight="500" color="#000">
+            <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
               Have you considered incorporating design strategies to utilize
-              Energy Recovery Units <br />
+              Energy Recovery Units
               (ERUs) in the plant?
             </Typography>
           </Grid2>
@@ -79,45 +80,43 @@ function DecarbonizationQsnAnsDiffUi7() {
           <Grid2
             sx={{
               borderTop: "1px solid #E4E4E4",
-              mt: "8px",
-              ml: "0px",
-              padding: "10px 19px",
+              padding: "20px",
               borderRadius: "5px",
               borderBottom: "1px solid #E4E4E4",
             }}
           >
             <Grid2
               sx={{
-                border: "1px solid var(--Grey-3, #D9D9D9)",
+                border: "1px solid #D9D9D9",
                 background: "#F7FFFC",
                 borderRadius: "5px",
-                padding: "1px 12px",
               }}
             >
               <Typography
-                fontSize="13px"
-                fontWeight="600"
-                sx={{ padding: "6px 0", width: "1050px" }}
+                fontSize="0.85rem"
+                fontWeight="400"
               >
-                1. Zoning strategies is applied for the entire HVAC controlled
-                area. Zones in the industrial facility or warehouse should be
-                created keeping in mind various factors such as individual
-                temperature preferences, window size and direction of sunlight,
-                flooring, and purpose of the area (workshop/kitchen/gym/office /
-                process area). Provide the CO2 in the breathing zone of occupied
-                space. Sensors should be placed 4-6 Feet above the floor. All
-                thermostats linked to air conditioning or comfort cooling
-                systems should be fitted with a programmable thermostat which at
-                the basic level provides on/off controls (timer controls) at a
-                minimum level. Temperature control functionality is encouraged
-                as it provides additional savings. The control should be simple
-                and capable of operating independently without the need for BMS
-                or any advanced integrations. The programmable thermostats shall
-                be fixed on an interior wall, that shall not be affected by
-                heating/ cooling diffusers or other openings like doors,
-                windows, skylight, direct sunlight or bright lamp which may
-                potentially influence their functioning.
-                <br />
+                <ol style={{ padding: '5px 20px 5px 40px'}}>
+                  <li style={{lineHeight: '1.5rem' }}>
+                    Zoning strategies is applied for the entire HVAC controlled
+                    area. Zones in the industrial facility or warehouse should be
+                    created keeping in mind various factors such as individual
+                    temperature preferences, window size and direction of sunlight,
+                    flooring, and purpose of the area (workshop/kitchen/gym/office /
+                    process area). Provide the CO2 in the breathing zone of occupied
+                    space. Sensors should be placed 4-6 Feet above the floor. All
+                    thermostats linked to air conditioning or comfort cooling
+                    systems should be fitted with a programmable thermostat which at
+                    the basic level provides on/off controls (timer controls) at a
+                    minimum level. Temperature control functionality is encouraged
+                    as it provides additional savings. The control should be simple
+                    and capable of operating independently without the need for BMS
+                    or any advanced integrations. The programmable thermostats shall
+                    be fixed on an interior wall, that shall not be affected by
+                    heating/ cooling diffusers or other openings like doors,
+                    windows, skylight, direct sunlight or bright lamp which may
+                    potentially influence their functioning.</li>
+                </ol>
               </Typography>
             </Grid2>
           </Grid2>
