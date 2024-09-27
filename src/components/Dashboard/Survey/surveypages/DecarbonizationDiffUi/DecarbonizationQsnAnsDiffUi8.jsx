@@ -77,9 +77,9 @@ function DecarbonizationQsnAnsDiffWIthUi8() {
             </Box>
             <Typography fontSize="14px" fontWeight="normal" color="#000">
               Have you confirmed that the energy-efficient cooling equipment to
-              be procured and <br />
+              be procured and 
               installed is consistent with the capacities specified in the
-              "Optimal System Sizing - HVAC <br />
+              "Optimal System Sizing - HVAC 
               section?
             </Typography>
 

@@ -63,7 +63,14 @@ const CustomModal = ({
 
   const totalAmount = price * planCount;
 
-  const handleGetStarted = () => setGetStarted((prev) => !prev);
+  const handleGetStarted = () => {
+    setGetStarted((prev) => !prev)
+
+  };
+  const handlePayNow = () => {
+    onAction()
+    onClose()
+  };
   const handleIncrement = () => setPlanCount((prevCount) => prevCount + 1);
   const handleDecrement = () =>
     setPlanCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
@@ -72,7 +79,7 @@ const CustomModal = ({
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="lg"
+      maxWidth="md"
       PaperProps={{
         style: {
           backgroundColor: "transparent",
@@ -98,6 +105,7 @@ const CustomModal = ({
             fontSize: "1.4rem",
             padding: "0",
             margin: "0",
+            fontWeight: '300'
           }}
         >
           {title}
@@ -118,21 +126,23 @@ const CustomModal = ({
             <p style={{ margin: "0px 0px 16px 0px", padding: "0px" }}>
               {description}
             </p>
-            <div style={{ display: "flex", alignItems: "end" }}>
-              <p
-                style={{
-                  fontSize: "2.4rem",
-                  fontWeight: "600",
-                  padding: "0",
-                  margin: "0",
-                }}
-              >
-                ${price}
-              </p>
-              <p style={{ fontSize: "0.9rem", fontWeight: "300" }}>
-                {" "}
-                &nbsp; / per {type}
-              </p>
+            <div style={{ display: "flex", flexDirection: 'row', alignItems: "end" }}>
+              <div>
+                <p
+                  style={{
+                    fontSize: "2.2rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  ${price}
+                </p>
+              </div>
+              <div style={{ paddingBottom: '12px' }}>
+                <p style={{ fontSize: "0.8rem", fontWeight: "300" }}>
+                  {" "}
+                  &nbsp; / per {type}
+                </p>
+              </div>
             </div>
           </div>
 
@@ -271,7 +281,7 @@ const CustomModal = ({
             <button
               style={StyledButton}
               // onClick={onAction}
-              onClick={handleGetStarted}
+              onClick={handlePayNow}
             >
               Pay Now &nbsp;
               <svg
@@ -324,13 +334,13 @@ const CustomModal = ({
               </Typography>
               <p
                 style={{
-                  padding: 0,
-                  margin: "0",
                   textAlign: "center",
                   alignItems: "center",
                   display: "flex",
                   gap: "6px",
-                  fontSize: "0.6rem",
+                  fontSize: "0.7rem",
+                  fontWeight: 'normal',
+                  wordSpacing: "2px"
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 23 23" fill="none">
