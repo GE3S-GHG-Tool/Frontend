@@ -17,7 +17,7 @@ const StyledTable = styled(Table)({
 
 // Table Body cells remain the same
 const StyledTableCell = styled(TableCell)({
-  border: "1px solid #ddd", // Border around the cell
+  border: "1px solid #00191D", // Border around the cell
   padding: "8px", // Default padding for body cells
   textAlign: "center",
   fontSize: "14px",
@@ -28,9 +28,9 @@ const StyledTableCell = styled(TableCell)({
 // Header cells with reduced height and padding
 const StyledTableHeadCell = styled(TableCell)({
   background: "#F7FFFF",
-  fontWeight: "bold",
+  fontWeight: "500",
   textAlign: "center",
-  border: "1px solid var(--Grey-4, #F4F4F4)",
+  border: "1px solid #00191D",
   height: "25px", // Reduced height for header cells
   padding: "4px", // Reduced padding for header cells
   lineHeight: "1.2", // Adjusted line height for text alignment

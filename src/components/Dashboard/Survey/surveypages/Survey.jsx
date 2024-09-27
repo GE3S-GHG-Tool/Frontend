@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { styled } from "@mui/system";
 import survey from '../../../../assets/images/survey_page.png';
 import DecarbonizationSurveyQsn from "../surveypages/DecarbonizationSurveyQsn";
 import CustomModal from "../../CustomModal/CustomModal";
@@ -17,7 +16,10 @@ const StyledContainer = {
 const Survey = () => {
 
   const [surveyStarted, setSurveyStarted] = useState(false);
-  const [open, setOpen]=useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleStartSurvey = () => {
     setSurveyStarted(true);
@@ -75,7 +77,8 @@ const Survey = () => {
                     },
 
                   }}
-                  onClick={handleStartSurvey}
+                  // onClick={handleStartSurvey}
+                  onClick={handleOpenModal}
                 >
                   <Typography color="#fff" fontSize="12px">
                     Start Survey
@@ -90,7 +93,17 @@ const Survey = () => {
         }
 
       </div>
-      <CustomModal />
+      <CustomModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        title="Subscribe to addon plan for survey access."
+        description="Decarbonization Survey"
+        actionText="Get Started"
+        onAction={handleStartSurvey}
+        price={10}
+        type="survey"
+        planContains="Environmental impact, cost savings."
+      />
     </>
   );
 };

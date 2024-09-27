@@ -117,21 +117,20 @@ const Question = ({
             </Grid2>
 
             {/* Answers or Implementation Required */}
-            <Grid2
-              sx={{
-                borderTop: "1px solid #E4E4E4",
-                mt: "8px",
-                // mb: "8px",
-                ml: "0px",
-                padding: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              {answers[questionIndex]?.length > 0 ? (
-                // Display Answers
+
+            {answers[questionIndex]?.length > 0 ? (
+              <Grid2
+                sx={{
+                  borderTop: "1px solid #E4E4E4",
+                  mt: "8px",
+                  ml: "0px",
+                  padding: "10px",
+                  borderRadius: "5px",
+                }}
+              >
                 <Grid2
                   sx={{
-                    border: "1px solid var(--Grey-3, #D9D9D9)",
+                    border: "1px solid #D9D9D9",
                     background: "#F7FFFC",
                     borderRadius: "5px",
                     padding: "15px",
@@ -150,18 +149,22 @@ const Question = ({
                     </Typography>
                   ))}
                 </Grid2>
-              ) : (
-                // Display Implementation Required with Logo
+              </Grid2>
+            ) : (
+              <>
                 <Grid2
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     gap: "12px",
-                    borderRadius: "5px",
-                    padding: "10px",
+                    padding: "18px",
+                    borderTop: "1px solid #D9D9D9",
+                    borderBottom: "1px solid #D9D9D9",
+                    borderBottomLeftRadius:'3px',
+                    borderBottomRightRadius:'3px',
                   }}
                 >
-                  <div style={{ background: '#FFF7F2', width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '5px' }}>
+                  <div style={{ background: '#FFF7F2', width: '24px', height: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '5px' }}>
                     <img
                       src={magelightBuld}
                       alt="Implementation Required"
@@ -172,8 +175,9 @@ const Question = ({
                     Implementation Required
                   </Typography>
                 </Grid2>
-              )}
-            </Grid2>
+              </>
+
+            )}
             {showTable && questionIndex === 0 && TableComponent && (
               <Grid2
                 sx={{
@@ -194,7 +198,7 @@ const Question = ({
   );
 };
 
-function SurveyQuestionSection({handleResetSurvey}) {
+function SurveyQuestionSection({ handleResetSurvey }) {
   const questions = [
     {
       text: [

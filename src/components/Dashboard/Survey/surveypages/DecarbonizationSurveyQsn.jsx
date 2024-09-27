@@ -73,7 +73,7 @@ const Question = ({
             mt: "16px",
             ml: "16px",
             alignItems: "center",
-            width: "800px",
+            // width: "800px",
           }}
         >
           {logo && <img src={logo} alt="logo" width="18px" />}
@@ -94,7 +94,7 @@ const Question = ({
                 alignItems: "center",
                 gap: "12px",
                 ml: "15px",
-                width: "900px"
+                // width: "900px"
               }}
             >
               <Box

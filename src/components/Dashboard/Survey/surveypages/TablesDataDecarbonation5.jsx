@@ -17,7 +17,7 @@ const MyTable = () => {
       <Table
         sx={{
           borderCollapse: "collapse",
-          border: "1px solid #F4F4F4",
+          border: "1px solid #00191D",
           width: "100%",
         }}
       >
@@ -27,7 +27,7 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
                 color: '#28814D',
               }}
             >
@@ -37,7 +37,7 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
                 color: '#28814D',
               }}
             >
@@ -47,7 +47,7 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
                 color: '#28814D',
               }}
             >
@@ -57,7 +57,7 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
                 color: '#28814D',
               }}
             >
@@ -72,7 +72,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Office - Enclosed
@@ -82,7 +82,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -93,7 +93,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Gymnasium/Exercise Center
@@ -106,7 +106,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Office -Open Plan
@@ -116,7 +116,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -126,7 +126,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Exercise Area
@@ -136,7 +136,7 @@ const MyTable = () => {
                 textAlign: "center",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               10
@@ -148,7 +148,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Conference/Meeting/Multipurpose
@@ -158,7 +158,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -168,7 +168,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Exercise Area
@@ -178,7 +178,7 @@ const MyTable = () => {
                 textAlign: "center",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -188,7 +188,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Classroom/Lecture/Training
@@ -198,7 +198,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               15
@@ -208,7 +208,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Courthouse/Police Station/Penitentiary
@@ -218,7 +218,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -228,7 +228,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Penitentiary
@@ -238,7 +238,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -248,7 +248,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Courtroom
@@ -258,7 +258,7 @@ const MyTable = () => {
                 textAlign: "center",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               20
@@ -270,7 +270,7 @@ const MyTable = () => {
                 textAlign: "left",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Lobby
@@ -280,7 +280,7 @@ const MyTable = () => {
                 textAlign: "center",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -290,7 +290,7 @@ const MyTable = () => {
                 textAlign: "left",
               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Confinement Cells
@@ -300,7 +300,7 @@ const MyTable = () => {
                 textAlign: "center",
                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               10
@@ -312,7 +312,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Hotel
@@ -322,7 +322,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -332,7 +332,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Judges Chambers
@@ -342,7 +342,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -354,7 +354,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Performing Arts Theater
@@ -364,7 +364,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               36
@@ -374,7 +374,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Fire Stations
@@ -384,7 +384,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -394,7 +394,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Motion Picture Theater
@@ -404,7 +404,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -414,7 +414,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Fire Station Engine room
@@ -424,7 +424,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               9
@@ -436,7 +436,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Audience/Scaling Area
@@ -446,7 +446,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -456,7 +456,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Sleeping Quarters
@@ -466,7 +466,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               3
@@ -478,7 +478,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Gymnasium
@@ -488,7 +488,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -498,7 +498,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Post Office - Sorting Area
@@ -508,7 +508,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
@@ -520,7 +520,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Exercise Center
@@ -530,7 +530,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               3
@@ -540,7 +540,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Convention Center-Exhibit Space
@@ -550,7 +550,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -562,7 +562,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Convention Center
@@ -572,7 +572,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               6
@@ -582,7 +582,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Library
@@ -592,7 +592,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -602,7 +602,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Penitentiary
@@ -612,7 +612,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               8
@@ -622,7 +622,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Card File Cataloguing
@@ -632,7 +632,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -644,7 +644,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Religious Buildings
@@ -654,7 +654,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               18
@@ -664,7 +664,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Stacks
@@ -674,7 +674,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -686,7 +686,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Sports Arena
@@ -696,7 +696,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -706,7 +706,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Reading Area
@@ -716,7 +716,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
@@ -728,7 +728,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Performing Arts Theater
@@ -738,7 +738,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               28
@@ -748,7 +748,7 @@ const MyTable = () => {
                 textAlign: "left",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Hospital
@@ -758,7 +758,7 @@ const MyTable = () => {
                 textAlign: "center",
                 fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
