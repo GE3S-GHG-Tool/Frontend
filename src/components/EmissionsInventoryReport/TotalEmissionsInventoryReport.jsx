@@ -19,9 +19,9 @@ import LineChart from "./Charts/LineChart";
 import { useNavigate } from "react-router-dom";
 
 const Scope1Data = [
-  { label: "Food Consumption", value: 340, color: "#028A60", key: "60%" },
-  { label: "Refrigerant Data", value: 245, color: "#02B880", key: "25%" },
-  { label: "Process Emission", value: 681, color: "#B1E9D8", key: "15%" },
+  { label: "Fuel Consumption", value: 600, color: "#028A60", key: "60%" },
+  { label: "Refrigerant Data", value: 250, color: "#02B880", key: "25%" },
+  { label: "Process Emission", value: 150, color: "#B1E9D8", key: "15%" },
 ];
 
 const Scope2Data = [
@@ -424,14 +424,14 @@ const ECEBreakdownByVehicleTypeData = [
 ];
 
 const EmissionUpstreamAssetsData = [
-  { name: "Diesel", building: 2, vehicle: 1, equipment: 2 },
-  { name: "Gasoline/Petrol", building: 1, vehicle: 2, equipment: 2 },
-  { name: "HFO", building: 3, vehicle: 2, equipment: 3 },
-  { name: "LPG", building: 5, vehicle: 3, equipment: 5 },
-  { name: "CNG", building: 5, vehicle: 2, equipment: 1 },
-  { name: "Electricity", building: 3, vehicle: 2, equipment: 2 },
-  { name: "Chilled Water", building: 5, vehicle: 5, equipment: 5 },
-  { name: "Heat", building: 5, vehicle: 15, equipment: 10 },
+  { name: "Diesel", Building: 1, Vehicle: 1, Equipment: 2 },
+  { name: "Gasoline/Petrol", Building: 5, Vehicle: 2, Equipment: 2 },
+  { name: "HFO", Building: 10, Vehicle: 2, Equipment: 3 },
+  { name: "LPG", Building: 15, Vehicle: 3, Equipment: 5 },
+  { name: "CNG", Building: 20, Vehicle: 2, Equipment: 1 },
+  { name: "Electricity", Building: 25, Vehicle: 2, Equipment: 2 },
+  { name: "Chilled Water", Building: 35, Vehicle: 5, Equipment: 5 },
+  { name: "Heat", Building: 50, Vehicle: 15, Equipment: 10 },
 ];
 
 const FuelActivitiesEmissionData = [
@@ -947,7 +947,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -955,7 +955,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Fuel Type Emissions Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} />
+                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} tooltipWidth={10}/>
                   </div>
                 </div>
                 <div
@@ -981,7 +981,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1017,7 +1017,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1025,7 +1025,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Process Emission Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} />
+                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} tooltipWidth={30}/>
                   </div>
                 </div>
               </div>
@@ -1043,7 +1043,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1075,7 +1075,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1166,7 +1166,7 @@ const TotalEmissionsInventoryReport = () => {
                   <Typography
                     sx={{
                       fontFamily: "Inter",
-                      fontSize: "1.2rem",
+                      fontSize: "1rem",
                       fontWeight: "600",
                       wordSpacing: "0px",
                       textAlign: "start",
@@ -1204,13 +1204,15 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      height: "100%",
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '2rem'
                     }}
                   >
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1218,11 +1220,13 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Business Travel Emissions Breakdown{" "}
                     </Typography>
-                    <FullCircleDonutChart
-                      data={BusinessTravelEmissionsBreakdown}
-                      width={280}
-                      height={280}
-                    />
+                    <div>
+                      <FullCircleDonutChart
+                        data={BusinessTravelEmissionsBreakdown}
+                        width={260}
+                        height={260}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1242,25 +1246,29 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      height: "100%",
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '2rem'
                     }}
                   >
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
                       }}
                     >
-                      Waste Disposal Methods by Category
+                     Waste Disposal Methods by Category{" "}
                     </Typography>
+                    <div >
                     <FullCircleDonutChart
                       data={WasteDisposalMethodsByCategoryData}
-                      width={280}
-                      height={280}
+                      width={260}
+                      height={260}
                     />
+                    </div>
                   </div>
                 </div>
                 <div
@@ -1280,13 +1288,15 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      height: "100%",
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.5rem'
                     }}
                   >
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1294,11 +1304,13 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Employee Commuting Emissions Breakdown by Vehicle Type
                     </Typography>
-                    <FullCircleDonutChart
-                      data={ECEBreakdownByVehicleTypeData}
-                      width={280}
-                      height={280}
-                    />
+                    <div >
+                      <FullCircleDonutChart
+                        data={ECEBreakdownByVehicleTypeData}
+                        width={260}
+                        height={260}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1333,7 +1345,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1341,7 +1353,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Fuel-Related Activities Emissions Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={FuelActivitiesEmissionData} />
+                    <SemiCirclePieChart data={FuelActivitiesEmissionData} tooltipWidth={150} />
                   </div>
                 </div>
                 <div
@@ -1367,7 +1379,7 @@ const TotalEmissionsInventoryReport = () => {
                     <Typography
                       sx={{
                         fontFamily: "Inter",
-                        fontSize: "1.2rem",
+                        fontSize: "1rem",
                         fontWeight: "600",
                         wordSpacing: "0px",
                         textAlign: "start",
@@ -1377,7 +1389,7 @@ const TotalEmissionsInventoryReport = () => {
                     </Typography>
                     <StackedBarChart
                       data={EmissionUpstreamAssetsData}
-                      height={300}
+                      height={250}
                     />
                   </div>
                 </div>
@@ -1388,7 +1400,7 @@ const TotalEmissionsInventoryReport = () => {
                   flexDirection: "column",
                   gap: "1.5rem",
                   background: 'white',
-                  padding: '3rem 1rem',
+                  padding: '2.5rem 1rem',
                   borderRadius: '16px'
                 }}
               >
