@@ -117,7 +117,7 @@ const Question = ({
                 {q.qsnText}
               </Typography>
             </Grid2>
-            <div style={{borderTop:'1px solid #E4E4E4', borderBottom:'1px solid #E4E4E4', padding:'14px',borderRadius:'4px'}}>
+            <div style={{ borderTop: '1px solid #E4E4E4', borderBottom: '1px solid #E4E4E4', padding: '14px', borderRadius: '4px' }}>
               {/* Buttons */}
               {["Yes", "No", "N/A"].map((answer, i) => (
 
@@ -139,7 +139,7 @@ const Question = ({
                     borderRadius: "32px",
                     textTransform: "capitalize",
                     transition: "background 0.3s ease",
-                    ml:'12px'
+                    ml: '12px'
                   }}
                 >
                   <Typography fontSize="14px" fontWeight="500">
@@ -172,7 +172,9 @@ function SurveyQuestionSection() {
   const handleStartSurvey = () => {
     setSurveyStarted(true);
   };
-
+  const handleResetSurvey = () => {
+    setSurveyStarted(false);
+  }
   const questions = [
     {
       id: 1,
@@ -478,7 +480,11 @@ function SurveyQuestionSection() {
                 alignItems: "center",
                 background:
                   "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
-                padding: "11px 40px",
+                padding: "11px 25px",
+                '&:hover': {
+                  background:
+                    "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                },
               }}
             >
               <Typography color="#fff" fontSize="13px" fontWeight="normal">
@@ -488,7 +494,7 @@ function SurveyQuestionSection() {
           </Grid2>
         </>
       ) : (
-        <DecarbonizationSurveyQsnAns></DecarbonizationSurveyQsnAns>
+        <DecarbonizationSurveyQsnAns handleResetSurvey={handleResetSurvey}></DecarbonizationSurveyQsnAns>
       )}
     </>
   );

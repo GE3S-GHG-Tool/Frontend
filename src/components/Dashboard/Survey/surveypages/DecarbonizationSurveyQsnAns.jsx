@@ -121,7 +121,7 @@ const Question = ({
               sx={{
                 borderTop: "1px solid #E4E4E4",
                 mt: "8px",
-                mb: "8px",
+                // mb: "8px",
                 ml: "0px",
                 padding: "10px",
                 borderRadius: "5px",
@@ -159,7 +159,6 @@ const Question = ({
                     gap: "12px",
                     borderRadius: "5px",
                     padding: "10px",
-
                   }}
                 >
                   <div style={{ background: '#FFF7F2', width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '5px' }}>
@@ -195,7 +194,7 @@ const Question = ({
   );
 };
 
-function SurveyQuestionSection() {
+function SurveyQuestionSection({handleResetSurvey}) {
   const questions = [
     {
       text: [
@@ -470,16 +469,21 @@ function SurveyQuestionSection() {
         }}
       >
         <Button
-        variant="outlined"
+          variant="outlined"
           sx={{
-            border:'1px solid #369D9C',
+            border: '1px solid #369D9C',
             borderRadius: "32px",
             textTransform: "capitalize",
             justifyContent: "center",
             alignItems: "center",
             padding: "11px 25px",
-            marginRight:'10px'
+            marginRight: '10px',
+            '&:hover': {
+              background:
+                "rgba(177, 233, 216, 0.30)",
+            },
           }}
+          onClick={handleResetSurvey}
         >
           <Typography color="#369D9C" fontSize="12px">
             Reset
@@ -487,6 +491,7 @@ function SurveyQuestionSection() {
         </Button>
         <Button
           sx={{
+            border: '1px solid #369D9C',
             borderRadius: "32px",
             textTransform: "capitalize",
             justifyContent: "center",
@@ -494,12 +499,17 @@ function SurveyQuestionSection() {
             background:
               "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
             padding: "11px 25px",
+            '&:hover': {
+              background:
+                "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+            },
           }}
         >
           <Typography color="#fff" fontSize="12px">
             Survey Completed
           </Typography>
         </Button>
+
       </Grid2>
     </>
   );
