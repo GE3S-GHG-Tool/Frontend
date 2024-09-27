@@ -129,7 +129,7 @@ const MyTable = () => {
                 border: "1px solid #00191D",
               }}
             >
-              Exercise Area
+            Playing Area
             </TableCell>
             <TableCell
               sx={{
@@ -139,7 +139,7 @@ const MyTable = () => {
                 border: "1px solid #00191D",
               }}
             >
-              10
+              15
             </TableCell>
           </TableRow>
           <TableRow>
@@ -180,7 +180,7 @@ const MyTable = () => {
                 fontSize: "12px",
                 border: "1px solid #00191D",
               }}
-            ></TableCell>
+            >10</TableCell>
           </TableRow>
           <TableRow>
             <TableCell
@@ -213,14 +213,14 @@ const MyTable = () => {
             >
               Courthouse/Police Station/Penitentiary
             </TableCell>
-            <TableCell
+            {/* <TableCell
               sx={{
                 textAlign: "center",
                 fontWeight: "normal",
                 fontSize: "12px",
                 border: "1px solid #00191D",
               }}
-            ></TableCell>
+            ></TableCell> */}
           </TableRow>
           <TableRow>
             <TableCell
