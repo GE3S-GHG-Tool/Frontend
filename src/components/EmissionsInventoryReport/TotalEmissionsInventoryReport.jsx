@@ -374,8 +374,8 @@ const RefrigerantEmissionsData = [
 
 const RefrigerantConsumptionData = [
   { label: "R410a", value: 5200, color: "#006D4F" },
-  { label: "R22", value: 8100, color: "#00A86B" },
-  { label: "R134a", value: 3000, color: "#7FFFD4" },
+  { label: "R22", value: 8100, color: "#02B880" },
+  { label: "R134a", value: 3000, color: "#B1E9D8" },
   { label: "HFC-23", value: 8500, color: "#E0FFFF" },
   { label: "HFC-245fa", value: 5000, color: "#B0E0E6" },
 ];
@@ -416,6 +416,7 @@ const WasteDisposalMethodsByCategoryData = [
     key: "20%",
   },
 ];
+
 const ECEBreakdownByVehicleTypeData = [
   { label: "Car", value: 200000, color: "#F26D58", key: "20%" },
   { label: "Motorcycle", value: 100000, color: "#FF8977", key: "10%" },
@@ -449,7 +450,7 @@ const FuelActivitiesEmissionData = [
   },
   {
     label:
-      "Transmission & distribution (T&D) losses of purchased electricity for own use.",
+      "T&D losses of purchased electricity for own use.",
     value: 340000,
     color: "#FF9989",
     key: "34%",
@@ -894,10 +895,8 @@ const TotalEmissionsInventoryReport = () => {
           >
             <div
               style={{
-                padding: "2rem 2.2rem",
                 display: "flex",
                 borderRadius: "16px",
-                background: "white",
               }}
             >
               <ScopeData
@@ -955,7 +954,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Fuel Type Emissions Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} tooltipWidth={10}/>
+                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} tooltipWidth={10} />
                   </div>
                 </div>
                 <div
@@ -1025,7 +1024,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Process Emission Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} tooltipWidth={30}/>
+                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} tooltipWidth={30} />
                   </div>
                 </div>
               </div>
@@ -1100,10 +1099,8 @@ const TotalEmissionsInventoryReport = () => {
           >
             <div
               style={{
-                padding: "2rem 2.2rem",
                 display: "flex",
                 borderRadius: "16px",
-                background: "white",
               }}
             >
               <ScopeData
@@ -1121,9 +1118,8 @@ const TotalEmissionsInventoryReport = () => {
           >
             <div
               style={{
-                padding: "2rem 2.2rem",
+              //  display: "flex",
                 borderRadius: "16px",
-                background: "white",
               }}
             >
               <ScopeData
@@ -1260,14 +1256,14 @@ const TotalEmissionsInventoryReport = () => {
                         textAlign: "start",
                       }}
                     >
-                     Waste Disposal Methods by Category{" "}
+                      Waste Disposal Methods by Category{" "}
                     </Typography>
                     <div >
-                    <FullCircleDonutChart
-                      data={WasteDisposalMethodsByCategoryData}
-                      width={260}
-                      height={260}
-                    />
+                      <FullCircleDonutChart
+                        data={WasteDisposalMethodsByCategoryData}
+                        width={260}
+                        height={260}
+                      />
                     </div>
                   </div>
                 </div>

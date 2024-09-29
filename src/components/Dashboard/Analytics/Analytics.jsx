@@ -25,11 +25,11 @@ const mockData = {
 };
 
 const Analytics = () => {
-  const [scopeView, setScopeView] = useState(false);
+  // const [scopeView, setScopeView] = useState(false);
 
-  const handleView = () => {
-    setScopeView((prev) => !prev);
-  };
+  // const handleView = () => {
+  //   setScopeView((prev) => !prev);
+  // };
   return (
     <Box
       sx={{
@@ -59,7 +59,7 @@ const Analytics = () => {
           }}
         >
           <OverallSummary data={mockData.overallAverage} />
-          {scopeView ? (
+          {true ? (
             <>
               <ScopeIntensity
                 scopeData={mockData.scope1Intensity}
@@ -71,7 +71,7 @@ const Analytics = () => {
                 scopeName="Scope 2"
                 bgColor="#E9EFFF"
               />
-              <div style={{ display: "block", margin: "10px auto" }}>
+              {/* <div style={{ display: "block", margin: "10px auto" }}>
                 <Button
                   sx={{
                     background: "transparent",
@@ -86,10 +86,10 @@ const Analytics = () => {
                 >
                   View Less
                 </Button>
-              </div>
+              </div> */}
             </>
           ) : (
-            <div style={{ display: "block", margin: "10px auto" }}>
+            {/* <div style={{ display: "block", margin: "10px auto" }}>
               <Button
                 sx={{
                   background: "transparent",
@@ -104,7 +104,7 @@ const Analytics = () => {
               >
                 View More
               </Button>
-            </div>
+            </div> */}
           )}
           {/* <div style={{ marginTop: "2rem" }}>
             <FacilityComparison />

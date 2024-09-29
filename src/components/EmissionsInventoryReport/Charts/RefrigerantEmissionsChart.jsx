@@ -100,8 +100,8 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                             radius={((i + 1) * radius) / levels}
                             fill="none"
                             stroke={silver}
-                            strokeWidth={0.7}
-                            strokeOpacity={0.8}
+                            strokeWidth={1}
+                            strokeOpacity={2}
                             // strokeLinecap="round"
                         />
                     ))}
@@ -115,7 +115,7 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                     <polygon
                         points={polygonPoints.pointString}
                         fill={orange}
-                        fillOpacity={0.7}
+                        fillOpacity={0.5}
                         stroke={orange}
                         strokeWidth={1.3}
                     />

@@ -15,8 +15,8 @@ const tooltipStyles = {
 };
 
 const DirectFootPrintChart = ({
-    width = 400,
-    height = 400,
+    width = 360,
+    height = 360,
     data,
     margin = { top: 20, right: 20, bottom: 20, left: 20 }
 }) => {
@@ -55,7 +55,7 @@ const DirectFootPrintChart = ({
                         data={data}
                         pieValue={(d) => d.value}
                         outerRadius={radius}
-                        innerRadius={radius - 120}
+                        innerRadius={radius - 110}
                     >
                         {(pie) => (
                             <Group>
