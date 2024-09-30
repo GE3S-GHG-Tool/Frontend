@@ -11,7 +11,7 @@ function ReusableTableSection({
   icon,
   headings,
   tableData,
-  buttonLabel = "Add More", // Default label for the button
+  buttonLabel = "Add Data", // Default label for the button
   DialogContentComponent, // The component to display inside the dialog
   dialogComponentProps = {}, // Props to pass to the dialog content component
 }) {
@@ -125,8 +125,16 @@ function ReusableTableSection({
           "& .MuiDialog-paper": {
             width: "90vw",
             maxWidth: "80vw",
-            height: "89vh",
-            borderRadius: "16px",
+            borderRadius: "12px",
+          '&::-webkit-scrollbar-thumb': {
+            background: '#369d9c',
+            borderRadius: '0px',
+            borderTopRightRadius:'20px',
+            borderBottomRightRadius:'20px'
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: '#369d9c',
+          },
           },
         }}
       >
