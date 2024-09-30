@@ -227,6 +227,10 @@ function ReportStateEmpty() {
               width: "100px",
               textTransform: "capitalize",
               color: "#28814D",
+              '&:hover': {
+                background:
+                  "rgba(177, 233, 216, 0.30)",
+              },
             }}
           >
             Cancel
@@ -243,6 +247,11 @@ function ReportStateEmpty() {
                 fontSize: "12px",
                 width: "100px",
                 background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              '&:hover': {
+                background:
+                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: 'none'
+              },
                 textTransform: "capitalize",
                 color: "#FFFFFF",
               }}
@@ -263,6 +272,11 @@ function ReportStateEmpty() {
                 fontSize: "12px",
                 width: "150px",
                 background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                '&:hover': {
+                  background:
+                    "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                  boxShadow: 'none'
+                },
                 textTransform: "capitalize",
                 color: "#FFFFFF",
               }}
