@@ -85,9 +85,8 @@ export default function SuccessModal({ open, handleClose }) {
 
         <Typography
           id="modal-title"
-          variant="h6"
-          component="h2"
-          sx={{ fontWeight: "500", marginBottom: "16px" }}
+        
+          sx={{ fontWeight: "500", marginBottom: "10px", fontSize:'1rem' }}
         >
           Your Password have been Changed
         </Typography>

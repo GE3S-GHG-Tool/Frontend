@@ -49,7 +49,7 @@ export default function SignUp() {
     setIsLoading(false);
   };
 
-  return (
+  return ( 
     <Wrapper>
       <div className="signup_page">
         <img src={logo} alt="logo" className="brand_logo" />

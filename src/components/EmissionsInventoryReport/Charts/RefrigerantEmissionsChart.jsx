@@ -101,23 +101,23 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                             fill="none"
                             stroke={silver}
                             strokeWidth={1}
-                            strokeOpacity={0.8}
-                            strokeLinecap="round"
+                            strokeOpacity={2}
+                            // strokeLinecap="round"
                         />
                     ))}
 
                     {/* Lines to points */}
                     {points.map((point, i) => (
-                        <Line key={`radar-line-${i}`} from={zeroPoint} to={point} stroke={silver} />
+                        <Line key={`radar-line-${i}`} from={zeroPoint} to={point} stroke={silver} strokeWidth={0.7}/>
                     ))}
 
                     {/* Polygon (radar area) */}
                     <polygon
                         points={polygonPoints.pointString}
                         fill={orange}
-                        fillOpacity={0.3}
+                        fillOpacity={0.5}
                         stroke={orange}
-                        strokeWidth={1}
+                        strokeWidth={1.3}
                     />
 
                     {/* Points on the radar */}
@@ -126,7 +126,7 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                             key={`radar-point-${i}`}
                             cx={point.x}
                             cy={point.y}
-                            r={4}
+                            r={2}
                             fill={pumpkin}
                             onMouseMove={(event) => handleMouseMove(event, data[i])}
                             onMouseLeave={hideTooltip}
@@ -142,9 +142,9 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                                 key={`label-${i}`}
                                 x={labelRadius * Math.cos(angle)}
                                 y={labelRadius * Math.sin(angle)}
-                                dy={angle > Math.PI / 2 || angle < -Math.PI / 2 ? '0.5em' : '-0.5em'}
+                                dy={angle > Math.PI / 1.3 || angle < -Math.PI / 1 ? '0.3em' : '-0em'}
                                 textAnchor="middle"
-                                fill={pumpkin}
+                                fill={"#000"}
                                 fontSize={14}
                             >
                                 {d.label}
@@ -172,12 +172,12 @@ const RefrigerantEmissionsChart = ({ width = 350, height = 280, levels = 5, marg
                         pointerEvents: 'none',
                     }}
                 >
-                    <div style={{ display: 'flex', gap: '0.1rem' }}>
-                        <div style={{ display: 'flex', gap: '3px', alignItems: 'center' }}>
-                            <div style={{ width: '10px', height: '10px', backgroundColor: 'rgb(96, 181, 155)' }}></div> &nbsp;
-                            <span style={{ color: '#BDBDBD', fontSize: '0.7rem' }}>{tooltipData.label}</span><img src={dot} width={3} height={3} />
+                    <div style={{ display: 'flex', gap: '0.1rem', alignItems:'center' }}>
+                        <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+                            <div style={{ width: '12px', height: '12px', backgroundColor: 'rgb(96, 181, 155)' }}></div> &nbsp;
+                            <span style={{ color: '#BDBDBD', fontSize: '0.785rem' }}>{tooltipData.label}</span><img src={dot} width={3} height={3} />
                         </div>
-                        <span style={{ color: '#717171', fontSize: '0.7rem' }}>{tooltipData.value}k tCO2e</span>
+                        <span style={{ color: '#717171', fontSize: '0.785rem' }}>{tooltipData.value}k tCO2e</span>
                     </div>
                 </TooltipWithBounds>
             )}

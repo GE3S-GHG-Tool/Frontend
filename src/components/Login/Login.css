@@ -2,7 +2,7 @@
   position: relative;
   margin: 15vh auto;
   background: #fff;
-  width: 36vw;
+  width: 33vw;
   border-radius: 20px;
   border: 1px solid rgba(217, 217, 217, 0.4);
 }
@@ -63,12 +63,18 @@
 }
 
 .login-button-active {
+  margin-top: 2rem;
+  padding: 1.8vh 2vw;
   background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
+  font-size: 1rem;
   border: 2px solid transparent;
 }
 
 .login-button-disabled {
+  margin-top: 2rem;
+  padding: 1.8vh 2vw;
+  font-size: 1rem;
   background: linear-gradient(102deg, #e7e7e7 0%, #e7e7e7 100%) !important;
   color: #838383;
   cursor: not-allowed;

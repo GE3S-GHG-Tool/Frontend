@@ -115,7 +115,7 @@ export default function ChangePassword() {
                 placeholder={"Password"}
               />
             </div>
-            <p>Confirm Password</p>
+            <p style={{marginTop:'14px'}}>Confirm Password</p>
             <div className="password-container">
               <PasswordInput
                 value={confirmPassword}
@@ -124,6 +124,7 @@ export default function ChangePassword() {
                 }}
                 error={error.password}
                 helperText={helperText.confirmPassword}
+                placeholder={"Confirm Password"}
               />
             </div>
           </div>
@@ -132,11 +133,7 @@ export default function ChangePassword() {
           <button
             onClick={handleChangePassword}
             disabled={!isFormValid}
-            className={
-              isFormValid
-                ? "change-password-button-active"
-                : "change-password-button-disabled"
-            }
+            className="ge3s_button"
           >
             Change Password
           </button>
@@ -149,12 +146,12 @@ export default function ChangePassword() {
             borderRadius: "50%",
             margin: "0 auto",
             position: "absolute",
-            bottom: "-12px",
+            bottom: "-20px",
             left: "10%",
             background: "#598483",
             filter: "blur(20px)",
             opacity: 0.8,
-            zIndex: 0,
+            zIndex: -1,
           }}
         ></div>
       </div>

@@ -14,6 +14,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setIsAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     email: false,
     password: false,
@@ -44,6 +45,7 @@ export default function Login() {
   }, [email, password]);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     const payload = {
       user_email: email,
       user_password: password,
@@ -58,10 +60,12 @@ export default function Login() {
         localStorage.setItem("token", response?.data?.data?.token);
         setIsAuthenticated(true);
         navigate("/");
+        setIsLoading(false);
       }
     } catch (err) {
       alert(err?.response?.data.message);
       setPassword("");
+      setIsLoading(false);
     }
   };
 
@@ -79,7 +83,7 @@ export default function Login() {
           }}
         >
           <img src={logo} alt="" className="ge3s_logo" />
-          <h1>Unified GHG Reporting Tool</h1>
+          <h1>Generate reports quick and easy!</h1>
           <div className="login-inputs">
             <div className="input_login">
               <p>Email</p>
@@ -112,12 +116,10 @@ export default function Login() {
           {/* {errors.login && <p className="error-message">{errors.login}</p>} */}
           <button
             onClick={handleSubmit}
-            disabled={!isFormValid}
-            className={
-              isFormValid ? "login-button-active" : "login-button-disabled"
-            }
+            disabled={!isFormValid || isLoading}
+            className="ge3s_button"
           >
-            Login
+            {isLoading ? "Processing..." : "Login"}
           </button>
           <div className="login-footer">
             <p
@@ -139,12 +141,12 @@ export default function Login() {
             borderRadius: "50%",
             margin: "0 auto",
             position: "absolute",
-            bottom: "-12px",
+            bottom: "-20px",
             left: "10%",
             background: "#598483",
             filter: "blur(20px)",
             opacity: 0.8,
-            zIndex: 0,
+            zIndex: -1,
           }}
         ></div>
       </div>
