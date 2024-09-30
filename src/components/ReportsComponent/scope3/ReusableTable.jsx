@@ -14,14 +14,13 @@ function TablesData({ headings = [], data }) {
         gap: "14px",
       }}
     >
-      {/* Table Headings */}
       <table
         style={{
           width: "100%",
-          borderCollapse: "collapse",
+          borderCollapse: "separate",
+          borderSpacing: 0,
           borderRadius: "5px",
           overflow: "hidden",
-          tableLayout: "fixed", // Ensures equal column width
         }}
       >
         <thead>
@@ -34,85 +33,48 @@ function TablesData({ headings = [], data }) {
                   fontWeight: "bold",
                   background: "#E6F8F2",
                   padding: "10px",
-                  marginRight: "10px",
-                  whiteSpace: "nowrap", // Prevents wrapping
-                  overflow: "hidden", // Hides overflowing text
-                  textOverflow: "ellipsis", // Adds "..."
-                  maxWidth: "100px", // Set your fixed width here
+                  whiteSpace: "nowrap",
                 }}
               >
-                {/* Tooltip for hover */}
-                
-                  <Typography
-                    fontWeight="400"
-                    fontSize="12px"
-                    sx={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                  <Tooltip title={heading} arrow>
-                    {heading}
-                    </Tooltip>
-                  </Typography>
+                <Typography fontWeight="400" fontSize="12px">
+                  {heading}
+                </Typography>
               </th>
             ))}
           </tr>
-
         </thead>
-      </table>
-
-      {/* Table Data */}
-      {data?.map((row, rowIndex) => (
-        <table
-          key={rowIndex}
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            borderRadius: "5px",
-            overflow: "hidden",
-            tableLayout: "fixed", // Ensures equal column width
-          }}
-        >
-          <tbody>
-            <tr style={{ border: "1px solid  #EEEEEE" }}>
-              {Object.entries(row).map(([key, value], cellIndex) => (
+        <tbody>
+          {data?.map((row, rowIndex) => (
+            <tr key={rowIndex} style={{ border: "1px solid #EEEEEE" }}>
+              {headings.map((heading, cellIndex) => (
                 <td
-                  key={`${cellIndex}-${key}`}
+                  key={`${rowIndex}-${cellIndex}`}
                   style={{
                     textAlign: "left",
                     fontWeight: "bold",
                     padding: "12px",
-                    marginRight: "10px",
-                    whiteSpace: "nowrap", // Prevents wrapping
-                    overflow: "hidden", // Hides overflowing text
-                    textOverflow: "ellipsis", // Adds "..."
-                    maxWidth: "100px", // Set fixed width
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  {/* Tooltip for hover */}
-
-                  <Typography
-                    fontWeight="500"
-                    fontSize="12px"
-                    sx={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    <Tooltip title={value === "" ? "-" : value} arrow>
-                      {value === "" ? "-" : value}
-                    </Tooltip>
-                  </Typography>
-
+                  <Tooltip title={row[heading] === "" ? "-" : row[heading]} arrow>
+                    <Typography
+                      fontWeight="500"
+                      fontSize="12px"
+                      sx={{
+                        maxWidth: "200px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {row[heading] === "" ? "-" : row[heading]}
+                    </Typography>
+                  </Tooltip>
                 </td>
               ))}
             </tr>
-          </tbody>
-        </table>
-      ))}
+          ))}
+        </tbody>
+      </table>
     </Grid2>
   );
 }

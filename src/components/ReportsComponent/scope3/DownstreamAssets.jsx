@@ -55,7 +55,7 @@ function DownstreamAssets() {
               margin: 0,
             }}
           >
-            Downstream Assets
+            Downstream Leased Assets
           </h2>
         </div>
 
@@ -75,8 +75,7 @@ function DownstreamAssets() {
           lineHeight="22.4px"
           color="#717171"
         >
-          Provide emission details and area for leased assets in downstream
-          operations to calculate associated emissions.
+         Provide Emission details and area for leased assets in downstream operations to calculate associated emissions.
         </Typography>
       </Box>
 

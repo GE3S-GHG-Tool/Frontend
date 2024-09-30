@@ -129,8 +129,7 @@ function ProcessEmission() {
                 lineHeight="22.4px"
                 color="#717171"
               >
-                Input the type and amount of refrigerant used to account for
-                emissions from refrigerant Consumption.
+                Record the type of industrial process and the quantity of product processed to calculate emissions directly related to production activities.
               </Typography>
             </div>
           </Grid2>

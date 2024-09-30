@@ -67,8 +67,7 @@ function Investments() {
           lineHeight="22.4px"
           color="#717171"
         >
-          Provide details of investment values and emissions from the investee
-          company to calculate related emissions.
+        Enter investments' ownership value and investee's company emission to estimate emissions from financed activities.
         </Typography>
       </Box>
 
