@@ -3,6 +3,8 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import refri_logo from "../../../assets/images/refri_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
@@ -14,6 +16,7 @@ function RefrigerantData() {
   const [fields, setFields] = useState([
     { refrigerant: "", quantity: "", unit: "" },
   ]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -42,6 +45,23 @@ function RefrigerantData() {
 
     setFields(updatedFields);
   };
+
+  const handleDotClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit clicked");
+    setIsDropdownOpen(false);
+  };
+
+  const handleClearAll = () => {
+    setFields([
+      { refrigerant: "", quantity: "", unit: "" },
+    ]);
+    setIsDropdownOpen(false);
+  };
+
 
   return (
     <div
@@ -77,8 +97,64 @@ function RefrigerantData() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+        <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -135,7 +211,7 @@ function RefrigerantData() {
                       },
                       '& .MuiSelect-select': {
                         padding: '11px 16px',
-                        color:'#717171'
+                        color: '	#343434'
                       },
                     }}
                   >
@@ -175,7 +251,7 @@ function RefrigerantData() {
                       },
                       '& .MuiOutlinedInput-input': {
                         padding: '11px 16px',
-                        color:'#717171',
+                        color: '	#343434'
                       },
                       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                         borderColor: 'rgba(217, 217, 217, 0.30)',

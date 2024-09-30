@@ -8,6 +8,8 @@ import { useState } from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
 
 function PurchasedGoods() {
   // Initialize fields with one empty row
@@ -15,6 +17,7 @@ function PurchasedGoods() {
     { typeOfExpense: "", expenseValue: "", currency: "" },
   ]);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -45,6 +48,19 @@ function PurchasedGoods() {
     }
 
     setFields(updatedFields);
+  };
+
+  const handleDotClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit clicked");
+    setIsDropdownOpen(false);
+  };
+
+  const handleClearAll = () => {
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -81,8 +97,64 @@ function PurchasedGoods() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+        <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -143,6 +215,7 @@ function PurchasedGoods() {
                         },
                         '& .MuiSelect-select': {
                           padding: '11px 16px',
+                          color:'	#343434'
                         },
                       }}
                     >
@@ -181,6 +254,7 @@ function PurchasedGoods() {
                         },
                         '& .MuiOutlinedInput-input': {
                           padding: '11px 16px',
+                          color:'	#343434'
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -215,6 +289,7 @@ function PurchasedGoods() {
                           },
                           '& .MuiSelect-select': {
                             padding: '11px 16px',
+                            color:'	#343434'
                           },
                         }}
                       >
