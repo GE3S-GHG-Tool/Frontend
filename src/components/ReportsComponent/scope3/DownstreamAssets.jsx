@@ -6,6 +6,8 @@ import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
 
 function DownstreamAssets() {
   // Initialize fields with sumOfScopes, physicalArea, and totalPhysicalArea
@@ -14,10 +16,23 @@ function DownstreamAssets() {
     physicalArea: "",
     totalPhysicalArea: "",
   });
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
+  };
+  const handleDotClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit clicked");
+    setIsDropdownOpen(false);
+  };
+
+  const handleClearAll = () => {
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -59,8 +74,64 @@ function DownstreamAssets() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height={24} width={24} />
+        <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -103,7 +174,7 @@ function DownstreamAssets() {
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
-                placeholder="Enter sum of scopes"
+                placeholder="Add Value"
                 sx={{
                   margin: '0',
                   border: '1px solid rgba(217, 217, 217, 0.0)',
@@ -113,6 +184,7 @@ function DownstreamAssets() {
                   },
                   '& .MuiOutlinedInput-input': {
                     padding: '11px 16px',
+                    color:'	#343434'
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -132,7 +204,7 @@ function DownstreamAssets() {
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter total physical area"
+                placeholder="Add Value"
                 sx={{
                   margin: '0',
                   border: '1px solid rgba(217, 217, 217, 0.0)',
@@ -142,6 +214,7 @@ function DownstreamAssets() {
                   },
                   '& .MuiOutlinedInput-input': {
                     padding: '11px 16px',
+                    color:'	#343434'
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -161,7 +234,7 @@ function DownstreamAssets() {
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter physical area of leased asset"
+                placeholder="Add Value"
                 sx={{
                   margin: '0',
                   border: '1px solid rgba(217, 217, 217, 0.0)',
@@ -171,6 +244,7 @@ function DownstreamAssets() {
                   },
                   '& .MuiOutlinedInput-input': {
                     padding: '11px 16px',
+                    color:'	#343434'
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'rgba(217, 217, 217, 0.30)',

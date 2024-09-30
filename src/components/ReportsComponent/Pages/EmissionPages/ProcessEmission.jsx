@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import porces_Logo from "../../../../assets/images/emisson_logo.svg";
 import dot_Icon from "../../../../assets/images/DotsThreeVertical.svg";
 import TablesData from "../TablesData";
+import edit_icon from "../../../../assets/images/edit_icon.svg";
+import del_icon from "../../../../assets/images/del_icon.svg";
 import {
   Dialog,
   DialogTitle,
@@ -15,6 +17,7 @@ import ProcessEmissionReports from "./ProcessEmissionReports";
 function ProcessEmission() {
   // State to control dialog visibility
   const [open, setOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Function to open the dialog
   const handleClickOpen = () => {
@@ -25,6 +28,22 @@ function ProcessEmission() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  
+  const handleDotClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit clicked");
+    setIsDropdownOpen(false);
+  };
+
+  const handleClearAll = () => {
+    setFields([{ fuel: "", quantity: "", unit: "" }]);
+    setIsDropdownOpen(false);
+  };
+
 
   const headings = [
     "Type of Process Emission",
@@ -119,7 +138,65 @@ function ProcessEmission() {
                   Process Emission
                 </h2>
               </div>
-              <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+              <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                 display:'flex',
+                  alignItems:'center',
+                  gap:'4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display:'flex',
+                  alignItems:'center',
+                  color:'#FF9A9A',
+                  gap:'4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
+        </div>
             </div>
 
             <div>
