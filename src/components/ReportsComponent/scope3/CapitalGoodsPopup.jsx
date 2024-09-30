@@ -170,7 +170,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiSelect-select': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         }
                       }}
                     >
@@ -209,7 +209,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                             borderColor: 'rgba(217, 217, 217, 0.30)',
                           },
                           '& .MuiSelect-select': {
-                            padding: '11px 16px',
+                            padding: '9px 16px',
                           }
                         }}
                       >
@@ -255,7 +255,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -291,7 +291,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiSelect-select': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         }
                       }}
                     >
@@ -356,6 +356,10 @@ const CapitalGoodsPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
+            '&:hover': {
+                background:
+                  "rgba(177, 233, 216, 0.30)",
+              },
           }}
         >
           Clear All
@@ -368,9 +372,14 @@ const CapitalGoodsPopup = ({ onClose }) => {
             fontWeight: "400",
             fontSize: "12px",
             width: "100px",
-            background: "#369D9C",
             textTransform: "capitalize",
             color: "#FFFFFF",
+            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              '&:hover': {
+                background:
+                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: 'none'
+              },
           }}
         >
           Save
