@@ -147,6 +147,7 @@ function FuelConsumption() {
                         },
                         '& .MuiSelect-select': {
                           padding: '11px 16px',
+                          color:'#717171'
                         }
                       }}
                     >
@@ -186,6 +187,7 @@ function FuelConsumption() {
                         },
                         '& .MuiOutlinedInput-input': {
                           padding: '11px 16px',
+                          color:'#717171',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -218,13 +220,14 @@ function FuelConsumption() {
                           },
                           '& .MuiOutlinedInput-input': {
                             padding: '11px 16px',
+                            color:'#717171',
                           },
                           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'rgba(217, 217, 217, 0.30)',
                           },
                           '& .MuiInputBase-input.Mui-disabled': {
-                            color: 'grey !important',
-                            WebkitTextFillColor: 'black !important',
+                            color: '#717171 !important',
+                            WebkitTextFillColor: '#717171 !important',
                             opacity: 1,
                           },
                         }}

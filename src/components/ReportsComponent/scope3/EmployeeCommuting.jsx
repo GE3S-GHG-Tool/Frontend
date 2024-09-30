@@ -94,8 +94,7 @@ function EmployeeCommuting() {
           lineHeight="22.4px"
           color="#717171"
         >
-          Enter vehicle type, number of trips, and distance traveled to
-          calculate emissions related to employee commuting.
+          Provide details about the number of trips made by employees, vehicle type, and commute distance to calculate emissions from daily commuting.
         </Typography>
       </Box>
 

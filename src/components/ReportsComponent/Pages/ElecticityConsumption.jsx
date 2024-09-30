@@ -5,7 +5,6 @@ import electricity from "../../../assets/images/electricity.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import down_arrow from "../../../assets/images/down_arrow.svg";
 import Box from "@mui/material/Box";
 
 function ElectricityConsumption() {
@@ -112,6 +111,7 @@ function ElectricityConsumption() {
                   },
                   '& .MuiOutlinedInput-input': {
                     padding: '11px 16px',
+                    color:'#717171'
                   },
                   '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                     borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -140,14 +140,14 @@ function ElectricityConsumption() {
                     },
                     '& .MuiOutlinedInput-input': {
                       padding: '11px 16px',
-                      color: 'black', // Set the text color to black
+                      color: '#717171', 
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                       borderColor: 'rgba(217, 217, 217, 0.30)',
                     },
                     '& .MuiInputBase-input.Mui-disabled': {
-                      color: 'grey !important',
-                      WebkitTextFillColor: 'black !important',
+                      color: '#717171 !important',
+                      WebkitTextFillColor: '#717171 !important',
                       opacity: 1,
                     },
                   }}
