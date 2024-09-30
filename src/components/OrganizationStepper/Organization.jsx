@@ -37,7 +37,11 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [industryOptions, setIndustryOptions] = useState([]);
   const [sectorOptions, setSectorOptions] = useState([]);
   const [error, setError] = useState(null);
-
+  console.log("organizationCountry", organizationCountry);
+  console.log("organizationState", organizationState);
+  console.log("organizationCity", organizationCity);
+  console.log("stateOptions", stateOptions);
+  console.log("cityOptions", cityOptions);
   useEffect(() => {
     // const loadInitialData = async () => {
     //   try {
@@ -87,6 +91,7 @@ export default function Organization({ activeStep, setActiveStep }) {
 
   const handleCountryChange = async (event) => {
     const selectedCountry = event.target.value;
+
     setOrganizationCountry(selectedCountry);
     setOrganizationState("");
     setOrganizationCity("");
@@ -94,7 +99,8 @@ export default function Organization({ activeStep, setActiveStep }) {
     setCityOptions([]);
 
     try {
-      const states = await fetchStates(selectedCountry);
+      const states = await fetchStates(selectedCountry.geonameId);
+
       setStateOptions(states);
     } catch (error) {
       setError(error.message);
@@ -103,12 +109,13 @@ export default function Organization({ activeStep, setActiveStep }) {
 
   const handleStateChange = async (event) => {
     const selectedState = event.target.value;
+    console.log("selectedState", selectedState);
     setOrganizationState(selectedState);
     setOrganizationCity("");
     setCityOptions([]);
 
     try {
-      const cities = await fetchCities(selectedState);
+      const cities = await fetchCities(selectedState.geonameId);
       setCityOptions(cities);
     } catch (error) {
       setError(error.message);
@@ -187,36 +194,10 @@ export default function Organization({ activeStep, setActiveStep }) {
               value={organizationCountry}
               onChange={handleCountryChange}
               displayEmpty
-              renderValue={(selected) => {
-                if (!selected) {
-                  return <span style={{ color: "#D9D9D9" }}>Country</span>;
-                }
-                const selectedCountry = countryOptions.find(
-                  (country) => country.geonameId === selected
-                );
-                return selectedCountry ? (
-                  <span style={{ color: "black" }}>
-                    {selectedCountry.countryName}
-                  </span>
-                ) : (
-                  ""
-                );
-              }}
               sx={selectStyles}
             >
-              <MenuItem
-                value=""
-                disabled
-                sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-              >
-                Country
-              </MenuItem>
-              {countryOptions.map((country) => (
-                <MenuItem
-                  key={country.geonameId}
-                  value={country.geonameId}
-                  sx={menuItemStyles}
-                >
+              {countryOptions.map((country, index) => (
+                <MenuItem key={index} value={country} sx={menuItemStyles}>
                   {country.countryName}
                 </MenuItem>
               ))}
@@ -231,34 +212,10 @@ export default function Organization({ activeStep, setActiveStep }) {
               onChange={handleStateChange}
               displayEmpty
               disabled={!organizationCountry}
-              renderValue={(selected) => {
-                if (!selected) {
-                  return <span style={{ color: "#D9D9D9" }}>State</span>;
-                }
-                const selectedState = stateOptions.find(
-                  (state) => state.geonameId === selected
-                );
-                return selectedState ? (
-                  <span style={{ color: "black" }}>{selectedState.name}</span>
-                ) : (
-                  ""
-                );
-              }}
               sx={selectStyles}
             >
-              <MenuItem
-                value=""
-                disabled
-                sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-              >
-                State
-              </MenuItem>
-              {stateOptions.map((state) => (
-                <MenuItem
-                  key={state.geonameId}
-                  value={state.geonameId}
-                  sx={menuItemStyles}
-                >
+              {stateOptions.map((state, index) => (
+                <MenuItem key={index} value={state} sx={menuItemStyles}>
                   {state.name}
                 </MenuItem>
               ))}
@@ -273,34 +230,10 @@ export default function Organization({ activeStep, setActiveStep }) {
               onChange={handleCityChange}
               displayEmpty
               disabled={!organizationState}
-              renderValue={(selected) => {
-                if (!selected) {
-                  return <span style={{ color: "#D9D9D9" }}>City</span>;
-                }
-                const selectedCity = cityOptions.find(
-                  (city) => city.geonameId === selected
-                );
-                return selectedCity ? (
-                  <span style={{ color: "black" }}>{selectedCity.name}</span>
-                ) : (
-                  ""
-                );
-              }}
               sx={selectStyles}
             >
-              <MenuItem
-                value=""
-                disabled
-                sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-              >
-                City
-              </MenuItem>
-              {cityOptions.map((city) => (
-                <MenuItem
-                  key={city.geonameId}
-                  value={city.geonameId}
-                  sx={menuItemStyles}
-                >
+              {cityOptions.map((city, index) => (
+                <MenuItem key={index} value={city} sx={menuItemStyles}>
                   {city.name}
                 </MenuItem>
               ))}

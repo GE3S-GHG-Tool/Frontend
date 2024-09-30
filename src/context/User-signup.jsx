@@ -9,8 +9,8 @@ export const SignupProvider = ({ children }) => {
   const [imageUrl, setImageUrl] = useState();
   const [password, setPassword] = useState("");
   const [organizationName, setOrganizationName] = useState("");
-  const [organizationCountry, setOrganizationCountry] = useState("");
-  const [organizationState, setOrganizationState] = useState("");
+  const [organizationCountry, setOrganizationCountry] = useState({});
+  const [organizationState, setOrganizationState] = useState({});
   const [organizationCity, setOrganizationCity] = useState("");
   const [organizationSector, setOrganizationSector] = useState("");
   const [organizationIndustry, setOrganizationIndustry] = useState("");

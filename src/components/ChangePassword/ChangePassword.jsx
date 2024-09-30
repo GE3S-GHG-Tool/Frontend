@@ -81,6 +81,7 @@ export default function ChangePassword() {
   const handleCloseModal = () => {
     setOpenModal(false);
     navigate("/login");
+    localStorage.removeItem("resettoken");
   };
 
   return (

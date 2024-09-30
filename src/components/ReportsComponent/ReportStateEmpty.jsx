@@ -1,42 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Grid2, Typography } from "@mui/material";
 import lock_Logo from "../../assets/images/Lock.svg";
 import { useNavigate } from "react-router-dom";
 import Scope1 from "./tabs/Scope1";
 import Scope2 from "./tabs/Scope2";
 import Scope3 from "./tabs/Scope3";
-
+// Array to define the tab details
+const tabs = [
+  {
+    id: "scope1",
+    title: "Scope 1",
+    description:
+      "Your carbon footprint includes emissions from buildings and vehicles.",
+    content: <Scope1 />,
+    isLocked: false,
+  },
+  {
+    id: "scope2",
+    title: "Scope 2",
+    description:
+      "Indirect emissions from purchased utilities impact carbon footprint.",
+    content: <Scope2 />,
+    isLocked: true,
+  },
+  {
+    id: "scope3",
+    title: "Scope 3",
+    description:
+      "Carbon footprint includes value chain supplier and customer emissions.",
+    content: <Scope3 />,
+    isLocked: true,
+  },
+];
 function ReportStateEmpty() {
   const [activeTab, setActiveTab] = useState("scope1"); // Track active tab
   const navigate = useNavigate();
-
-  // Array to define the tab details
-  const tabs = [
-    {
-      id: "scope1",
-      title: "Scope 1",
-      description:
-        "Your carbon footprint includes emissions from buildings and vehicles.",
-      content: <Scope1 />,
-      isLocked: false,
-    },
-    {
-      id: "scope2",
-      title: "Scope 2",
-      description:
-        "Indirect emissions from purchased utilities impact carbon footprint.",
-      content: <Scope2 />,
-      isLocked: true,
-    },
-    {
-      id: "scope3",
-      title: "Scope 3",
-      description:
-        "Carbon footprint includes value chain supplier and customer emissions.",
-      content: <Scope3 />,
-      isLocked: true,
-    },
-  ];
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [activeTab]);
 
   const handleNextTab = () => {
     const currentIndex = tabs.findIndex((tab) => tab.id === activeTab);
@@ -45,10 +49,7 @@ function ReportStateEmpty() {
     if (nextIndex < tabs.length) {
       setActiveTab(tabs[nextIndex].id);
     } else {
-      // If on the last tab, navigate to a different page or handle it as needed
       console.log("All tabs completed");
-      // You can navigate to a new page or reset the tabs if needed
-      // navigate("/ghgreport");  // Uncomment this line if needed
     }
   };
 

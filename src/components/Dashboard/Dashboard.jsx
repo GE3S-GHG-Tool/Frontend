@@ -280,7 +280,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* <div className="chart_header_box">
+      <div className="chart_header_box">
         <h3 className="dashboard_reports_header">Carbon Tracker</h3>
         <FormControl sx={{ minWidth: 100 }} size="small">
           <Select
@@ -297,7 +297,7 @@ const Dashboard = () => {
             <MenuItem value="2024"> 2024</MenuItem>
           </Select>
         </FormControl>
-      </div> */}
+      </div>
       <div className="chart_box">
         <FootprintChart />
       </div>

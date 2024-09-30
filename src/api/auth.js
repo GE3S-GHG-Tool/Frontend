@@ -166,9 +166,9 @@ export const submitGoalsData = async (
   try {
     const payload = {
       organization_name: organizationData.organizationName,
-      organization_country: organizationData.organizationCountry,
-      organization_state: organizationData.organizationState,
-      organization_city: organizationData.organizationCity,
+      organization_country: organizationData.organizationCountry.countryName,
+      organization_state: organizationData.organizationState.name,
+      organization_city: organizationData.organizationCity.name,
       organization_sector: organizationData.organizationSector,
       organization_industry: organizationData.organizationIndustry,
       organization_fiscalyear: organizationData.organizationFiscalYear,

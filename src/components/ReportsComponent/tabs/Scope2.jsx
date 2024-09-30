@@ -1,4 +1,3 @@
-import React from "react";
 import ElecticityConsumption from "../Pages/ElecticityConsumption";
 import ChilledWaterConsumption from "../Pages/ChilledWaterConsumption";
 import DesalinatedWater from "../Pages/DesalinatedWater";
@@ -8,11 +7,11 @@ const Scope2 = () => {
   return (
     <div
       style={{
-       display: "flex",
+        display: "flex",
         flexDirection: "column",
         gap: "1.5rem",
         width: "100%",
-        padding: '0 1rem'
+        padding: "0 1rem",
       }}
     >
       <ElecticityConsumption />
