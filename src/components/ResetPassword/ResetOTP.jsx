@@ -165,9 +165,7 @@ export default function ResetOTP() {
           <button
             onClick={handleVerify}
             disabled={!isFormValid}
-            className={
-              !isFormValid ? "verify-button-disabled" : "verify-button-active"
-            }
+            className="ge3s_button"
           >
             Verify OTP
           </button>
@@ -179,12 +177,12 @@ export default function ResetOTP() {
             borderRadius: "50%",
             margin: "0 auto",
             position: "absolute",
-            bottom: "-12px",
+            bottom: "-20px",
             left: "10%",
             background: "#598483",
             filter: "blur(20px)",
             opacity: 0.8,
-            zIndex: 0,
+            zIndex: -1,
           }}
         ></div>
       </div>

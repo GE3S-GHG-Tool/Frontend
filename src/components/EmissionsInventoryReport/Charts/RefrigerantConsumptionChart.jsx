@@ -5,6 +5,7 @@ import { scaleBand, scaleLinear } from '@visx/scale';
 import { Text } from '@visx/text';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { ParentSize } from '@visx/responsive';
+import dot from "../../../assets/images/dot.svg"
 
 const margin = { top: 20, right: 0, bottom: 60, left: 0 };
 const defaultHeight = 300; // Define a default height
@@ -54,8 +55,8 @@ const Chart = ({ data, width, type }) => {
                 onMouseEnter={() => {
                   showTooltip({
                     tooltipData: d,
-                    tooltipTop: barY,
-                    tooltipLeft: barX,
+                    tooltipTop: barY + 30,
+                    tooltipLeft: barX + 60,
                   });
                 }}
 
@@ -115,11 +116,11 @@ const Chart = ({ data, width, type }) => {
             borderRadius: '4px'
           }}
         >
-          <div style={{ display: 'flex', gap: '0.7rem', fontSize: '0.8rem', alignItems: "center" }}>
+          <div style={{ display: 'flex', gap: '0.3rem', fontSize: '0.8rem', alignItems: "center" }}>
             <div style={{ width: '12px', height: '12px', backgroundColor: `${getColor(tooltipData)}` }}></div>
-            <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span>
+            <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span><img src={dot} width={3} height={3}/>
             <div>
-              {getValue(tooltipData).toFixed(1) / 1000 + 'K'}
+              {getValue(tooltipData).toFixed(1) / 1000 + 'K'}&nbsp;
               {type === "scope-1" ? "Kg" : "tCO2e"}
             </div>
           </div>

@@ -68,7 +68,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
         position: "relative",
         flexDirection: "column",
         display: "flex",
-        height: "100%", // Make the container take up full available height
+        height: "100%",
       }}
     >
       <div style={{ marginBottom: "1.5rem" }}>
@@ -177,7 +177,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiSelect-select': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         }
                       }}
                     >
@@ -216,7 +216,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                             borderColor: 'rgba(217, 217, 217, 0.30)',
                           },
                           '& .MuiSelect-select': {
-                            padding: '11px 16px',
+                            padding: '9px 16px',
                           }
                         }}
                       >
@@ -254,12 +254,12 @@ const WasteGeneratedPopup = ({ onClose }) => {
                             borderColor: 'rgba(217, 217, 217, 0.30)',
                           },
                           '& .MuiSelect-select': {
-                            padding: '11px 16px',
+                            padding: '9px 16px',
                           }
                         }}
                       >
-                        <MenuItem disabled value="">
-                          Select Method
+                       <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Method</span>
                         </MenuItem>
                         <MenuItem value={"Landfilled"}>Landfilled</MenuItem>
                         <MenuItem value={"Recycling"}>Recycling</MenuItem>
@@ -293,7 +293,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -327,12 +327,12 @@ const WasteGeneratedPopup = ({ onClose }) => {
                             borderColor: 'rgba(217, 217, 217, 0.30)',
                           },
                           '& .MuiSelect-select': {
-                            padding: '11px 16px',
+                            padding: '9px 16px',
                           }
                         }}
                       >
-                        <MenuItem disabled value="">
-                          Select Fuel
+                        <MenuItem value="" disabled>
+                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
                         </MenuItem>
                         <MenuItem value="Diesel">Diesel</MenuItem>
                         <MenuItem value="Petrol">Petrol</MenuItem>
@@ -366,7 +366,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -401,7 +401,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
                         },
                         '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                          padding: '9px 16px',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                           borderColor: 'rgba(217, 217, 217, 0.30)',
@@ -459,6 +459,10 @@ const WasteGeneratedPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
+            '&:hover': {
+                background:
+                  "rgba(177, 233, 216, 0.30)",
+              },
           }}
         >
           Clear All
@@ -471,9 +475,14 @@ const WasteGeneratedPopup = ({ onClose }) => {
             fontWeight: "400",
             fontSize: "12px",
             width: "100px",
-            background: "#369D9C",
             textTransform: "capitalize",
             color: "#FFFFFF",
+            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              '&:hover': {
+                background:
+                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: 'none'
+              },
           }}
         >
           Save

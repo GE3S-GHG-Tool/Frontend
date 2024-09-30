@@ -3,27 +3,27 @@ import { Pie } from '@visx/shape';
 import { Group } from '@visx/group';
 import { scaleOrdinal } from '@visx/scale';
 import { Box, Paper } from '@mui/material';
+import dot from "../../../assets/images/dot.svg"
 
-// Reusable tooltip component (unchanged)
 const ChartTooltip = ({ data }) => (
   <Paper sx={{ zIndex: '100000', whiteSpace: 'nowrap', padding: '5px' }}>
-    {data.map((item, i) => (
-      <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '7px' }}>
-        <Box sx={{ width: 12, height: 12, backgroundColor: item.color, mr: 1 }} />
-        <span style={{ color: '#BDBDBD', fontSize: '0.6rem' }}>{item.label}</span>
-        <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', color: '#717171', fontWeight: '500' }}>
-          {item.key}
-        </span>
-        <span style={{ fontFamily: 'Inter', fontSize: '0.6rem', fontWeight: '500' }}>
-          {item.value.toLocaleString()} tCO2e
-        </span>
-      </Box>
-    ))}
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: "0.2rem", padding: '7px' }}>
+      <Box sx={{ width: 12, height: 12, backgroundColor: data.color, mr: 1 }} />
+      <span style={{ color: '#BDBDBD', fontSize: '0.785rem' }}>{data.label}</span>
+      <img src={dot} width={3} height={3} alt="dot"/>
+      <span style={{ fontFamily: 'Inter', fontSize: '0.785rem', color: '#717171', fontWeight: '500' }}>
+        {data.key}
+      </span>
+      <img src={dot} width={3} height={3} alt="dot"/>
+      <span style={{ fontFamily: 'Inter', fontSize: '0.785rem', fontWeight: '500' }}>
+        {data.value.toLocaleString()} tCO2e
+      </span>
+    </Box>
   </Paper>
 );
 
-const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = false }) => {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
+const FullCircleDonutChart = ({ width = 300, height = 300, data }) => {
+  const [activeArc, setActiveArc] = useState(null);
   const [tooltipLeft, setTooltipLeft] = useState(0);
   const [tooltipTop, setTooltipTop] = useState(0);
   const svgRef = useRef(null);
@@ -37,26 +37,27 @@ const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = 
     range: data.map(d => d.color),
   });
 
-  const handleMouseEnter = () => {
-    setTooltipOpen(true);
+  const handleMouseEnter = (event, arc) => {
+    setActiveArc(arc);
+    updateTooltipPosition(event);
   };
 
   const handleMouseMove = (event) => {
-    if (!fixedTooltip) {
-      const { clientX, clientY } = event;
-      const svgRect = svgRef.current.getBoundingClientRect();
-
-      setTooltipLeft(clientX - svgRect.left);
-      setTooltipTop(clientY - svgRect.top);
-    }
+    updateTooltipPosition(event);
   };
 
   const handleMouseLeave = () => {
-    setTooltipOpen(false);
+    setActiveArc(null);
+  };
+
+  const updateTooltipPosition = (event) => {
+    const svgRect = svgRef.current.getBoundingClientRect();
+    setTooltipLeft(event.clientX - svgRect.left);
+    setTooltipTop(event.clientY - svgRect.top);
   };
 
   return (
-    <>
+    <Box position="relative">
       <svg width={width} height={height} ref={svgRef}>
         <Group top={centerY} left={centerX}>
           <Pie
@@ -66,32 +67,19 @@ const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = 
             innerRadius={radius - 85}
           >
             {(pie) => (
-              <Group
-                onMouseEnter={handleMouseEnter}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-              >
+              <Group>
                 {pie.arcs.map((arc, index) => {
-                  const [centroidX, centroidY] = pie.path.centroid(arc);
-                  const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
                   const arcPath = pie.path(arc);
                   const arcFill = colorScale(arc.data.label);
                   return (
-                    <g key={`arc-${index}`}>
-                      <path d={arcPath} fill={arcFill} />
-                      {hasSpaceForLabel && (
-                        <text
-                          x={centroidX}
-                          y={centroidY}
-                          dy=".33em"
-                          fontSize={16}
-                          textAnchor="middle"
-                          fill="#ffffff"
-                        >
-                          {/* {arc.data.key} */}
-                        </text>
-                      )}
-                    </g>
+                    <path
+                      key={`arc-${index}`}
+                      d={arcPath}
+                      fill={arcFill}
+                      onMouseEnter={(event) => handleMouseEnter(event, arc)}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseLeave}
+                    />
                   );
                 })}
               </Group>
@@ -99,20 +87,20 @@ const FullCircleDonutChart = ({ width = 350, height = 350, data, fixedTooltip = 
           </Pie>
         </Group>
       </svg>
-      {tooltipOpen && (
+      {activeArc && (
         <Box
           sx={{
             position: 'absolute',
             top: tooltipTop,
             left: tooltipLeft,
-            transform: 'translate(-10%, 0%)',
+            transform: 'translate(-50%, -100%)',
             pointerEvents: 'none',
           }}
         >
-          <ChartTooltip data={data} />
+          <ChartTooltip data={activeArc.data} />
         </Box>
       )}
-    </>
+    </Box>
   );
 };
 

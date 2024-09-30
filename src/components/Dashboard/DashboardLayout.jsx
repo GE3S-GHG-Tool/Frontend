@@ -8,6 +8,7 @@ import logo from "../../assets/images/ge3s.png";
 import "./Dashboard.css";
 import { useState, useMemo } from "react";
 import ConfirmationModal from "../Modals/ConfirmationModal";
+import { useAuth } from "../../context/AuthContext";
 
 const CustomBadgeIcon = ({ badgeContent, badgeColor, badgeTextColor }) => {
   return (
@@ -445,6 +446,7 @@ const navMenu = [
 function DashboardLayout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const open = Boolean(anchorEl);
@@ -746,7 +748,7 @@ function DashboardLayout() {
                   fontWeight: "500",
                 }}
               >
-                Aman
+                {user?.name}
               </Typography>
               <p
                 style={{

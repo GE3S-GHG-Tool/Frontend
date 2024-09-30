@@ -9,6 +9,7 @@ const styles = {
         gridTemplateColumns: 'repeat(4, 1fr)', // 4 columns for the first row
         gridAutoFlow: 'row', // Flow cards into the next row
         width: '100%',
+        background:'#fbfbfb'
     },
     card: {
         display: 'flex',
@@ -16,6 +17,7 @@ const styles = {
         gap: '1rem',
         padding: '1rem',
         borderRadius: '8px',
+        background:'white'
     },
     secondRow: {
         gridColumn: 'span 4', // This ensures the second row takes full width
@@ -46,8 +48,8 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
 
     return (
         <>
-            <div style={{ display: 'flex', width: '100%' }}>
-                <div style={{ width: '80%' }}>
+            <div style={{ display: 'flex', width: '100%' ,gap:'1rem'}}>
+                <div style={{ width: '80%',background:'white' ,padding:'2rem', borderRadius:'16px' }}>
                     <div>
                         <Typography sx={{ fontFamily: 'Inter', fontSize: '1.6rem', fontWeight: '600', wordSpacing: '0px', padding:'1rem 0' }}>{title}</Typography>
                         <Typography sx={{ fontFamily: 'Inter', fontSize: '0.875rem', fontWeight: '500', wordSpacing: '0px', color: '#717171', width: '40%' }}>
@@ -57,7 +59,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                     <div style={{ display: 'flex' }}>
                         {
                             type === 'scope-3' ?
-                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '4rem', gap: '0.6rem', width: '35%' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '4rem', gap: '0.6rem', width: '35%'}}>
                                     {data.map((item, index) =>
                                         index <= 3 ? (
                                             <div
@@ -97,8 +99,8 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 {
                     type === 'scope-3' ?
                         <>
-                            <div style={{ width: '30%' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '11rem', gap: '0.6rem' }}>
+                            <div style={{ width: '30%', background:'#FBFBFB'}}>
+                                <div style={{ display: 'flex', flexDirection: 'column', marginTop: '12.8rem', gap: '0.6rem' }}>
                                     {data.map((item, index) =>
                                         index > 3 ? (
                                             <div
@@ -123,10 +125,10 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                             </div>
                         </>
                         :
-                        <div style={{ width: '20%' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', justifyContent: "space-between" }}>
+                        <div style={{ width: '20%'}}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', justifyContent: "space-between"}}>
                                 {data.map((item, index) => (
-                                    <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                    <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', background:"white" , padding:"1.5rem 1.5rem", borderRadius:'16px'}}>
                                         <div>
                                             {svgs[index]}
                                             <Typography sx={{ fontFamily: 'Inter', fontSize: '0.8rem', fontWeight: '600', wordSpacing: '0px' }}>{item.label}</Typography>
@@ -140,7 +142,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
             </div>
             {
                 type === "scope-3" ?
-                    <div style={{marginTop:'6rem'}}>
+                    <div style={{marginTop:'3rem'}}>
                         <div style={styles.container}>
                             {data.slice(0, 4).map((item, index) => (
                                 <div key={index} style={styles.card}>

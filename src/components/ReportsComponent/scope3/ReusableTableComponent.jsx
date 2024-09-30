@@ -123,8 +123,8 @@ function ReusableTableSection({
         fullWidth
         sx={{
           "& .MuiDialog-paper": {
-            width: "1100px",
-            maxWidth: "1000px",
+            width: "90vw",
+            maxWidth: "80vw",
             height: "89vh",
             borderRadius: "16px",
           },

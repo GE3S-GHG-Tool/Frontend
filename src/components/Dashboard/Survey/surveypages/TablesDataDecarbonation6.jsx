@@ -12,8 +12,9 @@ const MyTable6 = () => {
     <Table
       sx={{
         borderCollapse: "collapse",
-        border: "1px solid #F4F4F4",
+        border: "1px solid #00191D",
         width: "100%",
+        mt:'4rem'
       }}
     >
       <TableHead>
@@ -22,10 +23,10 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "left",
-              fontWeight: 600,
               background: "#F7FFFC",
-              fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              fontSize: "14px",
+              border: "1px solid #00191D",
+              color: '#28814D',
             }}
           >
             LPD (W/m2)
@@ -34,9 +35,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               background: "#F7FFFC",
-              fontWeight: 600,
-              fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              fontSize: "14px",
+              border: "1px solid #00191D",
+              color: '#28814D',
             }}
           >
             Common Space Types
@@ -45,10 +46,10 @@ const MyTable6 = () => {
             sx={{
               textAlign: "center",
               width: "30vh",
-              fontWeight: 600,
               background: "#F7FFFC",
-              fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              fontSize: "14px",
+              border: "1px solid #00191D",
+              color: '#28814D',
             }}
           >
             Building Specific Space Types
@@ -57,10 +58,10 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
               background: "#F7FFFC",
-              fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              fontSize: "14px",
+              border: "1px solid #00191D",
+              color: '#28814D',
             }}
           >
             LPD (W/m2)
@@ -73,9 +74,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Motion Picture Theater
@@ -84,9 +85,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             13
@@ -96,9 +97,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Emergency
@@ -107,9 +108,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             29
@@ -120,9 +121,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Transportation
@@ -131,9 +132,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             5
@@ -142,9 +143,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Recovery
@@ -153,9 +154,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             9
@@ -166,9 +167,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Atrium-First Three Floors
@@ -177,9 +178,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             6
@@ -188,9 +189,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Nurse station
@@ -199,9 +200,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             11
@@ -212,9 +213,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Atrium-Each Additional Floor
@@ -223,9 +224,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             2
@@ -234,9 +235,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Exam/Treatment
@@ -245,9 +246,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             16
@@ -258,9 +259,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Lounge / Recreation
@@ -269,9 +270,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             19
@@ -280,9 +281,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Pharmacy
@@ -291,9 +292,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             13
@@ -304,9 +305,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Hospital
@@ -315,9 +316,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             9
@@ -326,9 +327,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Patient Room
@@ -337,9 +338,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             8
@@ -350,9 +351,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Dining Area
@@ -361,9 +362,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             10
@@ -372,9 +373,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Operating Room
@@ -383,9 +384,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             24
@@ -396,9 +397,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Peniteniary
@@ -407,9 +408,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             14
@@ -418,9 +419,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Nursery
@@ -429,9 +430,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             6
@@ -442,9 +443,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Hotel
@@ -453,9 +454,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             5
@@ -464,9 +465,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Medical Supply
@@ -475,9 +476,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             15
@@ -488,9 +489,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Motel
@@ -499,9 +500,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             13
@@ -510,9 +511,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Physical Therapy
@@ -521,9 +522,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             10
@@ -534,9 +535,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Bar Lounge/Leisure Dining
@@ -545,9 +546,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             15
@@ -556,9 +557,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Radiology
@@ -567,9 +568,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             4
@@ -581,9 +582,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Family Dining
@@ -592,9 +593,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             23
@@ -603,9 +604,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Laundry.Washing
@@ -614,9 +615,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             6
@@ -627,9 +628,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Food Preperation
@@ -638,9 +639,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             13
@@ -649,9 +650,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Laundry.Washing
@@ -660,9 +661,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             8
@@ -672,9 +673,9 @@ const MyTable6 = () => {
           <TableCell
             sx={{
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Laboratory
@@ -682,9 +683,9 @@ const MyTable6 = () => {
           <TableCell
             sx={{
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             15
@@ -693,9 +694,9 @@ const MyTable6 = () => {
             colSpan={2} // This makes the cell span across two columns
             sx={{
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Manufacturing
@@ -706,9 +707,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Restrooms
@@ -717,9 +718,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             10
@@ -728,9 +729,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Low Bay(25 ft Floor to Ceiling Height)
@@ -739,9 +740,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             13
@@ -752,9 +753,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Dressing /Locker/ Fitting Room
@@ -763,9 +764,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             6
@@ -774,9 +775,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             High Bay(.25 ft floor to Ceiling Height)
@@ -785,9 +786,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             18
@@ -798,9 +799,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Corridor/ Transition
@@ -809,9 +810,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             5
@@ -820,9 +821,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Detailed Manufacturing
@@ -831,9 +832,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             23
@@ -844,9 +845,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Hospital
@@ -855,9 +856,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             11
@@ -866,9 +867,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Equipment Room
@@ -877,9 +878,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             11
@@ -890,9 +891,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             For Manufacturing Facility
@@ -901,9 +902,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             5
@@ -912,9 +913,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Control Room
@@ -923,9 +924,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             5
@@ -936,9 +937,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Stairs - Active
@@ -947,9 +948,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             6
@@ -958,9 +959,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Hotel / Motel Guest Rooms
@@ -969,9 +970,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             12
@@ -982,9 +983,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Active Storage
@@ -993,9 +994,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             9
@@ -1004,9 +1005,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Museum
@@ -1015,9 +1016,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             12
@@ -1028,9 +1029,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             Inactive storage
@@ -1039,9 +1040,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             3
@@ -1050,9 +1051,9 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             General Exhibition
@@ -1061,9 +1062,9 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight: 600,
+              fontWeight:"normal",
               fontSize: "12px",
-              border: "1px solid #F4F4F4",
+              border: "1px solid #00191D",
             }}
           >
             11

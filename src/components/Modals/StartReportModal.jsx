@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { createReport } from "../../api/createReport";
 const style = {
   position: "absolute",
   top: "50%",
@@ -49,20 +51,40 @@ const monthlyMenu = [
 
 const StartReportModal = ({ open, setOpenModal }) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [period, setPeriod] = useState("");
   const [year, setYear] = useState("");
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
   const menuItems =
-    period == 1
+    period == "Monthly"
       ? monthlyMenu
-      : period == 2
+      : period == "Quaterly"
         ? quarterMenu
-        : period == 3
+        : period == "Half-Yearly"
           ? halfyearlyMenu
           : null;
 
-  const isFormComplete = name && year && period && value;
+  const isFormComplete =
+    name && year && period && (period === "Yearly" || value);
+  const onSubmit = async () => {
+    const payload = {
+      organization_id: user?.organization?.id,
+      name: name,
+      year: Number(year),
+      time_period: period,
+      periodicity: value || "yearly",
+    };
+
+    const response = await createReport(payload);
+    console.log(response);
+    if (response?.status === 200) {
+      console.log(response.data.reportId);
+      navigate("/reportgenerator");
+    } else {
+      console.log("Error creating report");
+    }
+  };
 
   return (
     <Modal
@@ -131,9 +153,10 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 }}
                 size="small"
               >
-                <MenuItem value={1}>2021</MenuItem>
-                <MenuItem value={2}>2022</MenuItem>
-                <MenuItem value={3}>2023</MenuItem>
+                <MenuItem value={"2021"}>2021</MenuItem>
+                <MenuItem value={"2022"}>2022</MenuItem>
+                <MenuItem value={"2023"}>2023</MenuItem>
+                <MenuItem value={"2024"}>2024</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -149,23 +172,23 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 }}
                 size="small"
               >
-                <MenuItem value={1}>Monthly</MenuItem>
-                <MenuItem value={2}>Quarterly</MenuItem>
-                <MenuItem value={3}>Half-Yearly</MenuItem>
-                <MenuItem value={4}>Yearly</MenuItem>
+                <MenuItem value={"Monthly"}>Monthly</MenuItem>
+                <MenuItem value={"Quaterly"}>Quaterly</MenuItem>
+                <MenuItem value={"Half-Yearly"}>Half-Yearly</MenuItem>
+                <MenuItem value={"Yearly"}>Yearly</MenuItem>
               </Select>
             </FormControl>
           </div>
         </div>
 
-        {period !== 4 && period !== "" && (
+        {period !== "Yearly" && period !== "" && (
           <div className="report_input">
             <label>
-              {period == 1
+              {period == "Monthly"
                 ? "Month"
-                : period == 2
+                : period == "Quaterly"
                   ? "Quarter"
-                  : period == 3
+                  : period == "Half-Yearly"
                     ? "Half-Yearly"
                     : null}
             </label>
@@ -180,7 +203,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 size="small"
               >
                 {menuItems?.map((item, index) => (
-                  <MenuItem key={index} value={index + 1}>
+                  <MenuItem key={index} value={item.name}>
                     {item?.name}
                   </MenuItem>
                 ))}
@@ -196,7 +219,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
           <button
             className="ge3s_button"
             disabled={!isFormComplete}
-            onClick={() => navigate("/reportgenerator")}
+            onClick={onSubmit}
           >
             Confirm
           </button>

@@ -11,13 +11,13 @@ import {
 const MyTable = () => {
   return (
     <>
-      <Typography fontSize="12px" fontWeight="600" mb="15px">
+      <Typography fontSize="13px" fontWeight="500" mb="15px" mt="15px">
         Internal Lighting - Space by Space Method
       </Typography>
       <Table
         sx={{
           borderCollapse: "collapse",
-          border: "1px solid #F4F4F4",
+          border: "1px solid #00191D",
           width: "100%",
         }}
       >
@@ -27,8 +27,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
+                color: '#28814D',
               }}
             >
               Common Space Types
@@ -37,8 +37,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
+                color: '#28814D',
               }}
             >
               LPD (W/m²)
@@ -47,8 +47,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
+                color: '#28814D',
               }}
             >
               Building Specific Space Types
@@ -57,8 +57,8 @@ const MyTable = () => {
               sx={{
                 textAlign: "center",
                 fontSize: "14px",
-                fontWeight: "600",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
+                color: '#28814D',
               }}
             >
               LPD (W/m²)
@@ -70,9 +70,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Office - Enclosed
@@ -80,9 +80,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -91,9 +91,9 @@ const MyTable = () => {
               colSpan={2} // This makes the cell span across two columns
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Gymnasium/Exercise Center
@@ -104,9 +104,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Office -Open Plan
@@ -114,9 +114,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -124,31 +124,31 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
-              Exercise Area
+            Playing Area
             </TableCell>
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
-              10
+              15
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Conference/Meeting/Multipurpose
@@ -156,9 +156,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -166,9 +166,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Exercise Area
@@ -176,19 +176,19 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
-            ></TableCell>
+            >10</TableCell>
           </TableRow>
           <TableRow>
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Classroom/Lecture/Training
@@ -196,9 +196,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               15
@@ -206,29 +206,29 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Courthouse/Police Station/Penitentiary
             </TableCell>
-            <TableCell
+            {/* <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
-            ></TableCell>
+            ></TableCell> */}
           </TableRow>
           <TableRow>
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Penitentiary
@@ -236,9 +236,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -246,9 +246,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Courtroom
@@ -256,9 +256,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               20
@@ -268,9 +268,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Lobby
@@ -278,9 +278,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -288,9 +288,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+              fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Confinement Cells
@@ -298,9 +298,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+               fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               10
@@ -310,9 +310,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Hotel
@@ -320,9 +320,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight: "normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -330,9 +330,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Judges Chambers
@@ -340,9 +340,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -352,9 +352,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Performing Arts Theater
@@ -362,9 +362,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               36
@@ -372,9 +372,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Fire Stations
@@ -382,9 +382,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -392,9 +392,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Motion Picture Theater
@@ -402,9 +402,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -412,9 +412,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Fire Station Engine room
@@ -422,9 +422,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               9
@@ -434,9 +434,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Audience/Scaling Area
@@ -444,9 +444,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -454,9 +454,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Sleeping Quarters
@@ -464,9 +464,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               3
@@ -476,9 +476,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Gymnasium
@@ -486,9 +486,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -496,9 +496,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Post Office - Sorting Area
@@ -506,9 +506,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
@@ -518,9 +518,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Exercise Center
@@ -528,9 +528,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               3
@@ -538,9 +538,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Convention Center-Exhibit Space
@@ -548,9 +548,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               14
@@ -560,9 +560,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Convention Center
@@ -570,9 +570,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               6
@@ -580,9 +580,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Library
@@ -590,9 +590,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             ></TableCell>
           </TableRow>
@@ -600,9 +600,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Penitentiary
@@ -610,9 +610,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               8
@@ -620,9 +620,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Card File Cataloguing
@@ -630,9 +630,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               12
@@ -642,9 +642,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Religious Buildings
@@ -652,9 +652,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               18
@@ -662,9 +662,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Stacks
@@ -672,9 +672,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -684,9 +684,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Sports Arena
@@ -694,9 +694,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               4
@@ -704,9 +704,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Reading Area
@@ -714,9 +714,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
@@ -726,9 +726,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               For Performing Arts Theater
@@ -736,9 +736,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               28
@@ -746,9 +746,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "left",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               Hospital
@@ -756,9 +756,9 @@ const MyTable = () => {
             <TableCell
               sx={{
                 textAlign: "center",
-                fontWeight: 600,
+                fontWeight:"normal",
                 fontSize: "12px",
-                border: "1px solid #F4F4F4",
+                border: "1px solid #00191D",
               }}
             >
               13
