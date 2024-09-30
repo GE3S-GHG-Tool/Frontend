@@ -80,9 +80,7 @@ export default function ResetPassword() {
           <button
             onClick={handleSubmit}
             disabled={!isFormValid}
-            className={
-              isFormValid ? "send-button-active" : "send-button-disabled"
-            }
+            className="ge3s_button"
           >
             Send
           </button>
@@ -94,12 +92,12 @@ export default function ResetPassword() {
             borderRadius: "50%",
             margin: "0 auto",
             position: "absolute",
-            bottom: "-12px",
+            bottom: "-20px",
             left: "10%",
             background: "#598483",
             filter: "blur(20px)",
             opacity: 0.8,
-            zIndex: 0,
+            zIndex: -1,
           }}
         ></div>
       </div>
