@@ -1,7 +1,10 @@
 import React from "react";
 import { Box, Grid2, Paper, Typography, Button } from "@mui/material";
 import ac_motors_logo from "../../../../assets/images/ac-motors_logo.svg";
-import pump2 from "../../../../assets/images/pump2.svg";
+import process_pumps_logo from "../../../../assets/images/process_pumps_logo.svg";
+import process_fans_logo from "../../../../assets/images/process_fans_logo.svg";
+import selection_cooling from "../../../../assets/images/selection_cooling.svg";
+import en_c from "../../../../assets/images/en_c.svg";
 import wind from "../../../../assets/images/wind.svg";
 import boiler from "../../../../assets/images/boiler.svg";
 import tempreture from "../../../../assets/images/temperature.svg";
@@ -13,6 +16,7 @@ import snow_blowing from "../../../../assets/images/snow-blowing.svg";
 import meter_bolt from "../../../../assets/images/meter-bolt 1.svg";
 import calculator_bill from "../../../../assets/images/calculator-bill 1.svg";
 import hand_holding from "../../../../assets/images/hand-holding-water 1.svg";
+import steam from "../../../../assets/images/steam.svg";
 import smoke from "../../../../assets/images/smoke.svg";
 import lightbulb from "../../../../assets/images/lightbulb.svg";
 import insight from "../../../../assets/images/insight.svg";
@@ -193,17 +197,17 @@ function SurveyQuestionSection() {
       text: [
         {
           qsnText:
-            "Do you have all motors with efficiency classification IE3 & IE4?",
+            "Have you involved a specialist in the selection of the pump sizing?",
           qsnId: 1,
         },
         {
           qsnText:
-            "Do you have all motors with efficiency classification IE3 & IE4?",
+            "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
           qsnId: 2,
         },
       ],
-      logo: pump2, // Replace with your logo path
-      heading: "Energy Compliance", // Example heading
+      logo: process_fans_logo,
+      heading: "Industrial Process Pumps", // Pass the heading here
     },
     {
       id: 3,
@@ -219,11 +223,28 @@ function SurveyQuestionSection() {
           qsnId: 2,
         },
       ],
+      logo: process_pumps_logo,
+      heading: "Industrial Process Fans", // Pass the heading here
+    },
+    {
+      id: 4,
+      text: [
+        {
+          qsnText:
+            "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+          qsnId: 1,
+        },
+        {
+          qsnText:
+            "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+          qsnId: 2,
+        },
+      ],
       logo: wind,
       heading: "Compressed Air System",
     },
     {
-      id: 4,
+      id: 5,
       text: [
         {
           qsnText:
@@ -240,7 +261,7 @@ function SurveyQuestionSection() {
       heading: "Industrial Boilers", // Example heading
     },
     {
-      id: 5,
+      id: 6,
       text: [
         {
           qsnText:
@@ -248,11 +269,11 @@ function SurveyQuestionSection() {
           qsnId: 1,
         },
       ],
-      logo: boiler, // Replace with your logo path
+      logo: steam, // Replace with your logo path
       heading: "Steam Distribution System", // Example heading
     },
     {
-      id: 6,
+      id: 7,
       text: [
         {
           qsnText:
@@ -262,17 +283,6 @@ function SurveyQuestionSection() {
       ],
       logo: tempreture, // Replace with your logo path
       heading: "Industrial Chiller System", // Example heading
-    },
-    {
-      id: 7,
-      text: [
-        {
-          qsnText: "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
-          qsnId: 1,
-        }
-      ],
-      logo: snowflakes, // Replace with your logo path
-      heading: "Chilled Water Distribution System", // Example heading
     },
     {
       id: 8,
@@ -286,8 +296,8 @@ function SurveyQuestionSection() {
           qsnId: 2,
         }
       ],
-      logo: snowflakes,
-      heading: "Chilled Water Distribution System",
+      logo: snowflakes, // Replace with your logo path
+      heading: "Chilled Water Distribution System", // Example heading
     },
     {
       id: 9,
@@ -320,7 +330,7 @@ function SurveyQuestionSection() {
         }
       ],
       logo: tempreture,
-      heading: "Power Quality",
+      heading: "Process Waste Heat Recovery",
     },
     {
       id: 12,
@@ -344,7 +354,7 @@ function SurveyQuestionSection() {
           qsnId: 1,
         }
       ],
-      logo: r_bin,
+      logo: en_c,
       heading:
         "Energy Conservation Techniques and Thermal Insulation (Applicable for both Air-conditioned and Non-Air-Conditioned buildings)",
     },
@@ -358,6 +368,10 @@ function SurveyQuestionSection() {
         {
           qsnText: "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
           qsnId: 2,
+        },
+        {
+          qsnText: "Have the tests and reports been conducted in compliance with the specified conditions?",
+          qsnId: 3,
         },
       ],
       logo: snow_blowing,
@@ -374,7 +388,7 @@ function SurveyQuestionSection() {
       ],
       logo: meter_bolt,
       heading:
-        "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
+        "Envelope Tightness (Performance-based) Blower Door Test Technique",
     },
     {
       id: 16,
@@ -407,7 +421,7 @@ function SurveyQuestionSection() {
           qsnId: 1,
         }
       ],
-      logo: hand_holding,
+      logo: selection_cooling,
       heading:
         "Selection of Cooling Equipment with High Energy Efficiency Ratio (EER)",
     },
@@ -419,11 +433,66 @@ function SurveyQuestionSection() {
           qsnId: 1,
         }
       ],
-      logo: snowflakes,
+      logo:smoke ,
       heading: "Programmable thermostats and CO2 Sensors for HVAC system",
     },
     {
       id: 20,
+      text: [
+        {
+          qsnText: "Have you considered ways to improve interior lighting levels while ensuring they do not exceed the limits",
+          qsnId: 1,
+        }
+      ],
+      logo: lightbulb,
+      heading: "Light Power Density - Interior",
+    },
+    {
+      id: 21,
+      text: [
+        {
+          qsnText: "Have you considered selecting internal lighting systems that offer flexible control options",
+          qsnId: 1,
+        }
+      ],
+      logo: solar_panel,
+      heading: "Automated lighting control / motion sensor for internal lighting",
+    },
+    {
+      id: 22,
+      text: [
+        {
+          qsnText: "Have you confirmed that the exterior lighting levels have been improved and do not exceed the specified limits?",
+          qsnId: 1,
+        }
+      ],
+      logo: ideaChange,
+      heading: "Exterior Light Power Density",
+    },
+    {
+      id: 23,
+      text: [
+        {
+          qsnText: "Have you confirmed that the external lighting systems incorporate strategies to switch on/off based on specific needs or timings?",
+          qsnId: 1,
+        }
+      ],
+      logo:lightBulbSetting,
+      heading: "Control of External lights",
+    },
+    {
+      id: 24,
+      text: [
+        {
+          qsnText: "Has the feasibility of a solar thermal hot water system been assessed, and has the potential reduction in CO2 emissions been estimated?",
+          qsnId: 1,
+        }
+      ],
+      logo:insight,
+      heading: "Renewable Power Source - Industrial hot water",
+    },
+    {
+      id: 25,
       text: [
         {
           qsnText: "Have you considered conducting a feasibility study to explore the potential of generating renewable power on-site?",
@@ -434,7 +503,7 @@ function SurveyQuestionSection() {
       heading: "Onsite Renewable Energy Generation",
     },
     {
-      id: 21,
+      id: 26,
       text: [
         {
           qsnText: "Have you explored the possibility of incorporating daylighting technologies into the industrial design?",

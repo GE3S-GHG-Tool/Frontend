@@ -277,7 +277,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
         ],
       ],
       logo: alt_1,
-      heading: "Industrial Process Boilers",
+      heading: "Industrial Boilers",
       showTable: false,
     },
     {
@@ -410,7 +410,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
         "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
       ],
       answers: [
-        ["The thermography report highlighting"],
+        ["Thermal imaging carried out by a qualified thermographer."],
         [
           "The thermography report highlighting",
           "The defects in the building envelope",
