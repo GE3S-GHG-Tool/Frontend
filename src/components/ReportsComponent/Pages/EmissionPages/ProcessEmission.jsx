@@ -150,7 +150,7 @@ function ProcessEmission() {
               }}
               onClick={handleClickOpen} // Open the dialog on button click
             >
-              Add More
+              Add Data
             </Button>
           </Grid2>
         </Grid2>
