@@ -96,7 +96,7 @@ function DecarbonizationQsnAnsDiffUi10() {
               >
                 <ol style={{ padding: '5px 20px 5px 40px' }}>
                   <li style={{ lineHeight: '1.5rem' }}>
-                    The Exterior lighting levels in the industry development should comply with the limits specified in Table (attched in the next cell)</li>
+                    The Exterior lighting levels in the industry development should comply with the limits specified in Table (attached in the next cell)</li>
                 </ol>
               </Typography>
             </Grid2>

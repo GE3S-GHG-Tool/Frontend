@@ -111,12 +111,7 @@ function DecarbonizationQsnAnsWithUi11() {
                   <li>Timer control for operation at pre-set times.</li>
                 </ul>
               </Typography>
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
-              >
-                Exceptions: Process area / Machine area
-              </Typography>
+             
             </Grid2>
           </Grid2>
         </Paper>
