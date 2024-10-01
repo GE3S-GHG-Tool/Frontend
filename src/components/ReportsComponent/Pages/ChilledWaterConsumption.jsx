@@ -13,25 +13,25 @@ import Box from "@mui/material/Box";
 function ChilledWaterConsumption() {
   // Initialize fields with quantity and unit
   const [field, setField] = useState({ quantity: "", unit: "Ton-Hour" });
-
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const handleClearAll = () => {
-    setIsDropdownOpen(false);
-  };
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -72,7 +72,7 @@ function ChilledWaterConsumption() {
           </h2>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -130,7 +130,7 @@ function ChilledWaterConsumption() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box
@@ -174,7 +174,7 @@ function ChilledWaterConsumption() {
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter quantity"
+                placeholder="Add quantity"
                 sx={{
                   margin: '0',
                   border: '1px solid rgba(217, 217, 217, 0.0)',
