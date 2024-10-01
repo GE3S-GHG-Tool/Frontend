@@ -16,24 +16,24 @@ function DownstreamAssets() {
     physicalArea: "",
     totalPhysicalArea: "",
   });
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
 
-  const handleClearAll = () => {
-    setIsDropdownOpen(false);
-  };
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -74,7 +74,7 @@ function DownstreamAssets() {
           </h2>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -132,7 +132,7 @@ function DownstreamAssets() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box

@@ -16,8 +16,8 @@ function PurchasedGoods() {
   const [fields, setFields] = useState([
     { typeOfExpense: "", expenseValue: "", currency: "" },
   ]);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -50,18 +50,18 @@ function PurchasedGoods() {
     setFields(updatedFields);
   };
 
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
 
-  const handleClearAll = () => {
-    setIsDropdownOpen(false);
-  };
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -97,7 +97,7 @@ function PurchasedGoods() {
           </h2>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -155,7 +155,7 @@ function PurchasedGoods() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box

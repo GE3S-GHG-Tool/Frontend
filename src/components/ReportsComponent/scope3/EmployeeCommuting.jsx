@@ -14,20 +14,7 @@ function EmployeeCommuting() {
   const [fields, setFields] = useState([
     { vehicleType: "", numOfTrips: "", distanceTraveled: "" },
   ]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
-
-  const handleClearAll = () => {
-    setIsDropdownOpen(false);
-  };
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -65,6 +52,19 @@ function EmployeeCommuting() {
     setFields(updatedFields);
   };
 
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
+
   return (
     <div
       style={{
@@ -98,7 +98,9 @@ function EmployeeCommuting() {
             Employee Commuting
           </h2>
         </div>
-        <div style={{ position: "relative" }}>
+
+
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -156,7 +158,7 @@ function EmployeeCommuting() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box sx={{ marginBottom: "30px" }}>

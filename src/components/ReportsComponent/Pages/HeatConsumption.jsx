@@ -12,25 +12,26 @@ import del_icon from "../../../assets/images/del_icon.svg";
 function HeatConsumption() {
   // Initialize fields with quantity and unit
   const [field, setField] = useState({ quantity: "", unit: "MMBtu" });
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
 
-  const handleClearAll = () => {
-    setIsDropdownOpen(false);
-  };
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -66,7 +67,7 @@ function HeatConsumption() {
           </h2>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -124,7 +125,7 @@ function HeatConsumption() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box
@@ -167,7 +168,7 @@ function HeatConsumption() {
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter quantity"
+                placeholder="Add quantity"
                 sx={{
                   margin: '0',
                   border: '1px solid rgba(217, 217, 217, 0.0)',

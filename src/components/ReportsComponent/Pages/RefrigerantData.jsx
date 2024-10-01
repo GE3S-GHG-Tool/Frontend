@@ -16,7 +16,7 @@ function RefrigerantData() {
   const [fields, setFields] = useState([
     { refrigerant: "", quantity: "", unit: "" },
   ]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -46,21 +46,21 @@ function RefrigerantData() {
     setFields(updatedFields);
   };
 
-  const handleDotClick = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
-  const handleEdit = () => {
-    console.log("Edit clicked");
-    setIsDropdownOpen(false);
-  };
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
 
-  const handleClearAll = () => {
-    setFields([
-      { refrigerant: "", quantity: "", unit: "" },
-    ]);
-    setIsDropdownOpen(false);
-  };
+  // const handleClearAll = () => {
+  //   setFields([
+  //     { refrigerant: "", quantity: "", unit: "" },
+  //   ]);
+  //   setIsDropdownOpen(false);
+  // };
 
 
   return (
@@ -97,7 +97,7 @@ function RefrigerantData() {
           </h2>
         </div>
 
-        <div style={{ position: "relative" }}>
+        {/* <div style={{ position: "relative" }}>
           <img
             src={dot_Icon}
             alt="dot-icon"
@@ -155,7 +155,7 @@ function RefrigerantData() {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <Box
