@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Grid2, Typography } from "@mui/material";
+import { Box, Button, Grid2, Typography } from "@mui/material";
 import lock_Logo from "../../assets/images/Lock.svg";
 import { useNavigate } from "react-router-dom";
 import Scope1 from "./tabs/Scope1";
@@ -33,7 +33,7 @@ const tabs = [
   },
 ];
 function ReportStateEmpty() {
-  const [activeTab, setActiveTab] = useState("scope1"); // Track active tab
+  const [activeTab, setActiveTab] = useState("scope1");
   const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({
@@ -203,88 +203,6 @@ function ReportStateEmpty() {
 
         {/* Conditionally render content based on the active tab */}
         <div>{tabs.find((tab) => tab.id === activeTab)?.content}</div>
-
-        <Grid2
-          sx={{
-            padding: "25px 6rem 0px 6rem",
-            width: "100%",
-            height: "125px",
-            display: "flex",
-            flexDirection: "row",
-            gap: "10px",
-            justifyContent: "flex-end", // This moves the buttons to the right
-          }}
-        >
-          <Button
-            onClick={() => navigate("/")}
-            sx={{
-              borderRadius: "32px",
-              border: "1px solid #28814D",
-              padding: "8px 18px",
-              height: "38px",
-              fontWeight: "400",
-              fontSize: "12px",
-              width: "100px",
-              textTransform: "capitalize",
-              color: "#28814D",
-              '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
-              },
-            }}
-          >
-            Cancel
-          </Button>
-          {!isLastTab ? (
-            <Button
-              // onClick={() => navigate("/ghgreport")}
-              onClick={handleNextTab}
-              sx={{
-                borderRadius: "32px",
-                padding: "8px 18px",
-                height: "38px",
-                fontWeight: "400",
-                fontSize: "12px",
-                width: "100px",
-                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
-              },
-                textTransform: "capitalize",
-                color: "#FFFFFF",
-              }}
-            >
-              Next
-            </Button>
-          ) : null}
-
-          {isLastTab && (
-            <Button
-              onClick={() => navigate("/emissionreport")}
-              // onClick={handleNextTab}
-              sx={{
-                borderRadius: "32px",
-                padding: "8px 18px",
-                height: "38px",
-                fontWeight: "400",
-                fontSize: "12px",
-                width: "150px",
-                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                '&:hover': {
-                  background:
-                    "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                  boxShadow: 'none'
-                },
-                textTransform: "capitalize",
-                color: "#FFFFFF",
-              }}
-            >
-              Generate Report
-            </Button>
-          )}
-        </Grid2>
       </Grid2>
     </div>
   );

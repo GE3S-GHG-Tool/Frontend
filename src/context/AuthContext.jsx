@@ -10,22 +10,29 @@ export function useAuth() {
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
+  const [table, setTable] = useState([]);
 
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
 
   useEffect(() => {
     // Update authentication state when token changes
     if (token) {
-      getUSerData();
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
   }, [token]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUserData();
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [isAuthenticated]);
 
-  const getUSerData = async () => {
+  const getUserData = async () => {
     const user = await getUser();
-    // console.log(user?.data);
+    console.log("user:", user?.data);
     setUser(user?.data);
   };
   useEffect(() => {
@@ -46,6 +53,8 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     setIsAuthenticated,
     user,
+    setTable,
+    table,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

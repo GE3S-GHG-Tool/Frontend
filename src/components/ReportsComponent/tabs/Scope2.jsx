@@ -4,6 +4,7 @@ import DesalinatedWater from "../Pages/DesalinatedWater";
 import HeatConsumption from "../Pages/HeatConsumption";
 
 const Scope2 = () => {
+  
   return (
     <div
       style={{

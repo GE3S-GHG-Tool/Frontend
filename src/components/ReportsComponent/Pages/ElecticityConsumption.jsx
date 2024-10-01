@@ -1,15 +1,12 @@
-import { FormControl, Grid2, Select } from "@mui/material";
-import React from "react";
+import { FormControl, Grid2 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import electricity from "../../../assets/images/electricity.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
-import { TextField, MenuItem } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useState } from "react";
-import down_arrow from "../../../assets/images/down_arrow.svg";
 import Box from "@mui/material/Box";
 
 function ElectricityConsumption() {
-  // Initialize fields with quantity and unit
   const [field, setField] = useState({ quantity: "", unit: "KWh" });
 
   const handleChange = (event) => {
@@ -104,17 +101,17 @@ function ElectricityConsumption() {
                 type="number"
                 placeholder="Enter quantity"
                 sx={{
-                  margin: '0',
-                  border: '1px solid rgba(217, 217, 217, 0.0)',
-                  borderRadius: '5px',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  margin: "0",
+                  border: "1px solid rgba(217, 217, 217, 0.0)",
+                  borderRadius: "5px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
-                  '& .MuiOutlinedInput-input': {
-                    padding: '11px 16px',
+                  "& .MuiOutlinedInput-input": {
+                    padding: "11px 16px",
                   },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
                 }}
               />
@@ -132,27 +129,26 @@ function ElectricityConsumption() {
                   variant="outlined"
                   fullWidth
                   sx={{
-                    margin: '0',
-                    border: '1px solid rgba(217, 217, 217, 0.0)',
-                    borderRadius: '5px',
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    margin: "0",
+                    border: "1px solid rgba(217, 217, 217, 0.0)",
+                    borderRadius: "5px",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(217, 217, 217, 0.30)",
                     },
-                    '& .MuiOutlinedInput-input': {
-                      padding: '11px 16px',
-                      color: 'black', // Set the text color to black
+                    "& .MuiOutlinedInput-input": {
+                      padding: "11px 16px",
+                      color: "black", // Set the text color to black
                     },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(217, 217, 217, 0.30)",
                     },
-                    '& .MuiInputBase-input.Mui-disabled': {
-                      color: 'grey !important',
-                      WebkitTextFillColor: 'black !important',
+                    "& .MuiInputBase-input.Mui-disabled": {
+                      color: "grey !important",
+                      WebkitTextFillColor: "black !important",
                       opacity: 1,
                     },
                   }}
                 />
-
               </FormControl>
             </Grid2>
           </Grid2>

@@ -32,12 +32,14 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import ResetOTP from "./components/ResetPassword/ResetOTP";
 import TotalEmissionsInventoryReport from "./components/EmissionsInventoryReport/TotalEmissionsInventoryReport";
+import Test from "./components/ReportsComponent/Pages/test";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route index path="/signup" element={<SignUp />} />
+        <Route index path="/test" element={<Test />} />
         <Route path="/home" element={<Home />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/personalinfo" element={<PersonalInfo />} />

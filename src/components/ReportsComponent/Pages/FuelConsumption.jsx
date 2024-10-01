@@ -5,14 +5,14 @@ import fuelLogo from "../../../assets/images/fuel_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
 
 function FuelConsumption() {
   // Initialize fields with one empty row
   const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
-
+  console.log(fields);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -37,7 +37,7 @@ function FuelConsumption() {
     if (isRowComplete && index === fields.length - 1) {
       setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
     }
-  }
+  };
 
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
@@ -139,19 +139,23 @@ function FuelConsumption() {
                       placeholder="Select Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiSelect-select': {
-                          padding: '11px 16px',
-                        }
+                        "& .MuiSelect-select": {
+                          padding: "11px 16px",
+                        },
                       }}
                     >
                       <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
+                        <span
+                          style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
+                        >
+                          Select Type
+                        </span>
                       </MenuItem>
                       <MenuItem value={"Petrol"}>Petrol</MenuItem>
                       <MenuItem value={"CNG"}>CNG</MenuItem>
@@ -178,17 +182,17 @@ function FuelConsumption() {
                       type="number"
                       placeholder="Enter quantity"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "11px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -210,21 +214,21 @@ function FuelConsumption() {
                         variant="outlined"
                         fullWidth
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          margin: "0",
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiOutlinedInput-input': {
-                            padding: '11px 16px',
+                          "& .MuiOutlinedInput-input": {
+                            padding: "11px 16px",
                           },
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiInputBase-input.Mui-disabled': {
-                            color: 'grey !important',
-                            WebkitTextFillColor: 'black !important',
+                          "& .MuiInputBase-input.Mui-disabled": {
+                            color: "grey !important",
+                            WebkitTextFillColor: "black !important",
                             opacity: 1,
                           },
                         }}

@@ -1,21 +1,16 @@
 import { Grid2, Button } from "@mui/material";
-import React from "react";
 import Typography from "@mui/material/Typography";
 import porces_Logo from "../../../../assets/images/emisson_logo.svg";
 import dot_Icon from "../../../../assets/images/DotsThreeVertical.svg";
 import TablesData from "../TablesData";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
+import { Dialog } from "@mui/material";
 import { useState } from "react";
 import ProcessEmissionReports from "./ProcessEmissionReports";
 function ProcessEmission() {
   // State to control dialog visibility
   const [open, setOpen] = useState(false);
-
+  const [tableData, setTaleData] = useState([]);
+  // console.log("tableData2", tableData2);
   // Function to open the dialog
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,34 +30,33 @@ function ProcessEmission() {
     "Quantity",
   ];
 
-  const tableData = [
-    [
-      "Waste Gas Disposal",
-      "Flaringy",
-      "Heavy oil/ cold bitumen Production",
-      "-",
-      "-",
-      "56 10^3*m3",
-    ],
-    ["Waste Gas Disposal", "Flaringy", "Refining", "-", "-", "12 10^3*m3"],
-    [
-      "Process and Vented",
-      "Oil and Gas Exploration",
-      "Well Completion",
-      "Offshore",
-      "Gas",
-      "45",
-    ],
-    [
-      "Process and Vented",
-      "Natural Gas Processing",
-      "Natural G...",
-      "Gas-Driv...",
-      "Gas",
-      "68",
-    ],
-  
-  ];
+  // const tableData = [
+  //   [
+  //     "Waste Gas Disposal",
+  //     "Flaringy",
+  //     "Heavy oil/ cold bitumen Production",
+  //     "-",
+  //     "-",
+  //     "56 10^3*m3",
+  //   ],
+  //   ["Waste Gas Disposal", "Flaringy", "Refining", "-", "-", "12 10^3*m3"],
+  //   [
+  //     "Process and Vented",
+  //     "Oil and Gas Exploration",
+  //     "Well Completion",
+  //     "Offshore",
+  //     "Gas",
+  //     "45",
+  //   ],
+  //   [
+  //     "Process and Vented",
+  //     "Natural Gas Processing",
+  //     "Natural G...",
+  //     "Gas-Driv...",
+  //     "Gas",
+  //     "68",
+  //   ],
+  // ];
 
   return (
     <div>
@@ -101,12 +95,7 @@ function ProcessEmission() {
               <div
                 style={{ display: "flex", alignItems: "center", gap: "6px" }}
               >
-                <img
-                  src={porces_Logo}
-                 width={18}
-                 height={20}
-                  alt="fuel-logo"
-                />
+                <img src={porces_Logo} width={18} height={20} alt="fuel-logo" />
                 <h2
                   style={{
                     fontSize: "16px",
@@ -139,7 +128,7 @@ function ProcessEmission() {
           <Grid2>
             <Button
               sx={{
-               borderRadius: "32px",
+                borderRadius: "32px",
                 border: "1px solid #28814D",
                 padding: "4px 12px",
                 height: "36px",
@@ -170,7 +159,10 @@ function ProcessEmission() {
           },
         }}
       >
-        <ProcessEmissionReports onClose={handleClose} />
+        <ProcessEmissionReports
+          onClose={handleClose}
+          setTaleData={setTaleData}
+        />
       </Dialog>
     </div>
   );
