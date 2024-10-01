@@ -907,7 +907,7 @@ const MyTable6 = () => {
               border: "1px solid #00191D",
             }}
           >
-            5
+            6
           </TableCell>
           <TableCell
             sx={{
@@ -929,7 +929,7 @@ const MyTable6 = () => {
               border: "1px solid #00191D",
             }}
           >
-            5
+            12
           </TableCell>
         </TableRow>
         <TableRow>
@@ -953,7 +953,7 @@ const MyTable6 = () => {
               border: "1px solid #00191D",
             }}
           >
-            6
+            9
           </TableCell>
           <TableCell
             sx={{
@@ -999,7 +999,7 @@ const MyTable6 = () => {
               border: "1px solid #00191D",
             }}
           >
-            9
+            10
           </TableCell>
           <TableCell
             sx={{
@@ -1021,7 +1021,7 @@ const MyTable6 = () => {
               border: "1px solid #00191D",
             }}
           >
-            12
+            
           </TableCell>
         </TableRow>
         <TableRow>
