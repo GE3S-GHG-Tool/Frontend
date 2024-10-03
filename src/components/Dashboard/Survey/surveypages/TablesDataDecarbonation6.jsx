@@ -14,7 +14,7 @@ const MyTable6 = () => {
         borderCollapse: "collapse",
         border: "1px solid #00191D",
         width: "100%",
-        mt:'4rem'
+        mt: '4rem'
       }}
     >
       <TableHead>
@@ -74,7 +74,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -85,7 +85,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -97,7 +97,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -108,7 +108,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -121,7 +121,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -132,7 +132,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -143,7 +143,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -154,7 +154,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -167,7 +167,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -178,7 +178,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -189,7 +189,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -200,7 +200,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -213,7 +213,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -224,7 +224,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -235,7 +235,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -246,7 +246,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -259,7 +259,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -270,18 +270,18 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            19
+            13
           </TableCell>
           <TableCell
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -292,7 +292,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -305,7 +305,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -316,7 +316,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -327,7 +327,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -338,7 +338,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -351,7 +351,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -362,7 +362,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -373,7 +373,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -384,7 +384,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -397,7 +397,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -408,7 +408,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -419,7 +419,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -430,7 +430,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -443,7 +443,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -454,18 +454,18 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            5
+            15
           </TableCell>
           <TableCell
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -476,7 +476,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -489,7 +489,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -500,7 +500,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -511,7 +511,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -522,7 +522,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -535,7 +535,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -546,7 +546,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -557,7 +557,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -568,7 +568,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -582,7 +582,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -593,7 +593,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -604,7 +604,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -615,7 +615,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -628,7 +628,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -639,7 +639,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -650,18 +650,18 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            Laundry.Washing
+            Automative-Service Repair
           </TableCell>
           <TableCell
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -673,7 +673,7 @@ const MyTable6 = () => {
           <TableCell
             sx={{
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -683,7 +683,7 @@ const MyTable6 = () => {
           <TableCell
             sx={{
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -694,7 +694,7 @@ const MyTable6 = () => {
             colSpan={2} // This makes the cell span across two columns
             sx={{
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -707,7 +707,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -718,7 +718,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -729,7 +729,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -740,7 +740,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -753,7 +753,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -764,7 +764,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -775,7 +775,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -786,7 +786,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -799,7 +799,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -810,7 +810,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -821,7 +821,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -832,7 +832,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -845,7 +845,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -856,7 +856,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -867,7 +867,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -878,12 +878,12 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            11
+            13
           </TableCell>
         </TableRow>
         <TableRow>
@@ -891,7 +891,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -902,18 +902,18 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            6
+            5
           </TableCell>
           <TableCell
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -924,12 +924,12 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            12
+            5
           </TableCell>
         </TableRow>
         <TableRow>
@@ -937,7 +937,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -948,18 +948,18 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            9
+            6
           </TableCell>
           <TableCell
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -970,7 +970,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -983,7 +983,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -994,34 +994,34 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            10
+            9
           </TableCell>
           <TableCell
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            Museum
+            Dormitory-Living Quarters
           </TableCell>
           <TableCell
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
           >
-            
+            12
           </TableCell>
         </TableRow>
         <TableRow>
@@ -1029,7 +1029,43 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
+              fontSize: "12px",
+              border: "1px solid #00191D",
+            }}
+          >
+            For Hospital
+          </TableCell>
+          <TableCell
+            sx={{
+              width: "20vh",
+              textAlign: "center",
+              fontWeight: "normal",
+              fontSize: "12px",
+              border: "1px solid #00191D",
+            }}
+          >
+            10
+          </TableCell>
+          <TableCell
+            colSpan={2}
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: "normal",
+              fontSize: "12px",
+              border: "1px solid #00191D",
+            }}
+          >
+            Museum
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell
+            sx={{
+              width: "30vh",
+              textAlign: "left",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -1040,7 +1076,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -1051,7 +1087,7 @@ const MyTable6 = () => {
             sx={{
               width: "30vh",
               textAlign: "left",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}
@@ -1062,7 +1098,7 @@ const MyTable6 = () => {
             sx={{
               width: "20vh",
               textAlign: "center",
-              fontWeight:"normal",
+              fontWeight: "normal",
               fontSize: "12px",
               border: "1px solid #00191D",
             }}

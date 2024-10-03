@@ -42,7 +42,6 @@ function DecarbonizationQsnAnsWithUl() {
               color="#000"
             >
               Energy Conservation Techniques and Thermal Insulation
-              <br />
               (Applicable for both Air-conditioned and Non-Air-Conditioned
               buildings)
             </Typography>
