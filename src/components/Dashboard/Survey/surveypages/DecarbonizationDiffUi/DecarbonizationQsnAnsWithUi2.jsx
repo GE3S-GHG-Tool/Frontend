@@ -131,9 +131,7 @@ function DecarbonizationQsnAnsWithUl2() {
                 </Typography>
               </Box>
               <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
-                Has interior thermal imaging been conducted for
-                air-conditioned/climate-controlled spaces to identify potential
-                building defects?
+              If leaks or gaps were identified, have appropriate corrective actions been taken to address them?
               </Typography>
             </Grid2>
 

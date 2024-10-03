@@ -455,7 +455,7 @@ function SurveyQuestionSection() {
           qsnId: 1,
         }
       ],
-      logo: solar_panel,
+      logo: insight,
       heading: "Automated lighting control / motion sensor for internal lighting",
     },
     {
@@ -488,7 +488,7 @@ function SurveyQuestionSection() {
           qsnId: 1,
         }
       ],
-      logo:insight,
+      logo:solar_panel,
       heading: "Renewable Power Source - Industrial hot water",
     },
     {
