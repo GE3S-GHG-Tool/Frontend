@@ -100,7 +100,7 @@ function DecarbonizationQsnAnsWithUi4() {
                     Zoning the condition area.
                   </li>
                   <li style={{ lineHeight: '1.5rem' }}>
-                    Select the Air- Conditioning equipment.
+                  Perform the Heat load calculations.
                   </li>
                   <li style={{ lineHeight: '1.5rem' }}>
                     Select the Air- Conditioning equipment
