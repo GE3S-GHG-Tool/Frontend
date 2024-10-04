@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import image from "../../assets/images/nodata.png";
 import StartReportModal from "../Modals/StartReportModal";
 import DraftCard from "./DraftCard";
@@ -10,6 +10,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [year, setYear] = useState(false);
+  // const [draftReports, setReports] = useState([]);
+
+  // useEffect(() => {
+
+  // },[])
 
   return (
     <div>
