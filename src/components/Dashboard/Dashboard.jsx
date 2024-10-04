@@ -6,15 +6,30 @@ import { useNavigate } from "react-router-dom";
 import ReportList from "./ReportList/ReportList";
 import FootprintChart from "./charts/FootprintChart";
 import { FormControl, MenuItem, Select } from "@mui/material";
+import { getDraftReports } from "../../api/reports.apis";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [year, setYear] = useState(false);
-  // const [draftReports, setReports] = useState([]);
+  const [draftReports, setDraftReports] = useState([]);
 
-  // useEffect(() => {
+  const fetchReports = async () => {
+    try {
+      const response = await getDraftReports(); // Use your existing API function
+      if (response?.data?.success) {
+        setDraftReports(response?.data?.reports); // Assuming the reports data is in response.data.reports
+      } else {
+        console.error("Failed to fetch reports");
+      }
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    }
+  };
 
-  // },[])
+  // Fetch reports when component mounts
+  useEffect(() => {
+    fetchReports();
+  }, []);
 
   return (
     <div>
@@ -276,9 +291,13 @@ const Dashboard = () => {
               gap: "20px",
             }}
           >
-            <DraftCard />
-            <DraftCard />
-            <DraftCard />
+           {draftReports?.map((item) => {
+            return (
+<DraftCard key={item?._id} report={item} />
+            )
+           })  }
+            {/* <DraftCard />
+            <DraftCard /> */}
             <div className="view_all_report_cta">
               <span onClick={() => navigate("/report")}>View All</span>
             </div>
