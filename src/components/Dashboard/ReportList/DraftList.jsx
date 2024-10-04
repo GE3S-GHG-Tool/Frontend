@@ -1,25 +1,31 @@
-import { useState } from "react";
-
-const members = [
-  {
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "3 days ago",
-  },
-  {
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "5 days ago",
-  },
-];
+import { useEffect, useState } from "react";
+import { getDraftReports } from "../../../api/reports.apis"; // Adjust the path based on your project structure
 
 const DraftList = ({ searchQuery }) => {
+  const [reports, setReports] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
   });
+
+  // Function to fetch draft reports from the API
+  const fetchReports = async () => {
+    try {
+      const response = await getDraftReports(); // Use your existing API function
+      if (response?.data?.success) {
+        setReports(response.data.reports); // Assuming the reports data is in response.data.reports
+      } else {
+        console.error("Failed to fetch reports");
+      }
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    }
+  };
+
+  // Fetch reports when component mounts
+  useEffect(() => {
+    fetchReports();
+  }, []);
 
   const handleSort = (key) => {
     let direction = "ascending";
@@ -29,7 +35,7 @@ const DraftList = ({ searchQuery }) => {
     setSortConfig({ key, direction });
   };
 
-  const sortedMembers = [...members].sort((a, b) => {
+  const sortedReports = [...reports].sort((a, b) => {
     if (sortConfig.key) {
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "ascending" ? -1 : 1;
@@ -41,11 +47,13 @@ const DraftList = ({ searchQuery }) => {
     return 0;
   });
 
-  // const filteredMembers = sortedMembers.filter(
-  //   (member) =>
-  //     member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     member.facility.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+  // Filter the reports based on the search query
+  const filteredReports = sortedReports.filter(
+    (report) =>
+      report.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      report.year.toString().includes(searchQuery.toLowerCase()) ||
+      report.periodicity.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="table-container">
@@ -58,7 +66,7 @@ const DraftList = ({ searchQuery }) => {
             <th className="member-table-head">
               Last Edit
               <button
-                onClick={() => handleSort("lastActive")}
+                onClick={() => handleSort("updatedAt")}
                 className="sort-button"
               >
                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
@@ -86,12 +94,12 @@ const DraftList = ({ searchQuery }) => {
           </tr>
         </thead>
         <tbody>
-          {sortedMembers.map((member, index) => (
+          {filteredReports.map((report, index) => (
             <tr key={index}>
-              <td>{member.reportName}</td>
-              <td>{member.year}</td>
-              <td>{member.month}</td>
-              <td>{member.date}</td>
+              <td>{report.name}</td>
+              <td>{report.year}</td>
+              <td>{report.periodicity}</td>
+              <td>{new Date(report.updatedAt).toLocaleDateString()}</td>
             </tr>
           ))}
         </tbody>
