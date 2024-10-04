@@ -30,9 +30,6 @@ jobs:
           echo "${{ secrets.EC2_SECRET }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Zip the project
         run: |
           sudo npm i
