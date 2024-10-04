@@ -16,7 +16,7 @@ import Scope3Card from "./components/Scope3Card";
 import StackedBarChart from "./Charts/StackedBarChart";
 import FullWidthStackedBarChart from "./Charts/LineChart";
 import LineChart from "./Charts/LineChart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getScope1Data,
   getScope2Data,
@@ -353,6 +353,7 @@ const businesspallete = {
 };
 
 const TotalEmissionsInventoryReport = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -413,8 +414,8 @@ const TotalEmissionsInventoryReport = () => {
   //     key: "34%",
   //   },
   // ];
-  const fetchData = async () => {
-    const response = await getScope1Data();
+  const fetchData = async (id) => {
+    const response = await getScope1Data(id);
     // console.log("scope1 data:", response?.data);
     setScope1Data([
       {
@@ -470,8 +471,8 @@ const TotalEmissionsInventoryReport = () => {
     setRefrigerantEmissionsData(refData);
     setFuelTypeEmissionBreakdownData(transformedData);
   };
-  const scopeData2 = async () => {
-    const response = await getScope2Data();
+  const scopeData2 = async (id) => {
+    const response = await getScope2Data(id);
     // console.log("scope2 data:", response?.data);
     setScope2Data([
       {
@@ -539,8 +540,8 @@ const TotalEmissionsInventoryReport = () => {
     },
   ];
 
-  const scopeData3 = async () => {
-    const response = await getScope3Data();
+  const scopeData3 = async (id) => {
+    const response = await getScope3Data(id);
     console.log("scope3 data:", response?.data);
     setScope3Data([
       {
@@ -643,10 +644,10 @@ const TotalEmissionsInventoryReport = () => {
   };
 
   useEffect(() => {
-    fetchData();
-    scopeData2();
-    scopeData3();
-  }, []);
+    fetchData(id);
+    scopeData2(id);
+    scopeData3(id);
+  }, [id]);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -1020,7 +1021,7 @@ const TotalEmissionsInventoryReport = () => {
                 }}
               />
               <div className="sustainability-heading_title">
-                <h1>Star Bucks</h1> <h2>I</h2> <h2>Delhi For Q3 2024</h2>
+                <h1>Report 2024 </h1> <h2>I</h2> <h2>Delhi For Q3 2024</h2>
               </div>
             </div>
             <div

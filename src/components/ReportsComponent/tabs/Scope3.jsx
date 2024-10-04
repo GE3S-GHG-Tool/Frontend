@@ -177,12 +177,33 @@ const Scope3 = () => {
       businessTravel: [
         {
           travel_class: "Economy",
-          distance_km: 1200,
+          connections: 1,
+          airports: [
+            {
+              name: "Indira Gandhi International",
+              latitude: 28.556555,
+              longitude: 77.10079,
+            },
+            { name: "Bateen", latitude: 24.419167, longitude: 54.451668 },
+            {
+              name: "Sardar Vallabhbhai Patel International Airport",
+              latitude: 23.06639,
+              longitude: 72.62417,
+            },
+          ],
           num_trips: 3,
         },
         {
           travel_class: "Business",
-          distance_km: 5000,
+          connections: 0,
+          airports: [
+            {
+              name: "Indira Gandhi International",
+              latitude: 28.556555,
+              longitude: 77.10079,
+            },
+            { name: "Bateen", latitude: 24.419167, longitude: 54.451668 },
+          ],
           num_trips: 1,
         },
       ],
@@ -199,8 +220,8 @@ const Scope3 = () => {
     console.log(payload);
     const response = await saveScope3Report(payload);
     console.log(response);
-    if (response.status === "201") {
-      navigate("/emissionreport");
+    if (response.status === 201) {
+      navigate(`/emissionreport/${reportid}`);
     } else {
       alert("Something went wrong");
     }

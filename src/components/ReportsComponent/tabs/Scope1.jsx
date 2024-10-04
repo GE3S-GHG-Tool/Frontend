@@ -40,10 +40,8 @@ const Scope1 = ({ setActiveTab }) => {
     console.log(payload);
     const response = await saveScope1Report(payload);
     console.log(response);
-    if (response.status === "201") {
+    if (response.status === 201) {
       setActiveTab("scope2");
-    } else {
-      alert("Something went wrong");
     }
   };
   return (
