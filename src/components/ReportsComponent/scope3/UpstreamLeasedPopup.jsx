@@ -8,39 +8,53 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import upstream from "../../../assets/images/upstream.svg";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { getUpstreams } from "../../../api/createReport";
+import { useScope3 } from "../../../context/Scope3Context";
 
 const UpstreamLeasedPopup = ({ onClose }) => {
   // State with one initial row
-
+  const { upStreamData, setUpStreamData } = useScope3();
   const initialState = [
     {
       assetType: "",
       sourceOfEnergy: "",
       quantity: "",
       unit: "",
+      sourceid: "",
     },
   ];
 
   const [fields, setFields] = useState(initialState);
-
+  const [assetMenu, setAssetMenu] = useState([]);
+  const [energyMenu, setEnergyMenu] = useState([]);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
     updatedFields[index][name] = value;
     setFields(updatedFields);
 
-    // Check if the current row is complete
-    const isRowComplete = Object.values(updatedFields[index]).every(
-      (field) => field.trim() !== ""
+    if (name === "sourceOfEnergy") {
+      const selectedAsset = energyMenu.find((item) => item._id === value);
+      // console.log(selectedAsset);
+      updatedFields[index]["unit"] = selectedAsset.units;
+      updatedFields[index]["sourceOfEnergy"] = selectedAsset.source_of_energy;
+      updatedFields[index]["sourceid"] = selectedAsset._id;
+      setFields(updatedFields);
+    }
+    const hasQuantityField = Object.prototype.hasOwnProperty.call(
+      updatedFields[index],
+      "quantity"
     );
+    const isQuantityFilled =
+      hasQuantityField && updatedFields[index].quantity.trim() !== "";
 
-    // If the row is complete, add a new row
-    if (isRowComplete && index === fields.length - 1) {
+    // If the row has a quantity field and it is filled, add a new row
+    if (isQuantityFilled && index === fields.length - 1) {
       setFields([
         ...updatedFields,
         {
@@ -48,6 +62,7 @@ const UpstreamLeasedPopup = ({ onClose }) => {
           sourceOfEnergy: "",
           quantity: "",
           unit: "",
+          sourceid: "",
         },
       ]);
     }
@@ -57,7 +72,35 @@ const UpstreamLeasedPopup = ({ onClose }) => {
     const updatedFields = fields.filter((_, i) => i !== index);
     setFields(updatedFields);
   };
+  const save = () => {
+    setUpStreamData(fields);
+    onClose();
+  };
+  const fetchData = async () => {
+    const response = await getUpstreams();
+    setAssetMenu(response?.data.asset_types);
+    setEnergyMenu(response?.data.sources_of_energy);
+    // console.log(response);
+  };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(upStreamData);
+    if (upStreamData && upStreamData.length > 0) {
+      // console.log("gg", upStreamData);
+      const upStreamDataFields = upStreamData.map((item) => ({
+        assetType: item.assetType || "",
+        sourceOfEnergy: item.sourceOfEnergy || "",
+        quantity: item.quantity || "",
+        unit: item.unit,
+        sourceid: item.sourceid,
+      }));
+      setFields(upStreamDataFields);
+    }
+  }, [upStreamData]);
   return (
     <Box
       sx={{
@@ -163,7 +206,6 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                     Asset Type
                   </Typography>
                   <FormControl fullWidth>
-
                     <Select
                       name="assetType"
                       value={field.assetType}
@@ -172,23 +214,22 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       placeholder="Select Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiSelect-select': {
-                          padding: '9px 16px',
-                        }
+                        "& .MuiSelect-select": {
+                          padding: "9px 16px",
+                        },
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
-                      </MenuItem>
-                      <MenuItem value={"Building"}>Building</MenuItem>
-                      <MenuItem value={"Vehicle"}>Vehicle</MenuItem>
-                      <MenuItem value={"Machinery"}>Machinery</MenuItem>
+                      {assetMenu?.map((asset, index) => (
+                        <MenuItem key={index} value={asset.asset_type}>
+                          {asset?.asset_type}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -202,32 +243,25 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                     >
                       Source of Energy
                     </Typography>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth size="small">
                       <Select
                         name="sourceOfEnergy"
-                        value={field.sourceOfEnergy}
+                        value={field.sourceid || ""}
                         onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Source of Energy"
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
                         }}
                       >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Source of Energy</span>
-                        </MenuItem>
-                        <MenuItem value={"Electricity"}>Electricity</MenuItem>
-                        <MenuItem value={"Diesel"}>Diesel</MenuItem>
-                        <MenuItem value={"Solar"}>Solar</MenuItem>
+                        {energyMenu?.map((asset, index) => (
+                          <MenuItem key={index} value={asset._id}>
+                            {asset?.source_of_energy}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </Grid2>
@@ -243,6 +277,7 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       Quantity
                     </Typography>
                     <TextField
+                      size="small"
                       name="quantity"
                       value={field.quantity}
                       onChange={(e) => handleChange(index, e)}
@@ -251,17 +286,16 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       type="number"
                       placeholder="Enter quantity"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -269,7 +303,7 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                 )}
 
                 {/* Unit */}
-                {field.quantity && (
+                {field.sourceOfEnergy && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -277,36 +311,21 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                     >
                       Unit
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="unit"
-                        value={field.unit}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Unit"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: '0',
-                          // border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Unit</span>
-                        </MenuItem>
-                        <MenuItem value="Kilowatt-Hours">
-                          Kilowatt-Hours
-                        </MenuItem>
-                        <MenuItem value="Liters">Liters</MenuItem>
-                        <MenuItem value="Gallons">Gallons</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      size="small"
+                      name="unit"
+                      value={field.unit}
+                      onChange={(e) => handleChange(index, e)}
+                      variant="outlined"
+                      fullWidth
+                      sx={{
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                      }}
+                    />
                   </Grid2>
                 )}
               </Grid2>
@@ -318,7 +337,7 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                   height: "55px",
                 }}
               >
-                {Object.values(field).every((val) => val.trim() !== "") && (
+                {field?.quantity?.trim() !== "" && (
                   <img
                     src={trash}
                     alt="Delete"
@@ -326,16 +345,6 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       height: "100%",
                       width: "100%",
                       cursor: "pointer",
-                      visibility: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "visible"
-                        : "hidden",
-                      pointerEvents: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "auto"
-                        : "none", // Disable interaction if not all fields are filled
                     }}
                     onClick={() => handleDelete(index)}
                   />
@@ -361,16 +370,16 @@ const UpstreamLeasedPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
-            '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
-              },
+            "&:hover": {
+              background: "rgba(177, 233, 216, 0.30)",
+            },
           }}
         >
           Clear All
         </Button>
 
         <Button
+          onClick={save}
           sx={{
             borderRadius: "32px",
             height: "38px",
@@ -380,11 +389,10 @@ const UpstreamLeasedPopup = ({ onClose }) => {
             textTransform: "capitalize",
             color: "#FFFFFF",
             background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
-              },
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
           }}
         >
           Save

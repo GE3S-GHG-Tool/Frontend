@@ -8,43 +8,66 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import capital from "../../../assets/images/capitalGoods.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useScope3 } from "../../../context/Scope3Context";
+import { getAssetType } from "../../../api/createReport";
 const CapitalGoodsPopup = ({ onClose }) => {
-  // State with one initial row
+  const { capitalGoods, setCapitalGoods } = useScope3();
+
+  const [assetMenu, setAssetMenu] = useState([]);
   const [fields, setFields] = useState([
     {
       assetType: "",
       assetCategory: "",
-      Expenses: "",
-      currency: "",
+      expenses: "",
+      assetTypeName: "",
     },
   ]);
+  console.log("capital goods:", fields);
+  useEffect(() => {
+    if (capitalGoods && capitalGoods.length > 0) {
+      console.log("gg", capitalGoods);
+      const capitalGoodsFields = capitalGoods.map((item) => ({
+        assetType: item.assetType || "",
+        assetCategory: item.assetCategory || "",
+        expenses: item.expenses || "",
+        assetTypeName: item.assetTypeName,
+      }));
+      setFields(capitalGoodsFields);
+    }
+  }, [capitalGoods]);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
+
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+
+    if (name === "assetType") {
+      const selectedAsset = assetMenu.find((asset) => asset._id === value); // Find the selected asset object by `_id`
+      updatedFields[index].assetType = selectedAsset; // Store the full asset object
+      updatedFields[index].assetTypeName = selectedAsset?.asset_type; // Store the asset type name
+      updatedFields[index].assetCategory = selectedAsset?.asset_category; // Store the corresponding asset category
+    } else {
+      updatedFields[index][name] = value;
+    }
+
     setFields(updatedFields);
 
-    // Check if the current row is complete
-    const isRowComplete = Object.values(updatedFields[index]).every(
-      (field) => field.trim() !== ""
-    );
+    // Check if expenses field is filled and add a new empty object if it's the last one
+    const hasExpensesValue = updatedFields[index].expenses.trim() !== "";
 
-    // If the row is complete, add a new row
-    if (isRowComplete && index === fields.length - 1) {
+    if (hasExpensesValue && index === fields.length - 1) {
       setFields([
         ...updatedFields,
         {
           assetType: "",
+          assetTypeName: "", // Include the assetTypeName for new empty field
           assetCategory: "",
-          Expenses: "",
-          currency: "",
+          expenses: "",
         },
       ]);
     }
@@ -55,6 +78,20 @@ const CapitalGoodsPopup = ({ onClose }) => {
     setFields(updatedFields);
   };
 
+  const save = () => {
+    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    setCapitalGoods(fields);
+    onClose();
+  };
+  const fetchData = async () => {
+    const response = await getAssetType();
+    // console.log("assetmenu", response?.data?.asset_types);
+    setAssetMenu(response?.data?.asset_types);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Box
       sx={{
@@ -154,32 +191,26 @@ const CapitalGoodsPopup = ({ onClose }) => {
                   >
                     Asset Type
                   </Typography>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth size="small">
                     <Select
                       name="assetType"
-                      value={field.assetType}
+                      value={field?.assetType?._id || ""}
                       onChange={(e) => handleChange(index, e)}
-                      displayEmpty
                       placeholder="Select Asset Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiSelect-select': {
-                          padding: '9px 16px',
-                        }
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Asset Type</span>
-                      </MenuItem>
-                      <MenuItem value={"Machinery"}>Machinery</MenuItem>
-                      <MenuItem value={"Vehicles"}>Vehicles</MenuItem>
-                      <MenuItem value={"Computers"}>Computers</MenuItem>
+                      {assetMenu?.map((asset, index) => (
+                        <MenuItem key={index} value={asset._id}>
+                          {asset?.asset_type}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -193,40 +224,12 @@ const CapitalGoodsPopup = ({ onClose }) => {
                     >
                       Asset Category
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="assetCategory"
-                        value={field.assetCategory}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Asset Category"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Asset Category</span>
-                        </MenuItem>
-                        <MenuItem value={"Industrial Equipment"}>
-                          Industrial Equipment
-                        </MenuItem>
-                        <MenuItem value={"Office Equipment"}>
-                          Office Equipment
-                        </MenuItem>
-                        <MenuItem value={"Transportation"}>
-                          Transportation
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
+
+                    <TextField
+                      disabled
+                      size="small"
+                      value={field.assetCategory}
+                    />
                   </Grid2>
                 )}
 
@@ -240,69 +243,28 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       Expenses
                     </Typography>
                     <TextField
-                      name="Expenses"
-                      value={field.Expenses}
+                      name="expenses"
+                      value={field.expenses}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
                       type="number"
                       placeholder="Enter expenses"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
-                  </Grid2>
-                )}
-
-                {/* Currency */}
-                {field.Expenses && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Currency
-                    </Typography>
-                    <FormControl fullWidth>
-                      
-                      <Select
-                       name="currency"
-                        value={field.currency}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                      placeholder="Select Currency"
-                      IconComponent={KeyboardArrowDownIcon}
-                      sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
-                        },
-                        '& .MuiSelect-select': {
-                          padding: '9px 16px',
-                        }
-                      }}
-                    >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Currency</span>
-                      </MenuItem>
-                      <MenuItem value="USD">USD</MenuItem>
-                        <MenuItem value="EUR">EUR</MenuItem>
-                        <MenuItem value="GBP">GBP</MenuItem>
-                    </Select>
-                    </FormControl>
                   </Grid2>
                 )}
               </Grid2>
@@ -311,27 +273,16 @@ const CapitalGoodsPopup = ({ onClose }) => {
               <div
                 style={{
                   width: "20px",
-                  height: "55px",
+                  cursor: "pointer",
                 }}
               >
-                {Object.values(field).every((val) => val.trim() !== "") && (
+                {field.expenses.trim() !== "" && (
                   <img
                     src={trash}
                     alt="Delete"
                     style={{
                       height: "100%",
                       width: "100%",
-                      cursor: "pointer",
-                      visibility: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "visible"
-                        : "hidden",
-                      pointerEvents: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "auto"
-                        : "none", // Disable interaction if not all fields are filled
                     }}
                     onClick={() => handleDelete(index)}
                   />
@@ -356,16 +307,16 @@ const CapitalGoodsPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
-            '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
-              },
+            "&:hover": {
+              background: "rgba(177, 233, 216, 0.30)",
+            },
           }}
         >
           Clear All
         </Button>
 
         <Button
+          onClick={save}
           sx={{
             borderRadius: "32px",
             height: "38px",
@@ -375,11 +326,10 @@ const CapitalGoodsPopup = ({ onClose }) => {
             textTransform: "capitalize",
             color: "#FFFFFF",
             background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
-              },
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
           }}
         >
           Save

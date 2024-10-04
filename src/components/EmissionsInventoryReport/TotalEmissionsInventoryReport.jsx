@@ -17,64 +17,15 @@ import StackedBarChart from "./Charts/StackedBarChart";
 import FullWidthStackedBarChart from "./Charts/LineChart";
 import LineChart from "./Charts/LineChart";
 import { useNavigate } from "react-router-dom";
-
-const Scope1Data = [
-  { label: "Fuel Consumption", value: 600, color: "#028A60", key: "60%" },
-  { label: "Refrigerant Data", value: 250, color: "#02B880", key: "25%" },
-  { label: "Process Emission", value: 150, color: "#B1E9D8", key: "15%" },
-];
-
-const Scope2Data = [
-  {
-    label: "Chilled Water Consumption",
-    value: 344,
-    color: "#2E59C5",
-    key: "45%",
-  },
-  {
-    label: "Electricity Consumption",
-    value: 100,
-    color: "#476ECE",
-    key: "25%",
-  },
-  { label: "Heat Consumption", value: 100, color: "#7094EE", key: "15%" },
-  {
-    label: "Purchased desalinated water",
-    value: 456,
-    color: "#AFC6FF",
-    key: "15%",
-  },
-];
-
-const Scope3Data = [
-  { label: "Waste Generated", value: 344, color: "#F26D58", key: "45%" },
-  { label: "Business Travel", value: 100, color: "#FF7863", key: "25%" },
-  { label: "Purchased Goods", value: 100, color: "#FF8977", key: "15%" },
-  { label: "Capital Goods", value: 456, color: "#FF9989", key: "15%" },
-  { label: "Investments", value: 344, color: "#FFBBB0", key: "45%" },
-  { label: "Employee Commuting", value: 100, color: "#FFC8BF", key: "25%" },
-  {
-    label: "Fuel Related Activities",
-    value: 100,
-    color: "#FFD3CD",
-    key: "15%",
-  },
-  {
-    label: "Upstream Leashed Assets",
-    value: 100,
-    color: "#FFE6E3",
-    key: "15%",
-  },
-  {
-    label: "Downsteam Leashed Assets",
-    value: 456,
-    color: "#FFE6E3",
-    key: "15%",
-  },
-];
+import {
+  getScope1Data,
+  getScope2Data,
+  getScope3Data,
+} from "../../api/createReport";
 
 const Scope1SVGs = [
   <svg
+    key={1}
     xmlns="http://www.w3.org/2000/svg"
     width="18"
     height="30"
@@ -87,6 +38,7 @@ const Scope1SVGs = [
     />
   </svg>,
   <svg
+    key={2}
     xmlns="http://www.w3.org/2000/svg"
     width="26"
     height="26"
@@ -96,22 +48,23 @@ const Scope1SVGs = [
     <path
       d="M11.3846 0.939453L16 5.55484M16 5.55484L20.6154 0.939453M16 5.55484V26.3241M1 20.5548L5.61538 15.9395M5.61538 15.9395L1 11.3241M5.61538 15.9395H26.3846M20.6154 30.9395L16 26.3241M16 26.3241L11.3846 30.9395M31 11.3241L26.3846 15.9395M26.3846 15.9395L31 20.5548M7.92308 7.86253L11.3846 11.3241M11.3846 20.5548L7.92308 24.0164M24.0769 7.86253L20.6154 11.3241M20.6154 20.5548L24.0769 24.0164"
       stroke="#02B880"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>,
   <svg
+    key={3}
     xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="27"
     viewBox="0 0 20 31"
     fill="none"
   >
-    <g clip-path="url(#clip0_1214_49609)">
+    <g clipPath="url(#clip0_1214_49609)">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M8.07772 16.2891L0 15.5298L6.69681 0.878906H15.8524L10.6611 9.28467L20 10.3174L2.85714 30.8789L8.07772 16.2891Z"
         fill="#B1E9D8"
       />
@@ -131,6 +84,7 @@ const Scope1SVGs = [
 
 const Scope2SVGs = [
   <svg
+    key={1}
     xmlns="http://www.w3.org/2000/svg"
     width="26"
     height="27"
@@ -140,12 +94,13 @@ const Scope2SVGs = [
     <path
       d="M12.9974 20.904C10.2815 20.904 8.57523 19.4469 7.43665 18.0754C6.95998 17.5013 6.04998 17.5099 5.6329 18.122C4.87348 19.2379 3.9884 20.267 2.16406 20.6722M23.8307 20.6722C22.1104 20.2909 21.2264 19.3549 20.4941 18.3127C20.0347 17.6605 19.0261 17.6995 18.5278 18.3268C18.0836 18.8858 17.5539 19.3993 16.9136 19.8207M12.9974 10.0707C15.7133 10.0707 17.4196 8.61361 18.5592 7.24211C19.0348 6.66794 19.9459 6.67661 20.3619 7.28869C21.1213 8.40452 22.0064 9.43369 23.8307 9.83886M2.16406 9.83886C3.8844 9.45752 4.7684 8.52152 5.50073 7.47936C5.95898 6.82719 6.96865 6.86727 7.4659 7.49344C7.91006 8.05136 8.4409 8.56594 9.08115 8.98736M23.8307 15.2555C22.1104 14.8742 21.2264 13.9382 20.4941 12.896C20.0347 12.2439 19.0261 12.2829 18.5278 12.9101C17.3903 14.3423 15.6895 15.4874 12.9974 15.4874C10.2815 15.4874 8.57523 14.0303 7.43665 12.6588C6.95998 12.0846 6.04998 12.0933 5.6329 12.7054C4.87348 13.8212 3.9884 14.8504 2.16406 15.2555"
       stroke="#2E59C5"
-      stroke-width="1.625"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.625"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>,
   <svg
+    key={2}
     xmlns="http://www.w3.org/2000/svg"
     width="28"
     height="29"
@@ -153,13 +108,14 @@ const Scope2SVGs = [
     fill="none"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M21.0009 12.7984H15.6627L18.8449 5.37424C18.8906 5.26772 18.9091 5.15152 18.8988 5.03609C18.8885 4.92065 18.8496 4.80959 18.7858 4.71286C18.722 4.61613 18.6351 4.53677 18.533 4.48189C18.4309 4.42701 18.3168 4.39833 18.2009 4.39844H11.2009C11.0638 4.39832 10.9297 4.43845 10.8153 4.51386C10.7008 4.58927 10.611 4.69664 10.5569 4.82264L6.35694 14.6226C6.31127 14.7292 6.29277 14.8454 6.3031 14.9608C6.31342 15.0762 6.35224 15.1873 6.41608 15.284C6.47992 15.3807 6.56678 15.4601 6.66885 15.515C6.77093 15.5699 6.88504 15.5985 7.00094 15.5984H10.4645L6.35134 25.838C6.07134 26.5338 6.93514 27.1232 7.48114 26.608L14.5147 19.9678L21.4559 14.0304C21.5647 13.9374 21.6423 13.8133 21.6784 13.6749C21.7145 13.5364 21.7072 13.3902 21.6576 13.2559C21.6081 13.1217 21.5185 13.0059 21.4011 12.9241C21.2837 12.8423 21.144 12.7984 21.0009 12.7984ZM14.6015 14.1984H19.1053L13.5781 18.9276L8.83914 23.4006L12.1501 15.1588C12.1927 15.0526 12.2086 14.9376 12.1964 14.8238C12.1842 14.7101 12.1443 14.601 12.0802 14.5063C12.0161 14.4115 11.9297 14.3339 11.8287 14.2802C11.7276 14.2265 11.615 14.1985 11.5005 14.1984H8.06214L11.6629 5.79844H17.1397L13.9575 13.2226C13.9119 13.3292 13.8934 13.4454 13.9037 13.5608C13.914 13.6762 13.9528 13.7873 14.0167 13.884C14.0805 13.9807 14.1674 14.0601 14.2695 14.115C14.3715 14.1699 14.4856 14.1985 14.6015 14.1984Z"
       fill="#2E59C5"
     />
   </svg>,
   <svg
+    key={3}
     xmlns="http://www.w3.org/2000/svg"
     width="26"
     height="27"
@@ -172,13 +128,14 @@ const Scope2SVGs = [
     />
   </svg>,
   <svg
+    key={4}
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="25"
     viewBox="0 0 24 25"
     fill="none"
   >
-    <g clip-path="url(#clip0_2514_54314)">
+    <g clipPath="url(#clip0_2514_54314)">
       <path
         d="M19.1845 7.38066C18.6886 6.929 18.0493 6.70151 17.3775 6.72901C16.7074 6.76068 16.0906 7.0515 15.6389 7.54648L12.9583 10.4914C12.4991 9.73392 11.6664 9.2256 10.7171 9.2256H3.33398C1.49529 9.2256 0 10.7206 0 12.5588V16.7254C0 18.5636 1.49529 20.0586 3.33398 20.0586H7.47228C9.8469 20.0586 12.1148 19.042 13.6951 17.2687L19.3671 10.9039C20.2781 9.88141 20.1956 8.30146 19.1845 7.38066ZM18.1227 9.79641L12.4507 16.1612C11.1863 17.5787 9.37181 18.3928 7.47228 18.3928H3.33398C2.41463 18.3928 1.66699 17.6453 1.66699 16.7262V12.5597C1.66699 11.6405 2.41463 10.893 3.33398 10.893H10.7171C11.2422 10.893 11.6689 11.3205 11.6689 11.8455C11.6689 12.3155 11.318 12.7213 10.8513 12.7872L6.5496 13.4013C6.09451 13.4663 5.77778 13.8888 5.8428 14.3446C5.90864 14.8004 6.33039 15.1162 6.78548 15.0521L11.0863 14.4379C12.0657 14.2979 12.8617 13.6146 13.1825 12.7222L16.8716 8.66895C17.0233 8.50312 17.23 8.40562 17.455 8.39479C17.6818 8.38562 17.8951 8.46229 18.0618 8.61395C18.4011 8.92311 18.4286 9.45476 18.1227 9.79808V9.79641ZM7.0847 6.72318C7.86402 6.72318 8.59666 6.41985 9.1476 5.86904C10.2853 4.73157 10.2845 2.8808 9.14093 1.7375L7.66732 0.296711C7.34309 -0.0207788 6.82549 -0.0207788 6.50209 0.296711L5.02264 1.74333C3.88492 2.87996 3.88492 4.73157 5.02264 5.8682C5.57358 6.41902 6.30622 6.72234 7.08554 6.72234L7.0847 6.72318ZM6.19453 2.9283L7.0847 2.05749L7.96904 2.92163C8.45664 3.40911 8.45664 4.20242 7.96904 4.68991C7.49812 5.16156 6.67379 5.16156 6.2012 4.68991C5.7136 4.20242 5.71361 3.40911 6.19453 2.9283Z"
         fill="#2E59C5"
@@ -208,16 +165,16 @@ const Scope3SVGs = [
     <path
       d="M3.75 5.95703H9.18C9.50918 5.95708 9.83329 5.87588 10.1236 5.72062C10.4138 5.56537 10.6613 5.34086 10.844 5.06703L11.656 3.84703C11.8387 3.5732 12.0862 3.3487 12.3764 3.19344C12.6667 3.03819 12.9908 2.95698 13.32 2.95703H17.808C18.2279 2.95693 18.6372 3.08901 18.9779 3.33455C19.3186 3.58008 19.5733 3.92662 19.706 4.32503L20.25 5.95703M21.75 5.95703H8.75"
       stroke="#F26D58"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M20.25 5.95703L19.75 12.457M5.25 5.95703L5.855 16.493C6.009 19.063 6.087 20.349 6.729 21.273C7.046 21.731 7.455 22.116 7.929 22.406C8.511 22.762 9.213 22.902 10.25 22.957M11.75 16.455L12.886 17.921C13.0923 17.1508 13.5242 16.4598 14.1261 15.9368C14.728 15.4137 15.4725 15.0825 16.264 14.9857C17.0555 14.8889 17.8579 15.0308 18.5681 15.3933C19.2783 15.7558 19.864 16.3223 20.25 17.02M21.75 21.455L20.614 19.991C20.4093 20.7553 19.9826 21.4416 19.3878 21.9633C18.793 22.485 18.0568 22.8186 17.2724 22.9219C16.488 23.0252 15.6906 22.8936 14.981 22.5437C14.2714 22.1937 13.6816 21.6412 13.286 20.956"
       stroke="#F26D58"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>,
   <svg
@@ -251,7 +208,7 @@ const Scope3SVGs = [
     viewBox="0 0 27 27"
     fill="none"
   >
-    <g clip-path="url(#clip0_2514_54398)">
+    <g clipPath="url(#clip0_2514_54398)">
       <path
         d="M0.25 24.792H26.25V26.9587H0.25V24.792ZM26.25 9.52678V11.792H23V20.4587H25.1667V22.6254H1.33333V20.4587H3.5V11.792H0.25V9.52678C0.249892 8.9429 0.407078 8.36978 0.705035 7.86766C1.00299 7.36553 1.43072 6.95295 1.94325 6.67328L11.6932 1.35519C12.1705 1.09396 12.7059 0.957031 13.25 0.957031C13.7941 0.957031 14.3295 1.09396 14.8068 1.35519L24.5567 6.67328C25.0693 6.95295 25.497 7.36553 25.795 7.86766C26.0929 8.36978 26.2501 8.9429 26.25 9.52678ZM5.66667 20.4587H8.91667V11.792H5.66667V20.4587ZM11.0833 11.792V20.4587H15.4167V11.792H11.0833ZM20.8333 11.792H17.5833V20.4587H20.8333V11.792ZM24.0833 9.52678C24.0834 9.33215 24.031 9.14111 23.9317 8.97374C23.8323 8.80636 23.6898 8.66883 23.5189 8.57561L13.7689 3.25752C13.6097 3.17067 13.4313 3.12516 13.25 3.12516C13.0687 3.12516 12.8903 3.17067 12.7311 3.25752L2.98108 8.57561C2.81024 8.66883 2.66766 8.80636 2.56834 8.97374C2.46903 9.14111 2.41663 9.33215 2.41667 9.52678V9.62536H24.0833V9.52678Z"
         fill="#F26D58"
@@ -342,54 +299,26 @@ const Scope3SVGs = [
   </svg>,
 ];
 
-const FuelTypeEmissionBreakdownData = [
-  { label: "Deisel", value: 150000, color: "#028A60", key: "15%" },
-  { label: "Petrol", value: 200000, color: "#02B880", key: "20%" },
-  { label: "HFO", value: 300000, color: "#A9DECE", key: "30%" },
-  { label: "CNG", value: 250000, color: "#D0FFF1", key: "25%" },
-  { label: "LPG", value: 100000, color: "#E9FFF8", key: "10%" },
-];
+// const FuelTypeEmissionBreakdownData = [
+//   { label: "Deisel", value: 150000, color: "#028A60", key: "15%" },
+//   { label: "Petrol", value: 200000, color: "#02B880", key: "20%" },
+//   { label: "HFO", value: 300000, color: "#A9DECE", key: "30%" },
+//   { label: "CNG", value: 250000, color: "#D0FFF1", key: "25%" },
+//   { label: "LPG", value: 100000, color: "#E9FFF8", key: "10%" },
+// ];
 
-const FuelConsumptionBreakdown = [
-  { fuel: "Diesel", value: 80, color: "#028A60" },
-  { fuel: "Petrol", value: 60, color: "#02B880" },
-  { fuel: "HFP", value: 100, color: "#ADE4D3" },
-  { fuel: "CNG", value: 40, color: "#D0FFF1" },
-  { fuel: "LPG", value: 90, color: "#EAFFF8" },
-];
+// const FuelConsumptionBreakdown = [
+//   { fuel: "Diesel", value: 80, color: "#028A60" },
+//   { fuel: "Petrol", value: 60, color: "#02B880" },
+//   { fuel: "HFP", value: 100, color: "#ADE4D3" },
+//   { fuel: "CNG", value: 40, color: "#D0FFF1" },
+//   { fuel: "LPG", value: 90, color: "#EAFFF8" },
+// ];
 
 const ProcessEmissionBreakdownData = [
   { label: "Water Gas Disposal", value: 400000, color: "#028A60", key: "40%" },
   { label: "Fugitive", value: 200000, color: "#02B880", key: "20%" },
   { label: "Process & Vented", value: 200000, color: "#A9DECE", key: "40%" },
-];
-
-const RefrigerantEmissionsData = [
-  { label: "R22", value: 3.1 },
-  { label: "R410a", value: 6.4 },
-  { label: "HFC-245fa", value: 5.2 },
-  { label: "HFC-23", value: 3.9 },
-  { label: "R134a", value: 4.5 },
-];
-
-const RefrigerantConsumptionData = [
-  { label: "R410a", value: 5200, color: "#006D4F" },
-  { label: "R22", value: 8100, color: "#02B880" },
-  { label: "R134a", value: 3000, color: "#B1E9D8" },
-  { label: "HFC-23", value: 8500, color: "#E0FFFF" },
-  { label: "HFC-245fa", value: 5000, color: "#B0E0E6" },
-];
-
-const WasteEmissionData = [
-  { label: "Metals", value: 5200, color: "#F26D58" },
-  { label: "Glass", value: 8100, color: "#FF7863" },
-  { label: "Plastic", value: 3000, color: "#FF8977" },
-  { label: "Paper & Cardboards", value: 8500, color: "#FF9989" },
-  { label: "Organic wastes", value: 5000, color: "#FFAC9F" },
-  { label: "Mixed wastes", value: 5000, color: "#FFBBB0" },
-  { label: "Textile wastes", value: 5000, color: "#FFC8BF" },
-  { label: "Electronics", value: 5000, color: "#FFD3CD" },
-  { label: "Construction & Demolition Waste", value: 5000, color: "#FFE6E3" },
 ];
 
 const BusinessTravelEmissionsBreakdown = [
@@ -449,19 +378,231 @@ const FuelActivitiesEmissionData = [
     key: "33%",
   },
   {
-    label:
-      "T&D losses of purchased electricity for own use.",
+    label: "T&D losses of purchased electricity for own use.",
     value: 340000,
     color: "#FF9989",
     key: "34%",
   },
 ];
+const colorPalette = {
+  Diesel: "#028A60",
+  HFO: "#A9DECE",
+  CNG: "#E9FFF8",
+  LPG: "#D0FFF1",
+  "Gasoline/Petrol": "#02B880",
+};
+const colorPalette2 = {
+  R410a: "#006D4F",
+  R22: "#02B880",
+  R134a: "#B1E9D8",
+  "HFC-23": "#E0FFFF",
+  "HFC-245fa": "#B0E0E6",
+};
 
 const TotalEmissionsInventoryReport = () => {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
+  const [scope1Data, setScope1Data] = useState([]);
+  const [scope2Data, setScope2Data] = useState([]);
+  const [scope3Data, setScope3Data] = useState([]);
+  const [FuelTypeEmissionBreakdownData, setFuelTypeEmissionBreakdownData] =
+    useState([]);
+  const [RefrigerantEmissionsData, setRefrigerantEmissionsData] = useState([]);
+  const [FuelConsumptionBreakdown, setFuelConsumptionBreakdown] = useState([]);
+  const [RefrigerantConsumptionData, setRefrigerantConsumptionData] = useState(
+    []
+  );
+  const [WasteEmissionData, setWasteEmissionData] = useState([]);
+
+  const fetchData = async () => {
+    const response = await getScope1Data();
+    // console.log("scope1 data:", response?.data);
+    setScope1Data([
+      {
+        label: "Fuel Consumption",
+        value: response?.data?.totalFuelEmissions,
+        color: "#028A60",
+        key: response?.data?.totalFuelEmissionsPercentage,
+      },
+      {
+        label: "Refrigerant Data",
+        value: response?.data?.totalRefrigerantEmissions,
+        color: "#02B880",
+        key: response?.data?.totalRefrigerantEmissionsPercentage,
+      },
+      {
+        label: "Process Emission",
+        value: response?.data?.totalProcessEmissions,
+        color: "#B1E9D8",
+        key: response?.data?.totalProcessEmissionsPercentage,
+      },
+    ]);
+    const transformedData = response?.data?.fuelEmissionsByType.map((item) => {
+      return {
+        label: item.fuelTypeName,
+        value: Math.round(item.totalEmissions * 1000), // example scaling
+        color: colorPalette[item.fuelTypeName] || "#006D4F",
+        key: item.percentage,
+      };
+    });
+    const transformedData2 = response?.data?.fuelEmissionsByType.map((item) => {
+      return {
+        fuel: item.fuelTypeName,
+        value: Math.round(item.totalEmissions * 1000), // example scaling
+        color: colorPalette[item.fuelTypeName] || "#006D4F",
+      };
+    });
+    const refData = response?.data?.refrigerantEmissionsByType.map((item) => {
+      return {
+        label: item.refrigerantTypeName,
+        value: item.totalEmissions,
+      };
+    });
+    const refData2 = response?.data?.refrigerantEmissionsByType.map((item) => {
+      return {
+        label: item.refrigerantTypeName,
+        value: item.totalEmissions,
+        color: colorPalette2[item.refrigerantTypeName] || "#006D4F",
+      };
+    });
+    // console.log("refData", refData);
+    setFuelConsumptionBreakdown(transformedData2);
+    setRefrigerantConsumptionData(refData2);
+    setRefrigerantEmissionsData(refData);
+    setFuelTypeEmissionBreakdownData(transformedData);
+  };
+  const scopeData2 = async () => {
+    const response = await getScope2Data();
+    // console.log("scope2 data:", response?.data);
+    setScope2Data([
+      {
+        label: "Chilled Water Consumption",
+        value: response?.data?.chilledWaterEmissions,
+        color: "#2E59C5",
+        key: response?.data?.chilledWaterEmissionsPercentage,
+      },
+      {
+        label: "Electricity Consumption",
+        value: response?.data?.electricityEmissions,
+        color: "#476ECE",
+        key: response?.data?.electricityEmissionsPercentage,
+      },
+      {
+        label: "Heat Consumption",
+        value: response?.data?.heatEmissions,
+        color: "#7094EE",
+        key: response?.data?.heatEmissionsPercentage,
+      },
+      {
+        label: "Purchased desalinated water",
+        value: response?.data?.waterEmissions,
+        color: "#AFC6FF",
+        key: response?.data?.waterEmissionsPercentage,
+      },
+    ]);
+  };
+  const wastecolorPalette = {
+    Metals: "#F26D58",
+    Glass: "#FF7863",
+    Plastic: "#FF8977",
+    Electronics: "#FFD3CD",
+    "Paper & Cardboards": "#FF9989",
+    "Organic wastes": "#FFAC9F",
+    "Mixed wastes": "#FFBBB0",
+    "Textile wastes": "#FFC8BF",
+    "Construction & Demolition Waste": "#FFE6E3",
+  };
+  // const WasteEmissionData = [
+  //   { label: "Metals", value: 5200, color: "#F26D58" },
+  //   { label: "Glass", value: 8100, color: "#FF7863" },
+  //   { label: "Plastic", value: 3000, color: "#FF8977" },
+  //   { label: "Paper & Cardboards", value: 8500, color: "#FF9989" },
+  //   { label: "Organic wastes", value: 5000, color: "#FFAC9F" },
+  //   { label: "Mixed wastes", value: 5000, color: "#FFBBB0" },
+  //   { label: "Textile wastes", value: 5000, color: "#FFC8BF" },
+  //   { label: "Electronics", value: 5000, color: "#FFD3CD" },
+  //   { label: "Construction & Demolition Waste", value: 5000, color: "#FFE6E3" },
+  // ];
+
+  const scopeData3 = async () => {
+    const response = await getScope3Data();
+    console.log("scope3 data:", response?.data);
+    setScope3Data([
+      {
+        label: "Waste Generated",
+        value: response.data.totalWasteEmissions,
+        color: "#F26D58",
+        key: response.data.totalWasteEmissionsPercentage,
+      },
+      {
+        label: "Business Travel",
+        value: response.data.totalBusinessTravelEmissions,
+        color: "#FF7863",
+        key: response.data.totalBusinessTravelEmissionsPercentage,
+      },
+      {
+        label: "Purchased Goods",
+        value: response.data.totalPurchasedGoodsEmissions,
+        color: "#FF8977",
+        key: response.data.totalPurchasedGoodsEmissionsPercentage,
+      },
+      {
+        label: "Capital Goods",
+        value: response.data.totalCapitalGoodsEmissions,
+        color: "#FF9989",
+        key: response.data.totalCapitalGoodsEmissionsPercentage,
+      },
+      {
+        label: "Investments",
+        value: response.data.totalInvestmentsEmissions,
+        color: "#FFBBB0",
+        key: response.data.totalInvestmentsEmissionsPercentage,
+      },
+      {
+        label: "Employee Commuting",
+        value: response.data.totalEmployeeCommutingEmissions,
+        color: "#FFC8BF",
+        key: response.data.totalEmployeeCommutingEmissionsPercentage,
+      },
+      {
+        label: "Fuel Related Activities",
+        value: response.data.totalFuelRelatedEmissions,
+        color: "#FFD3CD",
+        key: response.data.totalFuelRelatedEmissionsPercentage,
+      },
+      {
+        label: "Upstream Leashed Assets",
+        value: response.data.totalUpstreamLeasedAssetsEmissions,
+        color: "#FFE6E3",
+        key: response.data.totalUpstreamLeasedAssetsEmissionsPercentage,
+      },
+      {
+        label: "Downsteam Leashed Assets",
+        value: response.data.totalDownstreamLeasedAssetsEmissions,
+        color: "#FFE6E3",
+        key: response.data.totalDownstreamLeasedAssetsEmissionsPercentage,
+      },
+    ]);
+
+    // const transformedData = response?.data?.wasteBreakdown.map((item) => {
+    //   return {
+    //     label: item.fuelTypeName,
+    //     value: Math.round(item.totalEmissions * 1000), // example scaling
+    //     color: colorPalette[item.fuelTypeName] || "#006D4F",
+    //     key: item.percentage,
+    //   };
+    // });
+
+    // setWasteEmissionData();
+  };
+
+  useEffect(() => {
+    fetchData();
+    scopeData2();
+    scopeData3();
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -516,9 +657,8 @@ const TotalEmissionsInventoryReport = () => {
               borderRadius: "32px",
               fontSize: "0.7rem",
               padding: "0.5rem 1.2rem",
-              '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
+              "&:hover": {
+                background: "rgba(177, 233, 216, 0.30)",
               },
             }}
             onClick={() => setOpenEditModal((prev) => !prev)}
@@ -534,12 +674,11 @@ const TotalEmissionsInventoryReport = () => {
               borderRadius: "5rem",
               fontSize: "0.7rem",
               padding: "0.6rem 1.6rem",
-              boxShadow: 'none',
+              boxShadow: "none",
               background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
+              "&:hover": {
+                background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: "none",
               },
             }}
           >
@@ -561,7 +700,7 @@ const TotalEmissionsInventoryReport = () => {
               viewBox="0 0 24 24"
               fill="none"
             >
-              <g clip-path="url(#clip0_1214_49777)">
+              <g clipPath="url(#clip0_1214_49777)">
                 <path
                   d="M12.75 7.875C13.5784 7.875 14.25 7.20343 14.25 6.375C14.25 5.54657 13.5784 4.875 12.75 4.875C11.9216 4.875 11.25 5.54657 11.25 6.375C11.25 7.20343 11.9216 7.875 12.75 7.875Z"
                   fill="black"
@@ -600,7 +739,6 @@ const TotalEmissionsInventoryReport = () => {
               }}
             >
               <span
-                variant="text"
                 style={{
                   textTransform: "none",
                   fontSize: "0.875rem",
@@ -610,10 +748,9 @@ const TotalEmissionsInventoryReport = () => {
                   justifyContent: "start",
                   gap: "0.5rem",
                   cursor: "pointer",
-                  '&:hover': {
-                    background:
-                      "rgba(177, 233, 216, 0.30)",
-                  }
+                  "&:hover": {
+                    background: "rgba(177, 233, 216, 0.30)",
+                  },
                 }}
                 onClick={() => {
                   setOpenShareModal((prev) => !prev);
@@ -628,41 +765,41 @@ const TotalEmissionsInventoryReport = () => {
                     viewBox="0 0 24 25"
                     fill="none"
                   >
-                    <g clip-path="url(#clip0_1214_42954)">
+                    <g clipPath="url(#clip0_1214_42954)">
                       <path
                         d="M13.9778 7.37109L8.52344 10.8773"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M8.52344 14.1211L13.9778 17.6273"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M6 15.5C7.65685 15.5 9 14.1569 9 12.5C9 10.8431 7.65685 9.5 6 9.5C4.34315 9.5 3 10.8431 3 12.5C3 14.1569 4.34315 15.5 6 15.5Z"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M16.5 22.25C18.1569 22.25 19.5 20.9069 19.5 19.25C19.5 17.5931 18.1569 16.25 16.5 16.25C14.8431 16.25 13.5 17.5931 13.5 19.25C13.5 20.9069 14.8431 22.25 16.5 22.25Z"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M16.5 8.75C18.1569 8.75 19.5 7.40685 19.5 5.75C19.5 4.09315 18.1569 2.75 16.5 2.75C14.8431 2.75 13.5 4.09315 13.5 5.75C13.5 7.40685 14.8431 8.75 16.5 8.75Z"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                     <defs>
@@ -680,7 +817,6 @@ const TotalEmissionsInventoryReport = () => {
                 <span>Share</span>
               </span>
               <span
-                variant="text"
                 style={{
                   textTransform: "none",
                   fontSize: "0.875rem",
@@ -701,27 +837,27 @@ const TotalEmissionsInventoryReport = () => {
                     viewBox="0 0 24 25"
                     fill="none"
                   >
-                    <g clip-path="url(#clip0_1214_42964)">
+                    <g clipPath="url(#clip0_1214_42964)">
                       <path
                         d="M12 14V3.5"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M20.25 14V20H3.75V14"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M15.75 10.25L12 14L8.25 10.25"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                     <defs>
@@ -739,7 +875,6 @@ const TotalEmissionsInventoryReport = () => {
                 <span>Download</span>
               </span>
               <span
-                variant="text"
                 style={{
                   textTransform: "none",
                   fontSize: "0.875rem",
@@ -760,27 +895,27 @@ const TotalEmissionsInventoryReport = () => {
                     viewBox="0 0 24 25"
                     fill="none"
                   >
-                    <g clip-path="url(#clip0_1214_42972)">
+                    <g clipPath="url(#clip0_1214_42972)">
                       <path
                         d="M6 8V4.25H18V8"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M18 14.75H6V20.75H18V14.75Z"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M6 17H2.25V9.5C2.25 8.67125 2.9775 8 3.87469 8H20.1253C21.0225 8 21.75 8.67125 21.75 9.5V17H18"
                         stroke="black"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M17.625 12.125C18.0392 12.125 18.375 11.7892 18.375 11.375C18.375 10.9608 18.0392 10.625 17.625 10.625C17.2108 10.625 16.875 10.9608 16.875 11.375C16.875 11.7892 17.2108 12.125 17.625 12.125Z"
@@ -903,7 +1038,7 @@ const TotalEmissionsInventoryReport = () => {
                 title="Scope 1 Emissions: Your Direct Footprint"
                 desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles."
                 svgs={Scope1SVGs}
-                data={Scope1Data}
+                data={scope1Data}
                 type="scope-1"
               />
             </div>
@@ -954,7 +1089,10 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Fuel Type Emissions Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={FuelTypeEmissionBreakdownData} tooltipWidth={10} />
+                    <SemiCirclePieChart
+                      data={FuelTypeEmissionBreakdownData}
+                      tooltipWidth={10}
+                    />
                   </div>
                 </div>
                 <div
@@ -1024,7 +1162,10 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Process Emission Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={ProcessEmissionBreakdownData} tooltipWidth={30} />
+                    <SemiCirclePieChart
+                      data={ProcessEmissionBreakdownData}
+                      tooltipWidth={30}
+                    />
                   </div>
                 </div>
               </div>
@@ -1107,7 +1248,7 @@ const TotalEmissionsInventoryReport = () => {
                 title="Scope 2 Emissions: Our Purchased Power Print"
                 desc="Your carbon footprint includes indirect emissions from the electricity, desalinated water, chilled water, and heat you purchase to power your operations."
                 svgs={Scope2SVGs}
-                data={Scope2Data}
+                data={scope2Data}
                 type="scope-2"
               />
             </div>
@@ -1118,7 +1259,7 @@ const TotalEmissionsInventoryReport = () => {
           >
             <div
               style={{
-              //  display: "flex",
+                //  display: "flex",
                 borderRadius: "16px",
               }}
             >
@@ -1126,7 +1267,7 @@ const TotalEmissionsInventoryReport = () => {
                 title="Scope 3 Emissions: Our Value Chain Vent"
                 desc="Your carbon footprint includes value chain emissions from your suppliers and customers."
                 svgs={Scope3SVGs}
-                data={Scope3Data}
+                data={scope3Data}
                 type="scope-3"
               />
             </div>
@@ -1200,9 +1341,9 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '2rem'
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "2rem",
                     }}
                   >
                     <Typography
@@ -1242,9 +1383,9 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '2rem'
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "2rem",
                     }}
                   >
                     <Typography
@@ -1258,7 +1399,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Waste Disposal Methods by Category{" "}
                     </Typography>
-                    <div >
+                    <div>
                       <FullCircleDonutChart
                         data={WasteDisposalMethodsByCategoryData}
                         width={260}
@@ -1284,9 +1425,9 @@ const TotalEmissionsInventoryReport = () => {
                       textAlign: "center",
                       position: "relative",
                       width: "100%",
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.5rem'
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
                     }}
                   >
                     <Typography
@@ -1300,7 +1441,7 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Employee Commuting Emissions Breakdown by Vehicle Type
                     </Typography>
-                    <div >
+                    <div>
                       <FullCircleDonutChart
                         data={ECEBreakdownByVehicleTypeData}
                         width={260}
@@ -1349,7 +1490,10 @@ const TotalEmissionsInventoryReport = () => {
                     >
                       Fuel-Related Activities Emissions Breakdown
                     </Typography>
-                    <SemiCirclePieChart data={FuelActivitiesEmissionData} tooltipWidth={150} />
+                    <SemiCirclePieChart
+                      data={FuelActivitiesEmissionData}
+                      tooltipWidth={150}
+                    />
                   </div>
                 </div>
                 <div
@@ -1395,9 +1539,9 @@ const TotalEmissionsInventoryReport = () => {
                   display: "flex",
                   flexDirection: "column",
                   gap: "1.5rem",
-                  background: 'white',
-                  padding: '2.5rem 1rem',
-                  borderRadius: '16px'
+                  background: "white",
+                  padding: "2.5rem 1rem",
+                  borderRadius: "16px",
                 }}
               >
                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>

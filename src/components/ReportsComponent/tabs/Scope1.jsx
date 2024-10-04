@@ -2,8 +2,48 @@ import FuelConsumption from "../Pages/FuelConsumption";
 import RefrigerantData from "../Pages/RefrigerantData";
 import ProcessEmission from "../Pages/EmissionPages/ProcessEmission";
 import { Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useScope3 } from "../../../context/Scope3Context";
+import { useEffect, useState } from "react";
+import { saveScope1Report } from "../../../api/createReport";
 
-const Scope1 = () => {
+const Scope1 = ({ setActiveTab }) => {
+  const navigate = useNavigate();
+  const { consumption, refrigerent } = useScope3();
+  const [consumptionArray, setConsumptionArray] = useState([]);
+  const [refrigerentArray, setRefrigerentArray] = useState([]);
+  useEffect(() => {
+    setConsumptionArray(consumption ? consumption : []);
+    console.log("consumption instant:", consumption); // Verify the table gets updated
+  }, [consumption]);
+  useEffect(() => {
+    setRefrigerentArray(refrigerent ? refrigerent : []);
+    console.log("refrigerent instant:", refrigerent); // Verify the table gets updated
+  }, [refrigerent]);
+
+  const submit = async (type) => {
+    const payload = {
+      fuelEntries: consumptionArray.slice(0, -1),
+      refrigerantEntries: refrigerentArray.slice(0, -1),
+      processEmissions: [
+        {
+          type: "66f6aa9f7d6f3c015a12ddf3",
+          category: "66f6aa9f7d6f3c015a12ddf1",
+          subCategory: "66f6aa9f7d6f3c015a12dde8",
+          quantity: 27,
+        },
+      ],
+      report_type: type,
+    };
+    console.log(payload);
+    const response = await saveScope1Report(payload);
+    console.log(response);
+    if (response.status === "201") {
+      setActiveTab("scope2");
+    } else {
+      alert("Something went wrong");
+    }
+  };
   return (
     <div
       style={{
@@ -20,15 +60,15 @@ const Scope1 = () => {
 
       <Box
         sx={{
-          padding: "25px 6rem 0px 6rem",
+          padding: "25px 5rem 0px 6rem",
           display: "flex",
-          flexDirection: "row",
           gap: "10px",
           justifyContent: "flex-end",
+          mb: "2rem",
         }}
       >
         <Button
-          // onClick={() => navigate("/")}
+          onClick={() => submit("draft")}
           sx={{
             borderRadius: "32px",
             border: "1px solid #28814D",
@@ -48,7 +88,7 @@ const Scope1 = () => {
         </Button>
 
         <Button
-          // onClick={() => navigate("/ghgreport")}
+          onClick={() => submit("final")}
           sx={{
             borderRadius: "32px",
             padding: "8px 18px",

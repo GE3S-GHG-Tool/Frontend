@@ -1,54 +1,79 @@
 import { FormControl, Grid2, Select } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import fuelLogo from "../../../assets/images/fuel_logo.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
+import { useScope3 } from "../../../context/Scope3Context";
+import { getConsumtionType } from "../../../api/createReport";
 
 function FuelConsumption() {
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([{ fuel: "", quantity: "", unit: "" }]);
-  console.log(fields);
+  const [fields, setFields] = useState([
+    { fuelType: "", quantity: "", unit: "" },
+  ]);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setConsumption } = useScope3();
+  const [typeMenu, setTypeMenu] = useState([]);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
 
-    if (name === "fuel") {
-      // Set the unit based on the fuel type
-      if (value === "Petrol" || value === "Diesel" || value === "LPG") {
-        updatedFields[index].unit = "Gallons";
-      } else if (value === "CNG") {
-        updatedFields[index].unit = "m3";
-      } else if (value === "HFO") {
-        updatedFields[index].unit = "Barrels";
-      } else {
-        updatedFields[index].unit = "";
-      }
+    if (name === "fuelType") {
+      const selectedAsset = typeMenu.find((asset) => asset._id === value);
+      updatedFields[index].unit = selectedAsset?.Unit;
     }
 
     updatedFields[index][name] = value;
     setFields(updatedFields);
 
-    const isRowComplete = updatedFields[index].fuel;
+    const isRowComplete = updatedFields[index].fuelType;
     if (isRowComplete && index === fields.length - 1) {
-      setFields([...updatedFields, { fuel: "", quantity: "", unit: "" }]);
+      setFields([...updatedFields, { fuelType: "", quantity: "", unit: "" }]);
     }
   };
+  useEffect(() => {
+    setConsumption(fields);
+  }, [fields, setConsumption]);
+  const fetchData = async () => {
+    const response = await getConsumtionType();
+    console.log("response list:", response.data);
+    setTypeMenu(response?.data);
+  };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
 
     // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
-      updatedFields.push({ fuel: "", quantity: "", unit: "" });
+      updatedFields.push({ fuelType: "", quantity: "", unit: "" });
     }
 
     setFields(updatedFields);
   };
+
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setFields([{ fuelType: "", quantity: "", unit: "" }]);
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -71,7 +96,7 @@ function FuelConsumption() {
         }}
       >
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <img src={fuelLogo} height={20} width={18} alt="fuel-logo" />
+          <img src={fuelLogo} height={20} width={18} alt="fuelType-logo" />
           <h2
             style={{
               fontSize: "16px",
@@ -85,9 +110,65 @@ function FuelConsumption() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
-        </div>
+        {/* <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                 display:'flex',
+                  alignItems:'center',
+                  gap:'4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display:'flex',
+                  alignItems:'center',
+                  color:'#FF9A9A',
+                  gap:'4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
+        </div> */}
       </div>
 
       <Box
@@ -101,8 +182,8 @@ function FuelConsumption() {
           lineHeight="22.4px"
           color="#717171"
         >
-          Enter the type and quantity of fuel used (e.g., diesel, gasoline) to
-          calculate direct emissions from combustion.
+          Enter the type and quantity of fuelType used (e.g., diesel, gasoline)
+          to calculate direct emissions from combustion.
         </Typography>
       </Box>
 
@@ -130,42 +211,29 @@ function FuelConsumption() {
                   >
                     Fuel Type
                   </Typography>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth size="small">
                     <Select
-                      value={field.fuel}
-                      name="fuel"
+                      value={field.fuelType}
+                      name="fuelType"
                       onChange={(e) => handleChange(index, e)}
-                      displayEmpty
-                      placeholder="Select Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",
                         borderRadius: "5px",
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        "& .MuiSelect-select": {
-                          padding: "11px 16px",
-                        },
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span
-                          style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
-                        >
-                          Select Type
-                        </span>
-                      </MenuItem>
-                      <MenuItem value={"Petrol"}>Petrol</MenuItem>
-                      <MenuItem value={"CNG"}>CNG</MenuItem>
-                      <MenuItem value={"Diesel"}>Diesel</MenuItem>
-                      <MenuItem value={"HFO"}>HFO</MenuItem>
-                      <MenuItem value={"LPG"}>LPG</MenuItem>
+                      {typeMenu.map((item, index) => (
+                        <MenuItem key={index} value={item._id}>
+                          {item.Type}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
-                {field.fuel && (
+                {field.fuelType && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -190,6 +258,7 @@ function FuelConsumption() {
                         },
                         "& .MuiOutlinedInput-input": {
                           padding: "11px 16px",
+                          color: "#343434",
                         },
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "rgba(217, 217, 217, 0.30)",
@@ -198,7 +267,7 @@ function FuelConsumption() {
                     />
                   </Grid2>
                 )}
-                {field.fuel && (
+                {field.fuelType && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -222,13 +291,14 @@ function FuelConsumption() {
                           },
                           "& .MuiOutlinedInput-input": {
                             padding: "11px 16px",
+                            color: "#717171",
                           },
                           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                             borderColor: "rgba(217, 217, 217, 0.30)",
                           },
                           "& .MuiInputBase-input.Mui-disabled": {
-                            color: "grey !important",
-                            WebkitTextFillColor: "black !important",
+                            color: "#717171 !important",
+                            WebkitTextFillColor: "#717171 !important",
                             opacity: 1,
                           },
                         }}
@@ -238,14 +308,14 @@ function FuelConsumption() {
                 )}
               </Grid2>
 
-              {/* Show delete icon only if both fuel and quantity are filled */}
+              {/* Show delete icon only if both fuelType and quantity are filled */}
               <div
                 style={{
                   width: "20px",
                   height: "55px",
                 }}
               >
-                {field.fuel && field.quantity && (
+                {field.fuelType && field.quantity && (
                   <img
                     onClick={() => handleDelete(index)}
                     src={trash} // Path to your SVG delete icon

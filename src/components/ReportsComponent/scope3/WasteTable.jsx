@@ -1,10 +1,9 @@
 import { Grid2, Typography } from "@mui/material";
 
-function TablesData({ headings = [], data }) {
-  // console.log("TablesData", data);
-  const filteredData = data?.filter((item) => {
-    return Object.values(item).every((value) => value !== "");
-  });
+function WasteTable({ headings = [], data }) {
+  console.log("WasteTable", data);
+  const filteredData = data?.slice(0, -1);
+
   return (
     <Grid2
       sx={{
@@ -60,7 +59,7 @@ function TablesData({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.assetType?.asset_type}
+                {item?.wasteCategory}
               </td>
               <td
                 style={{
@@ -70,7 +69,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.assetCategory}
+                {item.subCategory}
               </td>
               <td
                 style={{
@@ -80,7 +79,17 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.expenses}
+                {item.disposalMethod}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.distanceToLandfill}
               </td>
               <td
                 style={{
@@ -92,7 +101,31 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                USD
+                {item.fuelType}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  textOverflow: "ellipsis",
+                  maxWidth: "100px",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.numberOfTrips}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  textOverflow: "ellipsis",
+                  maxWidth: "100px",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.quantityOfWaste}
               </td>
             </tr>
           ))}
@@ -102,4 +135,4 @@ function TablesData({ headings = [], data }) {
   );
 }
 
-export default TablesData;
+export default WasteTable;

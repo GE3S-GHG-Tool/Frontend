@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   Grid2,
   MenuItem,
@@ -8,14 +9,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import airplane from "../../../assets/images/aeroplane.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { getAllAirport, getTraveltype } from "../../../api/createReport";
 
 const BusinessTravelPopup = ({ onClose }) => {
   // State with one initial row
+  const [travelmenu, setTravelMenu] = useState([]);
+  const [airportlist, setAirportList] = useState([]);
+  const [inputCount, setInputCount] = useState(0);
   const [fields, setFields] = useState([
     {
       travelClass: "",
@@ -55,6 +60,35 @@ const BusinessTravelPopup = ({ onClose }) => {
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
     setFields(updatedFields);
+  };
+
+  const save = () => {
+    // setCapitalGoods(fields);
+    onClose();
+  };
+  const [loading, setLoading] = useState(true);
+  const fetchData = async () => {
+    const response = await getTraveltype();
+    const airports = await getAllAirport();
+    console.log("airport list:", airports.data);
+    setTravelMenu(response?.data?.travel_classes);
+    setAirportList(airports?.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const renderTextFields = () => {
+    let fields = [];
+    for (let i = 0; i < inputCount; i++) {
+      fields.push(
+        <div key={i}>
+          <input type="text" placeholder={`Text field ${i + 1}`} />
+        </div>
+      );
+    }
+    return fields;
   };
 
   return (
@@ -157,36 +191,25 @@ const BusinessTravelPopup = ({ onClose }) => {
                   >
                     Travel Class
                   </Typography>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth size="small">
                     <Select
                       name="travelClass"
                       value={field.travelClass}
                       onChange={(e) => handleChange(index, e)}
-                      displayEmpty
-                      placeholder="Select Class"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",
                         borderRadius: "5px",
                         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                           borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        "& .MuiSelect-select": {
-                          padding: "9px 16px",
-                        },
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span
-                          style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
-                        >
-                          Select Class
-                        </span>
-                      </MenuItem>
-                      <MenuItem value={"Economy"}>Economy</MenuItem>
-                      <MenuItem value={"Business"}>Business</MenuItem>
-                      <MenuItem value={"First"}>First</MenuItem>
+                      {travelmenu?.map((item, index) => (
+                        <MenuItem key={index} value={item._id}>
+                          {item?.class_name}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -246,36 +269,33 @@ const BusinessTravelPopup = ({ onClose }) => {
                     >
                       Destination
                     </Typography>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth size="small">
                       <Select
                         name="destination"
                         value={field.destination}
                         onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Destination"
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: "0",
                           border: "1px solid rgba(217, 217, 217, 0.0)",
                           borderRadius: "5px",
                           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                             borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          "& .MuiSelect-select": {
-                            padding: "9px 16px",
-                          },
                         }}
                       >
-                        <MenuItem value="" disabled>
-                          <span
-                            style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
-                          >
-                            Select Destination
-                          </span>
-                        </MenuItem>
-                        <MenuItem value={"London"}>London</MenuItem>
-                        <MenuItem value={"Tokyo"}>Tokyo</MenuItem>
-                        <MenuItem value={"Paris"}>Paris</MenuItem>
+                        {loading ? (
+                          <MenuItem value="" disabled>
+                            <CircularProgress size={24} />{" "}
+                            {/* Loader inside dropdown */}
+                            <span style={{ marginLeft: 10 }}>Loading...</span>
+                          </MenuItem>
+                        ) : (
+                          airportlist.map((item, index) => (
+                            <MenuItem key={index} value={item.nameAirport}>
+                              {item.nameAirport}
+                            </MenuItem>
+                          ))
+                        )}
                       </Select>
                     </FormControl>
                   </Grid2>
@@ -324,7 +344,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                     </FormControl>
                   </Grid2>
                 )}
-
+                {renderTextFields()}
                 {/* Number of Trips */}
                 {field.connectionDirect && (
                   <Grid2 item size={4}>

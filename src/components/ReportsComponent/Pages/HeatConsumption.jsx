@@ -1,20 +1,40 @@
 import { FormControl, Grid2, Select } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import heat from "../../../assets/images/heat.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
+import { useAuth } from "../../../context/AuthContext";
 
 function HeatConsumption() {
   // Initialize fields with quantity and unit
   const [field, setField] = useState({ quantity: "", unit: "MMBtu" });
+  const { setScope2Data } = useAuth();
+  useEffect(() => {
+    setScope2Data((prev) => ({ ...prev, heat: field.quantity }));
+  }, [field, setScope2Data]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
+
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -50,9 +70,65 @@ function HeatConsumption() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height={24} width={24} />
-        </div>
+        {/* <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
+        </div> */}
       </div>
 
       <Box
@@ -95,21 +171,21 @@ function HeatConsumption() {
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter quantity"
+                placeholder="Add quantity"
                 sx={{
-                  margin: '0',
-                  border: '1px solid rgba(217, 217, 217, 0.0)',
-                  borderRadius: '5px',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  margin: "0",
+                  border: "1px solid rgba(217, 217, 217, 0.0)",
+                  borderRadius: "5px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
-                  '& .MuiOutlinedInput-input': {
-                    padding: '11px 16px',
-                    color: 'black', // Set the text color to black
+                  "& .MuiOutlinedInput-input": {
+                    padding: "11px 16px",
+                    color: "	#343434", // Set the text color to black
                   },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
-                  }
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
+                  },
                 }}
               />
             </Grid2>
@@ -126,22 +202,22 @@ function HeatConsumption() {
                   variant="outlined"
                   fullWidth
                   sx={{
-                    margin: '0',
-                    border: '1px solid rgba(217, 217, 217, 0.0)',
-                    borderRadius: '5px',
-                    '& .MuiOutlinedInput-notchedOutline': {
-                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    margin: "0",
+                    border: "1px solid rgba(217, 217, 217, 0.0)",
+                    borderRadius: "5px",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(217, 217, 217, 0.30)",
                     },
-                    '& .MuiOutlinedInput-input': {
-                      padding: '11px 16px',
-                      color: 'black', 
+                    "& .MuiOutlinedInput-input": {
+                      padding: "11px 16px",
+                      color: "black",
                     },
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                      borderColor: 'rgba(217, 217, 217, 0.30)',
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "rgba(217, 217, 217, 0.30)",
                     },
-                    '& .MuiInputBase-input.Mui-disabled': {
-                      color: 'grey !important',
-                      WebkitTextFillColor: 'black !important',
+                    "& .MuiInputBase-input.Mui-disabled": {
+                      color: "#717171 !important",
+                      WebkitTextFillColor: "#717171 !important",
                       opacity: 1,
                     },
                   }}

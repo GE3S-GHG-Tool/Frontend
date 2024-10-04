@@ -3,6 +3,8 @@ import Typography from "@mui/material/Typography";
 import porces_Logo from "../../../../assets/images/emisson_logo.svg";
 import dot_Icon from "../../../../assets/images/DotsThreeVertical.svg";
 import TablesData from "../TablesData";
+import edit_icon from "../../../../assets/images/edit_icon.svg";
+import del_icon from "../../../../assets/images/del_icon.svg";
 import { Dialog } from "@mui/material";
 import { useState } from "react";
 import ProcessEmissionReports from "./ProcessEmissionReports";
@@ -11,6 +13,8 @@ function ProcessEmission() {
   const [open, setOpen] = useState(false);
   const [tableData, setTaleData] = useState([]);
   // console.log("tableData2", tableData2);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   // Function to open the dialog
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,6 +23,20 @@ function ProcessEmission() {
   // Function to close the dialog
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDotClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit clicked");
+    setIsDropdownOpen(false);
+  };
+
+  const handleClearAll = () => {
+    // setFields([{ fuel: "", quantity: "", unit: "" }]);
+    setIsDropdownOpen(false);
   };
 
   const headings = [
@@ -108,7 +126,70 @@ function ProcessEmission() {
                   Process Emission
                 </h2>
               </div>
-              <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
+              <div style={{ position: "relative" }}>
+                <img
+                  src={dot_Icon}
+                  alt="dot-icon"
+                  height="24px"
+                  width="24px"
+                  onClick={handleDotClick}
+                  style={{ cursor: "pointer" }}
+                />
+                {isDropdownOpen && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: "100%",
+                      backgroundColor: "#FFF",
+                      zIndex: 1,
+                      borderRadius: "8px",
+                      overflow: "hidden",
+                      boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <div
+                      onClick={handleEdit}
+                      style={{
+                        padding: "5px 10px",
+                        width: "8rem",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
+                      <img
+                        src={edit_icon}
+                        alt="dot-icon"
+                        height="18px"
+                        width="18px"
+                      />{" "}
+                      Edit
+                    </div>
+                    <div
+                      onClick={handleClearAll}
+                      style={{
+                        padding: "5px 10px",
+                        width: "8rem",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        color: "#FF9A9A",
+                        gap: "4px",
+                      }}
+                    >
+                      <img
+                        src={del_icon}
+                        alt="dot-icon"
+                        height="18px"
+                        width="18px"
+                      />{" "}
+                      Clear All
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div>
@@ -118,8 +199,9 @@ function ProcessEmission() {
                 lineHeight="22.4px"
                 color="#717171"
               >
-                Input the type and amount of refrigerant used to account for
-                emissions from refrigerant Consumption.
+                Record the type of industrial process and the quantity of
+                product processed to calculate emissions directly related to
+                production activities.
               </Typography>
             </div>
           </Grid2>
@@ -140,7 +222,7 @@ function ProcessEmission() {
               }}
               onClick={handleClickOpen} // Open the dialog on button click
             >
-              Add More
+              Add Data
             </Button>
           </Grid2>
         </Grid2>

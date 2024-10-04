@@ -1,19 +1,28 @@
 import { FormControl, Grid2, Select } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import goods from "../../../assets/images/goods.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
+import { getGoods } from "../../../api/createReport";
+import { useScope3 } from "../../../context/Scope3Context";
 
 function PurchasedGoods() {
   // Initialize fields with one empty row
+
+  const [assetMenu, setAssetMenu] = useState([]);
+
+  const { setGoods, goods } = useScope3();
   const [fields, setFields] = useState([
-    { typeOfExpense: "", expenseValue: "", currency: "" },
+    { type_of_expense: "", expense_value: "" },
   ]);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -23,16 +32,12 @@ function PurchasedGoods() {
 
     // Check if the current row is complete
     const isRowComplete =
-      updatedFields[index].typeOfExpense &&
-      updatedFields[index].expenseValue &&
-      updatedFields[index].currency;
+      updatedFields[index].type_of_expense &&
+      updatedFields[index].expense_value;
 
     // If the current row is complete and it’s the last row, add a new row
     if (isRowComplete && index === fields.length - 1) {
-      setFields([
-        ...updatedFields,
-        { typeOfExpense: "", expenseValue: "", currency: "" },
-      ]);
+      setFields([...updatedFields, { type_of_expense: "", expense_value: "" }]);
     }
   };
 
@@ -41,11 +46,38 @@ function PurchasedGoods() {
 
     // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
-      updatedFields.push({ typeOfExpense: "", expenseValue: "", currency: "" });
+      updatedFields.push({ type_of_expense: "", expense_value: "" });
     }
 
     setFields(updatedFields);
   };
+
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
+
+  useEffect(() => {
+    setGoods(fields);
+  }, [fields, setGoods]);
+  
+  const fetchData = async () => {
+    const response = await getGoods();
+    // console.log("gooods", response?.data?.expense_types);
+    setAssetMenu(response?.data?.expense_types);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div
@@ -81,9 +113,65 @@ function PurchasedGoods() {
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height="24px" width="24px" />
-        </div>
+        {/* <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
+        </div> */}
       </div>
 
       <Box
@@ -126,37 +214,30 @@ function PurchasedGoods() {
                   >
                     Type of Expense
                   </Typography>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth size="small">
                     <Select
-                      name="typeOfExpense"
-                      value={field.typeOfExpense}
+                      name="type_of_expense"
+                      value={field.type_of_expense}
                       onChange={(e) => handleChange(index, e)}
-                      displayEmpty
-                      placeholder="Select Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
-                        },
-                        '& .MuiSelect-select': {
-                          padding: '11px 16px',
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
-                      </MenuItem>
-                      <MenuItem value={"Soyabean"}>Soyabean</MenuItem>
-                      <MenuItem value={"Electronics"}>Electronics</MenuItem>
-                      <MenuItem value={"Furniture"}>Furniture</MenuItem>
+                      {assetMenu.map((item, index) => (
+                        <MenuItem key={index} value={item.type_of_expense}>
+                          {item.type_of_expense}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
 
-                {field.typeOfExpense && (
+                {field.type_of_expense && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -165,32 +246,33 @@ function PurchasedGoods() {
                       Expense Value
                     </Typography>
                     <TextField
-                      name="expenseValue"
-                      value={field.expenseValue}
+                      name="expense_value"
+                      value={field.expense_value}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
                       placeholder="Enter expense value"
                       type="number"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '11px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "11px 16px",
+                          color: "	#343434",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
                   </Grid2>
                 )}
 
-                {field.expenseValue && (
+                {field.expense_value && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -198,33 +280,21 @@ function PurchasedGoods() {
                     >
                       Currency
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="currency"
-                        value={field.currency}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Currency"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '11px 16px',
-                          },
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Currency</span>
-                        </MenuItem>
-                        <MenuItem value={"USD"}>US Dollars</MenuItem>
-                        <MenuItem value={"INR"}>Indian Rupees</MenuItem>
-                      </Select>
-                    </FormControl>
+
+                    <TextField
+                      fullWidth
+                      name="currency"
+                      value={"USD"}
+                      disabled
+                      size="small"
+                      sx={{
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                      }}
+                    ></TextField>
                   </Grid2>
                 )}
               </Grid2>
@@ -234,7 +304,7 @@ function PurchasedGoods() {
                   height: "55px",
                 }}
               >
-                {field.typeOfExpense && field.expenseValue && (
+                {field.type_of_expense && field.expense_value && (
                   <img
                     onClick={() => handleDelete(index)}
                     src={trash}

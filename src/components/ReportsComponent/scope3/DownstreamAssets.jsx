@@ -1,24 +1,43 @@
 import { FormControl, Grid2, Select } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import downstream from "../../../assets/images/downstream.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import edit_icon from "../../../assets/images/edit_icon.svg";
+import del_icon from "../../../assets/images/del_icon.svg";
+import { useScope3 } from "../../../context/Scope3Context";
 
 function DownstreamAssets() {
-  // Initialize fields with sumOfScopes, physicalArea, and totalPhysicalArea
+  // Initialize fields with scope1_scope2_emissions, physical_area, and total_physical_area
   const [field, setField] = useState({
-    sumOfScopes: "",
-    physicalArea: "",
-    totalPhysicalArea: "",
+    scope1_scope2_emissions: "",
+    physical_area: "",
+    total_physical_area: "",
   });
-
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setDownStreamData, downStreamData } = useScope3();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
+  useEffect(() => {
+    setDownStreamData(field);
+  }, [field, setDownStreamData]);
+  // const handleDotClick = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
+
+  // const handleEdit = () => {
+  //   console.log("Edit clicked");
+  //   setIsDropdownOpen(false);
+  // };
+
+  // const handleClearAll = () => {
+  //   setIsDropdownOpen(false);
+  // };
 
   return (
     <div
@@ -55,13 +74,69 @@ function DownstreamAssets() {
               margin: 0,
             }}
           >
-            Downstream Assets
+            Downstream Leased Assets
           </h2>
         </div>
 
-        <div>
-          <img src={dot_Icon} alt="dot-icon" height={24} width={24} />
-        </div>
+        {/* <div style={{ position: "relative" }}>
+          <img
+            src={dot_Icon}
+            alt="dot-icon"
+            height="24px"
+            width="24px"
+            onClick={handleDotClick}
+            style={{ cursor: "pointer" }}
+          />
+          {isDropdownOpen && (
+            <div style={{
+              position: "absolute",
+              right: 0,
+              top: "100%",
+              backgroundColor: "#FFF",
+              zIndex: 1,
+              borderRadius: "8px",
+              overflow: "hidden",
+              boxShadow: "0px 2px 2px 0px rgba(0,0,0,0.2)",
+            }}>
+              <div
+                onClick={handleEdit}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}
+              >
+                <img
+                  src={edit_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Edit
+              </div>
+              <div
+                onClick={handleClearAll}
+                style={{
+                  padding: "5px 10px",
+                  width: '8rem',
+                  cursor: "pointer",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FF9A9A',
+                  gap: '4px'
+                }}
+              ><img
+                  src={del_icon}
+                  alt="dot-icon"
+                  height="18px"
+                  width="18px"
+                /> Clear All
+              </div>
+            </div>
+          )}
+        </div> */}
       </div>
 
       <Box
@@ -75,7 +150,7 @@ function DownstreamAssets() {
           lineHeight="22.4px"
           color="#717171"
         >
-          Provide emission details and area for leased assets in downstream
+          Provide Emission details and area for leased assets in downstream
           operations to calculate associated emissions.
         </Typography>
       </Box>
@@ -99,24 +174,25 @@ function DownstreamAssets() {
                 Sum of Scope 1 & 2 Emissions of Lessee (tCO2e)
               </Typography>
               <TextField
-                name="sumOfScopes"
-                value={field.sumOfScopes}
+                name="scope1_scope2_emissions"
+                value={field.scope1_scope2_emissions}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
-                placeholder="Enter sum of scopes"
+                placeholder="Add Value"
                 sx={{
-                  margin: '0',
-                  border: '1px solid rgba(217, 217, 217, 0.0)',
-                  borderRadius: '5px',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  margin: "0",
+                  border: "1px solid rgba(217, 217, 217, 0.0)",
+                  borderRadius: "5px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
-                  '& .MuiOutlinedInput-input': {
-                    padding: '11px 16px',
+                  "& .MuiOutlinedInput-input": {
+                    padding: "11px 16px",
+                    color: "	#343434",
                   },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
                 }}
               />
@@ -127,25 +203,26 @@ function DownstreamAssets() {
                 Total Physical Area/Volume of the Lessor Asset
               </Typography>
               <TextField
-                name="physicalArea"
-                value={field.physicalArea}
+                name="physical_area"
+                value={field.physical_area}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter total physical area"
+                placeholder="Add Value"
                 sx={{
-                  margin: '0',
-                  border: '1px solid rgba(217, 217, 217, 0.0)',
-                  borderRadius: '5px',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  margin: "0",
+                  border: "1px solid rgba(217, 217, 217, 0.0)",
+                  borderRadius: "5px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
-                  '& .MuiOutlinedInput-input': {
-                    padding: '11px 16px',
+                  "& .MuiOutlinedInput-input": {
+                    padding: "11px 16px",
+                    color: "	#343434",
                   },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
                 }}
               />
@@ -156,25 +233,26 @@ function DownstreamAssets() {
                 Physical Area/Volume of the Leased Asset
               </Typography>
               <TextField
-                name="totalPhysicalArea"
-                value={field.totalPhysicalArea}
+                name="total_physical_area"
+                value={field.total_physical_area}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
                 type="number"
-                placeholder="Enter physical area of leased asset"
+                placeholder="Add Value"
                 sx={{
-                  margin: '0',
-                  border: '1px solid rgba(217, 217, 217, 0.0)',
-                  borderRadius: '5px',
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  margin: "0",
+                  border: "1px solid rgba(217, 217, 217, 0.0)",
+                  borderRadius: "5px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
-                  '& .MuiOutlinedInput-input': {
-                    padding: '11px 16px',
+                  "& .MuiOutlinedInput-input": {
+                    padding: "11px 16px",
+                    color: "	#343434",
                   },
-                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(217, 217, 217, 0.30)',
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(217, 217, 217, 0.30)",
                   },
                 }}
               />

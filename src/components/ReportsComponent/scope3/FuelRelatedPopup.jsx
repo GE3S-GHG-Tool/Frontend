@@ -2,56 +2,109 @@ import {
   Box,
   Button,
   FormControl,
-  Grid2,
   MenuItem,
   Select,
   TextField,
   Typography,
+  Grid2,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import fuelRelated from "../../../assets/images/fuelActivities.svg";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { getFuelCategoryList } from "../../../api/createReport";
+import { useScope3 } from "../../../context/Scope3Context";
 
 const FuelRelatedPopup = ({ onClose }) => {
   // State with one initial row
   const [fields, setFields] = useState([
     {
+      id: "",
       category: "",
       subCategory: "",
-      subSubCategory: "",
+      subsubCategory: "",
       quantity: "",
       unit: "",
     },
   ]);
-
+  console.log("field", fields);
+  const [categoryMenu, setCategoryMenu] = useState([]);
+  const [subCategoryMenu, setSubCategoryMenu] = useState([]);
+  const { fuelData, setFuelData } = useScope3();
+  // console.log(first)
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
-    setFields(updatedFields);
+    if (name === "category") {
+      const selectedAsset = categoryMenu.find((item) => item._id === value);
+      updatedFields[index][name] = selectedAsset.category_name;
+      updatedFields[index]["subCategory"] =
+        selectedAsset?.subcategories[0]?.subcategory_name;
+      updatedFields[index]["unit"] = selectedAsset?.subcategories[0]?.unit;
+      updatedFields[index]["id"] = value;
 
-    // Check if the current row is complete
-    const isRowComplete = Object.values(updatedFields[index]).every(
-      (field) => field.trim() !== ""
+      setSubCategoryMenu(selectedAsset?.subcategories);
+      setFields(updatedFields);
+    }
+    if (name === "subsubCategory") {
+      // console.log("subsubCategory value", value);
+      updatedFields[index]["subsubCategory"] = value;
+      setFields(updatedFields);
+    }
+    if (name === "quantity") {
+      updatedFields[index]["quantity"] = value;
+      setFields(updatedFields);
+    }
+    const hasQuantityField = Object.prototype.hasOwnProperty.call(
+      updatedFields[index],
+      "quantity"
     );
+    const isQuantityFilled =
+      hasQuantityField && updatedFields[index].quantity.trim() !== "";
 
-    // If the row is complete, add a new row
-    if (isRowComplete && index === fields.length - 1) {
+    // If the row has a quantity field and it is filled, add a new row
+    if (isQuantityFilled && index === fields.length - 1) {
       setFields([
         ...updatedFields,
         {
+          id: "",
           category: "",
           subCategory: "",
-          subSubCategory: "",
+          subsubCategory: "",
           quantity: "",
           unit: "",
         },
       ]);
     }
   };
+  useEffect(() => {
+    if (fuelData && fuelData.length > 0) {
+      console.log("fuelData", fuelData);
+      const capitalGoodsFields = fuelData.map((item) => ({
+        id: item.id || "",
+        category: item.category || "",
+        subCategory: item.subCategory || "",
+        subsubCategory: item.subsubCategory || "",
+        quantity: item.quantity || "",
+        unit: item.unit || "",
+      }));
+      setFields(capitalGoodsFields);
+    }
+  }, [fuelData]);
+  const save = () => {
+    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    setFuelData(fields);
+    onClose();
+  };
+  const fetchData = async () => {
+    const response = await getFuelCategoryList();
+    setCategoryMenu(response?.data.categories);
+  };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
     setFields(updatedFields);
@@ -156,31 +209,25 @@ const FuelRelatedPopup = ({ onClose }) => {
                   >
                     Category
                   </Typography>
-                  <FormControl fullWidth>
+                  <FormControl fullWidth size="small">
                     <Select
                       name="category"
-                      value={field.category}
+                      value={field.id}
                       onChange={(e) => handleChange(index, e)}
-                      displayEmpty
-                      placeholder="Select Category"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiSelect-select': {
-                          padding: '9px 16px',
-                        }
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Category</span>
-                      </MenuItem>
-                      <MenuItem value={"Fossil Fuels"}>Fossil Fuels</MenuItem>
-                      <MenuItem value={"Biofuels"}>Biofuels</MenuItem>
+                      {categoryMenu?.map((asset, index) => (
+                        <MenuItem key={index} value={asset._id}>
+                          {asset?.category_name}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -194,39 +241,26 @@ const FuelRelatedPopup = ({ onClose }) => {
                     >
                       Sub Category
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="subCategory"
-                        value={field.subCategory}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Sub Category"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Sub Category</span>
-                        </MenuItem>
-                        <MenuItem value={"Gasoline"}>Gasoline</MenuItem>
-                        <MenuItem value={"Diesel"}>Diesel</MenuItem>
-                        <MenuItem value={"Ethanol"}>Ethanol</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      disabled
+                      name="subCategory"
+                      value={field.subCategory || ""}
+                      variant="outlined"
+                      fullWidth
+                      size="small"
+                      sx={{
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                      }}
+                    />
                   </Grid2>
                 )}
 
                 {/* Sub Sub Category */}
-                {field.subCategory && (
+                {field.category && subCategoryMenu.length > 1 && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -234,38 +268,35 @@ const FuelRelatedPopup = ({ onClose }) => {
                     >
                       Sub Sub Category
                     </Typography>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth size="small">
                       <Select
-                        name="subSubCategory"
-                        value={field.subSubCategory}
+                        name="subsubCategory"
+                        value={field.subsubCategory || ""}
                         onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Sub Sub Category"
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
                         }}
                       >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Sub Sub Category</span>
-                        </MenuItem>
-                        <MenuItem value={"Regular"}>Regular</MenuItem>
-                        <MenuItem value={"Premium"}>Premium</MenuItem>
+                        {subCategoryMenu?.map((asset, index) => (
+                          <MenuItem
+                            key={index}
+                            value={asset.subsubcategory_name}
+                          >
+                            {asset?.subsubcategory_name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </Grid2>
                 )}
 
                 {/* Quantity */}
-                {field.subSubCategory && (
+                {field.subCategory && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -282,17 +313,17 @@ const FuelRelatedPopup = ({ onClose }) => {
                       type="number"
                       placeholder="Enter quantity"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -300,7 +331,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                 )}
 
                 {/* Unit */}
-                {field.quantity && (
+                {field.subCategory && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -308,34 +339,21 @@ const FuelRelatedPopup = ({ onClose }) => {
                     >
                       Unit
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="unit"
-                        value={field.unit}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Type"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
-                          },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Unit</span>
-                        </MenuItem>
-                        <MenuItem value="Liters">Liters</MenuItem>
-                        <MenuItem value="Gallons">Gallons</MenuItem>
-                        <MenuItem value="Kilograms">Kilograms</MenuItem>
-                      </Select>
-                    </FormControl>
+                    <TextField
+                      disabled
+                      name="unit"
+                      value={field.unit || ""}
+                      variant="outlined"
+                      fullWidth
+                      size="small"
+                      sx={{
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                      }}
+                    />
                   </Grid2>
                 )}
               </Grid2>
@@ -347,7 +365,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                   height: "55px",
                 }}
               >
-                {Object.values(field).every((val) => val.trim() !== "") && (
+                {field.quantity.trim() !== "" && (
                   <img
                     src={trash}
                     alt="Delete"
@@ -355,16 +373,6 @@ const FuelRelatedPopup = ({ onClose }) => {
                       height: "100%",
                       width: "100%",
                       cursor: "pointer",
-                      visibility: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "visible"
-                        : "hidden",
-                      pointerEvents: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "auto"
-                        : "none", // Disable interaction if not all fields are filled
                     }}
                     onClick={() => handleDelete(index)}
                   />
@@ -389,16 +397,16 @@ const FuelRelatedPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
-            '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
-              },
+            "&:hover": {
+              background: "rgba(177, 233, 216, 0.30)",
+            },
           }}
         >
           Clear All
         </Button>
 
         <Button
+          onClick={save}
           sx={{
             borderRadius: "32px",
             height: "38px",
@@ -408,11 +416,10 @@ const FuelRelatedPopup = ({ onClose }) => {
             textTransform: "capitalize",
             color: "#FFFFFF",
             background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
-              },
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
           }}
         >
           Save

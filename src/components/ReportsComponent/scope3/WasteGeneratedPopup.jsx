@@ -8,16 +8,23 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import waste from "../../../assets/images/wasteGenerated.svg";
 import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { getWasteList } from "../../../api/createReport";
+import { useScope3 } from "../../../context/Scope3Context";
 
 const WasteGeneratedPopup = ({ onClose }) => {
-  // State with one initial row
+  const [assetMenu, setAssetMenu] = useState([]);
+  const [subCategoryMenu, setSubCategoryMenu] = useState([]);
+  const [disposalMenu, setDisposalMenu] = useState([]);
+  const { wasteData, setWasteData } = useScope3();
   const [fields, setFields] = useState([
     {
+      id: "",
+      subCategoryid: "",
       wasteCategory: "",
       subCategory: "",
       disposalMethod: "",
@@ -27,23 +34,36 @@ const WasteGeneratedPopup = ({ onClose }) => {
       quantityOfWaste: "",
     },
   ]);
-
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
     updatedFields[index][name] = value;
     setFields(updatedFields);
+    if (name === "wasteCategory") {
+      const selectedCategory = assetMenu.find((asset) => asset._id === value);
+      updatedFields[index]["id"] = value;
+      updatedFields[index][name] = selectedCategory.category_name;
+      setSubCategoryMenu(selectedCategory.subcategories);
+      setFields(updatedFields);
+    }
+    if (name === "subCategory") {
+      const selectedsubCategory = subCategoryMenu.find(
+        (asset) => asset._id === value
+      );
+      updatedFields[index]["subCategoryid"] = value;
+      updatedFields[index][name] = selectedsubCategory.subcategory_name;
+      setDisposalMenu(selectedsubCategory.disposal_method);
+      setFields(updatedFields);
+    }
 
-    // Check if the current row is complete
-    const isRowComplete = Object.values(updatedFields[index]).every(
-      (field) => field.trim() !== ""
-    );
+    const hasExpensesValue = updatedFields[index].quantityOfWaste.trim() !== "";
 
-    // If the row is complete, add a new row
-    if (isRowComplete && index === fields.length - 1) {
+    if (hasExpensesValue && index === fields.length - 1) {
       setFields([
         ...updatedFields,
         {
+          id: "",
+          subCategoryid: "",
           wasteCategory: "",
           subCategory: "",
           disposalMethod: "",
@@ -60,7 +80,36 @@ const WasteGeneratedPopup = ({ onClose }) => {
     const updatedFields = fields.filter((_, i) => i !== index);
     setFields(updatedFields);
   };
-
+  useEffect(() => {
+    if (wasteData && wasteData.length > 0) {
+      const wasteDatares = wasteData.map((item) => ({
+        id: item.id || "",
+        subCategoryid: item.subCategoryid || "",
+        wasteCategory: item.wasteCategory || "",
+        subCategory: item.subCategory || "",
+        disposalMethod: item.disposalMethod || "",
+        distanceToLandfill: item.distanceToLandfill || "",
+        fuelType: item.fuelType || "",
+        numberOfTrips: item.numberOfTrips || "",
+        quantityOfWaste: item.quantityOfWaste || "",
+      }));
+      console.log("data",wasteDatares);
+      setFields(wasteDatares);
+    }
+  }, [wasteData]);
+  const fetchData = async () => {
+    const response = await getWasteList();
+    // console.log("assetmenu", response?.data);
+    setAssetMenu(response?.data?.categories);
+  };
+  const save = () => {
+    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    setWasteData(fields);
+    onClose();
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Box
       sx={{
@@ -135,6 +184,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
       >
         {fields.map((field, index) => (
           <div
+            key={index}
             style={{
               display: "flex",
               width: "100%",
@@ -164,28 +214,28 @@ const WasteGeneratedPopup = ({ onClose }) => {
                   <FormControl fullWidth>
                     <Select
                       name="wasteCategory"
-                      value={field.wasteCategory}
+                      value={field.id}
                       onChange={(e) => handleChange(index, e)}
                       displayEmpty
                       placeholder="Select Type"
                       IconComponent={KeyboardArrowDownIcon}
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiSelect-select': {
-                          padding: '9px 16px',
-                        }
+                        "& .MuiSelect-select": {
+                          padding: "9px 16px",
+                        },
                       }}
                     >
-                      <MenuItem value="" disabled>
-                        <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
-                      </MenuItem>
-                      <MenuItem value={"Organic"}>Organic</MenuItem>
-                      <MenuItem value={"Plastic"}>Plastic</MenuItem>
+                      {assetMenu?.map((asset, index) => (
+                        <MenuItem key={index} value={asset._id}>
+                          {asset?.category_name}
+                        </MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </Grid2>
@@ -200,31 +250,30 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       Sub Categories
                     </Typography>
                     <FormControl fullWidth>
-
                       <Select
                         name="subCategory"
-                        value={field.subCategory}
+                        value={field.subCategoryid}
                         onChange={(e) => handleChange(index, e)}
                         displayEmpty
                         placeholder="Select Type"
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          margin: "0",
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
+                          "& .MuiSelect-select": {
+                            padding: "9px 16px",
+                          },
                         }}
                       >
-                        <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
-                        </MenuItem>
-                        <MenuItem value={"Newspaper"}>Newspaper</MenuItem>
-                        <MenuItem value={"Glass"}>Glass</MenuItem>
+                        {subCategoryMenu?.map((asset, index) => (
+                          <MenuItem key={index} value={asset._id}>
+                            {asset?.subcategory_name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </Grid2>
@@ -247,22 +296,18 @@ const WasteGeneratedPopup = ({ onClose }) => {
                         displayEmpty
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
                         }}
                       >
-                       <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Method</span>
-                        </MenuItem>
-                        <MenuItem value={"Landfilled"}>Landfilled</MenuItem>
-                        <MenuItem value={"Recycling"}>Recycling</MenuItem>
+                        {disposalMenu?.map((asset, index) => (
+                          <MenuItem key={index} value={asset.disposal_name}>
+                            {asset?.disposal_name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </Grid2>
@@ -286,17 +331,17 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       type="number"
                       placeholder="Enter distance"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -320,19 +365,23 @@ const WasteGeneratedPopup = ({ onClose }) => {
                         displayEmpty
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: '0',
-                          border: '1px solid rgba(217, 217, 217, 0.0)',
-                          borderRadius: '5px',
-                          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: 'rgba(217, 217, 217, 0.30)',
+                          margin: "0",
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          '& .MuiSelect-select': {
-                            padding: '9px 16px',
-                          }
+                          "& .MuiSelect-select": {
+                            padding: "9px 16px",
+                          },
                         }}
                       >
                         <MenuItem value="" disabled>
-                          <span style={{ color: '#BDBDBD', fontSize: '0.875rem' }}>Select Type</span>
+                          <span
+                            style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
+                          >
+                            Select Type
+                          </span>
                         </MenuItem>
                         <MenuItem value="Diesel">Diesel</MenuItem>
                         <MenuItem value="Petrol">Petrol</MenuItem>
@@ -359,17 +408,17 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       type="number"
                       placeholder="Number of trips"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -394,17 +443,17 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       type="text"
                       placeholder="10 tonnes"
                       sx={{
-                        margin: '0',
-                        border: '1px solid rgba(217, 217, 217, 0.0)',
-                        borderRadius: '5px',
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '9px 16px',
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
                         },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          borderColor: 'rgba(217, 217, 217, 0.30)',
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
                         },
                       }}
                     />
@@ -459,16 +508,16 @@ const WasteGeneratedPopup = ({ onClose }) => {
             width: "100px",
             textTransform: "capitalize",
             color: "#28814D",
-            '&:hover': {
-                background:
-                  "rgba(177, 233, 216, 0.30)",
-              },
+            "&:hover": {
+              background: "rgba(177, 233, 216, 0.30)",
+            },
           }}
         >
           Clear All
         </Button>
 
         <Button
+          onClick={save}
           sx={{
             borderRadius: "32px",
             height: "38px",
@@ -478,11 +527,10 @@ const WasteGeneratedPopup = ({ onClose }) => {
             textTransform: "capitalize",
             color: "#FFFFFF",
             background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-              '&:hover': {
-                background:
-                  "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                boxShadow: 'none'
-              },
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
           }}
         >
           Save

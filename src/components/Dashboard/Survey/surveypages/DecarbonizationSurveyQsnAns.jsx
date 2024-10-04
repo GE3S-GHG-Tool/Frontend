@@ -233,7 +233,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you involved a specialist in the selection of the pump sizing?",
+        "Have you involved a specialist in the selection of the fan sizing?",
         "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
       ],
       answers: [
@@ -300,7 +300,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
       ],
       answers: [
         [
-          "All chiller units should meet the Minimum Energy Efficiency Ratio (EER) mentioned in the table.",
+          "All chiller units should meet the Minimum Energy Efficiency.",
           "Ratio (EER) mentioned in the table",
         ],
       ],
@@ -320,7 +320,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you considered selecting an energy-efficient chiller for all the plant?",
+        "Has a high-efficiency condenser suitable for the plant been selected?",
       ],
       answers: [
         [
@@ -382,48 +382,48 @@ function SurveyQuestionSection({ handleResetSurvey }) {
       showTable: false,
       boldAnswerIndex: 0,
     },
-    {
-      text: [
-        "Has the development team considered improving the energy efficiency of the building's envelope?",
-      ],
-      answers: [
-        [
-          "Make Sure that the development team considers the improvement in the energy efficiency of the building's envelope.",
-          "The envelope addresses the following",
-          "Horizontal Opaque elements – Roof, Slabs",
-          "Vertical Opaque element – Wall, door",
-          "Horizontal Glazing – Sky light",
-          "Vertical Glazing – Glass Door, windows.",
-        ],
-        [
-          ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
-        ],
-      ],
-      logo: hand_holding_2,
-      heading: "Energy Conservation Techniques and Thermal Insulation",
-      showTable: true,
-      boldAnswerIndex: 0,
-    },
-    {
-      text: [
-        "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
-        "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
-      ],
-      answers: [
-        ["Thermal imaging carried out by a qualified thermographer."],
-        [
-          "The thermography report highlighting",
-          "The defects in the building envelope",
-          "The leakage spots noticed in the space and,",
-          "Recommendations for rectifications",
-        ],
-      ],
-      logo: snow_blowing,
-      heading:
-        "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
-      showTable: false,
-      boldAnswerIndex: 4,
-    },
+    // {
+    //   text: [
+    //     "Has the development team considered improving the energy efficiency of the building's envelope?",
+    //   ],
+    //   answers: [
+    //     [
+    //       "Make Sure that the development team considers the improvement in the energy efficiency of the building's envelope.",
+    //       ,
+    //       "Horizontal Opaque elements – Roof, Slabs",
+    //       "Vertical Opaque element – Wall, door",
+    //       "Horizontal Glazing – Sky light",
+    //       "Vertical Glazing – Glass Door, windows.",
+    //     ],
+    //     [
+    //       ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
+    //     ],
+    //   ],
+    //   logo: hand_holding_2,
+    //   heading: "Energy Conservation Techniques and Thermal Insulation",
+    //   showTable: true,
+    //   boldAnswerIndex: 0,
+    // },
+    // {
+    //   text: [
+    //     "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
+    //     "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
+    //   ],
+    //   answers: [
+    //     ["Thermal imaging carried out by a qualified thermographer."],
+    //     [
+    //       "The thermography report highlighting",
+    //       "The defects in the building envelope",
+    //       "The leakage spots noticed in the space and,",
+    //       "Recommendations for rectifications",
+    //     ],
+    //   ],
+    //   logo: snow_blowing,
+    //   heading:
+    //     "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
+    //   showTable: false,
+    //   boldAnswerIndex: 4,
+    // },
   ];
 
   return (

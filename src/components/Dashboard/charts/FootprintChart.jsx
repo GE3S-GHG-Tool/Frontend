@@ -6,7 +6,7 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
-const colors = ["#FFC8BF", "#AFC6FF", "#B1E9D8"];
+const colors = ["#B1E9D8", "#AFC6FF", " #FFC8BF"];
 // Tooltip styles
 
 export const purple3 = "#a44afe";

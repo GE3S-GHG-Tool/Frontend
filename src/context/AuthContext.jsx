@@ -11,7 +11,12 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState({});
   const [table, setTable] = useState([]);
-
+  const [scope2Data, setScope2Data] = useState({
+    electricity: "",
+    water: "",
+    heat: "",
+    desalinated: "",
+  });
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
 
   useEffect(() => {
@@ -55,6 +60,8 @@ export const AuthProvider = ({ children }) => {
     user,
     setTable,
     table,
+    setScope2Data,
+    scope2Data,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

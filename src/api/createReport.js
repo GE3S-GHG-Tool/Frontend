@@ -29,3 +29,180 @@ export async function getCategories(id) {
     return err.response;
   }
 }
+export async function getAssetType() {
+  try {
+    const response = await api.get(`/scope3_entry/get_scope3/Capital Goods`);
+    if (response) return response;
+    else throw new Error("Could not get Capital Goods");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getVehicleType() {
+  try {
+    const response = await api.get(
+      `/scope3_entry/get_scope3/Employee Commuting`
+    );
+    if (response) return response;
+    else throw new Error("Could not get Employee Commuting");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getFuelCategoryList() {
+  try {
+    const response = await api.get(
+      `/scope3_entry/get_scope3/Fuel Related Activities`
+    );
+    if (response) return response;
+    else throw new Error("Could not get Fuel Related Activities");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getWasteList() {
+  try {
+    const response = await api.get(`/scope3_entry/get_scope3/Waste Generated`);
+    if (response) return response;
+    else throw new Error("Could not get Waste Generated");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getUpstreams() {
+  try {
+    const response = await api.get(
+      `/scope3_entry/get_scope3/Upstream Leased Assets`
+    );
+    if (response) return response;
+    else throw new Error("Could not get Upstream Leased Assets");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getGoods() {
+  try {
+    const response = await api.get(`/scope3_entry/get_scope3/Purchased Goods`);
+    if (response) return response;
+    else throw new Error("Could not get Purchased Goods");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getTraveltype() {
+  try {
+    const response = await api.get(`/scope3_entry/get_scope3/Business Travel`);
+    if (response) return response;
+    else throw new Error("Could not get Business Travel");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getAllAirport() {
+  try {
+    const response = await api.get(`/scope3_entry/get_all_airports`);
+    if (response) return response;
+    else throw new Error("Could not get airport list");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getRefrigenrentType() {
+  try {
+    const response = await api.get(
+      `/scope1_kpi/get_scope_kpi_data/Refrigerant Consumption`
+    );
+    if (response) return response;
+    else throw new Error("Could not get airport list");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getConsumtionType() {
+  try {
+    const response = await api.get(
+      `/scope1_kpi/get_scope_kpi_data/Fuel Consumption`
+    );
+    if (response) return response;
+    else throw new Error("Could not get airport list");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getScope1Data(id) {
+  try {
+    const response = await api.get(
+      `/scope1_report/calculate_totals/66f6ad4f3c20cbb3fe0db9e5`
+    );
+    if (response) return response;
+    else throw new Error("Could not get scope data 1");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getScope2Data(id) {
+  try {
+    const response = await api.get(
+      `/scope2_report/calculate_totals/66fa9177e2c2df5158c7b08f`
+    );
+    if (response) return response;
+    else throw new Error("Could not get scope data 1");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function getScope3Data(id) {
+  try {
+    const response = await api.get(
+      `/scope3_report/calculate_scope3_totals/66fe99a9522a1e499dd42ae1`
+    );
+    if (response) return response;
+    else throw new Error("Could not get scope data 1");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+
+export async function saveScope1Report(data) {
+  try {
+    const response = await api.post("/scope1_report/scope1_report", data);
+    if (response) return response;
+    else throw new Error("Could not save report", data);
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function saveScope2Report(data) {
+  try {
+    const response = await api.post("/scope2_report/save_scope2_report", data);
+    if (response) return response;
+    else throw new Error("Could not save report", data);
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function saveScope3Report(data) {
+  try {
+    const response = await api.post("/scope3_report/save_scope3_report", data);
+    if (response) return response;
+    else throw new Error("Could not save report", data);
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}

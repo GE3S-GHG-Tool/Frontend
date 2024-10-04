@@ -33,66 +33,72 @@ import { AuthProvider } from "./context/AuthContext";
 import ResetOTP from "./components/ResetPassword/ResetOTP";
 import TotalEmissionsInventoryReport from "./components/EmissionsInventoryReport/TotalEmissionsInventoryReport";
 import Test from "./components/ReportsComponent/Pages/test";
+import { Scope3Provider } from "./context/Scope3Context";
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route index path="/signup" element={<SignUp />} />
-        <Route index path="/test" element={<Test />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/personalinfo" element={<PersonalInfo />} />
-        <Route path="/createaccount" element={<CreateAccount />} />
-        <Route path="/confirmation" element={<Confirmation />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/otppage" element={<ResetOTP />} />
-        <Route path="/verify-otp" element={<VerifyOTP />} />
-        <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/organizationstepper" element={<OrganizationStepper />} />
-        <Route path="/organization" element={<Organization />} />
-        <Route path="/details" element={<Details />} />
-        <Route path="/goals" element={<Goals />} />
-        <Route
-          path="/account-creation-header"
-          element={<AccountCreationHeader />}
-        />
-        <Route path="/account-Intro" element={<AccountCreationIntro />} />
-        <Route
-          path="/create-account-successfully"
-          element={<CreateAccountSuccessfully />}
-        />
-        {/* <Route path="/generate-reports" element={<GenerateReports />} /> */}
-        <Route path="/reportgenerator" element={<ReportStateEmpty />} />
-        <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
-        <Route path="app" element={<Typography>avavav</Typography>} />
-        <Route
-          path="/ghg-emissions-inventory-report"
-          element={<EmissionsInventoryReport />}
-        />
-        <Route
-          path="/emissionreport"
-          element={<TotalEmissionsInventoryReport />}
-        />
-        {/* Dashboard routes */}
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <DashboardLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="team-member" element={<TeamMembers />} />
-          <Route path="facilities" element={<Facilities />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="survey" element={<Survey />} />
-          <Route path="report" element={<Report />} />
-        </Route>
-      </Routes>
-    </AuthProvider>
+    <Scope3Provider>
+      <AuthProvider>
+        <Routes>
+          <Route index path="/signup" element={<SignUp />} />
+          <Route index path="/test" element={<Test />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/personalinfo" element={<PersonalInfo />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
+          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/otppage" element={<ResetOTP />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route
+            path="/organizationstepper"
+            element={<OrganizationStepper />}
+          />
+          <Route path="/organization" element={<Organization />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/goals" element={<Goals />} />
+          <Route
+            path="/account-creation-header"
+            element={<AccountCreationHeader />}
+          />
+          <Route path="/account-Intro" element={<AccountCreationIntro />} />
+          <Route
+            path="/create-account-successfully"
+            element={<CreateAccountSuccessfully />}
+          />
+          {/* <Route path="/generate-reports" element={<GenerateReports />} /> */}
+          <Route path="/reportgenerator" element={<ReportStateEmpty />} />
+          <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
+          <Route path="app" element={<Typography>avavav</Typography>} />
+          <Route
+            path="/ghg-emissions-inventory-report"
+            element={<EmissionsInventoryReport />}
+          />
+          <Route
+            path="/emissionreport"
+            element={<TotalEmissionsInventoryReport />}
+          />
+          {/* Dashboard routes */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <DashboardLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="team-member" element={<TeamMembers />} />
+            <Route path="facilities" element={<Facilities />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="survey" element={<Survey />} />
+            <Route path="report" element={<Report />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </Scope3Provider>
   );
 }
 

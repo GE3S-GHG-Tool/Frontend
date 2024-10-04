@@ -37,19 +37,19 @@ const StyledTableHeadCell = styled(TableCell)({
 // Define styled components with specific widths
 const StyledTableCellNarrow = styled(TableCell)(({ theme }) => ({
   width: "10%", // Adjusted width to 10% for the "S.No" and "Chiller Type"
-   border: "1px solid #00191D",
+  border: "1px solid #00191D",
   textAlign: "center",
 }));
 
 const StyledTableCellWide = styled(TableCell)(({ theme }) => ({
   width: "20%", // Adjusted width to 20% for other columns
-   border: "1px solid #00191D",
+  border: "1px solid #00191D",
   textAlign: "center",
 }));
 
 const StyledTableCellMedium = styled(TableCell)(({ theme }) => ({
   width: "30%", // Adjusted width to 30% for the "Chiller Type" description
-   border: "1px solid #00191D",
+  border: "1px solid #00191D",
   textAlign: "left",
 }));
 
@@ -104,7 +104,7 @@ function EfficiencyTable() {
         Water Cooled Chillers
       </h2>
       <Grid2>
-        <TableContainer component={Paper} style={{boxShadow:'none'}}>
+        <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
           <StyledTable aria-label="efficiency table">
             <TableHead>
               <TableRow>
@@ -135,19 +135,20 @@ function EfficiencyTable() {
                   (rotary screw & scroll)
                 </StyledTableCellMedium>{" "}
                 {/* Spans three rows */}
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+                <StyledTableCellWide>150 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;4.45</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.20</StyledTableCellWide>
               </TableRow>
               <TableRow>
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+
+                <StyledTableCellWide>150 TR and &lt; 300 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;4.90</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.60</StyledTableCellWide>
               </TableRow>
               <TableRow>
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+                <StyledTableCellWide>300 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.50</StyledTableCellWide>
+                <StyledTableCellWide>&gt;6.15</StyledTableCellWide>
               </TableRow>
               <TableRow>
                 <StyledTableCellNarrow rowSpan={3}>2</StyledTableCellNarrow>{" "}
@@ -156,19 +157,21 @@ function EfficiencyTable() {
                   Water cooled, electrically operated, centrifugal
                 </StyledTableCellMedium>{" "}
                 {/* Spans three rows */}
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+
+                <StyledTableCellWide>150 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.00</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.25</StyledTableCellWide>
               </TableRow>
               <TableRow>
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+              <StyledTableCellWide>150 TR and &lt; 300 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.55</StyledTableCellWide>
+                <StyledTableCellWide>&gt;5.90</StyledTableCellWide>
               </TableRow>
               <TableRow>
-                <StyledTableCellWide>&gt;9.562</StyledTableCellWide>
-                <StyledTableCellWide>&gt;2.803</StyledTableCellWide>
-                <StyledTableCellWide>&gt;12.5</StyledTableCellWide>
+
+                <StyledTableCellWide>300 TR</StyledTableCellWide>
+                <StyledTableCellWide>&gt;6.10</StyledTableCellWide>
+                <StyledTableCellWide>&gt;6.40</StyledTableCellWide>
               </TableRow>
             </TableBody>
           </StyledTable>

@@ -1,10 +1,11 @@
 import { Grid2, Typography } from "@mui/material";
 
-function TablesData({ headings = [], data }) {
-  // console.log("TablesData", data);
+function UpStreamTable({ headings = [], data }) {
+  console.log("UpStreamTable", data);
   const filteredData = data?.filter((item) => {
     return Object.values(item).every((value) => value !== "");
   });
+
   return (
     <Grid2
       sx={{
@@ -60,7 +61,7 @@ function TablesData({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.assetType?.asset_type}
+                {item?.assetType}
               </td>
               <td
                 style={{
@@ -70,7 +71,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.assetCategory}
+                {item.sourceOfEnergy}
               </td>
               <td
                 style={{
@@ -80,7 +81,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.expenses}
+                {item.quantity}
               </td>
               <td
                 style={{
@@ -92,7 +93,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                USD
+                {item.unit}
               </td>
             </tr>
           ))}
@@ -102,4 +103,4 @@ function TablesData({ headings = [], data }) {
   );
 }
 
-export default TablesData;
+export default UpStreamTable;
