@@ -103,7 +103,10 @@ const ReportList = ({ searchQuery }) => {
         </thead>
         <tbody>
           {reportsToShow.map((report, index) => (
-            <tr key={index} onClick={() => navigate("/reportgenerator")}>
+            <tr
+              key={index}
+              onClick={() => navigate(`/emissionreport/${report?._id}`)}
+            >
               <td>{report.name}</td>
               <td>{report.year}</td>
               <td>{report.time_period}</td>
