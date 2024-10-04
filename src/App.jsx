@@ -69,6 +69,7 @@ function App() {
           />
           {/* <Route path="/generate-reports" element={<GenerateReports />} /> */}
           <Route path="/reportgenerator" element={<ReportStateEmpty />} />
+          <Route path="/reportgenerator/:id" element={<ReportStateEmpty />} />
           <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
           <Route path="app" element={<Typography>avavav</Typography>} />
           <Route
@@ -76,7 +77,7 @@ function App() {
             element={<EmissionsInventoryReport />}
           />
           <Route
-            path="/emissionreport"
+            path="/emissionreport/:id"
             element={<TotalEmissionsInventoryReport />}
           />
           {/* Dashboard routes */}
