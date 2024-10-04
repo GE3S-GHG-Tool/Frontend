@@ -199,7 +199,7 @@ const Scope3 = () => {
     console.log(payload);
     const response = await saveScope3Report(payload);
     console.log(response);
-    if (response.status === "201") {
+    if (response.status === 201) {
       navigate("/emissionreport");
     } else {
       alert("Something went wrong");
