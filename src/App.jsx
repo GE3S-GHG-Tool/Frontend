@@ -76,7 +76,7 @@ function App() {
             element={<EmissionsInventoryReport />}
           />
           <Route
-            path="/emissionreport"
+            path="/emissionreport/:id"
             element={<TotalEmissionsInventoryReport />}
           />
           {/* Dashboard routes */}

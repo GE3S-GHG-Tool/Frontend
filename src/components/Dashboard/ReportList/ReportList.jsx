@@ -1,49 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getGeneratedReports } from "../../../api/reports.apis"; // Adjust the path to your API function
 import "./ReportList.css";
-const members = [
-  {
-    name: "Pranit Gaikar",
-    img: "",
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "2024-02-10",
-  },
-  {
-    name: "John Doe",
-    img: "",
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "2024-02-10",
-  },
-  {
-    name: "Jane Smith",
-    img: "",
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "2024-02-10",
-  },
-  {
-    name: "Jane Smith",
-    img: "",
-    reportName: "Report 2022",
-    year: "2020",
-    month: "January",
-    date: "2024-02-10",
-  },
-];
 
 const ReportList = ({ searchQuery }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [reports, setReports] = useState([]); // State to store reports data
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
   });
 
+  // Function to fetch generated reports
+  const fetchReports = async () => {
+    try {
+      const response = await getGeneratedReports(); // Call your API function
+      if (response?.data?.success) {
+        setReports(response.data.reports); // Assuming the reports data is in response.data.reports
+      } else {
+        console.error("Failed to fetch reports");
+      }
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    }
+  };
+
+  // Fetch reports when component mounts
+  useEffect(() => {
+    fetchReports();
+  }, []);
+
+  // Sorting function
   const handleSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -52,7 +40,7 @@ const ReportList = ({ searchQuery }) => {
     setSortConfig({ key, direction });
   };
 
-  const sortedMembers = [...members].sort((a, b) => {
+  const sortedReports = [...reports].sort((a, b) => {
     if (sortConfig.key) {
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "ascending" ? -1 : 1;
@@ -64,14 +52,15 @@ const ReportList = ({ searchQuery }) => {
     return 0;
   });
 
-  const filteredMembers = sortedMembers.filter(
-    (member) =>
-      member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.facility.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredReports = sortedReports.filter(
+    (report) =>
+      report.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      report.year.toString().includes(searchQuery.toLowerCase()) ||
+      report.time_period.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  const membersToShow =
-    location.pathname === "/" ? filteredMembers.slice(0, 2) : filteredMembers;
+
+  const reportsToShow =
+    location.pathname === "/" ? filteredReports.slice(0, 2) : filteredReports;
 
   return (
     <div className="table-container">
@@ -84,7 +73,7 @@ const ReportList = ({ searchQuery }) => {
             <th className="member-table-head">
               Generated date
               <button
-                onClick={() => handleSort("lastActive")}
+                onClick={() => handleSort("updatedAt")}
                 className="sort-button"
               >
                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
@@ -113,12 +102,12 @@ const ReportList = ({ searchQuery }) => {
           </tr>
         </thead>
         <tbody>
-          {membersToShow.map((member, index) => (
+          {reportsToShow.map((report, index) => (
             <tr key={index} onClick={() => navigate("/reportgenerator")}>
-              <td>{member.reportName}</td>
-              <td>{member.year}</td>
-              <td>{member.month}</td>
-              <td>{member.date}</td>
+              <td>{report.name}</td>
+              <td>{report.year}</td>
+              <td>{report.time_period}</td>
+              <td>{new Date(report.updatedAt).toLocaleDateString()}</td>
               <td className="scope_tags">
                 <span className="scope_tag1">S1</span>
                 <span className="scope_tag2">S2</span>
