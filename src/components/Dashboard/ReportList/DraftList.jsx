@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDraftReports } from "../../../api/reports.apis"; // Adjust the path based on your project structure
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DraftList = ({ searchQuery }) => {
   const [reports, setReports] = useState([]);
@@ -7,6 +8,7 @@ const DraftList = ({ searchQuery }) => {
     key: null,
     direction: "ascending",
   });
+  const navigate = useNavigate();
 
   // Function to fetch draft reports from the API
   const fetchReports = async () => {
@@ -95,7 +97,10 @@ const DraftList = ({ searchQuery }) => {
         </thead>
         <tbody>
           {filteredReports.map((report, index) => (
-            <tr key={index}>
+            <tr
+              key={index}
+              onClick={() => navigate(`/reportgenerator/${report._id}`)} // Adjust the path based on your project structure
+            >
               <td>{report.name}</td>
               <td>{report.year}</td>
               <td>{report.periodicity}</td>
