@@ -10,11 +10,13 @@ import { saveScope2Report } from "../../../api/createReport";
 const Scope2 = ({ setActiveTab }) => {
   const navigate = useNavigate();
   const { scope2Data, user } = useAuth();
+  const reportid = localStorage.getItem("reportId");
   // console.log("scope2Data", user);
   const submit = async (type) => {
     const payload = {
       organizationId: user?.organization?.id,
       report_type: type,
+      main_report_id: reportid,
       electricityConsumption: [
         {
           unit: "KWh",

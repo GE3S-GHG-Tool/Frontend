@@ -142,7 +142,7 @@ export async function getConsumtionType() {
 export async function getScope1Data(id) {
   try {
     const response = await api.get(
-      `/scope1_report/calculate_totals/66f6ad4f3c20cbb3fe0db9e5`
+      `/scope1_report/calculate_totals/66fe865e02cfb7225bc60f61`
     );
     if (response) return response;
     else throw new Error("Could not get scope data 1");
@@ -154,7 +154,7 @@ export async function getScope1Data(id) {
 export async function getScope2Data(id) {
   try {
     const response = await api.get(
-      `/scope2_report/calculate_totals/66fa9177e2c2df5158c7b08f`
+      `/scope2_report/calculate_totals/66fe865e02cfb7225bc60f61`
     );
     if (response) return response;
     else throw new Error("Could not get scope data 1");
@@ -166,7 +166,7 @@ export async function getScope2Data(id) {
 export async function getScope3Data(id) {
   try {
     const response = await api.get(
-      `/scope3_report/calculate_scope3_totals/66fe99a9522a1e499dd42ae1`
+      `/scope3_report/calculate_scope3_totals/66fe865e02cfb7225bc60f61`
     );
     if (response) return response;
     else throw new Error("Could not get scope data 1");

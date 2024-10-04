@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { saveScope1Report } from "../../../api/createReport";
 
 const Scope1 = ({ setActiveTab }) => {
+  const reportid = localStorage.getItem("reportId");
   const navigate = useNavigate();
   const { consumption, refrigerent } = useScope3();
   const [consumptionArray, setConsumptionArray] = useState([]);
@@ -23,6 +24,7 @@ const Scope1 = ({ setActiveTab }) => {
 
   const submit = async (type) => {
     const payload = {
+      main_report_id: reportid,
       fuelEntries: consumptionArray.slice(0, -1),
       refrigerantEntries: refrigerentArray.slice(0, -1),
       processEmissions: [
