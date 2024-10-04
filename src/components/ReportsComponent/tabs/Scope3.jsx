@@ -80,6 +80,7 @@ const fuelRelatedHeadings = [
 const leasedDataHeadings = ["Asset Type", "Source Of energy", "Value", "Unit"];
 
 const Scope3 = () => {
+  const reportid = localStorage.getItem("reportId");
   const [waste, setwaste] = useState([]);
   const [purchaseData, setPurchaseData] = useState([]);
   const [capitalData, setCapitalData] = useState([]);
@@ -193,6 +194,7 @@ const Scope3 = () => {
       upstreamLeasedAssets: convertedUpstreamArray,
       downstreamLeasedAssets: downstreamArray,
       report_type: type,
+      main_report_id: reportid,
     };
     console.log(payload);
     const response = await saveScope3Report(payload);

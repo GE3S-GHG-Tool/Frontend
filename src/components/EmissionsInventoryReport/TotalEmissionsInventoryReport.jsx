@@ -321,38 +321,6 @@ const ProcessEmissionBreakdownData = [
   { label: "Process & Vented", value: 200000, color: "#A9DECE", key: "40%" },
 ];
 
-const BusinessTravelEmissionsBreakdown = [
-  { label: "First Class", value: 500000, color: "#F26D58", key: "50%" },
-  { label: "Business Class", value: 300000, color: "#FF8977", key: "30%" },
-  { label: "Economy Class", value: 200000, color: "#FF9989", key: "20%" },
-];
-
-const WasteDisposalMethodsByCategoryData = [
-  { label: "Recycled", value: 150000, color: "#F26D58", key: "50%" },
-  { label: "Landfilled", value: 350000, color: "#FF8977", key: "30%" },
-  { label: "Combusted", value: 150000, color: "#FF9989", key: "20%" },
-  { label: "Composted", value: 150000, color: "#FF9989", key: "20%" },
-  {
-    label: "Wet digestate with curing",
-    value: 100000,
-    color: "#FF9989",
-    key: "20%",
-  },
-  {
-    label: "Dry digestate with curing",
-    value: 100000,
-    color: "#FF9989",
-    key: "20%",
-  },
-];
-
-const ECEBreakdownByVehicleTypeData = [
-  { label: "Car", value: 200000, color: "#F26D58", key: "20%" },
-  { label: "Motorcycle", value: 100000, color: "#FF8977", key: "10%" },
-  { label: "Bus", value: 400000, color: "#FF9989", key: "40%" },
-  { label: "Train", value: 300000, color: "#FF9989", key: "30%" },
-];
-
 const EmissionUpstreamAssetsData = [
   { name: "Diesel", Building: 1, Vehicle: 1, Equipment: 2 },
   { name: "Gasoline/Petrol", Building: 5, Vehicle: 2, Equipment: 2 },
@@ -364,26 +332,6 @@ const EmissionUpstreamAssetsData = [
   { name: "Heat", Building: 50, Vehicle: 15, Equipment: 10 },
 ];
 
-const FuelActivitiesEmissionData = [
-  {
-    label: "Upstream emissions of fuels purchased for own use",
-    value: 330000,
-    color: "#F26D58",
-    key: "33%",
-  },
-  {
-    label: "Upstream emissions of purchased electricity for own use",
-    value: 330000,
-    color: "#FF8977",
-    key: "33%",
-  },
-  {
-    label: "T&D losses of purchased electricity for own use.",
-    value: 340000,
-    color: "#FF9989",
-    key: "34%",
-  },
-];
 const colorPalette = {
   Diesel: "#028A60",
   HFO: "#A9DECE",
@@ -397,6 +345,11 @@ const colorPalette2 = {
   R134a: "#B1E9D8",
   "HFC-23": "#E0FFFF",
   "HFC-245fa": "#B0E0E6",
+};
+const businesspallete = {
+  First: "#F26D58",
+  Business: "#FF8977",
+  Economy: "#FF9989",
 };
 
 const TotalEmissionsInventoryReport = () => {
@@ -415,7 +368,51 @@ const TotalEmissionsInventoryReport = () => {
     []
   );
   const [WasteEmissionData, setWasteEmissionData] = useState([]);
+  const [FuelActivitiesEmissionData, setFuelActivitiesEmissionData] = useState(
+    []
+  );
+  // const [
+  //   WasteDisposalMethodsByCategoryData,
+  //   setWasteDisposalMethodsByCategoryData,
+  // ] = useState([]);
+  const [
+    BusinessTravelEmissionsBreakdown,
+    setBusinessTravelEmissionsBreakdown,
+  ] = useState([]);
+  const [ECEBreakdownByVehicleTypeData, setECEBreakdownByVehicleTypeData] =
+    useState([]);
 
+  const ecbpallete = {
+    Car: "#F26D58",
+    Motorcycle: "#FF8977",
+    Bus: "#FF9989",
+    Train: "#FF9989",
+  };
+  const fuelpallete = {
+    "Upstream emissions of fuels purchased for own use": "#F26D58",
+    "Upstream emissions of purchased electricity for own use": "#FF8977",
+    "T&D losses of purchased electricity for own use": "#FF9989",
+  };
+  // const FuelActivitiesEmissionData = [
+  //   {
+  //     label: "Upstream emissions of fuels purchased for own use",
+  //     value: 330000,
+  //     color: "#F26D58",
+  //     key: "33%",
+  //   },
+  //   {
+  //     label: "Upstream emissions of purchased electricity for own use",
+  //     value: 330000,
+  //     color: "#FF8977",
+  //     key: "33%",
+  //   },
+  //   {
+  //     label: "T&D losses of purchased electricity for own use.",
+  //     value: 340000,
+  //     color: "#FF9989",
+  //     key: "34%",
+  //   },
+  // ];
   const fetchData = async () => {
     const response = await getScope1Data();
     // console.log("scope1 data:", response?.data);
@@ -514,17 +511,33 @@ const TotalEmissionsInventoryReport = () => {
     "Textile wastes": "#FFC8BF",
     "Construction & Demolition Waste": "#FFE6E3",
   };
-  // const WasteEmissionData = [
-  //   { label: "Metals", value: 5200, color: "#F26D58" },
-  //   { label: "Glass", value: 8100, color: "#FF7863" },
-  //   { label: "Plastic", value: 3000, color: "#FF8977" },
-  //   { label: "Paper & Cardboards", value: 8500, color: "#FF9989" },
-  //   { label: "Organic wastes", value: 5000, color: "#FFAC9F" },
-  //   { label: "Mixed wastes", value: 5000, color: "#FFBBB0" },
-  //   { label: "Textile wastes", value: 5000, color: "#FFC8BF" },
-  //   { label: "Electronics", value: 5000, color: "#FFD3CD" },
-  //   { label: "Construction & Demolition Waste", value: 5000, color: "#FFE6E3" },
-  // ];
+  const disposlaPalette = {
+    Recycled: "#F26D58",
+    Landfilled: "#FF8977",
+    Combusted: "#FF9989",
+    Composted: "#FF9989",
+    "Wet digestate with curing": "#FF9989",
+    "Dry digestate with curing": "#FF9989",
+  };
+
+  const WasteDisposalMethodsByCategoryData = [
+    { label: "Recycled", value: 150000, color: "#F26D58", key: "50%" },
+    { label: "Landfilled", value: 350000, color: "#FF8977", key: "30%" },
+    { label: "Combusted", value: 150000, color: "#FF9989", key: "20%" },
+    { label: "Composted", value: 150000, color: "#FF9989", key: "20%" },
+    {
+      label: "Wet digestate with curing",
+      value: 100000,
+      color: "#FF9989",
+      key: "20%",
+    },
+    {
+      label: "Dry digestate with curing",
+      value: 100000,
+      color: "#FF9989",
+      key: "20%",
+    },
+  ];
 
   const scopeData3 = async () => {
     const response = await getScope3Data();
@@ -586,16 +599,47 @@ const TotalEmissionsInventoryReport = () => {
       },
     ]);
 
-    // const transformedData = response?.data?.wasteBreakdown.map((item) => {
-    //   return {
-    //     label: item.fuelTypeName,
-    //     value: Math.round(item.totalEmissions * 1000), // example scaling
-    //     color: colorPalette[item.fuelTypeName] || "#006D4F",
-    //     key: item.percentage,
-    //   };
-    // });
-
-    // setWasteEmissionData();
+    const transformedData = response?.data?.wasteBreakdown.map((item) => {
+      return {
+        label: item.category,
+        value: Math.round(item.emissions * 1000),
+        color: wastecolorPalette[item.category] || "#FFE6E3",
+      };
+    });
+    const businessData = response?.data?.businessTravelBreakdown.map((item) => {
+      return {
+        label: item.mode,
+        value: Math.round(item.emissions * 1000),
+        color: businesspallete[item.mode] || "#F26D58",
+      };
+    });
+    const wastecat = response?.data?.wasteBreakdown.map((item) => {
+      return {
+        label: item.category,
+        value: Math.round(item.emissions * 1000),
+        color: disposlaPalette[item.category] || "#F26D58",
+      };
+    });
+    const ecb = response?.data?.employeeCommutingBreakdown.map((item) => {
+      return {
+        label: item.vehicleType,
+        value: Math.round(item.emissions * 1000),
+        color: ecbpallete[item.vehicleType] || "#F26D58",
+      };
+    });
+    const fuel = response?.data?.fuelRelatedBreakdown.map((item) => {
+      return {
+        label: item.activity,
+        value: Math.round(item.emissions * 1000),
+        color: fuelpallete[item.activity] || "#F26D58",
+      };
+    });
+    console.log(businessData);
+    setWasteEmissionData(transformedData);
+    setECEBreakdownByVehicleTypeData(ecb);
+    setBusinessTravelEmissionsBreakdown(businessData);
+    setFuelActivitiesEmissionData(fuel);
+    // setWasteDisposalMethodsByCategoryData(businessData);
   };
 
   useEffect(() => {
