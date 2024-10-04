@@ -370,6 +370,7 @@ const MyTable = () => {
               36
             </TableCell>
             <TableCell
+            colSpan={2}
               sx={{
                 textAlign: "left",
                 fontWeight:"normal",
@@ -379,14 +380,7 @@ const MyTable = () => {
             >
               Fire Stations
             </TableCell>
-            <TableCell
-              sx={{
-                textAlign: "center",
-                fontWeight:"normal",
-                fontSize: "12px",
-                border: "1px solid #00191D",
-              }}
-            ></TableCell>
+           
           </TableRow>
           <TableRow>
             <TableCell
@@ -449,7 +443,7 @@ const MyTable = () => {
                 border: "1px solid #00191D",
               }}
             >
-              12
+              10
             </TableCell>
             <TableCell
               sx={{
@@ -575,9 +569,10 @@ const MyTable = () => {
                 border: "1px solid #00191D",
               }}
             >
-              6
+              8
             </TableCell>
             <TableCell
+            colSpan={2}
               sx={{
                 textAlign: "left",
                 fontWeight:"normal",
@@ -587,14 +582,6 @@ const MyTable = () => {
             >
               Library
             </TableCell>
-            <TableCell
-              sx={{
-                textAlign: "center",
-                fontWeight:"normal",
-                fontSize: "12px",
-                border: "1px solid #00191D",
-              }}
-            ></TableCell>
           </TableRow>
           <TableRow>
             <TableCell
@@ -677,7 +664,7 @@ const MyTable = () => {
                 border: "1px solid #00191D",
               }}
             >
-              4
+              18
             </TableCell>
           </TableRow>
           <TableRow>

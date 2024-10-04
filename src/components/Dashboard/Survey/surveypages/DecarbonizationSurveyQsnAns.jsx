@@ -372,6 +372,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
           "Compressed air system",
           "Loads above 50KW",
           "Production line-wise sub-metering",
+          "Sub-process energy metering"
         ],
         [
           ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",

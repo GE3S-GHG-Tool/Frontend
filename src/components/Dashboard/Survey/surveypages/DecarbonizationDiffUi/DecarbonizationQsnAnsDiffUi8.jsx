@@ -45,8 +45,7 @@ function DecarbonizationQsnAnsDiffWIthUi8() {
               fontWeight="600"
               color="#000"
             >
-              Selection of Cooling Equipment with High Energy Efficiency Ratio
-              (EER)
+              Light Power Density - Interior
             </Typography>
             <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
@@ -76,11 +75,7 @@ function DecarbonizationQsnAnsDiffWIthUi8() {
               </Typography>
             </Box>
             <Typography fontSize="14px" fontWeight="normal" color="#000">
-              Have you confirmed that the energy-efficient cooling equipment to
-              be procured and 
-              installed is consistent with the capacities specified in the
-              "Optimal System Sizing - HVAC 
-              section?
+            Have you considered ways to improve interior lighting levels while ensuring they do not exceed the limits
             </Typography>
 
           </Grid2>
@@ -107,9 +102,8 @@ function DecarbonizationQsnAnsDiffWIthUi8() {
               >
                 <ol style={{ padding: '5px 20px 5px 40px' }}>
                   <li style={{ lineHeight: '1.5rem' }}>
-                    All Air Conditioning units should meet the Minimum Energy
-                    Efficiency Ratio (EER) as mentioned in Table- (table attached in
-                    the next cell)</li>
+                  The Interior lighting levels (both plant building and office areas) should comply with the limits
+                  specified in Table (table attached in the next cell)</li>
                 </ol>
               </Typography>
             </Grid2>

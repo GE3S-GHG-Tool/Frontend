@@ -40,8 +40,7 @@ function DecarbonizationQsnAnsDiffUi7() {
               fontWeight="600"
               color="#000"
             >
-              Installation of Energy Recovery Units and regulated air intake
-              system
+              Programmable thermostats and CO2 Sensors for HVAC system
             </Typography>
             <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
@@ -71,9 +70,7 @@ function DecarbonizationQsnAnsDiffUi7() {
               </Typography>
             </Box>
             <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
-              Have you considered incorporating design strategies to utilize
-              Energy Recovery Units
-              (ERUs) in the plant?
+            Have you considered incorporating the necessary strategies into the HVAC system design to ensure efficient control and operation of the units?
             </Typography>
           </Grid2>
 

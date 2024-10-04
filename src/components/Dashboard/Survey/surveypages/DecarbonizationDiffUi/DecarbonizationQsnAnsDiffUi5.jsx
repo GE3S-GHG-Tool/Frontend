@@ -42,8 +42,7 @@ function DecarbonizationQsnAnsWithUi5() {
               fontWeight="600"
               color="#000"
             >
-              Installation of Energy Recovery Units and regulated air intake
-              system
+              Installation of Energy Recovery Units and regulated air intake system
             </Typography>
             <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
           </Grid2>
