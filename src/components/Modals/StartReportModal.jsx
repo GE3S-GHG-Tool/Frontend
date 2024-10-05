@@ -59,7 +59,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
   const menuItems =
     period == "Monthly"
       ? monthlyMenu
-      : period == "Quaterly"
+      : period == "Quartely"
         ? quarterMenu
         : period == "Half-Yearly"
           ? halfyearlyMenu
@@ -174,7 +174,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
                 size="small"
               >
                 <MenuItem value={"Monthly"}>Monthly</MenuItem>
-                <MenuItem value={"Quaterly"}>Quaterly</MenuItem>
+                <MenuItem value={"Quartely"}>Quarterly</MenuItem>
                 <MenuItem value={"Half-Yearly"}>Half-Yearly</MenuItem>
                 <MenuItem value={"Yearly"}>Yearly</MenuItem>
               </Select>
@@ -187,7 +187,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
             <label>
               {period == "Monthly"
                 ? "Month"
-                : period == "Quaterly"
+                : period == "Quartely"
                   ? "Quarter"
                   : period == "Half-Yearly"
                     ? "Half-Yearly"

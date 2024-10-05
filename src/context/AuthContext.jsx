@@ -22,18 +22,20 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Update authentication state when token changes
     if (token) {
+      getUserData();
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
     }
   }, [token]);
-  useEffect(() => {
-    if (isAuthenticated) {
-      getUserData();
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, [isAuthenticated]);
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     getUserData();
+  //   } else {
+  //     setIsAuthenticated(false);
+  //   }
+  // }, [isAuthenticated]);
 
   const getUserData = async () => {
     const user = await getUser();
@@ -62,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     table,
     setScope2Data,
     scope2Data,
+    setToken,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

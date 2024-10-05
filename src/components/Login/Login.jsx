@@ -13,7 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated, setToken } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({
     email: false,
@@ -56,11 +56,11 @@ export default function Login() {
         payload
       );
       if (response.status === 200) {
-        // console.log("sendEmailOTP", response);
+        console.log("login res", response);
         localStorage.setItem("token", response?.data?.data?.token);
-        setIsAuthenticated(true);
-        navigate("/");
+        setToken(response?.data?.data?.token);
         setIsLoading(false);
+        navigate("/");
       }
     } catch (err) {
       alert(err?.response?.data.message);
