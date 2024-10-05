@@ -59,6 +59,7 @@ export default function Login() {
         console.log("login res", response);
         localStorage.setItem("token", response?.data?.data?.token);
         setToken(response?.data?.data?.token);
+        setIsAuthenticated(true);
         setIsLoading(false);
         navigate("/");
       }

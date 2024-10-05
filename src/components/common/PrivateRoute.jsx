@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 export default function PrivateRoute({ children }) {
   const { isAuthenticated } = useAuth();
   const location = useLocation();
-  // console.log("private route", isAuthenticated);
+  console.log("private route", isAuthenticated);
   // const isAuthenticated = true;
   return isAuthenticated ? (
     children

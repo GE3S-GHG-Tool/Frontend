@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     heat: "",
     desalinated: "",
   });
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     // Update authentication state when token changes
