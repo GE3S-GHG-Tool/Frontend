@@ -7,10 +7,10 @@ const DraftCard = ({report}) => {
   percentage = isNaN(percentage) ? 0 : percentage;
   const conicEnd = `${percentage}%`;
   const conicGradient = `conic-gradient(#368B9D 0%, #368B9D ${conicEnd}, #c8ecfb ${conicEnd})`;
-  console.log(report)
+  // console.log(report)
   // console.log(percentage);
 
-  console.log(timeAgo(report?.updatedAt))
+  // console.log(timeAgo(report?.updatedAt))
 
   return (
     <div className="draft_card" onClick={() => navigate(`/reportgenerator/${report?._id}`)}>

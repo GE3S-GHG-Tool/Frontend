@@ -79,11 +79,11 @@ const StartReportModal = ({ open, setOpenModal }) => {
     const response = await createReport(payload);
     console.log(response);
     if (response?.status === 200) {
-      console.log(response.data.reportId);
+      // console.log(response.data.reportId);
       localStorage.setItem("reportId", response.data.reportId);
       navigate("/reportgenerator");
     } else {
-      console.log("Error creating report");
+      alert(response?.data?.message);
     }
   };
 
