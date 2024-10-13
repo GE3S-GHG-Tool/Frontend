@@ -100,7 +100,7 @@
 .report_input label {
   padding-bottom: 8px;
   color: #717171;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   display: block;
 }
 .report_input_2 {
@@ -193,4 +193,9 @@
   justify-content: start;
   gap: 20px;
   align-items: center;
+  /* background: red; */
+  margin-top: 20px;
+}
+.chart_header_box h3 {
+  margin: 0;
 }

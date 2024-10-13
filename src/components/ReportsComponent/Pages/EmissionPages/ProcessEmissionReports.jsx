@@ -4,13 +4,18 @@ import emisson_logo from "../../../../assets/images/emisson_logo.svg";
 import x_logo from "../../../../assets/images/X_logo.svg";
 import Gas1PopupEmisson from "./Gas1PopupEmisson";
 import { useAuth } from "../../../../context/AuthContext";
+import { useParams } from "react-router-dom";
+import { getscope1draft } from "../../../../api/drafts";
+import { useScope3 } from "../../../../context/Scope3Context";
 
-function ProcessEmissionReports({ onClose }) {
-  const { setTable } = useAuth();
-  const [processEmissionData, setProcessEmissionData] = useState([
-    { id: Date.now(), type: "" },
-  ]);
-  console.log("processEmissionData:", processEmissionData);
+function ProcessEmissionReports({ onClose, setTableData }) {
+  const { setEmission } = useScope3();
+  const [processEmissionData, setProcessEmissionData] = useState(
+    localStorage.getItem("processEmissionData")
+      ? JSON.parse(localStorage.getItem("processEmissionData"))
+      : [{ id: Date.now(), type: {} }]
+  );
+
   const addData = () => {
     const newData = { id: Date.now(), type: "" };
     setProcessEmissionData([...processEmissionData, newData]);
@@ -28,8 +33,14 @@ function ProcessEmissionReports({ onClose }) {
     );
   };
   useEffect(() => {
-    setTable(processEmissionData);
-  }, [processEmissionData, setTable]);
+    setEmission(processEmissionData);
+    setTableData(processEmissionData);
+    localStorage.setItem(
+      "processEmissionData",
+      JSON.stringify(processEmissionData)
+    );
+  }, [processEmissionData, setTableData, setEmission]);
+
   return (
     <div>
       <DialogContent
@@ -140,7 +151,13 @@ function ProcessEmissionReports({ onClose }) {
             Cancel
           </Button>
           <Button
-            onClick={onClose}
+            onClick={() => {
+              localStorage.setItem(
+                "processEmissionData",
+                JSON.stringify(processEmissionData)
+              );
+              onClose();
+            }}
             sx={{
               borderRadius: "32px",
               height: "38px",

@@ -17,7 +17,7 @@ const Dashboard = () => {
     try {
       const response = await getDraftReports(); // Use your existing API function
       if (response?.data?.success) {
-        setDraftReports(response?.data?.reports); // Assuming the reports data is in response.data.reports
+        setDraftReports(response?.data?.reports.reverse()); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");
       }
@@ -308,14 +308,44 @@ const Dashboard = () => {
             labelId="fiscal-year-label"
             id="fiscal-year-select"
             value={year}
+            sx={{
+              fontSize: "0.75rem",
+              padding: "4px",
+              height: "35px",
+              // Adjust the border color when focused
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#D9D9D9", // Default border color
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#f7f7f7", // Border color on focus
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#f7f7f7", // Border color on hover
+              },
+              // Optional: Additional size adjustments
+              "& .MuiSelect-select": {
+                padding: "6px 10px", // Reduced padding
+                fontSize: "0.75rem", // Smaller font size
+              },
+            }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  maxHeight: 150, // reduce dropdown size
+                },
+              },
+            }}
+            inputProps={{
+              sx: {
+                padding: "0 8px", // reduce the padding inside the select
+              },
+            }}
             onChange={(event) => setYear(event.target.value)}
-            placeholder="Fiscal Year"
-            size="small"
           >
             <MenuItem value="2021">2021</MenuItem>
             <MenuItem value="2022">2022</MenuItem>
             <MenuItem value="2023">2023</MenuItem>
-            <MenuItem value="2024"> 2024</MenuItem>
+            <MenuItem value="2024">2024</MenuItem>
           </Select>
         </FormControl>
       </div>

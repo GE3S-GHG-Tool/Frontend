@@ -11,11 +11,21 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
 
 function HeatConsumption() {
+  const storedField = localStorage.getItem("scope2Data");
+  // console.log("storedField", storedField);
+
+  const initialField = storedField ? JSON.parse(storedField) : { heat: "" };
+
   // Initialize fields with quantity and unit
-  const [field, setField] = useState({ quantity: "", unit: "MMBtu" });
-  const { setScope2Data } = useAuth();
+  const [field, setField] = useState({
+    quantity: initialField.heat,
+    unit: "MMBtu",
+  });
+  const { setScope2Data, scope2Data } = useAuth();
   useEffect(() => {
     setScope2Data((prev) => ({ ...prev, heat: field.quantity }));
+    const updatedScope2Data = { ...scope2Data, heat: field.quantity };
+    localStorage.setItem("scope2Data", JSON.stringify(updatedScope2Data));
   }, [field, setScope2Data]);
 
   const handleChange = (event) => {

@@ -1,10 +1,8 @@
 import { Grid2, Typography } from "@mui/material";
 
-function TablesData({ headings = [], data }) {
-  // console.log("TablesData", data);
-  const filteredData = data?.filter((item) => {
-    return Object.values(item).every((value) => value !== "");
-  });
+function BusinessTable({ headings = [], data }) {
+  const filteredData = data?.slice(0, -1);
+  console.log("BT", filteredData);
   return (
     <Grid2
       sx={{
@@ -53,26 +51,14 @@ function TablesData({ headings = [], data }) {
                 style={{
                   textAlign: "left",
                   padding: "12px",
+                  marginRight: "10px",
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   maxWidth: "200px",
                 }}
               >
-                {item?.assetType?.asset_type_name}
-              </td>
-              <td
-                style={{
-                  textAlign: "left",
-                  // fontWeight: "bold",
-                  padding: "12px",
-                  whiteSpace: "nowrap",
-                  maxWidth: "150px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {item.asset_category}
+                {item?.travelClass || "-"}
               </td>
               <td
                 style={{
@@ -82,7 +68,17 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.expenses}
+                {item?.origin?.nameAirport || "-"}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item?.destination?.nameAirport || "-"}
               </td>
               <td
                 style={{
@@ -94,7 +90,19 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                USD
+                {item?.connection == "0" ? "Direct" : "Connection" || "-"}{" "}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  textOverflow: "ellipsis",
+                  maxWidth: "100px",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.numberOfTrips || 0}
               </td>
             </tr>
           ))}
@@ -104,4 +112,4 @@ function TablesData({ headings = [], data }) {
   );
 }
 
-export default TablesData;
+export default BusinessTable;

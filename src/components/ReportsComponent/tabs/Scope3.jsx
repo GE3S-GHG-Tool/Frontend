@@ -33,33 +33,9 @@ const wasteHeadings = [
 const businessHeadings = [
   "Travel Class",
   "Origin",
-  "Connections",
   "Destination",
+  "Connections",
   "Number of Trips",
-];
-
-const businessData = [
-  {
-    "Travel Class": "Business",
-    Origin: "New York",
-    Connections: "Direct",
-    Destination: "London",
-    "Number of Trips": 3,
-  },
-  {
-    "Travel Class": "Economy",
-    Origin: "San Francisco",
-    Connections: "1 Stop",
-    Destination: "Tokyo",
-    "Number of Trips": 2,
-  },
-  {
-    "Travel Class": "First Class",
-    Origin: "Los Angeles",
-    Connections: "Direct",
-    Destination: "Paris",
-    "Number of Trips": 1,
-  },
 ];
 
 const capitalGoodsHeadings = [
@@ -79,7 +55,7 @@ const fuelRelatedHeadings = [
 
 const leasedDataHeadings = ["Asset Type", "Source Of energy", "Value", "Unit"];
 
-const Scope3 = () => {
+const Scope3 = ({ setActiveTab }) => {
   const reportid = localStorage.getItem("reportId");
   const [waste, setwaste] = useState([]);
   const [purchaseData, setPurchaseData] = useState([]);
@@ -87,6 +63,7 @@ const Scope3 = () => {
   const [investData, setInvestData] = useState([]);
   const [comutingData, setComutingData] = useState([]);
   const [fuelArray, setFuelArray] = useState([]);
+  const [businessArray, setBusinessArray] = useState([]);
   const [upstreamArray, setUpstreamArray] = useState([]);
   const [downstreamArray, setDownstreamArray] = useState([]);
   const navigate = useNavigate();
@@ -99,41 +76,46 @@ const Scope3 = () => {
     investements,
     employeecommuting,
     downStreamData,
+    business,
   } = useScope3();
 
   useEffect(() => {
     setwaste(wasteData ? wasteData : []);
-    console.log("wasteData instant:", wasteData); // Verify the table gets updated
+    // console.log("wasteData instant:", wasteData); // Verify the table gets updated
   }, [wasteData]);
   useEffect(() => {
     setPurchaseData(goods ? goods : []);
-    console.log("goods instant:", goods); // Verify the table gets updated
+    // console.log("goods instant:", goods); // Verify the table gets updated
   }, [goods]);
 
   useEffect(() => {
     setCapitalData(capitalGoods ? capitalGoods : []);
-    console.log("capitalGoods instant:", capitalGoods); // Verify the table gets updated
+    // console.log("capitalGoods instant:", capitalGoods); // Verify the table gets updated
   }, [capitalGoods]);
   useEffect(() => {
     setInvestData(investements ? investements : []);
-    console.log("investements instant:", investements); // Verify the table gets updated
+    // console.log("investements instant:", investements); // Verify the table gets updated
   }, [investements]);
   useEffect(() => {
     setComutingData(employeecommuting ? employeecommuting : []);
-    console.log("employeecommuting instant:", employeecommuting); // Verify the table gets updated
+    // console.log("employeecommuting instant:", employeecommuting); // Verify the table gets updated
   }, [employeecommuting]);
   useEffect(() => {
     setFuelArray(fuelData ? fuelData : []);
-    console.log("fuelData instant:", fuelData); // Verify the table gets updated
+    // console.log("fuelData instant:", fuelData); // Verify the table gets updated
   }, [fuelData]);
   useEffect(() => {
     setUpstreamArray(upStreamData ? upStreamData : []);
-    console.log("upStreamData instant:", upStreamData); // Verify the table gets updated
+    // console.log("upStreamData instant:", upStreamData); // Verify the table gets updated
   }, [upStreamData]);
   useEffect(() => {
     setDownstreamArray(downStreamData ? downStreamData : []);
-    console.log("upStreamData instant:", downStreamData); // Verify the table gets updated
+    // console.log("upStreamData instant:", downStreamData); // Verify the table gets updated
   }, [downStreamData]);
+  useEffect(() => {
+    setBusinessArray(business ? business : []);
+    // console.log("upStreamData instant:", downStreamData); // Verify the table gets updated
+  }, [business]);
 
   const submit = async (type) => {
     const convertedWasteArray = waste.slice(0, -1).map((item) => ({
@@ -149,8 +131,8 @@ const Scope3 = () => {
       .slice(0, -1)
       .filter((item) => item.assetType) // Removes the empty item
       .map((item) => ({
-        asset_category: item.assetType.asset_category,
-        asset_type: item.assetType.asset_type,
+        asset_type: item?.assetType?.asset_type_name,
+        asset_category: item.asset_category,
         expense_value: parseInt(item.expenses, 10), // Convert expenses to integer
       }));
     const convertedFuelArray = fuelArray
@@ -171,42 +153,18 @@ const Scope3 = () => {
         source_energy: item.sourceOfEnergy, // Change source_energy to LPG
         quantity: item.quantity, // Set quantity to 1000
       }));
+    const convertedbusinessArray = businessArray
+      .slice(0, -1) // Filter out empty or invalid items
+      .map((item) => ({
+        travel_class: item.travelClass,
+        connections: Number(item.connection),
+        airports: [item.origin, item.destination, ...item.tripDetails],
+        num_trips: item.connection === "0" ? 1 : Number(item.numberOfTrips),
+      }));
     // console.log("convertedUpstreamArray", convertedUpstreamArray);
     const payload = {
       wasteGenerated: convertedWasteArray,
-      businessTravel: [
-        {
-          travel_class: "Economy",
-          connections: 1,
-          airports: [
-            {
-              name: "Indira Gandhi International",
-              latitude: 28.556555,
-              longitude: 77.10079,
-            },
-            { name: "Bateen", latitude: 24.419167, longitude: 54.451668 },
-            {
-              name: "Sardar Vallabhbhai Patel International Airport",
-              latitude: 23.06639,
-              longitude: 72.62417,
-            },
-          ],
-          num_trips: 3,
-        },
-        {
-          travel_class: "Business",
-          connections: 0,
-          airports: [
-            {
-              name: "Indira Gandhi International",
-              latitude: 28.556555,
-              longitude: 77.10079,
-            },
-            { name: "Bateen", latitude: 24.419167, longitude: 54.451668 },
-          ],
-          num_trips: 1,
-        },
-      ],
+      businessTravel: convertedbusinessArray,
       purchasedGoods: purchaseData.slice(0, -1),
       capitalGoods: capitalArray,
       investments: investData,
@@ -221,9 +179,26 @@ const Scope3 = () => {
     const response = await saveScope3Report(payload);
     console.log(response);
     if (response.status === 201) {
-      navigate(`/emissionreport/${reportid}`);
+      if (type === "final") {
+        navigate(`/emissionreport/${reportid}`);
+      } else {
+        setActiveTab("scope2");
+      }
+
+      localStorage.removeItem("capitalGoodsData");
+      localStorage.removeItem("investements");
+      localStorage.removeItem("business");
+      localStorage.removeItem("commuting");
+      localStorage.removeItem("fuel");
+      localStorage.removeItem("downStreamData");
+      localStorage.removeItem("upStreamData");
+      localStorage.removeItem("wasteData");
+      localStorage.removeItem("goods");
+      localStorage.removeItem("consumption");
+      localStorage.removeItem("refrigerent");
+      localStorage.removeItem("scope2Data");
     } else {
-      alert("Something went wrong");
+      alert(response?.data?.message);
     }
   };
 
@@ -254,7 +229,6 @@ const Scope3 = () => {
         }
         icon={plane}
         headings={businessHeadings}
-        tableData={businessData}
         DialogContentComponent={BusinessTravelPopup}
       />
 

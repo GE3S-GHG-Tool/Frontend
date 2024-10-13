@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
-import lightBulbSetting from "../../../../../assets/images/lightbulb-setting.svg"
-import Tooltip from '@mui/material/Tooltip';
+import lightBulbSetting from "../../../../../assets/images/lightbulb-setting.svg";
+import Tooltip from "@mui/material/Tooltip";
 import info_icon from "../../../../../assets/images/info_icon.svg";
 
-function DecarbonizationQsnAnsWithUi11() {
+function DecarbonizationQsnAnsWithUi11({ answer }) {
   return (
     <div>
       <Grid2
@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi11() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow: 'none'
+            boxShadow: "none",
           }}
         >
           <Grid2
@@ -36,14 +36,12 @@ function DecarbonizationQsnAnsWithUi11() {
             }}
           >
             <img src={lightBulbSetting} alt="lg" />
-            <Typography
-              fontSize="16px"
-              fontWeight="600"
-              color="#000"
-            >
+            <Typography fontSize="16px" fontWeight="600" color="#000">
               Control of External lights
             </Typography>
-            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+            <Tooltip title="Dummy Text" placement="top" arrow>
+              {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+            </Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -76,44 +74,44 @@ function DecarbonizationQsnAnsWithUi11() {
             </Typography>
           </Grid2>
 
-          <Grid2
-            sx={{
-              borderTop: "1px solid #E4E4E4",
-              padding: "20px",
-              borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
-            }}
-          >
+          {answer.answer === "No" ? (
             <Grid2
               sx={{
-                border: "1px solid #D9D9D9",
-                background: "#F7FFFC",
+                borderTop: "1px solid #E4E4E4",
+                padding: "20px",
                 borderRadius: "5px",
-                padding: '25px'
+                borderBottom: "1px solid #E4E4E4",
               }}
             >
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
+              <Grid2
+                sx={{
+                  border: "1px solid #D9D9D9",
+                  background: "#F7FFFC",
+                  borderRadius: "5px",
+                  padding: "25px",
+                }}
               >
-                1. Switching external lighting (or specific circuits of the
-                lighting system as per the project needs) by any of the
-                following ways:
-                <ul>
-                  <li>
-                    Daylight sensors (for precise switching and control of lights
-                    based on daylight availability).
-                  </li>
-                  <li>
-                    Control motion control devices, occupancy sensors (if relevant
-                    to the project).
-                  </li>
-                  <li>Timer control for operation at pre-set times.</li>
-                </ul>
-              </Typography>
-             
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  1. Switching external lighting (or specific circuits of the
+                  lighting system as per the project needs) by any of the
+                  following ways:
+                  <ul>
+                    <li>
+                      Daylight sensors (for precise switching and control of
+                      lights based on daylight availability).
+                    </li>
+                    <li>
+                      Control motion control devices, occupancy sensors (if
+                      relevant to the project).
+                    </li>
+                    <li>Timer control for operation at pre-set times.</li>
+                  </ul>
+                </Typography>
+              </Grid2>
             </Grid2>
-          </Grid2>
+          ) : (
+            <div style={{ paddingBottom: "10px" }}></div>
+          )}
         </Paper>
       </Grid2>
     </div>

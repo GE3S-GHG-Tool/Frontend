@@ -5,6 +5,7 @@ import Organization from "./Organization";
 import Details from "./Details";
 import Goals from "./Goals";
 import Invite from "./Invite";
+import OrgLogo from "./OrgLogo";
 
 export default function OrganizationStepper() {
   const [activeStep, setActiveStep] = useState(0);
@@ -13,12 +14,15 @@ export default function OrganizationStepper() {
     <Wrapper>
       <div className="stepper">
         {activeStep === 0 && (
-          <Organization activeStep={activeStep} setActiveStep={setActiveStep} />
+          <OrgLogo activeStep={activeStep} setActiveStep={setActiveStep} />
         )}
         {activeStep === 1 && (
-          <Details activeStep={activeStep} setActiveStep={setActiveStep} />
+          <Organization activeStep={activeStep} setActiveStep={setActiveStep} />
         )}
         {activeStep === 2 && (
+          <Details activeStep={activeStep} setActiveStep={setActiveStep} />
+        )}
+        {activeStep === 3 && (
           <Goals activeStep={activeStep} setActiveStep={setActiveStep} />
         )}
         {/* {activeStep === 3 && (
@@ -27,12 +31,15 @@ export default function OrganizationStepper() {
         <div className="seperate"></div>
         <div className="stepper_comp">
           <span className={activeStep >= 0 ? "current_step" : "circle"}>1</span>
-          <p>Organisation</p>
+          <p>Logo</p>
           <div className="lines"></div>
           <span className={activeStep >= 1 ? "current_step" : "circle"}>2</span>
-          <p>Basic Details</p>
+          <p>Organisation</p>
           <div className="lines"></div>
           <span className={activeStep >= 2 ? "current_step" : "circle"}>3</span>
+          <p>Basic Details</p>
+          <div className="lines"></div>
+          <span className={activeStep >= 3 ? "current_step" : "circle"}>4</span>
           <p>Goals</p>
           {/* <div className="lines"></div>
           <span className={activeStep >= 3 ? "current_step" : "circle"}>4</span>

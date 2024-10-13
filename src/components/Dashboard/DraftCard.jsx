@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import "./DraftCard.css";
 import { timeAgo } from "../../util/timeAgo";
-const DraftCard = ({report}) => {
+const DraftCard = ({ report }) => {
   const navigate = useNavigate();
   let percentage = ((10 / 20) * 100)?.toFixed(0) || 0;
   percentage = isNaN(percentage) ? 0 : percentage;
   const conicEnd = `${percentage}%`;
   const conicGradient = `conic-gradient(#368B9D 0%, #368B9D ${conicEnd}, #c8ecfb ${conicEnd})`;
-  // console.log(report)
-  // console.log(percentage);
-
-  // console.log(timeAgo(report?.updatedAt))
 
   return (
-    <div className="draft_card" onClick={() => navigate(`/reportgenerator/${report?._id}`)}>
+    <div
+      className="draft_card"
+      onClick={() => navigate(`/editreport/${report?._id}`)}
+    >
       <div className="draft_header">
         <label>{report?.name}</label>
         <svg

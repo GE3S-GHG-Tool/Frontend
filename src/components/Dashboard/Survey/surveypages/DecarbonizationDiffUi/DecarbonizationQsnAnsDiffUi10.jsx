@@ -1,10 +1,9 @@
-import React from "react";
-import { Grid2, Paper, Typography, Box, Table, TableContainer, TableHead, TableRow, TableCell, styled } from "@mui/material";
-import ideaExcahnge from "../../../../../assets/images/idea-exchange.svg"
-import TabledDataDecarbonation7 from '../TablesDataDecarbonation7'
-import Tooltip from '@mui/material/Tooltip';
+import { Grid2, Paper, Typography, Box } from "@mui/material";
+import ideaExcahnge from "../../../../../assets/images/idea-exchange.svg";
+import TabledDataDecarbonation7 from "../TablesDataDecarbonation7";
+import Tooltip from "@mui/material/Tooltip";
 import info_icon from "../../../../../assets/images/info_icon.svg";
-function DecarbonizationQsnAnsDiffUi10() {
+function DecarbonizationQsnAnsDiffUi10({ answer }) {
   return (
     <div>
       <Grid2
@@ -22,7 +21,7 @@ function DecarbonizationQsnAnsDiffUi10() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow: 'none'
+            boxShadow: "none",
           }}
         >
           <Grid2
@@ -36,14 +35,12 @@ function DecarbonizationQsnAnsDiffUi10() {
             }}
           >
             <img src={ideaExcahnge} alt="lg" />
-            <Typography
-              fontSize="16px"
-              fontWeight="600"
-              color="#000"
-            >
+            <Typography fontSize="16px" fontWeight="600" color="#000">
               Exterior Light Power Density
             </Typography>
-            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+            <Tooltip title="Dummy Text" placement="top" arrow>
+              {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+            </Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -71,39 +68,51 @@ function DecarbonizationQsnAnsDiffUi10() {
               </Typography>
             </Box>
             <Typography fontSize="14px" fontWeight="normal" color="#000">
-              Have you confirmed that the exterior lighting levels have been improved and do not exceed the specified limits?
+              Have you confirmed that the exterior lighting levels have been
+              improved and do not exceed the specified limits?
             </Typography>
           </Grid2>
 
-          <Grid2
-            sx={{
-              borderTop: "1px solid #E4E4E4",
-              padding: "20px",
-              borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
-            }}
-          >
+          {answer.answer === "No" ? (
             <Grid2
               sx={{
-                border: "1px solid #D9D9D9",
-                background: "#F7FFFC",
+                borderTop: "1px solid #E4E4E4",
+                padding: "20px",
                 borderRadius: "5px",
+                borderBottom: "1px solid #E4E4E4",
               }}
             >
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
+              <Grid2
+                sx={{
+                  border: "1px solid #D9D9D9",
+                  background: "#F7FFFC",
+                  borderRadius: "5px",
+                }}
               >
-                <ol style={{ padding: '5px 20px 5px 40px' }}>
-                  <li style={{ lineHeight: '1.5rem' }}>
-                    The Exterior lighting levels in the industry development should comply with the limits specified in Table (attached in the next cell)</li>
-                </ol>
-              </Typography>
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  <ol style={{ padding: "5px 20px 5px 40px" }}>
+                    <li style={{ lineHeight: "1.5rem" }}>
+                      The Exterior lighting levels in the industry development
+                      should comply with the limits specified in Table (attached
+                      in the next cell)
+                    </li>
+                  </ol>
+                </Typography>
+              </Grid2>
+              <Grid2
+                sx={{
+                  mt: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px",
+                }}
+              >
+                <TabledDataDecarbonation7></TabledDataDecarbonation7>
+              </Grid2>
             </Grid2>
-            <Grid2 sx={{ mt: "20px", display: "flex", flexDirection: "column", gap: "20px" }}>
-              <TabledDataDecarbonation7></TabledDataDecarbonation7>
-            </Grid2>
-          </Grid2>
+          ) : (
+            <div style={{ paddingBottom: "10px" }}></div>
+          )}
         </Paper>
       </Grid2>
     </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
-import solarpanel from "../../../../../assets/images/solar-panel.svg"
-import Tooltip from '@mui/material/Tooltip';
+import solarpanel from "../../../../../assets/images/solar-panel.svg";
+import Tooltip from "@mui/material/Tooltip";
 import info_icon from "../../../../../assets/images/info_icon.svg";
 
-function DecarbonizationQsnAnsWithUi12() {
+function DecarbonizationQsnAnsWithUi12({ answer }) {
   return (
     <div>
       <Grid2
@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi12() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow:'none'
+            boxShadow: "none",
           }}
         >
           <Grid2
@@ -36,14 +36,12 @@ function DecarbonizationQsnAnsWithUi12() {
             }}
           >
             <img src={solarpanel} alt="lg" />
-            <Typography
-              fontSize="16px"
-              fontWeight="600"
-              color="#000"
-            >
+            <Typography fontSize="16px" fontWeight="600" color="#000">
               Renewable Power Source - Industrial hot water
             </Typography>
-            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+            <Tooltip title="Dummy Text" placement="top" arrow>
+              {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+            </Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -77,38 +75,40 @@ function DecarbonizationQsnAnsWithUi12() {
             </Typography>
           </Grid2>
 
-          <Grid2
-            sx={{
-              borderTop: "1px solid #E4E4E4",
-              padding: "20px",
-              borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
-            }}
-          >
+          {answer.answer === "No" ? (
             <Grid2
               sx={{
-                border: "1px solid #D9D9D9",
-                background: "#F7FFFC",
+                borderTop: "1px solid #E4E4E4",
+                padding: "20px",
                 borderRadius: "5px",
+                borderBottom: "1px solid #E4E4E4",
               }}
             >
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
+              <Grid2
+                sx={{
+                  border: "1px solid #D9D9D9",
+                  background: "#F7FFFC",
+                  borderRadius: "5px",
+                }}
               >
-                <ol style={{ padding: '5px 20px 5px 40px'}}>
-                  <li style={{lineHeight: '1.5rem' }}>
-                  Solar water heating (solar thermal) or solar photovoltaic
-                  system with point of demand heaters shall be employed for
-                  industrial hot water requirements. The solar hot water heating
-                  system must incorporate measures for the efficient
-                  distribution system, pipe insulation, and use of
-                  energy-efficient electric hot water system (which is normally
-                  used as backup).</li>
-                </ol>
-              </Typography>
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  <ol style={{ padding: "5px 20px 5px 40px" }}>
+                    <li style={{ lineHeight: "1.5rem" }}>
+                      Solar water heating (solar thermal) or solar photovoltaic
+                      system with point of demand heaters shall be employed for
+                      industrial hot water requirements. The solar hot water
+                      heating system must incorporate measures for the efficient
+                      distribution system, pipe insulation, and use of
+                      energy-efficient electric hot water system (which is
+                      normally used as backup).
+                    </li>
+                  </ol>
+                </Typography>
+              </Grid2>
             </Grid2>
-          </Grid2>
+          ) : (
+            <div style={{ paddingBottom: "10px" }}></div>
+          )}
         </Paper>
       </Grid2>
     </div>

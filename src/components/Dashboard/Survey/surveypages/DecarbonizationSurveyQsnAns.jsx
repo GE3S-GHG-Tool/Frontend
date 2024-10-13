@@ -33,28 +33,28 @@ import alt_1 from "../../../../assets/images/alt_1.svg";
 import heat from "../../../../assets/images/heat.svg";
 import summer from "../../../../assets/images/summer.svg";
 import hand_holding_2 from "../../../../assets/images/hand-holding-2.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 const TableComponents = {
   "Industrial Chiller System": BasicTable,
   "Refrigerated Storage Area": BasicTable2,
   "Energy Conservation Techniques and Thermal Insulation": BasicTable3,
 };
 
-const Question = ({
-  questionText,
-  logo,
-  heading,
-  answers,
-  showTable,
-}) => {
+const Question = ({ questionText, logo, heading, answers, showTable }) => {
   const TableComponent = TableComponents[heading];
+  // console.log(questionText);
+  const location = useLocation();
 
+  // console.log("answers", location.state);
   return (
     <Grid2
+      item
+      size={12}
       sx={{
         border: "1px solid #E4E4E4",
         borderRadius: "5px",
         borderTop: "5px solid #369D9C",
-        boxShadow: 'none'
+        boxShadow: "none",
       }}
     >
       <Paper
@@ -62,7 +62,7 @@ const Question = ({
           display: "flex",
           flexDirection: "column",
           gap: "15px",
-          boxShadow: 'none'
+          boxShadow: "none",
         }}
       >
         {/* Heading Section */}
@@ -80,129 +80,196 @@ const Question = ({
           <Typography fontSize="16px" fontWeight="600" color="#000">
             {heading}
           </Typography>
-          <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+          <Tooltip title="Dummy Text" placement="top" arrow>
+            {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+          </Tooltip>
         </Grid2>
-
-        {questionText.map((q, questionIndex) => (
-          <React.Fragment key={questionIndex}>
-            {/* Question Text */}
-            <Grid2
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: "12px",
-                ml: "15px",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "37px",
-                  height: "34px",
-                  backgroundColor: "#F7F7F7",
-                  padding: "7px",
-                  borderRadius: "6px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Typography color="#5B5B5B" fontSize="0.875rem" fontWeight="400">
-                  Q.{questionIndex + 1}
-                </Typography>
-              </Box>
-              <Typography fontSize="0.875rem" fontWeight="normal" color="#000">
-                {q}
-              </Typography>
-            </Grid2>
-
-            {/* Answers or Implementation Required */}
-
-            {answers[questionIndex]?.length > 0 ? (
+        {questionText.map((q, questionIndex) => {
+          // Find the answer for the current question by matching qsnId
+          const answerObj = location?.state?.find((a) => a.qsnId === q.qsnId);
+          console.log(answerObj);
+          const answer = answerObj ? answerObj.answer : "No"; // Default to "No" if not found
+          console.log(answer);
+          return (
+            <React.Fragment key={questionIndex}>
               <Grid2
                 sx={{
-                  borderTop: "1px solid #E4E4E4",
-                  mt: "8px",
-                  ml: "0px",
-                  padding: "10px",
-                  borderRadius: "5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: "12px",
+                  ml: "15px",
                 }}
               >
-                <Grid2
+                <Box
                   sx={{
-                    border: "1px solid #D9D9D9",
-                    background: "#F7FFFC",
-                    borderRadius: "5px",
-                    padding: "15px",
-                    margin: '10px'
-                  }}
-                >
-                  {answers[questionIndex].map((answer, answerIndex) => (
-                    <Typography
-                      key={answerIndex}
-                      fontSize="0.85rem"
-                      fontWeight='400'
-                      color="#000"
-                      sx={{ padding: "6px 0" }}
-                    >
-                      {answerIndex + 1}. {answer}
-                    </Typography>
-                  ))}
-                </Grid2>
-              </Grid2>
-            ) : (
-              <>
-                <Grid2
-                  sx={{
+                    width: "37px",
+                    height: "34px",
+                    backgroundColor: "#F7F7F7",
+                    padding: "7px",
+                    borderRadius: "6px",
                     display: "flex",
                     alignItems: "center",
-                    gap: "12px",
-                    padding: "18px",
-                    borderTop: "1px solid #D9D9D9",
-                    borderBottom: "1px solid #D9D9D9",
-                    borderBottomLeftRadius:'3px',
-                    borderBottomRightRadius:'3px',
+                    justifyContent: "center",
                   }}
                 >
-                  <div style={{ background: '#FFF7F2', width: '24px', height: '24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '5px' }}>
-                    <img
-                      src={magelightBuld}
-                      alt="Implementation Required"
-                      width="18px"
-                    />
-                  </div>
-                  <Typography fontSize="14px" fontWeight="500" color="#717171">
-                    Implementation Required
+                  <Typography
+                    color="#5B5B5B"
+                    fontSize="0.875rem"
+                    fontWeight="400"
+                  >
+                    Q.{questionIndex + 1}
                   </Typography>
-                </Grid2>
-              </>
-
-            )}
-            {showTable && questionIndex === 0 && TableComponent && (
-              <Grid2
-                sx={{
-                  mt: "-30px",
-                  mb: "8px",
-                  ml: "0px",
-                  padding: "10px 19px",
-                  borderRadius: "5px",
-                }}
-              >
-                <TableComponent />
+                </Box>
+                <Typography
+                  fontSize="0.875rem"
+                  fontWeight="normal"
+                  color="#000"
+                >
+                  {q.qsnText}
+                </Typography>
               </Grid2>
-            )}
-          </React.Fragment>
-        ))}
+
+              {/* Check if answer is No, then show answers, else show "Implementation Required" */}
+              {
+                answer === "No" ? (
+                  <>
+                    <Grid2
+                      sx={{
+                        borderTop: "1px solid #E4E4E4",
+                        mt: "8px",
+                      }}
+                    >
+                      <Grid2
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                          padding: "18px",
+                          // borderTop: "1px solid #D9D9D9",
+                          borderBottom: "1px solid #D9D9D9",
+                          // borderBottomLeftRadius: "3px",
+                          // borderBottomRightRadius: "3px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            background: "#FFF7F2",
+                            width: "24px",
+                            height: "24px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <img
+                            src={magelightBuld}
+                            alt="Implementation Required"
+                            width="18px"
+                          />
+                        </div>
+                        <Typography
+                          fontSize="14px"
+                          fontWeight="500"
+                          color="#717171"
+                        >
+                          Implementation Required
+                        </Typography>
+                      </Grid2>
+                      <Grid2
+                        sx={{
+                          border: "1px solid #D9D9D9",
+                          background: "#F7FFFC",
+                          borderRadius: "5px",
+                          padding: "15px",
+                          margin: "10px",
+                        }}
+                      >
+                        {answers[questionIndex].map((answer, answerIndex) => (
+                          <Typography
+                            key={answerIndex}
+                            fontSize="0.85rem"
+                            fontWeight="400"
+                            color="#000"
+                            sx={{ padding: "6px 0" }}
+                          >
+                            {answerIndex + 1}. {answer}
+                          </Typography>
+                        ))}
+                      </Grid2>
+                    </Grid2>
+
+                    {/* Only show the table if answer is Yes */}
+                    {showTable && TableComponent && (
+                      <Grid2
+                        sx={{
+                          mt: "-30px",
+                          mb: "8px",
+                          ml: "0px",
+                          padding: "10px 19px",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <TableComponent />
+                      </Grid2>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ paddingBottom: "10px" }}></div>
+                )
+                // <Grid2
+                //   sx={{
+                //     display: "flex",
+                //     alignItems: "center",
+                //     gap: "12px",
+                //     padding: "18px",
+                //     borderTop: "1px solid #D9D9D9",
+                //     borderBottom: "1px solid #D9D9D9",
+                //     borderBottomLeftRadius: "3px",
+                //     borderBottomRightRadius: "3px",
+                //   }}
+                // >
+                //   <div
+                //     style={{
+                //       background: "#FFF7F2",
+                //       width: "24px",
+                //       height: "24px",
+                //       display: "flex",
+                //       justifyContent: "center",
+                //       alignItems: "center",
+                //       borderRadius: "5px",
+                //     }}
+                //   >
+                //     <img
+                //       src={magelightBuld}
+                //       alt="Implementation Required"
+                //       width="18px"
+                //     />
+                //   </div>
+                //   <Typography fontSize="14px" fontWeight="500" color="#717171">
+                //     Implementation Required
+                //   </Typography>
+                // </Grid2>
+              }
+            </React.Fragment>
+          );
+        })}
       </Paper>
     </Grid2>
   );
 };
 
-function SurveyQuestionSection({ handleResetSurvey }) {
+function SurveyQuestionSection() {
+  const navigate = useNavigate();
   const questions = [
     {
       text: [
-        "Do you have all motors with efficiency classification IE3 & IE4?",
+        {
+          qsnText:
+            "Do you have all motors with efficiency classification IE3 & IE4?",
+          qsnId: 1,
+        },
       ],
       answers: [
         [
@@ -215,8 +282,16 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you involved a specialist in the selection of the pump sizing?",
-        "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+        {
+          qsnText:
+            "Have you involved a specialist in the selection of the pump sizing?",
+          qsnId: 2,
+        },
+        {
+          qsnText:
+            "Are bypass valves and valve throttling being eliminated in all retrofitting projects?",
+          qsnId: 3,
+        },
       ],
       answers: [
         [
@@ -233,8 +308,16 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you involved a specialist in the selection of the fan sizing?",
-        "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+        {
+          qsnText:
+            "Have you involved a specialist in the selection of the fan sizing?",
+          qsnId: 4,
+        },
+        {
+          qsnText:
+            "Does the fan comply with a Fan Efficiency Grade (FEG) of 85% or higher?",
+          qsnId: 5,
+        },
       ],
       answers: [
         [
@@ -242,7 +325,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
           "Right fan technology must be selected based on process requirement.",
           "Fan with right VFD must be selected for the process with variable flow requirement.",
         ],
-        [],
+        ["Answer not found"],
       ],
       logo: fan,
       heading: "Industrial Process Fans",
@@ -250,11 +333,19 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
-        "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+        {
+          qsnText:
+            "Has a specialist been appointed to select the most suitable compressor technology (e.g., variable speed drive or variable displacement compressor)?",
+          qsnId: 6,
+        },
+        {
+          qsnText:
+            "Are measures in place to minimize leakage in the compressed air system of the existing plant?",
+          qsnId: 7,
+        },
       ],
       answers: [
-        [],
+        ["no answer found"],
         [
           "Leakage in the compressed air system must be minimized in the existing plant.",
         ],
@@ -265,8 +356,16 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has a high-efficiency boiler been selected for the plant process?",
-        "Are all the boilers equipped with a smart control system to optimize operational efficiency?",
+        {
+          qsnText:
+            "Has a high-efficiency boiler been selected for all the plant process?",
+          qsnId: 8,
+        },
+        {
+          qsnText:
+            "Is are all the boiler equipped with a smart control system to optimize operational efficiency?",
+          qsnId: 9,
+        },
       ],
       answers: [
         [
@@ -282,7 +381,11 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+        {
+          qsnText:
+            "Have you assessed the insulation level of the steam distribution system to ensure it is sufficient to minimize heat loss to the environment?",
+          qsnId: 10,
+        },
       ],
       answers: [
         [
@@ -296,7 +399,11 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Have you considered selecting an energy-efficient chiller for all the plant?",
+        {
+          qsnText:
+            "Have you considered selecting an energy-efficient chiller for all the plant?",
+          qsnId: 11,
+        },
       ],
       answers: [
         [
@@ -310,17 +417,29 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
-        "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+        {
+          qsnText:
+            "Has the insulation level of the chilled water distribution system been assessed to ensure it is sufficient to minimize energy loss?",
+          qsnId: 12,
+        },
+        {
+          qsnText:
+            "Has the system been designed to minimize pumping losses by reducing or eliminating bypass/re-circulation?",
+          qsnId: 13,
+        },
       ],
-      answers: [[], []],
+      answers: [["Answer not found"], ["Answer not found"]],
       logo: snowflakes,
       heading: "Chilled Water Distribution System",
       showTable: false,
     },
     {
       text: [
-        "Has a high-efficiency condenser suitable for the plant been selected?",
+        {
+          qsnText:
+            "Has a high-efficiency condenser suitable for the plant been selected?",
+          qsnId: 14,
+        },
       ],
       answers: [
         [
@@ -333,7 +452,11 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has the electrical system been designed to incorporate control measures?",
+        {
+          qsnText:
+            "Has the electrical system been designed to incorporate control measures?",
+          qsnId: 15,
+        },
       ],
       answers: [
         [
@@ -352,7 +475,11 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+        {
+          qsnText:
+            "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+          qsnId: 16,
+        },
       ],
       answers: [["Develop Waste heat recovery and utilization strategy"]],
       logo: summer,
@@ -361,8 +488,16 @@ function SurveyQuestionSection({ handleResetSurvey }) {
     },
     {
       text: [
-        "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
-        "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+        {
+          qsnText:
+            "Has the design process considered identifying and evaluating potential waste heat recovery systems based on the waste heat generated during the process?",
+          qsnId: 17,
+        },
+        {
+          qsnText:
+            "Are all the sub-meters labeled for easy identification and tracking of energy consumption?",
+          qsnId: 18,
+        },
       ],
       answers: [
         [
@@ -372,7 +507,7 @@ function SurveyQuestionSection({ handleResetSurvey }) {
           "Compressed air system",
           "Loads above 50KW",
           "Production line-wise sub-metering",
-          "Sub-process energy metering"
+          "Sub-process energy metering",
         ],
         [
           ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
@@ -383,53 +518,12 @@ function SurveyQuestionSection({ handleResetSurvey }) {
       showTable: false,
       boldAnswerIndex: 0,
     },
-    // {
-    //   text: [
-    //     "Has the development team considered improving the energy efficiency of the building's envelope?",
-    //   ],
-    //   answers: [
-    //     [
-    //       "Make Sure that the development team considers the improvement in the energy efficiency of the building's envelope.",
-    //       ,
-    //       "Horizontal Opaque elements – Roof, Slabs",
-    //       "Vertical Opaque element – Wall, door",
-    //       "Horizontal Glazing – Sky light",
-    //       "Vertical Glazing – Glass Door, windows.",
-    //     ],
-    //     [
-    //       ". In case the facility is contemplating a SCADA/ Automatic controls, these meters should be capable of providing the required outputs and integration.",
-    //     ],
-    //   ],
-    //   logo: hand_holding_2,
-    //   heading: "Energy Conservation Techniques and Thermal Insulation",
-    //   showTable: true,
-    //   boldAnswerIndex: 0,
-    // },
-    // {
-    //   text: [
-    //     "Has interior thermal imaging been conducted for air-conditioned/climate-controlled spaces to identify potential building defects?",
-    //     "If leaks or gaps were identified, have appropriate corrective actions been taken to address them?",
-    //   ],
-    //   answers: [
-    //     ["Thermal imaging carried out by a qualified thermographer."],
-    //     [
-    //       "The thermography report highlighting",
-    //       "The defects in the building envelope",
-    //       "The leakage spots noticed in the space and,",
-    //       "Recommendations for rectifications",
-    //     ],
-    //   ],
-    //   logo: snow_blowing,
-    //   heading:
-    //     "Envelope Tightness for Air-Conditioned Spaces - Thermal Imaging Technique",
-    //   showTable: false,
-    //   boldAnswerIndex: 4,
-    // },
   ];
-
+  const location = useLocation();
+  // console.log("answers", location.state);
   return (
     <>
-      <Grid2 sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <Grid2 container spacing={2}>
         {questions.map((q, index) => (
           <Question
             key={index}
@@ -444,26 +538,62 @@ function SurveyQuestionSection({ handleResetSurvey }) {
       </Grid2>
       <Grid2
         sx={{
+          // backgroundColor: "red",
           display: "flex",
           flexDirection: "column",
           gap: "20px",
           mt: "20px",
+          // pt: "100px",
         }}
       >
-        <DecarbonizationQsnAnsWithUl></DecarbonizationQsnAnsWithUl>
-        <DecarbonizationQsnAnsWithUl2></DecarbonizationQsnAnsWithUl2>
-        <DecarbonizationQsnAnsWithUi3></DecarbonizationQsnAnsWithUi3>
-        <DecarbonizationQsnAnsWithUi4></DecarbonizationQsnAnsWithUi4>
-        <DecarbonizationQsnAnsWithUi5></DecarbonizationQsnAnsWithUi5>
-        <DecarbonizationQsnAnsWithUi6></DecarbonizationQsnAnsWithUi6>
-        <DecarbonizationQsnAnsWithUi7></DecarbonizationQsnAnsWithUi7>
-        <DecarbonizationQsnAnsDiffUi8></DecarbonizationQsnAnsDiffUi8>
-        <DecarbonizationQsnAnsDiffUi9></DecarbonizationQsnAnsDiffUi9>
-        <DecarbonizationQsnAnsDiffUi10></DecarbonizationQsnAnsDiffUi10>
-        <DecarbonizationQsnAnsDiffUi11></DecarbonizationQsnAnsDiffUi11>
-        <DecarbonizationQsnAnsDiffUi12></DecarbonizationQsnAnsDiffUi12>
-        <DecarbonizationQsnAnsDiffUi13></DecarbonizationQsnAnsDiffUi13>
-        <DecarbonizationQsnAnsDiffUi14></DecarbonizationQsnAnsDiffUi14>
+        <DecarbonizationQsnAnsWithUl
+          answer={location.state[18]}
+        ></DecarbonizationQsnAnsWithUl>
+        <DecarbonizationQsnAnsWithUl2
+          // need to check question for
+          answer={location.state[19]}
+          answer1={location.state[20]}
+          answer2={location.state[21]}
+        ></DecarbonizationQsnAnsWithUl2>
+
+        <DecarbonizationQsnAnsWithUi3
+          answer={location.state[22]}
+        ></DecarbonizationQsnAnsWithUi3>
+
+        <DecarbonizationQsnAnsWithUi4
+          answer={location.state[23]}
+        ></DecarbonizationQsnAnsWithUi4>
+
+        <DecarbonizationQsnAnsWithUi5
+          answer={location.state[24]}
+        ></DecarbonizationQsnAnsWithUi5>
+        <DecarbonizationQsnAnsWithUi6
+          answer={location.state[25]}
+        ></DecarbonizationQsnAnsWithUi6>
+        <DecarbonizationQsnAnsWithUi7
+          answer={location.state[26]}
+        ></DecarbonizationQsnAnsWithUi7>
+        <DecarbonizationQsnAnsDiffUi8
+          answer={location.state[27]}
+        ></DecarbonizationQsnAnsDiffUi8>
+        <DecarbonizationQsnAnsDiffUi9
+          answer={location.state[28]}
+        ></DecarbonizationQsnAnsDiffUi9>
+        <DecarbonizationQsnAnsDiffUi10
+          answer={location.state[29]}
+        ></DecarbonizationQsnAnsDiffUi10>
+        <DecarbonizationQsnAnsDiffUi11
+          answer={location.state[30]}
+        ></DecarbonizationQsnAnsDiffUi11>
+        <DecarbonizationQsnAnsDiffUi12
+          answer={location.state[31]}
+        ></DecarbonizationQsnAnsDiffUi12>
+        <DecarbonizationQsnAnsDiffUi13
+          answer={location.state[32]}
+        ></DecarbonizationQsnAnsDiffUi13>
+        <DecarbonizationQsnAnsDiffUi14
+          answer={location.state[33]}
+        ></DecarbonizationQsnAnsDiffUi14>
       </Grid2>
       <Grid2
         sx={{
@@ -476,27 +606,27 @@ function SurveyQuestionSection({ handleResetSurvey }) {
         <Button
           variant="outlined"
           sx={{
-            border: '1px solid #369D9C',
+            border: "1px solid #369D9C",
             borderRadius: "32px",
             textTransform: "capitalize",
             justifyContent: "center",
             alignItems: "center",
             padding: "11px 25px",
-            marginRight: '10px',
-            '&:hover': {
-              background:
-                "rgba(177, 233, 216, 0.30)",
+            marginRight: "10px",
+            "&:hover": {
+              background: "rgba(177, 233, 216, 0.30)",
             },
           }}
-          onClick={handleResetSurvey}
+          onClick={() => navigate("/survey")}
         >
           <Typography color="#369D9C" fontSize="12px">
             Reset
           </Typography>
         </Button>
+
         <Button
           sx={{
-            border: '1px solid #369D9C',
+            border: "1px solid #369D9C",
             borderRadius: "32px",
             textTransform: "capitalize",
             justifyContent: "center",
@@ -504,9 +634,8 @@ function SurveyQuestionSection({ handleResetSurvey }) {
             background:
               "var(--grad-3, linear-gradient(102deg, #369D9C 0%, #28814D 100%))",
             padding: "11px 25px",
-            '&:hover': {
-              background:
-                "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
             },
           }}
         >
@@ -514,7 +643,6 @@ function SurveyQuestionSection({ handleResetSurvey }) {
             Survey Completed
           </Typography>
         </Button>
-
       </Grid2>
     </>
   );

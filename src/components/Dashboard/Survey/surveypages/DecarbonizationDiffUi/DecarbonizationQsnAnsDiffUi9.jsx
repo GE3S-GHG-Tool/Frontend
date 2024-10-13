@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
-import insight from '../../../../../assets/images/insight.svg'
-import Tooltip from '@mui/material/Tooltip';
+import insight from "../../../../../assets/images/insight.svg";
+import Tooltip from "@mui/material/Tooltip";
 import info_icon from "../../../../../assets/images/info_icon.svg";
 
-function DecarbonizationQsnAnsWithUi9() {
+function DecarbonizationQsnAnsWithUi9({ answer }) {
   return (
     <div>
       <Grid2
@@ -22,7 +22,7 @@ function DecarbonizationQsnAnsWithUi9() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow: 'none'
+            boxShadow: "none",
           }}
         >
           <Grid2
@@ -36,14 +36,12 @@ function DecarbonizationQsnAnsWithUi9() {
             }}
           >
             <img src={insight} alt="lg" />
-            <Typography
-              fontSize="16px"
-              fontWeight="600"
-              color="#000"
-            >
+            <Typography fontSize="16px" fontWeight="600" color="#000">
               Automated lighting control / motion sensor for internal lighting
             </Typography>
-            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+            <Tooltip title="Dummy Text" placement="top" arrow>
+              {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+            </Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -76,51 +74,51 @@ function DecarbonizationQsnAnsWithUi9() {
             </Typography>
           </Grid2>
 
-          <Grid2
-            sx={{
-              borderTop: "1px solid #E4E4E4",
-              padding: "20px",
-              borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
-            }}
-          >
+          {answer.answer === "No" ? (
             <Grid2
               sx={{
-                border: "1px solid #D9D9D9",
-                background: "#F7FFFC",
+                borderTop: "1px solid #E4E4E4",
+                padding: "20px",
                 borderRadius: "5px",
-                padding: '25px'
+                borderBottom: "1px solid #E4E4E4",
               }}
             >
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
+              <Grid2
+                sx={{
+                  border: "1px solid #D9D9D9",
+                  background: "#F7FFFC",
+                  borderRadius: "5px",
+                  padding: "25px",
+                }}
               >
-                1. Installation of occupancy sensors/motion sensors for
-                automated control of internal lighting.
-                <br />
-                <br />
-                The Occupancy sensors after due consideration shall be provided
-                for the following areas within the facility
-                <ul>
-                  <li>Areas within the industry if relevant and appropriate</li>
-                  <li>Workshop area</li>
-                  <li>Pedestrian pathway</li>
-                  <li>Pantry</li>
-                  <li>Prayer room.</li>
-                  <li>Corridor / passage.</li>
-                  <li>Ablution</li>
-                  <li>Other areas if found suitable</li>
-                </ul>
-              </Typography>
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
-              >
-                Exceptions: Process area / Machine area
-              </Typography>
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  1. Installation of occupancy sensors/motion sensors for
+                  automated control of internal lighting.
+                  <br />
+                  <br />
+                  The Occupancy sensors after due consideration shall be
+                  provided for the following areas within the facility
+                  <ul>
+                    <li>
+                      Areas within the industry if relevant and appropriate
+                    </li>
+                    <li>Workshop area</li>
+                    <li>Pedestrian pathway</li>
+                    <li>Pantry</li>
+                    <li>Prayer room.</li>
+                    <li>Corridor / passage.</li>
+                    <li>Ablution</li>
+                    <li>Other areas if found suitable</li>
+                  </ul>
+                </Typography>
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  Exceptions: Process area / Machine area
+                </Typography>
+              </Grid2>
             </Grid2>
-          </Grid2>
+          ) : (
+            <div style={{ paddingBottom: "10px" }}></div>
+          )}
         </Paper>
       </Grid2>
     </div>

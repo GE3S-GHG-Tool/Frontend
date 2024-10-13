@@ -11,14 +11,24 @@ import Box from "@mui/material/Box";
 import { useAuth } from "../../../context/AuthContext";
 
 function ChilledWaterConsumption() {
+  const storedField = localStorage.getItem("scope2Data");
+  // console.log("storedField", storedField);
+
+  const initialField = storedField ? JSON.parse(storedField) : { water: "" };
+
   // Initialize fields with quantity and unit
-  const [field, setField] = useState({ quantity: "", unit: "Ton-Hour" });
+  const [field, setField] = useState({
+    quantity: initialField.water,
+    unit: "Ton-Hour",
+  });
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const { setScope2Data } = useAuth();
+  const { setScope2Data, scope2Data } = useAuth();
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   useEffect(() => {
     setScope2Data((prev) => ({ ...prev, water: field.quantity }));
+    const updatedScope2Data = { ...scope2Data, water: field.quantity };
+    localStorage.setItem("scope2Data", JSON.stringify(updatedScope2Data));
   }, [field, setScope2Data]);
 
   const handleChange = (event) => {

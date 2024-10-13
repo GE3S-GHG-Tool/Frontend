@@ -29,6 +29,18 @@ export async function getCategories(id) {
     return err.response;
   }
 }
+
+export async function getCategoriesforDraft(id) {
+  if (!id) return {}; // Return empty object if id is not present
+  try {
+    const response = await api.get(`/process-emission/process-emissions/${id}`);
+    return response.data; // Return the data part of the response
+  } catch (err) {
+    console.log("Error fetching categories:", err);
+    return {}; // Return an empty object in case of an error
+  }
+}
+
 export async function getAssetType() {
   try {
     const response = await api.get(`/scope3_entry/get_scope3/Capital Goods`);
@@ -141,9 +153,7 @@ export async function getConsumtionType() {
 }
 export async function getScope1Data(id) {
   try {
-    const response = await api.get(
-      `/scope1_report/calculate_totals/66fe865e02cfb7225bc60f61`
-    );
+    const response = await api.get(`/scope1_report/calculate_totals/${id}`);
     if (response) return response;
     else throw new Error("Could not get scope data 1");
   } catch (err) {
@@ -153,9 +163,7 @@ export async function getScope1Data(id) {
 }
 export async function getScope2Data(id) {
   try {
-    const response = await api.get(
-      `/scope2_report/calculate_totals/66fe865e02cfb7225bc60f61`
-    );
+    const response = await api.get(`/scope2_report/calculate_totals/${id}`);
     if (response) return response;
     else throw new Error("Could not get scope data 1");
   } catch (err) {
@@ -166,7 +174,7 @@ export async function getScope2Data(id) {
 export async function getScope3Data(id) {
   try {
     const response = await api.get(
-      `/scope3_report/calculate_scope3_totals/66fe865e02cfb7225bc60f61`
+      `/scope3_report/calculate_scope3_totals/${id}`
     );
     if (response) return response;
     else throw new Error("Could not get scope data 1");
@@ -179,6 +187,19 @@ export async function getScope3Data(id) {
 export async function saveScope1Report(data) {
   try {
     const response = await api.post("/scope1_report/scope1_report", data);
+    if (response) return response;
+    else throw new Error("Could not save report", data);
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
+export async function updateScope1Report(data, id) {
+  try {
+    const response = await api.put(
+      `/scope1_report/update_scope1_report/${id}`,
+      data
+    );
     if (response) return response;
     else throw new Error("Could not save report", data);
   } catch (err) {

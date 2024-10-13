@@ -19,25 +19,44 @@ const CapitalGoodsPopup = ({ onClose }) => {
   const { capitalGoods, setCapitalGoods } = useScope3();
 
   const [assetMenu, setAssetMenu] = useState([]);
-  const [fields, setFields] = useState([
-    {
-      assetType: "",
-      assetCategory: "",
-      expenses: "",
-      assetTypeName: "",
-    },
-  ]);
+  const [categoryMenu, setCategoryMenu] = useState([]);
+  // const [fields, setFields] = useState([
+  //   {
+  //     assetType: "",
+  //     asset_category: "",
+  //     expenses: "",
+  //   },
+  // ]);
+  const [fields, setFields] = useState(
+    localStorage.getItem("capitalGoodsData")
+      ? JSON.parse(localStorage.getItem("capitalGoodsData"))
+      : [
+          {
+            assetType: "",
+            asset_category: "",
+            expenses: "",
+          },
+        ]
+  );
   console.log("capital goods:", fields);
+  console.log("categoryMenu:", categoryMenu);
+
   useEffect(() => {
     if (capitalGoods && capitalGoods.length > 0) {
-      console.log("gg", capitalGoods);
       const capitalGoodsFields = capitalGoods.map((item) => ({
-        assetType: item.assetType || "",
-        assetCategory: item.assetCategory || "",
+        assetType: item.assetType || {},
+        asset_category: item.asset_category || "",
         expenses: item.expenses || "",
-        assetTypeName: item.assetTypeName,
       }));
+
+      // Extract the categories array from each assetType and set it in the category menu
+      const categoriesList = capitalGoodsFields
+        .map((item) => item.assetType?.categories || [])
+        .flat(); // Flatten the array in case each assetType has multiple categories
+
+      // Set the fields and category menu
       setFields(capitalGoodsFields);
+      setCategoryMenu(categoriesList);
     }
   }, [capitalGoods]);
 
@@ -49,8 +68,8 @@ const CapitalGoodsPopup = ({ onClose }) => {
     if (name === "assetType") {
       const selectedAsset = assetMenu.find((asset) => asset._id === value); // Find the selected asset object by `_id`
       updatedFields[index].assetType = selectedAsset; // Store the full asset object
-      updatedFields[index].assetTypeName = selectedAsset?.asset_type; // Store the asset type name
-      updatedFields[index].assetCategory = selectedAsset?.asset_category; // Store the corresponding asset category
+
+      setCategoryMenu(selectedAsset?.categories);
     } else {
       updatedFields[index][name] = value;
     }
@@ -65,8 +84,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
         ...updatedFields,
         {
           assetType: "",
-          assetTypeName: "", // Include the assetTypeName for new empty field
-          assetCategory: "",
+          asset_category: "",
           expenses: "",
         },
       ]);
@@ -79,13 +97,13 @@ const CapitalGoodsPopup = ({ onClose }) => {
   };
 
   const save = () => {
-    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
     setCapitalGoods(fields);
     onClose();
   };
   const fetchData = async () => {
     const response = await getAssetType();
-    // console.log("assetmenu", response?.data?.asset_types);
+    console.log("assetmenu", response?.data.asset_types);
     setAssetMenu(response?.data?.asset_types);
   };
 
@@ -208,7 +226,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                     >
                       {assetMenu?.map((asset, index) => (
                         <MenuItem key={index} value={asset._id}>
-                          {asset?.asset_type}
+                          {asset?.asset_type_name}
                         </MenuItem>
                       ))}
                     </Select>
@@ -216,7 +234,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                 </Grid2>
 
                 {/* Asset Category */}
-                {field.assetType && (
+                {Object.keys(field?.assetType).length > 0 && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -225,16 +243,54 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       Asset Category
                     </Typography>
 
-                    <TextField
-                      disabled
-                      size="small"
-                      value={field.assetCategory}
-                    />
+                    <FormControl fullWidth size="small">
+                      <Select
+                        name="asset_category"
+                        value={field?.asset_category || ""}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Select Asset Type"
+                        IconComponent={KeyboardArrowDownIcon}
+                        MenuProps={{
+                          PaperProps: {
+                            style: {
+                              maxWidth: "fit-content",
+                              maxHeight: 200, // Already set
+                              overflowY: "auto", // Add scrolling behavior if the content is too long
+                            },
+                          },
+                          anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "left",
+                          },
+                          transformOrigin: {
+                            vertical: "top",
+                            horizontal: "left",
+                          },
+                          getcontentanchorel: null, // Prevents the dropdown from jumping up when opened
+                        }}
+                        sx={{
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                        }}
+                      >
+                        {categoryMenu?.map((asset, index) => (
+                          <MenuItem
+                            key={index}
+                            value={asset.asset_category_name}
+                          >
+                            {asset?.asset_category_name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </Grid2>
                 )}
 
                 {/* Expenses */}
-                {field.assetCategory && (
+                {field.asset_category && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"

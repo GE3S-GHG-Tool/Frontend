@@ -33,6 +33,9 @@ import { AuthProvider } from "./context/AuthContext";
 import ResetOTP from "./components/ResetPassword/ResetOTP";
 import TotalEmissionsInventoryReport from "./components/EmissionsInventoryReport/TotalEmissionsInventoryReport";
 import { Scope3Provider } from "./context/Scope3Context";
+import SurveyQuestionSection from "./components/Dashboard/Survey/surveypages/DecarbonizationSurveyQsn";
+import DecarbonizationSurveyQsnAns from "./components/Dashboard/Survey/surveypages/DecarbonizationSurveyQsnAns";
+import EditReport from "./components/ReportsComponent/EditReport";
 
 function App() {
   return (
@@ -69,7 +72,7 @@ function App() {
           />
           {/* <Route path="/generate-reports" element={<GenerateReports />} /> */}
           <Route path="/reportgenerator" element={<ReportStateEmpty />} />
-          <Route path="/reportgenerator/:id" element={<ReportStateEmpty />} />
+          <Route path="/editreport/:id" element={<EditReport />} />
           <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
           <Route path="app" element={<Typography>avavav</Typography>} />
           <Route
@@ -94,6 +97,8 @@ function App() {
             <Route path="facilities" element={<Facilities />} />
             <Route path="analytics" element={<Analytics />} />
             <Route path="survey" element={<Survey />} />
+            <Route path="survey1" element={<SurveyQuestionSection />} />
+            <Route path="survey2" element={<DecarbonizationSurveyQsnAns />} />
             <Route path="report" element={<Report />} />
           </Route>
         </Routes>

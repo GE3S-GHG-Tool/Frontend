@@ -37,11 +37,11 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [industryOptions, setIndustryOptions] = useState([]);
   const [sectorOptions, setSectorOptions] = useState([]);
   const [error, setError] = useState(null);
-  console.log("organizationCountry", organizationCountry);
-  console.log("organizationState", organizationState);
-  console.log("organizationCity", organizationCity);
-  console.log("stateOptions", stateOptions);
-  console.log("cityOptions", cityOptions);
+  // console.log("organizationCountry", organizationCountry);
+  // console.log("organizationState", organizationState);
+  // console.log("organizationCity", organizationCity);
+  // console.log("stateOptions", stateOptions);
+  // console.log("cityOptions", cityOptions);
   useEffect(() => {
     // const loadInitialData = async () => {
     //   try {

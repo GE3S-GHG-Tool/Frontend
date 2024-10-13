@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid2, Paper, Typography, Box } from "@mui/material";
-import lightCelling from "../../../../../assets/images/light-ceiling 1.svg"
-import Tooltip from '@mui/material/Tooltip';
+import lightCelling from "../../../../../assets/images/light-ceiling 1.svg";
+import Tooltip from "@mui/material/Tooltip";
 import info_icon from "../../../../../assets/images/info_icon.svg";
-function DecarbonizationQsnAnsWithUi14() {
+function DecarbonizationQsnAnsWithUi14({ answer }) {
   return (
     <div>
       <Grid2
@@ -21,7 +21,7 @@ function DecarbonizationQsnAnsWithUi14() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            boxShadow: 'none'
+            boxShadow: "none",
           }}
         >
           <Grid2
@@ -35,14 +35,12 @@ function DecarbonizationQsnAnsWithUi14() {
             }}
           >
             <img src={lightCelling} alt="lg" />
-            <Typography
-              fontSize="16px"
-              fontWeight="600"
-              color="#000"
-            >
+            <Typography fontSize="16px" fontWeight="600" color="#000">
               General Plant Lighting - Use of Solar Daylighting Technologies
             </Typography>
-            <Tooltip title="Dummy Text" placement="top" arrow>{info_icon && <img src={info_icon} alt="logo" width="16px" />}</Tooltip>
+            <Tooltip title="Dummy Text" placement="top" arrow>
+              {info_icon && <img src={info_icon} alt="logo" width="16px" />}
+            </Tooltip>
           </Grid2>
           <Grid2
             sx={{
@@ -74,41 +72,41 @@ function DecarbonizationQsnAnsWithUi14() {
               technologies into the industrial design?
             </Typography>
           </Grid2>
-          <Grid2
-            sx={{
-              borderTop: "1px solid #E4E4E4",
-              padding: "20px",
-              borderRadius: "5px",
-              borderBottom: "1px solid #E4E4E4",
-            }}
-          >
+          {answer.answer === "No" ? (
             <Grid2
               sx={{
-                border: "1px solid #D9D9D9",
-                background: "#F7FFFC",
+                borderTop: "1px solid #E4E4E4",
+                padding: "20px",
                 borderRadius: "5px",
-                padding: '25px'
+                borderBottom: "1px solid #E4E4E4",
               }}
             >
-              <Typography
-                fontSize="0.85rem"
-                fontWeight="400"
+              <Grid2
+                sx={{
+                  border: "1px solid #D9D9D9",
+                  background: "#F7FFFC",
+                  borderRadius: "5px",
+                  padding: "25px",
+                }}
               >
-                1. The design should seek to embrace a judicial mix of solar
-                daylighting systems i.e. systems/technologies and Architecture
-                manifested in one of the following ways
-                <ul>
-                  <li>Daylight optimized building footprint</li>
-                  <li>Skylights (Passive or Active)</li>
-                  <li>Tubular daylighting devices </li>
-                  <li>Daylight redirection devices </li>
-                  <li>Solar Exterior shading and control devices.</li>
-                  <li>The reflectance of room surfaces"</li>
-                </ul>
-              </Typography>
-             
+                <Typography fontSize="0.85rem" fontWeight="400">
+                  1. The design should seek to embrace a judicial mix of solar
+                  daylighting systems i.e. systems/technologies and Architecture
+                  manifested in one of the following ways
+                  <ul>
+                    <li>Daylight optimized building footprint</li>
+                    <li>Skylights (Passive or Active)</li>
+                    <li>Tubular daylighting devices </li>
+                    <li>Daylight redirection devices </li>
+                    <li>Solar Exterior shading and control devices.</li>
+                    <li>The reflectance of room surfaces</li>
+                  </ul>
+                </Typography>
+              </Grid2>
             </Grid2>
-          </Grid2>
+          ) : (
+            <div style={{ paddingBottom: "10px" }}></div>
+          )}
         </Paper>
       </Grid2>
     </div>

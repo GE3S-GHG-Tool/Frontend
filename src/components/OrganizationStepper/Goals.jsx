@@ -25,6 +25,7 @@ export default function Goals({ setActiveStep }) {
     organizationEmployeeCount,
     organizationSustainabilityGoals,
     setOrganizationSustainabilityGoals,
+    organizationLogo,
   } = useSignup();
 
   // console.log(
@@ -98,8 +99,9 @@ export default function Goals({ setActiveStep }) {
           organizationBaselineYear,
           organizationBaselineMonth,
           organizationEmployeeCount,
+          organizationLogo,
         };
-
+        // console.log(organizationData);
         const response = await submitGoalsData(
           organizationData,
           selectedGoal,

@@ -6,13 +6,69 @@ import TablesData from "../TablesData";
 import edit_icon from "../../../../assets/images/edit_icon.svg";
 import del_icon from "../../../../assets/images/del_icon.svg";
 import { Dialog } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProcessEmissionReports from "./ProcessEmissionReports";
+import { useParams } from "react-router-dom";
+import { getscope1draft } from "../../../../api/drafts";
+import {
+  getCategories,
+  getCategoriesforDraft,
+} from "../../../../api/createReport";
+import { useScope3 } from "../../../../context/Scope3Context";
 function ProcessEmission() {
-  // State to control dialog visibility
+  const { id } = useParams();
+  const { setEmission } = useScope3();
   const [open, setOpen] = useState(false);
-  const [tableData, setTaleData] = useState([]);
-  // console.log("tableData2", tableData2);
+  const [tableData, setTableData] = useState(
+    JSON.parse(localStorage.getItem("processEmissionData"))
+  );
+  const fetchEditData = async (id) => {
+    try {
+      const response = await getscope1draft(id);
+      // console.log("response:", response);
+
+      // Use Promise.all to wait for all API calls to finish
+      const transformedData = await Promise.all(
+        response?.data?.processEmissions?.map(async (item) => {
+          // Fetch all the category data
+          const type = await getCategoriesforDraft(item.type?._id); // Fetch for type._id
+          const type2 = await getCategoriesforDraft(item.category?._id); // Fetch for category._id
+          const type3 = await getCategoriesforDraft(item.subCategory?._id); // Fetch for subCategory._id
+          const type4 = await getCategoriesforDraft(item.subsubCategory?._id); // Fetch for subsubCategory._id
+          const type5 = await getCategoriesforDraft(
+            item.subsubsubCategory?._id
+          ); // Fetch for subsubsubCategory._id
+          // console.log(type, type2, type3, type4, type5);
+          return {
+            id: Date.now(),
+            type: type || {}, // Set the fetched data for type
+            type2: type2 || {}, // Set the fetched data for type2
+            type3: type3 || {}, // Set the fetched data for type3
+            type4: type4 || {}, // Set the fetched data for type4
+            type5: type5 || {}, // Set the fetched data for type5
+            quantity: item.quantity || "",
+            quantity_2: item.quantity_2 || "",
+          };
+        })
+      );
+
+      // Store the transformed data in localStorage
+      localStorage.setItem(
+        "processEmissionData",
+        JSON.stringify(transformedData)
+      );
+      // console.log("transformedData", transformedData);
+      setEmission(transformedData);
+      setTableData(transformedData); // Update the table with the new data
+    } catch (error) {
+      console.error("Error in fetchEditData:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
+  // console.log("tableData", tableData);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Function to open the dialog
@@ -30,7 +86,7 @@ function ProcessEmission() {
   };
 
   const handleEdit = () => {
-    console.log("Edit clicked");
+    // console.log("Edit clicked");
     setIsDropdownOpen(false);
   };
 
@@ -46,6 +102,7 @@ function ProcessEmission() {
     "Sub Sub Category",
     "Sub Sub Sub Category",
     "Quantity",
+    "Quantity2",
   ];
 
   // const tableData = [
@@ -243,7 +300,7 @@ function ProcessEmission() {
       >
         <ProcessEmissionReports
           onClose={handleClose}
-          setTaleData={setTaleData}
+          setTableData={setTableData}
         />
       </Dialog>
     </div>

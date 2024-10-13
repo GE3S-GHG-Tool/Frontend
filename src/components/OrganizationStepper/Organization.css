@@ -44,6 +44,19 @@
   margin-left: 20px;
   /* text-align: center; */
 }
+.heading5 {
+  /* background: red; */
+  text-align: center;
+  margin: 0 0 4vh 0;
+}
+
+.heading5 h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #00191d;
+  margin-top: 20px;
+  /* text-align: center; */
+}
 
 .select_emp_cou {
   display: flex;

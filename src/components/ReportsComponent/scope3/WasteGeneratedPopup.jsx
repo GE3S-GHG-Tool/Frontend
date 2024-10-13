@@ -21,19 +21,24 @@ const WasteGeneratedPopup = ({ onClose }) => {
   const [subCategoryMenu, setSubCategoryMenu] = useState([]);
   const [disposalMenu, setDisposalMenu] = useState([]);
   const { wasteData, setWasteData } = useScope3();
-  const [fields, setFields] = useState([
-    {
-      id: "",
-      subCategoryid: "",
-      wasteCategory: "",
-      subCategory: "",
-      disposalMethod: "",
-      distanceToLandfill: "",
-      fuelType: "",
-      numberOfTrips: "",
-      quantityOfWaste: "",
-    },
-  ]);
+  const [fields, setFields] = useState(
+    localStorage.getItem("wasteData")
+      ? JSON.parse(localStorage.getItem("wasteData"))
+      : [
+          {
+            id: "",
+            subCategoryid: "",
+            wasteCategory: "",
+            subCategory: "",
+            disposalMethod: "",
+            distanceToLandfill: "",
+            fuelType: "",
+            numberOfTrips: "",
+            quantityOfWaste: "",
+          },
+        ]
+  );
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
@@ -93,7 +98,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
         numberOfTrips: item.numberOfTrips || "",
         quantityOfWaste: item.quantityOfWaste || "",
       }));
-      console.log("data",wasteDatares);
+      console.log("data", wasteDatares);
       setFields(wasteDatares);
     }
   }, [wasteData]);
@@ -103,7 +108,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
     setAssetMenu(response?.data?.categories);
   };
   const save = () => {
-    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    localStorage.setItem("wasteData", JSON.stringify(fields));
     setWasteData(fields);
     onClose();
   };
@@ -288,7 +293,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                     >
                       Disposal Method
                     </Typography>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth size="small">
                       <Select
                         name="disposalMethod"
                         value={field.disposalMethod}

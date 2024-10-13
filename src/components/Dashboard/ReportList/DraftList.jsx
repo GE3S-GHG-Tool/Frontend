@@ -15,7 +15,7 @@ const DraftList = ({ searchQuery }) => {
     try {
       const response = await getDraftReports(); // Use your existing API function
       if (response?.data?.success) {
-        setReports(response.data.reports); // Assuming the reports data is in response.data.reports
+        setReports(response?.data?.reports?.reverse()); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");
       }
@@ -99,7 +99,7 @@ const DraftList = ({ searchQuery }) => {
           {filteredReports.map((report, index) => (
             <tr
               key={index}
-              onClick={() => navigate(`/reportgenerator/${report._id}`)} // Adjust the path based on your project structure
+              onClick={() => navigate(`/editreport/${report._id}`)} // Adjust the path based on your project structure
             >
               <td>{report.name}</td>
               <td>{report.year}</td>

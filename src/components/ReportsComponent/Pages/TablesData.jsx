@@ -3,7 +3,8 @@ import { Grid2, Typography, Tooltip } from "@mui/material";
 import { useAuth } from "../../../context/AuthContext";
 
 function TablesData({ headings, data }) {
-  const { table } = useAuth();
+  // const { table } = useAuth();
+  const table = data;
   return (
     <div>
       <Grid2
@@ -66,7 +67,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -80,7 +81,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -94,7 +95,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -108,7 +109,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -122,7 +123,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -136,7 +137,7 @@ function TablesData({ headings, data }) {
                 <td
                   style={{
                     textAlign: "left",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
                     padding: "12px",
                     marginRight: "10px",
                     whiteSpace: "nowrap",
@@ -146,6 +147,20 @@ function TablesData({ headings, data }) {
                   }}
                 >
                   {row?.quantity ? row?.quantity : "--"}
+                </td>
+                <td
+                  style={{
+                    textAlign: "left",
+                    // fontWeight: "bold",
+                    padding: "12px",
+                    marginRight: "10px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: "100px",
+                  }}
+                >
+                  {row?.quantity2 ? row?.quantity2 : "--"}
                 </td>
               </tr>
             ))}

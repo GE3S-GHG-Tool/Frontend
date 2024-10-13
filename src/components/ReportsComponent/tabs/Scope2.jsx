@@ -3,12 +3,10 @@ import ChilledWaterConsumption from "../Pages/ChilledWaterConsumption";
 import DesalinatedWater from "../Pages/DesalinatedWater";
 import HeatConsumption from "../Pages/HeatConsumption";
 import { Box, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { saveScope2Report } from "../../../api/createReport";
 
 const Scope2 = ({ setActiveTab }) => {
-  const navigate = useNavigate();
   const { scope2Data, user } = useAuth();
   const reportid = localStorage.getItem("reportId");
   // console.log("scope2Data", user);
@@ -46,11 +44,17 @@ const Scope2 = ({ setActiveTab }) => {
     const response = await saveScope2Report(payload);
     console.log(response);
     if (response.status === 201) {
-      setActiveTab("scope3");
+      if (type === "final") {
+        localStorage.removeItem("scope2Data");
+        setActiveTab("scope3");
+      } else {
+        setActiveTab("scope1");
+      }
     } else {
       alert("Something went wrong");
     }
   };
+
   return (
     <div
       style={{
@@ -91,7 +95,7 @@ const Scope2 = ({ setActiveTab }) => {
             },
           }}
         >
-          Cancel
+          Previous
         </Button>
 
         <Button

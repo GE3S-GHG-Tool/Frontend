@@ -15,43 +15,59 @@ import x_logo from "../../../assets/images/X_logo.svg";
 import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getAllAirport, getTraveltype } from "../../../api/createReport";
+import { useScope3 } from "../../../context/Scope3Context";
 
 const BusinessTravelPopup = ({ onClose }) => {
   // State with one initial row
   const [travelmenu, setTravelMenu] = useState([]);
   const [airportlist, setAirportList] = useState([]);
   const [inputCount, setInputCount] = useState(0);
-  const [fields, setFields] = useState([
-    {
-      travelClass: "",
-      origin: "",
-      destination: "",
-      connectionDirect: "",
-      numberOfTrips: "",
-    },
-  ]);
-
+  const { business, setBusiness } = useScope3();
+  const [fields, setFields] = useState(
+    localStorage.getItem("business")
+      ? JSON.parse(localStorage.getItem("business"))
+      : [
+          {
+            travelClass: "",
+            origin: {},
+            destination: {},
+            connection: "",
+            numberOfTrips: "",
+            tripDetails: [],
+          },
+        ]
+  );
+  // const [fields, setFields] = useState([
+  //   {
+  //     travelClass: "",
+  //     origin: {},
+  //     destination: {},
+  //     connection: "",
+  //     numberOfTrips: "",
+  //     tripDetails: [],
+  //   },
+  // ]);
+  console.log("fields", fields);
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
     updatedFields[index][name] = value;
     setFields(updatedFields);
 
-    // Check if the current row is complete
-    const isRowComplete = Object.values(updatedFields[index]).every(
-      (field) => field.trim() !== ""
-    );
+    // Check if the current row's connection has a value
+    const hasConnectionDirect = updatedFields[index].connection; // Check for truthy value
 
-    // If the row is complete, add a new row
-    if (isRowComplete && index === fields.length - 1) {
-      setFields([
-        ...updatedFields,
+    // If the connection has a value and this is the last row, add a new row
+    if (hasConnectionDirect && index === fields.length - 1) {
+      setFields((prevFields) => [
+        ...prevFields,
         {
           travelClass: "",
           origin: "",
           destination: "",
-          connectionDirect: "",
+          connection: "",
           numberOfTrips: "",
+          tripDetails: [],
         },
       ]);
     }
@@ -63,32 +79,103 @@ const BusinessTravelPopup = ({ onClose }) => {
   };
 
   const save = () => {
-    // setCapitalGoods(fields);
+    localStorage.setItem("business", JSON.stringify(fields));
+    setBusiness(fields);
     onClose();
   };
   const [loading, setLoading] = useState(true);
   const fetchData = async () => {
     const response = await getTraveltype();
-    const airports = await getAllAirport();
-    console.log("airport list:", airports.data);
     setTravelMenu(response?.data?.travel_classes);
-    setAirportList(airports?.data);
+  };
+  const fetchAirport = async () => {
+    const airports = await getAllAirport();
+    const firstHundredAirports = airports.data.slice(0, 1000);
+    // console.log("First 100 airports:", firstHundredAirports);
+    // console.log("airport list:", airports.data);
+    setAirportList(firstHundredAirports);
     setLoading(false);
   };
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const filteredAirports = airportlist.filter((item) =>
+    item.nameAirport.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   useEffect(() => {
     fetchData();
+    fetchAirport();
   }, []);
-  const renderTextFields = () => {
-    let fields = [];
-    for (let i = 0; i < inputCount; i++) {
-      fields.push(
-        <div key={i}>
-          <input type="text" placeholder={`Text field ${i + 1}`} />
-        </div>
+
+  const handleTripChange = (index, tripIndex, value) => {
+    const updatedFields = [...fields];
+    updatedFields[index].tripDetails[tripIndex] = value; // Update the specific trip detail
+    setFields(updatedFields);
+  };
+  const renderTextFields = (index) => {
+    const numberOfTrips = fields[index].numberOfTrips;
+    let fieldsArray = [];
+    for (let i = 0; i < numberOfTrips; i++) {
+      fieldsArray.push(
+        <Grid2 item size={4}>
+          <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+            {`Connection to `}
+          </Typography>
+
+          <FormControl fullWidth size="small">
+            <Select
+              key={`trip-${index}-${i}`}
+              name="destination"
+              renderValue={(selected) => (selected ? selected.nameAirport : "")}
+              value={fields[index].tripDetails[i] || ""} // Bind the value to tripDetails
+              onChange={(e) => handleTripChange(index, i, e.target.value)} // Handle trip input change
+              IconComponent={KeyboardArrowDownIcon}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 200, // Already set
+                    overflowY: "auto", // Add scrolling behavior if the content is too long
+                  },
+                },
+                anchorOrigin: {
+                  vertical: "bottom",
+                  horizontal: "left",
+                },
+                transformOrigin: {
+                  vertical: "top",
+                  horizontal: "left",
+                },
+                getcontentanchorel: null, // Prevents the dropdown from jumping up when opened
+              }}
+              sx={{
+                border: "1px solid rgba(217, 217, 217, 0.0)",
+                borderRadius: "5px",
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "rgba(217, 217, 217, 0.30)",
+                },
+              }}
+            >
+              {loading ? (
+                <MenuItem value="" disabled>
+                  <CircularProgress size={24} />{" "}
+                  <span style={{ marginLeft: 10 }}>Loading...</span>
+                </MenuItem>
+              ) : filteredAirports.length > 0 ? (
+                filteredAirports.map((item, index) => (
+                  <MenuItem key={index} value={item}>
+                    {item.nameAirport}
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem value="" disabled>
+                  No results found
+                </MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Grid2>
       );
     }
-    return fields;
+    return fieldsArray;
   };
 
   return (
@@ -206,7 +293,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                       }}
                     >
                       {travelmenu?.map((item, index) => (
-                        <MenuItem key={index} value={item._id}>
+                        <MenuItem key={index} value={item.class_name}>
                           {item?.class_name}
                         </MenuItem>
                       ))}
@@ -223,58 +310,33 @@ const BusinessTravelPopup = ({ onClose }) => {
                     >
                       Origin
                     </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="origin"
-                        value={field.origin}
-                        onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Origin"
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          margin: "0",
-                          border: "1px solid rgba(217, 217, 217, 0.0)",
-                          borderRadius: "5px",
-                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "rgba(217, 217, 217, 0.30)",
-                          },
-                          "& .MuiSelect-select": {
-                            padding: "9px 16px",
-                          },
-                        }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span
-                            style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
-                          >
-                            Select Origin
-                          </span>
-                        </MenuItem>
-                        <MenuItem value={"New York"}>New York</MenuItem>
-                        <MenuItem value={"Los Angeles"}>Los Angeles</MenuItem>
-                        <MenuItem value={"San Francisco"}>
-                          San Francisco
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid2>
-                )}
-
-                {/* Destination */}
-                {field.origin && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Destination
-                    </Typography>
                     <FormControl fullWidth size="small">
                       <Select
-                        name="destination"
-                        value={field.destination}
+                        name="origin"
+                        value={field.origin || ""} // Default to empty string if no value
                         onChange={(e) => handleChange(index, e)}
                         IconComponent={KeyboardArrowDownIcon}
+                        renderValue={(selected) =>
+                          selected ? selected.nameAirport : ""
+                        }
+                        MenuProps={{
+                          PaperProps: {
+                            style: {
+                              maxWidth: 200,
+                              maxHeight: 200, // Already set
+                              overflowY: "auto", // Add scrolling behavior if the content is too long
+                            },
+                          },
+                          anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "left",
+                          },
+                          transformOrigin: {
+                            vertical: "top",
+                            horizontal: "left",
+                          },
+                          getcontentanchorel: null, // Prevents the dropdown from jumping up when opened
+                        }}
                         sx={{
                           border: "1px solid rgba(217, 217, 217, 0.0)",
                           borderRadius: "5px",
@@ -286,15 +348,83 @@ const BusinessTravelPopup = ({ onClose }) => {
                         {loading ? (
                           <MenuItem value="" disabled>
                             <CircularProgress size={24} />{" "}
-                            {/* Loader inside dropdown */}
                             <span style={{ marginLeft: 10 }}>Loading...</span>
                           </MenuItem>
-                        ) : (
-                          airportlist.map((item, index) => (
-                            <MenuItem key={index} value={item.nameAirport}>
+                        ) : filteredAirports.length > 0 ? (
+                          filteredAirports.map((item, index) => (
+                            <MenuItem key={index} value={item}>
                               {item.nameAirport}
                             </MenuItem>
                           ))
+                        ) : (
+                          <MenuItem value="" disabled>
+                            No results found
+                          </MenuItem>
+                        )}
+                      </Select>
+                    </FormControl>
+                  </Grid2>
+                )}
+
+                {/* Destination */}
+                {Object.keys(field.origin).length > 0 && (
+                  <Grid2 item size={4}>
+                    <Typography
+                      variant="body1"
+                      sx={{ mb: 1, fontSize: "0.75rem" }}
+                    >
+                      Destination
+                    </Typography>
+
+                    <FormControl fullWidth size="small">
+                      <Select
+                        renderValue={(selected) =>
+                          selected ? selected.nameAirport : ""
+                        }
+                        name="destination"
+                        value={field.destination}
+                        onChange={(e) => handleChange(index, e)}
+                        IconComponent={KeyboardArrowDownIcon}
+                        MenuProps={{
+                          PaperProps: {
+                            style: {
+                              maxHeight: 200, // Already set
+                              overflowY: "auto", // Add scrolling behavior if the content is too long
+                            },
+                          },
+                          anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "left",
+                          },
+                          transformOrigin: {
+                            vertical: "top",
+                            horizontal: "left",
+                          },
+                          getcontentanchorel: null, // Prevents the dropdown from jumping up when opened
+                        }}
+                        sx={{
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                        }}
+                      >
+                        {loading ? (
+                          <MenuItem value="" disabled>
+                            <CircularProgress size={24} />{" "}
+                            <span style={{ marginLeft: 10 }}>Loading...</span>
+                          </MenuItem>
+                        ) : filteredAirports.length > 0 ? (
+                          filteredAirports.map((item, index) => (
+                            <MenuItem key={index} value={item}>
+                              {item.nameAirport}
+                            </MenuItem>
+                          ))
+                        ) : (
+                          <MenuItem value="" disabled>
+                            No results found
+                          </MenuItem>
                         )}
                       </Select>
                     </FormControl>
@@ -302,7 +432,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                 )}
 
                 {/* Connection Type */}
-                {field.destination && (
+                {Object.keys(field.destination).length > 0 && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -310,43 +440,29 @@ const BusinessTravelPopup = ({ onClose }) => {
                     >
                       Connection Type
                     </Typography>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth size="small">
                       <Select
-                        name="connectionDirect"
-                        value={field.connectionDirect}
+                        name="connection"
+                        value={field.connection}
                         onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        placeholder="Select Connection type"
                         IconComponent={KeyboardArrowDownIcon}
                         sx={{
-                          margin: "0",
                           border: "1px solid rgba(217, 217, 217, 0.0)",
                           borderRadius: "5px",
                           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                             borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          "& .MuiSelect-select": {
-                            padding: "9px 16px",
-                          },
                         }}
                       >
-                        <MenuItem value="" disabled>
-                          <span
-                            style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
-                          >
-                            Select Connection type
-                          </span>
-                        </MenuItem>
-                        <MenuItem value="Direct">Direct</MenuItem>
-                        <MenuItem value="1 Stop">1 Stop</MenuItem>
-                        <MenuItem value="2 Stops">2 Stops</MenuItem>
+                        <MenuItem value="0">Direct</MenuItem>
+                        <MenuItem value="1">Connection</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid2>
                 )}
-                {renderTextFields()}
+
                 {/* Number of Trips */}
-                {field.connectionDirect && (
+                {field.connection && field.connection !== "0" && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -357,7 +473,10 @@ const BusinessTravelPopup = ({ onClose }) => {
                     <TextField
                       name="numberOfTrips"
                       value={field.numberOfTrips}
-                      onChange={(e) => handleChange(index, e)}
+                      onChange={(e) => {
+                        setInputCount(e.target.value);
+                        handleChange(index, e);
+                      }}
                       variant="outlined"
                       fullWidth
                       type="number"
@@ -379,6 +498,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                     />
                   </Grid2>
                 )}
+                {renderTextFields(index)}
               </Grid2>
 
               {/* Show "hello" when the current row is filled */}
@@ -388,7 +508,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                   height: "55px",
                 }}
               >
-                {Object.values(field).every((val) => val.trim() !== "") && (
+                {Object.prototype.hasOwnProperty.call(field, "connection") && (
                   <img
                     src={trash}
                     alt="Delete"
@@ -396,16 +516,16 @@ const BusinessTravelPopup = ({ onClose }) => {
                       height: "100%",
                       width: "100%",
                       cursor: "pointer",
-                      visibility: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "visible"
-                        : "hidden",
-                      pointerEvents: Object.values(field).every(
-                        (val) => val.trim() !== ""
-                      )
-                        ? "auto"
-                        : "none", // Disable interaction if not all fields are filled
+                      // visibility: Object.values(field).every(
+                      //   (val) => val.trim() !== ""
+                      // )
+                      //   ? "visible"
+                      //   : "hidden",
+                      // pointerEvents: Object.values(field).every(
+                      //   (val) => val.trim() !== ""
+                      // )
+                      //   ? "auto"
+                      //   : "none", // Disable interaction if not all fields are filled
                     }}
                     onClick={() => handleDelete(index)}
                   />
@@ -437,6 +557,7 @@ const BusinessTravelPopup = ({ onClose }) => {
         </Button>
 
         <Button
+          onClick={save}
           sx={{
             borderRadius: "32px",
             height: "38px",

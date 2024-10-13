@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./EmissionsInventoryReport.css";
 import { Box, Button, Typography, Paper } from "@mui/material";
 import logo from "../../assets/images/starbucksLogo.png";
@@ -14,7 +14,7 @@ import ScopeData from "./components/ScopeData";
 import FullCircleDonutChart from "./Charts/FullCircleDonutChart";
 import Scope3Card from "./components/Scope3Card";
 import StackedBarChart from "./Charts/StackedBarChart";
-import FullWidthStackedBarChart from "./Charts/LineChart";
+// import FullWidthStackedBarChart from "./Charts/LineChart";
 import LineChart from "./Charts/LineChart";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -155,13 +155,7 @@ const Scope2SVGs = [
 ];
 
 const Scope3SVGs = [
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="25"
-    viewBox="0 0 24 25"
-    fill="none"
-  >
+  <svg key={1} width="24" height="25" viewBox="0 0 24 25" fill="none">
     <path
       d="M3.75 5.95703H9.18C9.50918 5.95708 9.83329 5.87588 10.1236 5.72062C10.4138 5.56537 10.6613 5.34086 10.844 5.06703L11.656 3.84703C11.8387 3.5732 12.0862 3.3487 12.3764 3.19344C12.6667 3.03819 12.9908 2.95698 13.32 2.95703H17.808C18.2279 2.95693 18.6372 3.08901 18.9779 3.33455C19.3186 3.58008 19.5733 3.92662 19.706 4.32503L20.25 5.95703M21.75 5.95703H8.75"
       stroke="#F26D58"
@@ -177,31 +171,20 @@ const Scope3SVGs = [
       strokeLinejoin="round"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="25"
-    height="27"
-    viewBox="0 0 25 27"
-    fill="none"
-  >
+  <svg key={2} width="25" height="27" viewBox="0 0 25 27" fill="none">
     <path
       d="M22.6264 2.58593C22.8709 2.58593 23.0431 2.63526 23.1327 2.67272C23.2403 2.98386 23.3847 4.09886 22.3234 5.25217L16.9096 11.1311L16.9486 11.8605C17.0307 13.3869 17.1829 16.1223 17.3142 18.4672C17.4301 20.5543 17.54 22.5254 17.5471 22.6932C17.5508 22.8084 17.5523 22.8357 17.4533 22.9652C17.2321 23.2572 16.8192 23.752 16.4712 24.1621C15.9316 22.5832 14.7976 19.2483 14.1713 17.3815L13.3666 14.9796L11.702 16.7873L8.64083 19.9838L8.21445 20.446L8.20133 21.0996C8.1912 21.6213 8.19345 22.5576 8.19458 23.383C8.19608 23.9581 8.1976 24.4806 8.19385 24.7685C8.1871 24.7819 8.29623 24.7978 8.2861 24.817C8.22085 24.7033 8.15073 24.5808 8.07648 24.4533C7.45923 23.3843 6.60498 21.9056 6.34435 21.4442L6.15385 21.1062L5.8411 20.9009C4.70373 20.1548 3.44373 19.2935 2.67498 18.7555C2.7016 18.7388 2.72333 18.8272 2.74095 18.817H2.79083C3.0327 18.817 3.43245 18.8227 3.88058 18.8296C4.4667 18.8382 5.13158 18.8488 5.64045 18.8488C5.83545 18.8488 6.0087 18.8471 6.1482 18.8439L6.75008 18.8288L7.1757 18.3666L10.1228 15.0651L11.7818 13.2643L9.58023 12.3846C7.92573 11.7237 4.7566 10.4384 3.27423 9.83364C3.65445 9.45327 4.1127 9.00164 4.38008 8.76134C4.4547 8.69455 4.51285 8.66037 4.55295 8.66037L4.60583 8.662C4.7712 8.67055 6.82508 8.81634 8.81068 8.95725C10.9186 9.10671 13.2976 9.27531 14.6502 9.36856L15.3263 9.41458L20.7409 3.53399C21.5014 2.70932 22.2484 2.58593 22.6264 2.58593ZM22.6265 0.957031C21.7403 0.957031 20.6525 1.32676 19.6809 2.38233L14.7447 7.74247C11.9645 7.55147 4.844 7.03997 4.66738 7.03468C4.62928 7.03258 4.59114 7.03149 4.553 7.03139C4.31263 7.03139 3.8975 7.08149 3.425 7.50543C2.87038 8.00351 1.71388 9.18454 1.71388 9.18454C1.43488 9.48832 1.2935 9.86461 1.32725 10.2185C1.34788 10.4323 1.45475 10.822 1.93813 11.0273C2.23175 11.1523 6.90463 13.0509 9.0624 13.913L6.11527 17.2146C5.98475 17.2178 5.82313 17.2194 5.6405 17.2194C4.742 17.2194 3.34888 17.1877 2.79048 17.1877C2.7166 17.1877 2.65735 17.1877 2.61533 17.1893C2.44545 17.195 2.0937 17.1042 1.16595 17.9464L1.09995 18.0132C0.821705 18.3153 0.756455 18.6167 0.750455 18.8158C0.744455 19.0211 0.79508 19.3168 1.06845 19.5546C1.2327 19.6987 3.33833 21.1628 5.06518 22.2953C5.4792 23.0288 7.3842 26.3169 7.48358 26.4952C7.62873 26.7616 7.86608 26.9135 8.14998 26.9232H8.1736C8.4496 26.9232 8.7331 26.7746 9.0106 26.4818C9.79585 25.4844 9.68748 25.0715 9.69083 24.898C9.7032 24.3539 9.6822 22.0489 9.7002 21.1351L12.761 17.9382C13.5432 20.2717 15.2532 25.2943 15.3676 25.6139C15.5581 26.1389 15.917 26.2541 16.1138 26.2757C16.1461 26.2798 16.1791 26.2814 16.2113 26.2814C16.5072 26.2814 16.814 26.1303 17.0652 25.8575C17.0652 25.8575 18.1493 24.6081 18.6098 24.0001C19.0711 23.3925 19.0531 22.8736 19.0441 22.6289C19.0403 22.4595 18.6061 14.7687 18.4448 11.7653L23.3821 6.40348C25.1318 4.50244 24.8536 2.21172 24.2037 1.50719C23.9168 1.19402 23.336 0.957057 22.6265 0.957031Z"
       fill="#F26D58"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="26"
-    viewBox="0 0 24 26"
-    fill="none"
-  >
+  <svg key={3} width="24" height="26" viewBox="0 0 24 26" fill="none">
     <path
       d="M7.69017 7.15525V6.61042C7.69017 3.90348 9.61067 1.69141 12.0027 1.69141C14.3947 1.69141 16.3152 3.90348 16.3152 6.61042V7.15681H19.2592C19.4372 7.157 19.6089 7.22896 19.7409 7.35875C19.8729 7.48853 19.9558 7.6669 19.9736 7.8593L21.2674 21.9092C21.2774 22.0177 21.2664 22.1272 21.2351 22.2308C21.2037 22.3344 21.1528 22.4297 21.0855 22.5106C21.0182 22.5914 20.936 22.6561 20.8443 22.7004C20.7526 22.7447 20.6533 22.7677 20.5529 22.7678H3.45242C3.35203 22.7677 3.25277 22.7447 3.16104 22.7004C3.06932 22.6561 2.98715 22.5914 2.91985 22.5106C2.85254 22.4297 2.80158 22.3344 2.77026 22.2308C2.73894 22.1272 2.72794 22.0177 2.73798 21.9092L4.03173 7.8593C4.04953 7.6669 4.13247 7.48853 4.26446 7.35875C4.39645 7.22896 4.56811 7.157 4.74617 7.15681H7.69017V7.15525ZM9.12767 7.15525H14.8777V6.61042C14.8777 4.74647 13.581 3.2525 12.0027 3.2525C10.4243 3.2525 9.12767 4.74647 9.12767 6.61042V7.15681V7.15525ZM7.69017 8.71635H5.39735L4.24735 21.2051H19.758L18.6065 8.71635H16.3152V11.058C16.3152 11.265 16.2394 11.4635 16.1046 11.6099C15.9699 11.7563 15.787 11.8385 15.5964 11.8385C15.4058 11.8385 15.223 11.7563 15.0882 11.6099C14.9534 11.4635 14.8777 11.265 14.8777 11.058V8.71635H9.12767V11.058C9.12767 11.265 9.05194 11.4635 8.91715 11.6099C8.78236 11.7563 8.59954 11.8385 8.40892 11.8385C8.21829 11.8385 8.03547 11.7563 7.90068 11.6099C7.76589 11.4635 7.69017 11.265 7.69017 11.058V8.71635Z"
       fill="#F26D58"
     />
   </svg>,
   <svg
+    key={4}
     xmlns="http://www.w3.org/2000/svg"
     width="27"
     height="27"
@@ -225,37 +208,19 @@ const Scope3SVGs = [
       </clipPath>
     </defs>
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="26"
-    height="27"
-    viewBox="0 0 26 27"
-    fill="none"
-  >
+  <svg key={5} width="26" height="27" viewBox="0 0 26 27" fill="none">
     <path
       d="M24.8056 6.62909C24.6887 6.55609 24.555 6.51406 24.4173 6.50695C24.2796 6.49984 24.1424 6.5279 24.0185 6.58847C19.6584 8.72128 16.5445 7.72191 13.2529 6.66769C9.79977 5.56167 6.21969 4.41909 1.27359 6.83425C1.1354 6.90054 1.01877 7.00457 0.937181 7.13432C0.855592 7.26407 0.812368 7.41426 0.8125 7.56753V19.7479C0.812481 19.8858 0.847538 20.0214 0.914372 20.1419C0.981206 20.2625 1.07762 20.3641 1.19454 20.4371C1.31146 20.5102 1.44504 20.5523 1.58271 20.5594C1.72037 20.5666 1.85761 20.5386 1.98148 20.4782C6.34156 18.3453 9.45547 19.3447 12.7522 20.3989C14.7063 21.0235 16.6969 21.6603 18.9475 21.6603C20.6832 21.6603 22.5763 21.2825 24.7274 20.2324C24.864 20.1657 24.9792 20.062 25.0598 19.9331C25.1404 19.8041 25.1833 19.6552 25.1834 19.5032V7.32276C25.1847 7.18455 25.1506 7.04831 25.0845 6.92693C25.0184 6.80554 24.9224 6.70303 24.8056 6.62909ZM23.5625 18.9862C19.4391 20.8316 16.4277 19.8688 13.2478 18.8521C11.2938 18.2275 9.30313 17.5907 7.0525 17.5907C5.47128 17.5984 3.90614 17.9087 2.44156 18.5048V8.08448C6.565 6.23909 9.57633 7.20191 12.7563 8.21855C15.9362 9.23519 19.2095 10.2853 23.5625 8.56792V18.9862ZM13 10.2853C12.3572 10.2853 11.7289 10.476 11.1944 10.8331C10.6599 11.1902 10.2434 11.6978 9.99739 12.2916C9.75141 12.8855 9.68705 13.5389 9.81245 14.1694C9.93785 14.7998 10.2474 15.3789 10.7019 15.8334C11.1564 16.288 11.7355 16.5975 12.366 16.7229C12.9964 16.8483 13.6499 16.7839 14.2437 16.538C14.8376 16.292 15.3452 15.8754 15.7023 15.3409C16.0594 14.8065 16.25 14.1781 16.25 13.5353C16.25 12.6734 15.9076 11.8467 15.2981 11.2372C14.6886 10.6278 13.862 10.2853 13 10.2853ZM13 15.1603C12.6786 15.1603 12.3644 15.065 12.0972 14.8865C11.83 14.7079 11.6217 14.4541 11.4987 14.1572C11.3757 13.8603 11.3435 13.5335 11.4062 13.2183C11.4689 12.9031 11.6237 12.6136 11.851 12.3863C12.0782 12.159 12.3678 12.0043 12.683 11.9416C12.9982 11.8789 13.3249 11.911 13.6219 12.034C13.9188 12.157 14.1726 12.3653 14.3511 12.6325C14.5297 12.8998 14.625 13.2139 14.625 13.5353C14.625 13.9663 14.4538 14.3796 14.149 14.6844C13.8443 14.9891 13.431 15.1603 13 15.1603ZM5.6875 10.2853V15.1603C5.6875 15.3758 5.6019 15.5825 5.44952 15.7349C5.29715 15.8872 5.09049 15.9728 4.875 15.9728C4.65951 15.9728 4.45285 15.8872 4.30048 15.7349C4.1481 15.5825 4.0625 15.3758 4.0625 15.1603V10.2853C4.0625 10.0699 4.1481 9.86319 4.30048 9.71082C4.45285 9.55845 4.65951 9.47284 4.875 9.47284C5.09049 9.47284 5.29715 9.55845 5.44952 9.71082C5.6019 9.86319 5.6875 10.0699 5.6875 10.2853ZM20.3125 16.7853V11.9103C20.3125 11.6949 20.3981 11.4882 20.5505 11.3358C20.7029 11.1834 20.9095 11.0978 21.125 11.0978C21.3405 11.0978 21.5472 11.1834 21.6995 11.3358C21.8519 11.4882 21.9375 11.6949 21.9375 11.9103V16.7853C21.9375 17.0008 21.8519 17.2075 21.6995 17.3599C21.5472 17.5122 21.3405 17.5978 21.125 17.5978C20.9095 17.5978 20.7029 17.5122 20.5505 17.3599C20.3981 17.2075 20.3125 17.0008 20.3125 16.7853Z"
       fill="#F26D58"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="31"
-    height="31"
-    viewBox="0 0 31 31"
-    fill="none"
-  >
+  <svg key={6} width="31" height="31" viewBox="0 0 31 31" fill="none">
     <path
       d="M15.3984 14.656C14.2203 14.656 13.2113 14.236 12.3713 13.396C11.5313 12.556 11.1118 11.5474 11.1127 10.3703C11.1137 9.19312 11.5332 8.1836 12.3713 7.34169C13.2094 6.49979 14.2184 6.08122 15.3984 6.08598C16.5784 6.09074 17.5875 6.50979 18.4256 7.34312C19.2637 8.17645 19.6832 9.18598 19.6842 10.3717C19.6851 11.5574 19.2656 12.566 18.4256 13.3974C17.5856 14.2288 16.5765 14.6474 15.3984 14.656ZM5.39844 24.986V22.6345C5.39844 22.045 5.56987 21.4936 5.91272 20.9803C6.25653 20.466 6.71844 20.0669 7.29844 19.7831C8.64701 19.1365 9.99653 18.6517 11.347 18.3288C12.6965 18.005 14.047 17.8431 15.3984 17.8431C16.7499 17.8431 18.1008 18.005 19.4513 18.3288C20.8018 18.6526 22.1503 19.1374 23.497 19.7831C24.078 20.0669 24.5399 20.466 24.8827 20.9803C25.2265 21.4936 25.3984 22.045 25.3984 22.6345V24.986H5.39844ZM6.82701 23.5574H23.9699V22.6345C23.9699 22.3184 23.8675 22.0207 23.6627 21.7417C23.4589 21.4636 23.1765 21.2284 22.8156 21.036C21.6403 20.4665 20.428 20.0303 19.1784 19.7274C17.9289 19.4246 16.6689 19.2726 15.3984 19.2717C14.128 19.2707 12.868 19.4222 11.6184 19.726C10.3689 20.0298 9.15653 20.466 7.98129 21.0345C7.61939 21.2269 7.33701 21.4622 7.13415 21.7403C6.92939 22.0193 6.82701 22.3174 6.82701 22.6345V23.5574ZM15.3984 13.2288C16.1842 13.2288 16.857 12.9488 17.417 12.3888C17.977 11.8288 18.2565 11.1555 18.2556 10.3688C18.2546 9.58217 17.9751 8.90979 17.417 8.35169C16.8589 7.7936 16.1861 7.5136 15.3984 7.51169C14.6108 7.50979 13.9384 7.78979 13.3813 8.35169C12.8242 8.9136 12.5442 9.58598 12.5413 10.3688C12.5384 11.1517 12.8184 11.8245 13.3813 12.3874C13.9442 12.9503 14.6165 13.2298 15.3984 13.226"
       fill="#F26D58"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="23"
-    height="23"
-    viewBox="0 0 23 23"
-    fill="none"
-  >
+  <svg key={7} width="23" height="23" viewBox="0 0 23 23" fill="none">
     <path
       d="M20.2432 20.6652H19.8209V2.33477H20.2432C20.8869 2.33477 21.4106 1.81107 21.4106 1.16738C21.4106 0.523699 20.8869 0 20.2432 0H2.75727C2.11354 0 1.58989 0.523699 1.58989 1.16738C1.58989 1.81107 2.11359 2.33477 2.75727 2.33477H3.17954V8.32074C3.17954 8.52653 3.34629 8.69333 3.55212 8.69333C3.75795 8.69333 3.9247 8.52658 3.9247 8.32074V7.10368H7.9236C8.12939 7.10368 8.29619 6.93693 8.29619 6.73109C8.29619 6.52531 8.12944 6.35851 7.9236 6.35851H3.92466V2.33477H19.0759V6.35851H15.0769C14.8711 6.35851 14.7043 6.52526 14.7043 6.73109C14.7043 6.93688 14.8711 7.10368 15.0769 7.10368H19.0758V15.8963H15.4743C15.2685 15.8963 15.1017 16.0631 15.1017 16.2689C15.1017 16.4747 15.2685 16.6415 15.4743 16.6415H19.0758V20.6652H3.92466V16.6415H7.92356C8.12935 16.6415 8.29614 16.4747 8.29614 16.2689C8.29614 16.0631 8.12939 15.8963 7.92356 15.8963H3.92466V9.91048C3.92466 9.7047 3.75791 9.5379 3.55208 9.5379C3.34624 9.5379 3.17949 9.70465 3.17949 9.91048V20.6652H2.75723C2.11354 20.6652 1.58984 21.1889 1.58984 21.8326C1.58984 22.4763 2.11354 23 2.75723 23H20.2432C20.8869 23 21.4106 22.4763 21.4106 21.8326C21.4106 21.1889 20.8869 20.6652 20.2432 20.6652ZM2.75727 1.58965C2.52444 1.58965 2.33501 1.40021 2.33501 1.16738C2.33501 0.934555 2.52444 0.745119 2.75727 0.745119H20.2432C20.4761 0.745119 20.6655 0.934555 20.6655 1.16738C20.6655 1.40021 20.4761 1.58965 20.2432 1.58965H2.75727ZM20.2432 22.2549H2.75727C2.52444 22.2549 2.33501 22.0654 2.33501 21.8326C2.33501 21.5998 2.52444 21.4104 2.75727 21.4104H20.2432C20.4761 21.4104 20.6655 21.5997 20.6655 21.8326C20.6655 22.0655 20.476 22.2549 20.2432 22.2549Z"
       fill="#F26D58"
@@ -273,25 +238,13 @@ const Scope3SVGs = [
       fill="#F26D58"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="26"
-    height="26"
-    viewBox="0 0 26 26"
-    fill="none"
-  >
+  <svg key={8} width="26" height="26" viewBox="0 0 26 26" fill="none">
     <path
       d="M8.32422 8.03516C8.15846 8.03516 7.99949 8.101 7.88228 8.21821C7.76507 8.33542 7.69922 8.4944 7.69922 8.66016C7.69922 8.82592 7.76507 8.98489 7.88228 9.1021C7.99949 9.21931 8.15846 9.28516 8.32422 9.28516H17.0742C17.24 9.28516 17.399 9.21931 17.5162 9.1021C17.6334 8.98489 17.6992 8.82592 17.6992 8.66016C17.6992 8.4944 17.6334 8.33542 17.5162 8.21821C17.399 8.101 17.24 8.03516 17.0742 8.03516H8.32422ZM7.69922 4.28516C6.70466 4.28516 5.75083 4.68024 5.04757 5.38351C4.34431 6.08677 3.94922 7.04059 3.94922 8.03516V18.0352C3.94922 19.0297 4.34431 19.9835 5.04757 20.6868C5.75083 21.3901 6.70466 21.7852 7.69922 21.7852H17.6992C18.6938 21.7852 19.6476 21.3901 20.3509 20.6868C21.0541 19.9835 21.4492 19.0297 21.4492 18.0352V8.03516C21.4492 7.04059 21.0541 6.08677 20.3509 5.38351C19.6476 4.68024 18.6938 4.28516 17.6992 4.28516H7.69922ZM5.19922 8.03516C5.19922 7.37211 5.46261 6.73623 5.93145 6.26739C6.40029 5.79855 7.03618 5.53516 7.69922 5.53516H17.6992C18.3623 5.53516 18.9981 5.79855 19.467 6.26739C19.9358 6.73623 20.1992 7.37211 20.1992 8.03516V18.0352C20.1992 18.6982 19.9358 19.3341 19.467 19.8029C18.9981 20.2718 18.3623 20.5352 17.6992 20.5352H7.69922C7.03618 20.5352 6.40029 20.2718 5.93145 19.8029C5.46261 19.3341 5.19922 18.6982 5.19922 18.0352V8.03516Z"
       fill="#F26D58"
     />
   </svg>,
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="26"
-    height="26"
-    viewBox="0 0 26 26"
-    fill="none"
-  >
+  <svg key={9} width="26" height="26" viewBox="0 0 26 26" fill="none">
     <path
       d="M7.54063 24.2533H18.6522C20.8183 24.2533 21.896 23.1547 21.896 20.9783V11.4779C21.896 10.1279 21.7496 9.54219 20.9125 8.68415L15.1366 2.81451C14.342 1.99799 13.6929 1.82031 12.5107 1.82031H7.54063C5.38527 1.82031 4.29688 2.92924 4.29688 5.10603V20.9783C4.29688 23.165 5.38527 24.2533 7.54063 24.2533ZM7.62411 22.569C6.54643 22.569 5.98125 21.9931 5.98125 20.9471V5.13728C5.98125 4.10156 6.54643 3.50469 7.63482 3.50469H12.2804V9.58415C12.2804 10.9025 12.95 11.5511 14.2473 11.5511H20.2116V20.9471C20.2116 21.9931 19.6567 22.569 18.5687 22.569H7.62411ZM14.4357 9.97076C14.0277 9.97076 13.8598 9.80379 13.8598 9.38505V3.82924L19.8866 9.97121L14.4357 9.97076Z"
       fill="#F26D58"
@@ -299,39 +252,17 @@ const Scope3SVGs = [
   </svg>,
 ];
 
-// const FuelTypeEmissionBreakdownData = [
-//   { label: "Deisel", value: 150000, color: "#028A60", key: "15%" },
-//   { label: "Petrol", value: 200000, color: "#02B880", key: "20%" },
-//   { label: "HFO", value: 300000, color: "#A9DECE", key: "30%" },
-//   { label: "CNG", value: 250000, color: "#D0FFF1", key: "25%" },
-//   { label: "LPG", value: 100000, color: "#E9FFF8", key: "10%" },
-// ];
-
-// const FuelConsumptionBreakdown = [
-//   { fuel: "Diesel", value: 80, color: "#028A60" },
-//   { fuel: "Petrol", value: 60, color: "#02B880" },
-//   { fuel: "HFP", value: 100, color: "#ADE4D3" },
-//   { fuel: "CNG", value: 40, color: "#D0FFF1" },
-//   { fuel: "LPG", value: 90, color: "#EAFFF8" },
-// ];
-
 const ProcessEmissionBreakdownData = [
   { label: "Water Gas Disposal", value: 400000, color: "#028A60", key: "40%" },
   { label: "Fugitive", value: 200000, color: "#02B880", key: "20%" },
   { label: "Process & Vented", value: 200000, color: "#A9DECE", key: "40%" },
 ];
 
-const EmissionUpstreamAssetsData = [
-  { name: "Diesel", Building: 1, Vehicle: 1, Equipment: 2 },
-  { name: "Gasoline/Petrol", Building: 5, Vehicle: 2, Equipment: 2 },
-  { name: "HFO", Building: 10, Vehicle: 2, Equipment: 3 },
-  { name: "LPG", Building: 15, Vehicle: 3, Equipment: 5 },
-  { name: "CNG", Building: 20, Vehicle: 2, Equipment: 1 },
-  { name: "Electricity", Building: 25, Vehicle: 2, Equipment: 2 },
-  { name: "Chilled Water", Building: 35, Vehicle: 5, Equipment: 5 },
-  { name: "Heat", Building: 50, Vehicle: 15, Equipment: 10 },
-];
-
+const processPalette = {
+  "Emission From Waste Gas Disposal": "#028A60",
+  "Emission from Process and Vented Emission": "#A9DECE",
+  "Process & Vented": "#E9FFF8",
+};
 const colorPalette = {
   Diesel: "#028A60",
   HFO: "#A9DECE",
@@ -372,16 +303,19 @@ const TotalEmissionsInventoryReport = () => {
   const [FuelActivitiesEmissionData, setFuelActivitiesEmissionData] = useState(
     []
   );
-  // const [
-  //   WasteDisposalMethodsByCategoryData,
-  //   setWasteDisposalMethodsByCategoryData,
-  // ] = useState([]);
+  const [
+    WasteDisposalMethodsByCategoryData,
+    setWasteDisposalMethodsByCategoryData,
+  ] = useState([]);
   const [
     BusinessTravelEmissionsBreakdown,
     setBusinessTravelEmissionsBreakdown,
   ] = useState([]);
   const [ECEBreakdownByVehicleTypeData, setECEBreakdownByVehicleTypeData] =
     useState([]);
+  const [EmissionUpstreamAssetsData, setEmissionUpstreamAssetsData] = useState(
+    []
+  );
 
   const ecbpallete = {
     Car: "#F26D58",
@@ -394,29 +328,10 @@ const TotalEmissionsInventoryReport = () => {
     "Upstream emissions of purchased electricity for own use": "#FF8977",
     "T&D losses of purchased electricity for own use": "#FF9989",
   };
-  // const FuelActivitiesEmissionData = [
-  //   {
-  //     label: "Upstream emissions of fuels purchased for own use",
-  //     value: 330000,
-  //     color: "#F26D58",
-  //     key: "33%",
-  //   },
-  //   {
-  //     label: "Upstream emissions of purchased electricity for own use",
-  //     value: 330000,
-  //     color: "#FF8977",
-  //     key: "33%",
-  //   },
-  //   {
-  //     label: "T&D losses of purchased electricity for own use.",
-  //     value: 340000,
-  //     color: "#FF9989",
-  //     key: "34%",
-  //   },
-  // ];
+
   const fetchData = async (id) => {
     const response = await getScope1Data(id);
-    // console.log("scope1 data:", response?.data);
+    console.log("scope1 data:", response?.data);
     setScope1Data([
       {
         label: "Fuel Consumption",
@@ -521,28 +436,9 @@ const TotalEmissionsInventoryReport = () => {
     "Dry digestate with curing": "#FF9989",
   };
 
-  const WasteDisposalMethodsByCategoryData = [
-    { label: "Recycled", value: 150000, color: "#F26D58", key: "50%" },
-    { label: "Landfilled", value: 350000, color: "#FF8977", key: "30%" },
-    { label: "Combusted", value: 150000, color: "#FF9989", key: "20%" },
-    { label: "Composted", value: 150000, color: "#FF9989", key: "20%" },
-    {
-      label: "Wet digestate with curing",
-      value: 100000,
-      color: "#FF9989",
-      key: "20%",
-    },
-    {
-      label: "Dry digestate with curing",
-      value: 100000,
-      color: "#FF9989",
-      key: "20%",
-    },
-  ];
-
   const scopeData3 = async (id) => {
     const response = await getScope3Data(id);
-    console.log("scope3 data:", response?.data);
+    // console.log("scope3 data:", response?.data);
     setScope3Data([
       {
         label: "Waste Generated",
@@ -600,13 +496,16 @@ const TotalEmissionsInventoryReport = () => {
       },
     ]);
 
-    const transformedData = response?.data?.wasteBreakdown.map((item) => {
+    const transformedData = Object.entries(
+      response?.data?.wasteBreakdown?.categories
+    ).map(([category, emissions]) => {
       return {
-        label: item.category,
-        value: Math.round(item.emissions * 1000),
-        color: wastecolorPalette[item.category] || "#FFE6E3",
+        label: category, // The key becomes the label
+        value: Math.round(emissions * 1000), // Multiply emissions by 1000 and round
+        color: wastecolorPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
       };
     });
+    // console.log(transformedData);
     const businessData = response?.data?.businessTravelBreakdown.map((item) => {
       return {
         label: item.mode,
@@ -614,13 +513,30 @@ const TotalEmissionsInventoryReport = () => {
         color: businesspallete[item.mode] || "#F26D58",
       };
     });
-    const wastecat = response?.data?.wasteBreakdown.map((item) => {
+    const updata = Object.entries(
+      response?.data?.upstreamLeasedAssetsBreakdown.energySources
+    ).map(([energySource, sourceDetails]) => {
+      // Default values for Building, Vehicle, and Equipment
+      const assetTypeBreakdown = sourceDetails.assetTypeBreakdown || {};
+
       return {
-        label: item.category,
-        value: Math.round(item.emissions * 1000),
-        color: disposlaPalette[item.category] || "#F26D58",
+        name: energySource, // Energy source name becomes 'name'
+        Building: assetTypeBreakdown.Building || 0, // If there's no Building data, leave it empty
+        Vehicle: assetTypeBreakdown.Vehicle || 0, // Fill Vehicle if present
+        Equipment: assetTypeBreakdown.Equipment || 0, // Fill Equipment if present
       };
     });
+
+    const disposalmethod = Object.entries(
+      response?.data?.wasteBreakdown?.disposalMethods
+    ).map(([category, emissions]) => {
+      return {
+        label: category, // The key becomes the label
+        value: Math.round(emissions * 1000), // Multiply emissions by 1000 and round
+        color: disposlaPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
+      };
+    });
+
     const ecb = response?.data?.employeeCommutingBreakdown.map((item) => {
       return {
         label: item.vehicleType,
@@ -631,16 +547,17 @@ const TotalEmissionsInventoryReport = () => {
     const fuel = response?.data?.fuelRelatedBreakdown.map((item) => {
       return {
         label: item.activity,
-        value: Math.round(item.emissions * 1000),
+        value: Math.round(item.emissions * 10000),
         color: fuelpallete[item.activity] || "#F26D58",
       };
     });
-    console.log(businessData);
+    // console.log("ff", updata);
     setWasteEmissionData(transformedData);
     setECEBreakdownByVehicleTypeData(ecb);
     setBusinessTravelEmissionsBreakdown(businessData);
     setFuelActivitiesEmissionData(fuel);
-    // setWasteDisposalMethodsByCategoryData(businessData);
+    setWasteDisposalMethodsByCategoryData(disposalmethod);
+    setEmissionUpstreamAssetsData(updata);
   };
 
   useEffect(() => {

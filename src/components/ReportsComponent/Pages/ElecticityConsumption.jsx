@@ -10,12 +10,25 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
 
 function ElectricityConsumption() {
-  const [field, setField] = useState({ quantity: "", unit: "KWh" });
-  const { setScope2Data } = useAuth();
+  const storedField = localStorage.getItem("scope2Data");
+  // console.log("storedField", storedField);
+
+  const initialField = storedField
+    ? JSON.parse(storedField)
+    : { electricity: "" };
+
+  const [field, setField] = useState({
+    quantity: initialField.electricity,
+    unit: "KWh",
+  });
+  // console.log("field", field);
+  const { setScope2Data, scope2Data } = useAuth();
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   useEffect(() => {
     setScope2Data((prev) => ({ ...prev, electricity: field.quantity }));
-  }, [field, setScope2Data]);
+    const updatedScope2Data = { ...scope2Data, electricity: field.quantity };
+    localStorage.setItem("scope2Data", JSON.stringify(updatedScope2Data));
+  }, [field]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

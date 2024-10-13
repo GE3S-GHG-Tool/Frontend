@@ -21,6 +21,7 @@ export const SignupProvider = ({ children }) => {
     useState("");
   const [organizationEmployeeCount, setOrganizationEmployeeCount] =
     useState("");
+  const [organizationLogo, setOrganizationLogo] = useState(null);
   const [organizationSustainabilityGoals, setOrganizationSustainabilityGoals] =
     useState([]);
 
@@ -80,8 +81,10 @@ export const SignupProvider = ({ children }) => {
     token,
     setAuthToken,
     clearAuthToken,
+    setOrganizationLogo,
+    organizationLogo,
   };
-
+  // console.log(organizationLogo);
   return (
     <SignupContext.Provider value={contextValue}>
       {children}

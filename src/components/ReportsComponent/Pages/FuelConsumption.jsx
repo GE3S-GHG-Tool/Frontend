@@ -12,12 +12,20 @@ import Box from "@mui/material/Box";
 import trash from "../../../assets/images/TrashS.svg";
 import { useScope3 } from "../../../context/Scope3Context";
 import { getConsumtionType } from "../../../api/createReport";
+import { useParams } from "react-router-dom";
+import { getscope1draft } from "../../../api/drafts";
 
 function FuelConsumption() {
+  const { id } = useParams();
+
+  // console.log("fc", id);
+
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([
-    { fuelType: "", quantity: "", unit: "" },
-  ]);
+  const [fields, setFields] = useState(
+    localStorage.getItem("consumption")
+      ? JSON.parse(localStorage.getItem("consumption"))
+      : [{ fuelType: "", quantity: "", unit: "" }]
+  );
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setConsumption } = useScope3();
   const [typeMenu, setTypeMenu] = useState([]);
@@ -40,10 +48,27 @@ function FuelConsumption() {
   };
   useEffect(() => {
     setConsumption(fields);
-  }, [fields, setConsumption]);
+    localStorage.setItem("consumption", JSON.stringify(fields));
+  }, [fields]);
+
+  const fetchEditData = async (id) => {
+    const response = await getscope1draft(id);
+
+    const convertedData = response?.data?.fuelEntries?.map((item) => ({
+      fuelType: item.fuel_type._id,
+      quantity: item.quantity,
+      unit: item.unit,
+    }));
+    setFields([...convertedData, { fuelType: "", quantity: "", unit: "" }]);
+  };
+
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
+
   const fetchData = async () => {
     const response = await getConsumtionType();
-    console.log("response list:", response.data);
+    // console.log("response list:", response.data);
     setTypeMenu(response?.data);
   };
 

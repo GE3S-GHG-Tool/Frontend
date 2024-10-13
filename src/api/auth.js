@@ -102,6 +102,18 @@ export async function getIndustries(id) {
     return err.response;
   }
 }
+export async function getEmissionCountries() {
+  try {
+    const response = await api.get(
+      `/scope2_consumption/get_countries_for_report`
+    );
+    if (response) return response;
+    else throw new Error("Could not get country");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
 // export const fetchInitialOrganizationData = async () => {
 //   try {
 //     const [countriesResponse, industriesResponse, sectorsResponse] =
@@ -178,9 +190,19 @@ export const submitGoalsData = async (
       organization_sustainabilitygoals: selectedGoal,
       organization_employeecount: organizationData.organizationEmployeeCount,
       organization_carbonfootprint: carbonFootprintMap[selectedValue],
+      // organization_logo: organizationData.organizationLogo,
     };
+    const formData = new FormData();
 
-    const response = await api.post("/user/3", payload);
+    // Append each field to the FormData object
+    Object.keys(payload).forEach((key) => {
+      formData.append(key, payload[key]);
+    });
+
+    // Append the logo file separately
+    formData.append("organization_logo", organizationData.organizationLogo);
+    console.log("formData", formData);
+    const response = await api.post("/user/3", formData);
     console.log("API response:", response.data);
     return response.data;
   } catch (error) {

@@ -7,16 +7,17 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { createReport } from "../../api/createReport";
+import { getEmissionCountries } from "../../api/auth";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "30vw",
+  width: "45vw",
   bgcolor: "#fff",
   px: 3,
   py: 4,
@@ -54,8 +55,15 @@ const StartReportModal = ({ open, setOpenModal }) => {
   const { user } = useAuth();
   const [period, setPeriod] = useState("");
   const [year, setYear] = useState("");
+  const [country, setCountry] = useState("");
+  const [countryList, setCountryList] = useState([]);
   const [name, setName] = useState("");
   const [value, setValue] = useState("");
+  const [floorArea, setFloorArea] = useState("");
+  const [revenue, setRevenue] = useState("");
+  const [totalEmployees, setTotalEmployees] = useState("");
+  const [totalProduction, setTotalProduction] = useState("");
+
   const menuItems =
     period == "Monthly"
       ? monthlyMenu
@@ -66,7 +74,16 @@ const StartReportModal = ({ open, setOpenModal }) => {
           : null;
 
   const isFormComplete =
-    name && year && period && (period === "Yearly" || value);
+    name &&
+    year &&
+    period &&
+    (period === "Yearly" || value) &&
+    floorArea &&
+    revenue &&
+    totalEmployees &&
+    country &&
+    totalProduction;
+
   const onSubmit = async () => {
     const payload = {
       organization_id: user?.organization?.id,
@@ -74,8 +91,13 @@ const StartReportModal = ({ open, setOpenModal }) => {
       year: Number(year),
       time_period: period,
       periodicity: value || "yearly",
+      country: country,
+      floor_area: Number(floorArea),
+      revenue: Number(revenue),
+      total_employees: Number(totalEmployees),
+      total_production: Number(totalProduction),
     };
-
+    console.log(payload);
     const response = await createReport(payload);
     console.log(response);
     if (response?.status === 200) {
@@ -86,7 +108,15 @@ const StartReportModal = ({ open, setOpenModal }) => {
       alert(response?.data?.message);
     }
   };
+  const fetchData = async () => {
+    const response = await getEmissionCountries();
+    console.log("response list:", response.data?.countries);
+    setCountryList(response?.data?.countries);
+  };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Modal
       open={open}
@@ -97,17 +127,17 @@ const StartReportModal = ({ open, setOpenModal }) => {
       <Box sx={style}>
         <Typography
           sx={{
-            fontWeight: 500,
+            fontWeight: 600,
             marginBottom: "8px",
-            fontSize: "1rem",
+            fontSize: ".9rem",
             display: "flex",
             alignItems: "center",
           }}
         >
           <svg
-            style={{ marginRight: "8px" }}
-            width="20"
-            height="20"
+            style={{ marginRight: "5px" }}
+            width="18"
+            height="18"
             viewBox="0 0 32 32"
             fill="none"
           >
@@ -116,31 +146,43 @@ const StartReportModal = ({ open, setOpenModal }) => {
               fill="#369D9C"
             />
           </svg>
-          Select Year and Period
+          Fill in the required data to generate your comprehensive GHG emission
+          report.
         </Typography>
-        <div className="report_input">
-          <label>Report Name</label>
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        {/* <div className="report_input">
-          <label>Facility</label>
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            placeholder="Select Facility"
-            // value={employeeCount}
-            // onChange={(e) => setEmployeeCount(e.target.value)}
-          />
-        </div> */}
 
+        <div className="report_input_2">
+          <div className="report_input">
+            <label>Report Name</label>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="report_input">
+            <label>Country</label>
+            <FormControl fullWidth size="small">
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={country}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                }}
+                size="small"
+              >
+                {countryList?.map((item, index) => (
+                  <MenuItem key={index} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+        </div>
         <div className="report_input_2">
           <div className="report_input">
             <label>Year</label>
@@ -180,38 +222,86 @@ const StartReportModal = ({ open, setOpenModal }) => {
               </Select>
             </FormControl>
           </div>
+          {period !== "Yearly" && period !== "" && (
+            <div className="report_input">
+              <label>
+                {period == "Monthly"
+                  ? "Month"
+                  : period == "Quartely"
+                    ? "Quarter"
+                    : period == "Half-Yearly"
+                      ? "Half-Yearly"
+                      : null}
+              </label>
+              <FormControl fullWidth size="small">
+                <Select
+                  labelId="demo-select-small-label"
+                  id="demo-select-small"
+                  value={value}
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                  }}
+                  size="small"
+                >
+                  {menuItems?.map((item, index) => (
+                    <MenuItem key={index} value={item.name}>
+                      {item?.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+          )}
+        </div>
+        <div className="report_input_2">
+          <div className="report_input">
+            <label>Floor Area (Square Meter)</label>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              placeholder="Add Floor Area"
+              value={floorArea}
+              onChange={(e) => setFloorArea(e.target.value)}
+            />
+          </div>
+          <div className="report_input">
+            <label>Revenue(in USD)</label>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              placeholder="Add Revenue"
+              value={revenue}
+              onChange={(e) => setRevenue(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="report_input_2">
+          <div className="report_input">
+            <label>Total Employees</label>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              placeholder="Add Total Employees"
+              value={totalEmployees}
+              onChange={(e) => setTotalEmployees(e.target.value)}
+            />
+          </div>
+          <div className="report_input">
+            <label>Total Production (in Tonne)</label>
+            <TextField
+              variant="outlined"
+              size="small"
+              fullWidth
+              placeholder="Add Total Production"
+              value={totalProduction}
+              onChange={(e) => setTotalProduction(e.target.value)}
+            />
+          </div>
         </div>
 
-        {period !== "Yearly" && period !== "" && (
-          <div className="report_input">
-            <label>
-              {period == "Monthly"
-                ? "Month"
-                : period == "Quartely"
-                  ? "Quarter"
-                  : period == "Half-Yearly"
-                    ? "Half-Yearly"
-                    : null}
-            </label>
-            <FormControl fullWidth size="small">
-              <Select
-                labelId="demo-select-small-label"
-                id="demo-select-small"
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value);
-                }}
-                size="small"
-              >
-                {menuItems?.map((item, index) => (
-                  <MenuItem key={index} value={item.name}>
-                    {item?.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-        )}
         <div
           style={{
             marginTop: "15px",

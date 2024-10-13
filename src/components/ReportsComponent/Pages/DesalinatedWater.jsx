@@ -11,11 +11,25 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
 
 function DesalinatedWater() {
-  const [field, setField] = useState({ quantity: "", unit: "Cubic Meter" });
+  const storedField = localStorage.getItem("scope2Data");
+  // console.log("storedField", storedField);
 
-  const { setScope2Data } = useAuth();
+  const initialField = storedField
+    ? JSON.parse(storedField)
+    : { desalinated: "" };
+
+  // Initialize fields with quantity and unit
+  const [field, setField] = useState({
+    quantity: initialField.desalinated,
+    unit: "Cubic Meter",
+  });
+  // const [field, setField] = useState({ quantity: "", unit: "Cubic Meter" });
+
+  const { setScope2Data, scope2Data } = useAuth();
   useEffect(() => {
     setScope2Data((prev) => ({ ...prev, desalinated: field.quantity }));
+    const updatedScope2Data = { ...scope2Data, desalinated: field.quantity };
+    localStorage.setItem("scope2Data", JSON.stringify(updatedScope2Data));
   }, [field, setScope2Data]);
 
   const handleChange = (event) => {

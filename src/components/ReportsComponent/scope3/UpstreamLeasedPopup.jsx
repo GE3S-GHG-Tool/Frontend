@@ -18,6 +18,7 @@ import { useScope3 } from "../../../context/Scope3Context";
 
 const UpstreamLeasedPopup = ({ onClose }) => {
   // State with one initial row
+
   const { upStreamData, setUpStreamData } = useScope3();
   const initialState = [
     {
@@ -29,7 +30,11 @@ const UpstreamLeasedPopup = ({ onClose }) => {
     },
   ];
 
-  const [fields, setFields] = useState(initialState);
+  const [fields, setFields] = useState(
+    localStorage.getItem("upStreamData")
+      ? JSON.parse(localStorage.getItem("upStreamData"))
+      : initialState
+  );
   const [assetMenu, setAssetMenu] = useState([]);
   const [energyMenu, setEnergyMenu] = useState([]);
   const handleChange = (index, event) => {
@@ -73,6 +78,7 @@ const UpstreamLeasedPopup = ({ onClose }) => {
     setFields(updatedFields);
   };
   const save = () => {
+    localStorage.setItem("upStreamData", JSON.stringify(fields));
     setUpStreamData(fields);
     onClose();
   };

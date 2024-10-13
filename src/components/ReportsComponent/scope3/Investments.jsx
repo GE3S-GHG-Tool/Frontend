@@ -12,10 +12,15 @@ function Investments() {
   // Initialize fields with ownership_percentage and investee_company_emissions
 
   const { setInvestements } = useScope3();
-  const [field, setField] = useState({
-    ownership_percentage: "",
-    investee_company_emissions: "",
-  });
+  const [field, setField] = useState(
+    localStorage.getItem("investements")
+      ? JSON.parse(localStorage.getItem("investements"))
+      : {
+          ownership_percentage: "",
+          investee_company_emissions: "",
+        }
+  );
+
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleChange = (event) => {
@@ -23,6 +28,7 @@ function Investments() {
     setField({ ...field, [name]: value });
   };
   useEffect(() => {
+    localStorage.setItem("investements", JSON.stringify(field));
     setInvestements(field);
   }, [field, setInvestements]);
 

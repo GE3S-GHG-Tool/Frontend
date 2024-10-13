@@ -12,12 +12,17 @@ import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useScope3 } from "../../../context/Scope3Context";
 import { getRefrigenrentType } from "../../../api/createReport";
+import { getscope1draft } from "../../../api/drafts";
+import { useParams } from "react-router-dom";
 
 function RefrigerantData() {
+  const { id } = useParams();
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([
-    { refrigerantType: "", quantity: "", unit: "" },
-  ]);
+  const [fields, setFields] = useState(
+    localStorage.getItem("refrigerent")
+      ? JSON.parse(localStorage.getItem("refrigerent"))
+      : [{ refrigerantType: "", quantity: "", unit: "" }]
+  );
   const [typeMenu, setTypeMenu] = useState([]);
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setRefrigerent } = useScope3();
@@ -42,11 +47,30 @@ function RefrigerantData() {
   };
   useEffect(() => {
     setRefrigerent(fields);
-  }, [fields, setRefrigerent]);
+    localStorage.setItem("refrigerent", JSON.stringify(fields));
+  }, [fields]);
+
+  const fetchEditData = async (id) => {
+    const response = await getscope1draft(id);
+    // console.log("response:", response);
+    const convertedData = response?.data?.refrigerantEntries?.map((item) => ({
+      refrigerantType: item.refrigerant_type._id,
+      quantity: item.quantity,
+      unit: item.unit,
+    }));
+    setFields([
+      ...convertedData,
+      { refrigerantType: "", quantity: "", unit: "" },
+    ]);
+  };
+
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
 
   const fetchData = async () => {
     const response = await getRefrigenrentType();
-    console.log("response list:", response.data);
+    // console.log("response list:", response.data);
     setTypeMenu(response?.data);
   };
 

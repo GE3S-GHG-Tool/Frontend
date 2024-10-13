@@ -2,47 +2,105 @@ import FuelConsumption from "../Pages/FuelConsumption";
 import RefrigerantData from "../Pages/RefrigerantData";
 import ProcessEmission from "../Pages/EmissionPages/ProcessEmission";
 import { Box, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useScope3 } from "../../../context/Scope3Context";
 import { useEffect, useState } from "react";
-import { saveScope1Report } from "../../../api/createReport";
+import {
+  saveScope1Report,
+  updateScope1Report,
+} from "../../../api/createReport";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Scope1 = ({ setActiveTab }) => {
-  const reportid = localStorage.getItem("reportId");
+  const { id } = useParams();
   const navigate = useNavigate();
-  const { consumption, refrigerent } = useScope3();
+  const reportid = localStorage.getItem("reportId");
+  const [processData, setProcessData] = useState(() => {
+    return JSON.parse(localStorage.getItem("processEmissionData")) || [];
+  });
+  // const refrigerentArray = JSON.parse(localStorage.getItem("refrigerent"));
+  const { consumption, refrigerent, emission } = useScope3();
   const [consumptionArray, setConsumptionArray] = useState([]);
-  const [refrigerentArray, setRefrigerentArray] = useState([]);
+  const [refrigerentArray, setRefrigerentArray] = useState(
+    JSON.parse(localStorage.getItem("refrigerent")) || []
+  );
+
   useEffect(() => {
     setConsumptionArray(consumption ? consumption : []);
-    console.log("consumption instant:", consumption); // Verify the table gets updated
   }, [consumption]);
+
   useEffect(() => {
     setRefrigerentArray(refrigerent ? refrigerent : []);
-    console.log("refrigerent instant:", refrigerent); // Verify the table gets updated
   }, [refrigerent]);
 
+  useEffect(() => {
+    setProcessData(emission ? emission : []);
+  }, [emission]);
+
+  console.log("processData", processData);
   const submit = async (type) => {
+    const transformedData = processData?.map((item) => ({
+      type: item?.type?._id || "",
+
+      quantity: Number(item?.quantity) || "",
+      quantity_2: Number(item?.quantity2) || 1,
+
+      category: item?.type2?._id || "",
+      ...(item?.type3 &&
+        Object.keys(item.type3).length > 0 && {
+          subCategory: item?.type3?._id,
+        }),
+      ...(item?.type4 &&
+        Object.keys(item.type4).length > 0 && {
+          subsubCategory: item?.type4?._id || "",
+        }),
+      ...(item?.type5 &&
+        Object.keys(item.type5).length > 0 && {
+          subsubsubCategory: item?.type5?._id || "",
+        }),
+    }));
     const payload = {
       main_report_id: reportid,
       fuelEntries: consumptionArray.slice(0, -1),
       refrigerantEntries: refrigerentArray.slice(0, -1),
-      processEmissions: [
-        {
-          type: "66f6aa9f7d6f3c015a12ddf3",
-          category: "66f6aa9f7d6f3c015a12ddf1",
-          subCategory: "66f6aa9f7d6f3c015a12dde8",
-          quantity: 27,
-        },
-      ],
+      processEmissions: transformedData,
       report_type: type,
     };
-    console.log(payload);
-    const response = await saveScope1Report(payload);
-    console.log(response);
-    if (response.status === 201) {
-      setActiveTab("scope2");
+    const updatePayload = {
+      fuelEntries: consumptionArray.slice(0, -1),
+      refrigerantEntries: refrigerentArray.slice(0, -1),
+      processEmissions: transformedData,
+      report_type: type,
+    };
+    console.log("ss1", updatePayload);
+
+    let response;
+
+    if (id) {
+      response = await updateScope1Report(updatePayload, id);
+      if (response.status === 200) {
+        localStorage.removeItem("refrigerent");
+        localStorage.removeItem("consumption");
+        localStorage.removeItem("processEmissionData");
+        if (type === "final") {
+          setActiveTab("scope2");
+        } else {
+          navigate("/");
+        }
+      }
+    } else {
+      response = await saveScope1Report(payload);
+      if (response.status === 201) {
+        localStorage.removeItem("refrigerent");
+        localStorage.removeItem("consumption");
+        localStorage.removeItem("processEmissionData");
+        if (type === "final") {
+          setActiveTab("scope2");
+        } else {
+          navigate("/");
+        }
+      }
     }
+    console.log("ss1 res", response);
   };
   return (
     <div

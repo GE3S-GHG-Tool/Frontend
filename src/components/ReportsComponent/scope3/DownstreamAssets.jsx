@@ -12,18 +12,28 @@ import { useScope3 } from "../../../context/Scope3Context";
 
 function DownstreamAssets() {
   // Initialize fields with scope1_scope2_emissions, physical_area, and total_physical_area
-  const [field, setField] = useState({
-    scope1_scope2_emissions: "",
-    physical_area: "",
-    total_physical_area: "",
-  });
+  // const [field, setField] = useState({
+  //   scope1_scope2_emissions: "",
+  //   physical_area: "",
+  //   total_physical_area: "",
+  // });
+  const [field, setField] = useState(
+    localStorage.getItem("downStreamData")
+      ? JSON.parse(localStorage.getItem("downStreamData"))
+      : {
+          scope1_scope2_emissions: "",
+          physical_area: "",
+          total_physical_area: "",
+        }
+  );
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { setDownStreamData, downStreamData } = useScope3();
+  const { setDownStreamData } = useScope3();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
   useEffect(() => {
+    localStorage.setItem("downStreamData", JSON.stringify(field));
     setDownStreamData(field);
   }, [field, setDownStreamData]);
   // const handleDotClick = () => {

@@ -13,9 +13,13 @@ import { useScope3 } from "../../../context/Scope3Context";
 
 function EmployeeCommuting() {
   // Initialize fields with one empty row
-  const [fields, setFields] = useState([
-    { vehicle_type: "", num_trips: "", distance_km: "" },
-  ]);
+
+  const [fields, setFields] = useState(
+    localStorage.getItem("commuting")
+      ? JSON.parse(localStorage.getItem("commuting"))
+      : [{ vehicle_type: "", num_trips: "", distance_km: "" }]
+  );
+
   const [vehicleMenu, setVehicleMenu] = useState([]);
   const { setEmployeeCommuting } = useScope3();
 
@@ -79,6 +83,7 @@ function EmployeeCommuting() {
   //   setIsDropdownOpen(false);
   // };
   useEffect(() => {
+    localStorage.setItem("commuting", JSON.stringify(fields));
     setEmployeeCommuting(fields);
   }, [fields, setEmployeeCommuting]);
   return (
@@ -159,7 +164,7 @@ function EmployeeCommuting() {
                     }}
                   >
                     {vehicleMenu?.map((asset, index) => (
-                      <MenuItem key={index} value={asset._id}>
+                      <MenuItem key={index} value={asset.name}>
                         {asset?.name}
                       </MenuItem>
                     ))}

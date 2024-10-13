@@ -10,6 +10,7 @@ import { useScope3 } from "../../../context/Scope3Context";
 import FuelTable from "./FuelTable";
 import UpStreamTable from "./UpStreamTable";
 import WasteTable from "./WasteTable";
+import BusinessTable from "./BusinessTable";
 
 function ReusableTableSection({
   title,
@@ -25,7 +26,9 @@ function ReusableTableSection({
   const [data1, setData1] = useState(null);
   const [data2, setData2] = useState(null);
   const [data4, setData4] = useState(null);
-  const { capitalGoods, fuelData, upStreamData, wasteData } = useScope3();
+  const [data5, setData5] = useState(null);
+  const { capitalGoods, fuelData, upStreamData, wasteData, business } =
+    useScope3();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDotClick = () => {
@@ -66,6 +69,10 @@ function ReusableTableSection({
     setData4(wasteData ? wasteData : []);
     console.log("wasteData instant:", wasteData); // Verify the table gets updated
   }, [wasteData]);
+  useEffect(() => {
+    setData5(business ? business : []);
+    // console.log("business instant:", business); // Verify the table gets updated
+  }, [business]);
 
   return (
     <div>
@@ -203,6 +210,8 @@ function ReusableTableSection({
             <UpStreamTable data={data2} headings={headings} />
           ) : title === "Waste Generated" ? (
             <WasteTable data={data4} headings={headings} />
+          ) : title === "Business Travel" ? (
+            <BusinessTable data={data5} headings={headings} />
           ) : (
             <ReusableTable data={data1} headings={headings} />
           )}

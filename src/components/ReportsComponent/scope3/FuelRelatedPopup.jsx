@@ -18,16 +18,21 @@ import { useScope3 } from "../../../context/Scope3Context";
 
 const FuelRelatedPopup = ({ onClose }) => {
   // State with one initial row
-  const [fields, setFields] = useState([
-    {
-      id: "",
-      category: "",
-      subCategory: "",
-      subsubCategory: "",
-      quantity: "",
-      unit: "",
-    },
-  ]);
+  const [fields, setFields] = useState(
+    localStorage.getItem("fuel")
+      ? JSON.parse(localStorage.getItem("fuel"))
+      : [
+          {
+            id: "",
+            category: "",
+            subCategory: "",
+            subsubCategory: "",
+            quantity: "",
+            unit: "",
+          },
+        ]
+  );
+
   console.log("field", fields);
   const [categoryMenu, setCategoryMenu] = useState([]);
   const [subCategoryMenu, setSubCategoryMenu] = useState([]);
@@ -93,7 +98,7 @@ const FuelRelatedPopup = ({ onClose }) => {
     }
   }, [fuelData]);
   const save = () => {
-    // localStorage.setItem("capitalGoodsData", JSON.stringify(fields));
+    localStorage.setItem("fuel", JSON.stringify(fields));
     setFuelData(fields);
     onClose();
   };

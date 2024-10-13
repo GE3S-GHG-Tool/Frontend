@@ -1,7 +1,7 @@
 import { FormControl, Grid2, Select } from "@mui/material";
 import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import goods from "../../../assets/images/goods.svg";
+import goodsicon from "../../../assets/images/goods.svg";
 import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import { TextField, MenuItem } from "@mui/material";
 import { useState } from "react";
@@ -14,15 +14,14 @@ import { getGoods } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
 
 function PurchasedGoods() {
-  // Initialize fields with one empty row
-
   const [assetMenu, setAssetMenu] = useState([]);
 
-  const { setGoods, goods } = useScope3();
-  const [fields, setFields] = useState([
-    { type_of_expense: "", expense_value: "" },
-  ]);
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { setGoods } = useScope3();
+  const [fields, setFields] = useState(
+    localStorage.getItem("goods")
+      ? JSON.parse(localStorage.getItem("goods"))
+      : [{ type_of_expense: "", expense_value: "" }]
+  );
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
@@ -52,23 +51,11 @@ function PurchasedGoods() {
     setFields(updatedFields);
   };
 
-  // const handleDotClick = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleEdit = () => {
-  //   console.log("Edit clicked");
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const handleClearAll = () => {
-  //   setIsDropdownOpen(false);
-  // };
-
   useEffect(() => {
+    localStorage.setItem("goods", JSON.stringify(fields));
     setGoods(fields);
   }, [fields, setGoods]);
-  
+
   const fetchData = async () => {
     const response = await getGoods();
     // console.log("gooods", response?.data?.expense_types);
@@ -99,14 +86,14 @@ function PurchasedGoods() {
         }}
       >
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <img src={goods} height={22} width={22} alt="Goods" />
+          <img src={goodsicon} height={22} width={22} alt="Goods" />
           <h2
             style={{
               fontSize: "16px",
               fontWeight: "600",
               lineHeight: "28px",
               color: "#000000",
-              margin: 0, // Removes default margin
+              margin: 0,
             }}
           >
             Purchased Goods

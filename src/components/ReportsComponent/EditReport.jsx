@@ -4,9 +4,30 @@ import lock_Logo from "../../assets/images/Lock.svg";
 import Scope1 from "./tabs/Scope1";
 import Scope2 from "./tabs/Scope2";
 import Scope3 from "./tabs/Scope3";
+import { useParams } from "react-router-dom";
+import { getscope1draft } from "../../api/drafts";
 
-function ReportStateEmpty() {
+function EditReport() {
+  const { id } = useParams();
+
+  //   console.log("edit", id);
   const [activeTab, setActiveTab] = useState("scope1");
+  const fetchEditData = async (id) => {
+    const response = await getscope1draft(id);
+    // console.log("response:", response);
+    // if (
+    //   response?.data?.fuelEntries?.length > 0 &&
+    //   response?.data?.refrigerantEntries?.length > 0 &&
+    //   response?.data?.processEmissions?.length > 0
+    // ) {
+    //   // Set active step to 2
+    //   setActiveTab("scope2");
+    // }
+  };
+
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
   const tabs = [
     {
       id: "scope1",
@@ -87,23 +108,6 @@ function ReportStateEmpty() {
             >
               &nbsp;I &nbsp;Delhi
             </Typography>
-            {/* <div style={{ marginLeft: "auto" }}>
-              <Button
-                sx={{
-                  borderRadius: "32px",
-                  border: "1px solid #28814D",
-                  // padding: "12px 12px 12px 12px",
-                  height: "38px",
-                  fontWeight: "400",
-                  fontSize: "11px",
-                  width: "135px",
-                  textTransform: "unset",
-                  color: "#28814D",
-                }}
-              >
-                Add member
-              </Button>
-            </div> */}
           </Grid2>
 
           {/* Mapping through tabs */}
@@ -130,7 +134,7 @@ function ReportStateEmpty() {
                   backgroundColor: activeTab === tab.id ? "#F9FFFC" : "",
                   cursor: "pointer",
                 }}
-                // onClick={() => setActiveTab(tab.id)}
+                onClick={() => setActiveTab(tab.id)}
               >
                 <Typography
                   variant="h1"
@@ -193,4 +197,4 @@ function ReportStateEmpty() {
   );
 }
 
-export default ReportStateEmpty;
+export default EditReport;
