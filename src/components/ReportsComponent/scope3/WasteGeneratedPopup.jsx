@@ -98,10 +98,11 @@ const WasteGeneratedPopup = ({ onClose }) => {
         numberOfTrips: item.numberOfTrips || "",
         quantityOfWaste: item.quantityOfWaste || "",
       }));
-      console.log("data", wasteDatares);
+      // console.log("data", wasteDatares);
       setFields(wasteDatares);
     }
   }, [wasteData]);
+
   const fetchData = async () => {
     const response = await getWasteList();
     // console.log("assetmenu", response?.data);
@@ -115,6 +116,30 @@ const WasteGeneratedPopup = ({ onClose }) => {
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    // console.log("running");
+    if (fields.length && fields[0]?.id) {
+      const selectedCategory = assetMenu.find(
+        (asset) => asset._id === fields[0]?.id
+      );
+
+      setSubCategoryMenu(selectedCategory?.subcategories);
+      // console.log("subCategoryMenu", subCategoryMenu);
+      if (subCategoryMenu?.length > 0) {
+        const selectedsubCategory = subCategoryMenu.find(
+          (asset) => asset._id === fields[0]?.subCategoryid
+        );
+        // console.log("subCategoryMenu", subCategoryMenu);
+        // console.log("selectedsubCategory", selectedsubCategory);
+        // console.log("fields[0]?.subCategoryid", fields[0]?.subCategoryid);
+        setDisposalMenu(selectedsubCategory?.disposal_method);
+      } else {
+        console.log("no sub found");
+      }
+    } else {
+      console.log("no result");
+    }
+  }, [fields, assetMenu, subCategoryMenu]);
   return (
     <Box
       sx={{

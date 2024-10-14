@@ -36,7 +36,7 @@ const Scope1 = ({ setActiveTab }) => {
     setProcessData(emission ? emission : []);
   }, [emission]);
 
-  console.log("processData", processData);
+  // console.log("processData", processData);
   const submit = async (type) => {
     const transformedData = processData?.map((item) => ({
       type: item?.type?._id || "",

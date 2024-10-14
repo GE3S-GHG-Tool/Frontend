@@ -130,7 +130,7 @@ function ReportStateEmpty() {
                   backgroundColor: activeTab === tab.id ? "#F9FFFC" : "",
                   cursor: "pointer",
                 }}
-                // onClick={() => setActiveTab(tab.id)}
+                onClick={() => setActiveTab(tab.id)}
               >
                 <Typography
                   variant="h1"

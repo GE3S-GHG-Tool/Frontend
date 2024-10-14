@@ -1,7 +1,7 @@
 import { Grid2, Typography } from "@mui/material";
 
 function WasteTable({ headings = [], data }) {
-  console.log("WasteTable", data);
+  // console.log("WasteTable", data);
   const filteredData = data?.slice(0, -1);
 
   return (

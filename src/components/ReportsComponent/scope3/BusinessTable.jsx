@@ -2,7 +2,7 @@ import { Grid2, Typography } from "@mui/material";
 
 function BusinessTable({ headings = [], data }) {
   const filteredData = data?.slice(0, -1);
-  console.log("BT", filteredData);
+  // console.log("BT", filteredData);
   return (
     <Grid2
       sx={{

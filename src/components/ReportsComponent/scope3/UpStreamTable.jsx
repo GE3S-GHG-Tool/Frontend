@@ -1,7 +1,7 @@
 import { Grid2, Typography } from "@mui/material";
 
 function UpStreamTable({ headings = [], data }) {
-  console.log("UpStreamTable", data);
+  // console.log("UpStreamTable", data);
   const filteredData = data?.filter((item) => {
     return Object.values(item).every((value) => value !== "");
   });

@@ -27,23 +27,61 @@ function ReusableTableSection({
   const [data2, setData2] = useState(null);
   const [data4, setData4] = useState(null);
   const [data5, setData5] = useState(null);
-  const { capitalGoods, fuelData, upStreamData, wasteData, business } =
-    useScope3();
+  const {
+    capitalGoods,
+    fuelData,
+    upStreamData,
+    wasteData,
+    business,
+    setWasteData,
+    setBusiness,
+    setCapitalGoods,
+    setFuelData,
+    setUpStreamData,
+  } = useScope3();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDotClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (title) => {
+    // console.log(title);
+    if (title === "Waste Generated") {
+      setData4([]);
+      setWasteData([]);
+      localStorage.removeItem("wasteData");
+    }
     setIsDropdownOpen(false);
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = (title) => {
+    if (title === "Waste Generated") {
+      setData4([]);
+      setWasteData([]);
+      localStorage.removeItem("wasteData");
+    } else if (title === "Business Travel") {
+      setData5([]);
+      setBusiness([]);
+      localStorage.removeItem("business");
+    } else if (title === "Capital Goods") {
+      setData1([]);
+      setCapitalGoods([]);
+      localStorage.removeItem("capitalGoodsData");
+    } else if (title === "Fuel Related Activities") {
+      setData([]);
+      setFuelData([]);
+      localStorage.removeItem("fuel");
+    } else if (title === "Upstream Leased Assets") {
+      setData2([]);
+      setUpStreamData([]);
+      localStorage.removeItem("upStreamData");
+    }
     setIsDropdownOpen(false);
   };
   const handleClickOpen = () => {
     setOpen(true);
+    setIsDropdownOpen(false);
   };
 
   // Function to close the dialog
@@ -67,7 +105,7 @@ function ReusableTableSection({
 
   useEffect(() => {
     setData4(wasteData ? wasteData : []);
-    console.log("wasteData instant:", wasteData); // Verify the table gets updated
+    // console.log("wasteData instant:", wasteData); // Verify the table gets updated
   }, [wasteData]);
   useEffect(() => {
     setData5(business ? business : []);
@@ -148,7 +186,7 @@ function ReusableTableSection({
                     }}
                   >
                     <div
-                      onClick={handleEdit}
+                      onClick={handleClickOpen}
                       style={{
                         padding: "5px 10px",
                         width: "8rem",
@@ -167,7 +205,8 @@ function ReusableTableSection({
                       Edit
                     </div>
                     <div
-                      onClick={handleClearAll}
+                      onClick={() => handleClearAll(title)}
+                      // onClick={handleClearAll}
                       style={{
                         padding: "5px 10px",
                         width: "8rem",
