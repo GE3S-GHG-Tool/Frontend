@@ -5,11 +5,14 @@ import HeatConsumption from "../Pages/HeatConsumption";
 import { Box, Button } from "@mui/material";
 import { useAuth } from "../../../context/AuthContext";
 import { saveScope2Report } from "../../../api/createReport";
+import { useEffect } from "react";
+import { getscope2draft } from "../../../api/drafts";
+import { useParams } from "react-router-dom";
 
 const Scope2 = ({ setActiveTab }) => {
-  const { scope2Data, user } = useAuth();
+  const { scope2Data, user, setScope2Data } = useAuth();
   const reportid = localStorage.getItem("reportId");
-  // console.log("scope2Data", user);
+
   const submit = async (type) => {
     const payload = {
       organizationId: user?.organization?.id,

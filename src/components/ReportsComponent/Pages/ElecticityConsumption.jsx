@@ -8,8 +8,11 @@ import Box from "@mui/material/Box";
 import edit_icon from "../../../assets/images/edit_icon.svg";
 import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
+import { getscope2draft } from "../../../api/drafts";
+import { useParams } from "react-router-dom";
 
 function ElectricityConsumption() {
+  const { id } = useParams();
   const storedField = localStorage.getItem("scope2Data");
   // console.log("storedField", storedField);
 
@@ -34,19 +37,20 @@ function ElectricityConsumption() {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
   };
+  const fetchEditData = async (id) => {
+    const response = await getscope2draft(id);
+    console.log("scope2", response);
+    if (response.status === 200) {
+      setField({
+        ...field,
+        ["quantity"]: response.data.electricityConsumption[0].quantity,
+      });
+    }
+  };
 
-  // const handleDotClick = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleEdit = () => {
-  //   console.log("Edit clicked");
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const handleClearAll = () => {
-  //   setIsDropdownOpen(false);
-  // };
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
   return (
     <div
       style={{

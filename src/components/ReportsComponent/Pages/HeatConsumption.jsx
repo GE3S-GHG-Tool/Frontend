@@ -9,8 +9,11 @@ import Box from "@mui/material/Box";
 import edit_icon from "../../../assets/images/edit_icon.svg";
 import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
+import { getscope2draft } from "../../../api/drafts";
+import { useParams } from "react-router-dom";
 
 function HeatConsumption() {
+  const { id } = useParams();
   const storedField = localStorage.getItem("scope2Data");
   // console.log("storedField", storedField);
 
@@ -33,18 +36,20 @@ function HeatConsumption() {
     setField({ ...field, [name]: value });
   };
 
-  // const handleDotClick = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
+  const fetchEditData = async (id) => {
+    const response = await getscope2draft(id);
+    // console.log("scope2", response);
+    if (response.status === 200) {
+      setField({
+        ...field,
+        ["quantity"]: response?.data?.heatConsumption[0]?.quantity,
+      });
+    }
+  };
 
-  // const handleEdit = () => {
-  //   console.log("Edit clicked");
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const handleClearAll = () => {
-  //   setIsDropdownOpen(false);
-  // };
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
 
   return (
     <div
