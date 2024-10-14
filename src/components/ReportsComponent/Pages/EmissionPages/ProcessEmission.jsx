@@ -10,10 +10,7 @@ import { useEffect, useState } from "react";
 import ProcessEmissionReports from "./ProcessEmissionReports";
 import { useParams } from "react-router-dom";
 import { getscope1draft } from "../../../../api/drafts";
-import {
-  getCategories,
-  getCategoriesforDraft,
-} from "../../../../api/createReport";
+import { getCategoriesforDraft } from "../../../../api/createReport";
 import { useScope3 } from "../../../../context/Scope3Context";
 function ProcessEmission() {
   const { id } = useParams();
@@ -68,7 +65,7 @@ function ProcessEmission() {
   useEffect(() => {
     if (id) fetchEditData(id);
   }, [id]);
-  // console.log("tableData", tableData);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Function to open the dialog
@@ -91,7 +88,9 @@ function ProcessEmission() {
   };
 
   const handleClearAll = () => {
-    // setFields([{ fuel: "", quantity: "", unit: "" }]);
+    localStorage.removeItem("processEmissionData");
+    setEmission([]);
+    setTableData([]);
     setIsDropdownOpen(false);
   };
 
@@ -206,7 +205,7 @@ function ProcessEmission() {
                     }}
                   >
                     <div
-                      onClick={handleEdit}
+                      onClick={handleClickOpen}
                       style={{
                         padding: "5px 10px",
                         width: "8rem",
