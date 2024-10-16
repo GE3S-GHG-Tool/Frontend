@@ -15,7 +15,7 @@ const DraftList = ({ searchQuery }) => {
     try {
       const response = await getDraftReports(); // Use your existing API function
       if (response?.data?.success) {
-        // console.log(response?.data?.reports?.reverse());
+        console.log(response?.data?.reports);
         setReports(response?.data?.reports?.reverse()); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");

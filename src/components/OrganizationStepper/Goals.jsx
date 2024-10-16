@@ -48,7 +48,7 @@ export default function Goals({ setActiveStep }) {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const loadSustainabilityGoals = async () => {
       try {

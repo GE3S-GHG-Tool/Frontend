@@ -9,13 +9,15 @@ import PasswordInput from "../common/PasswordInput";
 import { validatePassword } from "../../util/utils";
 import { useSignup } from "../../context/User-signup";
 import { createAccount } from "../../api/auth";
+import TermsModal from "./TermsModal";
 
 export default function CreateAccount() {
   const [selectedValue, setSelectedValue] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const { email, password, setPassword } = useSignup();
-
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  // const [agreed, setAgreed] = useState(false);
   const [helperText, setHelperText] = useState({
     password: "",
     confirmPassword: "",
@@ -122,7 +124,15 @@ export default function CreateAccount() {
             }}
           />
           <span>I agree to the </span>
-          <span className="colored">Terms and conditions</span>
+          <span className="colored" onClick={() => setIsTermsOpen(true)}>
+            Terms and conditions
+          </span>{" "}
+          <TermsModal
+            isTermsOpen={isTermsOpen}
+            onClose={() => setIsTermsOpen(false)}
+            onCancel={() => setSelectedValue("")}
+            onAgree={() => setSelectedValue("a")}
+          />
         </div>
         <button
           disabled={!isFormValid}

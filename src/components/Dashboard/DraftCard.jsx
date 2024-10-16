@@ -3,7 +3,7 @@ import "./DraftCard.css";
 import { timeAgo } from "../../util/timeAgo";
 const DraftCard = ({ report }) => {
   const navigate = useNavigate();
-  let percentage = ((10 / 20) * 100)?.toFixed(0) || 0;
+  let percentage = Math.floor(report?.completionPercentage) || 0;
   percentage = isNaN(percentage) ? 0 : percentage;
   const conicEnd = `${percentage}%`;
   const conicGradient = `conic-gradient(#368B9D 0%, #368B9D ${conicEnd}, #c8ecfb ${conicEnd})`;
@@ -59,7 +59,7 @@ const DraftCard = ({ report }) => {
             width: `42px`,
             height: `42px`,
             background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), ${conicGradient}`,
-            boxShadow: "0px 3.94px 3.94px 0px #228d8c54",
+            // boxShadow: "0px 3.94px 3.94px 0px #228d8c54",
           }}
         >
           <div className="progress-text">

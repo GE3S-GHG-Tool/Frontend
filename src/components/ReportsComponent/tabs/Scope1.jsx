@@ -71,7 +71,7 @@ const Scope1 = ({ setActiveTab }) => {
       processEmissions: transformedData,
       report_type: type,
     };
-    console.log("ss1", updatePayload);
+    // console.log("ss1", updatePayload);
 
     let response;
 
