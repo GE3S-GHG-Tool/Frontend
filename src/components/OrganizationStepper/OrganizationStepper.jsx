@@ -8,6 +8,7 @@ import Invite from "./Invite";
 import OrgLogo from "./OrgLogo";
 
 export default function OrganizationStepper() {
+  
   const [activeStep, setActiveStep] = useState(0);
 
   return (

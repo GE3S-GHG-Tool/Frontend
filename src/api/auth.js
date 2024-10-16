@@ -201,12 +201,12 @@ export const submitGoalsData = async (
 
     // Append the logo file separately
     formData.append("organization_logo", organizationData.organizationLogo);
-    console.log("formData", formData);
+    // console.log("formData", formData);
     const response = await api.post("/user/3", formData);
-    console.log("API response:", response.data);
-    return response.data;
+    // console.log("API response:", response.data);
+    return response;
   } catch (error) {
     console.error("Error posting user data:", error);
-    throw error;
+    return error.response;
   }
 };

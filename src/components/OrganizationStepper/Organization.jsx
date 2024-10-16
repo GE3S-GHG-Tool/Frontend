@@ -36,8 +36,9 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [cityOptions, setCityOptions] = useState([]);
   const [industryOptions, setIndustryOptions] = useState([]);
   const [sectorOptions, setSectorOptions] = useState([]);
+
   const [error, setError] = useState(null);
-  // console.log("organizationCountry", organizationCountry);
+  // console.log("sectorOptions", sectorOptions);
   // console.log("organizationState", organizationState);
   // console.log("organizationCity", organizationCity);
   // console.log("stateOptions", stateOptions);
@@ -71,7 +72,13 @@ export default function Organization({ activeStep, setActiveStep }) {
     const response = await getCountries();
     if (response?.status === 200) {
       console.log(response);
-      setCountryOptions(response.data);
+      const sortedData = response?.data.sort((a, b) => {
+        if (a.countryName < b.countryName) return -1;
+        if (a.countryName > b.countryName) return 1;
+        return 0;
+      });
+      setCountryOptions(sortedData);
+      // setCountryOptions(response.data);
     }
   }
   async function getAllSectors() {
@@ -123,8 +130,11 @@ export default function Organization({ activeStep, setActiveStep }) {
   };
 
   const handleCityChange = (event) => setOrganizationCity(event.target.value);
-  const handleIndustryChange = (event) =>
+
+  const handleIndustryChange = (event) => {
+    console.log(event.target.value);
     setOrganizationIndustry(event.target.value);
+  };
 
   const handleSectorChange = (event) => {
     console.log("organizationSector", event.target.value);
@@ -193,7 +203,6 @@ export default function Organization({ activeStep, setActiveStep }) {
             <Select
               value={organizationCountry}
               onChange={handleCountryChange}
-              displayEmpty
               sx={selectStyles}
             >
               {countryOptions.map((country, index) => (
@@ -210,7 +219,6 @@ export default function Organization({ activeStep, setActiveStep }) {
             <Select
               value={organizationState}
               onChange={handleStateChange}
-              displayEmpty
               disabled={!organizationCountry}
               sx={selectStyles}
             >
@@ -228,7 +236,6 @@ export default function Organization({ activeStep, setActiveStep }) {
             <Select
               value={organizationCity}
               onChange={handleCityChange}
-              displayEmpty
               disabled={!organizationState}
               sx={selectStyles}
             >
@@ -246,30 +253,8 @@ export default function Organization({ activeStep, setActiveStep }) {
         <Select
           value={organizationSector}
           onChange={handleSectorChange}
-          displayEmpty
-          renderValue={(selected) => {
-            if (!selected) {
-              return <span style={{ color: "#D9D9D9" }}>Sector</span>;
-            }
-            const selectedSector = sectorOptions.find(
-              (sector) => sector.id === selected
-            );
-            return selectedSector ? (
-              <span style={{ color: "black" }}>{selectedSector.name}</span>
-            ) : (
-              ""
-            );
-          }}
           sx={selectStyles}
         >
-          {/* <MenuItem
-            value=""
-            disabled
-            sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-          >
-            Sector
-          </MenuItem> */}
-
           {sectorOptions.map((sector) => (
             <MenuItem key={sector.id} value={sector.id} sx={menuItemStyles}>
               {sector.name}
@@ -282,31 +267,10 @@ export default function Organization({ activeStep, setActiveStep }) {
         <Select
           value={organizationIndustry}
           onChange={handleIndustryChange}
-          displayEmpty
-          renderValue={(selected) => {
-            if (!selected) {
-              return <span style={{ color: "#D9D9D9" }}>Industry</span>;
-            }
-            const selectedIndustry = industryOptions.find(
-              (industry) => industry.id === selected
-            );
-            return selectedIndustry ? (
-              <span style={{ color: "black" }}>{selectedIndustry.name}</span>
-            ) : (
-              ""
-            );
-          }}
           sx={selectStyles}
         >
-          <MenuItem
-            value=""
-            disabled
-            sx={{ ...menuItemStyles, color: "#D9D9D9" }}
-          >
-            Industry
-          </MenuItem>
-          {industryOptions.map((industry) => (
-            <MenuItem key={industry.id} value={industry.id} sx={menuItemStyles}>
+          {industryOptions.map((industry, index) => (
+            <MenuItem key={index} value={industry._id} sx={menuItemStyles}>
               {industry.name}
             </MenuItem>
           ))}

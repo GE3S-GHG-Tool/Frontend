@@ -30,9 +30,9 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
   };
 
   const handleNextClick = () => {
-    if (selectedFile) {
-      setActiveStep(activeStep + 1);
-    }
+    // if (selectedFile) {
+    // }
+    setActiveStep(activeStep + 1);
   };
 
   return (
@@ -114,7 +114,7 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
 
       <button
         className="ge3s_button"
-        disabled={isFormComplete}
+        // disabled={isFormComplete}
         onClick={handleNextClick}
       >
         Next

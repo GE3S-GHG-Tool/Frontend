@@ -102,7 +102,7 @@ const Scope2 = ({ setActiveTab }) => {
         </Button>
 
         <Button
-          onClick={() => submit("final")}
+          onClick={() => submit("draft")}
           sx={{
             borderRadius: "32px",
             padding: "8px 18px",

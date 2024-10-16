@@ -60,12 +60,12 @@ const PersonalInfo = () => {
 
   useEffect(() => {
     const isFullNameValid = fullname.trim() !== "";
-    const isProfileSet = selectedFile !== null;
+    // const isProfileSet = selectedFile !== null;
     setError(fullname && !isFullNameValid);
     setHelperText({
       fullName: fullname && !isFullNameValid ? "Full Name is required" : "",
     });
-    setIsFormValid(isFullNameValid && isProfileSet);
+    setIsFormValid(isFullNameValid);
   }, [selectedFile, fullname]);
 
   return (

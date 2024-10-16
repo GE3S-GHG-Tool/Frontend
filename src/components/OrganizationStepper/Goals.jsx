@@ -48,6 +48,7 @@ export default function Goals({ setActiveStep }) {
   const [selectedGoal, setSelectedGoal] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  
   useEffect(() => {
     const loadSustainabilityGoals = async () => {
       try {
@@ -86,32 +87,33 @@ export default function Goals({ setActiveStep }) {
 
   const handleNextClick = async () => {
     if (isFormComplete()) {
-      try {
-        const organizationData = {
-          organizationName,
-          organizationCountry,
-          organizationState,
-          organizationCity,
-          organizationSector,
-          organizationIndustry,
-          organizationFiscalYear,
-          organizationStartingYear,
-          organizationBaselineYear,
-          organizationBaselineMonth,
-          organizationEmployeeCount,
-          organizationLogo,
-        };
-        // console.log(organizationData);
-        const response = await submitGoalsData(
-          organizationData,
-          selectedGoal,
-          selectedValue
-        );
+      const organizationData = {
+        organizationName,
+        organizationCountry,
+        organizationState,
+        organizationCity,
+        organizationSector,
+        organizationIndustry,
+        organizationFiscalYear,
+        organizationStartingYear,
+        organizationBaselineYear,
+        organizationBaselineMonth,
+        organizationEmployeeCount,
+        organizationLogo,
+      };
+
+      const response = await submitGoalsData(
+        organizationData,
+        selectedGoal,
+        selectedValue
+      );
+      console.log("response", response);
+      if (response.status === 201) {
+        navigate("/login");
+        localStorage.removeItem("token");
         // console.log("response", response);
-        navigate("/");
-        // setActiveStep(3);
-      } catch (error) {
-        setError("Failed to submit data. Please try again.");
+      } else {
+        alert(response.data.message);
       }
     }
   };
