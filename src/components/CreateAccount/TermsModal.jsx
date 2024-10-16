@@ -1,5 +1,4 @@
 import { Box, Modal, Typography } from "@mui/material";
-import React from "react";
 import "./TermsModal.css";
 
 const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
@@ -89,55 +88,48 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
             </li>
           </ul> */}
           <p className="terms-para">
-            Please read the following Privacy Policy or Privacy Statement of
-            Sustainability Index tool (“this SI Tool”).
+            Please read the following Terms of Use (“Terms of Use” or “Terms”)
+            of Green House Gas (GHG) Inventory Tool (“this GHG Tool”).
           </p>
           <p className="terms-para">
-            GE3S is strongly committed to protecting personal data. This privacy
-            Policy describes why and how we collect and use personal data and
-            provides information about individuals’ rights in relation to
-            personal data. It applies to personal data provided to us, both by
-            individuals themselves or by others. We may use personal data
-            provided to us for any of the purposes described in this privacy
-            statement or as otherwise stated at the point of collection.
-          </p>
-
-          <p className="terms-para">
-            This SI Tool is owned and operated by the Company, i.e., Global
-            Energy and Environmental Engineering Services (“GE3S”/ “Company”/
-            "we,"/"us," or "our"). By accessing or using the SI Tool, you agree
-            to comply with and be bound by these Terms. IF YOU DO NOT AGREE TO
-            THESE TERMS OF PRIVACY POLICY, YOU MUST NOT USE THIS SI TOOL.
+            Please read the Terms carefully before logging in this GHG Tool
+            and/or accessing this GHG Tool and/or Services and/or using the
+            Services in any manner whatsoever. This GHG Tool is owned and
+            operated by the Company, i.e., Global Energy and Environmental
+            Engineering Services (“GE3S”/ “Company”/ "we,"/"us," or "our").By
+            accessing or using the GHG Tool, you agree to comply with and be
+            bound by these Terms. IF YOU DO NOT AGREE TO THESE TERMS, YOU MUST
+            NOT USE THIS GHG TOOL.
           </p>
 
           <p className="terms-para">
-            You will be bound by the Privacy Policy set forth herein and Terms
-            of Use the available here [Link of Terms of Use]. These Privacy
-            Policy and the Terms of Use constitute a valid and legally binding
+            You will be bound by the Terms of Use set forth herein and the
+            Privacy Policy available here [Link of Privacy Policy]. These Terms
+            of Use and the Privacy Policy constitute a valid and legally binding
             arrangement between You and GE3S.
           </p>
 
           <p className="terms-para">
-            By logging in and/or accessing the SI Tool and/or Services and/or
-            using the SI Tool, and/or Services You agree to be bound by this
-            Privacy Policy including any additional guidelines, policies and
-            future modifications, amendments, enhancements, deletions/reductions
-            in the Services and/or this SI Tool.
+            By logging in and/or accessing the GHG Tool and/or Services and/or
+            using the GHG Tool, and/or Services You agree to be bound by these
+            Terms, the Privacy Policy including any additional guidelines,
+            policies and future modifications, amendments, enhancements,
+            deletions/reductions in the Services and/or this GHG Tool. 
           </p>
 
           <p className="terms-para">
-            If You find any provisions of the Privacy Policy unacceptable, do
-            not tender Your acceptance to use this SI Tool or any of its
-            Features or Services then do not access or use this SI Tool, it’s
-            Feature and/or Services. Your use of this SI Tool, it’s features
-            and/or Services shall be treated as your acceptance of these Terms.
-            You acknowledge that we are providing You with a revocable, limited,
-            non-exclusive, and non-transferable license to use this SI Tool,
-            it’s Features and Services.
+            If You find any of these Terms or any provisions of the Privacy
+            Policy unacceptable, do not tender Your acceptance to use this GHG
+            Tool or any of its Features or Services then do not access or use
+            this GHG Tool, it’s Feature and/or Services. Your use of this GHG
+            Tool, it’s features and/or Services shall be treated as your
+            acceptance of these Terms. You acknowledge that we are providing You
+            with a revocable, limited, non-exclusive, and non-transferable
+            license to use this GHG Tool, it’s Features and Services.  
           </p>
 
           <p className="terms-para">
-            If You leave a Service/webpage of this SI Tool and visit a website,
+            If You leave a Service/webpage of this GHG Tool and visit a website,
             app or other digital property operated by a third party, we, at GE3S
             cannot be held responsible or liable in any manner whatsoever, for
             the protection and privacy of any information that you provide while
@@ -152,11 +144,11 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
           </p>
 
           <p className="terms-para">
-            When You use this SI Tool, You will be subject to these Terms of
+            When You use this GHG Tool, You will be subject to these Terms of
             Use. We may update these Terms of Use from time to time and you
             shall keep yourself updated about such amendments. Please ensure You
             read the following Terms of Use and any updated version when You use
-            and/or access this SI Tool and/or it's any Features or Services
+            and/or access this GHG Tool and/or it's any Features or Services.
           </p>
 
           <p className="terms-heading">1. Interpretation</p>
