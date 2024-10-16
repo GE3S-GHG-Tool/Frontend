@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getDraftReports } from "../../../api/reports.apis"; // Adjust the path based on your project structure
-import { useLocation, useNavigate } from "react-router-dom";
+import { getDraftReports } from "../../../api/reports.apis";
+import { useNavigate } from "react-router-dom";
 
 const DraftList = ({ searchQuery }) => {
   const [reports, setReports] = useState([]);
@@ -15,6 +15,7 @@ const DraftList = ({ searchQuery }) => {
     try {
       const response = await getDraftReports(); // Use your existing API function
       if (response?.data?.success) {
+        // console.log(response?.data?.reports?.reverse());
         setReports(response?.data?.reports?.reverse()); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");

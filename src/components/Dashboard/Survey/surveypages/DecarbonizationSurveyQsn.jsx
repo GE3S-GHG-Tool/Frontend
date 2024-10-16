@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 function SurveyQuestionSection() {
   const navigate = useNavigate();
   const [selectedAnswers, setSelectedAnswers] = useState([]);
-
+  console.log(selectedAnswers);
+  console.log(selectedAnswers.length);
   const handleAnswerSelect = (qsnId, answer) => {
     setSelectedAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
@@ -60,24 +61,26 @@ function SurveyQuestionSection() {
           mt: "45px",
         }}
       >
-        <Button
+        <button
+          disabled={selectedAnswers.length < 34}
           onClick={handleStartSurvey}
-          sx={{
+          style={{
             borderRadius: "32px",
             textTransform: "capitalize",
-            justifyContent: "center",
-            alignItems: "center",
-            background: " linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+            background:
+              selectedAnswers.length < 34
+                ? "#E7E7E7"
+                : "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
             padding: "11px 25px",
-            "&:hover": {
-              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-            },
+            fontSize: "13px",
+            fontWeight: "400",
+            color: selectedAnswers.length < 34 ? "#838383" : "#fff",
+            border: "none",
+            cursor: selectedAnswers.length < 34 ? "not-allowed" : "pointer",
           }}
         >
-          <Typography color="#fff" fontSize="13px" fontWeight="normal">
-            Submit Survey
-          </Typography>
-        </Button>
+          Submit Survey
+        </button>
       </Box>
     </>
   );

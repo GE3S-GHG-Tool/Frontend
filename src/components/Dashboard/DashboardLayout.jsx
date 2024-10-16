@@ -707,7 +707,7 @@ function DashboardLayout() {
           <Typography
             sx={{
               color: "#000",
-              fontSize: "1.rem",
+              fontSize: "1.2rem",
               fontWeight: "500",
             }}
           >

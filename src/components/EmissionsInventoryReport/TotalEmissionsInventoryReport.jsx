@@ -22,6 +22,7 @@ import {
   getScope2Data,
   getScope3Data,
 } from "../../api/createReport";
+import { getReportWithID } from "../../api/reports.apis";
 
 const Scope1SVGs = [
   <svg
@@ -252,12 +253,6 @@ const Scope3SVGs = [
   </svg>,
 ];
 
-const ProcessEmissionBreakdownData = [
-  { label: "Water Gas Disposal", value: 400000, color: "#028A60", key: "40%" },
-  { label: "Fugitive", value: 200000, color: "#02B880", key: "20%" },
-  { label: "Process & Vented", value: 200000, color: "#A9DECE", key: "40%" },
-];
-
 const processPalette = {
   "Emission From Waste Gas Disposal": "#028A60",
   "Emission from Process and Vented Emission": "#A9DECE",
@@ -282,13 +277,44 @@ const businesspallete = {
   Business: "#FF8977",
   Economy: "#FF9989",
 };
+const ecbpallete = {
+  Car: "#F26D58",
+  Motorcycle: "#FF8977",
+  Bus: "#FF9989",
+  Train: "#FF9989",
+};
+const wastecolorPalette = {
+  Metals: "#F26D58",
+  Glass: "#FF7863",
+  Plastic: "#FF8977",
+  Electronics: "#FFD3CD",
+  "Paper & Cardboards": "#FF9989",
+  "Organic wastes": "#FFAC9F",
+  "Mixed wastes": "#FFBBB0",
+  "Textile wastes": "#FFC8BF",
+  "Construction & Demolition Waste": "#FFE6E3",
+};
+const disposlaPalette = {
+  Recycled: "#F26D58",
+  Landfilled: "#FF8977",
+  Combusted: "#FF9989",
+  Composted: "#FF9989",
+  "Wet digestate with curing": "#FF9989",
+  "Dry digestate with curing": "#FF9989",
+};
 
+const fuelpallete = {
+  "Upstream emissions of fuels purchased for own use": "#F26D58",
+  "Upstream emissions of purchased electricity for own use": "#FF8977",
+  "T&D losses of purchased electricity for own use": "#FF9989",
+};
 const TotalEmissionsInventoryReport = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
+  const [reportData, setReportData] = useState({});
   const [scope1Data, setScope1Data] = useState([]);
   const [scope2Data, setScope2Data] = useState([]);
   const [scope3Data, setScope3Data] = useState([]);
@@ -316,22 +342,20 @@ const TotalEmissionsInventoryReport = () => {
   const [EmissionUpstreamAssetsData, setEmissionUpstreamAssetsData] = useState(
     []
   );
+  const [ProcessEmissionBreakdownData, setProcessEmissionBreakdownData] =
+    useState([]);
 
-  const ecbpallete = {
-    Car: "#F26D58",
-    Motorcycle: "#FF8977",
-    Bus: "#FF9989",
-    Train: "#FF9989",
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   };
-  const fuelpallete = {
-    "Upstream emissions of fuels purchased for own use": "#F26D58",
-    "Upstream emissions of purchased electricity for own use": "#FF8977",
-    "T&D losses of purchased electricity for own use": "#FF9989",
-  };
-
-  const fetchData = async (id) => {
+  const scopeData1 = async (id) => {
     const response = await getScope1Data(id);
-    console.log("scope1 data:", response?.data);
+    // console.log("scope1 data:", response?.data);
     setScope1Data([
       {
         label: "Fuel Consumption",
@@ -380,7 +404,16 @@ const TotalEmissionsInventoryReport = () => {
         color: colorPalette2[item.refrigerantTypeName] || "#006D4F",
       };
     });
-    // console.log("refData", refData);
+    const refData3 = response?.data?.processEmissionsByType.map((item) => {
+      return {
+        label: item?.processTypeName,
+        value: item?.totalEmissions,
+        key: item?.percentage,
+        color: getRandomColor() || "#000",
+      };
+    });
+    // console.log("refData3", refData3);
+    setProcessEmissionBreakdownData(refData3);
     setFuelConsumptionBreakdown(transformedData2);
     setRefrigerantConsumptionData(refData2);
     setRefrigerantEmissionsData(refData);
@@ -415,25 +448,6 @@ const TotalEmissionsInventoryReport = () => {
         key: response?.data?.waterEmissionsPercentage,
       },
     ]);
-  };
-  const wastecolorPalette = {
-    Metals: "#F26D58",
-    Glass: "#FF7863",
-    Plastic: "#FF8977",
-    Electronics: "#FFD3CD",
-    "Paper & Cardboards": "#FF9989",
-    "Organic wastes": "#FFAC9F",
-    "Mixed wastes": "#FFBBB0",
-    "Textile wastes": "#FFC8BF",
-    "Construction & Demolition Waste": "#FFE6E3",
-  };
-  const disposlaPalette = {
-    Recycled: "#F26D58",
-    Landfilled: "#FF8977",
-    Combusted: "#FF9989",
-    Composted: "#FF9989",
-    "Wet digestate with curing": "#FF9989",
-    "Dry digestate with curing": "#FF9989",
   };
 
   const scopeData3 = async (id) => {
@@ -559,9 +573,19 @@ const TotalEmissionsInventoryReport = () => {
     setWasteDisposalMethodsByCategoryData(disposalmethod);
     setEmissionUpstreamAssetsData(updata);
   };
+  const fetchreportData = async () => {
+    const response = await getReportWithID(id);
+    // console.log(response);
+    if (response.data.success) {
+      setReportData(response?.data?.report);
+    } else {
+      alert("Couldnt Fetch Report Details");
+    }
+  };
 
   useEffect(() => {
-    fetchData(id);
+    scopeData1(id);
+    fetchreportData(id);
     scopeData2(id);
     scopeData3(id);
   }, [id]);
@@ -569,9 +593,11 @@ const TotalEmissionsInventoryReport = () => {
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div
       style={{
@@ -655,13 +681,7 @@ const TotalEmissionsInventoryReport = () => {
             }}
             onClick={toggleDropdown}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <g clipPath="url(#clip0_1214_49777)">
                 <path
                   d="M12.75 7.875C13.5784 7.875 14.25 7.20343 14.25 6.375C14.25 5.54657 13.5784 4.875 12.75 4.875C11.9216 4.875 11.25 5.54657 11.25 6.375C11.25 7.20343 11.9216 7.875 12.75 7.875Z"
@@ -938,7 +958,10 @@ const TotalEmissionsInventoryReport = () => {
                 }}
               />
               <div className="sustainability-heading_title">
-                <h1>Report 2024 </h1> <h2>I</h2> <h2>Delhi For Q3 2024</h2>
+                <h1>{reportData?.name} </h1> <h2>I</h2>{" "}
+                <h2>
+                  {reportData?.country} For {reportData?.year}
+                </h2>
               </div>
             </div>
             <div
@@ -1030,6 +1053,7 @@ const TotalEmissionsInventoryReport = () => {
                     alignItems: "center",
                     borderRadius: "16px",
                     background: "white",
+                    zIndex: 99,
                   }}
                 >
                   <div
@@ -1067,6 +1091,7 @@ const TotalEmissionsInventoryReport = () => {
                     alignItems: "center",
                     borderRadius: "16px",
                     background: "white",
+                    zIndex: 1,
                   }}
                 >
                   <div
@@ -1126,7 +1151,7 @@ const TotalEmissionsInventoryReport = () => {
                     </Typography>
                     <SemiCirclePieChart
                       data={ProcessEmissionBreakdownData}
-                      tooltipWidth={30}
+                      tooltipWidth={50}
                     />
                   </div>
                 </div>

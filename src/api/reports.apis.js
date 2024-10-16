@@ -10,6 +10,16 @@ export async function getDraftReports() {
     return err.response;
   }
 }
+export async function getReportWithID(id) {
+  try {
+    const response = await api.get(`/report/fetch_report_data/${id}`);
+    if (response) return response;
+    else throw new Error("Something went wrong!");
+  } catch (err) {
+    console.log(err);
+    return err.response;
+  }
+}
 
 export async function getGeneratedReports() {
   try {
@@ -23,9 +33,7 @@ export async function getGeneratedReports() {
 }
 export async function getAnalyticsData(id) {
   try {
-    const response = await api.get(
-      `/report/analytics/66fe865e02cfb7225bc60f61`
-    );
+    const response = await api.get(`/report/analytics/${id}`);
     if (response) return response;
     else throw new Error("Something went wrong!");
   } catch (err) {

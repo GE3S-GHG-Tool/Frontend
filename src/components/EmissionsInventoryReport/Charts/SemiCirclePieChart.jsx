@@ -1,51 +1,85 @@
-import React, { useState, useRef } from 'react';
-import { Pie } from '@visx/shape';
-import { Group } from '@visx/group';
-import { scaleOrdinal } from '@visx/scale';
-import { Box, Paper } from '@mui/material';
-import dot from "../../../assets/images/dot.svg"
+import React, { useState, useRef } from "react";
+import { Pie } from "@visx/shape";
+import { Group } from "@visx/group";
+import { scaleOrdinal } from "@visx/scale";
+import { Box, Paper } from "@mui/material";
+import dot from "../../../assets/images/dot.svg";
 
 const ChartTooltip = ({ data, tooltipWidth }) => (
-  <Paper sx={{ zIndex: '1000000', padding: '5px'}}>
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '7px' }}>
-      <Box sx={{ width: 12, height: 12, backgroundColor: data.color, flexShrink: 0 }} />
-      <Box sx={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '0.2rem', 
-        flexGrow: 1, 
-        overflow: 'hidden',
-        flexWrap: 'nowrap'
-      }}>
-        <span style={{
-          color: '#BDBDBD',
-          fontSize: '0.785rem',
-          overflow: 'hidden',
-          flexShrink: 1,
-          minWidth:tooltipWidth,
-          textAlign:'start'
-        }}>
+  <Paper sx={{ zIndex: 100, padding: "5px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        padding: "7px",
+      }}
+    >
+      <Box
+        sx={{
+          width: 12,
+          height: 12,
+          backgroundColor: data.color,
+          flexShrink: 0,
+        }}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.2rem",
+          flexGrow: 1,
+          overflow: "hidden",
+          flexWrap: "nowrap",
+        }}
+      >
+        <span
+          style={{
+            color: "#BDBDBD",
+            fontSize: "0.785rem",
+            overflow: "hidden",
+            flexShrink: 1,
+            minWidth: tooltipWidth,
+            textAlign: "start",
+          }}
+        >
           {data.label}
         </span>
-        <img src={dot} width={3} height={3} alt="dot" style={{ flexShrink: 0 }} />
-        <span style={{
-          fontFamily: 'Inter',
-          fontSize: '0.785rem',
-          color: '#717171',
-          fontWeight: '500',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}>
+        <img
+          src={dot}
+          width={3}
+          height={3}
+          alt="dot"
+          style={{ flexShrink: 0 }}
+        />
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontSize: "0.785rem",
+            color: "#717171",
+            fontWeight: "500",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+        >
           {data.key}
         </span>
-        <img src={dot} width={3} height={3} alt="dot" style={{ flexShrink: 0 }} />
-        <span style={{
-          fontFamily: 'Inter',
-          fontSize: '0.785rem',
-          fontWeight: '500',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}>
+        <img
+          src={dot}
+          width={3}
+          height={3}
+          alt="dot"
+          style={{ flexShrink: 0 }}
+        />
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontSize: "0.785rem",
+            fontWeight: "500",
+            whiteSpace: "nowrap",
+            flexShrink: 0,
+          }}
+        >
           {data.value.toLocaleString()} tCO2e
         </span>
       </Box>
@@ -53,7 +87,13 @@ const ChartTooltip = ({ data, tooltipWidth }) => (
   </Paper>
 );
 
-const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = false,tooltipWidth }) => {
+const SemiCirclePieChart = ({
+  width = 400,
+  height = 350,
+  data,
+  fixedTooltip = false,
+  tooltipWidth,
+}) => {
   const [activeSlice, setActiveSlice] = useState(null);
   const [tooltipLeft, setTooltipLeft] = useState(0);
   const [tooltipTop, setTooltipTop] = useState(0);
@@ -64,8 +104,8 @@ const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = fa
   const centerX = width / 2;
 
   const colorScale = scaleOrdinal({
-    domain: data.map(d => d.label),
-    range: data.map(d => d.color),
+    domain: data.map((d) => d.label),
+    range: data.map((d) => d.color),
   });
 
   const handleMouseEnter = (event, datum) => {
@@ -90,7 +130,13 @@ const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = fa
   };
 
   return (
-    <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <svg
         ref={svgRef}
         width="100%"
@@ -115,7 +161,8 @@ const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = fa
                   const arcPath = pie.path(arc);
                   const arcFill = colorScale(arc.data.label);
                   return (
-                    <g key={`arc-${index}`}
+                    <g
+                      key={`arc-${index}`}
                       onMouseEnter={(e) => handleMouseEnter(e, arc.data)}
                       onMouseMove={handleMouseMove}
                       onMouseLeave={handleMouseLeave}
@@ -144,11 +191,11 @@ const SemiCirclePieChart = ({ width = 400, height = 350, data, fixedTooltip = fa
       {activeSlice && (
         <Box
           sx={{
-            position: 'absolute',
+            position: "absolute",
             top: tooltipTop,
             left: tooltipLeft,
-            transform: 'translate(-10%, -100%)',
-            pointerEvents: 'none',
+            transform: "translate(-10%, -100%)",
+            pointerEvents: "none",
           }}
         >
           <ChartTooltip data={activeSlice} tooltipWidth={tooltipWidth} />

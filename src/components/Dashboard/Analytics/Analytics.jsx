@@ -1,29 +1,59 @@
 import { useEffect, useState } from "react";
-import { Typography, Box, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Button,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import OverallSummary from "./SummaryCard/OverallSummary";
 import ScopeIntensity from "./ScopeIntensity/ScopeIntensity";
-import { getAnalyticsData } from "../../../api/reports.apis";
+import {
+  getAnalyticsData,
+  getGeneratedReports,
+} from "../../../api/reports.apis";
 
 const Analytics = () => {
   const [scopeView, setScopeView] = useState(false);
   const [analtyicsData, setAnalyticsData] = useState(null);
-
+  const [reportid, setReportId] = useState("");
+  const [reports, setReports] = useState([]);
   const handleView = () => {
     setScopeView((prev) => !prev);
   };
 
-  const fetchReports = async () => {
-    const response = await getAnalyticsData();
+  const fetchAnalytics = async (reportid) => {
+    const response = await getAnalyticsData(reportid);
     if (response?.status === 200) {
       setAnalyticsData(response.data.analytics);
+      // console.log("analytics", response.data.analytics);
+    } else {
+      console.error(response?.data?.message);
+    }
+  };
+  const fetchAllReports = async () => {
+    const response = await getGeneratedReports();
+    if (response?.status === 200) {
+      setReports(response.data.reports);
+      const lastReport =
+        response.data.reports[response.data.reports.length - 1];
+      // console.log("lastReport", lastReport);
+
+      setReportId(lastReport._id);
     } else {
       console.error(response?.data?.message);
     }
   };
 
   useEffect(() => {
-    fetchReports();
+    fetchAllReports();
   }, []);
+
+  useEffect(() => {
+    if (reportid) fetchAnalytics(reportid);
+  }, [reportid]);
 
   return (
     <Box
@@ -33,18 +63,68 @@ const Analytics = () => {
         gap: "1rem",
       }}
     >
-      <Typography
-        sx={{
-          color: "#000000",
-          fontSize: "1.20rem",
-          fontWeight: "600",
-          fontFamily: "Inter",
-          lineHeight: "150%",
-          marginTop: "0.38rem",
+      <Box
+        style={{
+          display: "flex",
+          gap: "20px",
+          alignItems: "center",
         }}
       >
-        Overall Average Intensity
-      </Typography>
+        <Typography
+          sx={{
+            color: "#000000",
+            fontSize: "1.20rem",
+            fontWeight: "600",
+            fontFamily: "Inter",
+            lineHeight: "150%",
+            marginTop: "0.38rem",
+          }}
+        >
+          Overall Average Intensity
+        </Typography>
+        <FormControl sx={{ minWidth: 100 }} size="small">
+          <Select
+            IconComponent={KeyboardArrowDownIcon}
+            labelId="fiscal-year-label"
+            id="fiscal-year-select"
+            value={reportid}
+            sx={{
+              fontSize: "0.75rem",
+              padding: "4px",
+              height: "33px",
+              // Adjust the border color when focused
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#D9D9D9", // Default border color
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#f7f7f7", // Border color on focus
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#f7f7f7", // Border color on hover
+              },
+            }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  maxHeight: 200, // reduce dropdown size
+                },
+              },
+            }}
+            inputProps={{
+              sx: {
+                padding: "0 8px", // reduce the padding inside the select
+              },
+            }}
+            onChange={(event) => setReportId(event.target.value)}
+          >
+            {reports.map((item, index) => (
+              <MenuItem key={index} value={item._id}>
+                {item?.name} {item?.year}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
 
       <Box>
         <Box

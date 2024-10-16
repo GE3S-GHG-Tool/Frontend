@@ -90,7 +90,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
       name: name,
       year: Number(year),
       time_period: period,
-      periodicity: value || "yearly",
+      periodicity: period === "Yearly" ? "yearly" : value || "",
       country: country,
       floor_area: Number(floorArea),
       revenue: Number(revenue),
@@ -110,7 +110,7 @@ const StartReportModal = ({ open, setOpenModal }) => {
   };
   const fetchData = async () => {
     const response = await getEmissionCountries();
-    console.log("response list:", response.data?.countries);
+    // console.log("response list:", response.data?.countries);
     setCountryList(response?.data?.countries);
   };
 

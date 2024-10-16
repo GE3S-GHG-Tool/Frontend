@@ -4,9 +4,13 @@ import lock_Logo from "../../assets/images/Lock.svg";
 import Scope1 from "./tabs/Scope1";
 import Scope2 from "./tabs/Scope2";
 import Scope3 from "./tabs/Scope3";
+import { getReportWithID } from "../../api/reports.apis";
 
 function ReportStateEmpty() {
+  const reportid = localStorage.getItem("reportId");
   const [activeTab, setActiveTab] = useState("scope1");
+  const [reportData, setReportData] = useState({});
+  // console.log("reportData:", reportData);
   const tabs = [
     {
       id: "scope1",
@@ -39,6 +43,19 @@ function ReportStateEmpty() {
       behavior: "smooth",
     });
   }, [activeTab]);
+  const fetchData = async () => {
+    const response = await getReportWithID(reportid);
+
+    if (response.data.success) {
+      setReportData(response?.data?.report);
+    } else {
+      alert("Couldnt Fetch Report Details");
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [reportid]);
 
   return (
     <div
@@ -75,7 +92,7 @@ function ReportStateEmpty() {
                 lineHeight: "33.89px",
               }}
             >
-              Q3 2024 Report
+              Q3 {reportData?.year} {reportData?.name}
             </Typography>
             <Typography
               variant="p"
@@ -85,7 +102,7 @@ function ReportStateEmpty() {
                 lineHeight: "33.89px",
               }}
             >
-              &nbsp;I &nbsp;Delhi
+              &nbsp;| &nbsp;{reportData?.country}
             </Typography>
             {/* <div style={{ marginLeft: "auto" }}>
               <Button
