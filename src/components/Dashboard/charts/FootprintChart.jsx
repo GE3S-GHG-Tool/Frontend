@@ -11,7 +11,7 @@ const colors = ["#B1E9D8", "#AFC6FF", " #FFC8BF"];
 
 export const purple3 = "#a44afe";
 export const background = "#fff";
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 }; // Increased left margin for label space
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
 
 // accessors
 const getQuarter = (d) => d.quarter;
@@ -35,7 +35,6 @@ const FootprintChart = ({
   data = barData,
   //   colors,
   events = false,
-  //   width = "1000",
   height = 200,
   margin = defaultMargin,
   //   animate = true,
@@ -54,7 +53,7 @@ const FootprintChart = ({
     scroll: true,
   });
   const box = useRef(null);
-  const [width, setWidth] = useState(500);
+  const [width, setWidth] = useState(1200);
 
   useEffect(() => {
     const handleResize = () => {
@@ -81,7 +80,7 @@ const FootprintChart = ({
 
   const yMax = height - margin.top - 30;
   const temperatureScale = scaleLinear({
-    domain: [0, 8000], // Adjust this based on the maximum possible value in the data
+    domain: [0, 20000], // Adjust this based on the maximum possible value in the data
     nice: true,
   });
 
@@ -210,7 +209,7 @@ const FootprintChart = ({
           left={margin.left}
           top={margin.top}
           scale={temperatureScale}
-          tickValues={[0, 2000, 4000, 6000, 8000]}
+          tickValues={[0, 4000, 8000, 12000, 16000]}
           // numTicks={data.length}
           label={leftLabel}
           labelProps={{
