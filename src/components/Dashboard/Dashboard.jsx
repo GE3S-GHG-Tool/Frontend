@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
-import image from "../../assets/images/nodata.png";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { FormControl, MenuItem, Select } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import StartReportModal from "../Modals/StartReportModal";
 import DraftCard from "./DraftCard";
-import { useNavigate } from "react-router-dom";
 import ReportList from "./ReportList/ReportList";
 import FootprintChart from "./charts/FootprintChart";
-import { FormControl, MenuItem, Select } from "@mui/material";
 import { getDraftReports } from "../../api/reports.apis";
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
-  const [year, setYear] = useState(false);
+  const [year, setYear] = useState("2024");
   const [draftReports, setDraftReports] = useState([]);
+  const [carbonTrackerData, setCarbonTrackerData] = useState([]);
 
   const fetchReports = async () => {
     try {
-      const response = await getDraftReports(); // Use your existing API function
+      const response = await getDraftReports();
       if (response?.data?.success) {
-        setDraftReports(response?.data?.reports.reverse()); // Assuming the reports data is in response.data.reports
+        setDraftReports(response?.data?.reports.reverse());
       } else {
         console.error("Failed to fetch reports");
       }
@@ -26,10 +28,51 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch reports when component mounts
+  const fetchCarbonTrackerData = async () => {
+    try {
+      const response = await axios.get(`https://backend.ghg.ge3s.org/api/report/carbon_tracker`, {
+        params: {
+          organizationId: '66ffe05318994e5fe88f4b51',
+          year: year
+        }
+      });
+      if (response.data.success) {
+        const monthsData = new Array(12).fill(null).map((_, index) => {
+          const month = new Date(year, index).toLocaleString('default', { month: 'long' });
+          return {
+            quarter: month,
+            Scope1: 0,
+            Scope2: 0,
+            Scope3: 0
+          };
+        });
+
+        response.data.emissions.forEach(item => {
+          const monthIndex = new Date(item.month).getMonth();
+          monthsData[monthIndex] = {
+            quarter: monthsData[monthIndex].quarter,
+            Scope1: item.scope1Emissions || 0,
+            Scope2: item.scope2Emissions || 0,
+            Scope3: item.scope3Emissions || 0
+          };
+        });
+
+        setCarbonTrackerData(monthsData);
+      } else {
+        console.error("Failed to fetch carbon tracker data");
+      }
+    } catch (error) {
+      console.error("Error fetching carbon tracker data:", error);
+    }
+  };
+
   useEffect(() => {
     fetchReports();
   }, []);
+
+  useEffect(() => {
+    fetchCarbonTrackerData();
+  }, [year]);
 
   return (
     <div>
@@ -279,22 +322,18 @@ const Dashboard = () => {
               </clipPath>
             </defs>
           </svg>
-
           <p>Create GHG Report</p>
         </div>
         <div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "stretch",
-              gap: "20px",
-            }}
-          >
-            {draftReports?.slice(0, 3)?.map((item) => {
-              return <DraftCard key={item?._id} report={item} />;
-            })}
-
+          <div style={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "stretch",
+            gap: "20px",
+          }}>
+            {draftReports?.slice(0, 3)?.map((item) => (
+              <DraftCard key={item?._id} report={item} />
+            ))}
             <div className="view_all_report_cta">
               <span onClick={() => navigate("/report")}>View All</span>
             </div>
@@ -312,32 +351,30 @@ const Dashboard = () => {
               fontSize: "0.75rem",
               padding: "4px",
               height: "35px",
-              // Adjust the border color when focused
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#D9D9D9", // Default border color
+                borderColor: "#D9D9D9",
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#f7f7f7", // Border color on focus
+                borderColor: "#f7f7f7",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#f7f7f7", // Border color on hover
+                borderColor: "#f7f7f7",
               },
-              // Optional: Additional size adjustments
               "& .MuiSelect-select": {
-                padding: "6px 10px", // Reduced padding
-                fontSize: "0.75rem", // Smaller font size
+                padding: "6px 10px",
+                fontSize: "0.75rem",
               },
             }}
             MenuProps={{
               PaperProps: {
                 sx: {
-                  maxHeight: 150, // reduce dropdown size
+                  maxHeight: 150,
                 },
               },
             }}
             inputProps={{
               sx: {
-                padding: "0 8px", // reduce the padding inside the select
+                padding: "0 8px",
               },
             }}
             onChange={(event) => setYear(event.target.value)}
@@ -350,20 +387,13 @@ const Dashboard = () => {
         </FormControl>
       </div>
       <div className="chart_box">
-        <FootprintChart />
+        <FootprintChart data={carbonTrackerData} />
       </div>
-
-      {/* <div className="create_report_card">
-        <img src={image} alt="no_report_image" />
-        <p>No data available to display in the Carbon Tracker at this time.</p>
-        <button onClick={() => setOpenModal(true)}>Create GHG Report</button>
-      </div>{" "} */}
-
       <div>
         <h3 className="dashboard_reports_header">Generated reports</h3>
         <ReportList searchQuery={""} />
         <div className="reports_viewall_cta">
-          <span onClick={() => navigate("/report")}>View All</span>{" "}
+          <span onClick={() => navigate("/report")}>View All</span>
         </div>
       </div>
       <StartReportModal open={openModal} setOpenModal={setOpenModal} />

@@ -2,7 +2,7 @@ import api from ".";
 
 export async function getDraftReports() {
   try {
-    const response = await api.get(`/report/get_reports/draft`);
+    const response = await api.get(`/report/get_reports?reportType=draft`);
     if (response) return response;
     else throw new Error("Something went wrong!");
   } catch (err) {
@@ -23,7 +23,7 @@ export async function getReportWithID(id) {
 
 export async function getGeneratedReports() {
   try {
-    const response = await api.get(`/report/get_reports/final`);
+    const response = await api.get(`/report/get_reports?reportType=final`);
     if (response) return response;
     else throw new Error("Something went wrong!");
   } catch (err) {
