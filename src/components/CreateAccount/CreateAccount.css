@@ -30,6 +30,7 @@
 
 .colored {
   color: #3cb477;
+  cursor: pointer;
 }
 .radio_field span {
   padding-left: 0 !important;
