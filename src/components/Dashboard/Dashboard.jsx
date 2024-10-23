@@ -7,9 +7,12 @@ import DraftCard from "./DraftCard";
 import ReportList from "./ReportList/ReportList";
 import FootprintChart from "./charts/FootprintChart";
 import { getDraftReports } from "../../api/reports.apis";
+import { useAuth } from "../../context/AuthContext";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  console.log(user)
   const [openModal, setOpenModal] = useState(false);
   const [year, setYear] = useState("2024");
   const [draftReports, setDraftReports] = useState([]);
@@ -17,7 +20,7 @@ const Dashboard = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await getDraftReports();
+      const response = await getDraftReports(user.organization.id);
       if (response?.data?.success) {
         setDraftReports(response?.data?.reports.reverse());
       } else {
@@ -67,8 +70,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchReports();
-  }, []);
+    if (user?.organization?.id) {
+      fetchReports();
+    }
+  }, [user?.organization?.id]);
 
   useEffect(() => {
     fetchCarbonTrackerData();

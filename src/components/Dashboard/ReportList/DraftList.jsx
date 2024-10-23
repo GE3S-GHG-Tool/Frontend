@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { getDraftReports } from "../../../api/reports.apis";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const DraftList = ({ searchQuery }) => {
   const [reports, setReports] = useState([]);
+  const { user } = useAuth()
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
@@ -13,9 +15,8 @@ const DraftList = ({ searchQuery }) => {
   // Function to fetch draft reports from the API
   const fetchReports = async () => {
     try {
-      const response = await getDraftReports(); // Use your existing API function
+      const response = await getDraftReports(user.organization.id); // Use your existing API function
       if (response?.data?.success) {
-        console.log(response?.data?.reports);
         setReports(response?.data?.reports?.reverse()); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");

@@ -1,8 +1,8 @@
 import api from ".";
 
-export async function getDraftReports() {
+export async function getDraftReports(id) {
   try {
-    const response = await api.get(`/report/get_reports?reportType=draft`);
+    const response = await api.get(`/report/get_reports?organizationId=${id}&reportType=draft`);
     if (response) return response;
     else throw new Error("Something went wrong!");
   } catch (err) {
@@ -21,9 +21,9 @@ export async function getReportWithID(id) {
   }
 }
 
-export async function getGeneratedReports() {
+export async function getGeneratedReports(id) {
   try {
-    const response = await api.get(`/report/get_reports?reportType=final`);
+    const response = await api.get(`/report/get_reports?organizationId=${id}&reportType=final`);
     if (response) return response;
     else throw new Error("Something went wrong!");
   } catch (err) {
