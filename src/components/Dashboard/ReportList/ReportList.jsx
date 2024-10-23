@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getGeneratedReports } from "../../../api/reports.apis"; // Adjust the path to your API function
 import "./ReportList.css";
+import { useAuth } from "../../../context/AuthContext";
 
 const ReportList = ({ searchQuery }) => {
   const location = useLocation();
@@ -11,11 +12,12 @@ const ReportList = ({ searchQuery }) => {
     key: null,
     direction: "ascending",
   });
+  const {user}=useAuth();
 
   // Function to fetch generated reports
   const fetchReports = async () => {
     try {
-      const response = await getGeneratedReports(); // Call your API function
+      const response = await getGeneratedReports(user?.organization?.id); // Call your API function
       if (response?.data?.success) {
         setReports(response.data.reports); // Assuming the reports data is in response.data.reports
       } else {
@@ -28,8 +30,10 @@ const ReportList = ({ searchQuery }) => {
 
   // Fetch reports when component mounts
   useEffect(() => {
-    fetchReports();
-  }, []);
+    if (user?.organization?.id) {
+      fetchReports();
+    }
+  }, [user?.organization?.id]);
 
   // Sorting function
   const handleSort = (key) => {

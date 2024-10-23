@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await getDraftReports(user.organization.id);
+      const response = await getDraftReports(user?.organization?.id);
       if (response?.data?.success) {
         setDraftReports(response?.data?.reports.reverse());
       } else {
