@@ -9,6 +9,7 @@ import "./Dashboard.css";
 import { useState, useMemo } from "react";
 import ConfirmationModal from "../Modals/ConfirmationModal";
 import { useAuth } from "../../context/AuthContext";
+import SubscriptionModal from "./SubscriptionPlans/SubscriptionModal";
 
 const CustomBadgeIcon = ({ badgeContent, badgeColor, badgeTextColor }) => {
   return (
@@ -449,6 +450,8 @@ function DashboardLayout() {
   const { user } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -673,17 +676,21 @@ function DashboardLayout() {
             >
               Dismiss
             </p>
-            <p
+            <button
               style={{
                 fontSize: "0.7rem",
-                fontWeight: "700",
+                fontWeight: "500",
                 padding: "0",
                 margin: "0 0",
                 cursor: "pointer",
+                color: '#fff',
+                border: 'none',
+                background: 'transparent'
               }}
+              onClick={() => setOpenSubscriptionModal(true)}
             >
               Upgrade Now
-            </p>
+            </button>
           </div>
         </div>
       </Box>
@@ -818,6 +825,10 @@ function DashboardLayout() {
           <Outlet />
         </Box>
       </Box>
+      <SubscriptionModal
+        open={openSubscriptionModal}
+        onClose={() => setOpenSubscriptionModal(false)}
+      />
     </Box>
   );
 }

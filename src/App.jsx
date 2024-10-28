@@ -36,6 +36,7 @@ import { Scope3Provider } from "./context/Scope3Context";
 import SurveyQuestionSection from "./components/Dashboard/Survey/surveypages/DecarbonizationSurveyQsn";
 import DecarbonizationSurveyQsnAns from "./components/Dashboard/Survey/surveypages/DecarbonizationSurveyQsnAns";
 import EditReport from "./components/ReportsComponent/EditReport";
+import ScopeDashboard from "./components/Dashboard/ScopeDashboard";
 
 function App() {
   return (
@@ -78,6 +79,10 @@ function App() {
           <Route
             path="/ghg-emissions-inventory-report"
             element={<EmissionsInventoryReport />}
+          />
+          <Route
+            path="/scope-dashboard"
+            element={<ScopeDashboard />}
           />
           <Route
             path="/emissionreport/:id"
