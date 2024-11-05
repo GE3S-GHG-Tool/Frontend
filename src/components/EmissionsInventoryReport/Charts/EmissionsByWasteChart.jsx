@@ -12,11 +12,15 @@ const defaultHeight = 300;
 
 // Expected categories for validation
 const expectedCategories = [
-  "R410a",
-  "R22",
-  "R134a",
-  "HFC-23",
-  "HFC-245fa"
+  "Metals",
+  "Glass",
+  "Plastic",
+  "Paper & Cardboards",
+  "Organic wastes",
+  "Mixed wastes",
+  "Textile wastes",
+  "Electronics",
+  "Construction & Demolition Waste"
 ];
 
 // Accessors
@@ -34,7 +38,7 @@ const Chart = ({ data, width, type }) => {
     return existingData || {
       label: category,
       value: 0,
-      color: data?.find(d => d.label === category)?.color || "#cccccc" // Fallback color if needed
+      color: data?.find(d => d.label === category)?.color
     };
   });
 
@@ -164,7 +168,7 @@ const Chart = ({ data, width, type }) => {
   );
 };
 
-const RefrigerantConsumptionChart = ({ data, type }) => {
+const EmissionsByWasteChart = ({ data, type }) => {
   return (
     <div style={{ width: '100%', height: `${defaultHeight}px` }}>
       <ParentSize>
@@ -174,4 +178,4 @@ const RefrigerantConsumptionChart = ({ data, type }) => {
   );
 };
 
-export default RefrigerantConsumptionChart;
+export default EmissionsByWasteChart;
