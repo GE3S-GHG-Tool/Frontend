@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Group } from "@visx/group";
 import { LineRadial, Line } from "@visx/shape";
 import { scaleLinear } from "@visx/scale";
@@ -7,10 +7,18 @@ import { localPoint } from "@visx/event";
 import { Point } from "@visx/point";
 import dot from "../../../assets/images/dot.svg";
 
+// Expected categories
+const expectedRefrigerants = [
+  "R22",
+  "R410a",
+  "HFC-245fa",
+  "HFC-23",
+  "R134a"
+];
+
 // Colors
 const orange = "#60B59B";
 const pumpkin = "#60B59B";
-const black = "#000";
 const silver = "#d9d9d9";
 const background = "#fff";
 const tooltipBg = "rgba(255, 255, 255, 0.9)";
@@ -19,7 +27,7 @@ const tooltipColor = "#333";
 const degrees = 360;
 
 // Utility functions
-const y = (d) => d.value;
+const y = (d) => (d.value !== undefined && d.value !== null ? d.value : 0);
 
 const genAngles = (length) =>
   [...new Array(length + 1)].map((_, i) => ({
@@ -30,7 +38,7 @@ const genPoints = (length, radius) => {
   const step = (Math.PI * 2) / length;
   return [...new Array(length)].map((_, i) => ({
     x: radius * Math.sin(i * step),
-    y: -radius * Math.cos(i * step), // Negative to flip the pentagon
+    y: -radius * Math.cos(i * step),
   }));
 };
 
@@ -41,9 +49,9 @@ function genPolygonPoints(dataArray, scale, getValue) {
     .fill("")
     .reduce((res, _, i) => {
       if (i > dataArray.length) return res;
-      const dataIndex = i % dataArray.length; // Use modulo to wrap around for the last point
+      const dataIndex = i % dataArray.length;
       const xVal = scale(getValue(dataArray[dataIndex])) * Math.sin(i * step);
-      const yVal = -scale(getValue(dataArray[dataIndex])) * Math.cos(i * step); // Negative to flip the pentagon
+      const yVal = -scale(getValue(dataArray[dataIndex])) * Math.cos(i * step);
       points[dataIndex] = { x: xVal, y: yVal };
       res += `${xVal},${yVal} `;
       return res;
@@ -64,6 +72,15 @@ const RefrigerantEmissionsChart = ({
   const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } =
     useTooltip();
 
+  // Ensure all refrigerants are present
+  const safeData = expectedRefrigerants.map(refrigerant => {
+    const existingData = data?.find(d => d.label === refrigerant);
+    return existingData || {
+      label: refrigerant,
+      value: 0
+    };
+  });
+
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom - 100;
   const radius = Math.min(xMax, yMax) / 2;
@@ -75,12 +92,12 @@ const RefrigerantEmissionsChart = ({
 
   const yScale = scaleLinear({
     range: [0, radius],
-    domain: [0, Math.max(...data.map(y))],
+    domain: [0, Math.max(1, Math.max(...safeData.map(y)))],
   });
 
-  const webs = genAngles(data.length);
-  const points = genPoints(data.length, radius);
-  const polygonPoints = genPolygonPoints(data, (d) => yScale(d) ?? 0, y);
+  const webs = genAngles(safeData.length);
+  const points = genPoints(safeData.length, radius);
+  const polygonPoints = genPolygonPoints(safeData, (d) => yScale(d) ?? 0, y);
   const zeroPoint = new Point({ x: 0, y: 0 });
 
   const handleMouseMove = (event, datum) => {
@@ -102,13 +119,12 @@ const RefrigerantEmissionsChart = ({
             <LineRadial
               key={`web-${i}`}
               data={webs}
-              angle={(d) => (d.angle * Math.PI) / 180} // Convert angle to radians
+              angle={(d) => (d.angle * Math.PI) / 180}
               radius={((i + 1) * radius) / levels}
               fill="none"
               stroke={silver}
               strokeWidth={1}
               strokeOpacity={2}
-              // strokeLinecap="round"
             />
           ))}
 
@@ -132,22 +148,34 @@ const RefrigerantEmissionsChart = ({
             strokeWidth={1.3}
           />
 
-          {/* Points on the radar */}
+          {/* Points on the radar and zero indicators */}
           {polygonPoints.points.map((point, i) => (
-            <circle
-              key={`radar-point-${i}`}
-              cx={point.x}
-              cy={point.y}
-              r={2}
-              fill={pumpkin}
-              onMouseMove={(event) => handleMouseMove(event, data[i])}
-              onMouseLeave={hideTooltip}
-            />
+            <React.Fragment key={`radar-point-${i}`}>
+              <circle
+                cx={point.x}
+                cy={point.y}
+                r={2}
+                fill={pumpkin}
+                onMouseMove={(event) => handleMouseMove(event, safeData[i])}
+                onMouseLeave={hideTooltip}
+              />
+              {safeData[i].value === 0 && (
+                <text
+                  x={point.x}
+                  y={point.y - 10}
+                  textAnchor="middle"
+                  fontSize={10}
+                  fill="#717171"
+                >
+                  
+                </text>
+              )}
+            </React.Fragment>
           ))}
 
           {/* Labels */}
-          {data.map((d, i) => {
-            const angle = (i / data.length) * 2 * Math.PI - Math.PI / 2;
+          {safeData.map((d, i) => {
+            const angle = (i / safeData.length) * 2 * Math.PI - Math.PI / 2;
             const labelRadius = radius + 30;
             return (
               <text
@@ -196,12 +224,12 @@ const RefrigerantEmissionsChart = ({
                   height: "12px",
                   backgroundColor: "rgb(96, 181, 155)",
                 }}
-              ></div>{" "}
+              ></div>
               &nbsp;
               <span style={{ color: "#BDBDBD", fontSize: "0.785rem" }}>
                 {tooltipData.label}
               </span>
-              <img src={dot} width={3} height={3} />
+              <img src={dot} width={3} height={3} alt="dot" />
             </div>
             <span style={{ color: "#717171", fontSize: "0.785rem" }}>
               {tooltipData.value}k tCO2e

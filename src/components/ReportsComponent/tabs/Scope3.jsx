@@ -178,7 +178,7 @@ const Scope3 = ({ setActiveTab }) => {
     console.log(payload);
     const response = await saveScope3Report(payload);
     console.log(response);
-    if (response.status === 201) {
+    if (response.status === 200) {
       if (type === "final") {
         navigate(`/emissionreport/${reportid}`);
       } else {
