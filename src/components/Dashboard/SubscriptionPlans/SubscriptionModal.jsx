@@ -300,6 +300,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                     </Typography>
                                   </Box>
                                   <hr style={{ background: 'rgba(217, 217, 217, 0.40)', width: '100%', height: '0.5px', margin: '1.5rem 0' }} />
+                                  <div style={{ paddingBottom: '1rem', color: isPlanActive ? "black" : "#fff", fontSize: '12px' }}>Unlock</div>
                                   <Box mb={3}>
                                     {planFeatures[planName].map((feature, index) => (
                                       <Box
@@ -341,7 +342,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                         }
                                       }}
                                     >
-                                      {isPlanActive ? 'Currently in use' : 'Get Started'}&nbsp; <img width={15} src={forwardArrow} />
+                                      {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
                                     </Button>
                                   </Box>
                                 </CardContent>
@@ -367,7 +368,11 @@ const SubscriptionModal = ({ open, onClose }) => {
                           justifyContent: 'center'
                         }}
                       >
-                        Generate report with only scope 1 emission data  <img src={forwardArrowBlack} width={16} />
+                        Generate report with only
+                        {
+                          currentPlan === "OffSet" ? " scope 2 " : " scope 1 "
+                        }
+                        emission data  <img src={forwardArrowBlack} width={16} />
                       </Typography>
                     </>
                   )}
