@@ -2213,7 +2213,7 @@ const TotalEmissionsInventoryReport = () => {
             position: "relative",
           }}
         >
-          <Button
+          {/* <Button
             variant="outlined"
             sx={{
               border: "1px solid #369d9c",
@@ -2229,7 +2229,7 @@ const TotalEmissionsInventoryReport = () => {
             onClick={() => setOpenEditModal((prev) => !prev)}
           >
             Edit
-          </Button>
+          </Button> */}
           <Button
             onClick={() => navigate("/")}
             variant="contained"

@@ -199,7 +199,7 @@ export default function Goals({ setActiveStep }) {
               },
             }}
           />
-          <h1>Ferquently</h1>
+          <h1>Frequently</h1>
         </div>
       </div>
       <button

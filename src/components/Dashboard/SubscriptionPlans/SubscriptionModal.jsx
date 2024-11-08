@@ -25,6 +25,7 @@ import SubscriptionBg from "../../../assets/images/SubscriptionBg.png";
 import check from "../../../assets/images/check.svg"
 import forwardArrow from "../../../assets/images/forwardArrow.svg"
 import forwardArrowBlack from "../../../assets/images/forwardArrowBlack.svg"
+import api from '../../../api';
 
 const ModalOverlay = styled(Backdrop)(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -87,9 +88,7 @@ const SubscriptionModal = ({ open, onClose }) => {
   const [currentPlan, setCurrentPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const theme = useTheme();
-
-  const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzEwYmQ4ZTZhZTRmMTgzZmM4NWU2NzYiLCJ0b2tlbklkIjoiNzk2MWIyNjYtYTJhMi00ZmQ4LWI1ZjktZjU4ZDNkZDI3OWRhIiwiaWF0IjoxNzMwMDkxODkxLCJleHAiOjE3MzAxNzgyOTF9.0l0_d2L1sfqYzU_KziuYTQdFAuCR5ocn1vDTHQDQZh0';
+  // const theme = useTheme();
 
   const planImages = {
     FootPrint: FootPrintBg,
@@ -119,16 +118,16 @@ const SubscriptionModal = ({ open, onClose }) => {
       setError(null);
 
       try {
-        const backendApi = axios.create({
-          baseURL: 'https://backend.ghg.ge3s.org/api',
-          headers: {
-            'Authorization': `Bearer ${AUTH_TOKEN}`
-          }
-        });
+        // const backendApi = axios.create({
+        //   baseURL: 'https://backend.ghg.ge3s.org/api',
+        //   headers: {
+        //     'Authorization': `Bearer ${AUTH_TOKEN}`
+        //   }
+        // });
 
         const [plansResponse, userResponse] = await Promise.all([
-          backendApi.get('/subscription_plan/fetch_subscription_plans?type=premium'),
-          backendApi.get('/user/onboard-data')
+          api.get('/subscription_plan/fetch_subscription_plans?type=premium'),
+          api.get('/user/onboard-data')
         ]);
 
         if (plansResponse.data.success && plansResponse.data.subscriptionPlans) {
@@ -361,11 +360,11 @@ const SubscriptionModal = ({ open, onClose }) => {
                           color: '#000',
                           padding: '5px',
                           borderRadius: '20px',
-                          display:'flex',
-                          alignItems:'center',
-                          gap:'0.5rem',
-                          fontSize:'14px',
-                          justifyContent:'center'
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          fontSize: '14px',
+                          justifyContent: 'center'
                         }}
                       >
                         Generate report with only scope 1 emission data  <img src={forwardArrowBlack} width={16} />

@@ -38,7 +38,12 @@ const Scope1 = ({ setActiveTab }) => {
 
   // console.log("processData", processData);
   const submit = async (type) => {
-    const transformedData = processData?.map((item) => ({
+
+    const validProcessData = processData?.filter(
+      (item) => item?.type?._id && item?.type2?._id
+    );
+    
+    const transformedData = validProcessData?.map((item) => ({
       type: item?.type?._id || "",
 
       quantity: Number(item?.quantity) || "",
