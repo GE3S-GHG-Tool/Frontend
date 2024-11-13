@@ -37,9 +37,11 @@ const ModalContainer = styled(Paper)(({ theme }) => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  maxWidth: '60%',
+  // minWidth: '60%',
   backgroundImage: `url(${SubscriptionBg})`,
   backgroundSize: 'auto',
+  paddingLeft:'2rem',
+  paddingRight:'2rem',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   color: 'white',
@@ -77,6 +79,7 @@ const StyledCard = styled(Card)(({ isactive }) => ({
   backgroundColor: isactive === 'true' ? '#fff' : 'rgba(27, 26, 29, 0.40)',
   height: '100%',
   display: 'flex',
+  // minWidth:'6rem',
   flexDirection: 'column',
   border: '1px solid rgba(255, 255, 255, 0.40)',
   borderRadius: '12px',
@@ -118,12 +121,6 @@ const SubscriptionModal = ({ open, onClose }) => {
       setError(null);
 
       try {
-        // const backendApi = axios.create({
-        //   baseURL: 'https://backend.ghg.ge3s.org/api',
-        //   headers: {
-        //     'Authorization': `Bearer ${AUTH_TOKEN}`
-        //   }
-        // });
 
         const [plansResponse, userResponse] = await Promise.all([
           api.get('/subscription_plan/fetch_subscription_plans?type=premium'),
@@ -204,8 +201,8 @@ const SubscriptionModal = ({ open, onClose }) => {
                   onClick={onClose}
                   sx={{
                     position: 'absolute',
-                    right: 10,
-                    top: -10,
+                    right: -10,
+                    top: 0,
                     color: 'grey.500'
                   }}
                 >
@@ -225,10 +222,14 @@ const SubscriptionModal = ({ open, onClose }) => {
                   ) : (
                     <>
                       <Grid
-                        container
+                        // container
                         spacing={2}
                         justifyContent="center"
                         alignItems="stretch"
+                        sx={{
+                          display:'flex',
+                          gap:'2rem'
+                        }}
                       >
                         {getVisiblePlans().map((planName) => {
                           const isPlanActive = currentPlan === planName;
@@ -356,7 +357,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                         align="center"
                         sx={{
                           background: '#fff',
-                          width: '50%',
+                          minWidth: '50%',
                           margin: '2rem auto',
                           color: '#000',
                           padding: '5px',
