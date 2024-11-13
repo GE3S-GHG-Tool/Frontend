@@ -1,0 +1,85 @@
+.verify_account_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid rgba(217, 217, 217, 0.4);
+    padding: 3rem 2rem;
+    background: #fff;
+    width: 33vw;
+    position: relative;
+  }
+  
+  .verify_account_page h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #00191d;
+    margin: 0 2vw;
+    margin-bottom: 20px;
+  }
+  
+  .verify_account_page button {
+    border-radius: 100px;
+    border: 1.5px solid var(--G-2, #369d9c);
+    color: #369d9c;
+    padding: 1.2vh 3.5vw;
+    font-weight: 500;
+    margin: 3vh 0vw;
+  }
+  
+  .verify_description {
+    color: #699191;
+    font-family: "DM Sans";
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.04px;
+    margin: 2vh 2vw;
+  }
+  
+  .verify_email_field {
+    margin: 0vh 2vw;
+    width: 100%;
+  }
+  
+  .verify_email_field p {
+    color: #717171;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 1vh 0vw;
+    /* background: red; */
+  }
+  
+  .error-text {
+    color: #ff5151;
+    font-size: 0.9rem;
+  }
+  
+  .verify_account_page h6 {
+    color: #717171;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-right: 3px;
+    margin-top: 1rem;
+  }
+  
+  .verify_account_page h5 {
+    color: #3cb477;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  
+  
+   button {
+    border-radius: 100px;
+    border: 1.5px solid var(--G-2, #369d9c);
+    color: #369d9c;
+    padding: 1.2vh 3.5vw;
+    margin: 3vh 0vw;
+    font-weight: 500;
+  }

@@ -11,6 +11,7 @@ import Details from "./components/OrganizationStepper/Details";
 import Goals from "./components/OrganizationStepper/Goals";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import VerifyOTP from "./components/VerifyOTP/VerifyOTP";
+import VerifyAccount from "./components/VerifyAccount/VerifyAccount"
 import ChangePassword from "./components/ChangePassword/ChangePassword";
 import AccountCreationHeader from "./components/AccountCreationHeader/AccountCreationHeader";
 import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
@@ -54,6 +55,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/otppage" element={<ResetOTP />} />
           <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/account-verified" element={<VerifyAccount/>}/>
           <Route path="/change-password" element={<ChangePassword />} />
           <Route
             path="/organizationstepper"

@@ -122,7 +122,7 @@ export default function Goals({ setActiveStep }) {
     <div className="goals">
       <div className="heading">
         <img src={logo} alt="" className="ge3s_logo1" />
-        <h1>What are your Goals? Let us help you out.</h1>
+        <h1>What are your Goals? <br /> Let us help you out.</h1>
       </div>
       <div className="para_select_det">
         <p>What are your sustainability goals?</p>
@@ -207,7 +207,7 @@ export default function Goals({ setActiveStep }) {
         disabled={!isFormComplete()}
         onClick={handleNextClick}
       >
-        Next
+        Finish
       </button>
     </div>
   );
