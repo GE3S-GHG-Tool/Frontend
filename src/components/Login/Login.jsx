@@ -25,6 +25,7 @@ export default function Login() {
     root: "",
   });
   const [isFormValid, setIsFormValid] = useState(false);
+  const [globalError, setGlobalError] = useState(""); 
 
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,7 +57,6 @@ export default function Login() {
         payload
       );
       if (response.status === 200) {
-        console.log("login res", response);
         localStorage.setItem("token", response?.data?.data?.token);
         setToken(response?.data?.data?.token);
         setIsAuthenticated(true);
@@ -64,8 +64,8 @@ export default function Login() {
         navigate("/");
       }
     } catch (err) {
-      alert(err?.response?.data.message);
-      setPassword("");
+      setGlobalError("The email or password you entered is incorrect");
+      setPassword(""); 
       setIsLoading(false);
     }
   };
@@ -113,8 +113,9 @@ export default function Login() {
               </div>
             </div>
           </div>
+          
+          {globalError && <p className="error-message">{globalError}</p>}
 
-          {/* {errors.login && <p className="error-message">{errors.login}</p>} */}
           <button
             onClick={handleSubmit}
             disabled={!isFormValid || isLoading}
