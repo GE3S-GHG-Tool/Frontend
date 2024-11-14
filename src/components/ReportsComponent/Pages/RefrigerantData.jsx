@@ -246,6 +246,26 @@ function RefrigerantData() {
                     value={field.refrigerantType}
                     onChange={(e) => handleChange(index, e)}
                     IconComponent={KeyboardArrowDownIcon}
+                    displayEmpty
+                      renderValue={(selected) => {
+                        if (!selected) {
+                          return (
+                            <em
+                              style={{
+                                color: "#BDBDBD",
+                                fontFamily: " Arial, sans-serif",
+                                fontSize: '0.875rem'
+                              }}
+                            >
+                              Add type of refrigerant
+                            </em>
+                          ); 
+                        }
+                        return (
+                          typeMenu.find((item) => item._id === selected)
+                            ?.Type || ""
+                        );
+                      }}
                     sx={{
                       border: "1px solid rgba(217, 217, 217, 0.0)",
                       borderRadius: "5px",
@@ -254,6 +274,16 @@ function RefrigerantData() {
                       },
                     }}
                   >
+                    <MenuItem disabled value="">
+                        <em
+                          style={{
+                            color: "rgba(0, 0, 0, 0.54)",
+                            fontFamily: "Arial, sans-serif",
+                          }}
+                        >
+                          Add type of refrigerant
+                        </em>{" "}
+                      </MenuItem>
                     {typeMenu.map((item, index) => (
                       <MenuItem key={index} value={item._id}>
                         {item.Type}
