@@ -93,7 +93,7 @@ export default function SuccessModal() {
         </Typography>
 
         <Button onClick={handleClose} sx={buttonStyle}>
-          Go to Dashboard
+          Proceed to Login
         </Button>
       </Box>
   );
