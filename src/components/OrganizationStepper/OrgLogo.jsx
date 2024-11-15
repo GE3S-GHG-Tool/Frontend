@@ -4,6 +4,7 @@ import ImageModal from "../common/ImageModal";
 import { Avatar, Box, Button } from "@mui/material";
 import user from "../../assets/images/orgloog.png";
 import { useSignup } from "../../context/User-signup";
+
 const OrgLogo = ({ activeStep, setActiveStep }) => {
   const imageInput = useRef();
   const [selectedFile, setSelectedFile] = useState(null);
@@ -11,8 +12,10 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
   const [openImageResizer, setOpenImageResizer] = useState(false);
   const [key, setKey] = useState(0);
   const { setOrganizationLogo } = useSignup();
+  const [isImageValid, setIsImageValid] = useState(true); 
+  
   const isFormComplete = selectedFile ? false : true;
-  //   console.log(isFormComplete);
+
   const clickInput = () => {
     imageInput.current && imageInput.current.click();
   };
@@ -20,6 +23,16 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
   const onFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
+
+      // Check if file size exceeds 5MB (5MB = 5 * 1024 * 1024 bytes)
+      if (file.size > 5 * 1024 * 1024) {
+        setIsImageValid(false);
+        alert("Image size is too large. Please upload an image smaller than 5MB.");
+        return;
+      } else {
+        setIsImageValid(true);
+      }
+
       setOrganizationLogo(file);
       setSelectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
@@ -30,8 +43,6 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
   };
 
   const handleNextClick = () => {
-    // if (selectedFile) {
-    // }
     setActiveStep(activeStep + 1);
   };
 
@@ -45,7 +56,6 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
       <Box
         sx={{
           display: "flex",
-          //   background: "Red",
           flexDirection: "column",
           justifyContent: "Center",
           alignItems: "center",
@@ -68,7 +78,6 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
           sx={{
             width: 65,
             height: 65,
-            // border: "1px solid #43BAB9",
             cursor: "pointer",
           }}
         />
@@ -114,7 +123,7 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
 
       <button
         className="ge3s_button"
-        // disabled={isFormComplete}
+        disabled={!isImageValid} // Disable "Next" button if the image is too large
         onClick={handleNextClick}
       >
         Next
