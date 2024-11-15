@@ -1,8 +1,38 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DraftCard.css";
+import trash from "../../assets/images/TrashS.svg";
 import { timeAgo } from "../../util/timeAgo";
-const DraftCard = ({ report }) => {
+
+const DraftCard = ({ report, onDelete, onView }) => {
+  const [showDelete, setShowDelete] = useState(false);
   const navigate = useNavigate();
+
+  const handleDelete = async (reportId, organizationId) => {
+    try {
+      const response = await fetch('http://localhost:8000/api/report/delete_draft_report', {
+        method: 'POST', // or 'DELETE' depending on the API specification
+        headers: {
+          'Content-Type': 'application/json',  // Indicates that you're sending JSON
+        },
+        body: JSON.stringify({
+          reportId: reportId,
+          organizationId: organizationId,
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json(); // Parse the JSON response if successful
+        console.log('Report deleted:', data);
+      } else {
+        console.error('Failed to delete report:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
   let percentage = Math.floor(report?.completionPercentage) || 0;
   percentage = isNaN(percentage) ? 0 : percentage;
   const conicEnd = `${percentage}%`;
@@ -11,16 +41,25 @@ const DraftCard = ({ report }) => {
   return (
     <div
       className="draft_card"
-      onClick={() => navigate(`/editreport/${report?._id}`)}
+      onClick={(e) => {
+        if (!e.target.closest('.three-dots-icon')) {
+          navigate(`/editreport/${report?._id}`);
+        }
+      }}
     >
-      <div className="draft_header">
+      <div className="draft_header" style={{ position: "relative" }}>
         <label>{report?.name}</label>
         <svg
+          className="three-dots-icon"
           style={{ cursor: "pointer" }}
           width="20"
           height="20"
           viewBox="0 0 25 24"
           fill="none"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents click from propagating to parent
+            setShowDelete(!showDelete); // Toggle the visibility of the delete button
+          }}
         >
           <g clipPath="url(#clip0_2914_73884)">
             <path
@@ -50,6 +89,55 @@ const DraftCard = ({ report }) => {
             </clipPath>
           </defs>
         </svg>
+
+        {/* Conditional Delete Button */}
+        {showDelete && (
+          <button
+            className="delete-button"
+            style={{
+              position: "absolute",
+              top: "-5px", // Adjust to align the button better
+              right: "-70px", // Place it to the right of the three-dot icon
+              background: "white",
+              color: "#FF9A9A",
+              border: "none",
+              borderRadius: "6px", // Rounded corners
+              padding: "8px 12px",
+              zIndex: "10", // Ensure it stays above other elements
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", // Slightly stronger shadow for visibility
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease", // Smooth transition on hover
+            }}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent click from affecting parent
+              console.log("Delete button clicked");
+              handleDelete(report?._id, );
+              // Call your delete function here
+              onDelete(report?._id); // Uncomment if you want to call the onDelete function
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "white"; // Light red background on hover
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "white"; // Revert to white when not hovered
+            }}
+          >
+            <img
+              src={trash}
+              alt="Delete"
+              style={{
+                width: "20px",
+                height: "20px", // Adjust size to match the text
+                marginRight: "8px", // Space between icon and text
+                cursor: "pointer",
+              }}
+            />
+            Delete
+          </button>
+        )}
       </div>
 
       <div className="report_card-progress-container">
@@ -59,12 +147,9 @@ const DraftCard = ({ report }) => {
             width: `42px`,
             height: `42px`,
             background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), ${conicGradient}`,
-            // boxShadow: "0px 3.94px 3.94px 0px #228d8c54",
           }}
         >
-          <div className="progress-text">
-            {isNaN(percentage) ? 0 : percentage}%
-          </div>
+          <div className="progress-text">{isNaN(percentage) ? 0 : percentage}%</div>
         </div>
         <div className="report_card-status">
           {percentage === "100" ? "Completed" : "In Progress"}
