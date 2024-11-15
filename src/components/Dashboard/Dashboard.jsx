@@ -76,8 +76,10 @@ const Dashboard = () => {
   }, [user?.organization?.id]);
 
   useEffect(() => {
-    fetchCarbonTrackerData();
-  }, [year]);
+    if (user?.organization?.id) {  // Add this check
+      fetchCarbonTrackerData();
+    }
+  }, [year, user?.organization?.id]);  // Add user?.organization?.id to dependencies
 
   return (
     <div>

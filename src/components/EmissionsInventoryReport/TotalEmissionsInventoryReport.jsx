@@ -1607,30 +1607,30 @@ import LockIcon from '@mui/icons-material/Lock';
 import api from "../../api";
 
 
-const ScopeSection = styled(Paper)(({ theme, isLocked }) => ({
-  padding: theme.spacing(3),
-  height: '100%',
-  // backgroundColor: '#232323',
-  color: 'white',
-  position: 'relative',
-  filter: isLocked ? 'blur(16px)' : 'none',
-  pointerEvents: isLocked ? 'none' : 'auto',
-}));
+// const ScopeSection = styled(Paper)(({ theme, isLocked }) => ({
+//   padding: theme.spacing(3),
+//   height: '100%',
+//   // backgroundColor: '#232323',
+//   color: 'white',
+//   position: 'relative',
+//   filter: isLocked ? 'blur(16px)' : 'none',
+//   pointerEvents: isLocked ? 'none' : 'auto',
+// }));
 
-const LockOverlay = styled(Box)({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  zIndex: 10,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '8px',
-  color: 'white',
-  textAlign: 'center',
-  pointerEvents: 'auto',
-});
+// const LockOverlay = styled(Box)({
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   zIndex: 10,
+//   display: 'flex',
+//   flexDirection: 'column',
+//   alignItems: 'center',
+//   gap: '8px',
+//   color: 'white',
+//   textAlign: 'center',
+//   pointerEvents: 'auto',
+// });
 
 const Scope1SVGs = [
   <svg
@@ -2871,7 +2871,7 @@ const TotalEmissionsInventoryReport = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            <ScopeSection elevation={3} isLocked={isScope2Locked}>
+            {/* <ScopeSection elevation={3} isLocked={isScope2Locked}> */}
               <div
                 style={{
                   display: "flex",
@@ -2886,20 +2886,20 @@ const TotalEmissionsInventoryReport = () => {
                   type="scope-2"
                 />
               </div>
-            </ScopeSection>
-            {isScope2Locked && (
+            {/* </ScopeSection> */}
+            {/* {isScope2Locked && (
               <LockOverlay>
                 <LockIcon sx={{ fontSize: 40 }} />
                 <Typography variant="h6">
                   Upgrade to OffSet Plan to unlock Scope 2 insights
                 </Typography>
               </LockOverlay>
-            )}
+            )} */}
           </div>
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            <ScopeSection elevation={3} isLocked={isScope3Locked}>
+            {/* <ScopeSection elevation={3} isLocked={isScope3Locked}> */}
               <div
                 style={{
                   //  display: "flex",
@@ -3212,15 +3212,15 @@ const TotalEmissionsInventoryReport = () => {
                   </div>
                 </div>
               </div>
-            </ScopeSection>
-            {isScope3Locked && (
+            {/* </ScopeSection> */}
+            {/* {isScope3Locked && (
               <LockOverlay>
                 <LockIcon sx={{ fontSize: 40 }} />
                 <Typography variant="h6">
                   Upgrade to CarbonZero Plan to unlock Scope 3 insights
                 </Typography>
               </LockOverlay>
-            )}
+            )} */}
           </div>
         </div>
       </div>
