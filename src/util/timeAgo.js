@@ -12,14 +12,14 @@ export function timeAgo(dateString) {
     if (diffInSeconds < 60) {
       return "few seconds ago";
     } else if (diffInMinutes < 60) {
-      return `${diffInMinutes} minutes ago`;
+      return `Updated ${diffInMinutes} minutes ago`;
     } else if (diffInHours < 24) {
-      return `${diffInHours} hours ago`;
+      return `Updated ${diffInHours} hours ago`;
     } else if (diffInDays < 7) {
-      return `${diffInDays} days ago`;
+      return `Updated ${diffInDays} days ago`;
     } else if (diffInWeeks < 5) {
-      return `${diffInWeeks} weeks ago`;
+      return `Updated ${diffInWeeks} weeks ago`;
     } else {
-      return `${diffInMonths} months ago`;
+      return `Updated ${diffInMonths} months ago`;
     }
   }
