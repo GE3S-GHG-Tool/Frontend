@@ -20,7 +20,6 @@ export default function ChangePassword() {
     password: "",
     confirmPassword: "",
   });
-  const [openModal, setOpenModal] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -69,7 +68,7 @@ export default function ChangePassword() {
       );
       console.log("reset", res);
       if (res?.status === 200) {
-        setOpenModal(true);
+        navigate("/success");
       } else {
         throw new Error("Could not reset password");
       }
@@ -77,11 +76,6 @@ export default function ChangePassword() {
       console.log(error?.response?.data?.message);
       setErrorMessage(error?.response?.data?.message);
     }
-  };
-  const handleCloseModal = () => {
-    setOpenModal(false);
-    navigate("/login");
-    localStorage.removeItem("resettoken");
   };
 
   return (
@@ -138,7 +132,6 @@ export default function ChangePassword() {
           >
             Change Password
           </button>
-          <SuccessModal open={openModal} handleClose={handleCloseModal} />
         </div>
         <div
           style={{

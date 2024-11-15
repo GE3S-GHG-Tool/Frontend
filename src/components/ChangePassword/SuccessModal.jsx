@@ -1,5 +1,6 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -31,14 +32,14 @@ const buttonStyle = {
   background: "#fff",
 };
 
-export default function SuccessModal({ open, handleClose }) {
+export default function SuccessModal() {
+  const navigate = useNavigate();
+  const handleClose = () => {
+    navigate("/login");
+    localStorage.removeItem("resettoken");
+  };
+
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-title"
-      aria-describedby="modal-description"
-    >
       <Box sx={style}>
         <button
           style={{
@@ -92,9 +93,8 @@ export default function SuccessModal({ open, handleClose }) {
         </Typography>
 
         <Button onClick={handleClose} sx={buttonStyle}>
-          Go to Dashboard
+          Proceed to Login
         </Button>
       </Box>
-    </Modal>
   );
 }

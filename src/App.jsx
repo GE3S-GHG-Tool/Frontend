@@ -38,6 +38,7 @@ import SurveyQuestionSection from "./components/Dashboard/Survey/surveypages/Dec
 import DecarbonizationSurveyQsnAns from "./components/Dashboard/Survey/surveypages/DecarbonizationSurveyQsnAns";
 import EditReport from "./components/ReportsComponent/EditReport";
 import ScopeDashboard from "./components/Dashboard/ScopeDashboard";
+import SuccessModal from "./components/ChangePassword/SuccessModal";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/account-verified" element={<VerifyAccount/>}/>
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/success"element={<SuccessModal />} />
           <Route
             path="/organizationstepper"
             element={<OrganizationStepper />}
