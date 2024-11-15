@@ -406,6 +406,19 @@ const FuelRelatedPopup = ({ onClose }) => {
               background: "rgba(177, 233, 216, 0.30)",
             },
           }}
+          onClick={() => {
+            localStorage.removeItem("business");
+            setFields([
+              {
+                id: "",
+                category: "",
+                subCategory: "",
+                subsubCategory: "",
+                quantity: "",
+                unit: "",
+              },
+            ]);
+          }}
         >
           Clear All
         </Button>
