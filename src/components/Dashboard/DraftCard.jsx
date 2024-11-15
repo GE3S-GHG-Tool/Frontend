@@ -3,26 +3,23 @@ import { useNavigate } from "react-router-dom";
 import "./DraftCard.css";
 import trash from "../../assets/images/TrashS.svg";
 import { timeAgo } from "../../util/timeAgo";
+import api from "../../api";
+import { useAuth } from "../../context/AuthContext";
 
 const DraftCard = ({ report, onDelete, onView }) => {
   const [showDelete, setShowDelete] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
-  const handleDelete = async (reportId, organizationId) => {
+  const handleDelete = async (reportId) => {
     try {
-      const response = await fetch('http://localhost:8000/api/report/delete_draft_report', {
-        method: 'POST', // or 'DELETE' depending on the API specification
-        headers: {
-          'Content-Type': 'application/json',  // Indicates that you're sending JSON
-        },
-        body: JSON.stringify({
-          reportId: reportId,
-          organizationId: organizationId,
-        }),
+      const response = await api.post('report/delete_draft_report', {
+        reportId: reportId,
+        organizationId: user?.organization?.id
       });
-  
+
       if (response.ok) {
-        const data = await response.json(); // Parse the JSON response if successful
+        const data = await response.json();
         console.log('Report deleted:', data);
       } else {
         console.error('Failed to delete report:', response.statusText);
@@ -31,7 +28,7 @@ const DraftCard = ({ report, onDelete, onView }) => {
       console.error('Error:', error);
     }
   };
-  
+
 
   let percentage = Math.floor(report?.completionPercentage) || 0;
   percentage = isNaN(percentage) ? 0 : percentage;
@@ -114,9 +111,7 @@ const DraftCard = ({ report, onDelete, onView }) => {
             onClick={(e) => {
               e.stopPropagation(); // Prevent click from affecting parent
               console.log("Delete button clicked");
-              handleDelete(report?._id, );
-              // Call your delete function here
-              onDelete(report?._id); // Uncomment if you want to call the onDelete function
+              handleDelete(report?._id,);
             }}
             onMouseEnter={(e) => {
               e.target.style.backgroundColor = "white"; // Light red background on hover
