@@ -72,7 +72,7 @@ export default function Details({ activeStep, setActiveStep }) {
     <div className="details">
       <div className="heading">
         <img src={logo} alt="" className="ge3s_logo1" />
-        <h1>Now it&apos;s time to enter some details</h1>
+        <h1>Now it&apos;s time to enter <br /> some details</h1>
       </div>
       <div className="select_fields">
         <div className="para_select">
