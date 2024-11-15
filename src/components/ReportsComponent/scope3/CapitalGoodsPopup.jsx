@@ -367,6 +367,16 @@ const CapitalGoodsPopup = ({ onClose }) => {
               background: "rgba(177, 233, 216, 0.30)",
             },
           }}
+          onClick={() => {
+            localStorage.removeItem("business");
+            setFields([
+              {
+                assetType: "",
+                asset_category: "",
+                expenses: "",
+              },
+            ]);
+          }}
         >
           Clear All
         </Button>

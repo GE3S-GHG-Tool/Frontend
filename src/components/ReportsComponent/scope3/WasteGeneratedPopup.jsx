@@ -108,6 +108,27 @@ const WasteGeneratedPopup = ({ onClose }) => {
     // console.log("assetmenu", response?.data);
     setAssetMenu(response?.data?.categories);
   };
+
+  const clear = () => {
+    localStorage.removeItem("wasteData");
+  
+    setFields([
+      {
+        id: "",
+        subCategoryid: "",
+        wasteCategory: "",
+        subCategory: "",
+        disposalMethod: "",
+        distanceToLandfill: "",
+        fuelType: "",
+        numberOfTrips: "",
+        quantityOfWaste: "",
+      },
+    ]);
+  };
+  
+
+
   const save = () => {
     localStorage.setItem("wasteData", JSON.stringify(fields));
     setWasteData(fields);
@@ -529,6 +550,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
         style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}
       >
         <Button
+          onClick={clear}
           sx={{
             borderRadius: "32px",
             border: "1px solid #28814D",

@@ -552,6 +552,19 @@ const BusinessTravelPopup = ({ onClose }) => {
               background: "rgba(177, 233, 216, 0.30)",
             },
           }}
+          onClick={() => {
+            localStorage.removeItem("business");
+            setFields([
+              {
+                travelClass: "",
+                origin: {},
+                destination: {},
+                connection: "",
+                numberOfTrips: "",
+                tripDetails: [],
+              },
+            ]);
+          }}
         >
           Clear All
         </Button>
