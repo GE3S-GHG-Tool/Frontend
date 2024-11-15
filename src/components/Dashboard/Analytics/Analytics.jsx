@@ -14,12 +14,15 @@ import {
   getAnalyticsData,
   getGeneratedReports,
 } from "../../../api/reports.apis";
+import { useAuth } from "../../../context/AuthContext"
+
 
 const Analytics = () => {
   const [scopeView, setScopeView] = useState(false);
   const [analtyicsData, setAnalyticsData] = useState(null);
   const [reportid, setReportId] = useState("");
   const [reports, setReports] = useState([]);
+  const { user } = useAuth();
   const handleView = () => {
     setScopeView((prev) => !prev);
   };
@@ -34,7 +37,7 @@ const Analytics = () => {
     }
   };
   const fetchAllReports = async () => {
-    const response = await getGeneratedReports();
+    const response = await getGeneratedReports(user?.organization?.id);
     if (response?.status === 200) {
       setReports(response.data.reports);
       const lastReport =
