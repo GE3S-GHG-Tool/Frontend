@@ -109,10 +109,11 @@ export default function Goals({ setActiveStep }) {
       );
       console.log("response", response);
       if (response.status === 201) {
-        navigate("/login");
+        navigate("/");
         localStorage.removeItem("token");
         // console.log("response", response);
       } else {
+        console.log("safda=----",response.data.message);
         alert(response.data.message);
       }
     }
@@ -134,9 +135,9 @@ export default function Goals({ setActiveStep }) {
             onChange={handleGoalChange}
             placeholder="Select your goal"
           >
-            {/* <MenuItem value="">
-              <em>None</em>
-            </MenuItem> */}
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
             {organizationSustainabilityGoals.map((goal) => (
               <MenuItem key={goal.id} value={goal.id}>
                 {goal.name}
@@ -207,7 +208,7 @@ export default function Goals({ setActiveStep }) {
         disabled={!isFormComplete()}
         onClick={handleNextClick}
       >
-        Next
+        Finish
       </button>
     </div>
   );
