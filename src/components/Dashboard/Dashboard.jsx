@@ -35,7 +35,7 @@ const Dashboard = () => {
     try {
       const response = await axios.get(`https://backend.ghg.ge3s.org/api/report/carbon_tracker`, {
         params: {
-          organizationId: '66ffe05318994e5fe88f4b51',
+          organizationId: user?.organization?.id,
           year: year
         }
       });

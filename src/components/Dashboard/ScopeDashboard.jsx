@@ -11,6 +11,8 @@ import {
   styled
 } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
+import api from '../../api';
+
 
 const ScopeSection = styled(Paper)(({ theme, isLocked }) => ({
   padding: theme.spacing(3),
@@ -47,11 +49,7 @@ const ScopeDashboard = () => {
   useEffect(() => {
     const fetchUserPlan = async () => {
       try {
-        const response = await axios.get('https://backend.ghg.ge3s.org/api/user/onboard-data', {
-          headers: {
-            'Authorization': `Bearer ${AUTH_TOKEN}`
-          }
-        });
+        const response = await api.get('https://backend.ghg.ge3s.org/api/user/onboard-data');
         setCurrentPlan(response.data.organization?.premiumPlan?.name || 'FootPrint');
       } catch (err) {
         setError('Failed to fetch user plan');
