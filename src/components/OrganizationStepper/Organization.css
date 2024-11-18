@@ -19,17 +19,6 @@
   margin-bottom: 10px;
 }
 
-/* .organzation button {
-  padding: 1.8vh;
-  width: 100%;
-  border: none;
-  border-radius: 100px;
-  background: var(--G-2, linear-gradient(102deg, #369d9c 0%, #28814d 100%));
-  color: #ffffff;
-  font-size: 0.9rem;
-  margin-top: 20px;
-} */
-
 .heading {
   display: flex;
   justify-content: space-between;
@@ -70,18 +59,15 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 16vw;
-  max-width: 139px;
 }
 
-.para_select {
-  display: flex;
-  flex-direction: column;
-  width: 16vw;
-}
 .para_select p {
   font-size: 0.9rem;
 }
+.para_select select {
+  width: 100%;
+}
+
 .para_select svg {
   margin-left: 5px;
   width: 1rem;
