@@ -29,12 +29,14 @@ const getValue = (d) => (d.value !== undefined && d.value !== null ? d.value : 0
 const getColor = (d) => d.color;
 
 const Chart = ({ data, width, type }) => {
+  // console.log(data)
   const height = defaultHeight;
   const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } = useTooltip();
 
   // Ensure all categories are present
   const safeData = expectedCategories.map(category => {
     const existingData = data?.find(d => d.label === category);
+    console.log(existingData)
     return existingData || {
       label: category,
       value: 0,
@@ -83,6 +85,8 @@ const Chart = ({ data, width, type }) => {
                       tooltipLeft: barX + 60,
                     });
                   }}
+                  rx={4}
+                  ry={4}
                 />
                 {/* Show "0" text for zero values */}
                 {value === 0 && (

@@ -9,20 +9,10 @@ import { getscope1draft } from "../../api/drafts";
 
 function EditReport() {
   const { id } = useParams();
-
-  //   console.log("edit", id);
+  
   const [activeTab, setActiveTab] = useState("scope1");
   const fetchEditData = async (id) => {
     const response = await getscope1draft(id);
-    // console.log("response:", response);
-    // if (
-    //   response?.data?.fuelEntries?.length > 0 &&
-    //   response?.data?.refrigerantEntries?.length > 0 &&
-    //   response?.data?.processEmissions?.length > 0
-    // ) {
-    //   // Set active step to 2
-    //   setActiveTab("scope2");
-    // }
   };
 
   useEffect(() => {

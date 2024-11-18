@@ -11,7 +11,6 @@ import BusinessTravelPopup from "../scope3/BusinessTravelPopup";
 import CapitalGoodsPopup from "../scope3/CapitalGoodsPopup";
 import FuelRelatedPopup from "../scope3/FuelRelatedPopup";
 import upstream from "../../../assets/images/upstream.svg";
-import downstream from "../../../assets/images/downstream.svg";
 import UpstreamLeasedPopup from "../scope3/UpstreamLeasedPopup";
 import plane from "../../../assets/images/aeroplane.svg";
 import { Box, Button } from "@mui/material";
@@ -178,28 +177,20 @@ const Scope3 = ({ setActiveTab }) => {
     console.log(payload);
     const response = await saveScope3Report(payload);
     console.log(response);
-    if (response.status === 200) {
-      if (type === "final") {
-        navigate(`/emissionreport/${reportid}`);
-      } else {
-        setActiveTab("scope2");
-      }
-
-      localStorage.removeItem("capitalGoodsData");
-      localStorage.removeItem("investements");
-      localStorage.removeItem("business");
-      localStorage.removeItem("commuting");
-      localStorage.removeItem("fuel");
-      localStorage.removeItem("downStreamData");
-      localStorage.removeItem("upStreamData");
-      localStorage.removeItem("wasteData");
-      localStorage.removeItem("goods");
-      localStorage.removeItem("consumption");
-      localStorage.removeItem("refrigerent");
-      localStorage.removeItem("scope2Data");
-    } else {
-      alert(response?.data?.message);
-    }
+    localStorage.removeItem("capitalGoodsData");
+    localStorage.removeItem("investements");
+    localStorage.removeItem("business");
+    localStorage.removeItem("commuting");
+    localStorage.removeItem("fuel");
+    localStorage.removeItem("downStreamData");
+    localStorage.removeItem("upStreamData");
+    localStorage.removeItem("wasteData");
+    localStorage.removeItem("goods");
+    localStorage.removeItem("refrigerent");
+    localStorage.removeItem("consumption");
+    localStorage.removeItem("processEmissionData");
+    localStorage.removeItem("scope2Data");
+    navigate(`/emissionreport/${reportid}`); 
   };
 
   return (
@@ -280,7 +271,7 @@ const Scope3 = ({ setActiveTab }) => {
         }}
       >
         <Button
-          onClick={() => submit("draft")}
+          onClick={() => setActiveTab("scope2")}
           sx={{
             borderRadius: "32px",
             border: "1px solid #28814D",

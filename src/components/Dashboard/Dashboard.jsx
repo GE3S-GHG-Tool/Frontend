@@ -81,6 +81,26 @@ const Dashboard = () => {
     }
   }, [year, user?.organization?.id]);  // Add user?.organization?.id to dependencies
 
+  useEffect(() => {
+    const keysToRemove = [
+      "capitalGoodsData",
+      "investements",
+      "business",
+      "commuting",
+      "fuel",
+      "downStreamData",
+      "upStreamData",
+      "wasteData",
+      "goods",
+      "refrigerent",
+      "consumption",
+      "processEmissionData",
+      "scope2Data"
+    ];
+
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+  }, []); 
+
   return (
     <div>
       <h2 className="top_header_draft">Drafts</h2>
