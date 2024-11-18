@@ -522,7 +522,7 @@ function SurveyQuestionSection() {
   const location = useLocation();
   // console.log("answers", location.state);
   return (
-    <>
+    <div>
       <Grid2 container spacing={2}>
         {questions.map((q, index) => (
           <Question
@@ -617,7 +617,7 @@ function SurveyQuestionSection() {
               background: "rgba(177, 233, 216, 0.30)",
             },
           }}
-          onClick={() => navigate("/survey")}
+          onClick={() => navigate("/survey1")}
         >
           <Typography color="#369D9C" fontSize="12px">
             Reset
@@ -644,7 +644,7 @@ function SurveyQuestionSection() {
           </Typography>
         </Button>
       </Grid2>
-    </>
+    </div>
   );
 }
 

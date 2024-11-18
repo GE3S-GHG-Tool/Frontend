@@ -9,9 +9,12 @@ import {
   updateScope1Report,
 } from "../../../api/createReport";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const Scope1 = ({ setActiveTab }) => {
   const { id } = useParams();
+  const { user } = useAuth();
+  console.log(user?.organization?.premiumPlan?.name);
   const navigate = useNavigate();
   const reportid = localStorage.getItem("reportId");
   const [processData, setProcessData] = useState(() => {
@@ -42,7 +45,7 @@ const Scope1 = ({ setActiveTab }) => {
     const validProcessData = processData?.filter(
       (item) => item?.type?._id && item?.type2?._id
     );
-    
+
     const transformedData = validProcessData?.map((item) => ({
       type: item?.type?._id || "",
 
@@ -52,16 +55,16 @@ const Scope1 = ({ setActiveTab }) => {
       category: item?.type2?._id || "",
       ...(item?.type3 &&
         Object.keys(item.type3).length > 0 && {
-          subCategory: item?.type3?._id,
-        }),
+        subCategory: item?.type3?._id,
+      }),
       ...(item?.type4 &&
         Object.keys(item.type4).length > 0 && {
-          subsubCategory: item?.type4?._id || "",
-        }),
+        subsubCategory: item?.type4?._id || "",
+      }),
       ...(item?.type5 &&
         Object.keys(item.type5).length > 0 && {
-          subsubsubCategory: item?.type5?._id || "",
-        }),
+        subsubsubCategory: item?.type5?._id || "",
+      }),
     }));
     const payload = {
       main_report_id: reportid,
@@ -70,41 +73,19 @@ const Scope1 = ({ setActiveTab }) => {
       processEmissions: transformedData,
       report_type: type,
     };
-    const updatePayload = {
-      fuelEntries: consumptionArray.slice(0, -1),
-      refrigerantEntries: refrigerentArray.slice(0, -1),
-      processEmissions: transformedData,
-      report_type: type,
-    };
-    let response;
 
-    if (id) {
-      response = await updateScope1Report(updatePayload, id);
-      if (response.status === 200) {
-        localStorage.removeItem("refrigerent");
-        localStorage.removeItem("consumption");
-        localStorage.removeItem("processEmissionData");
-        if (type === "final") {
-          setActiveTab("scope2");
-        } else {
-          navigate("/");
-        }
-      }
+    let response = await saveScope1Report(payload);
+    if (type === "draft") {
+      setActiveTab("scope2");
     } else {
-      response = await saveScope1Report(payload);
-      if (response.status === 201) {
-        localStorage.removeItem("refrigerent");
-        localStorage.removeItem("consumption");
-        localStorage.removeItem("processEmissionData");
-        if (type === "final") {
-          setActiveTab("scope2");
-        } else {
-          navigate("/");
-        }
-      }
+      localStorage.removeItem("refrigerent");
+      localStorage.removeItem("consumption");
+      localStorage.removeItem("processEmissionData");
+      navigate("/");
     }
     console.log("ss1 res", response);
   };
+
   return (
     <div
       style={{
@@ -149,7 +130,7 @@ const Scope1 = ({ setActiveTab }) => {
         </Button>
 
         <Button
-          onClick={() => submit("final")}
+          onClick={() => submit("draft")}
           sx={{
             borderRadius: "32px",
             padding: "8px 18px",
@@ -168,6 +149,26 @@ const Scope1 = ({ setActiveTab }) => {
         >
           Next
         </Button>
+        {/* <Button
+          onClick={() => submit("final")}
+          sx={{
+            borderRadius: "32px",
+            padding: "8px 18px",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
+            textTransform: "capitalize",
+            color: "#FFFFFF",
+          }}
+        >
+          Generate Report
+        </Button> */}
       </Box>
     </div>
   );

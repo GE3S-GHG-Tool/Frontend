@@ -46,15 +46,14 @@ const Scope2 = ({ setActiveTab }) => {
     console.log(payload);
     const response = await saveScope2Report(payload);
     console.log(response);
-    if (response.status === 201) {
-      if (type === "final") {
-        localStorage.removeItem("scope2Data");
-        setActiveTab("scope3");
-      } else {
-        setActiveTab("scope1");
-      }
+    if (type === "draft") {
+      setActiveTab("scope3");
     } else {
-      alert("Something went wrong");
+      localStorage.removeItem("refrigerent");
+      localStorage.removeItem("consumption");
+      localStorage.removeItem("processEmissionData");
+      localStorage.removeItem("scope2Data");
+      setActiveTab("/");
     }
   };
 
@@ -82,7 +81,7 @@ const Scope2 = ({ setActiveTab }) => {
         }}
       >
         <Button
-          onClick={() => submit("draft")}
+          onClick={() => setActiveTab("scope1")}
           sx={{
             borderRadius: "32px",
             border: "1px solid #28814D",
@@ -102,7 +101,7 @@ const Scope2 = ({ setActiveTab }) => {
         </Button>
 
         <Button
-          onClick={() => submit("final")}
+          onClick={() => submit("draft")}
           sx={{
             borderRadius: "32px",
             padding: "8px 18px",
@@ -121,6 +120,26 @@ const Scope2 = ({ setActiveTab }) => {
         >
           Next
         </Button>
+        {/* <Button
+          onClick={() => submit("final")}
+          sx={{
+            borderRadius: "32px",
+            padding: "8px 18px",
+            height: "38px",
+            fontWeight: "400",
+            fontSize: "12px",
+            width: "100px",
+            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+            "&:hover": {
+              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+              boxShadow: "none",
+            },
+            textTransform: "capitalize",
+            color: "#FFFFFF",
+          }}
+        >
+          Generate Report
+        </Button> */}
       </Box>
     </div>
   );

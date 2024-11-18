@@ -24,8 +24,6 @@ function SurveyQuestionSection() {
 
       return updatedAnswers;
     });
-
-    // console.log(`Question ${qsnId} selected answer: ${answer}`);
   };
 
   const handleStartSurvey = () => {
@@ -36,7 +34,6 @@ function SurveyQuestionSection() {
     <>
       <Box
         sx={{
-          // background: "red",
           display: "flex",
           flexDirection: "column",
           gap: "20px",

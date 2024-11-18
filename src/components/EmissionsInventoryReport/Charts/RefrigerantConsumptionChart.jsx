@@ -58,7 +58,7 @@ const Chart = ({ data, width, type }) => {
           {safeData.map((d) => {
             const label = getLabel(d);
             const value = getValue(d);
-            const barWidth = xScale.bandwidth();
+            const barWidth = xScale.bandwidth()-8;
             const barHeight = height - margin.bottom - yScale(value);
             const barX = xScale(label);
             const barY = height - margin.bottom - barHeight;
@@ -79,6 +79,8 @@ const Chart = ({ data, width, type }) => {
                       tooltipLeft: barX + 60,
                     });
                   }}
+                  rx={4}
+                  ry={4}
                 />
                 {/* Show "0" text for zero values */}
                 {value === 0 && (
