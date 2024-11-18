@@ -1,7 +1,26 @@
 import { Box, Modal, Typography } from "@mui/material";
+import { useState, useRef, useEffect } from "react";
 import "./TermsModal.css";
 
 const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const contentRef = useRef(null);
+
+  const handleScroll = (e) => {
+    if (contentRef.current) {
+      const element = e.target;
+      const reachedBottom =
+        Math.abs(element.scrollHeight - element.clientHeight - element.scrollTop) < 5;
+      setIsButtonEnabled(reachedBottom);
+    }
+  };
+
+  useEffect(() => {
+    if (isTermsOpen) {
+      setIsButtonEnabled(false); // Reset the button state when the modal opens
+    }
+  }, [isTermsOpen]);
+
   return (
     <Modal
       open={isTermsOpen}
@@ -47,6 +66,8 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
 
         <Box
           className="terms-color"
+          ref={contentRef}
+          onScroll={handleScroll}
           sx={{
             flexGrow: 1,
             backgroundColor: "#f7f7f7",
@@ -486,7 +507,15 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
           </p>
         </Box>
 
-        <div className="terms-btn_div">
+        <Box
+          className="terms-btn_div"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "1rem",
+            marginTop: "1rem",
+          }}
+        >
           <button
             className="terms-cancel_btn"
             onClick={() => {
@@ -502,10 +531,11 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
               onAgree();
               onClose();
             }}
+            disabled={!isButtonEnabled} 
           >
             I have read and accept the terms of services
           </button>
-        </div>
+        </Box>
       </Box>
     </Modal>
   );
