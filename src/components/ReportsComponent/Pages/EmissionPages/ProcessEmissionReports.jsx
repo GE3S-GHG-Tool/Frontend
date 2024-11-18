@@ -108,7 +108,7 @@ function ProcessEmissionReports({ onClose, setTableData }) {
             />
           ))} */}
           {processEmissionData.map((data) => (
-            <div key={data.id} style={{   alignItems: "center"  }}>
+            <div key={data.id} style={{   alignItems: "center", marginBottom: "15px"  }}>
               <Gas1PopupEmisson
                 data={data}
                 onUpdate={updateData}
