@@ -7,12 +7,13 @@ import {
   FormControl,
   TextField,
   Typography,
+  IconButton,
 } from "@mui/material";
 import down_arrow from "../../../../assets/images/down_arrow.svg";
-import trash_logo from "../../../../assets/images/TrashS.svg";
+import trash_logo from "../../../../assets/images/TrashS.svg"; // Ensure this is imported correctly
 import { getCategories, getEmissionTypes } from "../../../../api/createReport";
 
-function Gas1PopupEmisson({ data, onUpdate }) {
+function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
   const [types, setTypes] = useState([]);
   const [type, setType] = useState(null);
   const [type2, setType2] = useState(null);
@@ -30,7 +31,6 @@ function Gas1PopupEmisson({ data, onUpdate }) {
   async function getEmission() {
     const response = await getEmissionTypes();
     if (response?.status === 200) {
-      // console.log(response);
       setTypes(response.data);
     }
   }
@@ -139,9 +139,10 @@ function Gas1PopupEmisson({ data, onUpdate }) {
         border: "1px solid rgba(217, 217, 217, 0.40)",
         padding: "18px",
         borderRadius: "8px",
+        position: "relative",
       }}
     >
-      <Grid2 item size={4}>
+      <Grid2 item size={4} width={"280px"}>
         <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
           Type of Process Emission
         </Typography>
@@ -163,7 +164,7 @@ function Gas1PopupEmisson({ data, onUpdate }) {
           </Select>
         </FormControl>
       </Grid2>
-      <Grid2 item size={4}>
+      <Grid2 item size={4} width={"280px"}>
         <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
           {type && type?.subCategories?.length ? "Select Category" : null}
         </Typography>
@@ -187,7 +188,7 @@ function Gas1PopupEmisson({ data, onUpdate }) {
           </FormControl>
         ) : null}
       </Grid2>
-      <Grid2 item size={4}>
+      <Grid2 item size={4} width={"280px"}>
         <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
           {type2 && type2?.subCategories?.length && "Select Sub Category"}
         </Typography>
@@ -212,7 +213,7 @@ function Gas1PopupEmisson({ data, onUpdate }) {
         ) : null}
       </Grid2>
       {type3 && type3?.subCategories?.length ? (
-        <Grid2 item size={4}>
+        <Grid2 item size={4 } width={"280px"}>
           <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
             {type3 && type3?.subCategories?.length
               ? "Select Sub Category"
@@ -240,7 +241,7 @@ function Gas1PopupEmisson({ data, onUpdate }) {
         </Grid2>
       ) : null}
       {type4 && type4?.subCategories?.length ? (
-        <Grid2 item size={4}>
+        <Grid2 item size={4} width={"280px"}>
           <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
             {type4 && type4?.subCategories?.length
               ? "Select Sub Sub Category"
@@ -294,7 +295,7 @@ function Gas1PopupEmisson({ data, onUpdate }) {
               onUpdate(data.id, { quantity: e.target.value });
             }}
             sx={{
-              width: "252px",
+              width: "280px",
               borderRadius: "5px",
               border: "1px solid #D9D9D966",
               "& .MuiInputBase-input": {
@@ -324,6 +325,17 @@ function Gas1PopupEmisson({ data, onUpdate }) {
             ></TextField>
           )}
         </Grid2>
+      )}
+      {type?.name && (
+        <Box sx={{ position: "absolute", top: "10px", right: "10px" }}>
+          <IconButton onClick={onDelete} aria-label="delete">
+            <img
+              src={trash_logo}
+              alt="Delete"
+              style={{ width: "20px", height: "20px" }}
+            />
+          </IconButton>
+        </Box>
       )}
     </Grid2>
   );

@@ -3,6 +3,7 @@ import { DialogContent, Button, Typography, Grid2, Box } from "@mui/material";
 import emisson_logo from "../../../../assets/images/emisson_logo.svg";
 import x_logo from "../../../../assets/images/X_logo.svg";
 import Gas1PopupEmisson from "./Gas1PopupEmisson";
+import trash from "../../../../assets/images/TrashS.svg"
 import { useAuth } from "../../../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import { getscope1draft } from "../../../../api/drafts";
@@ -98,13 +99,23 @@ function ProcessEmissionReports({ onClose, setTableData }) {
             activities.
           </Typography>
 
-          {processEmissionData.map((data) => (
+          {/* {processEmissionData.map((data) => (
             <Gas1PopupEmisson
               key={data.id}
               data={data}
               onDelete={deleteData}
               onUpdate={updateData}
             />
+          ))} */}
+          {processEmissionData.map((data) => (
+            <div key={data.id} style={{   alignItems: "center"  }}>
+              <Gas1PopupEmisson
+                data={data}
+                onUpdate={updateData}
+                onDelete={() => deleteData(data.id)}
+                
+              />
+            </div>
           ))}
         </Box>
 
@@ -178,3 +189,4 @@ function ProcessEmissionReports({ onClose, setTableData }) {
 }
 
 export default ProcessEmissionReports;
+
