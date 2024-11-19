@@ -28,6 +28,7 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
+      <div>
       <Box
         style={{
           position: "absolute",
@@ -61,7 +62,7 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
           variant="h6"
           component="h2"
         >
-          Privacy Policy
+          Terms and Conditions
         </Typography>
 
         <Box
@@ -517,7 +518,8 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
           }}
         >
           <button
-            className="terms-cancel_btn"
+            className="terms-cancel_btn_terms"
+            style={{width:"100%"}}
             onClick={() => {
               onCancel();
               onClose();
@@ -526,7 +528,8 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
             Cancel
           </button>
           <button
-            className="terms-accept_btn"
+            className="terms-accept_btn_terms"
+            style={{width:"100%"}}
             onClick={() => {
               onAgree();
               onClose();
@@ -534,9 +537,25 @@ const TermsModal = ({ isTermsOpen, onClose, onCancel, onAgree }) => {
             disabled={!isButtonEnabled} 
           >
             I have read and accept the terms of services
-          </button>
+          </button> 
         </Box>
-      </Box>
+      </Box> 
+      <div
+          style={{
+            width: "60%",
+            height: "16vh",
+            borderRadius: "50%",
+            margin: "0 auto",
+            position: "absolute",
+            bottom: "25px",
+            left: "20%",
+            background: "#598483",
+            filter: "blur(20px)",
+            opacity: 0.8,
+            zIndex: -1,
+          }}
+        ></div>
+      </div>
     </Modal>
   );
 };
