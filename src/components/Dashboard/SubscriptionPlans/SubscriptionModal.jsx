@@ -352,29 +352,35 @@ const SubscriptionModal = ({ open, onClose }) => {
                           );
                         })}
                       </Grid>
-
-                      <Typography
-                        align="center"
+                      
+                      <Box
                         sx={{
-                          background: '#fff',
-                          minWidth: '50%',
-                          margin: '2rem auto',
-                          color: '#000',
-                          padding: '5px',
-                          borderRadius: '20px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          fontSize: '14px',
-                          justifyContent: 'center'
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          margin: "2rem auto", 
                         }}
                       >
-                        Generate report with only
-                        {
-                          currentPlan === "OffSet" ? " scope 2 " : " scope 1 "
-                        }
-                        emission data  <img src={forwardArrowBlack} width={16} />
-                      </Typography>
+                        <Typography
+                          align="center"
+                          sx={{
+                            background: "#fff",
+                            color: "#000",
+                            padding: "5px 10px", 
+                            borderRadius: "20px",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                            fontSize: "14px",
+                            justifyContent: "center",
+                          }}
+                        >
+                          Generate report with only
+                          {currentPlan === "OffSet" ? " scope 2 " : " scope 1 "}
+                          emission data{" "}
+                          <img src={forwardArrowBlack} width={16} />
+                        </Typography>
+                      </Box>
                     </>
                   )}
                 </Box>
