@@ -37,7 +37,7 @@ export default function OtpModal() {
     setOtpError("");
     const result = await verifyOtp(location.state.email, otp, setAuthToken);
     if (result.success) {
-      navigate("/personalinfo");
+      navigate("/account-verified");
     } else {
       setOtpError(result.error);
     }

@@ -6,7 +6,7 @@ export default function Confirmation() {
   const navigate = useNavigate(); 
 
   const handleContinue = () => {
-    navigate("/createaccount"); 
+    navigate("/login"); 
   };
 
   return (

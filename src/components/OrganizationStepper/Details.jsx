@@ -21,11 +21,12 @@ const HtmlTooltip = styled(({ className, ...props }) => (
     color: "#000",
     fontFamily: "Inter",
     maxWidth: 300,
-    padding: "10px",
-    fontSize: ".8rem",
+    padding: "8px",
+    fontSize: ".68rem",
     border: "none",
     borderRadius: "8px",
-    lineHeight: "20px",
+    lineHeight: "15px",
+    fontWeight:'400',
     boxShadow: "0px 0px 2px 0px rgba(0, 0, 0, 0.25)",
   },
   [`& .${tooltipClasses.arrow}`]: {
@@ -70,9 +71,9 @@ export default function Details({ activeStep, setActiveStep }) {
 
   return (
     <div className="details">
-      <div style={{display:'flex', alignItems:'center', gap:'1rem'}}>
-        <img src={logo} alt="" className="ge3s_logo1" style={{width:'50px', height:'50px'}}/>
-        <h1 style={{fontSize:'1.3rem', fontWeight:'600'}}>Now it&apos;s time to enter <br /> some details</h1>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop:'-20px', marginBottom:'60px' }}>
+        <img src={logo} alt="" className="ge3s_logo1" style={{ width: '50px', height: '50px' }} />
+        <h1 style={{ fontSize: '1.3rem', fontWeight: '600' }}>Now it&apos;s time to enter <br /> some details</h1>
       </div>
       <div className="select_fields">
         <div className="para_select">
@@ -108,7 +109,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 220 }} size="small">
             <Select
               labelId="fiscal-year-label"
               id="fiscal-year-select"
@@ -169,7 +170,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 220  }} size="small">
             <Select
               labelId="reporting-year-label"
               id="reporting-year-select"
@@ -229,7 +230,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 220 }} size="small">
             <Select
               labelId="baseline-year-label"
               id="baseline-year-select"
@@ -237,6 +238,17 @@ export default function Details({ activeStep, setActiveStep }) {
               onChange={(e) => setOrganizationBaselineYear(e.target.value)}
               placeholder="Baseline Year"
               size="small"
+              // sx={{
+              //   margin: "0",
+              //   border: "1px solid rgba(217, 217, 217, 0.0)",
+              //   borderRadius: "5px",
+              //   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              //     borderColor: "rgba(217, 217, 217, 0.30)",
+              //   },
+              //   "& .MuiSelect-select": {
+              //     padding: "9px 16px",
+              //   },
+              // }}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -288,7 +300,7 @@ export default function Details({ activeStep, setActiveStep }) {
               </svg>
             </HtmlTooltip>
           </p>
-          <FormControl sx={{ my: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ my: 1, minWidth: 220  }} size="small">
             <Select
               labelId="baseline-month-label"
               id="baseline-month-select"

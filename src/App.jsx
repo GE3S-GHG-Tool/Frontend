@@ -51,14 +51,14 @@ function App() {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/personalinfo" element={<PersonalInfo />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/confirmation" element={<SuccessModal />} />
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/otppage" element={<ResetOTP />} />
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/account-verified" element={<VerifyAccount/>}/>
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/success" element={<SuccessModal />} />
+          <Route path="/change-password-success" element={<SuccessModal />} />
           <Route
             path="/organizationstepper"
             element={<OrganizationStepper />}
