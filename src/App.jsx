@@ -58,7 +58,7 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/account-verified" element={<VerifyAccount/>}/>
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/success"element={<SuccessModal />} />
+          <Route path="/success" element={<SuccessModal />} />
           <Route
             path="/organizationstepper"
             element={<OrganizationStepper />}

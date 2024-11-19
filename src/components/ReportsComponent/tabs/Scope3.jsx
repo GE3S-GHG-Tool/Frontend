@@ -117,15 +117,23 @@ const Scope3 = ({ setActiveTab }) => {
   }, [business]);
 
   const submit = async (type) => {
-    const convertedWasteArray = waste.slice(0, -1).map((item) => ({
-      category: item.wasteCategory || "",
-      sub_category: item.subCategory || "",
-      disposal_method: item.disposalMethod || "",
-      fuel_type: item.fuelType || "",
-      distance_km: item.distanceToLandfill || "",
-      num_trips: item.numberOfTrips || "",
-      quantity: item.quantityOfWaste ? parseInt(item.quantityOfWaste, 10) : 0,
-    }));
+    const convertedWasteArray = waste.slice(0, -1).map((item) => {
+      const baseData = {
+        category: item.wasteCategory || "",
+        sub_category: item.subCategory || "",
+        disposal_method: item.disposalMethod || "",
+        quantity: item.quantityOfWaste ? parseInt(item.quantityOfWaste, 10) : 0,
+      };
+      if (item.disposalMethod === "Landfilled") {
+        return {
+          ...baseData,
+          fuel_type: item.fuelType || "",
+          distance_km: item.distanceToLandfill || "",
+          num_trips: item.numberOfTrips || "",
+        };
+      }
+      return baseData;
+    });
     const capitalArray = capitalData
       .slice(0, -1)
       .filter((item) => item.assetType) // Removes the empty item
