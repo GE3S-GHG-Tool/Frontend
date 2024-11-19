@@ -1,11 +1,22 @@
 import "./VerifyAccount.css";
 import Wrapper from "../Wrapper/Wrapper";
+import { useNavigate } from "react-router-dom";
+import { useSignup } from "../../context/User-signup";
 
 export default function VerifyAccount() {
+  const { email } = useSignup();
+  console.log(email)
+
+  const navigate = useNavigate();
+
+  const handleContinue = () => {
+    navigate("/personalinfo");
+  };
+
   return (
     <Wrapper>
       <div className="signup_page">
-      <h1>Create a free account!</h1>
+        <h1>Create a free account!</h1>
         <div className="confirmtick">
           <svg width="90" height="90" viewBox="0 0 113 113" fill="none">
             <circle
@@ -34,8 +45,8 @@ export default function VerifyAccount() {
             </defs>
           </svg>
         </div>
-        <p>Your account has been verified successfully!</p>
-        <button> Continue </button>
+        <p style={{textAlign:'center'}}>Your Email ID <span style={{fontWeight:'bold'}}>{email}</span> has been verified successfully!</p>
+        <button onClick={handleContinue} style={{background:'transparent'}}> Continue </button>
 
         <div
           style={{
