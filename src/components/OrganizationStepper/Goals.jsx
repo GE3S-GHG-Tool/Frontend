@@ -109,7 +109,7 @@ export default function Goals({ setActiveStep }) {
       );
       console.log("response", response);
       if (response.status === 201) {
-        navigate("/");
+        navigate("/login");
         localStorage.removeItem("token");
         // console.log("response", response);
       } else {
