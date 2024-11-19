@@ -74,9 +74,11 @@ function WasteTable({ headings = [], data }) {
               <td
                 style={{
                   textAlign: "left",
-                  // fontWeight: "bold",
                   padding: "12px",
                   whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  maxWidth: "200px",
                 }}
               >
                 {item.disposalMethod}

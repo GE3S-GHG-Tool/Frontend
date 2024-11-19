@@ -18,25 +18,26 @@ import { useScope3 } from "../../../context/Scope3Context";
 
 const WasteGeneratedPopup = ({ onClose }) => {
   const [assetMenu, setAssetMenu] = useState([]);
-  const [subCategoryMenu, setSubCategoryMenu] = useState([]);
-  const [disposalMenu, setDisposalMenu] = useState([]);
+  // const [subCategoryMenu, setSubCategoryMenu] = useState([]);
+  const [subCategoryMenus, setSubCategoryMenus] = useState({});
+  const [disposalMenus, setDisposalMenus] = useState({});
   const { wasteData, setWasteData } = useScope3();
   const [fields, setFields] = useState(
     localStorage.getItem("wasteData")
       ? JSON.parse(localStorage.getItem("wasteData"))
       : [
-          {
-            id: "",
-            subCategoryid: "",
-            wasteCategory: "",
-            subCategory: "",
-            disposalMethod: "",
-            distanceToLandfill: "",
-            fuelType: "",
-            numberOfTrips: "",
-            quantityOfWaste: "",
-          },
-        ]
+        {
+          id: "",
+          subCategoryid: "",
+          wasteCategory: "",
+          subCategory: "",
+          disposalMethod: "",
+          distanceToLandfill: "",
+          fuelType: "",
+          numberOfTrips: "",
+          quantityOfWaste: "",
+        },
+      ]
   );
 
   const handleChange = (index, event) => {
@@ -48,16 +49,23 @@ const WasteGeneratedPopup = ({ onClose }) => {
       const selectedCategory = assetMenu.find((asset) => asset._id === value);
       updatedFields[index]["id"] = value;
       updatedFields[index][name] = selectedCategory.category_name;
-      setSubCategoryMenu(selectedCategory.subcategories);
+      // setSubCategoryMenu(selectedCategory.subcategories);
+      setSubCategoryMenus(prev => ({
+        ...prev,
+        [index]: selectedCategory.subcategories
+      }));
       setFields(updatedFields);
     }
     if (name === "subCategory") {
-      const selectedsubCategory = subCategoryMenu.find(
+      const selectedsubCategory = subCategoryMenus[index].find(
         (asset) => asset._id === value
       );
       updatedFields[index]["subCategoryid"] = value;
       updatedFields[index][name] = selectedsubCategory.subcategory_name;
-      setDisposalMenu(selectedsubCategory.disposal_method);
+      setDisposalMenus(prev => ({
+        ...prev,
+        [index]: selectedsubCategory.disposal_method
+      }));
       setFields(updatedFields);
     }
 
@@ -111,7 +119,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
 
   const clear = () => {
     localStorage.removeItem("wasteData");
-  
+
     setFields([
       {
         id: "",
@@ -126,7 +134,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
       },
     ]);
   };
-  
+
 
 
   const save = () => {
@@ -137,30 +145,37 @@ const WasteGeneratedPopup = ({ onClose }) => {
   useEffect(() => {
     fetchData();
   }, []);
-  useEffect(() => {
-    // console.log("running");
-    if (fields.length && fields[0]?.id) {
-      const selectedCategory = assetMenu.find(
-        (asset) => asset._id === fields[0]?.id
-      );
 
-      setSubCategoryMenu(selectedCategory?.subcategories);
-      // console.log("subCategoryMenu", subCategoryMenu);
-      if (subCategoryMenu?.length > 0) {
-        const selectedsubCategory = subCategoryMenu.find(
-          (asset) => asset._id === fields[0]?.subCategoryid
-        );
-        // console.log("subCategoryMenu", subCategoryMenu);
-        // console.log("selectedsubCategory", selectedsubCategory);
-        // console.log("fields[0]?.subCategoryid", fields[0]?.subCategoryid);
-        setDisposalMenu(selectedsubCategory?.disposal_method);
-      } else {
-        console.log("no sub found");
-      }
-    } else {
-      console.log("no result");
+  useEffect(() => {
+    if (fields.length) {
+      const newSubCategoryMenus = {};
+      const newDisposalMenus = {};
+      fields.forEach((field, index) => {
+        if (field.id) {
+          const selectedCategory = assetMenu.find(
+            (asset) => asset._id === field.id
+          );
+          if (selectedCategory) {
+            newSubCategoryMenus[index] = selectedCategory.subcategories;
+            
+            // If subcategory exists, find its disposal methods
+            if (field.subCategoryid) {
+              const selectedSubCategory = selectedCategory.subcategories.find(
+                sub => sub._id === field.subCategoryid
+              );
+              if (selectedSubCategory) {
+                newDisposalMenus[index] = selectedSubCategory.disposal_method;
+              }
+            }
+          }
+        }
+      });
+      setSubCategoryMenus(newSubCategoryMenus);
+      setDisposalMenus(newDisposalMenus);
     }
-  }, [fields, assetMenu, subCategoryMenu]);
+  }, [fields, assetMenu]);
+
+
   return (
     <Box
       sx={{
@@ -294,10 +309,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                 {/* Sub Category: Visible only if wasteCategory is selected */}
                 {field.wasteCategory && (
                   <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
+                    <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
                       Sub Categories
                     </Typography>
                     <FormControl fullWidth>
@@ -320,8 +332,9 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           },
                         }}
                       >
-                        {subCategoryMenu?.map((asset, index) => (
-                          <MenuItem key={index} value={asset._id}>
+                        {/* Use the subcategories for this specific row */}
+                        {subCategoryMenus[index]?.map((asset, idx) => (
+                          <MenuItem key={idx} value={asset._id}>
                             {asset?.subcategory_name}
                           </MenuItem>
                         ))}
@@ -354,8 +367,8 @@ const WasteGeneratedPopup = ({ onClose }) => {
                           },
                         }}
                       >
-                        {disposalMenu?.map((asset, index) => (
-                          <MenuItem key={index} value={asset.disposal_name}>
+                        {disposalMenus[index]?.map((asset, idx) => (
+                          <MenuItem key={idx} value={asset.disposal_name}>
                             {asset?.disposal_name}
                           </MenuItem>
                         ))}
@@ -365,119 +378,114 @@ const WasteGeneratedPopup = ({ onClose }) => {
                 )}
 
                 {/* Distance of the landfill: Visible only if disposalMethod is selected */}
-                {field.disposalMethod && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Distance of the landfill from pickup point
-                    </Typography>
-                    <TextField
-                      name="distanceToLandfill"
-                      value={field.distanceToLandfill}
-                      onChange={(e) => handleChange(index, e)}
-                      variant="outlined"
-                      fullWidth
-                      type="number"
-                      placeholder="Enter distance"
-                      sx={{
-                        margin: "0",
-                        border: "1px solid rgba(217, 217, 217, 0.0)",
-                        borderRadius: "5px",
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(217, 217, 217, 0.30)",
-                        },
-                        "& .MuiOutlinedInput-input": {
-                          padding: "9px 16px",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(217, 217, 217, 0.30)",
-                        },
-                      }}
-                    />
-                  </Grid2>
-                )}
-
-                {/* Fuel Type: Visible only if distanceToLandfill is entered */}
-                {field.distanceToLandfill && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Fuel Type of Pickup Vehicle
-                    </Typography>
-                    <FormControl fullWidth>
-                      <Select
-                        name="fuelType"
-                        value={field.fuelType}
+                {field.disposalMethod === "Landfilled" && (
+                  <>
+                    <Grid2 item size={4}>
+                      <Typography
+                        variant="body1"
+                        sx={{ mb: 1, fontSize: "0.75rem" }}
+                      >
+                        Distance of the landfill from pickup point
+                      </Typography>
+                      <TextField
+                        name="distanceToLandfill"
+                        value={field.distanceToLandfill}
                         onChange={(e) => handleChange(index, e)}
-                        displayEmpty
-                        IconComponent={KeyboardArrowDownIcon}
+                        variant="outlined"
+                        fullWidth
+                        type="number"
+                        placeholder="Enter distance"
                         sx={{
                           margin: "0",
                           border: "1px solid rgba(217, 217, 217, 0.0)",
                           borderRadius: "5px",
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                          "& .MuiOutlinedInput-input": {
+                            padding: "9px 16px",
+                          },
                           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                             borderColor: "rgba(217, 217, 217, 0.30)",
                           },
-                          "& .MuiSelect-select": {
-                            padding: "9px 16px",
-                          },
                         }}
-                      >
-                        <MenuItem value="" disabled>
-                          <span
-                            style={{ color: "#BDBDBD", fontSize: "0.875rem" }}
+                      />
+                    </Grid2>
+
+
+                    {/* Fuel Type: Visible only if distanceToLandfill is entered */}
+                    {field.distanceToLandfill && (
+                      <Grid2 item size={4}>
+                        <Typography
+                          variant="body1"
+                          sx={{ mb: 1, fontSize: "0.75rem" }}
+                        >
+                          Fuel Type of Pickup Vehicle
+                        </Typography>
+                        <FormControl fullWidth>
+                          <Select
+                            name="fuelType"
+                            value={field.fuelType}
+                            onChange={(e) => handleChange(index, e)}
+                            displayEmpty
+                            IconComponent={KeyboardArrowDownIcon}
+                            sx={{
+                              margin: "0",
+                              border: "1px solid rgba(217, 217, 217, 0.0)",
+                              borderRadius: "5px",
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "rgba(217, 217, 217, 0.30)",
+                              },
+                              "& .MuiSelect-select": {
+                                padding: "9px 16px",
+                              },
+                            }}
                           >
-                            Select Type
-                          </span>
-                        </MenuItem>
-                        <MenuItem value="Diesel">Diesel</MenuItem>
-                        <MenuItem value="Petrol">Petrol</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid2>
-                )}
+                            <MenuItem value="Diesel">Diesel</MenuItem>
+                            <MenuItem value="Petrol">Petrol</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid2>
+                    )}
 
-                {/* Number of Trips: Visible only if fuelType is selected */}
-                {field.fuelType && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Number of Trips
-                    </Typography>
-                    <TextField
-                      name="numberOfTrips"
-                      value={field.numberOfTrips}
-                      onChange={(e) => handleChange(index, e)}
-                      variant="outlined"
-                      fullWidth
-                      type="number"
-                      placeholder="Number of trips"
-                      sx={{
-                        margin: "0",
-                        border: "1px solid rgba(217, 217, 217, 0.0)",
-                        borderRadius: "5px",
-                        "& .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(217, 217, 217, 0.30)",
-                        },
-                        "& .MuiOutlinedInput-input": {
-                          padding: "9px 16px",
-                        },
-                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          borderColor: "rgba(217, 217, 217, 0.30)",
-                        },
-                      }}
-                    />
-                  </Grid2>
+                    {/* Number of Trips: Visible only if fuelType is selected */}
+                    {field.fuelType && (
+                      <Grid2 item size={4}>
+                        <Typography
+                          variant="body1"
+                          sx={{ mb: 1, fontSize: "0.75rem" }}
+                        >
+                          Number of Trips
+                        </Typography>
+                        <TextField
+                          name="numberOfTrips"
+                          value={field.numberOfTrips}
+                          onChange={(e) => handleChange(index, e)}
+                          variant="outlined"
+                          fullWidth
+                          type="number"
+                          placeholder="Number of trips"
+                          sx={{
+                            margin: "0",
+                            border: "1px solid rgba(217, 217, 217, 0.0)",
+                            borderRadius: "5px",
+                            "& .MuiOutlinedInput-notchedOutline": {
+                              borderColor: "rgba(217, 217, 217, 0.30)",
+                            },
+                            "& .MuiOutlinedInput-input": {
+                              padding: "9px 16px",
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              borderColor: "rgba(217, 217, 217, 0.30)",
+                            },
+                          }}
+                        />
+                      </Grid2>
+                    )}
+                  </>
                 )}
-
                 {/* Quantity of Waste: Visible only if numberOfTrips is entered */}
-                {field.numberOfTrips && (
+                {((field.disposalMethod && field.disposalMethod !== "Landfilled") || (field.numberOfTrips)) && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -511,6 +519,8 @@ const WasteGeneratedPopup = ({ onClose }) => {
                   </Grid2>
                 )}
               </Grid2>
+
+
 
               {/* Show "hello" when the current row is filled */}
               <div

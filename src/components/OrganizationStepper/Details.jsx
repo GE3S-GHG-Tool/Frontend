@@ -70,9 +70,9 @@ export default function Details({ activeStep, setActiveStep }) {
 
   return (
     <div className="details">
-      <div className="heading">
-        <img src={logo} alt="" className="ge3s_logo1" />
-        <h1>Now it&apos;s time to enter <br /> some details</h1>
+      <div style={{display:'flex', alignItems:'center', gap:'1rem'}}>
+        <img src={logo} alt="" className="ge3s_logo1" style={{width:'50px', height:'50px'}}/>
+        <h1 style={{fontSize:'1.3rem', fontWeight:'600'}}>Now it&apos;s time to enter <br /> some details</h1>
       </div>
       <div className="select_fields">
         <div className="para_select">
@@ -132,7 +132,7 @@ export default function Details({ activeStep, setActiveStep }) {
         </div>
         <div className="para_select">
           <p>
-            First Reporting Year{" "}
+            First Reporting year{" "}
             <HtmlTooltip
               title={
                 <>
