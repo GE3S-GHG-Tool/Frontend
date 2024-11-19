@@ -121,10 +121,6 @@ export default function Goals({ setActiveStep }) {
 
   return (
     <div className="goals">
-      {/* <div className="heading">
-        <img src={logo} alt="" className="ge3s_logo1" />
-        <h1 className="goalsHeading">What are your Goals? <br /> Let us help you out.</h1>
-      </div> */}
       <div
         style={{
           display: "flex",
