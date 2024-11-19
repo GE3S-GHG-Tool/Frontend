@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom"; 
 import "./Confirmation.css";
 import Wrapper from "../Wrapper/Wrapper";
 
 export default function Confirmation() {
+  const navigate = useNavigate(); 
+
+  const handleContinue = () => {
+    navigate("/login"); 
+  };
+
   return (
     <Wrapper>
       <div className="confirm">
@@ -44,8 +51,8 @@ export default function Confirmation() {
             </defs>
           </svg>
         </div>
-        <p>Your account has been created sucessfully </p>
-        <button>Continue</button>
+        <p>Your account has been created successfully</p>
+        <button onClick={handleContinue}>Continue</button>
       </div>
     </Wrapper>
   );
