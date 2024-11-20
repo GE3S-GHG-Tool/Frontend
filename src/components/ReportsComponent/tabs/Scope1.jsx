@@ -14,7 +14,7 @@ import { useAuth } from "../../../context/AuthContext";
 const Scope1 = ({ setActiveTab }) => {
   const { id } = useParams();
   const { user } = useAuth();
-  console.log(user?.organization?.premiumPlan?.name);
+  // console.log(user?.organization?.premiumPlan?.name);
   const navigate = useNavigate();
   const reportid = localStorage.getItem("reportId");
   const [processData, setProcessData] = useState(() => {

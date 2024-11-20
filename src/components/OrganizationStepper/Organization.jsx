@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import "./Organization.css";
 import logo from "../../assets/images/ge3s_logo.png";
 import MenuItem from "@mui/material/MenuItem";
@@ -36,62 +35,43 @@ export default function Organization({ activeStep, setActiveStep }) {
   const [cityOptions, setCityOptions] = useState([]);
   const [industryOptions, setIndustryOptions] = useState([]);
   const [sectorOptions, setSectorOptions] = useState([]);
-
   const [error, setError] = useState(null);
-  // console.log("sectorOptions", sectorOptions);
-  // console.log("organizationState", organizationState);
-  // console.log("organizationCity", organizationCity);
-  // console.log("stateOptions", stateOptions);
-  // console.log("cityOptions", cityOptions);
-  useEffect(() => {
-    // const loadInitialData = async () => {
-    //   try {
-    //     const { countries, industries, sectors } =
-    //       await fetchInitialOrganizationData();
-    //     console.log("countries", countries);
-    //     console.log("industries", industries);
-    //     console.log("sectors", sectors);
-    //     setCountryOptions(countries);
-    //     setIndustryOptions(industries);
-    //     setSectorOptions(sectors);
-    //   } catch (error) {
-    //     setError(error.message);
-    //   }
-    // };
 
-    // loadInitialData();
+  useEffect(() => {
     getAllCountries();
     getAllSectors();
-    // getAllIndustries();
   }, []);
+
   useEffect(() => {
-    if (organizationSector.length) getAllIndustries(organizationSector);
+    if (organizationSector.length) {
+      getAllIndustries(organizationSector);
+      // Reset industry selection when sector changes
+      setOrganizationIndustry("");
+    }
   }, [organizationSector]);
 
   async function getAllCountries() {
     const response = await getCountries();
     if (response?.status === 200) {
-      console.log(response);
       const sortedData = response?.data.sort((a, b) => {
         if (a.countryName < b.countryName) return -1;
         if (a.countryName > b.countryName) return 1;
         return 0;
       });
       setCountryOptions(sortedData);
-      // setCountryOptions(response.data);
     }
   }
+
   async function getAllSectors() {
     const response = await getSectors();
     if (response?.status === 200) {
-      console.log(response);
       setSectorOptions(response.data);
     }
   }
+
   async function getAllIndustries(id) {
     const response = await getIndustries(id);
     if (response?.status === 200) {
-      console.log(response);
       setIndustryOptions(response.data);
     }
   }
@@ -107,7 +87,6 @@ export default function Organization({ activeStep, setActiveStep }) {
 
     try {
       const states = await fetchStates(selectedCountry.geonameId);
-
       setStateOptions(states);
     } catch (error) {
       setError(error.message);
@@ -116,7 +95,6 @@ export default function Organization({ activeStep, setActiveStep }) {
 
   const handleStateChange = async (event) => {
     const selectedState = event.target.value;
-    console.log("selectedState", selectedState);
     setOrganizationState(selectedState);
     setOrganizationCity("");
     setCityOptions([]);
@@ -132,12 +110,10 @@ export default function Organization({ activeStep, setActiveStep }) {
   const handleCityChange = (event) => setOrganizationCity(event.target.value);
 
   const handleIndustryChange = (event) => {
-    console.log(event.target.value);
     setOrganizationIndustry(event.target.value);
   };
 
   const handleSectorChange = (event) => {
-    console.log("organizationSector", event.target.value);
     setOrganizationSector(event.target.value);
   };
 
@@ -145,13 +121,15 @@ export default function Organization({ activeStep, setActiveStep }) {
     setOrganizationName(event.target.value);
 
   const isFormComplete = () => {
+    // Both sector and industry are required, and we need industries to be available
     return (
       organizationName &&
       organizationCountry &&
       organizationState &&
       organizationCity &&
-      organizationIndustry &&
-      organizationSector
+      organizationSector &&
+      industryOptions.length > 0 && // Ensure industries are available
+      organizationIndustry // Industry selection is required
     );
   };
 
@@ -159,7 +137,11 @@ export default function Organization({ activeStep, setActiveStep }) {
     if (isFormComplete()) {
       setActiveStep(activeStep + 1);
     } else {
-      setError("Please fill in all fields before proceeding.");
+      if (industryOptions.length === 0) {
+        setError("Please select a sector that has industries available.");
+      } else {
+        setError("Please fill in all fields before proceeding.");
+      }
     }
   };
 
@@ -262,20 +244,28 @@ export default function Organization({ activeStep, setActiveStep }) {
           ))}
         </Select>
       </FormControl>
-      <p>Industry</p>
-      <FormControl fullWidth size="small">
-        <Select
-          value={organizationIndustry}
-          onChange={handleIndustryChange}
-          sx={selectStyles}
-        >
-          {industryOptions.map((industry, index) => (
-            <MenuItem key={index} value={industry._id} sx={menuItemStyles}>
-              {industry.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+
+      {/* Only show Industry field if industries are available */}
+      {industryOptions.length > 0 && (
+        <>
+          <p>Industry</p>
+          <FormControl fullWidth size="small">
+            <Select
+              value={organizationIndustry}
+              onChange={handleIndustryChange}
+              sx={selectStyles}
+            >
+              {industryOptions.map((industry, index) => (
+                <MenuItem key={index} value={industry._id} sx={menuItemStyles}>
+                  {industry.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </>
+      )}
+
+      {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
 
       <button
         className="ge3s_button"
