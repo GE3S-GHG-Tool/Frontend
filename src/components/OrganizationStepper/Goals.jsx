@@ -121,9 +121,24 @@ export default function Goals({ setActiveStep }) {
 
   return (
     <div className="goals">
-      <div className="heading">
-        <img src={logo} alt="" className="ge3s_logo1" />
-        <h1>What are your Goals? <br /> Let us help you out.</h1>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          // marginTop: "-20px",
+          marginBottom: "50px",
+        }}
+      >
+        <img
+          src={logo}
+          alt=""
+          className="ge3s_logo1"
+          style={{ width: "50px", height: "50px" }}
+        />
+        <h1 style={{ fontSize: "1.3rem", fontWeight: "600" }}>
+          What are your Goals? <br /> Let us help you out.
+        </h1>
       </div>
       <div className="para_select_det">
         <p>What are your sustainability goals?</p>
@@ -133,11 +148,17 @@ export default function Goals({ setActiveStep }) {
             id="demo-select-small"
             value={selectedGoal}
             onChange={handleGoalChange}
-            placeholder="Select your goal"
+            displayEmpty
+            renderValue={(selected) =>
+              selected ? (
+                organizationSustainabilityGoals.find(
+                  (goal) => goal.id === selected
+                )?.name
+              ) : (
+                <span style={{ color: "#999" }}>Select</span> // Lighter color for placeholder
+              )
+            }
           >
-            <MenuItem value="">
-              <em>Select</em>
-            </MenuItem>
             {organizationSustainabilityGoals.map((goal) => (
               <MenuItem key={goal.id} value={goal.id}>
                 {goal.name}

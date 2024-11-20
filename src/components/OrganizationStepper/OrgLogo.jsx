@@ -12,7 +12,7 @@ const OrgLogo = ({ activeStep, setActiveStep }) => {
   const [openImageResizer, setOpenImageResizer] = useState(false);
   const [key, setKey] = useState(0);
   const { setOrganizationLogo } = useSignup();
-  const [isImageValid, setIsImageValid] = useState(true); 
+  const [isImageValid, setIsImageValid] = useState(false); 
   
   const isFormComplete = selectedFile ? false : true;
 

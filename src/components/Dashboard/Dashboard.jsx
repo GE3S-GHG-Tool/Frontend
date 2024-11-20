@@ -73,7 +73,7 @@ const Dashboard = () => {
     if (user?.organization?.id) {
       fetchReports();
     }
-  }, [user?.organization?.id]);
+  }, [user?.organization?.id, draftReports]);
 
   useEffect(() => {
     if (user?.organization?.id) {  // Add this check

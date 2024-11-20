@@ -54,8 +54,8 @@ const DraftCard = ({ report, onDelete, onView }) => {
           viewBox="0 0 25 24"
           fill="none"
           onClick={(e) => {
-            e.stopPropagation(); // Prevents click from propagating to parent
-            setShowDelete(!showDelete); // Toggle the visibility of the delete button
+            e.stopPropagation(); 
+            setShowDelete(!showDelete); 
           }}
         >
           <g clipPath="url(#clip0_2914_73884)">
@@ -93,31 +93,31 @@ const DraftCard = ({ report, onDelete, onView }) => {
             className="delete-button"
             style={{
               position: "absolute",
-              top: "-5px", // Adjust to align the button better
-              right: "-70px", // Place it to the right of the three-dot icon
+              top: "-5px", 
+              right: "-70px", 
               background: "white",
               color: "#FF9A9A",
               border: "none",
-              borderRadius: "6px", // Rounded corners
+              borderRadius: "6px", 
               padding: "8px 12px",
-              zIndex: "10", // Ensure it stays above other elements
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", // Slightly stronger shadow for visibility
+              zIndex: "10", 
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)", 
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              transition: "background-color 0.3s ease", // Smooth transition on hover
+              transition: "background-color 0.3s ease",
             }}
             onClick={(e) => {
-              e.stopPropagation(); // Prevent click from affecting parent
+              e.stopPropagation();
               console.log("Delete button clicked");
               handleDelete(report?._id,);
             }}
             onMouseEnter={(e) => {
-              e.target.style.backgroundColor = "white"; // Light red background on hover
+              e.target.style.backgroundColor = "white"; 
             }}
             onMouseLeave={(e) => {
-              e.target.style.backgroundColor = "white"; // Revert to white when not hovered
+              e.target.style.backgroundColor = "white"; 
             }}
           >
             <img
@@ -125,8 +125,8 @@ const DraftCard = ({ report, onDelete, onView }) => {
               alt="Delete"
               style={{
                 width: "20px",
-                height: "20px", // Adjust size to match the text
-                marginRight: "8px", // Space between icon and text
+                height: "20px", 
+                marginRight: "8px", 
                 cursor: "pointer",
               }}
             />

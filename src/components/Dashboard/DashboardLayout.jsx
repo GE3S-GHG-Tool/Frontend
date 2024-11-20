@@ -529,6 +529,7 @@ function DashboardLayout() {
               </svg>
               <span style={{ fontWeight: "500", fontStyle: "Inter" }}>
                 CarbonZero Plan
+               {/* {(user?.organization?.premiumPlan?.name)} */}
               </span>
             </div>
           </div>
@@ -602,7 +603,7 @@ function DashboardLayout() {
             ))}
           </div>
         </div>
-
+        {(user?.organization?.premiumPlan?.name) !== "CarbonZero" &&
         <div className="subs_card">
           <div>
             <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
@@ -644,7 +645,7 @@ function DashboardLayout() {
                   marginTop: "0px",
                 }}
               >
-                Upgrade to Carbonzero
+                Upgrade to {(user?.organization?.premiumPlan?.name)=== "FootPrint"?"OffSet":"CarbonZero"}
               </p>
               <p
                 style={{
@@ -686,6 +687,7 @@ function DashboardLayout() {
             </button>
           </div>
         </div>
+        }
       </div>
 
       <Box sx={{ flexGrow: 1, overflow: "auto" }}>
