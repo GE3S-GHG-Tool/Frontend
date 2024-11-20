@@ -41,6 +41,7 @@ const PersonalInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(isFormValid,"sjdfgfudgyh")
     if (isFormValid) {
       setIsLoading(true);
       try {
@@ -48,7 +49,7 @@ const PersonalInfo = () => {
         if (result.success) {
           setFullname(fullname);
           setImageUrl(selectedFile);
-          navigate("/createaccount");
+          navigate("/confirmation");
         } else {
           console.error("Error submitting form:", result.error);
         }
@@ -157,7 +158,7 @@ const PersonalInfo = () => {
             type="button"
             disabled={!isFormValid}
             className="ge3s_button"
-            onClick={() => navigate("/confirmation")}
+            onClick={handleSubmit}
           >
             Create Account
           </button>

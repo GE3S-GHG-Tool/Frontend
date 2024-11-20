@@ -500,7 +500,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       variant="outlined"
                       fullWidth
                       type="text"
-                      placeholder="10 tonnes"
+                      placeholder="Enter quantity"
                       sx={{
                         margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",

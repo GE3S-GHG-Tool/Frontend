@@ -22,15 +22,15 @@ const FuelRelatedPopup = ({ onClose }) => {
     localStorage.getItem("fuel")
       ? JSON.parse(localStorage.getItem("fuel"))
       : [
-          {
-            id: "",
-            category: "",
-            subCategory: "",
-            subsubCategory: "",
-            quantity: "",
-            unit: "",
-          },
-        ]
+        {
+          id: "",
+          category: "",
+          subCategory: "",
+          subsubCategory: "",
+          quantity: "",
+          unit: "",
+        },
+      ]
   );
 
   console.log("field", fields);
@@ -41,35 +41,47 @@ const FuelRelatedPopup = ({ onClose }) => {
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
+
     if (name === "category") {
       const selectedAsset = categoryMenu.find((item) => item._id === value);
-      updatedFields[index][name] = selectedAsset.category_name;
-      updatedFields[index]["subCategory"] =
-        selectedAsset?.subcategories[0]?.subcategory_name;
-      updatedFields[index]["unit"] = selectedAsset?.subcategories[0]?.unit;
-      updatedFields[index]["id"] = value;
+      updatedFields[index] = {
+        ...updatedFields[index],
+        id: value,
+        category: selectedAsset.category_name,
+        subCategory: selectedAsset?.subcategories[0]?.subcategory_name,
+        unit: selectedAsset?.subcategories[0]?.unit,
+        subsubCategory: "" // Reset sub-subcategory when category changes
+      };
+      setSubCategoryMenu(selectedAsset?.subcategories || []);
+      setFields(updatedFields);
+    } else if (name === "subsubCategory") {
+      updatedFields[index] = {
+        ...updatedFields[index],
+        subsubCategory: value
+      };
 
-      setSubCategoryMenu(selectedAsset?.subcategories);
-      setFields(updatedFields);
-    }
-    if (name === "subsubCategory") {
-      // console.log("subsubCategory value", value);
-      updatedFields[index]["subsubCategory"] = value;
-      setFields(updatedFields);
-    }
-    if (name === "quantity") {
-      updatedFields[index]["quantity"] = value;
-      setFields(updatedFields);
-    }
-    const hasQuantityField = Object.prototype.hasOwnProperty.call(
-      updatedFields[index],
-      "quantity"
-    );
-    const isQuantityFilled =
-      hasQuantityField && updatedFields[index].quantity.trim() !== "";
+      // Ensure subCategoryMenu stays in sync
+      const selectedAsset = categoryMenu.find(
+        (item) => item.category_name === updatedFields[index].category
+      );
+      if (selectedAsset) {
+        setSubCategoryMenu(selectedAsset.subcategories || []);
+      }
 
-    // If the row has a quantity field and it is filled, add a new row
-    if (isQuantityFilled && index === fields.length - 1) {
+      setFields(updatedFields);
+    } else if (name === "quantity") {
+      updatedFields[index] = {
+        ...updatedFields[index],
+        quantity: value
+      };
+      setFields(updatedFields);
+    }
+
+    // Check if new row should be added
+    const currentField = updatedFields[index];
+    const hasQuantity = currentField.quantity && currentField.quantity.trim() !== "";
+
+    if (hasQuantity && index === fields.length - 1) {
       setFields([
         ...updatedFields,
         {
@@ -83,6 +95,8 @@ const FuelRelatedPopup = ({ onClose }) => {
       ]);
     }
   };
+
+
   useEffect(() => {
     if (fuelData && fuelData.length > 0) {
       console.log("fuelData", fuelData);
@@ -110,9 +124,51 @@ const FuelRelatedPopup = ({ onClose }) => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
     setFields(updatedFields);
+  };
+
+  const renderSubSubCategory = (field, index) => {
+    const currentCategory = categoryMenu.find(
+      (item) => item.category_name === field.category
+    );
+    const hasSubSubCategories = currentCategory?.subcategories?.length > 1;
+
+    if (!field.category || !hasSubSubCategories) return null;
+
+    return (
+      <Grid2 item size={4}>
+        <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+          {field.subCategory}
+        </Typography>
+        <FormControl fullWidth size="small">
+          <Select
+            name="subsubCategory"
+            value={field.subsubCategory || ""}
+            onChange={(e) => handleChange(index, e)}
+            IconComponent={KeyboardArrowDownIcon}
+            sx={{
+              border: "1px solid rgba(217, 217, 217, 0.0)",
+              borderRadius: "5px",
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "rgba(217, 217, 217, 0.30)",
+              },
+            }}
+          >
+            {currentCategory?.subcategories?.map((subcategory, idx) => (
+              <MenuItem
+                key={idx}
+                value={subcategory.subsubcategory_name}
+              >
+                {subcategory.subsubcategory_name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Grid2>
+    );
   };
 
   return (
@@ -238,7 +294,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                 </Grid2>
 
                 {/* Sub Category */}
-                {field.category && (
+                {/* {field.category && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -262,43 +318,10 @@ const FuelRelatedPopup = ({ onClose }) => {
                       }}
                     />
                   </Grid2>
-                )}
+                )} */}
 
                 {/* Sub Sub Category */}
-                {field.category && subCategoryMenu.length > 1 && (
-                  <Grid2 item size={4}>
-                    <Typography
-                      variant="body1"
-                      sx={{ mb: 1, fontSize: "0.75rem" }}
-                    >
-                      Sub Sub Category
-                    </Typography>
-                    <FormControl fullWidth size="small">
-                      <Select
-                        name="subsubCategory"
-                        value={field.subsubCategory || ""}
-                        onChange={(e) => handleChange(index, e)}
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={{
-                          border: "1px solid rgba(217, 217, 217, 0.0)",
-                          borderRadius: "5px",
-                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                            borderColor: "rgba(217, 217, 217, 0.30)",
-                          },
-                        }}
-                      >
-                        {subCategoryMenu?.map((asset, index) => (
-                          <MenuItem
-                            key={index}
-                            value={asset.subsubcategory_name}
-                          >
-                            {asset?.subsubcategory_name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid2>
-                )}
+                {renderSubSubCategory(field, index)}
 
                 {/* Quantity */}
                 {field.subCategory && (
@@ -307,7 +330,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Quantity
+                      {(field.unit === "MJ") ? "Quantity" : "Electricity Consumption"} ({field.unit})
                     </Typography>
                     <TextField
                       name="quantity"
@@ -316,7 +339,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                       variant="outlined"
                       fullWidth
                       type="number"
-                      placeholder="Enter quantity"
+                      placeholder={(field.unit === "MJ") ? "Quantity" : "Electricity Consumption"}
                       sx={{
                         margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",
@@ -336,7 +359,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                 )}
 
                 {/* Unit */}
-                {field.subCategory && (
+                {/* {field.subCategory && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -360,7 +383,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                       }}
                     />
                   </Grid2>
-                )}
+                )} */}
               </Grid2>
 
               {/* Trash Icon */}

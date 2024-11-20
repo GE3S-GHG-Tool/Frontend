@@ -39,7 +39,7 @@ export const submitPersonalInfo = async (fullname, selectedFile) => {
     if (selectedFile) {
       formData.append("user_profileImage", selectedFile);
     }
-
+    console.log("Helo")
     const response = await api.post("/user/2", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
