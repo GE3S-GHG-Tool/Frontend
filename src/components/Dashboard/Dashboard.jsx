@@ -69,11 +69,11 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (user?.organization?.id) {
-      fetchReports();
-    }
-  }, [user?.organization?.id]);
+  // useEffect(() => {
+  //   if (user?.organization?.id) {
+  //     fetchReports();
+  //   }
+  // }, [user?.organization?.id]);
 
   useEffect(() => {
     if (user?.organization?.id) {  // Add this check
