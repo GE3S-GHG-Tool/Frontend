@@ -244,7 +244,7 @@ const FuelRelatedPopup = ({ onClose }) => {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Sub Category
+                      {field.subCategory}
                     </Typography>
                     <TextField
                       disabled

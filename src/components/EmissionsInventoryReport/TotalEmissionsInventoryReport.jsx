@@ -318,12 +318,12 @@ const ecbpallete = {
 const wastecolorPalette = {
   Metals: "#F26D58",
   Glass: "#FF7863",
-  Plastic: "#FF8977",
+  Plastics: "#FF8977",
   Electronics: "#FFD3CD",
   "Paper & Cardboards": "#FF9989",
-  "Organic wastes": "#FFAC9F",
-  "Mixed wastes": "#FFBBB0",
-  "Textile wastes": "#FFC8BF",
+  "Organic Waste": "#FFAC9F",
+  "Mixed Waste": "#FFBBB0",
+  "Textile Waste": "#FFC8BF",
   "Construction & Demolition Waste": "#FFE6E3",
 };
 const disposlaPalette = {

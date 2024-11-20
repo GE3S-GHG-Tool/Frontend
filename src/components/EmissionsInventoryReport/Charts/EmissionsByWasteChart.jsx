@@ -14,11 +14,11 @@ const defaultHeight = 300;
 const expectedCategories = [
   "Metals",
   "Glass",
-  "Plastic",
+  "Plastics",
   "Paper & Cardboards",
-  "Organic wastes",
-  "Mixed wastes",
-  "Textile wastes",
+  "Organic Waste",
+  "Mixed Waste",
+  "Textile Waste",
   "Electronics",
   "Construction & Demolition Waste"
 ];

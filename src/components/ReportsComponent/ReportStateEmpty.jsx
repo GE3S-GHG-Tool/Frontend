@@ -47,6 +47,7 @@ function ReportStateEmpty() {
     const response = await getReportWithID(reportid);
 
     if (response.data.success) {
+      console.log(response?.data?.report)
       setReportData(response?.data?.report);
     } else {
       alert("Couldnt Fetch Report Details");
@@ -92,7 +93,7 @@ function ReportStateEmpty() {
                 lineHeight: "33.89px",
               }}
             >
-              Q3 {reportData?.year} {reportData?.name}
+            {reportData?.year} {reportData?.name}
             </Typography>
             <Typography
               variant="p"
