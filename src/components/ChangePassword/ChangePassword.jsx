@@ -68,7 +68,7 @@ export default function ChangePassword() {
       );
       console.log("reset", res);
       if (res?.status === 200) {
-        navigate("/success");
+        navigate("/change-password-success");
       } else {
         throw new Error("Could not reset password");
       }

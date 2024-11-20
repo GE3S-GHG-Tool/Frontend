@@ -47,8 +47,8 @@ export default function CreateAccount() {
       confirmPassword: confirmPassword.trim() !== "" && !passwordsMatch,
     });
 
-    setIsFormValid(isPasswordValid && passwordsMatch && password.trim() !== "");
-  }, [password, confirmPassword]);
+    setIsFormValid(isPasswordValid && passwordsMatch && password.trim() !== "" && selectedValue==='a');
+  }, [password, confirmPassword,selectedValue]);
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);

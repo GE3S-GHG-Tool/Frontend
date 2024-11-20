@@ -68,12 +68,13 @@ const Dashboard = () => {
       console.error("Error fetching carbon tracker data:", error);
     }
   };
-
+  
   // useEffect(() => {
   //   if (user?.organization?.id) {
   //     fetchReports();
   //   }
   // }, [user?.organization?.id]);
+
 
   useEffect(() => {
     if (user?.organization?.id) {  // Add this check
