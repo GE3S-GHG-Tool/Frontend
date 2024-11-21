@@ -131,6 +131,31 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
   //   onUpdate(data.id, updatedData);
   // };
 
+  const getQuantityLabel = (dependentVariable, unit) => {
+    if (!dependentVariable) return "Quantity of gas production";
+
+    // For regular case (not count), add "Quantity of" prefix
+    if (unit !== "count") {
+      return `Quantity of ${dependentVariable}`;
+    }
+
+    // For count unit, return as is
+    return dependentVariable;
+  };
+
+  const getCurrentLeaf = () => {
+    return type5?.leaf || type4?.leaf || type3?.leaf;
+  };
+
+  const getLabelPair = (dependentVariable) => {
+    if (!dependentVariable) return ["", ""];
+    const [firstLabel, secondLabel] = dependentVariable.split(", ");
+    return [firstLabel, secondLabel];
+  };
+
+  const leaf = getCurrentLeaf();
+
+
   return (
     <Grid2
       container
@@ -213,7 +238,7 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
         ) : null}
       </Grid2>
       {type3 && type3?.subCategories?.length ? (
-        <Grid2 item size={4 } width={"280px"}>
+        <Grid2 item size={4} width={"280px"}>
           <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
             {type3 && type3?.subCategories?.length
               ? "Select Sub Category"
@@ -269,6 +294,7 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
         </Grid2>
       ) : null}
 
+
       {last && (
         <Grid2
           sx={{
@@ -278,51 +304,95 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
             alignItems: "flex-start",
           }}
         >
-          <Typography
-            variant="body2"
-            fontSize="12px"
-            fontWeight="400"
-            lineHeight="19.6px"
-          >
-            Quantity of gas production (m3)
-          </Typography>
-          <TextField
-            placeholder="Quantity of Gas"
-            type="number"
-            value={quantity}
-            onChange={(e) => {
-              setQuantity(e.target.value);
-              onUpdate(data.id, { quantity: e.target.value });
-            }}
-            sx={{
-              width: "280px",
-              borderRadius: "5px",
-              border: "1px solid #D9D9D966",
-              "& .MuiInputBase-input": {
-                padding: "10px 14px",
-                height: "auto",
-              },
-            }}
-          ></TextField>
-          {multiple && (
-            <TextField
-              placeholder="Quantity of Gas"
-              type="number"
-              value={quantity2}
-              onChange={(e) => {
-                setQuantity2(e.target.value);
-                onUpdate(data.id, { quantity2: e.target.value });
-              }}
-              sx={{
-                width: "252px",
-                borderRadius: "5px",
-                border: "1px solid #D9D9D966",
-                "& .MuiInputBase-input": {
-                  padding: "10px 14px",
-                  height: "auto",
-                },
-              }}
-            ></TextField>
+          {leaf?.multipleEntries ? (
+            // For multiple entries
+            <>
+              <Typography
+                variant="body2"
+                fontSize="12px"
+                fontWeight="400"
+                lineHeight="19.6px"
+              >
+                {getLabelPair(leaf.dependentVariable)[0]}
+                {leaf?.unit !== "count" && ` (${leaf?.unit})`}
+              </Typography>
+              <TextField
+                placeholder="Enter quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => {
+                  setQuantity(e.target.value);
+                  onUpdate(data.id, { quantity: e.target.value });
+                }}
+                sx={{
+                  width: "280px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "10px 14px",
+                    height: "auto",
+                  },
+                }}
+              />
+              <Typography
+                variant="body2"
+                fontSize="12px"
+                fontWeight="400"
+                lineHeight="19.6px"
+              >
+                {getLabelPair(leaf.dependentVariable)[1]}
+                {leaf?.unit !== "count" && ` (${leaf?.unit})`}
+              </Typography>
+              <TextField
+                placeholder="Enter quantity"
+                type="number"
+                value={quantity2}
+                onChange={(e) => {
+                  setQuantity2(e.target.value);
+                  onUpdate(data.id, { quantity2: e.target.value });
+                }}
+                sx={{
+                  width: "280px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "10px 14px",
+                    height: "auto",
+                  },
+                }}
+              />
+            </>
+          ) : (
+            // For single entry
+            <>
+              <Typography
+                variant="body2"
+                fontSize="12px"
+                fontWeight="400"
+                lineHeight="19.6px"
+              >
+                {getQuantityLabel(leaf?.dependentVariable, leaf?.unit)}
+                {leaf?.unit !== "count" && ` (${leaf?.unit})`}
+              </Typography>
+              <TextField
+                placeholder="Enter quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => {
+                  setQuantity(e.target.value);
+                  onUpdate(data.id, { quantity: e.target.value });
+                }}
+                sx={{
+                  width: "280px",
+                  borderRadius: "5px",
+                  border: "1px solid #D9D9D966",
+                  "& .MuiInputBase-input": {
+                    padding: "10px 14px",
+                    height: "auto",
+                  },
+                }}
+              />
+            </>
           )}
         </Grid2>
       )}

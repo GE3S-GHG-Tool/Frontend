@@ -27,15 +27,16 @@ const BusinessTravelPopup = ({ onClose }) => {
     localStorage.getItem("business")
       ? JSON.parse(localStorage.getItem("business"))
       : [
-          {
-            travelClass: "",
-            origin: {},
-            destination: {},
-            connection: "",
-            numberOfTrips: "",
-            tripDetails: [],
-          },
-        ]
+        {
+          travelClass: "",
+          origin: {},
+          destination: {},
+          connection: "",
+          connectionCount: "", // for storing number of connections
+          numberOfTrips: "",
+          tripDetails: [],
+        },
+      ]
   );
   // const [fields, setFields] = useState([
   //   {
@@ -48,30 +49,72 @@ const BusinessTravelPopup = ({ onClose }) => {
   //   },
   // ]);
   console.log("fields", fields);
+  // const handleChange = (index, event) => {
+  //   const { name, value } = event.target;
+  //   const updatedFields = [...fields];
+  //   updatedFields[index][name] = value;
+  //   setFields(updatedFields);
+
+  //   // Check if the current row's connection has a value
+  //   const hasConnectionDirect = updatedFields[index].connection; // Check for truthy value
+
+  //   // If the connection has a value and this is the last row, add a new row
+  //   if (hasConnectionDirect && index === fields.length - 1) {
+  //     setFields((prevFields) => [
+  //       ...prevFields,
+  //       {
+  //         travelClass: "",
+  //         origin: "",
+  //         destination: "",
+  //         connection: "",
+  //         numberOfTrips: "",
+  //         tripDetails: [],
+  //       },
+  //     ]);
+  //   }
+  // };
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    
+    if (name === "connection") {
+      updatedFields[index] = {
+        ...updatedFields[index],
+        connection: value,
+        connectionCount: "",
+        numberOfTrips: "",
+        tripDetails: [],
+      };
+    } else if (name === "connectionCount") {
+      updatedFields[index] = {
+        ...updatedFields[index],
+        [name]: value,
+        tripDetails: [],
+      };
+    } else {
+      updatedFields[index][name] = value;
+    }
+    
     setFields(updatedFields);
 
-    // Check if the current row's connection has a value
-    const hasConnectionDirect = updatedFields[index].connection; // Check for truthy value
-
-    // If the connection has a value and this is the last row, add a new row
-    if (hasConnectionDirect && index === fields.length - 1) {
-      setFields((prevFields) => [
-        ...prevFields,
+    // Add new row only when numberOfTrips is filled
+    if (name === "numberOfTrips" && value && index === fields.length - 1) {
+      setFields([
+        ...updatedFields,
         {
           travelClass: "",
-          origin: "",
-          destination: "",
+          origin: {},
+          destination: {},
           connection: "",
+          connectionCount: "",
           numberOfTrips: "",
           tripDetails: [],
         },
       ]);
     }
   };
+
 
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
@@ -111,23 +154,22 @@ const BusinessTravelPopup = ({ onClose }) => {
     updatedFields[index].tripDetails[tripIndex] = value; // Update the specific trip detail
     setFields(updatedFields);
   };
-  const renderTextFields = (index) => {
-    const numberOfTrips = fields[index].numberOfTrips;
-    let fieldsArray = [];
-    for (let i = 0; i < numberOfTrips; i++) {
-      fieldsArray.push(
-        <Grid2 item size={4}>
-          <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-            {`Connection to `}
-          </Typography>
 
+  const renderTextFields = (index) => {
+    const connectionCount = parseInt(fields[index].connectionCount) || 0;
+    let fieldsArray = [];
+
+    for (let i = 0; i < connectionCount; i++) {
+      fieldsArray.push(
+        <Grid2 item size={4} key={i}>
+          <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+            {`Connection ${i + 1}`}
+          </Typography>
           <FormControl fullWidth size="small">
             <Select
-              key={`trip-${index}-${i}`}
-              name="destination"
-              renderValue={(selected) => (selected ? selected.nameAirport : "")}
-              value={fields[index].tripDetails[i] || ""} // Bind the value to tripDetails
-              onChange={(e) => handleTripChange(index, i, e.target.value)} // Handle trip input change
+              value={fields[index].tripDetails[i] || ""}
+              onChange={(e) => handleTripChange(index, i, e.target.value)}
+              renderValue={(selected) => selected ? selected.nameAirport : ""}
               IconComponent={KeyboardArrowDownIcon}
               MenuProps={{
                 PaperProps: {
@@ -432,7 +474,7 @@ const BusinessTravelPopup = ({ onClose }) => {
                 )}
 
                 {/* Connection Type */}
-                {Object.keys(field.destination).length > 0 && (
+                {/* {Object.keys(field.destination).length > 0 && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -459,10 +501,68 @@ const BusinessTravelPopup = ({ onClose }) => {
                       </Select>
                     </FormControl>
                   </Grid2>
+                )} */}
+
+                {Object.keys(field.destination).length > 0 && (
+                  <Grid2 item size={4}>
+                    <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+                      Connection Type
+                    </Typography>
+                    <FormControl fullWidth size="small">
+                      <Select
+                        name="connection"
+                        value={field.connection}
+                        onChange={(e) => handleChange(index, e)}
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={{
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                        }}
+                      >
+                        <MenuItem value="0">Direct</MenuItem>
+                        <MenuItem value="1">Connection</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid2>
+                )}
+
+
+                {field.connection === "1" && (
+                  <Grid2 item size={4}>
+                    <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+                      Number of Connections
+                    </Typography>
+                    <TextField
+                      name="connectionCount"
+                      value={field.connectionCount}
+                      onChange={(e) => handleChange(index, e)}
+                      variant="outlined"
+                      fullWidth
+                      type="number"
+                      placeholder="Enter number of connnections"
+                      sx={{
+                        margin: "0",
+                        border: "1px solid rgba(217, 217, 217, 0.0)",
+                        borderRadius: "5px",
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                        "& .MuiOutlinedInput-input": {
+                          padding: "9px 16px",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                      }}
+                    />
+                  </Grid2>
                 )}
 
                 {/* Number of Trips */}
-                {field.connection && field.connection !== "0" && (
+                {/* {field.connection && field.connection !== "0" && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -497,8 +597,46 @@ const BusinessTravelPopup = ({ onClose }) => {
                       }}
                     />
                   </Grid2>
-                )}
-                {renderTextFields(index)}
+                )} */}
+                {/* Connection Fields */}
+                {field.connection === "1" && field.connectionCount && renderTextFields(index)}
+
+                {/* Number of Trips - Show for both cases at appropriate times */}
+                {(
+                  (field.connection === "0") || // For Direct flights
+                  (field.connection === "1" && // For Connection flights
+                    field.connectionCount &&
+                    field.tripDetails.length === parseInt(field.connectionCount))
+                ) && (
+                    <Grid2 item size={4}>
+                      <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
+                        Number of Trips
+                      </Typography>
+                      <TextField
+                        name="numberOfTrips"
+                        value={field.numberOfTrips}
+                        onChange={(e) => handleChange(index, e)}
+                        variant="outlined"
+                        fullWidth
+                        type="number"
+                        placeholder="Enter number of trips"
+                        sx={{
+                          margin: "0",
+                          border: "1px solid rgba(217, 217, 217, 0.0)",
+                          borderRadius: "5px",
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                          "& .MuiOutlinedInput-input": {
+                            padding: "9px 16px",
+                          },
+                          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "rgba(217, 217, 217, 0.30)",
+                          },
+                        }}
+                      />
+                    </Grid2>
+                  )}
               </Grid2>
 
               {/* Show "hello" when the current row is filled */}

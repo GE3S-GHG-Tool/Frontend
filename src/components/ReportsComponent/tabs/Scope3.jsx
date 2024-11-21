@@ -164,9 +164,9 @@ const Scope3 = ({ setActiveTab }) => {
       .slice(0, -1) // Filter out empty or invalid items
       .map((item) => ({
         travel_class: item.travelClass,
-        connections: Number(item.connection),
+        connections: Number(item.connectionCount),
         airports: [item.origin, item.destination, ...item.tripDetails],
-        num_trips: item.connection === "0" ? 1 : Number(item.numberOfTrips),
+        num_trips: item.numberOfTrips === "0" ? 1 : Number(item.numberOfTrips),
       }));
     // console.log("convertedUpstreamArray", convertedUpstreamArray);
     const payload = {
