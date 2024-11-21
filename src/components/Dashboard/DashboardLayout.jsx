@@ -528,8 +528,7 @@ function DashboardLayout() {
                 </defs>
               </svg>
               <span style={{ fontWeight: "500", fontStyle: "Inter" }}>
-                CarbonZero Plan
-               {/* {(user?.organization?.premiumPlan?.name)} */}
+               {user?.organization?.premiumPlan?.name==="FootPrint"?"OffSet":user?.organization?.premiumPlan?.name==="OffSet"?"CarbonZero":""}
               </span>
             </div>
           </div>

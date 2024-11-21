@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getDraftReports } from "../../../api/reports.apis";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import { Button } from "@mui/material";
 
 const DraftList = ({ searchQuery }) => {
   const [reports, setReports] = useState([]);
@@ -69,9 +70,18 @@ const DraftList = ({ searchQuery }) => {
             <th className="member-table-head">Period</th>
             <th className="member-table-head">
               Last Edit
-              <button
+              <Button
                 onClick={() => handleSort("updatedAt")}
-                className="sort-button"
+                disableRipple
+                sx={{
+                  padding: '2px',
+                  '&:hover': {
+                    bgcolor: 'transparent', // Ensures no background on hover
+                  },
+                  '&:focus': {
+                    bgcolor: 'transparent', // Ensures no background on focus
+                  },
+                }}
               >
                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
                   <g id="Icon/CaretDoubleVertical">
@@ -93,7 +103,7 @@ const DraftList = ({ searchQuery }) => {
                     />
                   </g>
                 </svg>
-              </button>
+              </Button>
             </th>
           </tr>
         </thead>

@@ -23,6 +23,7 @@ import OffSetBg from "../../../assets/images/OffSetBg.png";
 import CarbonZeroBg from "../../../assets/images/CarbonZeroBg.png";
 import SubscriptionBg from "../../../assets/images/SubscriptionBg.png";
 import check from "../../../assets/images/check.svg"
+import getStarted from "../../../assets/images/getStarted.svg"
 import forwardArrow from "../../../assets/images/forwardArrow.svg"
 import forwardArrowBlack from "../../../assets/images/forwardArrowBlack.svg"
 import api from '../../../api';
@@ -37,16 +38,16 @@ const ModalContainer = styled(Paper)(({ theme }) => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: '60%',
+  minWidth: '56%',
   backgroundImage: `url(${SubscriptionBg})`,
   backgroundSize: 'auto',
-  paddingLeft:'2rem',
-  paddingRight:'2rem',
+  paddingLeft: '2rem',
+  paddingRight: '2rem',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   color: 'white',
   borderRadius: '12px',
-  minHeight: '90vh',
+  maxHeight: '100vh',
   overflowY: 'auto',
   display: 'flex',
   alignItems: 'center',
@@ -79,7 +80,6 @@ const StyledCard = styled(Card)(({ isactive }) => ({
   backgroundColor: isactive === 'true' ? '#fff' : 'rgba(27, 26, 29, 0.40)',
   height: '100%',
   display: 'flex',
-  // minWidth:'6rem',
   flexDirection: 'column',
   border: '1px solid rgba(255, 255, 255, 0.40)',
   borderRadius: '12px',
@@ -178,7 +178,19 @@ const SubscriptionModal = ({ open, onClose }) => {
     <>
       <ModalOverlay open={open} onClick={onClose}>
         <Fade in={open}>
-          <ModalContainer onClick={(e) => e.stopPropagation()}>
+          <ModalContainer onClick={(e) => e.stopPropagation()} >
+            {/* Close Button */}
+            <IconButton
+              onClick={onClose}
+              sx={{
+                position: 'absolute',
+                right: 10,
+                top: 10,
+                color: 'grey.500'
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
             <ModalContent>
               <Box sx={{ position: 'relative' }}>
                 {/* Title */}
@@ -187,7 +199,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                   sx={{
                     color: 'white',
                     textAlign: 'center',
-                    fontSize: '18px',
+                    fontSize: '14px',
                     fontWeight: '300',
                     mb: 3,
                     mt: 3 // Added top margin
@@ -196,18 +208,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                   Upgrade to OffSet/CarbonZero for enhanced Scope 2 & 3 features.
                 </Typography>
 
-                {/* Close Button */}
-                <IconButton
-                  onClick={onClose}
-                  sx={{
-                    position: 'absolute',
-                    right: -10,
-                    top: 0,
-                    color: 'grey.500'
-                  }}
-                >
-                  <CloseIcon />
-                </IconButton>
+
 
                 {/* Content */}
                 <Box sx={{ mt: 2 }}> {/* Added margin top for better spacing */}
@@ -223,12 +224,12 @@ const SubscriptionModal = ({ open, onClose }) => {
                     <>
                       <Grid
                         // container
-                        spacing={2}
+                        // spacing={currentPlan === "FootPrint" ? 0 : 0}
                         justifyContent="center"
                         alignItems="stretch"
                         sx={{
-                          display:'flex',
-                          gap:'2rem'
+                          display: 'flex',
+                          gap: '1.2rem'
                         }}
                       >
                         {getVisiblePlans().map((planName) => {
@@ -236,7 +237,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                           const plan = plans.find(p => p.name === planName);
 
                           return (
-                            <Grid item xs={12} md={3.6} key={planName}>
+                            <Grid item xs={12} md={3.6} key={planName} sx={{ width: `${currentPlan === "FootPrint" ? '33%' : '60%'}` }}>
                               <StyledCard isactive={isPlanActive.toString()}>
                                 <CardMedia
                                   component="img"
@@ -245,17 +246,18 @@ const SubscriptionModal = ({ open, onClose }) => {
                                   alt={planName}
                                   sx={{
                                     borderRadius: '6px',
-                                    width: "90%",
+                                    width: "96%",
                                     margin: '0 auto'
                                   }}
                                 />
                                 <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                                   <Typography
-                                    variant="h6"
+                                    // variant="h6"
                                     component="div"
                                     gutterBottom
                                     sx={{
                                       color: isPlanActive ? '#000' : '#FFF',
+                                      fontSize:'1rem',
                                       mt: 1 // Added top margin
                                     }}
                                   >
@@ -271,7 +273,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                         mb={1}
                                         sx={{ color: isPlanActive ? '#000' : '#FFF' }}
                                       >
-                                        <Typography sx={{ fontSize: '12px' }}>
+                                        <Typography sx={{ fontSize: '9px' }}>
                                           {desc}
                                         </Typography>
                                       </Box>
@@ -281,9 +283,9 @@ const SubscriptionModal = ({ open, onClose }) => {
                                     <Typography
                                       component="span"
                                       sx={{
-                                        fontSize: '1.8rem',
+                                        fontSize: '2.2rem',
                                         fontWeight: '600',
-                                        color: isPlanActive ? '#000' : '#FFF'
+                                        color: isPlanActive ? '#000' : '#FFF',
                                       }}
                                     >
                                       ${plan ? plan.price : '0'}
@@ -294,14 +296,14 @@ const SubscriptionModal = ({ open, onClose }) => {
                                       sx={{
                                         color: isPlanActive ? '#000' : '#FFF',
                                         ml: 1,
-                                        fontSize: '12px'
+                                        fontSize: '10px'
                                       }}
                                     >
                                       / per anually
                                     </Typography>
                                   </Box>
                                   <hr style={{ background: 'rgba(217, 217, 217, 0.40)', width: '100%', height: '0.5px', margin: '1.5rem 0' }} />
-                                  <div style={{ paddingBottom: '1rem', color: isPlanActive ? "black" : "#fff", fontSize: '12px' }}>Unlock</div>
+                                  <div style={{ paddingBottom: '1rem', color: isPlanActive ? "black" : "#fff", fontSize: '10px' }}>Unlock</div>
                                   <Box mb={3}>
                                     {planFeatures[planName].map((feature, index) => (
                                       <Box
@@ -315,7 +317,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                           sx={{
                                             color: isPlanActive ? '#000' : '#FFF',
                                             ml: 1,
-                                            fontSize: '12px'
+                                            fontSize: '10px'
                                           }}
                                         >
                                           {feature}
@@ -325,26 +327,26 @@ const SubscriptionModal = ({ open, onClose }) => {
                                   </Box>
 
                                   <Box mt="auto">
-                                    <Button
-                                      fullWidth
-                                      disabled={isPlanActive}
-                                      onClick={() => handleUpgrade(planName)}
-                                      sx={{
-                                        background: isPlanActive ? '#fff' : 'radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)',
-                                        boxShadow: isPlanActive ? 'none' : '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset',
-                                        textTransform: 'none',
-                                        fontSize: '12px',
-                                        fontWeight: '300',
-                                        border: isPlanActive ? ' 0.554px solid #2E7B54' : 'none',
-                                        borderRadius: '20px',
-                                        color: isPlanActive ? '#212D2C' : '#fff',
-                                        '&:disabled': {
-                                          color: '#212D2c'
-                                        }
-                                      }}
-                                    >
-                                      {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
-                                    </Button>
+                                  <Button
+                                    fullWidth
+                                    disabled={isPlanActive}
+                                    onClick={() => handleUpgrade(planName)}
+                                    sx={{
+                                      background: isPlanActive ? '#fff' : 'radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)',
+                                      boxShadow: isPlanActive ? 'none' : '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset',
+                                      textTransform: 'none',
+                                      fontSize: '10px',
+                                      fontWeight: '300',
+                                      border: isPlanActive ? ' 0.554px solid #2E7B54' : 'none',
+                                      borderRadius: '20px',
+                                      color: isPlanActive ? '#212D2C' : '#fff',
+                                      '&:disabled': {
+                                        color: '#212D2c'
+                                      }
+                                    }}
+                                  >
+                                    {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
+                                  </Button>
                                   </Box>
                                 </CardContent>
                               </StyledCard>
@@ -352,13 +354,13 @@ const SubscriptionModal = ({ open, onClose }) => {
                           );
                         })}
                       </Grid>
-                      
+
                       <Box
                         sx={{
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
-                          margin: "2rem auto", 
+                          margin: "2rem auto",
                         }}
                       >
                         <Typography
@@ -366,17 +368,17 @@ const SubscriptionModal = ({ open, onClose }) => {
                           sx={{
                             background: "#fff",
                             color: "#000",
-                            padding: "5px 10px", 
+                            padding: "5px 30px",
                             borderRadius: "20px",
                             display: "inline-flex",
                             alignItems: "center",
                             gap: "0.5rem",
-                            fontSize: "14px",
+                            fontSize: "12px",
                             justifyContent: "center",
                           }}
                         >
                           Generate report with only
-                          {currentPlan === "OffSet" ? " scope 2 " : " scope 1 "}
+                          {currentPlan === "OffSet" ? " scope 1 & 2 " : " scope 1 "}
                           emission data{" "}
                           <img src={forwardArrowBlack} width={16} />
                         </Typography>
