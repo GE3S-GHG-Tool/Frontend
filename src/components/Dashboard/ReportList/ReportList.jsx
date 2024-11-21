@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getGeneratedReports } from "../../../api/reports.apis"; // Adjust the path to your API function
 import "./ReportList.css";
 import { useAuth } from "../../../context/AuthContext";
+import { Button } from "@mui/material";
 
 const ReportList = ({ searchQuery }) => {
   const location = useLocation();
@@ -12,7 +13,7 @@ const ReportList = ({ searchQuery }) => {
     key: null,
     direction: "ascending",
   });
-  const {user}=useAuth();
+  const { user } = useAuth();
 
   // Function to fetch generated reports
   const fetchReports = async () => {
@@ -76,9 +77,18 @@ const ReportList = ({ searchQuery }) => {
             <th className="member-table-head">Period</th>
             <th className="member-table-head">
               Generated date
-              <button
+              <Button
                 onClick={() => handleSort("updatedAt")}
-                className="sort-button"
+                disableRipple
+                sx={{
+                  padding: '2px',
+                  '&:hover': {
+                    bgcolor: 'transparent', // Ensures no background on hover
+                  },
+                  '&:focus': {
+                    bgcolor: 'transparent', // Ensures no background on focus
+                  },
+                }}
               >
                 <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
                   <g id="Icon/CaretDoubleVertical">
@@ -100,7 +110,7 @@ const ReportList = ({ searchQuery }) => {
                     />
                   </g>
                 </svg>
-              </button>
+              </Button>
             </th>
             <th className="member-table-head">Scope</th>
           </tr>
