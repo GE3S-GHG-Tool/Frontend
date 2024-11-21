@@ -5,7 +5,7 @@ import "./ReportList.css";
 import { useAuth } from "../../../context/AuthContext";
 import { Button } from "@mui/material";
 
-const ReportList = ({ searchQuery }) => {
+const ReportList = ({ searchQuery}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [reports, setReports] = useState([]); // State to store reports data
