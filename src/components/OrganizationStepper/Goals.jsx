@@ -43,7 +43,7 @@ export default function Goals({ setActiveStep }) {
   //   organizationSustainabilityGoals,
   //   setOrganizationSustainabilityGoals
   // );
-  const [selectedValue, setSelectedValue] = useState("e");
+  const [selectedValue, setSelectedValue] = useState(null);
   const [age, setAge] = useState("");
   const [selectedGoal, setSelectedGoal] = useState("");
   const [error, setError] = useState(null);

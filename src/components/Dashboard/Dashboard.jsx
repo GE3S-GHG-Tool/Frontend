@@ -77,7 +77,7 @@ const Dashboard = () => {
     try {
       const response = await getGeneratedReports(user?.organization?.id); // Call your API function
       if (response?.data?.success) {
-        // setReports(response.data.reports); // Assuming the reports data is in response.data.reports
+        setReports(response.data.reports); // Assuming the reports data is in response.data.reports
       } else {
         console.error("Failed to fetch reports");
       }

@@ -214,7 +214,7 @@ export default function Organization({ activeStep, setActiveStep }) {
         </div>
         <div className="para_select">
           <p>City</p>
-          <FormControl size="small" fullWidth>
+          <FormControl size="small" fullWidth sx={{maxWidth:'200px'}}>
             <Select
               value={organizationCity}
               onChange={handleCityChange}
