@@ -75,9 +75,9 @@ const Dashboard = () => {
   // Function to fetch generated reports
   const fetchReports = async () => {
     try {
-      const response = await getGeneratedReports(user?.organization?.id); // Call your API function
+      const response = await getGeneratedReports(user?.organization?.id);
       if (response?.data?.success) {
-        setReports(response.data.reports); // Assuming the reports data is in response.data.reports
+        setReports(response.data.reports);
       } else {
         console.error("Failed to fetch reports");
       }
@@ -120,7 +120,7 @@ const Dashboard = () => {
       });
 
       if (response.data.success === true) {
-        fetchReports()
+        fetchDraftReports()
       } else {
         console.error('Failed to delete report:', response.statusText);
       }
@@ -129,13 +129,13 @@ const Dashboard = () => {
     }
   };
 
-
   useEffect(() => {
     if (user?.organization?.id) {
-      fetchReports();
       fetchDraftReports();
+      fetchReports();
     }
   }, [user?.organization?.id]);
+
   return (
     <div>
       {draftReports.length > 0 && <h2 className="top_header_draft">Drafts</h2>}
