@@ -28,7 +28,7 @@ export const verifyOtp = async (email, otp, setAuthToken) => {
     }
   } catch (error) {
     console.error("OTP validation error:", error);
-    return { success: false, error: "An error occurred. Please try again." };
+    return { success: false, error: "Invaid OTP. Please try again." };
   }
 };
 
