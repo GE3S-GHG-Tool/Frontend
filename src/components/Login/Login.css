@@ -36,13 +36,13 @@
 .input_login {
   margin-top: 1rem;
 }
-.login-container button {
+/* .login-container button {
   margin-top: 24px;
   padding: 10px !important;
   width: 100%;
   border-radius: 100px;
   background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
-}
+} */
 
 .ge3s_logo {
   display: flex;
@@ -67,7 +67,7 @@
   padding: 1.8vh 2vw;
   background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
   color: #ffffff;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   border: 2px solid transparent;
 }
 
