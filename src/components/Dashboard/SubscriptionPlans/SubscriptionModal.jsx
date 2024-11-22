@@ -88,9 +88,12 @@ const StyledCard = styled(Card)(({ isactive }) => ({
 
 const SubscriptionModal = ({ open, onClose }) => {
   const [plans, setPlans] = useState([]);
+  const [stripePlans, setStripePlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
+  const [processingPayment, setProcessingPayment] = useState(false);
   // const theme = useTheme();
 
   const planImages = {
@@ -113,6 +116,55 @@ const SubscriptionModal = ({ open, onClose }) => {
 
   const planOrder = ['FootPrint', 'OffSet', 'CarbonZero'];
 
+  const planToStripeMapping = {
+    OffSet: 'prod_RG2Gjym3KnW6Pa',
+    CarbonZero: 'prod_RG2H0fVmgliojz'
+  };
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (!open) return;
+
+  //     setLoading(true);
+  //     setError(null);
+
+  //     try {
+
+  //       const [plansResponse, userResponse] = await Promise.all([
+  //         api.get('/subscription_plan/fetch_subscription_plans?type=premium'),
+  //         api.get('/user/onboard-data')
+  //       ]);
+
+  //       if (plansResponse.data.success && plansResponse.data.subscriptionPlans) {
+  //         setPlans(plansResponse.data.subscriptionPlans);
+  //       } else {
+  //         throw new Error('Invalid plans data received');
+  //       }
+
+  //       if (userResponse.data.organization?.premiumPlan?.name) {
+  //         setCurrentPlan(userResponse.data.organization.premiumPlan.name);
+  //       }
+
+  //     } catch (err) {
+  //       console.error('Error fetching data:', err);
+  //       if (err.response) {
+  //         if (err.response.status === 401) {
+  //           setError('Authentication failed. Please try logging in again.');
+  //         } else {
+  //           setError(`Error: ${err.response.data.message || 'Failed to fetch subscription data'}`);
+  //         }
+  //       } else {
+  //         setError('Failed to connect to the server. Please check your internet connection.');
+  //       }
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [open]);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!open) return;
@@ -121,33 +173,37 @@ const SubscriptionModal = ({ open, onClose }) => {
       setError(null);
 
       try {
-
-        const [plansResponse, userResponse] = await Promise.all([
+        const [plansResponse, userResponse, stripePlansResponse] = await Promise.all([
           api.get('/subscription_plan/fetch_subscription_plans?type=premium'),
-          api.get('/user/onboard-data')
+          api.get('/user/onboard-data'),
+          axios.get('https://backend.ghg.ge3s.org/api/payment/fetch_all_products_and_prices')
         ]);
 
+        // Handle your existing plans data
         if (plansResponse.data.success && plansResponse.data.subscriptionPlans) {
-          setPlans(plansResponse.data.subscriptionPlans);
-        } else {
-          throw new Error('Invalid plans data received');
+          const allPlans = [
+            // Add FootPrint as a free plan since it's not in Stripe
+            {
+              name: 'FootPrint',
+              price: 0,
+              isFreePlan: true
+            },
+            ...plansResponse.data.subscriptionPlans
+          ];
+          setPlans(allPlans);
         }
+
+        // Store Stripe plans data
+        setStripePlans(stripePlansResponse.data);
 
         if (userResponse.data.organization?.premiumPlan?.name) {
           setCurrentPlan(userResponse.data.organization.premiumPlan.name);
+          setUserEmail(userResponse.data.email);
         }
 
       } catch (err) {
         console.error('Error fetching data:', err);
-        if (err.response) {
-          if (err.response.status === 401) {
-            setError('Authentication failed. Please try logging in again.');
-          } else {
-            setError(`Error: ${err.response.data.message || 'Failed to fetch subscription data'}`);
-          }
-        } else {
-          setError('Failed to connect to the server. Please check your internet connection.');
-        }
+        setError('Failed to fetch subscription data. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -156,21 +212,69 @@ const SubscriptionModal = ({ open, onClose }) => {
     fetchData();
   }, [open]);
 
+
   const getVisiblePlans = () => {
     if (!currentPlan) return planOrder;
     const currentIndex = planOrder.indexOf(currentPlan);
     return planOrder.slice(currentIndex);
   };
 
+  // const handleUpgrade = async (planName) => {
+  //   if (currentPlan === planName) return;
+  //   try {
+  //     console.log(`Upgrading to ${planName} plan`);
+  //   } catch (err) {
+  //     console.error('Error upgrading plan:', err);
+  //   }
+  // };
+
+
   const handleUpgrade = async (planName) => {
-    if (currentPlan === planName) return;
+    if (currentPlan === planName || planName === 'FootPrint') return;
+
+    setProcessingPayment(true);
     try {
-      console.log(`Upgrading to ${planName} plan`);
+      // Check if we have the user's email
+      if (!userEmail) {
+        throw new Error('User email not found');
+      }
+
+      const stripeProductId = planToStripeMapping[planName];
+      if (!stripeProductId) {
+        throw new Error('Invalid plan selected');
+      }
+      console.log(stripeProductId);
+      const response = await axios.post('https://backend.ghg.ge3s.org/api/payment/create_checkout_session', {
+        customerEmail: userEmail,
+        subscriptionPlanId: stripeProductId,
+        quantity: 1
+      });
+      // Redirect to Stripe Checkout
+      if (response.data.checkoutUrl) {
+        window.location.href = response.data.checkoutUrl;
+      } else {
+        throw new Error('No checkout URL received');
+      }
     } catch (err) {
-      console.error('Error upgrading plan:', err);
+      console.error('Error initiating payment:', err);
+      setError(err.message || 'Failed to initiate payment. Please try again.');
+    } finally {
+      setProcessingPayment(false);
     }
   };
 
+  // Function to get price from Stripe plans data
+  const getPlanPrice = (planName) => {
+    if (planName === 'FootPrint') return 0;
+
+    const stripePlan = stripePlans.find(p => p.name === planName);
+    if (stripePlan && stripePlan.prices && stripePlan.prices.length > 0) {
+      return stripePlan.prices[0].amount;
+    }
+
+    const plan = plans.find(p => p.name === planName);
+    return plan ? plan.price : 0;
+  };
 
   if (!open) return null;
 
@@ -214,7 +318,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                 <Box sx={{ mt: 2 }}> {/* Added margin top for better spacing */}
                   {loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" minHeight={100}>
-                      <CircularProgress />
+                      <CircularProgress sx={{ color: 'white' }} />
                     </Box>
                   ) : error ? (
                     <Alert severity="error" sx={{ mb: 2, backgroundColor: '#2E1534', color: 'white' }}>
@@ -257,7 +361,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                     gutterBottom
                                     sx={{
                                       color: isPlanActive ? '#000' : '#FFF',
-                                      fontSize:'1rem',
+                                      fontSize: '1rem',
                                       mt: 1 // Added top margin
                                     }}
                                   >
@@ -288,7 +392,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                         color: isPlanActive ? '#000' : '#FFF',
                                       }}
                                     >
-                                      ${plan ? plan.price : '0'}
+                                      ${getPlanPrice(planName)}
                                     </Typography>
                                     <Typography
                                       variant="subtitle1"
@@ -327,26 +431,33 @@ const SubscriptionModal = ({ open, onClose }) => {
                                   </Box>
 
                                   <Box mt="auto">
-                                  <Button
-                                    fullWidth
-                                    disabled={isPlanActive}
-                                    onClick={() => handleUpgrade(planName)}
-                                    sx={{
-                                      background: isPlanActive ? '#fff' : 'radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)',
-                                      boxShadow: isPlanActive ? 'none' : '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset',
-                                      textTransform: 'none',
-                                      fontSize: '10px',
-                                      fontWeight: '300',
-                                      border: isPlanActive ? ' 0.554px solid #2E7B54' : 'none',
-                                      borderRadius: '20px',
-                                      color: isPlanActive ? '#212D2C' : '#fff',
-                                      '&:disabled': {
-                                        color: '#212D2c'
-                                      }
-                                    }}
-                                  >
-                                    {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
-                                  </Button>
+                                    <Button
+                                      fullWidth
+                                      disabled={isPlanActive}
+                                      onClick={() => handleUpgrade(planName)}
+                                      sx={{
+                                        background: isPlanActive ? '#fff' : 'radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)',
+                                        boxShadow: isPlanActive ? 'none' : '0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset',
+                                        textTransform: 'none',
+                                        fontSize: '10px',
+                                        fontWeight: '300',
+                                        border: isPlanActive ? ' 0.554px solid #2E7B54' : 'none',
+                                        borderRadius: '20px',
+                                        color: isPlanActive ? '#212D2C' : '#fff',
+                                        '&:disabled': {
+                                          color: '#212D2c'
+                                        }
+                                      }}
+                                    >
+                                      {/* {processingPayment ? (
+                                        <CircularProgress size={20} color="inherit" />
+                                      ) : isPlanActive ? (
+                                        <span style={{ color: 'black' }}>Currently in use</span>
+                                      ) : (
+                                        <>Get Started <img width={15} src={forwardArrow} /></>
+                                      )} */}
+                                      {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
+                                    </Button>
                                   </Box>
                                 </CardContent>
                               </StyledCard>

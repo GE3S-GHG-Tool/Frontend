@@ -40,6 +40,8 @@ import EditReport from "./components/ReportsComponent/EditReport";
 import ScopeDashboard from "./components/Dashboard/ScopeDashboard";
 import SuccessModal from "./components/ChangePassword/SuccessModal";
 import ChangePasswordVerified from "./components/ChangePassword/ChangePasswordVerified";
+import PaymentSuccess from "./components/PaymentPages/PaymentSuccess";
+import PaymentCancelled from "./components/PaymentPages/PaymentCancelled";
 
 function App() {
   return (
@@ -57,7 +59,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/otppage" element={<ResetOTP />} />
           <Route path="/verify-otp" element={<VerifyOTP />} />
-          <Route path="/account-verified" element={<VerifyAccount/>}/>
+          <Route path="/account-verified" element={<VerifyAccount />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/change-password-success" element={<ChangePasswordVerified />} />
           <Route
@@ -93,6 +95,8 @@ function App() {
             path="/emissionreport/:id"
             element={<TotalEmissionsInventoryReport />}
           />
+          <Route path="checkout-success" element={<PaymentSuccess/>} />
+          <Route path="checkout-cancelled" element={<PaymentCancelled/>} />
           {/* Dashboard routes */}
           <Route
             path="/"
