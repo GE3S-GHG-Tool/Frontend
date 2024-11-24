@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Dialog, IconButton, Typography } from "@mui/material";
+import { Button, Dialog, IconButton, Typography } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { styled } from "@mui/system";
+import SubscriptionBg from "../../../../assets/images/SubscriptionBg.png"
 
 const ModalBox = styled("div")({
-  padding: "4rem",
+  padding: "3rem 2rem",
   display: "inline-flex",
   flexDirection: "column",
   alignItems: "center",
@@ -12,11 +13,11 @@ const ModalBox = styled("div")({
   gap: "2rem",
   color: "white",
   borderRadius: "1rem",
-  width: "82.5vh",
-  background:
-    "radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)",
-  boxShadow:
-    "0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset",
+  width: "75vh",
+  background: `url(${SubscriptionBg})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'auto',
 });
 
 const StyledButton = {
@@ -31,6 +32,7 @@ const StyledButton = {
   fontVariant: "unset",
   fontSize: "0.7rem",
   border: "0.554px solid grey",
+  backgroundSize: 'auto',
   background:
     "radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)",
   boxShadow:
@@ -89,8 +91,8 @@ const CustomModal = ({
       }}
       BackdropProps={{
         style: {
-          background: "rgba(194, 194, 194, 0.50)",
-          backdropFilter: "blur(14px)",
+          background: "rgba(0,0,0,0.50)",
+          // backdropFilter: "blur(1px)",
         },
       }}
     >
@@ -102,7 +104,7 @@ const CustomModal = ({
           style={{
             color: "#FFF",
             textAlign: "center",
-            fontSize: "1.4rem",
+            fontSize: "1.2rem",
             padding: "0",
             margin: "0",
             fontWeight: '300'
@@ -150,11 +152,10 @@ const CustomModal = ({
             <div
               style={{
                 display: "flex",
-                width: "16vw",
                 padding: "10px 0",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "12px",
+                gap: "4px",
                 borderRadius: "0.6rem",
                 border: "1px solid #fff",
               }}
@@ -165,7 +166,7 @@ const CustomModal = ({
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  padding: "0px 20px",
+                  padding: "0px 10px",
                   fontSize: "14px",
                 }}
               >
@@ -175,40 +176,43 @@ const CustomModal = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    width:'50%',
                     gap: "8px",
                     border: "1px solid rgba(217, 217, 217, 0.40)",
                     borderRadius: "4px",
                   }}
                 >
-                  <button
+                  <Button
                     onClick={handleDecrement}
-                    style={{
+                    disableRipple
+                    sx={{
                       background: "transparent",
                       outline: "none",
                       border: "none",
                       color: "#fff",
                       fontSize: "16px",
-                      padding: "none",
+                      padding: "2px",
                       verticalAlign: "center",
                     }}
                   >
                     -
-                  </button>
+                  </Button>
                   <Typography>{planCount}</Typography>
-                  <button
+                  <Button
                     onClick={handleIncrement}
-                    style={{
+                    disableRipple
+                    sx={{
                       background: "transparent",
                       outline: "none",
                       border: "none",
                       color: "#fff",
                       fontSize: "16px",
-                      padding: "none",
+                      padding: "2px",
                       verticalAlign: "center",
                     }}
                   >
                     +
-                  </button>
+                  </Button>
                 </div>
               </div>{" "}
               <hr style={{ width: "100%", padding: "0", margin: "0" }} />
@@ -218,7 +222,7 @@ const CustomModal = ({
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  padding: "0px 20px",
+                  padding: "0px 10px",
                   fontSize: "14px",
                 }}
               >

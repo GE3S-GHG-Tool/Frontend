@@ -5,8 +5,7 @@ import { Box, Button } from "@mui/material";
 import { useScope3 } from "../../../context/Scope3Context";
 import { useEffect, useState } from "react";
 import {
-  saveScope1Report,
-  updateScope1Report,
+  saveScope1Report
 } from "../../../api/createReport";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
@@ -129,46 +128,49 @@ const Scope1 = ({ setActiveTab }) => {
           Cancel
         </Button>
 
-        <Button
-          onClick={() => submit("draft")}
-          sx={{
-            borderRadius: "32px",
-            padding: "8px 18px",
-            height: "38px",
-            fontWeight: "400",
-            fontSize: "12px",
-            width: "100px",
-            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-            "&:hover": {
-              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-              boxShadow: "none",
-            },
-            textTransform: "capitalize",
-            color: "#FFFFFF",
-          }}
-        >
-          Next
-        </Button>
-        {/* <Button
-          onClick={() => submit("final")}
-          sx={{
-            borderRadius: "32px",
-            padding: "8px 18px",
-            height: "38px",
-            fontWeight: "400",
-            fontSize: "12px",
-            width: "100px",
-            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-            "&:hover": {
-              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-              boxShadow: "none",
-            },
-            textTransform: "capitalize",
-            color: "#FFFFFF",
-          }}
-        >
-          Generate Report
-        </Button> */}
+        {
+          user?.organization?.premiumPlan?.name === "FootPrint" ?
+            <Button
+              onClick={() => submit("final")}
+              sx={{
+                borderRadius: "32px",
+                padding: "8px 18px",
+                height: "38px",
+                fontWeight: "400",
+                fontSize: "12px",
+                // width: "100px",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                "&:hover": {
+                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                  boxShadow: "none",
+                },
+                textTransform: "capitalize",
+                color: "#FFFFFF",
+              }}
+            >
+              Generate Report
+            </Button> :
+            <Button
+              onClick={() => submit("draft")}
+              sx={{
+                borderRadius: "32px",
+                padding: "8px 18px",
+                height: "38px",
+                fontWeight: "400",
+                fontSize: "12px",
+                width: "100px",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                "&:hover": {
+                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                  boxShadow: "none",
+                },
+                textTransform: "capitalize",
+                color: "#FFFFFF",
+              }}
+            >
+              Next
+            </Button>
+        }
       </Box>
     </div>
   );
