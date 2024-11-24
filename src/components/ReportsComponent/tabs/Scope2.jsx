@@ -100,46 +100,49 @@ const Scope2 = ({ setActiveTab }) => {
           Previous
         </Button>
 
-        <Button
-          onClick={() => submit("draft")}
-          sx={{
-            borderRadius: "32px",
-            padding: "8px 18px",
-            height: "38px",
-            fontWeight: "400",
-            fontSize: "12px",
-            width: "100px",
-            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-            "&:hover": {
-              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-              boxShadow: "none",
-            },
-            textTransform: "capitalize",
-            color: "#FFFFFF",
-          }}
-        >
-          Next
-        </Button>
-        {/* <Button
-          onClick={() => submit("final")}
-          sx={{
-            borderRadius: "32px",
-            padding: "8px 18px",
-            height: "38px",
-            fontWeight: "400",
-            fontSize: "12px",
-            width: "100px",
-            background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-            "&:hover": {
-              background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-              boxShadow: "none",
-            },
-            textTransform: "capitalize",
-            color: "#FFFFFF",
-          }}
-        >
-          Generate Report
-        </Button> */}
+        {
+          user?.organization?.premiumPlan?.name === "OffSet" ?
+            <Button
+              onClick={() => submit("draft")}
+              sx={{
+                borderRadius: "32px",
+                padding: "8px 18px",
+                height: "38px",
+                fontWeight: "400",
+                fontSize: "12px",
+                // width: "100px",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                "&:hover": {
+                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                  boxShadow: "none",
+                },
+                textTransform: "capitalize",
+                color: "#FFFFFF",
+              }}
+            >
+              Generate Report
+            </Button> :
+            <Button
+              onClick={() => submit("draft")}
+              sx={{
+                borderRadius: "32px",
+                padding: "8px 18px",
+                height: "38px",
+                fontWeight: "400",
+                fontSize: "12px",
+                width: "100px",
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                "&:hover": {
+                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                  boxShadow: "none",
+                },
+                textTransform: "capitalize",
+                color: "#FFFFFF",
+              }}
+            >
+              Next
+            </Button>
+        }
       </Box>
     </div>
   );

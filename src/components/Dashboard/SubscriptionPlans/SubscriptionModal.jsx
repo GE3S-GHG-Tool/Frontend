@@ -23,7 +23,6 @@ import OffSetBg from "../../../assets/images/OffSetBg.png";
 import CarbonZeroBg from "../../../assets/images/CarbonZeroBg.png";
 import SubscriptionBg from "../../../assets/images/SubscriptionBg.png";
 import check from "../../../assets/images/check.svg"
-import getStarted from "../../../assets/images/getStarted.svg"
 import forwardArrow from "../../../assets/images/forwardArrow.svg"
 import forwardArrowBlack from "../../../assets/images/forwardArrowBlack.svg"
 import api from '../../../api';
@@ -218,16 +217,6 @@ const SubscriptionModal = ({ open, onClose }) => {
     const currentIndex = planOrder.indexOf(currentPlan);
     return planOrder.slice(currentIndex);
   };
-
-  // const handleUpgrade = async (planName) => {
-  //   if (currentPlan === planName) return;
-  //   try {
-  //     console.log(`Upgrading to ${planName} plan`);
-  //   } catch (err) {
-  //     console.error('Error upgrading plan:', err);
-  //   }
-  // };
-
 
   const handleUpgrade = async (planName) => {
     if (currentPlan === planName || planName === 'FootPrint') return;

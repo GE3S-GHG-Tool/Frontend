@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Typography, Button } from "@mui/material";
 import survey from "../../../../assets/images/survey_page.png";
 import DecarbonizationSurveyQsn from "../surveypages/DecarbonizationSurveyQsn";
-import CustomModal from "../../CustomModal/CustomModal";
 import { useNavigate } from "react-router-dom";
+import CustomModal from "../PlanModal/CustomModal";
 
 const StyledContainer = {
   border: "1px solid #369D9C",
@@ -20,8 +20,9 @@ const Survey = () => {
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleStartSurvey = () => {
-    navigate("/survey1");
+    // navigate("/survey1");
     // setSurveyStarted(true);
+    handleOpenModal();
   };
   return (
     <>
@@ -108,7 +109,7 @@ const Survey = () => {
                     },
                   }}
                   onClick={handleStartSurvey}
-                  // onClick={handleOpenModal}
+                // onClick={handleOpenModal}
                 >
                   <Typography color="#fff" fontSize="12px">
                     Start Survey
