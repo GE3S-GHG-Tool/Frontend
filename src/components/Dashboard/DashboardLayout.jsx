@@ -10,6 +10,10 @@ import { useState, useMemo } from "react";
 import ConfirmationModal from "../Modals/ConfirmationModal";
 import { useAuth } from "../../context/AuthContext";
 import SubscriptionModal from "./SubscriptionPlans/SubscriptionModal";
+import OffSetIcon from "../../assets/images/OffSetIcon.svg"
+import FootPrintIcon from "../../assets/images/FootPrintIcon.svg"
+import CarbonZeroIcon from "../../assets/images/CarbonZeroIcon.svg"
+import constant from "../../constant";
 
 const CustomBadgeIcon = ({ badgeContent, badgeColor, badgeTextColor }) => {
   return (
@@ -451,7 +455,9 @@ function DashboardLayout() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false);
-
+  const [dismissCardVisibility, setDismissCardVisibility] = useState(
+    localStorage.getItem("dismissCardVisibility") === "true"
+  )
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -479,10 +485,12 @@ function DashboardLayout() {
   }, [location.pathname]);
 
   const handleConfirmation = () => {
-    navigate("/login");
-    setOpenModal(false);
     localStorage.removeItem("token");
+    localStorage.removeItem("dismissCardVisibility");
+    setOpenModal(false);
+    navigate("/login");
   };
+
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       <div
@@ -495,40 +503,19 @@ function DashboardLayout() {
         }}
       >
         <div>
-          <div className="sidebar_brand" style={{cursor:'pointer'}}  onClick={() => setOpenSubscriptionModal(true)}>
+          <div className="sidebar_brand" style={{ cursor: 'pointer' }} onClick={() => setOpenSubscriptionModal(true)}>
             <img
               src={logo}
               alt="brand-logo"
               width={140}
               style={{ padding: "12px", margin: "0 auto", display: "flex" }}
             />
-            <div className="side_chip" style={{ margin: '10px auto' }}>
-              <svg width="22" height="22" viewBox="0 0 25 25" fill="none">
-                <path
-                  d="M12.5006 14.5H12.5096M7.50055 22.5H17.5006M4.01855 10.806C3.63055 9.732 3.43655 9.195 3.51855 8.851C3.60955 8.474 3.87755 8.181 4.21955 8.083C4.53255 7.993 5.01955 8.21 5.99255 8.643C6.85255 9.025 7.28255 9.216 7.68755 9.206C8.13355 9.194 8.56155 9.016 8.90255 8.699C9.21255 8.412 9.41955 7.955 9.83455 7.041L10.7495 5.025C11.5135 3.342 11.8956 2.5 12.5006 2.5C13.1056 2.5 13.4876 3.342 14.2516 5.025L15.1666 7.041C15.5816 7.955 15.7895 8.412 16.0985 8.699C16.4395 9.015 16.8686 9.194 17.3135 9.206C17.7176 9.216 18.1485 9.025 19.0085 8.642C19.9825 8.21 20.4685 7.993 20.7815 8.083C21.1235 8.181 21.3916 8.474 21.4816 8.851C21.5646 9.195 21.3706 9.731 20.9816 10.806L19.3145 15.422C18.6005 17.397 18.2445 18.384 17.4976 18.942C16.7506 19.5 15.7856 19.5 13.8566 19.5H11.1445C9.21455 19.5 8.25055 19.5 7.50455 18.942C6.75755 18.384 6.40055 17.397 5.68655 15.422L4.01855 10.806Z"
-                  stroke="url(#paint0_linear_1777_19668)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_1777_19668"
-                    x1="3.5"
-                    y1="2.5"
-                    x2="21.96"
-                    y2="3.03997"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop stopColor="#EABE4B" />
-                    <stop offset="0.333333" stopColor="#EABE4B" />
-                    <stop offset="0.666667" stopColor="#F26D58" />
-                    <stop offset="1" stopColor="#FF300F" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <span style={{ fontWeight: "500", fontStyle: "Inter", fontSize:'0.8rem' }}>
-                {user?.organization?.premiumPlan?.name}
+            <div className="side_chip" style={{ margin: '10px auto', border:user?.organization?.premiumPlan?.name === "FootPrint" ? "2px solid  #028A60" : user?.organization?.premiumPlan?.name === "OffSet" ? "2px solid #6893FF" : "2px solid #EABE4B" }}>
+              <img src={
+                user?.organization?.premiumPlan?.name === "FootPrint" ? FootPrintIcon : user?.organization?.premiumPlan?.name === "OffSet" ? OffSetIcon : CarbonZeroIcon
+              } />
+              <span style={{ fontWeight: "500", fontStyle: "Inter", fontSize: '0.8rem' }}>
+                {user?.organization?.premiumPlan?.name} Plan
               </span>
             </div>
           </div>
@@ -602,7 +589,7 @@ function DashboardLayout() {
             ))}
           </div>
         </div>
-        {(user?.organization?.premiumPlan?.name) !== "CarbonZero" &&
+        {(user?.organization?.premiumPlan?.name) !== "CarbonZero" && dismissCardVisibility !== true &&
           <div className="subs_card">
             <div>
               <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
@@ -665,6 +652,10 @@ function DashboardLayout() {
                   padding: "0",
                   margin: "0 0",
                   cursor: "pointer",
+                }}
+                onClick={() => {
+                  localStorage.setItem("dismissCardVisibility", true);
+                  setDismissCardVisibility(true);
                 }}
               >
                 Dismiss
@@ -738,7 +729,7 @@ function DashboardLayout() {
               }}
             >
               <Avatar
-                src={avatar}
+                src={`${constant.IMG_URL}/${user?.profileImage}`}
                 alt="User Img"
                 style={{ width: "1.9rem", height: "1.9rem" }}
               />

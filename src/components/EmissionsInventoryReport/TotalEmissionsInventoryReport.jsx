@@ -1264,7 +1264,6 @@ const TotalEmissionsInventoryReport = () => {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {/* <ScopeSection elevation={3} isLocked={isScope2Locked}> */}
             <div
               style={{
                 display: "flex",
@@ -1279,23 +1278,12 @@ const TotalEmissionsInventoryReport = () => {
                 type="scope-2"
               />
             </div>
-            {/* </ScopeSection> */}
-            {/* {isScope2Locked && (
-              <LockOverlay>
-                <LockIcon sx={{ fontSize: 40 }} />
-                <Typography variant="h6">
-                  Upgrade to OffSet Plan to unlock Scope 2 insights
-                </Typography>
-              </LockOverlay>
-            )} */}
           </div>
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
-            {/* <ScopeSection elevation={3} isLocked={isScope3Locked}> */}
             <div
               style={{
-                //  display: "flex",
                 borderRadius: "16px",
               }}
             >
@@ -1605,15 +1593,6 @@ const TotalEmissionsInventoryReport = () => {
                 </div>
               </div>
             </div>
-            {/* </ScopeSection> */}
-            {/* {isScope3Locked && (
-              <LockOverlay>
-                <LockIcon sx={{ fontSize: 40 }} />
-                <Typography variant="h6">
-                  Upgrade to CarbonZero Plan to unlock Scope 3 insights
-                </Typography>
-              </LockOverlay>
-            )} */}
           </div>
         </div>
       </div>
