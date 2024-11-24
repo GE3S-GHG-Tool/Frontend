@@ -27,6 +27,46 @@ const NotificationMenu = ({ anchorEl, open, onClose }) => {
             time: "03:00 PM",
             action: "View Facility",
             type: "AU"
+        },
+        {
+            id: 4,
+            title: "New Facility Added: Jaipur",
+            description: "The new facility Jaipur, has been successfully added to your account. You can now begin tracking and reporting emissions for this location.",
+            time: "03:00 PM",
+            action: "View Facility",
+            type: "AU"
+        },
+        {
+            id: 5,
+            title: "New Facility Added: Jaipur",
+            description: "The new facility Jaipur, has been successfully added to your account. You can now begin tracking and reporting emissions for this location.",
+            time: "03:00 PM",
+            action: "View Facility",
+            type: "AU"
+        },
+        {
+            id: 6,
+            title: "New Facility Added: Jaipur",
+            description: "The new facility Jaipur, has been successfully added to your account. You can now begin tracking and reporting emissions for this location.",
+            time: "03:00 PM",
+            action: "View Facility",
+            type: "AU"
+        },
+        {
+            id: 7,
+            title: "New Facility Added: Jaipur",
+            description: "The new facility Jaipur, has been successfully added to your account. You can now begin tracking and reporting emissions for this location.",
+            time: "03:00 PM",
+            action: "View Facility",
+            type: "AU"
+        },
+        {
+            id: 8,
+            title: "New Facility Added: Jaipur",
+            description: "The new facility Jaipur, has been successfully added to your account. You can now begin tracking and reporting emissions for this location.",
+            time: "03:00 PM",
+            action: "View Facility",
+            type: "AU"
         }
     ];
 
@@ -41,7 +81,8 @@ const NotificationMenu = ({ anchorEl, open, onClose }) => {
                     width: 500,
                     maxHeight: 450,
                     borderRadius: '8px',
-                    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.08)'
+                    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.08)',
+                    overflow:'hidden'
                 }
             }}
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}

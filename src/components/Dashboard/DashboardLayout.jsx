@@ -714,20 +714,13 @@ function DashboardLayout() {
               gap: "2rem",
             }}
           >
-            {/* <IconButton color="inherit" sx={{ position: "relative" }}>
-              <CustomBadgeIcon
-                badgeContent={5}
-                badgeColor="red"
-                badgeTextColor="white"
-              />
-            </IconButton> */}
             <IconButton
               color="inherit"
               sx={{ position: "relative" }}
               onClick={(e) => setNotificationAnchorEl(e.currentTarget)}
             >
               <CustomBadgeIcon
-                badgeContent={3}
+                badgeContent={8}
                 badgeColor="red"
                 badgeTextColor="white"
               />
