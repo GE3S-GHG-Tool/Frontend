@@ -103,7 +103,7 @@ const Scope2 = ({ setActiveTab }) => {
         {
           user?.organization?.premiumPlan?.name === "OffSet" ?
             <Button
-              onClick={() => submit("draft")}
+              onClick={() => submit("final")}
               sx={{
                 borderRadius: "32px",
                 padding: "8px 18px",
