@@ -14,6 +14,7 @@ import OffSetIcon from "../../assets/images/OffSetIcon.svg"
 import FootPrintIcon from "../../assets/images/FootPrintIcon.svg"
 import CarbonZeroIcon from "../../assets/images/CarbonZeroIcon.svg"
 import constant from "../../constant";
+import NotificationMenu from "./NoficationMenu";
 
 const CustomBadgeIcon = ({ badgeContent, badgeColor, badgeTextColor }) => {
   return (
@@ -458,6 +459,7 @@ function DashboardLayout() {
   const [dismissCardVisibility, setDismissCardVisibility] = useState(
     localStorage.getItem("dismissCardVisibility") === "true"
   )
+  const [notificationAnchorEl, setNotificationAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -510,7 +512,7 @@ function DashboardLayout() {
               width={140}
               style={{ padding: "12px", margin: "0 auto", display: "flex" }}
             />
-            <div className="side_chip" style={{ margin: '10px auto', border:user?.organization?.premiumPlan?.name === "FootPrint" ? "2px solid  #028A60" : user?.organization?.premiumPlan?.name === "OffSet" ? "2px solid #6893FF" : "2px solid #EABE4B" }}>
+            <div className="side_chip" style={{ margin: '10px auto', border: user?.organization?.premiumPlan?.name === "FootPrint" ? "2px solid  #028A60" : user?.organization?.premiumPlan?.name === "OffSet" ? "2px solid #6893FF" : "2px solid #EABE4B" }}>
               <img src={
                 user?.organization?.premiumPlan?.name === "FootPrint" ? FootPrintIcon : user?.organization?.premiumPlan?.name === "OffSet" ? OffSetIcon : CarbonZeroIcon
               } />
@@ -712,13 +714,30 @@ function DashboardLayout() {
               gap: "2rem",
             }}
           >
-            <IconButton color="inherit" sx={{ position: "relative" }}>
+            {/* <IconButton color="inherit" sx={{ position: "relative" }}>
               <CustomBadgeIcon
                 badgeContent={5}
                 badgeColor="red"
                 badgeTextColor="white"
               />
+            </IconButton> */}
+            <IconButton
+              color="inherit"
+              sx={{ position: "relative" }}
+              onClick={(e) => setNotificationAnchorEl(e.currentTarget)}
+            >
+              <CustomBadgeIcon
+                badgeContent={3}
+                badgeColor="red"
+                badgeTextColor="white"
+              />
             </IconButton>
+
+            <NotificationMenu
+              anchorEl={notificationAnchorEl}
+              open={Boolean(notificationAnchorEl)}
+              onClose={() => setNotificationAnchorEl(null)}
+            />
             <div
               onClick={handleClick}
               style={{
