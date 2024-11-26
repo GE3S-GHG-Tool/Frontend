@@ -42,6 +42,7 @@ import SuccessModal from "./components/ChangePassword/SuccessModal";
 import ChangePasswordVerified from "./components/ChangePassword/ChangePasswordVerified";
 import PaymentSuccess from "./components/PaymentPages/PaymentSuccess";
 import PaymentCancelled from "./components/PaymentPages/PaymentCancelled";
+import PaymentSuccessSurvey from "./components/PaymentPages/PaymentSuccessSurvey";
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function App() {
             element={<TotalEmissionsInventoryReport />}
           />
           <Route path="checkout-success" element={<PaymentSuccess/>} />
+          <Route path="checkout-success-survey" element={<PaymentSuccessSurvey/>} />
           <Route path="checkout-cancelled" element={<PaymentCancelled/>} />
           {/* Dashboard routes */}
           <Route
