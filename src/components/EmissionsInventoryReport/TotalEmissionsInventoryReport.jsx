@@ -1262,7 +1262,7 @@ const TotalEmissionsInventoryReport = () => {
             </div>
           </div>
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            style={{ display: "flex", flexDirection: "column" }}
           >
             <div
               style={{

@@ -241,7 +241,8 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 flexDirection: "column",
                 gap: "0.8rem",
                 justifyContent: "space-between",
-                paddingTop:'1rem'
+                // paddingTop:'1rem',
+                height:'100%'
               }}
             >
               {data.map((item, index) => (
