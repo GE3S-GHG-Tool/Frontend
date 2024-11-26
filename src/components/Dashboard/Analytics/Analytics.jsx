@@ -51,8 +51,10 @@ const Analytics = () => {
   };
 
   useEffect(() => {
-    fetchAllReports();
-  }, []);
+    if (user?.organization?.id) {  // Only fetch if we have the organization ID
+      fetchAllReports();
+    }
+  }, [user]);
 
   useEffect(() => {
     if (reportid) fetchAnalytics(reportid);
