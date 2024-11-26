@@ -236,8 +236,10 @@ const SubscriptionModal = ({ open, onClose }) => {
       const response = await axios.post('https://backend.ghg.ge3s.org/api/payment/create_checkout_session', {
         customerEmail: userEmail,
         subscriptionPlanId: stripeProductId,
-        quantity: 1
+        quantity: 1,
+        url:'checkout-success'
       });
+      
       // Redirect to Stripe Checkout
       if (response.data.checkoutUrl) {
         window.location.href = response.data.checkoutUrl;

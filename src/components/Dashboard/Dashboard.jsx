@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { FormControl, MenuItem, Select } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import StartReportModal from "../Modals/StartReportModal";
@@ -15,7 +14,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [openModal, setOpenModal] = useState(false);
-  const [year, setYear] = useState("2024");
+  const [timePeriod, setTimePeriod] = useState("Monthly");
   const [draftReports, setDraftReports] = useState([]);
   const [reports, setReports] = useState([]);
   const [carbonTrackerData, setCarbonTrackerData] = useState([]);
@@ -33,36 +32,53 @@ const Dashboard = () => {
     }
   };
 
+  const transformData = (emissions, period) => {
+    switch (period) {
+      case "Monthly":
+        return emissions.map(item => ({
+          quarter: new Date(item.period).toLocaleString('default', { month: 'long' }),
+          Scope1: item.scope1Emissions || 0,
+          Scope2: item.scope2Emissions || 0,
+          Scope3: item.scope3Emissions || 0
+        }));
+      case "Quartely":
+        return emissions.map(item => ({
+          quarter: item.period,
+          Scope1: item.scope1Emissions || 0,
+          Scope2: item.scope2Emissions || 0,
+          Scope3: item.scope3Emissions || 0
+        }));
+      case "Half-Yearly":
+        return emissions.map(item => ({
+          quarter: item.period,
+          Scope1: item.scope1Emissions || 0,
+          Scope2: item.scope2Emissions || 0,
+          Scope3: item.scope3Emissions || 0
+        }));
+      case "Yearly":
+        return emissions.map(item => ({
+          quarter: item.period.replace("yearly ", ""),
+          Scope1: item.scope1Emissions || 0,
+          Scope2: item.scope2Emissions || 0,
+          Scope3: item.scope3Emissions || 0
+        }));
+      default:
+        return [];
+    }
+  };
+
   const fetchCarbonTrackerData = async () => {
     try {
       const response = await api.get(`report/carbon_tracker`, {
         params: {
           organizationId: user?.organization?.id,
-          year: year
+          time_period: timePeriod
         }
       });
+
       if (response.data.success) {
-        const monthsData = new Array(12).fill(null).map((_, index) => {
-          const month = new Date(year, index).toLocaleString('default', { month: 'long' });
-          return {
-            quarter: month,
-            Scope1: 0,
-            Scope2: 0,
-            Scope3: 0
-          };
-        });
-
-        response.data.emissions.forEach(item => {
-          const monthIndex = new Date(item.month).getMonth();
-          monthsData[monthIndex] = {
-            quarter: monthsData[monthIndex].quarter,
-            Scope1: item.scope1Emissions || 0,
-            Scope2: item.scope2Emissions || 0,
-            Scope3: item.scope3Emissions || 0
-          };
-        });
-
-        setCarbonTrackerData(monthsData);
+        const transformedData = transformData(response.data.emissions, timePeriod);
+        setCarbonTrackerData(transformedData);
       } else {
         console.error("Failed to fetch carbon tracker data");
       }
@@ -70,7 +86,6 @@ const Dashboard = () => {
       console.error("Error fetching carbon tracker data:", error);
     }
   };
-
 
   // Function to fetch generated reports
   const fetchReports = async () => {
@@ -90,7 +105,7 @@ const Dashboard = () => {
     if (user?.organization?.id) {  // Add this check
       fetchCarbonTrackerData();
     }
-  }, [year, user?.organization?.id]);  // Add user?.organization?.id to dependencies
+  }, [timePeriod, user?.organization?.id]);  // Add user?.organization?.id to dependencies
 
   useEffect(() => {
     const keysToRemove = [
@@ -407,11 +422,11 @@ const Dashboard = () => {
           <div>
             <div className="chart_header_box">
               <h3 className="dashboard_reports_header">Carbon Tracker</h3>
-              <FormControl sx={{ minWidth: 100 }} size="small">
+              <FormControl sx={{ minWidth: 120 }} size="small">
                 <Select
-                  labelId="fiscal-year-label"
-                  id="fiscal-year-select"
-                  value={year}
+                  labelId="time-period-label"
+                  id="time-period-select"
+                  value={timePeriod}
                   sx={{
                     fontSize: "0.75rem",
                     padding: "4px",
@@ -442,12 +457,12 @@ const Dashboard = () => {
                       padding: "0 8px",
                     },
                   }}
-                  onChange={(event) => setYear(event.target.value)}
+                  onChange={(event) => setTimePeriod(event.target.value)}
                 >
-                  <MenuItem value="2021">2021</MenuItem>
-                  <MenuItem value="2022">2022</MenuItem>
-                  <MenuItem value="2023">2023</MenuItem>
-                  <MenuItem value="2024">2024</MenuItem>
+                  <MenuItem value="Monthly">Monthly</MenuItem>
+                  <MenuItem value="Quartely">Quarterly</MenuItem>
+                  <MenuItem value="Half-Yearly">Half-Yearly</MenuItem>
+                  <MenuItem value="Yearly">Yearly</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -462,20 +477,20 @@ const Dashboard = () => {
               </div>
             </div>
           </div> :
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 0', flexDirection:'column' }}>
-              <div>
-                <img src={noReports} />
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center',flexDirection:'column' }}>
-                <p style={{margin:'0px 0px 30px 0px', fontSize:'12px', color:' #808080'}}>No data available to display in the Carbon Tracker at this time.</p>
-                <button onClick={() => setOpenModal(true)} style={{
-                  background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
-                  color: '#fff',
-                  border: 'none',
-                  padding: '12px 2.4rem',
-                  margin: '0 auto', fontSize:'0.8rem'
-                }}>Create GHG Report</button>
-              </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 0', flexDirection: 'column' }}>
+            <div>
+              <img src={noReports} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+              <p style={{ margin: '0px 0px 30px 0px', fontSize: '12px', color: ' #808080' }}>No data available to display in the Carbon Tracker at this time.</p>
+              <button onClick={() => setOpenModal(true)} style={{
+                background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
+                color: '#fff',
+                border: 'none',
+                padding: '12px 2.4rem',
+                margin: '0 auto', fontSize: '0.8rem'
+              }}>Create GHG Report</button>
+            </div>
           </div>
       }
       <StartReportModal open={openModal} setOpenModal={setOpenModal} />

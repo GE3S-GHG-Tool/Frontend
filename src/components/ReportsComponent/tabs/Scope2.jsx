@@ -7,11 +7,12 @@ import { useAuth } from "../../../context/AuthContext";
 import { saveScope2Report } from "../../../api/createReport";
 import { useEffect } from "react";
 import { getscope2draft } from "../../../api/drafts";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Scope2 = ({ setActiveTab }) => {
   const { scope2Data, user, setScope2Data } = useAuth();
   const reportid = localStorage.getItem("reportId");
+  const navigate = useNavigate();
 
   const submit = async (type) => {
     const payload = {
@@ -53,7 +54,7 @@ const Scope2 = ({ setActiveTab }) => {
       localStorage.removeItem("consumption");
       localStorage.removeItem("processEmissionData");
       localStorage.removeItem("scope2Data");
-      setActiveTab("/");
+      navigate("/");
     }
   };
 

@@ -5,7 +5,7 @@ import "./ReportList.css";
 import { useAuth } from "../../../context/AuthContext";
 import { Button } from "@mui/material";
 
-const ReportList = ({ searchQuery}) => {
+const ReportList = ({ searchQuery }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [reports, setReports] = useState([]); // State to store reports data
@@ -126,9 +126,9 @@ const ReportList = ({ searchQuery}) => {
               <td>{report.time_period}</td>
               <td>{new Date(report.updatedAt).toLocaleDateString()}</td>
               <td className="scope_tags">
-                <span className="scope_tag1">S1</span>
-                <span className="scope_tag2">S2</span>
-                <span className="scope_tag3">S3</span>
+                {report?.scope1 && <span className="scope_tag1">S1</span>}
+                {report?.scope2 && <span className="scope_tag2">S2</span>}
+                {report?.scope3 && <span className="scope_tag3">S3</span>}
               </td>
             </tr>
           ))}

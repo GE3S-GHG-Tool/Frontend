@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Wrapper from "../Wrapper/Wrapper";
 import api from '../../api';
 
-const PaymentSuccess = () => {
+const PaymentSuccessSurvey = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
           'https://backend.ghg.ge3s.org/api/payment/subscription/update_oragnization',
           {
             sessionId: sessionId,
-            plan_type: 'premiumPlan'
+            plan_type: 'addOnPlan'
           }
         );
         console.log('Subscription updated successfully:', response.data);
@@ -32,7 +32,7 @@ const PaymentSuccess = () => {
   }, [sessionId]);
 
   const handleContinue = () => {
-    navigate("/");
+    navigate("/survey");
   };
 
   return (
@@ -90,4 +90,4 @@ const PaymentSuccess = () => {
   );
 };
 
-export default PaymentSuccess;
+export default PaymentSuccessSurvey;
