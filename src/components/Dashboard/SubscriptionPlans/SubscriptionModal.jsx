@@ -37,7 +37,7 @@ const ModalContainer = styled(Paper)(({ theme }) => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  minWidth: '56%',
+  minWidth: '60%',
   backgroundImage: `url(${SubscriptionBg})`,
   backgroundSize: 'auto',
   paddingLeft: '2rem',
@@ -83,6 +83,7 @@ const StyledCard = styled(Card)(({ isactive }) => ({
   border: '1px solid rgba(255, 255, 255, 0.40)',
   borderRadius: '12px',
   padding: "20px 14px",
+  width:'260px'
 }));
 
 const SubscriptionModal = ({ open, onClose }) => {
@@ -119,50 +120,6 @@ const SubscriptionModal = ({ open, onClose }) => {
     OffSet: 'prod_RG2Gjym3KnW6Pa',
     CarbonZero: 'prod_RG2H0fVmgliojz'
   };
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (!open) return;
-
-  //     setLoading(true);
-  //     setError(null);
-
-  //     try {
-
-  //       const [plansResponse, userResponse] = await Promise.all([
-  //         api.get('/subscription_plan/fetch_subscription_plans?type=premium'),
-  //         api.get('/user/onboard-data')
-  //       ]);
-
-  //       if (plansResponse.data.success && plansResponse.data.subscriptionPlans) {
-  //         setPlans(plansResponse.data.subscriptionPlans);
-  //       } else {
-  //         throw new Error('Invalid plans data received');
-  //       }
-
-  //       if (userResponse.data.organization?.premiumPlan?.name) {
-  //         setCurrentPlan(userResponse.data.organization.premiumPlan.name);
-  //       }
-
-  //     } catch (err) {
-  //       console.error('Error fetching data:', err);
-  //       if (err.response) {
-  //         if (err.response.status === 401) {
-  //           setError('Authentication failed. Please try logging in again.');
-  //         } else {
-  //           setError(`Error: ${err.response.data.message || 'Failed to fetch subscription data'}`);
-  //         }
-  //       } else {
-  //         setError('Failed to connect to the server. Please check your internet connection.');
-  //       }
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [open]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -306,7 +263,7 @@ const SubscriptionModal = ({ open, onClose }) => {
 
 
                 {/* Content */}
-                <Box sx={{ mt: 2 }}> {/* Added margin top for better spacing */}
+                <Box sx={{ mt: 2, mb:3}}> {/* Added margin top for better spacing */}
                   {loading ? (
                     <Box display="flex" justifyContent="center" alignItems="center" minHeight={100}>
                       <CircularProgress sx={{ color: 'white' }} />
@@ -324,7 +281,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                         alignItems="stretch"
                         sx={{
                           display: 'flex',
-                          gap: '1.2rem'
+                          gap: '1.4rem',
                         }}
                       >
                         {getVisiblePlans().map((planName) => {
@@ -332,7 +289,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                           const plan = plans.find(p => p.name === planName);
 
                           return (
-                            <Grid item xs={12} md={3.6} key={planName} sx={{ width: `${currentPlan === "FootPrint" ? '33%' : '60%'}` }}>
+                            <Grid item xs={12} md={3.6} key={planName} sx={{ width: `${currentPlan === "FootPrint" ? '33%' : '60%'}`}}>
                               <StyledCard isactive={isPlanActive.toString()}>
                                 <CardMedia
                                   component="img"
@@ -341,7 +298,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                   alt={planName}
                                   sx={{
                                     borderRadius: '6px',
-                                    width: "96%",
+                                    width: "100%",
                                     margin: '0 auto'
                                   }}
                                 />
@@ -359,7 +316,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                     {planName}
                                   </Typography>
 
-                                  <Box mb={3}>
+                                  <Box mb={2}>
                                     {planDesc[planName].map((desc, index) => (
                                       <Box
                                         key={index}
@@ -397,7 +354,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                                       / per anually
                                     </Typography>
                                   </Box>
-                                  <hr style={{ background: 'rgba(217, 217, 217, 0.40)', width: '100%', height: '0.5px', margin: '1.5rem 0' }} />
+                                  <hr style={{ background: 'rgba(217, 217, 217, 0.40)', width: '100%', height: '0.5px', margin: '1rem 0' }} />
                                   <div style={{ paddingBottom: '1rem', color: isPlanActive ? "black" : "#fff", fontSize: '10px' }}>Unlock</div>
                                   <Box mb={3}>
                                     {planFeatures[planName].map((feature, index) => (
@@ -440,13 +397,6 @@ const SubscriptionModal = ({ open, onClose }) => {
                                         }
                                       }}
                                     >
-                                      {/* {processingPayment ? (
-                                        <CircularProgress size={20} color="inherit" />
-                                      ) : isPlanActive ? (
-                                        <span style={{ color: 'black' }}>Currently in use</span>
-                                      ) : (
-                                        <>Get Started <img width={15} src={forwardArrow} /></>
-                                      )} */}
                                       {isPlanActive ? <span style={{ color: 'black' }}>Currently in use</span> : 'Get Started'}&nbsp; {isPlanActive ? "" : <img width={15} src={forwardArrow} />}
                                     </Button>
                                   </Box>
@@ -457,7 +407,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                         })}
                       </Grid>
 
-                      <Box
+                      {/* <Box
                         sx={{
                           display: "flex",
                           justifyContent: "center",
@@ -484,7 +434,7 @@ const SubscriptionModal = ({ open, onClose }) => {
                           emission data{" "}
                           <img src={forwardArrowBlack} width={16} />
                         </Typography>
-                      </Box>
+                      </Box> */}
                     </>
                   )}
                 </Box>
