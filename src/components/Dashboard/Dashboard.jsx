@@ -15,11 +15,14 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [openModal, setOpenModal] = useState(false);
-  const [timePeriod, setTimePeriod] = useState("Monthly");
+  const [timePeriod, setTimePeriod] = useState("Yearly");
   const [draftReports, setDraftReports] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [reports, setReports] = useState([]);
   const [carbonTrackerData, setCarbonTrackerData] = useState([]);
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState(currentYear);
+  const years = Array.from({ length: 6 }, (_, index) => currentYear - index);
 
   const fetchDraftReports = async () => {
     try {
@@ -74,7 +77,8 @@ const Dashboard = () => {
       const response = await api.get(`report/carbon_tracker`, {
         params: {
           organizationId: user?.organization?.id,
-          time_period: timePeriod
+          time_period: timePeriod,
+          year:year
         }
       });
 
@@ -110,7 +114,7 @@ const Dashboard = () => {
     if (user?.organization?.id) {  // Add this check
       fetchCarbonTrackerData();
     }
-  }, [timePeriod, user?.organization?.id]);  // Add user?.organization?.id to dependencies
+  }, [year, timePeriod, user?.organization?.id]);  // Add user?.organization?.id to dependencies
 
   useEffect(() => {
     const keysToRemove = [
@@ -161,7 +165,7 @@ const Dashboard = () => {
       {draftReports.length > 0 && <h2 className="top_header_draft">Drafts</h2>}
       <div className="dashboard_top_cards">
         <div onClick={() => setOpenModal(true)} className="create_report_cta">
-         <img src={createReport} alt="create report"/>
+          <img src={createReport} alt="create report" />
           <p>Create GHG Report</p>
         </div>
         <div>
@@ -189,7 +193,54 @@ const Dashboard = () => {
           <div>
             <div className="chart_header_box">
               <h3 className="dashboard_reports_header">Carbon Tracker</h3>
-              <FormControl sx={{ minWidth: 120 }} size="small">
+              <FormControl sx={{ minWidth: 120, display: 'flex', gap: '10px', flexDirection: 'row' }} size="small">
+                <Select
+                  labelId="year-label"
+                  id="year-select"
+                  value={year}
+                  sx={{
+                    fontSize: "0.75rem",
+                    padding: "4px",
+                    height: "35px",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#D9D9D9",
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#f7f7f7",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#f7f7f7",
+                    },
+                    "& .MuiSelect-select": {
+                      padding: "6px 10px",
+                      fontSize: "0.75rem",
+                    },
+                  }}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        maxHeight: 150,
+                      },
+                    },
+                  }}
+                  inputProps={{
+                    sx: {
+                      padding: "0 8px",
+                    },
+                  }}
+                  onChange={(event) => setYear(event.target.value)}
+                >
+                  {years.map((yearOption) => (
+                    <MenuItem
+                      key={yearOption}
+                      value={yearOption}
+                      className="text-xs p-2"
+                    >
+                      {yearOption}
+                    </MenuItem>
+                  ))}
+
+                </Select>
                 <Select
                   labelId="time-period-label"
                   id="time-period-select"

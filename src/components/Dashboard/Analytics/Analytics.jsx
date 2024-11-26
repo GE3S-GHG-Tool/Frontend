@@ -16,7 +16,7 @@ import {
 } from "../../../api/reports.apis";
 import { useAuth } from "../../../context/AuthContext"
 import analytics from "../../../assets/images/analytics.svg"
-
+import SubscriptionModal from "../SubscriptionPlans/SubscriptionModal";
 
 const Analytics = () => {
   const [scopeView, setScopeView] = useState(false);
@@ -24,6 +24,7 @@ const Analytics = () => {
   const [reportid, setReportId] = useState("");
   const [reports, setReports] = useState([]);
   const { user } = useAuth();
+  const [openSubscriptionModal, setOpenSubscriptionModal] = useState(false);
   const handleView = () => {
     setScopeView((prev) => !prev);
   };
@@ -66,7 +67,7 @@ const Analytics = () => {
       {
         user?.organization?.premiumPlan?.name === "FootPrint" ? (
           <Box sx={{
-            height: '80vh',
+            height: '75vh',
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
@@ -100,6 +101,7 @@ const Analytics = () => {
                     Unlock valuable insights into your greenhouse gas emissions with our premium analytics plan. Gain full visibility and detailed reports to help you drive sustainability and compliance efforts effectively.
                   </p>
                   <button
+                    onClick={() => setOpenSubscriptionModal(true)}
                     style={{
                       background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
                       color: '#fff',
@@ -114,7 +116,12 @@ const Analytics = () => {
                 </div>
               </div>
             </Box>
+            <SubscriptionModal
+              open={openSubscriptionModal}
+              onClose={() => setOpenSubscriptionModal(false)}
+            />
           </Box>
+
         ) :
           <>
             {

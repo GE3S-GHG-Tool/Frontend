@@ -9,6 +9,7 @@ import { localPoint } from "@visx/event";
 const colors = ["#B1E9D8", "#AFC6FF", "#FFC8BF"];
 const background = "#fff";
 const defaultMargin = { top: 40, right: 40, bottom: 0, left: 40 };
+const MAX_BAR_WIDTH = 80; // Added constant for max bar width
 
 const getQuarter = (d) => d.quarter;
 
@@ -46,10 +47,8 @@ const FootprintChart = ({
       Scope3: 0,
     };
 
-    // Create array of 12 empty periods
     const fullData = Array(12).fill(emptyPeriod);
 
-    // Fill in actual data at the start
     data.forEach((item, index) => {
       if (index < 12) {
         fullData[index] = item;
@@ -75,26 +74,35 @@ const FootprintChart = ({
 
   if (width < 10) return null;
 
-  // Scales
+  const xMax = width - margin.left - margin.right;
+  const yMax = height - margin.top - 30;
+
+  // Modified dateScale to limit bar width
   const dateScale = scaleBand({
     domain: normalizedData.map(getQuarter),
-    padding: 0.2, // Reduced padding to make bars fit better
+    padding: 0.2,
+    range: [0, xMax],
   });
 
-  const yMax = height - margin.top - 30;
+  // Ensure bar width doesn't exceed MAX_BAR_WIDTH
+  const calculatedBarWidth = Math.min(dateScale.bandwidth(), MAX_BAR_WIDTH);
+  const totalBarsWidth = calculatedBarWidth * normalizedData.length;
+  const extraSpace = xMax - totalBarsWidth;
+  const startOffset = Math.max(0, extraSpace / 2);
+
+  // Adjust dateScale range to center the bars
+  dateScale.range([startOffset, startOffset + totalBarsWidth]);
+
   const temperatureScale = scaleLinear({
-    domain: [0, 10000], // Changed to max 8000
+    domain: [0, 10000],
     nice: true,
+    range: [yMax, 0],
   });
 
   const colorScale = scaleOrdinal({
     domain: ["Scope1", "Scope2", "Scope3"],
     range: colors,
   });
-
-  const xMax = width - margin.left - margin.right; // Added margin.right to calculation
-  dateScale.rangeRound([0, xMax]);
-  temperatureScale.range([yMax, 0]);
 
   return (
     <div ref={box} style={{ position: "relative", width: "100%" }}>
@@ -133,9 +141,11 @@ const FootprintChart = ({
               barStacks.map((barStack) =>
                 barStack.bars.map((bar) => {
                   const isTopBar = barStack.index === 2;
-                  const barWidth = bar.width;
+                  // Limit bar width to MAX_BAR_WIDTH
+                  const barWidth = Math.min(bar.width, MAX_BAR_WIDTH);
                   const barHeight = bar.height;
-                  const barX = bar.x;
+                  // Center the bar within the available space
+                  const barX = bar.x + (bar.width - barWidth) / 2;
                   const barY = bar.y;
                   const radius = 6;
                   const path = isTopBar
@@ -171,7 +181,7 @@ const FootprintChart = ({
                       onMouseMove={(event) => {
                         if (tooltipTimeout) clearTimeout(tooltipTimeout);
                         const eventSvgCoords = localPoint(event);
-                        const left = bar.x + bar.width / 2;
+                        const left = barX + barWidth / 2;
                         showTooltip({
                           tooltipData: bar,
                           tooltipTop: eventSvgCoords?.y + 10,
@@ -192,7 +202,7 @@ const FootprintChart = ({
           top={yMax + margin.top}
           left={margin.left}
           scale={dateScale}
-          numTicks={12} // Show all 12 periods
+          numTicks={12}
           tickLabelProps={{
             fontSize: 9,
             textAnchor: 'middle',
