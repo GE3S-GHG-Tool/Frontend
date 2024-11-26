@@ -9,7 +9,7 @@
 
 // function EditReport() {
 //   const { id } = useParams();
-  
+
 //   const [activeTab, setActiveTab] = useState("scope1");
 //   const fetchEditData = async (id) => {
 //     const response = await getscope1draft(id);
@@ -198,10 +198,12 @@ import Scope3 from "./tabs/Scope3";
 import { useParams } from "react-router-dom";
 import { getscope1draft } from "../../api/drafts";
 import { useAuth } from "../../context/AuthContext";
+import { getReportWithID } from "../../api/reports.apis";
 
 function EditReport() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("scope1");
+  const [reportData, setReportData] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
   const premiumPlan = user?.organization?.premiumPlan?.name;
@@ -210,8 +212,21 @@ function EditReport() {
     const response = await getscope1draft(id);
   };
 
+  const fetchReportData = async () => {
+    const response = await getReportWithID(id);
+    if (response.data.success) {
+      setReportData(response?.data?.report);
+    } else {
+      alert("Couldn't Fetch Report Details");
+    }
+  };
+
   useEffect(() => {
-    if (id) fetchEditData(id);
+    if (id) {
+      fetchEditData(id)
+      fetchReportData();
+    };
+
   }, [id]);
 
   const getTabAccessibility = (tabId) => {
@@ -301,7 +316,7 @@ function EditReport() {
                 lineHeight: "33.89px",
               }}
             >
-              Q3 2024 Report
+             {reportData?.year} {reportData?.name}
             </Typography>
             <Typography
               variant="p"
@@ -311,7 +326,7 @@ function EditReport() {
                 lineHeight: "33.89px",
               }}
             >
-              &nbsp;| &nbsp;Delhi
+              &nbsp;| &nbsp;{reportData?.country}
             </Typography>
           </Grid2>
 

@@ -131,28 +131,50 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
   //   onUpdate(data.id, updatedData);
   // };
 
+  // const getQuantityLabel = (dependentVariable, unit) => {
+  //   if (!dependentVariable) return "Quantity of gas production";
+
+  //   // For regular case (not count), add "Quantity of" prefix
+  //   if (unit !== "count") {
+  //     return `Quantity of ${dependentVariable}`;
+  //   }
+
+  //   // For count unit, return as is
+  //   return dependentVariable;
+  // };
   const getQuantityLabel = (dependentVariable, unit) => {
     if (!dependentVariable) return "Quantity of gas production";
-
+    
+    // Capitalize first letter of dependent variable
+    const capitalizedVariable = dependentVariable.charAt(0).toUpperCase() + dependentVariable.slice(1);
+    
     // For regular case (not count), add "Quantity of" prefix
     if (unit !== "count") {
-      return `Quantity of ${dependentVariable}`;
+      return `Quantity of ${capitalizedVariable}`;
     }
-
-    // For count unit, return as is
-    return dependentVariable;
+    
+    // For count unit, return capitalized version
+    return capitalizedVariable;
   };
 
   const getCurrentLeaf = () => {
     return type5?.leaf || type4?.leaf || type3?.leaf;
   };
 
+  // const getLabelPair = (dependentVariable) => {
+  //   if (!dependentVariable) return ["", ""];
+  //   const [firstLabel, secondLabel] = dependentVariable.split(", ");
+  //   return [firstLabel, secondLabel];
+  // };
+
   const getLabelPair = (dependentVariable) => {
     if (!dependentVariable) return ["", ""];
     const [firstLabel, secondLabel] = dependentVariable.split(", ");
-    return [firstLabel, secondLabel];
-  };
-
+    return [
+        firstLabel?.charAt(0).toUpperCase() + firstLabel?.slice(1),
+        secondLabel?.charAt(0).toUpperCase() + secondLabel?.slice(1)
+    ];
+};
   const leaf = getCurrentLeaf();
 
 
@@ -304,7 +326,8 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
             alignItems: "flex-start",
           }}
         >
-          {leaf?.multipleEntries ? (
+          {leaf?.multipleEntries ?
+           (
             // For multiple entries
             <>
               <Typography
@@ -314,10 +337,10 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
                 lineHeight="19.6px"
               >
                 {getLabelPair(leaf.dependentVariable)[0]}
-                {leaf?.unit !== "count" && ` (${leaf?.unit})`}
+                {/* {leaf?.unit !== "count" && ` (${leaf?.unit})`} */}
               </Typography>
               <TextField
-                placeholder="Enter quantity"
+                placeholder={getLabelPair(leaf.dependentVariable)[0]}
                 type="number"
                 value={quantity}
                 onChange={(e) => {
@@ -341,10 +364,10 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
                 lineHeight="19.6px"
               >
                 {getLabelPair(leaf.dependentVariable)[1]}
-                {leaf?.unit !== "count" && ` (${leaf?.unit})`}
+                {/* {leaf?.unit !== "count" && ` (${leaf?.unit})`} */}
               </Typography>
               <TextField
-                placeholder="Enter quantity"
+                placeholder={getLabelPair(leaf.dependentVariable)[1]}
                 type="number"
                 value={quantity2}
                 onChange={(e) => {
@@ -375,7 +398,7 @@ function Gas1PopupEmisson({ data, onUpdate, onDelete }) {
                 {leaf?.unit !== "count" && ` (${leaf?.unit})`}
               </Typography>
               <TextField
-                placeholder="Enter quantity"
+                placeholder={getQuantityLabel(leaf?.dependentVariable, leaf?.unit)}
                 type="number"
                 value={quantity}
                 onChange={(e) => {

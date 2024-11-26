@@ -39,7 +39,7 @@ const Scope1 = ({ setActiveTab }) => {
   }, [emission]);
 
   // console.log("processData", processData);
-  const submit = async (type) => {
+  const submit = async (type, btn) => {
 
     const validProcessData = processData?.filter(
       (item) => item?.type?._id && item?.type2?._id
@@ -74,7 +74,7 @@ const Scope1 = ({ setActiveTab }) => {
     };
 
     let response = await saveScope1Report(payload);
-    if (type === "draft") {
+    if (type === "draft" && btn !== "cancel") {
       setActiveTab("scope2");
     } else {
       localStorage.removeItem("refrigerent");
@@ -109,7 +109,7 @@ const Scope1 = ({ setActiveTab }) => {
         }}
       >
         <Button
-          onClick={() => submit("draft")}
+          onClick={() => submit("draft", "cancel")}
           sx={{
             borderRadius: "32px",
             border: "1px solid #28814D",
@@ -131,7 +131,7 @@ const Scope1 = ({ setActiveTab }) => {
         {
           user?.organization?.premiumPlan?.name === "FootPrint" ?
             <Button
-              onClick={() => submit("final")}
+              onClick={() => submit("final", "final")}
               sx={{
                 borderRadius: "32px",
                 padding: "8px 18px",
@@ -151,7 +151,7 @@ const Scope1 = ({ setActiveTab }) => {
               Generate Report
             </Button> :
             <Button
-              onClick={() => submit("draft")}
+              onClick={() => submit("draft", "draft")}
               sx={{
                 borderRadius: "32px",
                 padding: "8px 18px",
