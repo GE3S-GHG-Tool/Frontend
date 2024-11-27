@@ -22,7 +22,6 @@ const PaymentSuccessSurvey = () => {
         console.log('Subscription updated successfully:', response.data);
       } catch (error) {
         console.error('Error updating subscription:', error.response?.data || error.message);
-        // You might want to show an error message to the user here
       }
     };
 
@@ -66,7 +65,7 @@ const PaymentSuccessSurvey = () => {
             </defs>
           </svg>
         </div>
-        <p style={{ textAlign: 'center' }}>Payment Successful</p>
+        <p style={{ textAlign: 'center' }}>You successfully purchased Decarbonization Survey</p>
         <button onClick={handleContinue} style={{ background: 'transparent' }}>
           Continue
         </button>

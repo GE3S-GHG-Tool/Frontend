@@ -60,22 +60,6 @@ const CustomModal = ({
   price,
   type,
 }) => {
-  const [planCount, setPlanCount] = useState(1);
-  const [getStarted, setGetStarted] = useState(false);
-
-  const totalAmount = price * planCount;
-
-  const handleGetStarted = () => {
-    setGetStarted((prev) => !prev)
-
-  };
-  const handlePayNow = () => {
-    onAction()
-    onClose()
-  };
-  const handleIncrement = () => setPlanCount((prevCount) => prevCount + 1);
-  const handleDecrement = () =>
-    setPlanCount((prevCount) => (prevCount > 1 ? prevCount - 1 : 1));
 
   return (
     <Dialog
@@ -147,147 +131,9 @@ const CustomModal = ({
               </div>
             </div>
           </div>
-
-          {getStarted && (
-            <div
-              style={{
-                display: "flex",
-                padding: "10px 0",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "4px",
-                borderRadius: "0.6rem",
-                border: "1px solid #fff",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "0px 10px",
-                  fontSize: "14px",
-                }}
-              >
-                <div>Total {type}</div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width:'50%',
-                    gap: "8px",
-                    border: "1px solid rgba(217, 217, 217, 0.40)",
-                    borderRadius: "4px",
-                  }}
-                >
-                  <Button
-                    onClick={handleDecrement}
-                    disableRipple
-                    sx={{
-                      background: "transparent",
-                      outline: "none",
-                      border: "none",
-                      color: "#fff",
-                      fontSize: "16px",
-                      padding: "2px",
-                      verticalAlign: "center",
-                    }}
-                  >
-                    -
-                  </Button>
-                  <Typography>{planCount}</Typography>
-                  <Button
-                    onClick={handleIncrement}
-                    disableRipple
-                    sx={{
-                      background: "transparent",
-                      outline: "none",
-                      border: "none",
-                      color: "#fff",
-                      fontSize: "16px",
-                      padding: "2px",
-                      verticalAlign: "center",
-                    }}
-                  >
-                    +
-                  </Button>
-                </div>
-              </div>{" "}
-              <hr style={{ width: "100%", padding: "0", margin: "0" }} />
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "0px 10px",
-                  fontSize: "14px",
-                }}
-              >
-                <div>Total Amount</div>
-                <div style={{ fontSize: "1.1rem" }}>
-                  {totalAmount.toFixed(2)} $
-                </div>
-              </div>
-            </div>
-          )}
-
-          {!getStarted ? (
-            <>
-              <button onClick={handleGetStarted} style={StyledButton}>
-                Get Started &nbsp;
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="21"
-                  height="20"
-                  viewBox="0 0 21 20"
-                  fill="none"
-                >
-                  <g clipPath="url(#clip0_1850_19597)">
-                    <path
-                      d="M3.62695 10H17.377"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M11.752 4.375L17.377 10L11.752 15.625"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1850_19597">
-                      <rect
-                        width="20"
-                        height="20"
-                        fill="white"
-                        transform="translate(0.5)"
-                      />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </button>
-              <hr
-                style={{
-                  color: "rgba(217, 217, 217, 0.40)",
-                  width: "16vw",
-                  border: "1px solid rgba(217, 217, 217, 0.40)",
-                }}
-              />
-            </>
-          ) : (
-            <button
-              style={StyledButton}
-              // onClick={onAction}
-              onClick={handlePayNow}
-            >
-              Pay Now &nbsp;
+          <>
+            <button onClick={onAction} style={StyledButton}>
+              Get Started &nbsp;
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="21"
@@ -323,9 +169,17 @@ const CustomModal = ({
                 </defs>
               </svg>
             </button>
-          )}
+            <hr
+              style={{
+                color: "rgba(217, 217, 217, 0.40)",
+                width: "16vw",
+                border: "1px solid rgba(217, 217, 217, 0.40)",
+              }}
+            />
+          </>
 
-          {!getStarted && (
+
+          {(
             <div>
               <Typography
                 style={{
