@@ -23,7 +23,12 @@ const Survey = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    fetchSurveyPlan();
+    if(!user?.organization?.addOnPlan)
+    {
+      fetchSurveyPlan();
+    }else{
+      setLoading(false)
+    }
   }, []);
 
   const fetchSurveyPlan = async () => {
