@@ -323,12 +323,26 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                       value={field.unit}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
+                      disabled
                       fullWidth
                       sx={{
+                        margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",
                         borderRadius: "5px",
                         "& .MuiOutlinedInput-notchedOutline": {
                           borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                        "& .MuiOutlinedInput-input": {
+                          padding: "11px 16px",
+                          color: "#717171",
+                        },
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "rgba(217, 217, 217, 0.30)",
+                        },
+                        "& .MuiInputBase-input.Mui-disabled": {
+                          color: "#717171 !important",
+                          WebkitTextFillColor: "#717171 !important",
+                          opacity: 1,
                         },
                       }}
                     />

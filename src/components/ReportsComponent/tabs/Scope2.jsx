@@ -54,7 +54,7 @@ const Scope2 = ({ setActiveTab }) => {
       localStorage.removeItem("consumption");
       localStorage.removeItem("processEmissionData");
       localStorage.removeItem("scope2Data");
-      navigate("/");
+      navigate(`/emissionreport/${reportid}`);
     }
   };
 

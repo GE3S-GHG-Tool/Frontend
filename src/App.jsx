@@ -27,7 +27,6 @@ import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
-import EmissionsInventoryReport from "./components/EmissionsInventoryReport/EmissionsInventoryReport";
 import { Typography } from "@mui/material";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -43,6 +42,7 @@ import ChangePasswordVerified from "./components/ChangePassword/ChangePasswordVe
 import PaymentSuccess from "./components/PaymentPages/PaymentSuccess";
 import PaymentCancelled from "./components/PaymentPages/PaymentCancelled";
 import PaymentSuccessSurvey from "./components/PaymentPages/PaymentSuccessSurvey";
+import PaymentSuccessFromGeneratedReport from "./components/PaymentPages/PaymentSuccessFromGeneratedReport";
 
 function App() {
   return (
@@ -83,11 +83,6 @@ function App() {
           <Route path="/reportgenerator" element={<ReportStateEmpty />} />
           <Route path="/editreport/:id" element={<EditReport />} />
           <Route path="/ghgreport" element={<GeneratedReport />} />{" "}
-          <Route path="app" element={<Typography>avavav</Typography>} />
-          <Route
-            path="/ghg-emissions-inventory-report"
-            element={<EmissionsInventoryReport />}
-          />
           <Route
             path="/scope-dashboard"
             element={<ScopeDashboard />}
@@ -98,6 +93,7 @@ function App() {
           />
           <Route path="checkout-success" element={<PaymentSuccess/>} />
           <Route path="checkout-success-survey" element={<PaymentSuccessSurvey/>} />
+          <Route path="checkout-success-from-report/:id" element={<PaymentSuccessFromGeneratedReport/>} />
           <Route path="checkout-cancelled" element={<PaymentCancelled/>} />
           {/* Dashboard routes */}
           <Route

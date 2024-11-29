@@ -36,7 +36,7 @@ const LineChart = () => {
               marginTop: "0.2rem",
             }}
           >
-            2324 tCO2e
+            2,324 tCO2e
           </Typography>
         </div>
       </div>
@@ -76,7 +76,7 @@ const LineChart = () => {
               marginTop: "0.2rem",
             }}
           >
-            232124 tCO2e
+            232,124 tCO2e
           </Typography>
         </div>
       </div>
@@ -131,7 +131,7 @@ const LineChart = () => {
               marginTop: "0.2rem",
             }}
           >
-            233424 tCO2e
+            233,424 tCO2e
           </Typography>
         </div>
       </div>

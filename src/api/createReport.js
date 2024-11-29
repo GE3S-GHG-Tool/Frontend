@@ -220,10 +220,10 @@ export async function saveScope2Report(data) {
 export async function saveScope3Report(data) {
   try {
     const response = await api.post("/scope3_report/save_scope3_report", data);
-    if (response) return response;
-    else throw new Error("Could not save report", data);
+    if (!response) throw new Error("Could not save report");
+    return response;
   } catch (err) {
-    console.log(err);
-    return err.response;
+    console.error("Error saving scope 3 report:", err);
+    throw err; // Rethrow to handle in submit function
   }
 }

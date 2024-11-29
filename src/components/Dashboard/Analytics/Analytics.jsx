@@ -119,6 +119,7 @@ const Analytics = () => {
             <SubscriptionModal
               open={openSubscriptionModal}
               onClose={() => setOpenSubscriptionModal(false)}
+              redirectUrl="checkout-success"
             />
           </Box>
 

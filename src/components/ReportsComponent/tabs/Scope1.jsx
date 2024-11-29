@@ -76,11 +76,17 @@ const Scope1 = ({ setActiveTab }) => {
     let response = await saveScope1Report(payload);
     if (type === "draft" && btn !== "cancel") {
       setActiveTab("scope2");
-    } else {
+    } 
+    else if(btn === "cancel"){
       localStorage.removeItem("refrigerent");
       localStorage.removeItem("consumption");
       localStorage.removeItem("processEmissionData");
       navigate("/");
+    } else {
+      localStorage.removeItem("refrigerent");
+      localStorage.removeItem("consumption");
+      localStorage.removeItem("processEmissionData");
+      navigate(`/emissionreport/${reportid}`);
     }
     console.log("ss1 res", response);
   };

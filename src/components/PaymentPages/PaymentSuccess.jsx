@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Wrapper from "../Wrapper/Wrapper";
-import api from '../../api';
+import axios from 'axios';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const updateSubscription = async () => {
       try {
-        const response = await api.post(
+        const response = await axios.post(
           'https://backend.ghg.ge3s.org/api/payment/subscription/update_oragnization',
           {
             sessionId: sessionId,

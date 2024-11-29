@@ -199,6 +199,7 @@ import { useParams } from "react-router-dom";
 import { getscope1draft } from "../../api/drafts";
 import { useAuth } from "../../context/AuthContext";
 import { getReportWithID } from "../../api/reports.apis";
+import ScopeWrapper from "./ScopeWrapper";
 
 function EditReport() {
   const { id } = useParams();
@@ -213,6 +214,7 @@ function EditReport() {
   };
 
   const fetchReportData = async () => {
+    localStorage.setItem("reportId", id)
     const response = await getReportWithID(id);
     if (response.data.success) {
       setReportData(response?.data?.report);
@@ -248,7 +250,14 @@ function EditReport() {
       title: "Scope 1",
       description:
         "Your carbon footprint includes emissions from buildings and vehicles.",
-      content: <Scope1 setActiveTab={setActiveTab} />,
+      content: (
+        <ScopeWrapper
+          isDisabled={reportData?.scope1 && reportData?.report_type === 'final'}
+          scopeNumber={1}
+        >
+          <Scope1 setActiveTab={setActiveTab} />
+        </ScopeWrapper>
+      ),
       isLocked: !getTabAccessibility("scope1"),
     },
     {
@@ -256,7 +265,14 @@ function EditReport() {
       title: "Scope 2",
       description:
         "Indirect emissions from purchased utilities impact carbon footprint.",
-      content: <Scope2 setActiveTab={setActiveTab} />,
+      content: (
+        <ScopeWrapper
+          isDisabled={reportData?.scope2 && reportData?.report_type === 'final'}
+          scopeNumber={1}
+        >
+          <Scope2 setActiveTab={setActiveTab} />
+        </ScopeWrapper>
+      ),
       isLocked: !getTabAccessibility("scope2"),
     },
     {
@@ -264,7 +280,14 @@ function EditReport() {
       title: "Scope 3",
       description:
         "Carbon footprint includes value chain supplier and customer emissions.",
-      content: <Scope3 setActiveTab={setActiveTab} />,
+      content: (
+        <ScopeWrapper
+          isDisabled={reportData?.scope3 && reportData?.report_type === 'final'}
+          scopeNumber={1}
+        >
+          <Scope3 setActiveTab={setActiveTab} />
+        </ScopeWrapper>
+      ),
       isLocked: !getTabAccessibility("scope3"),
     },
   ];
@@ -316,7 +339,7 @@ function EditReport() {
                 lineHeight: "33.89px",
               }}
             >
-             {reportData?.year} {reportData?.name}
+              {reportData?.year} {reportData?.name}
             </Typography>
             <Typography
               variant="p"

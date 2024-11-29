@@ -714,7 +714,7 @@ function DashboardLayout() {
               gap: "2rem",
             }}
           >
-            <IconButton
+            {/* <IconButton
               color="inherit"
               sx={{ position: "relative" }}
               onClick={(e) => setNotificationAnchorEl(e.currentTarget)}
@@ -724,13 +724,13 @@ function DashboardLayout() {
                 badgeColor="red"
                 badgeTextColor="white"
               />
-            </IconButton>
+            </IconButton> */}
 
-            <NotificationMenu
+            {/* <NotificationMenu
               anchorEl={notificationAnchorEl}
               open={Boolean(notificationAnchorEl)}
               onClose={() => setNotificationAnchorEl(null)}
-            />
+            /> */}
             <div
               onClick={handleClick}
               style={{
@@ -825,6 +825,7 @@ function DashboardLayout() {
       <SubscriptionModal
         open={openSubscriptionModal}
         onClose={() => setOpenSubscriptionModal(false)}
+        redirectUrl="checkout-success"
       />
     </div>
   );

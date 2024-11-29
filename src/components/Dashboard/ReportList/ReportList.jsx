@@ -126,7 +126,7 @@ const ReportList = ({ searchQuery }) => {
               <td>{report.time_period}</td>
               <td>{new Date(report.updatedAt).toLocaleDateString()}</td>
               <td className="scope_tags">
-                {report?.scope1 && <span className="scope_tag1">S1</span>}
+                <span className="scope_tag1">S1</span>
                 {report?.scope2 && <span className="scope_tag2">S2</span>}
                 {report?.scope3 && <span className="scope_tag3">S3</span>}
               </td>

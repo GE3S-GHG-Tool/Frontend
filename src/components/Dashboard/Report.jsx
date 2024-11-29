@@ -71,6 +71,7 @@ function Report() {
                   </svg>
                 </InputAdornment>
               ),
+              placeholder:'Search reports'
             },
           }}
         />

@@ -86,7 +86,7 @@ const StyledCard = styled(Card)(({ isactive }) => ({
   width:'260px'
 }));
 
-const SubscriptionModal = ({ open, onClose }) => {
+const SubscriptionModal = ({ open, onClose,redirectUrl }) => {
   const [plans, setPlans] = useState([]);
   const [stripePlans, setStripePlans] = useState([]);
   const [currentPlan, setCurrentPlan] = useState(null);
@@ -194,7 +194,7 @@ const SubscriptionModal = ({ open, onClose }) => {
         customerEmail: userEmail,
         subscriptionPlanId: stripeProductId,
         quantity: 1,
-        url:'checkout-success'
+        url:redirectUrl
       });
       
       // Redirect to Stripe Checkout
