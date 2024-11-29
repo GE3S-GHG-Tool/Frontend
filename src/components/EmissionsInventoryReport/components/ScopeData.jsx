@@ -46,7 +46,7 @@ const styles = {
 const ScopeData = ({ title, desc, data, svgs, type }) => {
   // Helper function to round numbers to 4 decimal places
   const roundToFour = (num) => Number(parseFloat(num).toFixed(4));
-  
+
   const totalValue = roundToFour(data.reduce((acc, item) => acc + item.value, 0));
 
   return (
@@ -124,7 +124,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                           wordSpacing: "0px",
                         }}
                       >
-                        {item.label} : {roundToFour(item.key)}
+                        {item.label} : {roundToFour(item.key) || 0}
                       </Typography>
                     </div>
                   ) : null
@@ -167,7 +167,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                         wordSpacing: "0px",
                       }}
                     >
-                      {item.label} : {roundToFour(item.key)}
+                      {item.label} : {roundToFour(item.key) || 0}
                     </Typography>
                   </div>
                 ))}
@@ -182,7 +182,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 width: "65%",
               }}
             >
-              <DirectFootPrintChart data={data.map(item => ({...item, value: roundToFour(item.value)}))} />
+              <DirectFootPrintChart data={data.map(item => ({ ...item, value: roundToFour(item.value) }))} />
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                           wordSpacing: "0px",
                         }}
                       >
-                        {item.label} : {roundToFour(item.key)}
+                        {item.label} : {roundToFour(item.key) || 0}
                       </Typography>
                     </div>
                   ) : null
@@ -242,7 +242,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 gap: "0.8rem",
                 justifyContent: "space-between",
                 // paddingTop:'1rem',
-                height:'100%'
+                height: '100%'
               }}
             >
               {data.map((item, index) => (
@@ -278,7 +278,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                       wordSpacing: "0px",
                     }}
                   >
-                    {roundToFour(item.value)} tCO2e
+                    {roundToFour(item.value) || 0} tCO2e
                   </Typography>
                 </div>
               ))}
@@ -312,7 +312,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                     wordSpacing: "0px",
                   }}
                 >
-                  {roundToFour(item.value)} tCO2e
+                  {roundToFour(item.value) || 0} tCO2e
                 </Typography>
               </div>
             ))}
@@ -341,7 +341,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                       wordSpacing: "0px",
                     }}
                   >
-                    {roundToFour(item.value)} tCO2e
+                    {roundToFour(item.value) || 0} tCO2e
                   </Typography>
                 </div>
               ))}
