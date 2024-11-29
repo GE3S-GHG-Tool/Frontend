@@ -1344,35 +1344,40 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "0.5rem",
-                      }}
+                    <GraphWrapper
+                      data={ECEBreakdownByVehicleTypeData}
+                      dummyImage={EmployeeCommutingEmissionsBreakdownDummy}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "0.5rem",
                         }}
                       >
-                        Employee Commuting Emissions Breakdown by Vehicle Type
-                      </Typography>
-                      <div>
-                        <FullCircleDonutChart
-                          data={ECEBreakdownByVehicleTypeData}
-                          width={260}
-                          height={260}
-                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Employee Commuting Emissions Breakdown by Vehicle Type
+                        </Typography>
+                        <div>
+                          <FullCircleDonutChart
+                            data={ECEBreakdownByVehicleTypeData}
+                            width={260}
+                            height={260}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </GraphWrapper>
                   </div>
                 </div>
                 <div
@@ -1394,31 +1399,36 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                        zIndex: "200",
-                      }}
+                    <GraphWrapper
+                      data={FuelActivitiesEmissionData}
+                      dummyImage={FuelRelatedActivitiesDummy}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                          zIndex: "200",
                         }}
                       >
-                        Fuel-Related Activities Emissions Breakdown
-                      </Typography>
-                      <SemiCirclePieChart
-                        data={FuelActivitiesEmissionData}
-                        tooltipWidth={150}
-                      />
-                    </div>
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Fuel-Related Activities Emissions Breakdown
+                        </Typography>
+                        <SemiCirclePieChart
+                          data={FuelActivitiesEmissionData}
+                          tooltipWidth={150}
+                        />
+                      </div>
+                    </GraphWrapper>
                   </div>
                   <div
                     style={{
@@ -1432,30 +1442,35 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
+                    <GraphWrapper
+                      data={EmissionUpstreamAssetsData}
+                      dummyImage={EmissionFromUpstreamLeasedAssets}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
                         }}
                       >
-                        Emissions from Upstream Leased Assets
-                      </Typography>
-                      <StackedBarChart
-                        data={EmissionUpstreamAssetsData}
-                        height={250}
-                      />
-                    </div>
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Emissions from Upstream Leased Assets
+                        </Typography>
+                        <StackedBarChart
+                          data={EmissionUpstreamAssetsData}
+                          height={250}
+                        />
+                      </div>
+                    </GraphWrapper>
                   </div>
                 </div>
                 <div
