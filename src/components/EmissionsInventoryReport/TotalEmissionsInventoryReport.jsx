@@ -3,6 +3,7 @@ import {
   Box, Button, Typography, Paper
 } from "@mui/material";
 import ge3s from "../../assets/images/ge3s.png";
+import logo from "../../assets/images/starbucksLogo.png";
 import backgroundImage from "../../assets/images/sustainabilityHeading.png";
 import SemiCirclePieChart from "./Charts/SemiCirclePieChart";
 import RefrigerantConsumptionChart from "./Charts/RefrigerantConsumptionChart";
@@ -838,7 +839,7 @@ const TotalEmissionsInventoryReport = () => {
             >
               <div>
                 <img
-                  src={`${constant.IMG_URL}/${user?.organization?.logo}`}
+                  src={`${constant.IMG_URL}/${user?.organization?.logo}` || logo}
                   height={65}
                   width={65}
                   alt="Company Logo"
@@ -1201,10 +1202,10 @@ const TotalEmissionsInventoryReport = () => {
                     background: "white",
                   }}
                 >
-                  <GraphWrapper
+                  {/* <GraphWrapper
                     data={WasteEmissionData}
                     dummyImage={EmissionsByWasteCategoryDummy}
-                  >
+                  > */}
                     <div
                       style={{
                         textAlign: "center",
@@ -1229,7 +1230,7 @@ const TotalEmissionsInventoryReport = () => {
                         type="scope-3"
                       />
                     </div>
-                  </GraphWrapper>
+                  {/* </GraphWrapper> */}
                 </div>
                 <div
                   style={{
@@ -1442,10 +1443,10 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <GraphWrapper
+                    {/* <GraphWrapper
                       data={EmissionUpstreamAssetsData}
                       dummyImage={EmissionFromUpstreamLeasedAssets}
-                    >
+                    > */}
                       <div
                         style={{
                           textAlign: "center",
@@ -1470,7 +1471,7 @@ const TotalEmissionsInventoryReport = () => {
                           height={250}
                         />
                       </div>
-                    </GraphWrapper>
+                    {/* </GraphWrapper> */}
                   </div>
                 </div>
                 <div
