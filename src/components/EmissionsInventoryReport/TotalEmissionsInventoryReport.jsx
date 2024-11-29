@@ -38,6 +38,7 @@ import BusinessTravelEmissionsBreakdownDummy from "../../assets/graphimgs/Busine
 import WasteDisposalMethodsByCategoryDummy from "../../assets/graphimgs/WasteDisposalMethodsByCategoryDummy.png"
 import EmployeeCommutingEmissionsBreakdownDummy from "../../assets/graphimgs/EmployeeCommutingEmissionsBreakdownDummy.png"
 import FuelRelatedActivitiesDummy from "../../assets/graphimgs/FuelRelatedActivitiesDummy.png"
+import EmissionFromUpstreamLeasedAssets from "../../assets/graphimgs/EmissionFromUpstreamLeasedAssets.png"
 import { useAuth } from "../../context/AuthContext";
 import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
@@ -646,8 +647,8 @@ const TotalEmissionsInventoryReport = () => {
   return (
     <div
       style={{
-        // backgroundColor: "#FBFBFB",
-        backgroundColor: "grey"
+        backgroundColor: "#FBFBFB",
+        // backgroundColor: "grey"
       }}
     >
       <div
@@ -1249,35 +1250,40 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                      }}
+                    <GraphWrapper
+                      data={BusinessTravelEmissionsBreakdown}
+                      dummyImage={BusinessTravelEmissionsBreakdownDummy}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "2rem",
                         }}
                       >
-                        Business Travel Emissions Breakdown{" "}
-                      </Typography>
-                      <div>
-                        <FullCircleDonutChart
-                          data={BusinessTravelEmissionsBreakdown}
-                          width={260}
-                          height={260}
-                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Business Travel Emissions Breakdown{" "}
+                        </Typography>
+                        <div>
+                          <FullCircleDonutChart
+                            data={BusinessTravelEmissionsBreakdown}
+                            width={260}
+                            height={260}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </GraphWrapper>
                   </div>
                   <div
                     style={{
@@ -1291,35 +1297,40 @@ const TotalEmissionsInventoryReport = () => {
                       background: "white",
                     }}
                   >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2rem",
-                      }}
+                    <GraphWrapper
+                      data={WasteDisposalMethodsByCategoryData}
+                      dummyImage={WasteDisposalMethodsByCategoryDummy}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "2rem",
                         }}
                       >
-                        Waste Disposal Methods by Category{" "}
-                      </Typography>
-                      <div>
-                        <FullCircleDonutChart
-                          data={WasteDisposalMethodsByCategoryData}
-                          width={260}
-                          height={260}
-                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Waste Disposal Methods by Category{" "}
+                        </Typography>
+                        <div>
+                          <FullCircleDonutChart
+                            data={WasteDisposalMethodsByCategoryData}
+                            width={260}
+                            height={260}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    </GraphWrapper>
                   </div>
                   <div
                     style={{
