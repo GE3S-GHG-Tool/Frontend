@@ -109,7 +109,7 @@ export default function Goals({ setActiveStep }) {
       );
       console.log("response", response);
       if (response.status === 201) {
-        navigate("/");
+        navigate("/login");
         localStorage.removeItem("token");
         // console.log("response", response);
       } else {
@@ -155,7 +155,7 @@ export default function Goals({ setActiveStep }) {
                   (goal) => goal.id === selected
                 )?.name
               ) : (
-                <span style={{ color: "#999" }}>Select</span> // Lighter color for placeholder
+                <span style={{ color: "#999" }}>Select sustainability goals</span> // Lighter color for placeholder
               )
             }
           >

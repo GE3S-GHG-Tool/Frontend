@@ -135,6 +135,27 @@ const Scope3 = ({ setActiveTab }) => {
         }
         return baseData;
       });
+
+      const convertedDownstreamArray = Object.keys(downstreamArray).length > 0 &&
+        (downstreamArray.scope1_scope2_emissions ||
+          downstreamArray.physical_area ||
+          downstreamArray.total_physical_area)
+        ? [{
+          scope1_scope2_emissions: parseInt(downstreamArray.scope1_scope2_emissions) || 0,
+          physical_area: parseInt(downstreamArray.physical_area) || 0,
+          total_physical_area: parseInt(downstreamArray.total_physical_area) || 0,
+        }]
+        : [];
+
+      const convertedInvestmentsArray = Object.keys(investData).length > 0 &&
+        (investData.ownership_percentage ||
+          investData.investee_company_emissions)
+        ? [{
+          ownership_percentage: parseInt(investData.ownership_percentage) || 0,
+          investee_company_emissions: parseInt(investData.investee_company_emissions) || 0
+        }]
+        : [];
+
       const capitalArray = capitalData
         .slice(0, -1)
         .filter((item) => item.assetType) // Removes the empty item
@@ -167,7 +188,7 @@ const Scope3 = ({ setActiveTab }) => {
           travel_class: item.travelClass,
           connections: Number(item.connectionCount),
           airports: [item.origin, item.destination, ...item.tripDetails],
-          num_trips: item.numberOfTrips === "0" ? 1 : Number(item.numberOfTrips),
+          num_trips: item.numberOfTrips === "0" || item.numberOfTrips === "" ? 1 : Number(item.numberOfTrips),
         }));
       // console.log("convertedUpstreamArray", convertedUpstreamArray);
       const payload = {
@@ -175,11 +196,11 @@ const Scope3 = ({ setActiveTab }) => {
         businessTravel: convertedbusinessArray,
         purchasedGoods: purchaseData.slice(0, -1),
         capitalGoods: capitalArray,
-        investments: investData,
+        investments: convertedInvestmentsArray,
         employeeCommuting: comutingData.slice(0, -1),
         fuelRelatedActivities: convertedFuelArray,
         upstreamLeasedAssets: convertedUpstreamArray,
-        downstreamLeasedAssets: downstreamArray,
+        downstreamLeasedAssets: convertedDownstreamArray,
         report_type: type,
         main_report_id: reportid,
       };
@@ -202,7 +223,7 @@ const Scope3 = ({ setActiveTab }) => {
       navigate(`/emissionreport/${reportid}`);
     } catch (error) {
       console.error("Error submitting scope 3 report:", error);
-      navigate('/');
+      alert('Error: Report Not Submitted')
     }
   };
 

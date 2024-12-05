@@ -179,7 +179,7 @@ const Dashboard = () => {
               <DraftCard key={item?._id} report={item} handleDelete={handleDeleteDrafts} />
             ))}
             {draftReports.length > 0 && <div className="view_all_report_cta">
-              <span onClick={() => navigate("/report")}>View All</span>
+              <span onClick={() => navigate("/report?tab=drafts")}>View All</span>
             </div>}
           </div>
         </div>
@@ -291,7 +291,7 @@ const Dashboard = () => {
               <h3 className="dashboard_reports_header">Generated reports</h3>
               <ReportList searchQuery={""} />
               <div className="reports_viewall_cta">
-                <span onClick={() => navigate("/report")}>View All</span>
+                <span onClick={() => navigate("/report?tab=reports")}>View All</span>
               </div>
             </div>
           </div>

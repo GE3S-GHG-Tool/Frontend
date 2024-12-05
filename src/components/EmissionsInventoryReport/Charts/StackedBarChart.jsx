@@ -104,8 +104,8 @@ const StackedBarChart = ({
   temperatureScale.range([yMax, 0]);
 
   return (
-    <div ref={box} style={{ position: "relative", width: "100%" }}>
-      <svg ref={containerRef} width={width} height={height}>
+    <div ref={box} style={{ position: "relative", width: "100%", minWidth:'600px' }}>
+      <svg ref={containerRef}  width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} />
         <Group left={margin.left} top={margin.top}>
           <BarStack

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GHGReportGenerator } from './generatePDFReport';
+import { MultiPageGHGReportGenerator } from './generatePDFReport';
 
 const DownloadReportButton = () => {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -7,8 +7,9 @@ const DownloadReportButton = () => {
     const handleDownload = async () => {
         setIsGenerating(true);
         try {
-            const generator = new GHGReportGenerator();
+            const generator = new MultiPageGHGReportGenerator();
             const apiData = await generator.fetchAllData();
+            console.log("wdwed",apiData)
             const pdf = await generator.generateReport(apiData);
             pdf.save('ghg-report.pdf');
         } catch (error) {

@@ -2,15 +2,10 @@ import { Grid2, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import capitalGoods from "../../../assets/images/capitalGoods.svg";
-import dot_Icon from "../../../assets/images/DotsThreeVertical.svg";
 import Box from "@mui/material/Box";
-import edit_icon from "../../../assets/images/edit_icon.svg";
-import del_icon from "../../../assets/images/del_icon.svg";
 import { useScope3 } from "../../../context/Scope3Context";
 
 function Investments() {
-  // Initialize fields with ownership_percentage and investee_company_emissions
-
   const { setInvestements } = useScope3();
   const [field, setField] = useState(
     localStorage.getItem("investements")
@@ -21,8 +16,6 @@ function Investments() {
         }
   );
 
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setField({ ...field, [name]: value });
@@ -31,20 +24,6 @@ function Investments() {
     localStorage.setItem("investements", JSON.stringify(field));
     setInvestements(field);
   }, [field, setInvestements]);
-
-  // const handleDotClick = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleEdit = () => {
-  //   console.log("Edit clicked");
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const handleClearAll = () => {
-  //   setIsDropdownOpen(false);
-  // };
-
   return (
     <div
       style={{

@@ -286,21 +286,26 @@ const colorPalette = {
   "Gasoline/Petrol": "#02B880",
 };
 const colorPalette2 = {
-  R410a: "#006D4F",
+  R410a: "#028A60",
   R22: "#02B880",
   R134a: "#B1E9D8",
-  "HFC-23": "#E0FFFF",
-  "HFC-245fa": "#B0E0E6",
+  "HFC-23": "#D0FFF1",
+  "HFC-245fa": "#E9FFF8",
+};
+const colorPalette3 = {
+  'Emission From Waste Gas Disposal': " #028A60",
+  'Fugitive Emissions': "#02B880",
+  'Emission from Process and Vented Emission': "#A9DECE",
 };
 const businesspallete = {
-  First: "#F26D58",
-  Business: "#FF8977",
-  Economy: "#FF9989",
+  'First Class': "#F26D58",
+  'Business Class': "#FF8977",
+  'Economy Class': "#FF9989",
 };
 const ecbpallete = {
   Car: "#F26D58",
-  Motorcycle: "#FF8977",
-  Bus: "#FF9989",
+  'Motor Cycle': "#FF8977",
+  Bus: "#FFAC9F",
   Train: "#FF9989",
 };
 const wastecolorPalette = {
@@ -317,9 +322,9 @@ const wastecolorPalette = {
 const disposlaPalette = {
   Recycled: "#F26D58",
   Landfilled: "#FF8977",
-  Combusted: "#FF9989",
+  Combusted: "#FFB6AB",
   Composted: "#FF9989",
-  "Wet digestate with curing": "#FF9989",
+  "Wet digestate with curing": "#FFAC9F",
   "Dry digestate with curing": "#FF9989",
 };
 
@@ -438,7 +443,7 @@ const TotalEmissionsInventoryReport = () => {
         label: item?.processTypeName,
         value: item?.totalEmissions,
         key: item?.percentage,
-        color: getRandomColor() || "#000",
+        color: colorPalette3[item.processTypeName],
       };
     });
     // console.log("refData3", refData3);
@@ -1202,10 +1207,10 @@ const TotalEmissionsInventoryReport = () => {
                     background: "white",
                   }}
                 >
-                  {/* <GraphWrapper
+                  <GraphWrapper
                     data={WasteEmissionData}
                     dummyImage={EmissionsByWasteCategoryDummy}
-                  > */}
+                  >
                     <div
                       style={{
                         textAlign: "center",
@@ -1230,7 +1235,7 @@ const TotalEmissionsInventoryReport = () => {
                         type="scope-3"
                       />
                     </div>
-                  {/* </GraphWrapper> */}
+                  </GraphWrapper>
                 </div>
                 <div
                   style={{
@@ -1422,7 +1427,7 @@ const TotalEmissionsInventoryReport = () => {
                             textAlign: "start",
                           }}
                         >
-                          Fuel-Related Activities Emissions Breakdown
+                          Fuel-Related Activities Emissions <br /> Breakdown
                         </Typography>
                         <SemiCirclePieChart
                           data={FuelActivitiesEmissionData}
@@ -1431,28 +1436,24 @@ const TotalEmissionsInventoryReport = () => {
                       </div>
                     </GraphWrapper>
                   </div>
-                  <div
-                    style={{
-                      width: "66.2%",
-                      padding: "2rem 2.2rem",
-                      height: "350px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "16px",
-                      background: "white",
-                    }}
-                  >
-                    {/* <GraphWrapper
+                  <div style={{
+                  width:'60%',  
+                  }}>
+                    <GraphWrapper
                       data={EmissionUpstreamAssetsData}
                       dummyImage={EmissionFromUpstreamLeasedAssets}
-                    > */}
-                      <div
+                    >
+                     </GraphWrapper>
+                      {
+                        EmissionUpstreamAssetsData.length>0 && 
+                        <div
                         style={{
                           textAlign: "center",
                           position: "relative",
                           width: "100%",
                           height: "100%",
+                          background:'white',
+                          padding:'0.5rem 0rem 0rem 0.5rem'
                         }}
                       >
                         <Typography
@@ -1462,6 +1463,7 @@ const TotalEmissionsInventoryReport = () => {
                             fontWeight: "600",
                             wordSpacing: "0px",
                             textAlign: "start",
+                            marginBottom:'1.5rem'
                           }}
                         >
                           Emissions from Upstream Leased Assets
@@ -1471,7 +1473,8 @@ const TotalEmissionsInventoryReport = () => {
                           height={250}
                         />
                       </div>
-                    {/* </GraphWrapper> */}
+                      }
+                   
                   </div>
                 </div>
                 <div

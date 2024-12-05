@@ -174,7 +174,7 @@ const Chart = ({ data, width, type }) => {
 
 const EmissionsByWasteChart = ({ data, type }) => {
   return (
-    <div style={{ width: '100%', height: `${defaultHeight}px` }}>
+    <div style={{ width: '100%', height: `${defaultHeight}px`, minWidth:'1300px' }}>
       <ParentSize>
         {({ width }) => <Chart data={data} width={width} type={type} />}
       </ParentSize>

@@ -40,6 +40,8 @@ export default function Organization({ activeStep, setActiveStep }) {
   useEffect(() => {
     getAllCountries();
     getAllSectors();
+    setOrganizationCountry("");
+    setOrganizationState("");
   }, []);
 
   useEffect(() => {
@@ -181,11 +183,19 @@ export default function Organization({ activeStep, setActiveStep }) {
       <div className="select_emp_cou">
         <div className="para_select">
           <p>Country</p>
-          <FormControl size="small" fullWidth>
+          <FormControl size="small" fullWidth sx={{ maxWidth: '200px' }}>
             <Select
               value={organizationCountry}
               onChange={handleCountryChange}
               sx={selectStyles}
+              displayEmpty
+              renderValue={(selected) => {
+                if (!selected || selected === '') {
+                  return <span style={{color:"#BDBDBD"}}>Select a country</span>;
+                }
+                return selected.countryName;
+              }}
+
             >
               {countryOptions.map((country, index) => (
                 <MenuItem key={index} value={country} sx={menuItemStyles}>
@@ -197,12 +207,19 @@ export default function Organization({ activeStep, setActiveStep }) {
         </div>
         <div className="para_select">
           <p>State</p>
-          <FormControl size="small" fullWidth>
+          <FormControl size="small" fullWidth sx={{ maxWidth: '200px' }}>
             <Select
               value={organizationState}
               onChange={handleStateChange}
               disabled={!organizationCountry}
               sx={selectStyles}
+              displayEmpty
+              renderValue={(selected) => {
+                if (!selected || selected === '') {
+                  return <span style={{color:"#BDBDBD"}}>Select a state</span>;
+                }
+                return selected.name;
+              }}
             >
               {stateOptions.map((state, index) => (
                 <MenuItem key={index} value={state} sx={menuItemStyles}>
@@ -214,12 +231,19 @@ export default function Organization({ activeStep, setActiveStep }) {
         </div>
         <div className="para_select">
           <p>City</p>
-          <FormControl size="small" fullWidth sx={{maxWidth:'200px'}}>
+          <FormControl size="small" fullWidth sx={{ maxWidth: '200px' }}>
             <Select
               value={organizationCity}
               onChange={handleCityChange}
               disabled={!organizationState}
               sx={selectStyles}
+              displayEmpty
+              renderValue={(selected) => {
+                if (!selected || selected === '') {
+                  return <span style={{color:"#BDBDBD"}}>Select a city</span>;
+                }
+                return selected.name;
+              }}
             >
               {cityOptions.map((city, index) => (
                 <MenuItem key={index} value={city} sx={menuItemStyles}>
@@ -236,6 +260,13 @@ export default function Organization({ activeStep, setActiveStep }) {
           value={organizationSector}
           onChange={handleSectorChange}
           sx={selectStyles}
+          displayEmpty
+          renderValue={(selected) => {
+            if (!selected || selected === '') {
+              return <span style={{color:"#BDBDBD"}}>Select a sector</span>;
+            }
+            return sectorOptions.find(sector => sector.id === selected)?.name || '';
+          }}
         >
           {sectorOptions.map((sector) => (
             <MenuItem key={sector.id} value={sector.id} sx={menuItemStyles}>
@@ -254,6 +285,13 @@ export default function Organization({ activeStep, setActiveStep }) {
               value={organizationIndustry}
               onChange={handleIndustryChange}
               sx={selectStyles}
+              displayEmpty
+              renderValue={(selected) => {
+                if (!selected || selected === '') {
+                  return <span style={{color:"#BDBDBD"}}>Select an industry</span>;
+                }
+                return industryOptions.find(industry => industry._id === selected)?.name || '';
+              }}
             >
               {industryOptions.map((industry, index) => (
                 <MenuItem key={index} value={industry._id} sx={menuItemStyles}>

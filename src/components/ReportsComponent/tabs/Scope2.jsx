@@ -14,39 +14,73 @@ const Scope2 = ({ setActiveTab }) => {
   const reportid = localStorage.getItem("reportId");
   const navigate = useNavigate();
 
+  // const submit = async (type) => {
+  //   const payload = {
+  //     organizationId: user?.organization?.id,
+  //     report_type: type,
+  //     main_report_id: reportid,
+  //     electricityConsumption: [
+  //       {
+  //         unit: "KWh",
+  //         quantity: scope2Data?.electricity,
+  //       },
+  //     ],
+  //     chilledWaterConsumption: [
+  //       {
+  //         unit: "ton-hour",
+  //         quantity: scope2Data?.water,
+  //       },
+  //     ],
+  //     heatConsumption: [
+  //       {
+  //         unit: "MMBtu",
+  //         quantity: scope2Data?.heat,
+  //       },
+  //     ],
+  //     purchasedDesalinatedWaterConsumption: [
+  //       {
+  //         unit: "m3",
+  //         quantity: scope2Data?.desalinated,
+  //       },
+  //     ],
+  //   };
+  //   console.log(payload);
+  //   const response = await saveScope2Report(payload);
+  //   console.log(response);
+  //   if (type === "draft") {
+  //     setActiveTab("scope3");
+  //   } else {
+  //     localStorage.removeItem("refrigerent");
+  //     localStorage.removeItem("consumption");
+  //     localStorage.removeItem("processEmissionData");
+  //     localStorage.removeItem("scope2Data");
+  //     navigate(`/emissionreport/${reportid}`);
+  //   }
+  // };
+
   const submit = async (type) => {
     const payload = {
       organizationId: user?.organization?.id,
       report_type: type,
       main_report_id: reportid,
-      electricityConsumption: [
-        {
-          unit: "KWh",
-          quantity: scope2Data?.electricity,
-        },
-      ],
-      chilledWaterConsumption: [
-        {
-          unit: "ton-hour",
-          quantity: scope2Data?.water,
-        },
-      ],
-      heatConsumption: [
-        {
-          unit: "MMBtu",
-          quantity: scope2Data?.heat,
-        },
-      ],
-      purchasedDesalinatedWaterConsumption: [
-        {
-          unit: "m3",
-          quantity: scope2Data?.desalinated,
-        },
-      ],
+      electricityConsumption: scope2Data?.electricity 
+        ? [{ unit: "KWh", quantity: scope2Data.electricity }] 
+        : [],
+      chilledWaterConsumption: scope2Data?.water 
+        ? [{ unit: "ton-hour", quantity: scope2Data.water }] 
+        : [],
+      heatConsumption: scope2Data?.heat 
+        ? [{ unit: "MMBtu", quantity: scope2Data.heat }] 
+        : [],
+      purchasedDesalinatedWaterConsumption: scope2Data?.desalinated 
+        ? [{ unit: "m3", quantity: scope2Data.desalinated }] 
+        : [],
     };
+  
     console.log(payload);
     const response = await saveScope2Report(payload);
     console.log(response);
+  
     if (type === "draft") {
       setActiveTab("scope3");
     } else {
@@ -57,7 +91,6 @@ const Scope2 = ({ setActiveTab }) => {
       navigate(`/emissionreport/${reportid}`);
     }
   };
-
   return (
     <div
       style={{

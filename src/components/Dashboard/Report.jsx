@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from 'react-router-dom';  // If using router
 import { Tabs, Tab, Box, TextField, InputAdornment } from "@mui/material";
-
 import ReportList from "./ReportList/ReportList";
 import DraftList from "./ReportList/DraftList";
 
-function Report() {
-  const [value, setValue] = useState(0);
+function Report({ initialTab }) {  // Add initialTab prop if not using router
+  const [searchParams] = useSearchParams();  // If using router
+  const [value, setValue] = useState(0);  // Default to Reports tab (index 0)
   const [searchQuery, setSearchQuery] = useState("");
+  
+  useEffect(() => {
+    // If using router
+    const tabParam = searchParams.get('tab');
+    if (tabParam === 'drafts') {
+      setValue(1);
+    }
 
+  }, [searchParams]);
+  
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <>
       <Box
@@ -52,7 +63,7 @@ function Report() {
             }}
           />
         </Tabs>
-
+        
         <TextField
           size="small"
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -71,7 +82,7 @@ function Report() {
                   </svg>
                 </InputAdornment>
               ),
-              placeholder:'Search reports'
+              placeholder: 'Search reports'
             },
           }}
         />
