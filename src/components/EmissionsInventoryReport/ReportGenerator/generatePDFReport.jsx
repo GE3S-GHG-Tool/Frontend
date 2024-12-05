@@ -9,6 +9,43 @@ import lineChart from '../../../assets/graphimgs/emissionslinechart.png'
 import reportLastPage from '../../../assets/graphimgs/reportlastpage.png'
 import rightBg from '../../../assets/graphimgs/rightBg.png'
 import leftBg from '../../../assets/graphimgs/leftBg.png'
+import axios from 'axios';
+
+async function fetchScope1Data(reportId) {
+    try {
+        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/scope1_categorized_emissions', {
+            reportId: reportId
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching scope 1 data:', error);
+        throw error;
+    }
+}
+
+async function fetchScope2Data(reportId) {
+    try {
+        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/scope2_totals_emissions', {
+            reportId: reportId
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching scope 2 data:', error);
+        throw error;
+    }
+}
+
+async function fetchScope3Data(reportId) {
+    try {
+        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/scope3_categorized_emissions', {
+            reportId: reportId
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching scope 3 data:', error);
+        throw error;
+    }
+}
 
 class MultiPageGHGReportGenerator {
     constructor(options = {}) {
@@ -115,40 +152,74 @@ class MultiPageGHGReportGenerator {
         );
     }
 
+
     // Generate report pages dynamically
-    async generateReport(apiData) {
+    async generateReport(reportId) {
         this.initializeDocument();
 
-        this.addExecutiveSummaryPage(apiData);
+        const scope1Data = await fetchScope1Data(reportId);
+        const scope2Data = await fetchScope2Data(reportId);
+        const scope3Data = await fetchScope3Data(reportId);
 
-        this.addScope1AnalysisOne(apiData);
+        // this.addExecutiveSummaryPage(apiData);
 
-        this.addScope1AnalysisTwo(apiData);
+        this.addScope1AnalysisOne(scope1Data);
 
-        this.addScope1AnalysisThree(apiData);
+        this.addScope1AnalysisTwo(scope1Data);
 
-        this.addScope2AnalysisOne(apiData);
+        this.addScope1AnalysisThree(scope1Data);
 
-        this.addScope2AnalysisTwo(apiData);
+        this.addScope2AnalysisOne(scope2Data);
 
-        this.addScope3AnalysisOne(apiData);
+        this.addScope2AnalysisTwo(scope2Data);
 
-        this.addScope3AnalysisTwo(apiData);
+        this.addScope3AnalysisOne(scope3Data);
 
-        this.addScope3AnalysisThree(apiData);
+        this.addScope3AnalysisTwo(scope3Data);
 
-        this.addScope3AnalysisFour(apiData);
+        this.addScope3AnalysisThree(scope3Data);
 
-        this.addScope3AnalysisFive(apiData);
+        this.addScope3AnalysisFour(scope3Data);
 
-        this.addScope3AnalysisSix(apiData);
+        this.addScope3AnalysisFive(scope3Data);
+
+        this.addScope3AnalysisSix(scope3Data);
 
         this.addConclusionPage();
 
         return this.pdf;
     }
 
-    // Executive Summary Page
+    // Helper function to handle missing data
+    getEmissionsData(data, key) {
+        if (!data[key] || data[key].length === 0) {
+            return [{
+                country: "Global",
+                quantity: 0,
+                unit: "",
+                emissions: 0
+            }];
+        }
+        return data[key];
+    }
+
+    // Helper function to calculate total emissions
+    calculateTotalEmissions(emissionsArray) {
+        return emissionsArray.reduce((total, item) => total + item.emissions, 0);
+    }
+
+    calculateEmissionsTotal(data) {
+        return data ? data.reduce((total, item) => total + item.emissions, 0) : 0;
+    }
+
+    // Helper function to handle missing data arrays
+    getDataWithDefault(data, defaultItem) {
+        if (!data || data.length === 0) {
+            return [defaultItem];
+        }
+        return data;
+    }
+
     addExecutiveSummaryPage(apiData) {
 
         this.addImagePage(reportImageOne);
@@ -166,11 +237,11 @@ class MultiPageGHGReportGenerator {
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
         const wrappedText = this.pdf.splitTextToSize(
-             `This section provides a comprehensive breakdown of [Company Name]'s greenhouse gas emissions for the reporting period [Reporting Period]. Emissions are categorized into three scopes:`,
+            `This section provides a comprehensive breakdown of [Company Name]'s greenhouse gas emissions for the reporting period [Reporting Period]. Emissions are categorized into three scopes:`,
             maxWidth
         );
-        
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+
+        this.pdf.text(wrappedText, this.margins.left, this.margins.top + 40);
 
         this.pdf.text('Total GHG Emissions Distribution',
             this.margins.left,
@@ -235,34 +306,19 @@ class MultiPageGHGReportGenerator {
             'By presenting a transparent and thorough examination of our environmental impact, we aim to demonstrate our commitment to sustainability and continuous improvement in reducing our carbon footprint.'
         ];
 
-        // Render second page text with wrapping
-        let currentY = startY;
-        summarySectionText.forEach((paragraph, paragraphIndex) => {
-            const splitText = this.pdf.splitTextToSize(paragraph, maxWidth);
-            splitText.forEach((line, lineIndex) => {
-                this.pdf.text(
-                    line,
-                    this.margins.left,
-                    currentY + (paragraphIndex * lineHeight) + (lineIndex * lineHeight)
-                );
-            });
-            // Update Y position after each paragraph
-            currentY += splitText.length * lineHeight + lineHeight;
-        });
-
-
         this.addFooter();
         this.pdf.addPage();
     }
-    // Emissions Breakdown Pages
-    addScope1AnalysisOne(apiData) {
+
+    addScope1AnalysisOne(scope1Data) {
         this.pageNumber = 8;
         this.addBg(rightBg)
+        const totalFuelEmissions = scope1Data.fuelEmissions.reduce((total, item) => total + item.emissions, 0);
         this.addHeader('Fuel Consumption');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Fuel Consumption for [Reporting Period]: [Emission]",
+            `Emission from Fuel Consumption for [Reporting Period]: ${totalFuelEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -274,6 +330,19 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        const tableData = scope1Data.fuelEmissions.map(item => [
+            item.fuelType,
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(2)} tCO2`
+        ]);
+
+        tableData.push([
+            "Total",
+            "",
+            `${totalFuelEmissions.toFixed(2)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -297,14 +366,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Fuel Type", "Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["Diesel", "12323 tonnes", "24546 tCO2"],
-                ["Gasoline/Petrol", "12323 tonnes", "24546 tCO2"],
-                ["HFO", "12323 tonnes", "24546 tCO2"],
-                ["LPG", "12323 tonnes", "24546 tCO2"],
-                ["CNG", "12323 tonnes", "24546 tCO2"],
-                ["Total", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -336,14 +398,15 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope1AnalysisTwo(apiData) {
+    addScope1AnalysisTwo(scope1Data) {
         this.pageNumber = 9;
         this.addBg(leftBg)
+        const totalRefrigerantEmissions = scope1Data.refrigerantEmissions.reduce((total, item) => total + item.emissions, 0);
         this.addHeader('Refrigerant Consumption');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Refrigerant Consumption for [Reporting Period]: [Emission] ",
+            `Emission from Refrigerant Consumption for [Reporting Period]: ${totalRefrigerantEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -355,6 +418,21 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = scope1Data.refrigerantEmissions.map(item => [
+            item.refrigerantType,
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(2)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push([
+            "Total",
+            "",
+            `${totalRefrigerantEmissions.toFixed(2)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -378,14 +456,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Refrigerant Type", "Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["R410a", "12323 tonnes", "24546 tCO2"],
-                ["R22", "12323 tonnes", "24546 tCO2"],
-                ["R134a", "12323 tonnes", "24546 tCO2"],
-                ["HFC-23", "12323 tonnes", "24546 tCO2"],
-                ["HFC-245fa", "12323 tonnes", "24546 tCO2"],
-                ["Total", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -417,14 +488,15 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope1AnalysisThree(apiData) {
+    addScope1AnalysisThree(scope1Data) {
         this.pageNumber = 10;
-        this.addBg(rightBg)
+        this.addBg(rightBg);
         this.addHeader('Process Emissions');
+        const totalProcessEmissions = scope1Data.processEmissions.reduce((total, item) => total + item.emissions, 0);
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Total Process Emissions for the [Reporting Period]: [total Process Emissions] ",
+            `Total Process Emissions for the [Reporting Period]: ${totalProcessEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -436,6 +508,21 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = scope1Data.processEmissions.map(item => [
+            item.processType,
+            `${item.quantity}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push([
+            "Total",
+            "",
+            `${totalProcessEmissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -459,12 +546,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Type", "Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["Waste Gas Disposal", "12323 tonnes", "24546 tCO2"],
-                ["Process and Vented", "12323 tonnes", "24546 tCO2"],
-                ["Fugitive ", "12323 tonnes", "24546 tCO2"],
-                ["Total", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -496,18 +578,28 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    // Scope Analysis Pages
-    addScope2AnalysisOne(apiData) {
+    addScope2AnalysisOne(scope2Data) {
         this.pageNumber = 11;
         this.addBg(leftBg)
+        // Handle electricity consumption data
+        const electricityData = this.getEmissionsData(scope2Data, 'electricityConsumption');
+        const totalElectricityEmissions = this.calculateTotalEmissions(electricityData);
+
         this.addHeader('Electricity Consumption');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Electricity Consumption for [Reporting Period]: [Emission] ",
+            `Emission from Electricity Consumption for [Reporting Period]: ${totalElectricityEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
+
+        // Create table data for electricity
+        const electricityTableData = electricityData.map(item => [
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -531,9 +623,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            body: electricityTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -561,6 +651,10 @@ class MultiPageGHGReportGenerator {
         // Render the wrapped text at the desired Y position
         this.pdf.text(wrappedText, this.margins.left, finalY + 40);
 
+
+        // Handle chilled water consumption data
+        const chilledWaterData = this.getEmissionsData(scope2Data, 'chilledWaterConsumption');
+        const totalChilledWaterEmissions = this.calculateTotalEmissions(chilledWaterData);
         this.pdf.setFontSize(14);
         this.pdf.setTextColor('#029366'); // Red
         this.pdf.setFont('helvetica', 'bold');
@@ -572,10 +666,17 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Chilled Consumption for [Reporting Period]: [Emission] ",
+            `Emission from Chilled Water Consumption for [Reporting Period]: ${totalChilledWaterEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             finalY + 120
         );
+
+        // Create table data for chilled water
+        const chilledWaterTableData = chilledWaterData.map(item => [
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: finalY + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -599,9 +700,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            body: chilledWaterTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -632,17 +731,30 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope2AnalysisTwo(apiData) {
+    addScope2AnalysisTwo(scope2Data) {
         this.pageNumber = 12;
         this.addBg(rightBg)
+
+        // Handle desalinated water consumption data
+        const desalinatedWaterData = this.getEmissionsData(scope2Data, 'purchasedDesalinatedWaterConsumption');
+        const totalDesalinatedWaterEmissions = this.calculateTotalEmissions(desalinatedWaterData);
+
         this.addHeader('Purchased Desalinated Water');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Purchased Desalinated Water for [Reporting Period]: [Emission]  ",
+            `Emission from Purchased Desalinated Water for [Reporting Period]: ${totalDesalinatedWaterEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
+
+
+        // Create table data for desalinated water
+        const desalinatedWaterTableData = desalinatedWaterData.map(item => [
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -666,9 +778,10 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            body: desalinatedWaterTableData,
+            margin: {
+                left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
+            },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
         const finalY = this.pdf.lastAutoTable.finalY + 10
@@ -696,6 +809,10 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(14);
         this.pdf.setTextColor('#029366'); // Red
         this.pdf.setFont('helvetica', 'bold');
+        // Handle heat consumption data
+        const heatData = this.getEmissionsData(scope2Data, 'heatConsumption');
+        const totalHeatEmissions = this.calculateTotalEmissions(heatData);
+
         this.pdf.text('Heat Consumption',
             this.margins.left,
             finalY + 100
@@ -704,10 +821,17 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Heat Consumption for [Reporting Period]: [Emission]  ",
+            `Emission from Heat Consumption for [Reporting Period]: ${totalHeatEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             finalY + 120
         );
+
+        // Create table data for heat consumption
+        const heatTableData = heatData.map(item => [
+            `${item.quantity} ${item.unit}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: finalY + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -731,9 +855,10 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            body: heatTableData,
+            margin: {
+                left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
+            },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
 
@@ -760,14 +885,26 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisOne(apiData) {
+    addScope3AnalysisOne(scope3Data) {
         this.pageNumber = 13;
         this.addBg(leftBg)
         this.addHeader('Waste Generated');
+
+        // Handle waste data with defaults
+        const wasteData = this.getDataWithDefault(scope3Data.wasteData, {
+            category: 'No Data',
+            subCategory: '-',
+            disposalMethod: '-',
+            quantity: 0,
+            emissions: 0
+        });
+
+        const totalWasteEmissions = this.calculateEmissionsTotal(wasteData);
+
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Waste Generated for [Reporting Period]: [Emission] ",
+            `Emission from Waste Generated for [Reporting Period]: ${totalWasteEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -779,6 +916,16 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = wasteData.map(item => [
+            item.category,
+            `${item.quantity}`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push(['Total', '', `${totalWasteEmissions.toFixed(6)} tCO2`]);
 
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
@@ -803,17 +950,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Fuel Type", "Consumption", "Emissions"]],  // Table header row
-            body: [
-                ["Glass", "12323 tonnes", "24546 tCO2"],
-                ["Plastics", "12323 tonnes", "24546 tCO2"],
-                ["Paper & cardboards", "12323 tonnes", "24546 tCO2"],
-                ["Organic Waste", "12323 tonnes", "24546 tCO2"],
-                ["Mixed Waste", "12323 tonnes", "24546 tCO2"],
-                ["Textile Waste", "12323 tonnes", "24546 tCO2"],
-                ["Electronics", "12323 tonnes", "24546 tCO2"],
-                ["Construction & Demolition", "12323 tonnes", "24546 tCO2"],
-                ["Total", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -845,14 +982,25 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisTwo(apiData) {
+    addScope3AnalysisTwo(scope3Data) {
         this.pageNumber = 14;
         this.addBg(rightBg)
         this.addHeader('Business Travel');
+
+        // Handle business travel data with defaults
+        const travelData = this.getDataWithDefault(scope3Data.businessTravelData, {
+            travelClass: 'No Data',
+            numTrips: 0,
+            distanceKm: 0,
+            emissions: 0
+        });
+
+        const totalTravelEmissions = this.calculateEmissionsTotal(travelData);
+
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Business Travel for [Reporting Period]: [Emission] ",
+            `Emission from Business Travel for [Reporting Period]: ${totalTravelEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -863,6 +1011,17 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = travelData.map(item => [
+            item.travelClass,
+            item.numTrips.toString(),
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push(['Total', '', `${totalTravelEmissions.toFixed(6)} tCO2`]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -886,12 +1045,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Travel Class", "Number of trips", "Emissions"]],  // Table header row
-            body: [
-                ["First Class", "12323 tonnes", "24546 tCO2"],
-                ["Business Class", "12323 tonnes", "24546 tCO2"],
-                ["Economy Class", "12323 tonnes", "24546 tCO2"],
-                ["Total", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -922,6 +1076,16 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(14);
         this.pdf.setTextColor('#029366'); // Red
         this.pdf.setFont('helvetica', 'bold');
+
+        // Handle purchased goods section
+        const purchasedGoodsData = this.getDataWithDefault(scope3Data.purchasedGoodsData, {
+            typeOfExpense: 'No Data',
+            expenseValue: 0,
+            emissions: 0
+        });
+
+        const totalPurchasedGoodsEmissions = this.calculateEmissionsTotal(purchasedGoodsData);
+
         this.pdf.text('Purchased Goods',
             this.margins.left,
             finalY + 100
@@ -930,10 +1094,16 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Purchase Goods for [Reporting Period]: [Emission] ",
+            `Emission from Purchased Goods for [Reporting Period]: ${totalPurchasedGoodsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             finalY + 120
         );
+
+        const purchasedGoodsTableData = [[
+            totalPurchasedGoodsEmissions.toFixed(6),
+            `${totalPurchasedGoodsEmissions.toFixed(6)} tCO2`
+        ]];
+
         autoTable(this.pdf, {
             startY: finalY + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -957,9 +1127,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Expense Value", "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            body: purchasedGoodsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -989,17 +1157,33 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisThree(apiData) {
+    addScope3AnalysisThree(scope3Data) {
         this.pageNumber = 15;
         this.addBg(leftBg)
+
+        // Handle capital goods data with defaults
+        const capitalGoodsData = this.getDataWithDefault(scope3Data.capitalGoodsData, {
+            assetType: 'No Data',
+            assetCategory: '-',
+            expenseValue: 0,
+            emissions: 0
+        });
+
+        const totalCapitalGoodsEmissions = this.calculateEmissionsTotal(capitalGoodsData);
         this.addHeader('Capital Goods');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Capital Goods for [Reporting Period]: [Emission] ",
+            `Emission from Capital Goods for [Reporting Period]: ${totalCapitalGoodsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
+
+        const capitalGoodsTableData = [[
+            totalCapitalGoodsEmissions.toFixed(6),
+            `${totalCapitalGoodsEmissions.toFixed(6)} tCO2`
+        ]];
+
         autoTable(this.pdf, {
             startY: this.margins.top + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -1022,10 +1206,8 @@ class MultiPageGHGReportGenerator {
                 1: { fillColor: '#fff' },    // White KPIs column
                 2: { fillColor: '#fff' }     // White Emissions column
             },
-            head: [["Expense Value", , "Emissions"]],  // Table header row
-            body: [
-                ["12323 tonnes", "24546 tCO2"],
-            ],
+            head: [["Expense Value", "Emissions"]],  // Table header row
+            body: capitalGoodsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -1056,6 +1238,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(14);
         this.pdf.setTextColor('#029366'); // Red
         this.pdf.setFont('helvetica', 'bold');
+        // Handle investments section
+        const investmentsData = this.getDataWithDefault(scope3Data.investmentsData, {
+            ownershipPercentage: 0,
+            investeeCompanyEmissions: 0,
+            emissions: 0
+        });
+
+        const totalInvestmentsEmissions = this.calculateEmissionsTotal(investmentsData);
         this.pdf.text('Investments',
             this.margins.left,
             finalY + 100
@@ -1064,10 +1254,16 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Investments for [Reporting Period]: [Emission]  ",
+            `Emission from Investments for [Reporting Period]: ${totalInvestmentsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             finalY + 120
         );
+
+        const investmentsTableData = investmentsData.map(item => [
+            `${item.ownershipPercentage}%`,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
         autoTable(this.pdf, {
             startY: finalY + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -1091,9 +1287,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Ownership Percentage", "Emissions"]],  // Table header row
-            body: [
-                ["12", "24546 tCO2"],
-            ],
+            body: investmentsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -1123,14 +1317,25 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisFour(apiData) {
+    addScope3AnalysisFour(scope3Data) {
         this.pageNumber = 16;
-        this.addBg(rightBg)
+        this.addBg(rightBg);
+
+        // Handle employee commuting data with defaults
+        const commutingData = this.getDataWithDefault(scope3Data.employeeCommutingData, {
+            vehicleType: 'No Data',
+            distanceKm: 0,
+            numTrips: 0,
+            emissions: 0
+        });
+
+        const totalCommutingEmissions = this.calculateEmissionsTotal(commutingData);
+
         this.addHeader('Employee Commuting');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Employee Commuting for [Reporting Period]: [Emission] ",
+            `Emission from Employee Commuting for [Reporting Period]: ${totalCommutingEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1142,6 +1347,16 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = commutingData.map(item => [
+            item.vehicleType,
+            item.numTrips.toString(),
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push(['Total', '', `${totalCommutingEmissions.toFixed(6)} tCO2`]);
 
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
@@ -1166,13 +1381,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Vehicle Type", "No. of Trips", "Emissions"]],  // Table header row
-            body: [
-                ["Car", "12323 tonnes", "24546 tCO2"],
-                ["Motor Cycle", "12323 tonnes", "24546 tCO2"],
-                ["Bus", "12323 tonnes", "24546 tCO2"],
-                ["Train", "12323 tonnes", "24546 tCO2"],
-                ["Total ", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -1204,14 +1413,21 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisFive(apiData) {
+    addScope3AnalysisFive(scope3Data) {
         this.pageNumber = 17;
-        this.addBg(leftBg)
+        this.addBg(leftBg);
+        // Handle fuel related data with defaults
+        const fuelRelatedData = this.getDataWithDefault(scope3Data.fuelRelatedData, {
+            category: 'No Data',
+            emissions: 0
+        });
+
+        const totalFuelRelatedEmissions = this.calculateEmissionsTotal(fuelRelatedData);
         this.addHeader('Fuel Related Activities');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Fuel Related Activities for [Reporting Period]: [Emission] ",
+            `Emission from Fuel Related Activities for [Reporting Period]: ${totalFuelRelatedEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1223,6 +1439,15 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = fuelRelatedData.map(item => [
+            item.category,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push(['Total', `${totalFuelRelatedEmissions.toFixed(6)} tCO2`]);
 
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
@@ -1247,13 +1472,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Category", "Emissions"]],  // Table header row
-            body: [
-                ["Upstream emissions of fuels purchased for own use", "24546 tCO2"],
-                ["Upstream emissions of purchased electricity for own use", "24546 tCO2"],
-                ["Transmission & distribution (T&D) losses of purchased electricity for own use.", "24546 tCO2"],
-                ["Generation emissions of purchased electricity that is sold to end users.", "24546 tCO2"],
-                ["Total ", "12323 tonnes", "24546 tCO2"],
-            ],
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -1285,15 +1504,23 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope3AnalysisSix(apiData) {
+    addScope3AnalysisSix(scope3Data) {
         this.pageNumber = 18;
-        this.addBg(rightBg)
+        this.addBg(rightBg);
+
+        // Handle upstream leased assets data with defaults
+        const upstreamLeasedData = this.getDataWithDefault(scope3Data.upstreamLeasedAssetsData, {
+            assetType: 'No Data',
+            emissions: 0
+        });
+
+        const totalUpstreamEmissions = this.calculateEmissionsTotal(upstreamLeasedData);
 
         this.addHeader('Upstream Leased Assets');
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Upstream Leases Assets for [Reporting Period]: [Emission] ",
+            `Emission from Upstream Leased Assets for [Reporting Period]: ${totalUpstreamEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1304,6 +1531,16 @@ class MultiPageGHGReportGenerator {
             this.margins.left,
             this.margins.top + 135
         );
+
+        // Transform data for table
+        const tableData = upstreamLeasedData.map(item => [
+            item.assetType,
+            `${item.emissions.toFixed(6)} tCO2`
+        ]);
+
+        // Add total row
+        tableData.push(['Total', `${totalUpstreamEmissions.toFixed(6)} tCO2`]);
+
         autoTable(this.pdf, {
             startY: this.margins.top + 150,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -1326,13 +1563,8 @@ class MultiPageGHGReportGenerator {
                 1: { fillColor: '#fff' },    // White KPIs column
                 2: { fillColor: '#fff' }     // White Emissions column
             },
-            head: [["Asset Type", , "Emissions"]],  // Table header row
-            body: [
-                ["Building", "24546 tCO2"],
-                ["Vehicle", "24546 tCO2"],
-                ["Equipment", "24546 tCO2"],
-                ["Total", "24546 tCO2"],
-            ],
+            head: [["Asset Type", "Emissions"]],  // Table header row
+            body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },
@@ -1363,6 +1595,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(14);
         this.pdf.setTextColor('#029366'); // Red
         this.pdf.setFont('helvetica', 'bold');
+
+        // Handle downstream leased assets section
+        const downstreamLeasedData = this.getDataWithDefault(scope3Data.downstreamLeasedAssetsData, {
+            emissions: 0
+        });
+
+        const totalDownstreamEmissions = this.calculateEmissionsTotal(downstreamLeasedData);
+
         this.pdf.text('Downstream Leased Assets',
             this.margins.left,
             finalY + 100
@@ -1371,10 +1611,16 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Emission from Downstream Leased Assets for [Reporting Period]: [Emission]",
+            `Emission from Downstream Leased Assets for [Reporting Period]: ${totalDownstreamEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             finalY + 120
         );
+
+        const downstreamTableData = [[
+            totalDownstreamEmissions.toFixed(6),
+            `${totalDownstreamEmissions.toFixed(6)} tCO2`
+        ]];
+
         autoTable(this.pdf, {
             startY: finalY + 135,
             theme: 'grid',  // 'striped', 'grid', or 'plain'
@@ -1398,9 +1644,7 @@ class MultiPageGHGReportGenerator {
                 2: { fillColor: '#fff' }     // White Emissions column
             },
             head: [["Physical Area", "Emissions"]],  // Table header row
-            body: [
-                ["12", "24546 tCO2"],
-            ],
+            body: downstreamTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
             },

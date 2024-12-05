@@ -43,6 +43,7 @@ import EmissionFromUpstreamLeasedAssets from "../../assets/graphimgs/EmissionFro
 import { useAuth } from "../../context/AuthContext";
 import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
+import { FillContentWrapper } from "./Locks/FillContentWrapper";
 
 const Scope1SVGs = [
   <svg
@@ -273,11 +274,6 @@ const Scope3SVGs = [
   </svg>,
 ];
 
-const processPalette = {
-  "Emission From Waste Gas Disposal": "#028A60",
-  "Emission from Process and Vented Emission": "#A9DECE",
-  "Process & Vented": "#E9FFF8",
-};
 const colorPalette = {
   Diesel: "#028A60",
   HFO: "#A9DECE",
@@ -285,6 +281,7 @@ const colorPalette = {
   LPG: "#D0FFF1",
   "Gasoline/Petrol": "#02B880",
 };
+
 const colorPalette2 = {
   R410a: "#028A60",
   R22: "#02B880",
@@ -292,22 +289,26 @@ const colorPalette2 = {
   "HFC-23": "#D0FFF1",
   "HFC-245fa": "#E9FFF8",
 };
+
 const colorPalette3 = {
   'Emission From Waste Gas Disposal': " #028A60",
   'Fugitive Emissions': "#02B880",
   'Emission from Process and Vented Emission': "#A9DECE",
 };
+
 const businesspallete = {
   'First Class': "#F26D58",
   'Business Class': "#FF8977",
   'Economy Class': "#FF9989",
 };
+
 const ecbpallete = {
   Car: "#F26D58",
   'Motor Cycle': "#FF8977",
   Bus: "#FFAC9F",
   Train: "#FF9989",
 };
+
 const wastecolorPalette = {
   Metals: "#F26D58",
   Glass: "#FF7863",
@@ -319,6 +320,7 @@ const wastecolorPalette = {
   "Textile Waste": "#FFC8BF",
   "Construction & Demolition Waste": "#FFE6E3",
 };
+
 const disposlaPalette = {
   Recycled: "#F26D58",
   Landfilled: "#FF8977",
@@ -333,6 +335,7 @@ const fuelpallete = {
   "Upstream emissions of purchased electricity for own use": "#FF8977",
   "T&D losses of purchased electricity for own use": "#FF9989",
 };
+
 const TotalEmissionsInventoryReport = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -370,22 +373,6 @@ const TotalEmissionsInventoryReport = () => {
   );
   const [ProcessEmissionBreakdownData, setProcessEmissionBreakdownData] =
     useState([]);
-
-
-  const getRandomColor = () => {
-    const greenShades = [
-      '#028A60',  // Deep forest green
-      '#02B880',  // Medium seafoam green
-      '#ADE4D3',  // Light mint green
-      '#D0FFF1',  // Very light mint
-      '#EAFFF8',  // Almost white with hint of green
-      '#E9FFF8',  // Almost white with hint of green (slight variation)
-      '#B1E9D8'   // Soft mint green
-    ];
-
-    return greenShades[Math.floor(Math.random() * greenShades.length)];
-  };
-
 
   const scopeData1 = async (id) => {
     const response = await getScope1Data(id);
@@ -626,6 +613,10 @@ const TotalEmissionsInventoryReport = () => {
     scopeData3(id);
   }, [id]);
 
+  useEffect(() => {
+    fetchreportData(id);
+  }, []);
+
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
@@ -812,7 +803,7 @@ const TotalEmissionsInventoryReport = () => {
                 </span>
                 <span>Share</span>
               </span>
-              <DownloadReportButton />
+              <DownloadReportButton reportId={id} />
             </Paper>
           )}
         </Box>
@@ -1148,21 +1139,29 @@ const TotalEmissionsInventoryReport = () => {
             </div>
           </div>
           {(user?.organization?.premiumPlan?.name === "OffSet" || user?.organization?.premiumPlan?.name === "CarbonZero") ?
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                style={{
-                  display: "flex",
-                  borderRadius: "16px",
-                }}
-              >
-                <ScopeData
-                  title="Scope 2 Emissions: Our Purchased Power Print"
-                  desc="Your carbon footprint includes indirect emissions from the electricity, desalinated water, chilled water, and heat you purchase to power your operations."
-                  svgs={Scope2SVGs}
-                  data={scope2Data}
-                  type="scope-2"
-                />
-              </div>
+            <div>
+              {reportData?.scope2 ?
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      borderRadius: "16px",
+                    }}
+                  >
+                    <ScopeData
+                      title="Scope 2 Emissions: Our Purchased Power Print"
+                      desc="Your carbon footprint includes indirect emissions from the electricity, desalinated water, chilled water, and heat you purchase to power your operations."
+                      svgs={Scope2SVGs}
+                      data={scope2Data}
+                      type="scope-2"
+                    />
+                  </div>
+                </div> :
+                <FillContentWrapper isPremium={false} title="Create Your Scope 2 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
+                  <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+                </FillContentWrapper>
+
+              }
             </div>
             :
             <PremiumContentWrapper isPremium={false} title="Unlock Scope 2 Emissions Reports" desc="Gain access to detailed Scope 2 emissions reports to track and manage indirect greenhouse gas emissions from purchased energy sources." reportid={id}>
@@ -1170,348 +1169,356 @@ const TotalEmissionsInventoryReport = () => {
             </PremiumContentWrapper>
           }
           {(user?.organization?.premiumPlan?.name === "CarbonZero") ?
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-            >
-              <div
-                style={{
-                  borderRadius: "16px",
-                }}
-              >
-                <ScopeData
-                  title="Scope 3 Emissions: Our Value Chain Vent"
-                  desc="Your carbon footprint includes value chain emissions from your suppliers and customers."
-                  svgs={Scope3SVGs}
-                  data={scope3Data}
-                  type="scope-3"
-                />
-              </div>
-
-              <div
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    padding: "2rem 2.2rem",
-                    height: "350px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "16px",
-                    background: "white",
-                  }}
-                >
-                  <GraphWrapper
-                    data={WasteEmissionData}
-                    dummyImage={EmissionsByWasteCategoryDummy}
+            <div>
+              {
+                reportData?.scope3 ?
+                  <div
+                    style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                   >
                     <div
                       style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
+                        borderRadius: "16px",
                       }}
                     >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Emissions by Waste category
-                      </Typography>
-                      <EmissionsByWasteChart
-                        data={WasteEmissionData}
+                      <ScopeData
+                        title="Scope 3 Emissions: Our Value Chain Vent"
+                        desc="Your carbon footprint includes value chain emissions from your suppliers and customers."
+                        svgs={Scope3SVGs}
+                        data={scope3Data}
                         type="scope-3"
                       />
                     </div>
-                  </GraphWrapper>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    width: "100%",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "32.5%",
-                      padding: "2rem 2.2rem",
-                      height: "350px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "16px",
-                      background: "white",
-                    }}
-                  >
-                    <GraphWrapper
-                      data={BusinessTravelEmissionsBreakdown}
-                      dummyImage={BusinessTravelEmissionsBreakdownDummy}
+
+                    <div
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                      }}
                     >
                       <div
                         style={{
-                          textAlign: "center",
-                          position: "relative",
                           width: "100%",
+                          padding: "2rem 2.2rem",
+                          height: "350px",
                           display: "flex",
-                          flexDirection: "column",
-                          gap: "2rem",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "16px",
+                          background: "white",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontFamily: "Inter",
-                            fontSize: "1rem",
-                            fontWeight: "600",
-                            wordSpacing: "0px",
-                            textAlign: "start",
-                          }}
+                        <GraphWrapper
+                          data={WasteEmissionData}
+                          dummyImage={EmissionsByWasteCategoryDummy}
                         >
-                          Business Travel Emissions Breakdown{" "}
-                        </Typography>
-                        <div>
-                          <FullCircleDonutChart
-                            data={BusinessTravelEmissionsBreakdown}
-                            width={260}
-                            height={260}
-                          />
-                        </div>
+                          <div
+                            style={{
+                              textAlign: "center",
+                              position: "relative",
+                              width: "100%",
+                              height: "100%",
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontFamily: "Inter",
+                                fontSize: "1rem",
+                                fontWeight: "600",
+                                wordSpacing: "0px",
+                                textAlign: "start",
+                              }}
+                            >
+                              Emissions by Waste category
+                            </Typography>
+                            <EmissionsByWasteChart
+                              data={WasteEmissionData}
+                              type="scope-3"
+                            />
+                          </div>
+                        </GraphWrapper>
                       </div>
-                    </GraphWrapper>
-                  </div>
-                  <div
-                    style={{
-                      width: "32.5%",
-                      padding: "2rem 2.2rem",
-                      height: "350px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "16px",
-                      background: "white",
-                    }}
-                  >
-                    <GraphWrapper
-                      data={WasteDisposalMethodsByCategoryData}
-                      dummyImage={WasteDisposalMethodsByCategoryDummy}
-                    >
                       <div
                         style={{
-                          textAlign: "center",
-                          position: "relative",
-                          width: "100%",
                           display: "flex",
-                          flexDirection: "column",
-                          gap: "2rem",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: "Inter",
-                            fontSize: "1rem",
-                            fontWeight: "600",
-                            wordSpacing: "0px",
-                            textAlign: "start",
-                          }}
-                        >
-                          Waste Disposal Methods by Category{" "}
-                        </Typography>
-                        <div>
-                          <FullCircleDonutChart
-                            data={WasteDisposalMethodsByCategoryData}
-                            width={260}
-                            height={260}
-                          />
-                        </div>
-                      </div>
-                    </GraphWrapper>
-                  </div>
-                  <div
-                    style={{
-                      width: "32.5%",
-                      padding: "2rem 2.2rem",
-                      height: "350px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "16px",
-                      background: "white",
-                    }}
-                  >
-                    <GraphWrapper
-                      data={ECEBreakdownByVehicleTypeData}
-                      dummyImage={EmployeeCommutingEmissionsBreakdownDummy}
-                    >
-                      <div
-                        style={{
-                          textAlign: "center",
-                          position: "relative",
+                          justifyContent: "space-between",
                           width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: "0.5rem",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontFamily: "Inter",
-                            fontSize: "1rem",
-                            fontWeight: "600",
-                            wordSpacing: "0px",
-                            textAlign: "start",
-                          }}
-                        >
-                          Employee Commuting Emissions Breakdown by Vehicle Type
-                        </Typography>
-                        <div>
-                          <FullCircleDonutChart
-                            data={ECEBreakdownByVehicleTypeData}
-                            width={260}
-                            height={260}
-                          />
-                        </div>
-                      </div>
-                    </GraphWrapper>
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    width: "100%",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "32.5%",
-                      padding: "2rem 2.2rem",
-                      height: "350px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "16px",
-                      background: "white",
-                    }}
-                  >
-                    <GraphWrapper
-                      data={FuelActivitiesEmissionData}
-                      dummyImage={FuelRelatedActivitiesDummy}
-                    >
-                      <div
-                        style={{
-                          textAlign: "center",
-                          position: "relative",
-                          width: "100%",
-                          height: "100%",
-                          zIndex: "200",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: "Inter",
-                            fontSize: "1rem",
-                            fontWeight: "600",
-                            wordSpacing: "0px",
-                            textAlign: "start",
-                          }}
-                        >
-                          Fuel-Related Activities Emissions <br /> Breakdown
-                        </Typography>
-                        <SemiCirclePieChart
-                          data={FuelActivitiesEmissionData}
-                          tooltipWidth={150}
-                        />
-                      </div>
-                    </GraphWrapper>
-                  </div>
-                  <div style={{
-                  width:'60%',  
-                  }}>
-                    <GraphWrapper
-                      data={EmissionUpstreamAssetsData}
-                      dummyImage={EmissionFromUpstreamLeasedAssets}
-                    >
-                     </GraphWrapper>
-                      {
-                        EmissionUpstreamAssetsData.length>0 && 
                         <div
-                        style={{
-                          textAlign: "center",
-                          position: "relative",
-                          width: "100%",
-                          height: "100%",
-                          background:'white',
-                          padding:'0.5rem 0rem 0rem 0.5rem'
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: "Inter",
-                            fontSize: "1rem",
-                            fontWeight: "600",
-                            wordSpacing: "0px",
-                            textAlign: "start",
-                            marginBottom:'1.5rem'
+                          style={{
+                            width: "32.5%",
+                            padding: "2rem 2.2rem",
+                            height: "350px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "16px",
+                            background: "white",
                           }}
                         >
-                          Emissions from Upstream Leased Assets
-                        </Typography>
-                        <StackedBarChart
-                          data={EmissionUpstreamAssetsData}
-                          height={250}
-                        />
+                          <GraphWrapper
+                            data={BusinessTravelEmissionsBreakdown}
+                            dummyImage={BusinessTravelEmissionsBreakdownDummy}
+                          >
+                            <div
+                              style={{
+                                textAlign: "center",
+                                position: "relative",
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2rem",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inter",
+                                  fontSize: "1rem",
+                                  fontWeight: "600",
+                                  wordSpacing: "0px",
+                                  textAlign: "start",
+                                }}
+                              >
+                                Business Travel Emissions Breakdown{" "}
+                              </Typography>
+                              <div>
+                                <FullCircleDonutChart
+                                  data={BusinessTravelEmissionsBreakdown}
+                                  width={260}
+                                  height={260}
+                                />
+                              </div>
+                            </div>
+                          </GraphWrapper>
+                        </div>
+                        <div
+                          style={{
+                            width: "32.5%",
+                            padding: "2rem 2.2rem",
+                            height: "350px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "16px",
+                            background: "white",
+                          }}
+                        >
+                          <GraphWrapper
+                            data={WasteDisposalMethodsByCategoryData}
+                            dummyImage={WasteDisposalMethodsByCategoryDummy}
+                          >
+                            <div
+                              style={{
+                                textAlign: "center",
+                                position: "relative",
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2rem",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inter",
+                                  fontSize: "1rem",
+                                  fontWeight: "600",
+                                  wordSpacing: "0px",
+                                  textAlign: "start",
+                                }}
+                              >
+                                Waste Disposal Methods by Category{" "}
+                              </Typography>
+                              <div>
+                                <FullCircleDonutChart
+                                  data={WasteDisposalMethodsByCategoryData}
+                                  width={260}
+                                  height={260}
+                                />
+                              </div>
+                            </div>
+                          </GraphWrapper>
+                        </div>
+                        <div
+                          style={{
+                            width: "32.5%",
+                            padding: "2rem 2.2rem",
+                            height: "350px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "16px",
+                            background: "white",
+                          }}
+                        >
+                          <GraphWrapper
+                            data={ECEBreakdownByVehicleTypeData}
+                            dummyImage={EmployeeCommutingEmissionsBreakdownDummy}
+                          >
+                            <div
+                              style={{
+                                textAlign: "center",
+                                position: "relative",
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "0.5rem",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inter",
+                                  fontSize: "1rem",
+                                  fontWeight: "600",
+                                  wordSpacing: "0px",
+                                  textAlign: "start",
+                                }}
+                              >
+                                Employee Commuting Emissions Breakdown by Vehicle Type
+                              </Typography>
+                              <div>
+                                <FullCircleDonutChart
+                                  data={ECEBreakdownByVehicleTypeData}
+                                  width={260}
+                                  height={260}
+                                />
+                              </div>
+                            </div>
+                          </GraphWrapper>
+                        </div>
                       </div>
-                      }
-                   
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.5rem",
-                    background: "white",
-                    padding: "2.5rem 1rem",
-                    borderRadius: "16px",
-                  }}
-                >
-                  <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>
-                    Note: Our product currently focuses on specific Scope 3 KPIs,
-                    but additional factors will be rolled out soon.
-                  </Typography>
-                  <div
-                    style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}
-                  >
-                    <Scope3Card
-                      title="Upstream transportation and distribution"
-                      value={0}
-                    />
-                    <Scope3Card
-                      title="Downstream transportation and distribution"
-                      value={0}
-                    />
-                    <Scope3Card title="Processing of sold products" value={0} />
-                    <Scope3Card title="Use of sold products" value={0} />
-                    <Scope3Card
-                      title="End-of-life treatment of sold products"
-                      value={0}
-                    />
-                    <Scope3Card title="Franchises" value={0} />
-                  </div>
-                </div>
-              </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "32.5%",
+                            padding: "2rem 2.2rem",
+                            height: "350px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "16px",
+                            background: "white",
+                          }}
+                        >
+                          <GraphWrapper
+                            data={FuelActivitiesEmissionData}
+                            dummyImage={FuelRelatedActivitiesDummy}
+                          >
+                            <div
+                              style={{
+                                textAlign: "center",
+                                position: "relative",
+                                width: "100%",
+                                height: "100%",
+                                zIndex: "200",
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inter",
+                                  fontSize: "1rem",
+                                  fontWeight: "600",
+                                  wordSpacing: "0px",
+                                  textAlign: "start",
+                                }}
+                              >
+                                Fuel-Related Activities Emissions <br /> Breakdown
+                              </Typography>
+                              <SemiCirclePieChart
+                                data={FuelActivitiesEmissionData}
+                                tooltipWidth={150}
+                              />
+                            </div>
+                          </GraphWrapper>
+                        </div>
+                        <div style={{
+                          width: '60%',
+                        }}>
+                          <GraphWrapper
+                            data={EmissionUpstreamAssetsData}
+                            dummyImage={EmissionFromUpstreamLeasedAssets}
+                          >
+                          </GraphWrapper>
+                          {
+                            EmissionUpstreamAssetsData.length > 0 &&
+                            <div
+                              style={{
+                                textAlign: "center",
+                                position: "relative",
+                                width: "100%",
+                                height: "100%",
+                                background: 'white',
+                                padding: '0.5rem 0rem 0rem 0.5rem'
+                              }}
+                            >
+                              <Typography
+                                sx={{
+                                  fontFamily: "Inter",
+                                  fontSize: "1rem",
+                                  fontWeight: "600",
+                                  wordSpacing: "0px",
+                                  textAlign: "start",
+                                  marginBottom: '1.5rem'
+                                }}
+                              >
+                                Emissions from Upstream Leased Assets
+                              </Typography>
+                              <StackedBarChart
+                                data={EmissionUpstreamAssetsData}
+                                height={250}
+                              />
+                            </div>
+                          }
+
+                        </div>
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "1.5rem",
+                          background: "white",
+                          padding: "2.5rem 1rem",
+                          borderRadius: "16px",
+                        }}
+                      >
+                        <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>
+                          Note: Our product currently focuses on specific Scope 3 KPIs,
+                          but additional factors will be rolled out soon.
+                        </Typography>
+                        <div
+                          style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}
+                        >
+                          <Scope3Card
+                            title="Upstream transportation and distribution"
+                            value={0}
+                          />
+                          <Scope3Card
+                            title="Downstream transportation and distribution"
+                            value={0}
+                          />
+                          <Scope3Card title="Processing of sold products" value={0} />
+                          <Scope3Card title="Use of sold products" value={0} />
+                          <Scope3Card
+                            title="End-of-life treatment of sold products"
+                            value={0}
+                          />
+                          <Scope3Card title="Franchises" value={0} />
+                        </div>
+                      </div>
+                    </div>
+                  </div> :
+                  <FillContentWrapper isPremium={false} title="Create Your Scope 3 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
+                    <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </FillContentWrapper>
+              }
             </div> :
             <PremiumContentWrapper isPremium={false} title="Unlock Scope 3 Emissions Reports" desc="Access comprehensive Scope 3 emissions reports to measure and manage your indirect emissions across the entire value chain, from suppliers to end consumers." reportid={id}>
               <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
