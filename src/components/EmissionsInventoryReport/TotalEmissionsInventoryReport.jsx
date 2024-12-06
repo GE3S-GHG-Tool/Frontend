@@ -27,6 +27,7 @@ import EmissionsByWasteChart from "./Charts/EmissionsByWasteChart";
 import { MoreVertOutlined } from "@mui/icons-material";
 import DownloadReportButton from "./ReportGenerator/DownloadReportButton";
 import { PremiumContentWrapper } from "./Locks/PremiumContentWrapper";
+import scope1BgDummy from "../../assets/graphimgs/scope1bgimage.png"
 import scope2BgDummy from "../../assets/graphimgs/scope2bgimage.png"
 import scope3BgDummy from "../../assets/graphimgs/scope3bgimage.png"
 import FuelTypeEmissions from "../../assets/graphimgs/fueltypeemissionsbreakdown.png"
@@ -44,6 +45,7 @@ import { useAuth } from "../../context/AuthContext";
 import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
 import { FillContentWrapper } from "./Locks/FillContentWrapper";
+import { NoDataAvailableWrapper } from "./Locks/NoDataAvailableWrapper";
 
 const Scope1SVGs = [
   <svg
@@ -901,262 +903,274 @@ const TotalEmissionsInventoryReport = () => {
             </div>
           </div>
 
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                borderRadius: "16px",
-              }}
-            >
-              <ScopeData
-                title="Scope 1 Emissions: Your Direct Footprint"
-                desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles."
-                svgs={Scope1SVGs}
-                data={scope1Data}
-                type="scope-1"
-              />
-            </div>
-
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-              }}
-            >
+          {
+            reportData.scope1?.grand_total_emissions !== 0 ?
               <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
+                style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
               >
                 <div
                   style={{
-                    width: "32.5%",
-                    padding: "2rem 2.2rem",
-                    height: "350px",
                     display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
                     borderRadius: "16px",
-                    background: "white",
-                    zIndex: 99,
                   }}
                 >
-                  <GraphWrapper
-                    data={FuelTypeEmissionBreakdownData}
-                    dummyImage={FuelTypeEmissions}
-                  >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
+                  <ScopeData
+                    title="Scope 1 Emissions: Your Direct Footprint"
+                    desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles."
+                    svgs={Scope1SVGs}
+                    data={scope1Data}
+                    type="scope-1"
+                  />
+                </div>
 
-                    >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Fuel Type Emissions Breakdown
-                      </Typography>
-                      <SemiCirclePieChart
-                        data={FuelTypeEmissionBreakdownData}
-                        tooltipWidth={10}
-                      />
-                    </div>
-                  </GraphWrapper>
-                </div>
                 <div
                   style={{
-                    width: "32.5%",
-                    padding: "2rem 2.2rem",
-                    height: "350px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "16px",
-                    background: "white",
-                    zIndex: 1,
-                  }}
-                >
-                  <GraphWrapper
-                    data={RefrigerantEmissionsData}
-                    dummyImage={RefrigerantEmissionsByType}
-                  >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Refrigerant Emissions by Type
-                      </Typography>
-                      <RefrigerantEmissionsChart
-                        data={RefrigerantEmissionsData}
-                      />
-                    </div>
-                  </GraphWrapper>
-                </div>
-                <div
-                  style={{
-                    width: "32.5%",
-                    padding: "2rem 2.2rem",
-                    height: "350px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "16px",
-                    background: "white",
-                  }}
-                >
-                  <GraphWrapper
-                    data={ProcessEmissionBreakdownData}
-                    dummyImage={ProcessEmissionBreakdown}
-                  >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Process Emission Breakdown
-                      </Typography>
-                      <SemiCirclePieChart
-                        data={ProcessEmissionBreakdownData}
-                        tooltipWidth={50}
-                      />
-                    </div>
-                  </GraphWrapper>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    width: "40%",
-                    borderRadius: "16px",
-                    background: "white",
-                    padding: "2rem 2.2rem",
-                  }}
-                >
-                  <GraphWrapper
-                    data={FuelConsumptionBreakdown}
-                    dummyImage={FuelConsumptionBreakdownDummy}
-                  >
-                    <div style={{ textAlign: "center" }}>
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Fuel Consumption Breakdown
-                      </Typography>
-                      <FuelConsumptionChart data={FuelConsumptionBreakdown} />
-                    </div>
-                  </GraphWrapper>
-                </div>
-                <div
-                  style={{
-                    width: "58%",
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "space-between",
-                    padding: "0",
-                    borderRadius: "16px",
-                    background: "white",
+                    gap: "1rem",
                   }}
                 >
-                  <GraphWrapper
-                    data={RefrigerantConsumptionData}
-                    dummyImage={RefrigerantConsumptionBreakdownDummy}
-                  >
-                    <div
-                      style={{
-                        textAlign: "center",
-                        position: "relative",
-                        padding: "2rem 2.2rem",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontFamily: "Inter",
-                          fontSize: "1rem",
-                          fontWeight: "600",
-                          wordSpacing: "0px",
-                          textAlign: "start",
-                        }}
-                      >
-                        Refrigerant Consumption Breakdown
-                      </Typography>
-                      <RefrigerantConsumptionChart
-                        data={RefrigerantConsumptionData}
-                        width={700}
-                        height={300}
-                        type="scope-1"
-                      />
-                    </div>
-                  </GraphWrapper>
-                </div>
-              </div>
-            </div>
-          </div>
-          {(user?.organization?.premiumPlan?.name === "OffSet" || user?.organization?.premiumPlan?.name === "CarbonZero") ?
-            <div>
-              {reportData?.scope2 ?
-                <div style={{ display: "flex", flexDirection: "column" }}>
                   <div
                     style={{
                       display: "flex",
-                      borderRadius: "16px",
+                      justifyContent: "space-between",
+                      width: "100%",
                     }}
                   >
-                    <ScopeData
-                      title="Scope 2 Emissions: Our Purchased Power Print"
-                      desc="Your carbon footprint includes indirect emissions from the electricity, desalinated water, chilled water, and heat you purchase to power your operations."
-                      svgs={Scope2SVGs}
-                      data={scope2Data}
-                      type="scope-2"
-                    />
+                    <div
+                      style={{
+                        width: "32.5%",
+                        padding: "2rem 2.2rem",
+                        height: "350px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "16px",
+                        background: "white",
+                        zIndex: 99,
+                      }}
+                    >
+                      <GraphWrapper
+                        data={FuelTypeEmissionBreakdownData}
+                        dummyImage={FuelTypeEmissions}
+                      >
+                        <div
+                          style={{
+                            textAlign: "center",
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                          }}
+
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: "Inter",
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              wordSpacing: "0px",
+                              textAlign: "start",
+                            }}
+                          >
+                            Fuel Type Emissions Breakdown
+                          </Typography>
+                          <SemiCirclePieChart
+                            data={FuelTypeEmissionBreakdownData}
+                            tooltipWidth={10}
+                          />
+                        </div>
+                      </GraphWrapper>
+                    </div>
+                    <div
+                      style={{
+                        width: "32.5%",
+                        padding: "2rem 2.2rem",
+                        height: "350px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "16px",
+                        background: "white",
+                        zIndex: 1,
+                      }}
+                    >
+                      <GraphWrapper
+                        data={RefrigerantEmissionsData}
+                        dummyImage={RefrigerantEmissionsByType}
+                      >
+                        <div
+                          style={{
+                            textAlign: "center",
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: "Inter",
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              wordSpacing: "0px",
+                              textAlign: "start",
+                            }}
+                          >
+                            Refrigerant Emissions by Type
+                          </Typography>
+                          <RefrigerantEmissionsChart
+                            data={RefrigerantEmissionsData}
+                          />
+                        </div>
+                      </GraphWrapper>
+                    </div>
+                    <div
+                      style={{
+                        width: "32.5%",
+                        padding: "2rem 2.2rem",
+                        height: "350px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: "16px",
+                        background: "white",
+                      }}
+                    >
+                      <GraphWrapper
+                        data={ProcessEmissionBreakdownData}
+                        dummyImage={ProcessEmissionBreakdown}
+                      >
+                        <div
+                          style={{
+                            textAlign: "center",
+                            position: "relative",
+                            width: "100%",
+                            height: "100%",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: "Inter",
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              wordSpacing: "0px",
+                              textAlign: "start",
+                            }}
+                          >
+                            Process Emission Breakdown
+                          </Typography>
+                          <SemiCirclePieChart
+                            data={ProcessEmissionBreakdownData}
+                            tooltipWidth={50}
+                          />
+                        </div>
+                      </GraphWrapper>
+                    </div>
                   </div>
-                </div> :
+
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <div
+                      style={{
+                        width: "40%",
+                        borderRadius: "16px",
+                        background: "white",
+                        padding: "2rem 2.2rem",
+                      }}
+                    >
+                      <GraphWrapper
+                        data={FuelConsumptionBreakdown}
+                        dummyImage={FuelConsumptionBreakdownDummy}
+                      >
+                        <div style={{ textAlign: "center" }}>
+                          <Typography
+                            sx={{
+                              fontFamily: "Inter",
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              wordSpacing: "0px",
+                              textAlign: "start",
+                            }}
+                          >
+                            Fuel Consumption Breakdown
+                          </Typography>
+                          <FuelConsumptionChart data={FuelConsumptionBreakdown} />
+                        </div>
+                      </GraphWrapper>
+                    </div>
+                    <div
+                      style={{
+                        width: "58%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        padding: "0",
+                        borderRadius: "16px",
+                        background: "white",
+                      }}
+                    >
+                      <GraphWrapper
+                        data={RefrigerantConsumptionData}
+                        dummyImage={RefrigerantConsumptionBreakdownDummy}
+                      >
+                        <div
+                          style={{
+                            textAlign: "center",
+                            position: "relative",
+                            padding: "2rem 2.2rem",
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontFamily: "Inter",
+                              fontSize: "1rem",
+                              fontWeight: "600",
+                              wordSpacing: "0px",
+                              textAlign: "start",
+                            }}
+                          >
+                            Refrigerant Consumption Breakdown
+                          </Typography>
+                          <RefrigerantConsumptionChart
+                            data={RefrigerantConsumptionData}
+                            width={700}
+                            height={300}
+                            type="scope-1"
+                          />
+                        </div>
+                      </GraphWrapper>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              :
+              <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
+                <img src={scope1BgDummy} style={{ width: '100%', height: '100%' }} />
+              </NoDataAvailableWrapper>
+          }
+          {(user?.organization?.premiumPlan?.name === "OffSet" || user?.organization?.premiumPlan?.name === "CarbonZero") ?
+            <div>
+              {reportData?.scope2 ?
+                reportData?.scope2?.grand_total_emissions !== 0 ?
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        borderRadius: "16px",
+                      }}
+                    >
+                      <ScopeData
+                        title="Scope 2 Emissions: Our Purchased Power Print"
+                        desc="Your carbon footprint includes indirect emissions from the electricity, desalinated water, chilled water, and heat you purchase to power your operations."
+                        svgs={Scope2SVGs}
+                        data={scope2Data}
+                        type="scope-2"
+                      />
+                    </div>
+                  </div> :
+                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
+                    <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </NoDataAvailableWrapper>
+                :
                 <FillContentWrapper isPremium={false} title="Create Your Scope 2 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
                   <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
                 </FillContentWrapper>
@@ -1171,7 +1185,7 @@ const TotalEmissionsInventoryReport = () => {
           {(user?.organization?.premiumPlan?.name === "CarbonZero") ?
             <div>
               {
-                reportData?.scope3 ?
+                reportData?.scope3 ? reportData?.scope3?.grand_total_emissions !== 0 ?
                   <div
                     style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                   >
@@ -1514,7 +1528,11 @@ const TotalEmissionsInventoryReport = () => {
                         </div>
                       </div>
                     </div>
-                  </div> :
+                  </div>
+                  :
+                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
+                    <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </NoDataAvailableWrapper> :
                   <FillContentWrapper isPremium={false} title="Create Your Scope 3 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
                     <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
                   </FillContentWrapper>
@@ -1569,6 +1587,7 @@ const TotalEmissionsInventoryReport = () => {
       <ShareReportModal
         open={openShareModal}
         setOpenModal={setOpenShareModal}
+        reportId={id}
       />
     </div>
   );

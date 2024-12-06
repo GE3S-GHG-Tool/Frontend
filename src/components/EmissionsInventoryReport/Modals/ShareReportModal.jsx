@@ -1,8 +1,10 @@
-import { Close } from "@mui/icons-material";
 import { Modal, Box, Typography, Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SuccessShareReportModal from "./SuccessShareReportModal";
+import axios from "axios";
+import { MultiPageGHGReportGenerator } from "../ReportGenerator/generatePDFReport";
+import { useAuth } from "../../../context/AuthContext";
 
 const style = {
     position: "absolute",
@@ -26,20 +28,94 @@ const buttonStyle2 = {
     fontSize: "12px",
     marginTop: "16px",
     background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-    textTransform: 'none'
+    textTransform: 'none',
+    "&:disabled": {
+        color: "#fff",
+    }
 };
 
-const ShareReportModal = ({ open, setOpenModal }) => {
-    const [email, setEmail] = useState(""); // state to track email input
+const ShareReportModal = ({ open, setOpenModal, reportId }) => {
+    const [email, setEmail] = useState("");
     const [openSuccessModal, setSuccessModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { user } = useAuth();
 
-    const handleSend = () => {
-        // Handle the email sending logic here
-        console.log("Email:", email);
-        setOpenModal(false);
-        setSuccessModal(true);
-        // Close the modal after sending
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    };
+
+    const handleSend = async () => {
+        setError("");
+
+        if (!email) {
+            setError("Email is required");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError("Please enter a valid email address");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            // Generate PDF with compression
+            const generator = new MultiPageGHGReportGenerator();
+            const pdf = await generator.generateReport(reportId);
+            
+            // Get PDF as blob with compression
+            const pdfBlob = pdf.output('blob', {
+                compress: true,
+                compressPdf: true,
+                optimization: true
+            });
+
+            // Create FormData
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('clientname', user?.name);
+            formData.append('pdfFile', pdfBlob, 'report.pdf');
+
+            // Send request with properly configured axios
+            const response = await axios.post(
+                'https://backend.ghg.ge3s.org/api/report/send_pdf_report',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    maxContentLength: 50 * 1024 * 1024, // 50MB
+                    maxBodyLength: 50 * 1024 * 1024,    // 50MB
+                    timeout: 30000, // 30 second timeout
+                    onUploadProgress: (progressEvent) => {
+                        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                        console.log('Upload progress:', percentCompleted);
+                    }
+                }
+            );
+
+            if (response.data.success) {
+                setOpenModal(false);
+                setSuccessModal(true);
+            } else {
+                setError(response.data.message || "Failed to send report");
+            }
+        } catch (error) {
+            console.error('Error sending report:', error);
+            if (error.response?.status === 413) {
+                setError("The report file is too large. Please try downloading it instead.");
+            } else if (error.code === 'ECONNABORTED') {
+                setError("The request timed out. Please try again.");
+            } else {
+                setError(error.response?.data?.message || "An error occurred while sending the report");
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -57,13 +133,14 @@ const ShareReportModal = ({ open, setOpenModal }) => {
                         Share your report via Email
                     </Typography>
 
-                    {/* Email Input */}
                     <TextField
                         fullWidth
                         label="Enter Email"
                         variant="outlined"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)} // Update state on input change
+                        onChange={(e) => setEmail(e.target.value)}
+                        error={!!error}
+                        helperText={error}
                         sx={{ margin: "16px 0" }}
                         size="small"
                     />
@@ -76,13 +153,20 @@ const ShareReportModal = ({ open, setOpenModal }) => {
                             gap: "35px",
                         }}
                     >
-                        <Button onClick={handleSend} sx={buttonStyle2}>
-                            Send
+                        <Button
+                            onClick={handleSend}
+                            sx={buttonStyle2}
+                            disabled={loading}
+                        >
+                            {loading ? "Sending..." : "Send"}
                         </Button>
                     </div>
                 </Box>
             </Modal>
-            <SuccessShareReportModal open={openSuccessModal} setOpenModal={setSuccessModal} />
+            <SuccessShareReportModal
+                open={openSuccessModal}
+                setOpenModal={setSuccessModal}
+            />
         </>
     );
 };
