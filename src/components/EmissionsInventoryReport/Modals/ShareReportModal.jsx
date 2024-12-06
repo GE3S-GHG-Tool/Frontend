@@ -98,7 +98,7 @@ const ShareReportModal = ({ open, setOpenModal, reportId }) => {
                 }
             );
 
-            if (response.data.success) {
+            if (response.status==200) {
                 setOpenModal(false);
                 setSuccessModal(true);
             } else {
@@ -166,6 +166,7 @@ const ShareReportModal = ({ open, setOpenModal, reportId }) => {
             <SuccessShareReportModal
                 open={openSuccessModal}
                 setOpenModal={setSuccessModal}
+                email={email}
             />
         </>
     );

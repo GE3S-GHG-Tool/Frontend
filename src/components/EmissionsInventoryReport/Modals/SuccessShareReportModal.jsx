@@ -30,7 +30,7 @@ const buttonStyle = {
     background: "#fff",
 };
 
-export default function SuccessShareReportModal({ open, setOpenModal }) {
+export default function SuccessShareReportModal({ open, setOpenModal, email }) {
     return (
         <Modal
             open={open}
@@ -38,17 +38,18 @@ export default function SuccessShareReportModal({ open, setOpenModal }) {
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
-
             <Box sx={style}>
-                <button style={{
-                    position: 'absolute',
-                    right: '10px',
-                    top: '10px',
-                    color: '#000',
-                    border: "none",
-                    background: 'transparent'
-
-                }} onClick={() => setOpenModal(false)}>
+                <button 
+                    style={{
+                        position: 'absolute',
+                        right: '-40px',
+                        top: '-15px',
+                        color: '#000',
+                        border: "none",
+                        background: 'transparent'
+                    }} 
+                    onClick={() => setOpenModal(false)}
+                >
                     <Close />
                 </button>
                 {/* SVG Icon */}
@@ -80,11 +81,10 @@ export default function SuccessShareReportModal({ open, setOpenModal }) {
                         </defs>
                     </svg>
                 </div>
-
                 <Typography
-                    sx={{ fontWeight: "600", marginBottom: "16px", fontSize:'1.2rem' }}
+                    sx={{ fontWeight: "500", marginBottom: "16px", fontSize:'1rem' }}
                 >
-                    Report sent to pranit123@email.com
+                    {email ? `Report sent to ${email} successfully.` : 'Report sent successfully.'}
                 </Typography>
             </Box>
         </Modal>

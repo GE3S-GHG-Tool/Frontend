@@ -50,7 +50,7 @@ const OverallSummary = ({ data }) => (
       <SummaryCard
         title="Avg Intensity by Floor Area"
         value={data?.average_emissions_per_floor_area?.toFixed(4)}
-        unit="Sq m"
+        unit="tCO2e/m2"
         svg={
           <svg width="90" height="74" viewBox="0 0 101 83" fill="none">
             <path
@@ -79,7 +79,7 @@ const OverallSummary = ({ data }) => (
       <SummaryCard
         title="Avg Intensity by Revenue"
         value={data?.average_emissions_per_revenue?.toFixed(4)}
-        unit="$"
+        unit="tCO2e/$"
         svg={
           <svg width="120" height="80" viewBox="0 0 132 94" fill="none">
             <path
@@ -108,7 +108,7 @@ const OverallSummary = ({ data }) => (
       <SummaryCard
         title="Avg Intensity by Total Employees"
         value={data?.average_emissions_per_employee?.toFixed(4)}
-        unit=""
+        unit="tCO2e/employee"
         svg={
           <svg width="120" height="75" viewBox="0 0 139 90" fill="none">
             <path
@@ -137,7 +137,7 @@ const OverallSummary = ({ data }) => (
       <SummaryCard
         title="Avg Intensity by Total Production"
         value={data?.average_emissions_per_production?.toFixed(4)}
-        unit="tonnes"
+        unit="tCO2e/tonne"
         svg={
           <svg width="135" height="92" viewBox="0 0 135 92" fill="none">
             <g opacity="0.1" clipPath="url(#clip0_3168_109525)">

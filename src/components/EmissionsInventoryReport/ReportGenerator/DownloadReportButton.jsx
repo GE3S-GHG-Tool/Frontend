@@ -76,7 +76,7 @@ const DownloadReportButton = ({ reportId }) => {
                     </defs>
                 </svg>
             </span>
-            <span>{isGenerating ? 'Generating...' : 'Download'}</span>
+            <span>{isGenerating ? 'Downloading...' : 'Download'}</span>
         </span>
     );
 };
