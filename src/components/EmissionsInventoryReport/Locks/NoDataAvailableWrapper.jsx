@@ -43,6 +43,10 @@ export const NoDataAvailableWrapper = ({ isPremium = false, children, title, des
     color: '#00191D'
   };
 
+  const descriptionStyles = {
+    fontSize: '16px',
+    color: "#666"
+  };
 
   return (
     <>
@@ -56,9 +60,9 @@ export const NoDataAvailableWrapper = ({ isPremium = false, children, title, des
             <div style={upgradeCardStyles}>
               <img src={alert} width={160} style={{color:'black'}} />
               <h3 style={titleStyles}>{title}</h3>
-              {/* <p style={descriptionStyles}>
+              <p style={descriptionStyles}>
                 {desc}
-              </p> */}
+              </p>
             </div>
           </div>
         )}

@@ -1143,7 +1143,7 @@ const TotalEmissionsInventoryReport = () => {
                 </div>
               </div>
               :
-              <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
+              <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
                 <img src={scope1BgDummy} style={{ width: '100%', height: '100%' }} />
               </NoDataAvailableWrapper>
           }
@@ -1167,7 +1167,7 @@ const TotalEmissionsInventoryReport = () => {
                       />
                     </div>
                   </div> :
-                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
+                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
                     <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
                   </NoDataAvailableWrapper>
                 :
@@ -1528,11 +1528,11 @@ const TotalEmissionsInventoryReport = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> :
+                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now."  reportid={id}>
+                    <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </NoDataAvailableWrapper>
                   :
-                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" reportid={id}>
-                    <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
-                  </NoDataAvailableWrapper> :
                   <FillContentWrapper isPremium={false} title="Create Your Scope 3 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
                     <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
                   </FillContentWrapper>
