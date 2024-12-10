@@ -1,5 +1,5 @@
 import React from 'react';
-import alert from "../../../assets/graphimgs/alert.svg"
+import alert from "../../../assets/graphimgs/alertBlack.svg"
 import { useNavigate } from 'react-router-dom';
 
 export const NoDataAvailableWrapper = ({ isPremium = false, children, title, desc, reportid }) => {
@@ -28,11 +28,12 @@ export const NoDataAvailableWrapper = ({ isPremium = false, children, title, des
 
   const upgradeCardStyles = {
     backgroundColor: 'transparent',
-    padding: '32px',
+    // padding: '32px',
     borderRadius: '12px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent:'center',
     gap: '16px',
     textAlign: 'center'
   };
@@ -45,7 +46,7 @@ export const NoDataAvailableWrapper = ({ isPremium = false, children, title, des
 
   const descriptionStyles = {
     fontSize: '16px',
-    color: "#666"
+    color: "#00191D"
   };
 
   return (
@@ -58,7 +59,7 @@ export const NoDataAvailableWrapper = ({ isPremium = false, children, title, des
         {!isPremium && (
           <div style={lockOverlayStyles}>
             <div style={upgradeCardStyles}>
-              <img src={alert} width={160} style={{color:'black'}} />
+              <img src={alert} width={120} style={{color:'black'}} />
               <h3 style={titleStyles}>{title}</h3>
               <p style={descriptionStyles}>
                 {desc}

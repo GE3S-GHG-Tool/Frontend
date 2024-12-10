@@ -402,7 +402,7 @@ const TotalEmissionsInventoryReport = () => {
     const transformedData = response?.data?.fuelEmissionsByType.map((item) => {
       return {
         label: item.fuelTypeName,
-        value: Math.round(item.totalEmissions * 1000), // example scaling
+        value: item.totalEmissions?.toFixed(4), // example scaling
         color: colorPalette[item.fuelTypeName] || "#006D4F",
         key: item.percentage,
       };
@@ -410,27 +410,27 @@ const TotalEmissionsInventoryReport = () => {
     const transformedData2 = response?.data?.fuelEmissionsByType.map((item) => {
       return {
         fuel: item.fuelTypeName,
-        value: Math.round(item.totalEmissions * 1000), // example scaling
+        value: item.totalEmissions?.toFixed(4), // example scaling
         color: colorPalette[item.fuelTypeName] || "#006D4F",
       };
     });
     const refData = response?.data?.refrigerantEmissionsByType.map((item) => {
       return {
         label: item.refrigerantTypeName,
-        value: item.totalEmissions,
+        value: item?.totalEmissions?.toFixed(4),
       };
     });
     const refData2 = response?.data?.refrigerantEmissionsByType.map((item) => {
       return {
         label: item.refrigerantTypeName,
-        value: item.totalEmissions,
+        value: item?.totalEmissions?.toFixed(4),
         color: colorPalette2[item.refrigerantTypeName] || "#006D4F",
       };
     });
     const refData3 = response?.data?.processEmissionsByType.map((item) => {
       return {
         label: item?.processTypeName,
-        value: item?.totalEmissions,
+        value: item?.totalEmissions?.toFixed(4),
         key: item?.percentage,
         color: colorPalette3[item.processTypeName],
       };
@@ -539,7 +539,7 @@ const TotalEmissionsInventoryReport = () => {
     ).map(([category, emissions]) => {
       return {
         label: category, // The key becomes the label
-        value: Math.round(emissions * 1000), // Multiply emissions by 1000 and round
+        value: emissions, // Multiply emissions by 1000 and round
         color: wastecolorPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
       };
     });
@@ -547,7 +547,7 @@ const TotalEmissionsInventoryReport = () => {
     const businessData = response?.data?.businessTravelBreakdown.map((item) => {
       return {
         label: item.mode,
-        value: Math.round(item.emissions * 1000),
+        value: item.emissions,
         color: businesspallete[item.mode] || "#F26D58",
       };
     });
@@ -570,7 +570,7 @@ const TotalEmissionsInventoryReport = () => {
     ).map(([category, emissions]) => {
       return {
         label: category, // The key becomes the label
-        value: Math.round(emissions * 1000), // Multiply emissions by 1000 and round
+        value: emissions , // Multiply emissions by 1000 and round
         color: disposlaPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
       };
     });
@@ -578,14 +578,14 @@ const TotalEmissionsInventoryReport = () => {
     const ecb = response?.data?.employeeCommutingBreakdown.map((item) => {
       return {
         label: item.vehicleType,
-        value: Math.round(item.emissions * 1000),
+        value: item.emissions,
         color: ecbpallete[item.vehicleType] || "#F26D58",
       };
     });
     const fuel = response?.data?.fuelRelatedBreakdown.map((item) => {
       return {
         label: item.activity,
-        value: Math.round(item.emissions * 10000),
+        value: item.emissions,
         color: fuelpallete[item.activity] || "#F26D58",
       };
     });
@@ -597,6 +597,7 @@ const TotalEmissionsInventoryReport = () => {
     setWasteDisposalMethodsByCategoryData(disposalmethod);
     setEmissionUpstreamAssetsData(updata);
   };
+
   const fetchreportData = async () => {
     const response = await getReportWithID(id);
     // console.log(response);
@@ -615,6 +616,13 @@ const TotalEmissionsInventoryReport = () => {
     scopeData3(id);
   }, [id]);
 
+  // useEffect(() => {
+  //   scopeData1(id);
+  //   fetchreportData(id);
+  //   scopeData2(id);
+  //   scopeData3(id);
+  // }, []);
+
   useEffect(() => {
     fetchreportData(id);
   }, []);
@@ -627,21 +635,6 @@ const TotalEmissionsInventoryReport = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // if (loading) {
-  //   return (
-  //     <Box display="flex" justifyContent="center" alignItems="center" minHeight="80vh">
-  //       <CircularProgress />
-  //     </Box>
-  //   );
-  // }
-
-  // if (error) {
-  //   return (
-  //     <Alert severity="error" sx={{ m: 2 }}>
-  //       {error}
-  //     </Alert>
-  //   );
-  // }
 
   return (
     <div
@@ -835,7 +828,8 @@ const TotalEmissionsInventoryReport = () => {
                 gap: "1rem",
               }}
             >
-              <div>
+             {
+              user?.organization?.logo?  <div>
                 <img
                   src={`${constant.IMG_URL}/${user?.organization?.logo}` || logo}
                   height={65}
@@ -846,7 +840,8 @@ const TotalEmissionsInventoryReport = () => {
                     borderRadius: "100%",
                   }}
                 />
-              </div>
+              </div> :''
+             }
 
               <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                 <h2 style={{ fontSize: '1.8rem' }}>{reportData?.name} </h2>
@@ -899,7 +894,7 @@ const TotalEmissionsInventoryReport = () => {
                   Total GHG Emissions Distribution
                 </Typography>
               </div>
-              <LineChart />
+              <LineChart reportId={id} />
             </div>
           </div>
 

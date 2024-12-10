@@ -37,10 +37,22 @@ export const SignupProvider = ({ children }) => {
     }
   }, [token]);
 
-  const setAuthToken = (newToken) => {
-    setToken(newToken);
-  };
+  // const setAuthToken = (newToken) => {
+  //   setToken(newToken);
+  // };
 
+  const setAuthToken = (newToken) => {
+    if (newToken) {
+      localStorage.setItem("token", newToken);
+      setToken(newToken);
+      setIsAuthenticated(true);
+    } else {
+      localStorage.removeItem("token");
+      setToken(null);
+      setIsAuthenticated(false);
+    }
+  };
+  
   const clearAuthToken = () => {
     setToken(null);
   };

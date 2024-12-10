@@ -34,7 +34,7 @@ const ChartTooltip = ({ data }) => (
       <span
         style={{ fontFamily: "Inter", fontSize: "0.785rem", fontWeight: "500" }}
       >
-        {data.value.toLocaleString()} tCO2e
+        {data.value.toFixed(4)} tCO2e
       </span>
     </Box>
   </Paper>

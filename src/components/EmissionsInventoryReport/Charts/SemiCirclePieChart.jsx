@@ -80,7 +80,7 @@ const ChartTooltip = ({ data, tooltipWidth }) => (
             flexShrink: 0,
           }}
         >
-          {data.value.toLocaleString()} tCO2e
+          {data.value} tCO2e
         </span>
       </Box>
     </Box>

@@ -8,26 +8,31 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  // const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(() => {
+    const storedToken = localStorage.getItem("token");
+    return storedToken && storedToken !== "undefined" ? storedToken : null;
+  });
+  
   const [user, setUser] = useState({});
   const [table, setTable] = useState([]);
+
   const getInitialScope2Data = () => {
     const storedData = localStorage.getItem("scope2Data");
-    // console.log("storedData contet", storedData);
     return storedData
       ? JSON.parse(storedData)
       : {
-          electricity: "",
-          water: "",
-          heat: "",
-          desalinated: "",
-        };
+        electricity: "",
+        water: "",
+        heat: "",
+        desalinated: "",
+      };
   };
+
   const [scope2Data, setScope2Data] = useState(getInitialScope2Data);
   const [isAuthenticated, setIsAuthenticated] = useState(!!token);
-  // console.log("scope2Data context", scope2Data);
+
   useEffect(() => {
-    // Update authentication state when token changes
     if (token) {
       getUserData();
       setIsAuthenticated(true);
@@ -36,28 +41,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     getUserData();
-  //   } else {
-  //     setIsAuthenticated(false);
-  //   }
-  // }, [isAuthenticated]);
-
   const getUserData = async () => {
     const user = await getUser();
-    // console.log("user:", user?.data);
     setUser(user?.data);
   };
+
   useEffect(() => {
-    // Set up an event listener to catch changes to localStorage
     const handleStorageChange = () => {
       setToken(localStorage.getItem("token"));
     };
-
     window.addEventListener("storage", handleStorageChange);
-
-    // Clean up the listener when the component unmounts
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };

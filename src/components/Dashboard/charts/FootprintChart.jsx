@@ -9,7 +9,7 @@ import { localPoint } from "@visx/event";
 const colors = ["#B1E9D8", "#AFC6FF", "#FFC8BF"];
 const background = "#fff";
 const defaultMargin = { top: 40, right: 40, bottom: 0, left: 40 };
-const MAX_BAR_WIDTH = 80; // Added constant for max bar width
+const MAX_BAR_WIDTH = 50; // Added constant for max bar width
 
 const getQuarter = (d) => d.quarter;
 
