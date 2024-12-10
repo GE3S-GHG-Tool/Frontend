@@ -7,12 +7,11 @@ import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
 import dot from "../../../assets/images/dot.svg"
 
-const colors = ["#FFAC9F", "#FF9989","#F26D58" ];
+const colors = ["#FFAC9F", "#FF9989", "#F26D58"];
 const purple3 = "#464646";
 const background = "#fff";
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 60 }; // Increased left margin
 
-// Expected categories
 const expectedCategories = [
   "Diesel",
   "Gasoline/Petrol",
@@ -24,10 +23,46 @@ const expectedCategories = [
   "Heat"
 ];
 
-// accessors
 const getQuarter = (d) => d.name;
 
 let tooltipTimeout;
+
+// Function to determine nice step size
+const getNiceStepSize = (maxValue) => {
+  if (maxValue <= 10) return 2;
+  if (maxValue <= 50) return 10;
+  if (maxValue <= 100) return 20;
+  
+  const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue)));
+  
+  if (maxValue / magnitude <= 2) return magnitude / 2;
+  if (maxValue / magnitude <= 5) return magnitude;
+  return magnitude * 2;
+};
+
+// Function to format number with appropriate precision
+const formatNumber = (value) => {
+  if (value === 0) return '0.00';
+  if (value >= 1000) return `${(value/1000).toFixed(0)}k`;
+  if (value < 1) return value.toFixed(2);
+  if (value < 10) return value.toFixed(1);
+  return value.toFixed(0);
+};
+
+// Function to generate nice tick values
+const generateNiceTicks = (maxValue) => {
+  const stepSize = getNiceStepSize(maxValue);
+  const niceMax = Math.ceil(maxValue / stepSize) * stepSize;
+  const tickCount = Math.min(6, Math.max(3, Math.floor(niceMax / stepSize)));
+  
+  const ticks = [];
+  for (let i = 0; i <= tickCount; i++) {
+    const value = (i * niceMax) / tickCount;
+    ticks.push(value);
+  }
+  
+  return ticks;
+};
 
 const StackedBarChart = ({
   data,
@@ -63,6 +98,18 @@ const StackedBarChart = ({
     };
   });
 
+  // Calculate maximum value for y-axis
+  const maxValue = React.useMemo(() => {
+    return Math.max(1, Math.max(...safeData.map(d => 
+      d.Building + d.Vehicle + d.Equipment
+    )));
+  }, [safeData]);
+
+  // Generate y-axis ticks
+  const yAxisTicks = React.useMemo(() => {
+    return generateNiceTicks(maxValue);
+  }, [maxValue]);
+
   useEffect(() => {
     const handleResize = () => {
       if (box.current) {
@@ -87,9 +134,7 @@ const StackedBarChart = ({
 
   const yMax = height - margin.top - 30;
   const temperatureScale = scaleLinear({
-    domain: [0, Math.max(1, Math.max(...safeData.map(d => 
-      d.Building + d.Vehicle + d.Equipment
-    )))],
+    domain: [0, yAxisTicks[yAxisTicks.length - 1]],
     nice: true,
   });
 
@@ -105,7 +150,7 @@ const StackedBarChart = ({
 
   return (
     <div ref={box} style={{ position: "relative", width: "100%", minWidth:'600px' }}>
-      <svg ref={containerRef}  width={width} height={height}>
+      <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} />
         <Group left={margin.left} top={margin.top}>
           <BarStack
@@ -119,29 +164,22 @@ const StackedBarChart = ({
             {(barStacks) =>
               barStacks.map((barStack) =>
                 barStack.bars.map((bar) => {
-                  const isTopBar = barStack.index === 2;
                   const barWidth = bar.width;
                   const barHeight = bar.height;
                   const barX = bar.x;
                   const barY = bar.y;
-                  const radius = 2;
-                  const path = isTopBar
-                    ? `
-                      M ${barX},${barY + barHeight} 
-                      L ${barX},${barY + radius} 
-                      Q ${barX},${barY} ${barX + radius},${barY} 
-                      L ${barX + barWidth - radius},${barY} 
-                      Q ${barX + barWidth},${barY} ${barX + barWidth},${barY + radius} 
-                      L ${barX + barWidth},${barY + barHeight} 
-                      Z
-                    `
-                    : `
-                      M ${barX},${barY + barHeight} 
-                      L ${barX},${barY} 
-                      L ${barX + barWidth},${barY} 
-                      L ${barX + barWidth},${barY + barHeight} 
-                      Z
-                    `;
+                  const radius = 0; // Consistent radius for all bars
+                  
+                  // Apply rounded corners to all bars
+                  const path = `
+                    M ${barX},${barY + barHeight} 
+                    L ${barX},${barY + radius} 
+                    Q ${barX},${barY} ${barX + radius},${barY} 
+                    L ${barX + barWidth - radius},${barY} 
+                    Q ${barX + barWidth},${barY} ${barX + barWidth},${barY + radius} 
+                    L ${barX + barWidth},${barY + barHeight} 
+                    Z
+                  `;
 
                   return (
                     <React.Fragment key={`bar-stack-${barStack.index}-${bar.index}`}>
@@ -167,7 +205,6 @@ const StackedBarChart = ({
                           });
                         }}
                       />
-                      {/* Show "0" for zero-height bars */}
                       {barHeight === 0 && (
                         <text
                           x={barX + barWidth / 2}
@@ -205,17 +242,20 @@ const StackedBarChart = ({
           left={margin.left}
           top={margin.top}
           scale={temperatureScale}
+          tickValues={yAxisTicks}
           label={leftLabel}
           labelProps={{
-            dx: "1.15em",
+            dx: "0.2",
+            dy: "-1em",
             fontWeight: 600,
             fontSize: 12,
           }}
           tickLabelProps={{
-            dx: "0.5em",
+            dx: "1em",
             fontSize: 12,
+            textAnchor: "end",
           }}
-          tickFormat={(value) => `${value}`}
+          tickFormat={formatNumber}
         />
       </svg>
       {tooltipOpen && tooltipData && (
