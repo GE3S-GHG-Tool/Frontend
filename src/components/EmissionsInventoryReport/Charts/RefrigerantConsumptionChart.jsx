@@ -26,52 +26,60 @@ const getColor = (d) => d.color;
 
 // Function to determine nice step size
 const getNiceStepSize = (maxValue) => {
-  // For very small numbers (0-10)
+  if (maxValue <= 10) return 2;
   if (maxValue <= 20) return 4;
-  
-  // For small numbers (10-50)
-  if (maxValue <= 50) return 5;
-  
-  // For medium numbers (50-100)
+  if (maxValue <= 50) return 10;
   if (maxValue <= 100) return 20;
   
-  // For larger numbers, use a power of 10 based step
   const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue)));
+  const normalized = maxValue / magnitude;
   
-  if (maxValue / magnitude <= 2) return magnitude / 2;
-  if (maxValue / magnitude <= 5) return magnitude;
-  return magnitude * 2;
+  if (normalized <= 1.5) return magnitude / 2;
+  if (normalized <= 3) return magnitude;
+  if (normalized <= 7) return magnitude * 2;
+  return magnitude * 5;
+};
+
+// Function to format number with appropriate precision
+const formatLabel = (value, isThousands) => {
+  if (value === 0) return '0.00';
+  if (isThousands) {
+    const thousands = value / 1000;
+    if (thousands >= 10) return `${Math.round(thousands)}K`;
+    return `${thousands.toFixed(1)}K`;
+  }
+  if (value < 1) return value.toFixed(2);
+  if (value < 10) return value.toFixed(1);
+  return Math.round(value).toString();
 };
 
 // Function to generate nice tick values
 const generateNiceTicks = (maxValue) => {
   const stepSize = getNiceStepSize(maxValue);
   const niceMax = Math.ceil(maxValue / stepSize) * stepSize;
-  const isThousands = niceMax >= 1000;
+  const isThousands = maxValue >= 1000;
+  
+  // Calculate number of steps
+  const numSteps = Math.min(5, Math.max(3, Math.floor(niceMax / stepSize)));
+  const adjustedStepSize = niceMax / numSteps;
   
   const ticks = [];
-  for (let i = 0; i <= niceMax; i += stepSize) {
-    if (i <= maxValue * 1.1) { // Add 10% buffer
-      ticks.push({
-        value: i,
-        label: i === 0 ? '0.00' : isThousands ? `${(i/1000).toFixed(0)}K` : i.toString()
-      });
-    }
-  }
+  let currentValue = 0;
   
-  // Ensure we have at least 3 ticks but no more than 6
-  while (ticks.length < 3 || ticks.length > 6) {
-    if (ticks.length < 3) {
-      const lastValue = ticks[ticks.length - 1].value;
+  // Always start with 0
+  ticks.push({
+    value: 0,
+    label: '0.00'
+  });
+  
+  // Generate remaining ticks
+  for (let i = 1; i <= numSteps; i++) {
+    currentValue = adjustedStepSize * i;
+    if (currentValue <= maxValue * 1.1) { // Add 10% buffer
       ticks.push({
-        value: lastValue + stepSize,
-        label: lastValue + stepSize >= 1000 ? 
-          `${((lastValue + stepSize)/1000).toFixed(0)}K` : 
-          (lastValue + stepSize).toString()
+        value: currentValue,
+        label: formatLabel(currentValue, isThousands)
       });
-    }
-    if (ticks.length > 6) {
-      ticks.pop();
     }
   }
   
@@ -118,7 +126,7 @@ const Chart = ({ data, width, type }) => {
         {yAxisTicks.map(({ value, label }) => (
           <Text
             key={value}
-            x={margin.left + 20}
+            x={margin.left +30}
             y={yScale(value)}
             textAnchor="end"
             verticalAnchor="middle"
