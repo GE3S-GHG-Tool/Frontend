@@ -7,7 +7,7 @@ import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { ParentSize } from '@visx/responsive';
 import dot from "../../../assets/images/dot.svg"
 
-const margin = { top: 20, right: 0, bottom: 60, left: 0 };
+const margin = { top: 20, right: 0, bottom: 60, left: 50 };
 const defaultHeight = 300;
 
 // Expected categories for validation
@@ -24,6 +24,60 @@ const getLabel = (d) => d.label;
 const getValue = (d) => (d.value !== undefined && d.value !== null ? d.value : 0);
 const getColor = (d) => d.color;
 
+// Function to determine nice step size
+const getNiceStepSize = (maxValue) => {
+  // For very small numbers (0-10)
+  if (maxValue <= 20) return 4;
+  
+  // For small numbers (10-50)
+  if (maxValue <= 50) return 5;
+  
+  // For medium numbers (50-100)
+  if (maxValue <= 100) return 20;
+  
+  // For larger numbers, use a power of 10 based step
+  const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue)));
+  
+  if (maxValue / magnitude <= 2) return magnitude / 2;
+  if (maxValue / magnitude <= 5) return magnitude;
+  return magnitude * 2;
+};
+
+// Function to generate nice tick values
+const generateNiceTicks = (maxValue) => {
+  const stepSize = getNiceStepSize(maxValue);
+  const niceMax = Math.ceil(maxValue / stepSize) * stepSize;
+  const isThousands = niceMax >= 1000;
+  
+  const ticks = [];
+  for (let i = 0; i <= niceMax; i += stepSize) {
+    if (i <= maxValue * 1.1) { // Add 10% buffer
+      ticks.push({
+        value: i,
+        label: i === 0 ? '0.00' : isThousands ? `${(i/1000).toFixed(0)}K` : i.toString()
+      });
+    }
+  }
+  
+  // Ensure we have at least 3 ticks but no more than 6
+  while (ticks.length < 3 || ticks.length > 6) {
+    if (ticks.length < 3) {
+      const lastValue = ticks[ticks.length - 1].value;
+      ticks.push({
+        value: lastValue + stepSize,
+        label: lastValue + stepSize >= 1000 ? 
+          `${((lastValue + stepSize)/1000).toFixed(0)}K` : 
+          (lastValue + stepSize).toString()
+      });
+    }
+    if (ticks.length > 6) {
+      ticks.pop();
+    }
+  }
+  
+  return ticks;
+};
+
 const Chart = ({ data, width, type }) => {
   const height = defaultHeight;
   const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop } = useTooltip();
@@ -34,9 +88,15 @@ const Chart = ({ data, width, type }) => {
     return existingData || {
       label: category,
       value: 0,
-      color: data?.find(d => d.label === category)?.color || "#cccccc" // Fallback color if needed
+      color: data?.find(d => d.label === category)?.color || "#cccccc"
     };
   });
+
+  // Find the maximum value in the data
+  const maxValue = Math.max(...safeData.map(getValue));
+  
+  // Generate tick values based on data
+  const yAxisTicks = generateNiceTicks(maxValue);
 
   // Scales
   const xScale = scaleBand({
@@ -47,13 +107,29 @@ const Chart = ({ data, width, type }) => {
 
   const yScale = scaleLinear({
     range: [height - margin.bottom, margin.top],
-    domain: [0, Math.max(1, ...safeData.map(getValue))],
+    domain: [0, Math.max(yAxisTicks[yAxisTicks.length - 1].value, maxValue * 1.1)],
     nice: true,
   });
 
   return (
     <>
       <svg width={width} height={height}>
+        {/* Y-axis labels */}
+        {yAxisTicks.map(({ value, label }) => (
+          <Text
+            key={value}
+            x={margin.left + 20}
+            y={yScale(value)}
+            textAnchor="end"
+            verticalAnchor="middle"
+            fontSize={11}
+            fontFamily="Arial"
+            fill="#717171"
+          >
+            {label}
+          </Text>
+        ))}
+
         <Group>
           {safeData.map((d) => {
             const label = getLabel(d);
@@ -82,7 +158,6 @@ const Chart = ({ data, width, type }) => {
                   rx={4}
                   ry={4}
                 />
-                {/* Show "0" text for zero values */}
                 {value === 0 && (
                   <Text
                     x={barX + barWidth / 2}
@@ -99,20 +174,6 @@ const Chart = ({ data, width, type }) => {
             );
           })}
         </Group>
-
-        {/* Y-axis labels */}
-        {yScale.ticks().filter(tick => tick % 1000 === 0 && (tick / 1000) % 2 === 0).map((tick) => (
-          <Text
-            key={tick}
-            x={margin.left - 10}
-            y={yScale(tick)}
-            textAnchor="end"
-            verticalAnchor="middle"
-            fontSize={10}
-          >
-            {tick / 1000 + 'K'}
-          </Text>
-        ))}
 
         {/* X-axis labels */}
         {safeData.map((d) => (

@@ -9,11 +9,39 @@ import { localPoint } from "@visx/event";
 const colors = ["#B1E9D8", "#AFC6FF", "#FFC8BF"];
 const background = "#fff";
 const defaultMargin = { top: 40, right: 40, bottom: 0, left: 40 };
-const MAX_BAR_WIDTH = 50; // Added constant for max bar width
+const MAX_BAR_WIDTH = 50;
 
 const getQuarter = (d) => d.quarter;
 
 let tooltipTimeout;
+
+// Function to determine nice step size
+const getNiceStepSize = (maxValue) => {
+  if (maxValue <= 10) return 2;
+  if (maxValue <= 50) return 10;
+  if (maxValue <= 100) return 20;
+  
+  const magnitude = Math.pow(10, Math.floor(Math.log10(maxValue)));
+  
+  if (maxValue / magnitude <= 2) return magnitude / 2;
+  if (maxValue / magnitude <= 5) return magnitude;
+  return magnitude * 2;
+};
+
+// Function to generate nice tick values
+const generateNiceTicks = (maxValue) => {
+  const stepSize = getNiceStepSize(maxValue);
+  const niceMax = Math.ceil(maxValue / stepSize) * stepSize;
+  const tickCount = Math.min(6, Math.max(3, Math.floor(niceMax / stepSize)));
+  
+  const ticks = [];
+  for (let i = 0; i <= tickCount; i++) {
+    const value = (i * niceMax) / tickCount;
+    ticks.push(value);
+  }
+  
+  return ticks;
+};
 
 const FootprintChart = ({
   data = [],
@@ -58,6 +86,20 @@ const FootprintChart = ({
     return fullData;
   }, [data]);
 
+  // Calculate maximum total value for y-axis
+  const maxValue = React.useMemo(() => {
+    return Math.max(
+      ...normalizedData.map(
+        (d) => (d.Scope1 || 0) + (d.Scope2 || 0) + (d.Scope3 || 0)
+      )
+    );
+  }, [normalizedData]);
+
+  // Generate y-axis ticks
+  const yAxisTicks = React.useMemo(() => {
+    return generateNiceTicks(maxValue);
+  }, [maxValue]);
+
   useEffect(() => {
     const handleResize = () => {
       if (box.current) {
@@ -77,24 +119,21 @@ const FootprintChart = ({
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - 30;
 
-  // Modified dateScale to limit bar width
   const dateScale = scaleBand({
     domain: normalizedData.map(getQuarter),
     padding: 0.2,
     range: [0, xMax],
   });
 
-  // Ensure bar width doesn't exceed MAX_BAR_WIDTH
   const calculatedBarWidth = Math.min(dateScale.bandwidth(), MAX_BAR_WIDTH);
   const totalBarsWidth = calculatedBarWidth * normalizedData.length;
   const extraSpace = xMax - totalBarsWidth;
   const startOffset = Math.max(0, extraSpace / 2);
 
-  // Adjust dateScale range to center the bars
   dateScale.range([startOffset, startOffset + totalBarsWidth]);
 
   const temperatureScale = scaleLinear({
-    domain: [0, 10000],
+    domain: [0, yAxisTicks[yAxisTicks.length - 1]],
     nice: true,
     range: [yMax, 0],
   });
@@ -103,6 +142,14 @@ const FootprintChart = ({
     domain: ["Scope1", "Scope2", "Scope3"],
     range: colors,
   });
+
+  // Format tick labels
+  const formatTickLabel = (value) => {
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(0)}k`;
+    }
+    return value.toFixed(value < 10 ? 1 : 0);
+  };
 
   return (
     <div ref={box} style={{ position: "relative", width: "100%" }}>
@@ -141,10 +188,8 @@ const FootprintChart = ({
               barStacks.map((barStack) =>
                 barStack.bars.map((bar) => {
                   const isTopBar = barStack.index === 2;
-                  // Limit bar width to MAX_BAR_WIDTH
                   const barWidth = Math.min(bar.width, MAX_BAR_WIDTH);
                   const barHeight = bar.height;
-                  // Center the bar within the available space
                   const barX = bar.x + (bar.width - barWidth) / 2;
                   const barY = bar.y;
                   const radius = 6;
@@ -211,13 +256,13 @@ const FootprintChart = ({
         <AxisLeft
           hideTicks
           hideAxisLine
-          left={margin.left}
+          left={margin.left+30}
           top={margin.top}
           scale={temperatureScale}
-          tickValues={[0, 2000, 4000, 6000, 8000, 10000]}
+          tickValues={yAxisTicks}
           label={leftLabel}
           labelProps={{
-            dx: "1.15em",
+            dx: "-1em",
             fontWeight: 600,
             fontSize: 12,
           }}
@@ -225,7 +270,7 @@ const FootprintChart = ({
             dx: "0.5em",
             fontSize: 12,
           }}
-          tickFormat={(value) => `${value / 1000}k`}
+          tickFormat={formatTickLabel}
         />
       </svg>
       {tooltipOpen && tooltipData && (
