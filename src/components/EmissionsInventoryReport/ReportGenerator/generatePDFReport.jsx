@@ -333,7 +333,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont('Inter')
         this.pdf.setTextColor("#fff");
         this.pdf.text(`${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`,
-            this.margins.left + 100,
+            this.margins.left + 110,
             this.margins.top + 410
         );
         this.pdf.addPage();
@@ -427,12 +427,57 @@ class MultiPageGHGReportGenerator {
             16
         );
 
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`Scope 1 (${percentData.emissions.scope1.percentage})`,
+            this.margins.left,
+            this.margins.top + 220
+        );
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${percentData.emissions.scope1.value.toFixed(6)} tCO2e`,
+            this.margins.left,
+            this.margins.top + 235
+        );
+
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`Scope 2 (${percentData.emissions.scope2.percentage})`,
+            this.margins.left +200,
+            this.margins.top + 220
+        );
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${percentData.emissions.scope2.value.toFixed(6)} tCO2e`,
+            this.margins.left +200,
+            this.margins.top + 235
+        );
+
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`Scope 3 (${percentData.emissions.scope3.percentage})`,
+            this.margins.left +350,
+            this.margins.top + 220
+        );
+        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${percentData.emissions.scope3.value.toFixed(6)} tCO2e`,
+            this.margins.left +350,
+            this.margins.top + 235
+        );
+
         this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(`2.1 Scope 1 Emissions: ${scope1Data.grandTotalEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            this.margins.top + 260
+            this.margins.top + 275
         );
 
         this.pdf.setFontSize(11);
@@ -440,11 +485,11 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont("Inter");
         this.pdf.text('Direct emissions from owned or controlled sources, such as on-site combustion of fossil fuels. ',
             this.margins.left,
-            this.margins.top + 290
+            this.margins.top +305
         );
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 320,
+            startY: this.margins.top + 335,
             theme: 'plain',
             styles: {
                 font: 'helvetica',
@@ -2370,7 +2415,7 @@ class MultiPageGHGReportGenerator {
         // Transform data for table
         const tableData = commutingData.map(item => [
             item.vehicleType,
-            item.num_trips.toString(),
+            item.num_trips,
             `${item.emissions.toFixed(6)}`
         ]);
 
