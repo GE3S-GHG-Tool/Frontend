@@ -2,14 +2,42 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import reportImageOne from '../../../assets/graphimgs/reportpageone.png'
 import reportImageTwo from '../../../assets/graphimgs/reportpagetwo.png'
-import reportImageThree from '../../../assets/graphimgs/reportpagethree.png'
+import reportImageThreeScope1 from '../../../assets/graphimgs/reportpagethreescope1.png'
+import reportImageThreeScope1_2 from '../../../assets/graphimgs/reportpagethreescope1_2.png'
+import reportImageThreeScope1_2_3 from '../../../assets/graphimgs/reportpagethreescope1_2_3.png'
 import reportImageFour from '../../../assets/graphimgs/reportpagefour.png'
 import reportImageFive from '../../../assets/graphimgs/reportpagefive.png'
 import lineChart from '../../../assets/graphimgs/emissionslinechart.png'
 import reportLastPage from '../../../assets/graphimgs/reportlastpage.png'
 import rightBg from '../../../assets/graphimgs/rightBg.png'
 import leftBg from '../../../assets/graphimgs/leftBg.png'
+import Montserrat from '/fonts/Montserrat-Regular.ttf';
+import MontserratBold from '/fonts/Montserrat-Bold.ttf';
+import Inter from '/fonts/Inter_18pt-Light.ttf';
 import axios from 'axios';
+import api from "../../../api"
+
+async function fetchOnboardingData() {
+    try {
+        const response = await api.get('https://backend.ghg.ge3s.org/api/user/onboard-data');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching percent data:', error);
+        throw error;
+    }
+}
+
+async function fetchPercentData(reportId) {
+    try {
+        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/fetch_total_emissions', {
+            reportId: reportId
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching percent data:', error);
+        throw error;
+    }
+}
 
 async function fetchScope1Data(reportId) {
     try {
@@ -71,17 +99,78 @@ class MultiPageGHGReportGenerator {
         this.pageNumber = 1;
     }
 
-    initializeDocument() {
+    async loadMontserratFont() {
+        try {
+            const regularResponse = await fetch(Montserrat);
+            const regularBlob = await regularResponse.blob();
+            const regularBase64 = await this.blobToBase64(regularBlob);
+
+            this.pdf.addFileToVFS('Montserrat-Regular.ttf', regularBase64);
+            this.pdf.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal');
+
+            // Set as default font after loading
+            this.pdf.setFont('Montserrat', 'normal');
+            console.log('Montserrat font loaded successfully');
+        } catch (error) {
+            console.error('Error loading Montserrat font:', error);
+            this.pdf.setFont('helvetica', 'normal');
+        }
+    }
+
+    async loadMontserratBoldFont() {
+        try {
+            const regularResponse = await fetch(MontserratBold);
+            const regularBlob = await regularResponse.blob();
+            const regularBase64 = await this.blobToBase64(regularBlob);
+
+            this.pdf.addFileToVFS('Montserrat-Bold.ttf', regularBase64);
+            this.pdf.addFont('Montserrat-Bold.ttf', 'MontserratBold', 'normal');
+            console.log('Montserrat Bold font loaded successfully');
+        } catch (error) {
+            console.error('Error loading Montserrat Bold font:', error);
+            this.pdf.setFont('helvetica', 'normal');
+        }
+    }
+
+    async loadInterFont() {
+        try {
+            const regularResponse = await fetch(Inter);
+            const regularBlob = await regularResponse.blob();
+            const regularBase64 = await this.blobToBase64(regularBlob);
+
+            this.pdf.addFileToVFS('Inter_18pt-Light', regularBase64);
+            this.pdf.addFont('Inter_18pt-Light', 'Inter', 'normal');
+            console.log('Inter font loaded successfully');
+            this.pdf.setFont('Inter', 'normal');
+        } catch (error) {
+            console.error('Error loading Inter font:', error);
+            this.pdf.setFont('helvetica', 'normal');
+        }
+    }
+
+    blobToBase64(blob) {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.readAsDataURL(blob);
+        });
+    }
+
+    initializeDocument = async () => {
         this.pdf.setProperties({
             title: 'Comprehensive Greenhouse Gas (GHG) Emissions Report',
             author: 'Sustainability Team',
-            creator: 'Advanced PDF Generator'
+            creator: 'Harshit Dubey'
         });
+        await this.loadMontserratFont();
+        await this.loadMontserratBoldFont();
+        await this.loadInterFont();
     }
 
     addHeader(pageTitle = '') {
         this.pdf.setFontSize(12);
         this.pdf.setTextColor(113, 113, 113);
+        this.pdf.setFont('Montserrat');
         this.pdf.text('Greenhouse Gas (GHG) Report',
             this.margins.left,
             this.margins.top + 20
@@ -91,21 +180,20 @@ class MultiPageGHGReportGenerator {
         this.pdf.setDrawColor(217, 217, 217);
         this.pdf.line(
             this.margins.left,
-            this.margins.top + 30,
+            this.margins.top + 35,
             this.pageWidth - this.margins.right,
-            this.margins.top + 30
+            this.margins.top + 35
         );
 
         // Subtitle
         if (pageTitle) {
-            this.pdf.setFontSize(14);
-            this.pdf.setTextColor('#029366'); // Red
-            this.pdf.setFont('helvetica', 'bold');
+            this.pdf.setFontSize(18);
+            this.pdf.setTextColor('#029366');
+            this.pdf.setFont('MontserratBold');
             this.pdf.text(pageTitle,
                 this.margins.left,
                 this.margins.top + 70
             );
-            this.pdf.setFont('helvetica', 'normal');
         }
 
 
@@ -114,13 +202,14 @@ class MultiPageGHGReportGenerator {
     // Create a professional footer
     addFooter() {
         this.pdf.setFontSize(10);
-        this.pdf.setTextColor(100);
+        this.pdf.setTextColor('#000');
+        this.pdf.setFont('Montserrat', 'normal');
 
         // Page number
         this.pdf.text(
             `Page ${this.pageNumber}`,
-            this.pageWidth - this.margins.right - 50,
-            this.pageHeight - this.margins.bottom + 20
+            this.pageWidth - this.margins.right - 28,
+            this.pageHeight - this.margins.bottom + 10
         );
 
     }
@@ -157,8 +246,10 @@ class MultiPageGHGReportGenerator {
 
     // Generate report pages dynamically
     async generateReport(reportId) {
-        this.initializeDocument();
+        await this.initializeDocument();
 
+        const user = await fetchOnboardingData();
+        const percentData = await fetchPercentData(reportId);
         const scope1Data = await fetchScope1Data(reportId);
         const scope2Data = await fetchScope2Data(reportId);
         const scope3Data = await fetchScope3Data(reportId);
@@ -170,30 +261,36 @@ class MultiPageGHGReportGenerator {
         this.addExecutiveSummaryPage({
             scope1Data: scope1Response.data,
             scope2Data: scope2Response.data,
-            scope3Data: scope3Response.data
+            scope3Data: scope3Response.data,
+            percentData: percentData,
+            user: user
         });
 
-        this.addScope1AnalysisOne(scope1Data);
+        this.addScope1AnalysisOne(scope1Data, percentData);
 
-        this.addScope1AnalysisTwo(scope1Data);
+        this.addScope1AnalysisTwo(scope1Data, percentData);
 
-        this.addScope1AnalysisThree(scope1Data);
+        this.addScope1AnalysisThree(scope1Data, percentData);
 
-        this.addScope2AnalysisOne(scope2Data);
+        if (user?.organization?.premiumPlan?.name === 'CarbonZero' || user?.organization?.premiumPlan?.name === 'OffSet') {
+            this.addScope2AnalysisOne(scope2Data, percentData);
 
-        this.addScope2AnalysisTwo(scope2Data);
+            this.addScope2AnalysisTwo(scope2Data, percentData);
+        }
 
-        this.addScope3AnalysisOne(scope3Data);
+        if (user?.organization?.premiumPlan?.name === 'CarbonZero') {
+            this.addScope3AnalysisOne(scope3Data, percentData);
 
-        this.addScope3AnalysisTwo(scope3Data);
+            this.addScope3AnalysisTwo(scope3Data, percentData);
 
-        this.addScope3AnalysisThree(scope3Data);
+            this.addScope3AnalysisThree(scope3Data, percentData);
 
-        this.addScope3AnalysisFour(scope3Data);
+            this.addScope3AnalysisFour(scope3Data, percentData);
 
-        this.addScope3AnalysisFive(scope3Data);
+            this.addScope3AnalysisFive(scope3Data, percentData);
 
-        this.addScope3AnalysisSix(scope3Data);
+            this.addScope3AnalysisSix(scope3Data, percentData);
+        }
 
         this.addConclusionPage();
 
@@ -230,26 +327,87 @@ class MultiPageGHGReportGenerator {
         return data;
     }
 
-    addExecutiveSummaryPage({ scope1Data, scope2Data, scope3Data }) {
+    sectionPageone(user,percentData) {
+        this.addBg(reportImageOne);
+        this.pdf.setFontSize(18);
+        this.pdf.setFont('Inter')
+        this.pdf.setTextColor("#fff");
+        this.pdf.text(`${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`,
+            this.margins.left + 100,
+            this.margins.top + 410
+        );
+        this.pdf.addPage();
+        this.pdf.setFont('Inter')
+    }
+    sectionPagetwo(user) {
+        this.addBg(reportImageTwo);
+        this.pdf.setFontSize(11);
+        this.pdf.setFont('helvetica', 'bold')
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${user?.organization?.name}`,
+            this.margins.left - 8,
+            this.margins.top + 140
+        );
+        this.pdf.setFont('helvetica', 'normal')
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${user?.organization?.city}, ${user?.organization?.state}`,
+            this.margins.left - 8,
+            this.margins.top + 155
+        );
+        this.pdf.setFont('helvetica', 'normal')
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${user?.organization?.country}`,
+            this.margins.left - 8,
+            this.margins.top + 170
+        );
 
-        this.addImagePage(reportImageOne);
-        this.addImagePage(reportImageTwo);
-        this.addImagePage(reportImageThree);
+        this.pdf.setFontSize(11);
+        this.pdf.setFont('helvetica', 'normal')
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${user?.name}`,
+            this.margins.left + 245,
+            this.margins.top + 140
+        );
+        this.pdf.setFont('helvetica', 'normal')
+        this.pdf.setTextColor("#000");
+        this.pdf.text(`${user?.email}`,
+            this.margins.left + 245,
+            this.margins.top + 155
+        );
+        this.pdf.addPage();
+        this.pdf.setFont('Inter')
+    }
+
+    addExecutiveSummaryPage({ scope1Data, scope2Data, scope3Data, percentData, user }) {
+        this.sectionPageone(user,percentData);
+        this.sectionPagetwo(user)
+        if (user?.organization?.premiumPlan?.name === 'OffSet') {
+            this.addImagePage(reportImageThreeScope1_2);
+        }
+        else if (user?.organization?.premiumPlan?.name === 'CarbonZero') {
+            this.addImagePage(reportImageThreeScope1_2_3);
+        } else {
+            this.addImagePage(reportImageThreeScope1);
+        }
+
         this.addImagePage(reportImageFour);
         this.addImagePage(reportImageFive);
+
+
 
         this.pageNumber = 6;
         this.addBg(leftBg)
         this.addHeader('Greenhouse Gas Emissions Breakdown');
 
-        this.pdf.setFontSize(10);
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+        this.pdf.setFont("Inter");
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
         const totalEmissions = scope1Data.grandTotalEmissions + scope2Data.grandTotalEmissions + scope3Data.grandTotalEmissions;
 
         const wrappedText = this.pdf.splitTextToSize(
-            `This section provides a comprehensive breakdown of [Company Name]'s greenhouse gas emissions for the reporting period [Reporting Period]. Emissions are categorized into three scopes:`,
+            `This section provides a comprehensive breakdown of ${user?.organization?.name}'s greenhouse gas emissions for the reporting period ${percentData.time_period} ${percentData.periodicity} ${percentData.year}. Emissions are categorized into three scopes:`,
             maxWidth
         );
 
@@ -258,52 +416,88 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(15);
         this.pdf.text('Total GHG Emissions Distribution',
             this.margins.left,
-            this.margins.top + 150
+            this.margins.top + 160
         );
         this.pdf.addImage(
             lineChart,
             'PNG',
             this.margins.left,
-            this.margins.top + 160,
+            this.margins.top + 180,
             this.pageWidth - 120,
             16
         );
 
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(`2.1 Scope 1 Emissions: ${scope1Data.grandTotalEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            this.margins.top + 250
+            this.margins.top + 260
         );
 
-        this.pdf.setFontSize(10);
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+        this.pdf.setFont("Inter");
         this.pdf.text('Direct emissions from owned or controlled sources, such as on-site combustion of fossil fuels. ',
             this.margins.left,
-            this.margins.top + 280
+            this.margins.top + 290
         );
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 310,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 320,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto',
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index === 0) {
+                    data.cell.styles.lineWidth = 0;
+                    data.cell.styles.fontWeight = 500;
+                }
+
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
             body: [
@@ -324,18 +518,20 @@ class MultiPageGHGReportGenerator {
         this.pageNumber = 7;
         this.addHeader('');
 
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(`2.2 Scope 2 Emissions: ${scope2Data.grandTotalEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            this.margins.top + 90
+            this.margins.top + 60
         );
 
-        this.pdf.setFontSize(10);
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+        this.pdf.setFont("Inter");
         this.pdf.text('Indirect emissions from the purchase of electricity,chilled water, desalinated water, heat, or steam. ',
             this.margins.left,
-            this.margins.top + 120
+            this.margins.top + 90
         );
 
         // Calculate total emissions for each scope 2 category
@@ -345,26 +541,59 @@ class MultiPageGHGReportGenerator {
         const heatEmissions = scope2Data.heatConsumption?.reduce((sum, item) => sum + item.emissions, 0) || 0;
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 120,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index === 0) {
+                    data.cell.styles.lineWidth = 0;
+                    data.cell.styles.fontWeight = 500;
+                }
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
             body: [
@@ -380,45 +609,80 @@ class MultiPageGHGReportGenerator {
         })
 
         const finalY = this.pdf.lastAutoTable.finalY + 10
+
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
+        this.pdf.setFont("Montserrat");
         this.pdf.text(`2.3 Scope 3 Emissions: ${scope3Data.grandTotalEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 30
+            finalY + 40
         );
 
         const wrappedText2 = this.pdf.splitTextToSize(
             `Indirect emissions from activities not owned or controlled by the company, but which the company can influence. `,
             maxWidth
         );
-        this.pdf.setFontSize(10);
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+        this.pdf.setFont("Inter");
         this.pdf.text(wrappedText2,
             this.margins.left,
-            finalY + 60
+            finalY + 70
         );
 
         autoTable(this.pdf, {
             startY: finalY + 100,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                if (data.column.index === 0) {
+                    data.cell.styles.lineWidth = 0;
+                    data.cell.styles.fontWeight = 500;
+                }
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
             body: [
@@ -444,25 +708,26 @@ class MultiPageGHGReportGenerator {
         this.pdf.addPage();
     }
 
-    addScope1AnalysisOne(scope1Data) {
+    addScope1AnalysisOne(scope1Data, percentData) {
         this.pageNumber = 8;
         this.addBg(rightBg)
         const totalFuelEmissions = scope1Data.fuelEmissions.reduce((total, item) => total + item.emissions, 0);
         this.addHeader('Fuel Consumption');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Fuel Consumption for [Reporting Period]: ${totalFuelEmissions.toFixed(2)} tCO2`,
+            `Emission from Fuel Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
-        this.pdf.setTextColor("#000");
+        this.pdf.setFont("Montserrat", "normal"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.text(
             "Breakdown by fuel type: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         const tableData = scope1Data.fuelEmissions.map(item => [
@@ -478,26 +743,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Fuel Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -508,15 +811,21 @@ class MultiPageGHGReportGenerator {
         })
 
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -526,32 +835,42 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
 
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope1AnalysisTwo(scope1Data) {
+    addScope1AnalysisTwo(scope1Data, percentData) {
         this.pageNumber = 9;
         this.addBg(leftBg)
         const totalRefrigerantEmissions = scope1Data.refrigerantEmissions.reduce((total, item) => total + item.emissions, 0);
         this.addHeader('Refrigerant Consumption');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Refrigerant Consumption for [Reporting Period]: ${totalRefrigerantEmissions.toFixed(2)} tCO2`,
+            `Emission from Refrigerant Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalRefrigerantEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Refrigerant type:  ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
@@ -569,44 +888,92 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
             },
-            head: [["Refrigerant Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
+            },
+
+            head: [["Refrigerant Type", "Consumption", "Emissions (tCO2)"]],
             body: tableData,
             margin: {
-                left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
+                left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2,
+                top: 15,
+                bottom: 15
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -616,32 +983,44 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope1AnalysisThree(scope1Data) {
+    addScope1AnalysisThree(scope1Data, percentData) {
         this.pageNumber = 10;
         this.addBg(rightBg);
         this.addHeader('Process Emissions');
         const totalProcessEmissions = scope1Data.processEmissions.reduce((total, item) => total + item.emissions, 0);
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Total Process Emissions for the [Reporting Period]: ${totalProcessEmissions.toFixed(2)} tCO2`,
+            `Total Process Emissions for the ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalProcessEmissions.toFixed(2)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by type: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
@@ -659,26 +1038,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -687,16 +1104,23 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -706,25 +1130,35 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope2AnalysisOne(scope2Data) {
+    addScope2AnalysisOne(scope2Data, percentData) {
         this.pageNumber = 11;
         this.addBg(leftBg)
         // Handle electricity consumption data
         const electricityData = this.getEmissionsData(scope2Data, 'electricityConsumption');
         const totalElectricityEmissions = this.calculateTotalEmissions(electricityData);
-
         this.addHeader('Electricity Consumption');
-        this.pdf.setFontSize(10);
+
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Electricity Consumption for [Reporting Period]: ${totalElectricityEmissions.toFixed(6)} tCO2`,
+            `Emission from Electricity Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalElectricityEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -736,26 +1170,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 130,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
             body: electricityTableData,
@@ -764,16 +1236,23 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -783,27 +1262,36 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
 
         // Handle chilled water consumption data
         const chilledWaterData = this.getEmissionsData(scope2Data, 'chilledWaterConsumption');
         const totalChilledWaterEmissions = this.calculateTotalEmissions(chilledWaterData);
-        this.pdf.setFontSize(14);
-        this.pdf.setTextColor('#029366'); // Red
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFontSize(18);
+        this.pdf.setTextColor('#029366');
+        this.pdf.setFont('MontserratBold');
         this.pdf.text('Chilled Water Consumption',
             this.margins.left,
-            finalY + 100
+            finalY + 160
         );
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Chilled Water Consumption for [Reporting Period]: ${totalChilledWaterEmissions.toFixed(6)} tCO2`,
+            `Emission from Chilled Water Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalChilledWaterEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 120
+            finalY + 190
         );
 
         // Create table data for chilled water
@@ -813,26 +1301,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: finalY + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: finalY + 220,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
             body: chilledWaterTableData,
@@ -843,14 +1369,18 @@ class MultiPageGHGReportGenerator {
 
         })
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            this.pdf.lastAutoTable.finalY + 30
+            this.pdf.lastAutoTable.finalY + 10 + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
 
         // Use splitTextToSize to break the text into multiple lines
@@ -859,14 +1389,20 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText2, this.margins.left, this.pdf.lastAutoTable.finalY + 50);
+        // Render the wrapped text with line spacing
+        wrappedText2.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                this.pdf.lastAutoTable.finalY + 10 + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope2AnalysisTwo(scope2Data) {
+    addScope2AnalysisTwo(scope2Data, percentData) {
         this.pageNumber = 12;
         this.addBg(rightBg)
 
@@ -875,10 +1411,11 @@ class MultiPageGHGReportGenerator {
         const totalDesalinatedWaterEmissions = this.calculateTotalEmissions(desalinatedWaterData);
 
         this.addHeader('Purchased Desalinated Water');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Purchased Desalinated Water for [Reporting Period]: ${totalDesalinatedWaterEmissions.toFixed(6)} tCO2`,
+            `Emission from Purchased Desalinated Water for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDesalinatedWaterEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -891,26 +1428,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 130,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
             body: desalinatedWaterTableData,
@@ -919,46 +1494,53 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
-        // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
-
-        // Use splitTextToSize to break the text into multiple lines
         const wrappedText = this.pdf.splitTextToSize(
             "The tool assumes that multi-stage flash (MSF) technology is used for desalination and applies emission factors based on this technology. These factors account for the energy consumption and associated greenhouse gas emissions involved in the desalination process.",
             maxWidth
         );
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
 
-        this.pdf.setFontSize(14);
-        this.pdf.setTextColor('#029366'); // Red
-        this.pdf.setFont('helvetica', 'bold');
+
+        this.pdf.setFontSize(18);
+        this.pdf.setTextColor('#029366');
+        this.pdf.setFont('MontserratBold');
         // Handle heat consumption data
         const heatData = this.getEmissionsData(scope2Data, 'heatConsumption');
         const totalHeatEmissions = this.calculateTotalEmissions(heatData);
 
         this.pdf.text('Heat Consumption',
             this.margins.left,
-            finalY + 100
+            finalY + 160
         );
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Heat Consumption for [Reporting Period]: ${totalHeatEmissions.toFixed(6)} tCO2`,
+            `Emission from Heat Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalHeatEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 120
+            finalY + 190
         );
 
         // Create table data for heat consumption
@@ -968,26 +1550,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: finalY + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: finalY + 220,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
             body: heatTableData,
@@ -997,14 +1617,18 @@ class MultiPageGHGReportGenerator {
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            this.pdf.lastAutoTable.finalY + 30
+            this.pdf.lastAutoTable.finalY + 10 + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
 
         // Use splitTextToSize to break the text into multiple lines
@@ -1013,14 +1637,20 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText2, this.margins.left, this.pdf.lastAutoTable.finalY + 50);
+        // Render the wrapped text with line spacing
+        wrappedText2.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                this.pdf.lastAutoTable.finalY + 10 + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisOne(scope3Data) {
+    addScope3AnalysisOne(scope3Data, percentData) {
         this.pageNumber = 13;
         this.addBg(leftBg)
         this.addHeader('Waste Generated');
@@ -1036,20 +1666,22 @@ class MultiPageGHGReportGenerator {
 
         const totalWasteEmissions = this.calculateEmissionsTotal(wasteData);
 
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Waste Generated for [Reporting Period]: ${totalWasteEmissions.toFixed(6)} tCO2`,
+            `Emission from Waste Generated for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalWasteEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Waste Categories: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
@@ -1063,28 +1695,66 @@ class MultiPageGHGReportGenerator {
         tableData.push(['Total', '', `${totalWasteEmissions.toFixed(6)}`]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
             },
-            head: [["Fuel Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
+            },
+            head: [["Waste Categories", "Waste Quantity", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1092,15 +1762,21 @@ class MultiPageGHGReportGenerator {
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -1110,14 +1786,22 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
 
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisTwo(scope3Data) {
+    addScope3AnalysisTwo(scope3Data, percentData) {
         this.pageNumber = 14;
         this.addBg(rightBg)
         this.addHeader('Business Travel');
@@ -1132,25 +1816,28 @@ class MultiPageGHGReportGenerator {
 
         const totalTravelEmissions = this.calculateEmissionsTotal(travelData);
 
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Business Travel for [Reporting Period]: ${totalTravelEmissions.toFixed(6)} tCO2`,
+            `Emission from Business Travel for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalTravelEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Travel Class: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
         const tableData = travelData.map(item => [
             item.travelClass,
-            item.numTrips.toString(),
+            item.num_trips,
             `${item.emissions.toFixed(6)}`
         ]);
 
@@ -1158,26 +1845,64 @@ class MultiPageGHGReportGenerator {
         tableData.push(['Total', '', `${totalTravelEmissions.toFixed(6)}`]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Travel Class", "Number of trips", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -1187,15 +1912,21 @@ class MultiPageGHGReportGenerator {
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -1205,12 +1936,21 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
 
-        this.pdf.setFontSize(14);
-        this.pdf.setTextColor('#029366'); // Red
-        this.pdf.setFont('helvetica', 'bold');
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
+
+        this.pdf.setFontSize(18);
+        this.pdf.setTextColor('#029366');
+        this.pdf.setFont('MontserratBold');
 
         // Handle purchased goods section
         const purchasedGoodsData = this.getDataWithDefault(scope3Data.purchasedGoodsData, {
@@ -1219,47 +1959,87 @@ class MultiPageGHGReportGenerator {
             emissions: 0
         });
 
+        console.log(purchasedGoodsData)
         const totalPurchasedGoodsEmissions = this.calculateEmissionsTotal(purchasedGoodsData);
 
         this.pdf.text('Purchased Goods',
             this.margins.left,
-            finalY + 100
+            finalY + 160
         );
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setFontSize(10);
+
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Purchased Goods for [Reporting Period]: ${totalPurchasedGoodsEmissions.toFixed(6)} tCO2`,
+            `Emission from Purchased Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalPurchasedGoodsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 120
+            finalY + 190
         );
 
         const purchasedGoodsTableData = [[
-            totalPurchasedGoodsEmissions.toFixed(6),
+            purchasedGoodsData[0].expenseValue?.toFixed(6),
             `${totalPurchasedGoodsEmissions.toFixed(6)}`
         ]];
 
         autoTable(this.pdf, {
-            startY: finalY + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: finalY + 220,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Expense Value", "Emissions (tCO2)"]],  // Table header row
             body: purchasedGoodsTableData,
@@ -1268,15 +2048,18 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
-
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            this.pdf.lastAutoTable.finalY + 30
+            this.pdf.lastAutoTable.finalY + 10 + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
 
         // Use splitTextToSize to break the text into multiple lines
@@ -1285,14 +2068,21 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText2, this.margins.left, this.pdf.lastAutoTable.finalY + 50);
+        // Render the wrapped text with line spacing
+        wrappedText2.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                this.pdf.lastAutoTable.finalY + 10 + 60 + (index * lineHeight)
+            );
+        });
+
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisThree(scope3Data) {
+    addScope3AnalysisThree(scope3Data, percentData) {
         this.pageNumber = 15;
         this.addBg(leftBg)
 
@@ -1306,40 +2096,79 @@ class MultiPageGHGReportGenerator {
 
         const totalCapitalGoodsEmissions = this.calculateEmissionsTotal(capitalGoodsData);
         this.addHeader('Capital Goods');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Capital Goods for [Reporting Period]: ${totalCapitalGoodsEmissions.toFixed(6)} tCO2`,
+            `Emission from Capital Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCapitalGoodsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
         const capitalGoodsTableData = [[
-            totalCapitalGoodsEmissions.toFixed(6),
+            capitalGoodsData[0].expenseValue.toFixed(6),
             `${totalCapitalGoodsEmissions.toFixed(6)}`
         ]];
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 130,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Expense Value", "Emissions (tCO2)"]],  // Table header row
             body: capitalGoodsTableData,
@@ -1348,31 +2177,36 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
-        // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
-
-        // Use splitTextToSize to break the text into multiple lines
         const wrappedText = this.pdf.splitTextToSize(
             "The tool follows the UNFCCC CDM Supplier Inventory to calculate emissions associated with Capital goods. This involves considering the emissions embedded in the production and transportation of these items.",
             maxWidth
         );
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
-
-        this.pdf.setFontSize(14);
-        this.pdf.setTextColor('#029366'); // Red
-        this.pdf.setFont('helvetica', 'bold');
+        this.pdf.setFontSize(18);
+        this.pdf.setTextColor('#029366');
+        this.pdf.setFont('MontserratBold');
         // Handle investments section
         const investmentsData = this.getDataWithDefault(scope3Data.investmentsData, {
             ownershipPercentage: 0,
@@ -1383,15 +2217,15 @@ class MultiPageGHGReportGenerator {
         const totalInvestmentsEmissions = this.calculateEmissionsTotal(investmentsData);
         this.pdf.text('Investments',
             this.margins.left,
-            finalY + 100
+            finalY + 160
         );
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Investments for [Reporting Period]: ${totalInvestmentsEmissions.toFixed(6)} tCO2`,
+            `Emission from Investments for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalInvestmentsEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 120
+            finalY + 190
         );
 
         const investmentsTableData = investmentsData.map(item => [
@@ -1400,26 +2234,64 @@ class MultiPageGHGReportGenerator {
         ]);
 
         autoTable(this.pdf, {
-            startY: finalY + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: finalY + 220,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                // if (data.row.index === tableData.length - 1) {
+                //     data.cell.styles.fillColor = '#e6f8f2';
+                //     data.cell.styles.fontStyle = 'normal';
+                // }
             },
             head: [["Ownership Percentage", "Emissions (tCO2)"]],  // Table header row
             body: investmentsTableData,
@@ -1429,14 +2301,18 @@ class MultiPageGHGReportGenerator {
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            this.pdf.lastAutoTable.finalY + 30
+            this.pdf.lastAutoTable.finalY + 10 + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
 
         // Use splitTextToSize to break the text into multiple lines
@@ -1445,14 +2321,20 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText2, this.margins.left, this.pdf.lastAutoTable.finalY + 50);
+        // Render the wrapped text with line spacing
+        wrappedText2.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                this.pdf.lastAutoTable.finalY + 10 + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisFour(scope3Data) {
+    addScope3AnalysisFour(scope3Data, percentData) {
         this.pageNumber = 16;
         this.addBg(rightBg);
 
@@ -1467,26 +2349,28 @@ class MultiPageGHGReportGenerator {
         const totalCommutingEmissions = this.calculateEmissionsTotal(commutingData);
 
         this.addHeader('Employee Commuting');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Employee Commuting for [Reporting Period]: ${totalCommutingEmissions.toFixed(6)} tCO2`,
+            `Emission from Employee Commuting for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCommutingEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Vehicle type: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
         const tableData = commutingData.map(item => [
             item.vehicleType,
-            item.numTrips.toString(),
+            item.num_trips.toString(),
             `${item.emissions.toFixed(6)}`
         ]);
 
@@ -1494,26 +2378,64 @@ class MultiPageGHGReportGenerator {
         tableData.push(['Total', '', `${totalCommutingEmissions.toFixed(6)}`]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Vehicle Type", "No. of Trips", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -1522,16 +2444,22 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -1541,14 +2469,23 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisFive(scope3Data) {
+    addScope3AnalysisFive(scope3Data, percentData) {
         this.pageNumber = 17;
         this.addBg(leftBg);
         // Handle fuel related data with defaults
@@ -1559,20 +2496,22 @@ class MultiPageGHGReportGenerator {
 
         const totalFuelRelatedEmissions = this.calculateEmissionsTotal(fuelRelatedData);
         this.addHeader('Fuel Related Activities');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Fuel Related Activities for [Reporting Period]: ${totalFuelRelatedEmissions.toFixed(6)} tCO2`,
+            `Emission from Fuel Related Activities for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelRelatedEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Categories: ",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
@@ -1585,26 +2524,64 @@ class MultiPageGHGReportGenerator {
         tableData.push(['Total', `${totalFuelRelatedEmissions.toFixed(6)}`]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Category", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -1613,16 +2590,23 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+
+        this.pdf.setFont("Montserrat");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            finalY + 20
+            finalY + 30
         );
-        this.pdf.setFontSize(10);
+
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -1632,14 +2616,23 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
+
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
 
         this.addFooter();
         this.pdf.addPage();
     }
 
-    addScope3AnalysisSix(scope3Data) {
+    addScope3AnalysisSix(scope3Data, percentData) {
         this.pageNumber = 18;
         this.addBg(rightBg);
 
@@ -1652,19 +2645,21 @@ class MultiPageGHGReportGenerator {
         const totalUpstreamEmissions = this.calculateEmissionsTotal(upstreamLeasedData);
 
         this.addHeader('Upstream Leased Assets');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Upstream Leased Assets for [Reporting Period]: ${totalUpstreamEmissions.toFixed(6)} tCO2`,
+            `Emission from Upstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalUpstreamEmissions.toFixed(6)} tCO2`,
             this.margins.left,
             this.margins.top + 100
         );
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Inter");
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
             "Breakdown by Asset type:",
             this.margins.left,
-            this.margins.top + 135
+            this.margins.top + 140
         );
 
         // Transform data for table
@@ -1677,26 +2672,64 @@ class MultiPageGHGReportGenerator {
         tableData.push(['Total', `${totalUpstreamEmissions.toFixed(6)}`]);
 
         autoTable(this.pdf, {
-            startY: this.margins.top + 150,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: this.margins.top + 160,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
+            },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
+            didParseCell: (data) => {
+                // Remove vertical borders for middle columns
+                if (data.column.index > 0 && data.column.index < data.table.columns.length - 1) {
+                    // data.cell.styles.lineWidth = 0;
+                }
+
+                // Style for total row
+                if (data.row.index === tableData.length - 1) {
+                    data.cell.styles.fillColor = '#e6f8f2';
+                    data.cell.styles.fontStyle = 'normal';
+                }
             },
             head: [["Asset Type", "Emissions (tCO2)"]],  // Table header row
             body: tableData,
@@ -1705,16 +2738,13 @@ class MultiPageGHGReportGenerator {
             },
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
+
         const finalY = this.pdf.lastAutoTable.finalY + 10
-        this.pdf.setFontSize(12);
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
-        this.pdf.text(
-            "Calculation methodology:  ",
-            this.margins.left,
-            finalY + 20
-        );
-        this.pdf.setFontSize(10);
-        this.pdf.setTextColor("#000");
+
         // Define the max width for the text to wrap
         const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
 
@@ -1724,60 +2754,96 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText, this.margins.left, finalY + 40);
+        // Calculate line height (1.5 times the font size for good readability)
+        const lineHeight = this.pdf.getFontSize() * 1.5;
 
-        this.pdf.setFontSize(14);
-        this.pdf.setTextColor('#029366'); // Red
-        this.pdf.setFont('helvetica', 'bold');
+        // Render the wrapped text with line spacing
+        wrappedText.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                finalY + 60 + (index * lineHeight)
+            );
+        });
+
+        this.pdf.setFontSize(18);
+        this.pdf.setTextColor('#029366');
+        this.pdf.setFont('MontserratBold');
 
         // Handle downstream leased assets section
         const downstreamLeasedData = this.getDataWithDefault(scope3Data.downstreamLeasedAssetsData, {
             emissions: 0
         });
+        // console.log(downstreamLeasedData)
 
         const totalDownstreamEmissions = this.calculateEmissionsTotal(downstreamLeasedData);
 
         this.pdf.text('Downstream Leased Assets',
             this.margins.left,
-            finalY + 100
+            finalY + 160
         );
-        this.pdf.setFont('helvetica', 'normal');
-        this.pdf.setFontSize(10);
+        this.pdf.setFont('Inter');
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Downstream Leased Assets for [Reporting Period]: ${totalDownstreamEmissions.toFixed(6)} tCO2`,
+            `Emission from Downstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDownstreamEmissions.toFixed(6)} tCO2`,
             this.margins.left,
-            finalY + 120
+            finalY + 190
         );
 
         const downstreamTableData = [[
-            totalDownstreamEmissions.toFixed(6),
+            downstreamLeasedData[0].physicalArea,
             `${totalDownstreamEmissions.toFixed(6)}`
         ]];
 
         autoTable(this.pdf, {
-            startY: finalY + 135,
-            theme: 'grid',  // 'striped', 'grid', or 'plain'
+            startY: finalY + 220,
+            theme: 'plain',
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
-                cellPadding: 8,
+                cellPadding: {
+                    top: 12,
+                    bottom: 12,
+                    left: 16,
+                    right: 16
+                },
                 valign: 'middle',
-                halign: 'center',
-                fillColor: '#E6F8F2',  // Light green background for header row
+                halign: 'left',
+                fillColor: '#fff',
+                lineColor: [220, 220, 220],
+                lineWidth: 0.1
             },
+
             headStyles: {
+                fillColor: '#e6f8f2',
                 textColor: '#000',
-                fillColor: '#E6F8F2',  // Slightly darker green for headers
                 fontSize: 10,
-                fontStyle: 'normal',
+                fontStyle: 'normal'
             },
+
             columnStyles: {
-                0: { fillColor: '#fff' }, // Left column coloring
-                1: { fillColor: '#fff' },    // White KPIs column
-                2: { fillColor: '#fff' }     // White Emissions column
+                0: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                1: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                },
+                2: {
+                    halign: 'left',
+                    cellWidth: 'auto'
+                }
             },
+
+            // Configure borders
+            tableLineColor: [220, 220, 220],
+            tableLineWidth: 0.1,
+            showHorizontalLines: true,    // Show horizontal lines
+            horizontalPageBreak: true,    // Maintain horizontal lines across pages
+            horizontalPageBreakRepeat: true,
+
             head: [["Physical Area", "Emissions (tCO2)"]],  // Table header row
             body: downstreamTableData,
             margin: {
@@ -1786,14 +2852,18 @@ class MultiPageGHGReportGenerator {
             tableWidth: this.pageWidth - this.margins.left - this.margins.right,
         })
 
-        this.pdf.setFontSize(12);
+        this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
+        this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            "Calculation methodology:  ",
+            "Calculation methodology:",
             this.margins.left,
-            this.pdf.lastAutoTable.finalY + 30
+            this.pdf.lastAutoTable.finalY + 10 + 30
         );
-        this.pdf.setFontSize(10);
+
+        // Reset font for the description text
+        this.pdf.setFont("Inter"); // Or keep Montserrat if you want the whole text in it
+        this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
 
         // Use splitTextToSize to break the text into multiple lines
@@ -1802,8 +2872,16 @@ class MultiPageGHGReportGenerator {
             maxWidth
         );
 
-        // Render the wrapped text at the desired Y position
-        this.pdf.text(wrappedText2, this.margins.left, this.pdf.lastAutoTable.finalY + 50);
+        // Render the wrapped text with line spacing
+        wrappedText2.forEach((line, index) => {
+            this.pdf.text(
+                line,
+                this.margins.left,
+                this.pdf.lastAutoTable.finalY + 10 + 60 + (index * lineHeight)
+            );
+        });
+
+
 
         this.addFooter();
         this.pdf.addPage();
