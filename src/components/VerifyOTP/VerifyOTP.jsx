@@ -40,7 +40,7 @@ export default function OtpModal() {
     if (result) {
       navigate("/account-verified");
     } else {
-      setOtpError(result.error);
+      setOtpError(result.error); 
     }
   };
 
