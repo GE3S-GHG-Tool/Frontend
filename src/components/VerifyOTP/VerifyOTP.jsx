@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, Box, Typography, Button, TextField } from "@mui/material";
+import { Typography } from "@mui/material";
 import logo from "../../assets/images/ge3s.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSignup } from "../../context/User-signup";
@@ -7,6 +7,7 @@ import { initiateSignup, verifyOtp } from "../../api/auth";
 import constant from "../../constant";
 import Wrapper from "../Wrapper/Wrapper";
 import { MuiOtpInput } from "mui-one-time-password-input";
+
 export default function OtpModal() {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(30);
@@ -36,7 +37,7 @@ export default function OtpModal() {
   const handleVerify = async () => {
     setOtpError("");
     const result = await verifyOtp(location.state.email, otp, setAuthToken);
-    if (result.success) {
+    if (result) {
       navigate("/account-verified");
     } else {
       setOtpError(result.error);
