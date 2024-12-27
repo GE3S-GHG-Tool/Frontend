@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import axios from 'axios';
+import api from '../../../api';
 
 const LineChart = ({ reportId }) => {
-  const [loading, setLoading] = useState(true);
+  console.log(reportId)
+  const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/fetch_total_emissions', {
+        setLoading(true);
+        const response = await api.post('/report/fetch_total_emissions', {
           reportId: reportId
         });
 
-        // Base data structure with colors
         const scopeColors = {
           scope1: {
             baseColor: '#01533A',
@@ -27,11 +27,10 @@ const LineChart = ({ reportId }) => {
           },
           scope3: {
             baseColor: '#F26D58',
-            gradientColors: ['#F26D58', '#FF7863', '#FF8977', '#FF9989', '#FFAC9F','#FFBBB0','#FFC8BF','#FFD3CD','#FFE6E3']
+            gradientColors: ['#F26D58', '#FF7863', '#FF8977', '#FF9989', '#FFAC9F', '#FFBBB0', '#FFC8BF', '#FFD3CD', '#FFE6E3']
           }
         };
 
-        // Transform only the scopes that exist in the API response
         const transformedData = Object.keys(response.data.emissions).map(scope => ({
           label: `Scope ${scope.slice(-1)}`,
           value: response.data.emissions[scope].value.toLocaleString(),
@@ -47,11 +46,8 @@ const LineChart = ({ reportId }) => {
         setLoading(false);
       }
     };
-
-    if (reportId) {
-      fetchData();
-    }
-  }, [reportId]);
+    fetchData();
+  }, []);
 
   const styles = {
     container: {
@@ -66,14 +62,13 @@ const LineChart = ({ reportId }) => {
       width: '100%',
       height: '12px',
       display: 'flex',
-      // borderRadius: '5px',
       overflow: 'hidden',
     },
     segment: {
       height: '100%',
       position: 'relative',
       overflow: 'hidden',
-      marginLeft:'1.5px'
+      marginLeft: '1.5px'
     },
     gradientStripe: {
       height: '100%',
@@ -93,7 +88,6 @@ const LineChart = ({ reportId }) => {
     colorBox: {
       width: '16px',
       height: '16px',
-      // borderRadius: '4px',
     },
     loading: {
       display: 'flex',
@@ -102,14 +96,6 @@ const LineChart = ({ reportId }) => {
       minHeight: '200px',
     }
   };
-
-  if (loading) {
-    return (
-      <Box sx={styles.loading}>
-        {/* <CircularProgress /> */}
-      </Box>
-    );
-  }
 
   return (
     <Box sx={styles.container}>
@@ -142,7 +128,7 @@ const LineChart = ({ reportId }) => {
         <Box sx={styles.legendContainer}>
           {chartData.map((item, index) => (
             <Box key={index} sx={styles.legendItem}>
-              <Box 
+              <Box
                 sx={{
                   ...styles.colorBox,
                   backgroundColor: item.baseColor

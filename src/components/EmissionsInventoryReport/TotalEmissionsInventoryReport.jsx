@@ -469,7 +469,6 @@ const TotalEmissionsInventoryReport = () => {
       },
     ]);
   };
-
   const scopeData3 = async (id) => {
     const response = await getScope3Data(id);
     // console.log("scope3 data:", response?.data);
@@ -565,19 +564,6 @@ const TotalEmissionsInventoryReport = () => {
       };
     });
 
-    console.log(updata);
-
-    // const disposalmethod = Object.entries(
-    //   response?.data?.wasteBreakdown?.disposalMethods
-    // ).map(([category, emissions]) => {
-    //   return {
-    //     label: category, // The key becomes the label
-    //     value: emissions , // Multiply emissions by 1000 and round
-    //     color: disposlaPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
-    //   };
-    // });
-
-
     const disposalmethod = response?.data?.wasteBreakdown?.disposalMethods.map((item) => {
       return {
         label: item.disposalMethod,
@@ -637,13 +623,6 @@ const TotalEmissionsInventoryReport = () => {
     scopeData3(id);
   }, [id]);
 
-  // useEffect(() => {
-  //   scopeData1(id);
-  //   fetchreportData(id);
-  //   scopeData2(id);
-  //   scopeData3(id);
-  // }, []);
-
   useEffect(() => {
     fetchreportData(id);
   }, []);
@@ -665,11 +644,7 @@ const TotalEmissionsInventoryReport = () => {
       }}
     >
       <div
-        // id="top-heading"
         style={{
-          // position: "sticky",
-          // top: 0,
-          // zIndex: 1000,
           borderBottom: "1px solid #eeeeee",
           padding: "1rem 4rem",
           display: "flex",

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Avatar, Box, Button, TextField } from "@mui/material";
+import { Avatar, Box, Button, TextField, Alert, Snackbar } from "@mui/material";
 import ImageModal from "../common/ImageModal";
 import Wrapper from "../Wrapper/Wrapper";
 import user from "../../assets/images/defaultUser.png";
@@ -8,6 +8,8 @@ import "./PersonalInfo.css";
 import { useNavigate } from "react-router-dom";
 import { useSignup } from "../../context/User-signup";
 import { submitPersonalInfo } from "../../api/auth";
+
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB in bytes
 
 const PersonalInfo = () => {
   const { fullname, setFullname, setImageUrl } = useSignup();
@@ -23,14 +25,32 @@ const PersonalInfo = () => {
     fullName: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const clickInput = () => {
     imageInput.current && imageInput.current.click();
   };
 
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertOpen(false);
+  };
+
   const onFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
+      
+      if (file.size > MAX_FILE_SIZE) {
+        setAlertMessage("File size exceeds 2MB limit. Please choose a smaller file.");
+        setAlertOpen(true);
+        e.target.value = "";
+        setKey((prevKey) => prevKey + 1);
+        return;
+      }
+
       setSelectedFile(file);
       setPreviewUrl(URL.createObjectURL(file));
       setOpenImageResizer(true);
@@ -41,7 +61,6 @@ const PersonalInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(isFormValid,"sjdfgfudgyh")
     if (isFormValid) {
       setIsLoading(true);
       try {
@@ -61,7 +80,6 @@ const PersonalInfo = () => {
 
   useEffect(() => {
     const isFullNameValid = fullname.trim() !== "";
-    // const isProfileSet = selectedFile !== null;
     setError(fullname && !isFullNameValid);
     setHelperText({
       fullName: fullname && !isFullNameValid ? "Full Name is required" : "",
@@ -148,7 +166,6 @@ const PersonalInfo = () => {
             placeholder="Full Name"
             onChange={(e) => {
               setFullname(e.target.value);
-              console.log("Fullname set:", e.target.value);
             }}
             error={error}
             helperText={helperText.fullName}
@@ -163,6 +180,18 @@ const PersonalInfo = () => {
             Create Account
           </button>
         </form>
+        
+        <Snackbar 
+          open={alertOpen} 
+          autoHideDuration={6000} 
+          onClose={handleCloseAlert}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert onClose={handleCloseAlert} severity="error" sx={{ width: '100%' }}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
+
         <div
           style={{
             width: "80%",
