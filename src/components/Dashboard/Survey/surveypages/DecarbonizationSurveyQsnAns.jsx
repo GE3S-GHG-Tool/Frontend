@@ -505,7 +505,7 @@ function SurveyQuestionSection() {
       });
 
       if (response.status === 200) {
-        navigate('/dashboard');
+        navigate('/');
       } else {
         console.error('Survey submission failed:', response);
       }

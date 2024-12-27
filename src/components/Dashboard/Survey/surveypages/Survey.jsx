@@ -67,19 +67,15 @@ const Survey = () => {
   };
 
   const handleStartSurvey = () => {
-    console.log("hello")
     if (user?.organization?.addOnPlan && user?.organization?.addOnPlan?.name === "DecarbonizationSurvey") {
       if (user?.organization?.addOnPlan?.survey_status === "completed") {
         handleOpenModal();
-        console.log('hello')
       }
       else {
         navigate("/survey1")
-        console.log('helo')
       }
     } else {
       handleOpenModal();
-      console.log('helo')
     }
   };
 
