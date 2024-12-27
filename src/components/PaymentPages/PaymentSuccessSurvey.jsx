@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Wrapper from "../Wrapper/Wrapper";
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
 const PaymentSuccessSurvey = () => {
   const navigate = useNavigate();
+  const { user, getUserData } = useAuth();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
   console.log(sessionId)
@@ -25,8 +27,17 @@ const PaymentSuccessSurvey = () => {
       }
     };
 
+    const updateUserData = async () => {
+      try {
+        await getUserData();
+      } catch (error) {
+        console.error('Error updating user data:', error);
+      }
+    }
+
     if (sessionId) {
       updateSubscription();
+      updateUserData();
     }
   }, [sessionId]);
 
