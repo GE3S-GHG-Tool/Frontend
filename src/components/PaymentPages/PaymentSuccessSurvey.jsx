@@ -21,23 +21,21 @@ const PaymentSuccessSurvey = () => {
             plan_type: 'addOnPlan'
           }
         );
+        // Add a small delay to ensure backend has processed the update
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Then fetch updated user data
+        await getUserData();
+
         console.log('Subscription updated successfully:', response.data);
       } catch (error) {
         console.error('Error updating subscription:', error.response?.data || error.message);
       }
     };
 
-    const updateUserData = async () => {
-      try {
-        await getUserData();
-      } catch (error) {
-        console.error('Error updating user data:', error);
-      }
-    }
 
     if (sessionId) {
       updateSubscription();
-      updateUserData();
     }
   }, [sessionId]);
 
