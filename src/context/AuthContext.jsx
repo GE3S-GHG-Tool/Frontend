@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
     setScope2Data,
     scope2Data,
     setToken,
+    getUserData
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

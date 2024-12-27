@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid2, Paper, Typography, Button, Tooltip} from "@mui/material";
+import { Box, Grid2, Paper, Typography, Button, Tooltip } from "@mui/material";
 import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
 import BasicTable from "./TablesDataDecarbonation1";
 import BasicTable2 from "./TablesDataDecarbonation2";
@@ -491,7 +491,7 @@ function SurveyQuestionSection() {
     },
   ];
   const location = useLocation();
-  const { user } = useAuth();
+  const { user, getUserData } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmitSurvey = async () => {
@@ -505,8 +505,10 @@ function SurveyQuestionSection() {
       });
 
       if (response.status === 200) {
+        await getUserData();
         navigate('/');
-      } else { 
+
+      } else {
         console.error('Survey submission failed:', response);
       }
     } catch (error) {
