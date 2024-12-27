@@ -506,7 +506,7 @@ function SurveyQuestionSection() {
 
       if (response.status === 200) {
         navigate('/');
-      } else {
+      } else { 
         console.error('Survey submission failed:', response);
       }
     } catch (error) {
