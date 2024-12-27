@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Grid2, Paper, Typography, Button, Tooltip } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Grid2, Paper, Typography, Button, Tooltip} from "@mui/material";
 import magelightBuld from "../../../../assets/images/mage_light-bulb.svg";
 import BasicTable from "./TablesDataDecarbonation1";
 import BasicTable2 from "./TablesDataDecarbonation2";
