@@ -23,12 +23,8 @@ const Survey = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if(!user?.organization?.addOnPlan)
-    {
-      fetchSurveyPlan();
-    }else{
-      setLoading(false)
-    }
+    fetchSurveyPlan();
+    setLoading(false)
   }, []);
 
   const fetchSurveyPlan = async () => {
@@ -71,10 +67,19 @@ const Survey = () => {
   };
 
   const handleStartSurvey = () => {
+    console.log("hello")
     if (user?.organization?.addOnPlan && user?.organization?.addOnPlan?.name === "DecarbonizationSurvey") {
-      navigate("/survey1")
+      if (user?.organization?.addOnPlan?.survey_status === "completed") {
+        handleOpenModal();
+        console.log('hello')
+      }
+      else {
+        navigate("/survey1")
+        console.log('helo')
+      }
     } else {
       handleOpenModal();
+      console.log('helo')
     }
   };
 

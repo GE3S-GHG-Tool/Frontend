@@ -34,6 +34,8 @@ import heat from "../../../../assets/images/heat.svg";
 import summer from "../../../../assets/images/summer.svg";
 import hand_holding_2 from "../../../../assets/images/hand-holding-2.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import api from "../../../../api";
+import { useAuth } from "../../../../context/AuthContext";
 const TableComponents = {
   "Industrial Chiller System": BasicTable,
   "Refrigerated Storage Area": BasicTable2,
@@ -218,39 +220,7 @@ const Question = ({ questionText, logo, heading, answers, showTable }) => {
                 ) : (
                   <div style={{ paddingBottom: "10px" }}></div>
                 )
-                // <Grid2
-                //   sx={{
-                //     display: "flex",
-                //     alignItems: "center",
-                //     gap: "12px",
-                //     padding: "18px",
-                //     borderTop: "1px solid #D9D9D9",
-                //     borderBottom: "1px solid #D9D9D9",
-                //     borderBottomLeftRadius: "3px",
-                //     borderBottomRightRadius: "3px",
-                //   }}
-                // >
-                //   <div
-                //     style={{
-                //       background: "#FFF7F2",
-                //       width: "24px",
-                //       height: "24px",
-                //       display: "flex",
-                //       justifyContent: "center",
-                //       alignItems: "center",
-                //       borderRadius: "5px",
-                //     }}
-                //   >
-                //     <img
-                //       src={magelightBuld}
-                //       alt="Implementation Required"
-                //       width="18px"
-                //     />
-                //   </div>
-                //   <Typography fontSize="14px" fontWeight="500" color="#717171">
-                //     Implementation Required
-                //   </Typography>
-                // </Grid2>
+
               }
             </React.Fragment>
           );
@@ -259,6 +229,7 @@ const Question = ({ questionText, logo, heading, answers, showTable }) => {
     </Grid2>
   );
 };
+
 
 function SurveyQuestionSection() {
   const navigate = useNavigate();
@@ -520,7 +491,30 @@ function SurveyQuestionSection() {
     },
   ];
   const location = useLocation();
-  // console.log("answers", location.state);
+  const { user } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmitSurvey = async () => {
+    if (isSubmitting) return; // Prevent multiple clicks
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await api.post('payment/subscription/update_survey_status', {
+        organizationId: user?.organization?.id
+      });
+
+      if (response.status === 200) {
+        navigate('/dashboard');
+      } else {
+        console.error('Survey submission failed:', response);
+      }
+    } catch (error) {
+      console.error('Error submitting survey:', error);
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div>
       <Grid2 container spacing={2}>
@@ -638,9 +632,11 @@ function SurveyQuestionSection() {
               background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
             },
           }}
+          onClick={handleSubmitSurvey}
+          disabled={isSubmitting}
         >
           <Typography color="#fff" fontSize="12px">
-            Survey Completed
+            {isSubmitting ? "Submitting..." : "Survey Completed"}
           </Typography>
         </Button>
       </Grid2>
