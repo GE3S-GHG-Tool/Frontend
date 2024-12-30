@@ -46,6 +46,7 @@ import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
 import { FillContentWrapper } from "./Locks/FillContentWrapper";
 import { NoDataAvailableWrapper } from "./Locks/NoDataAvailableWrapper";
+import api from "../../api";
 
 const Scope1SVGs = [
   <svg
@@ -346,6 +347,7 @@ const TotalEmissionsInventoryReport = () => {
   const [scope1Data, setScope1Data] = useState([]);
   const [scope2Data, setScope2Data] = useState([]);
   const [scope3Data, setScope3Data] = useState([]);
+  const [chartData, setChartData] = useState([]);
   const [FuelTypeEmissionBreakdownData, setFuelTypeEmissionBreakdownData] =
     useState([]);
   const [RefrigerantEmissionsData, setRefrigerantEmissionsData] = useState([]);
@@ -607,24 +609,59 @@ const TotalEmissionsInventoryReport = () => {
 
   const fetchreportData = async () => {
     const response = await getReportWithID(id);
-    // console.log(response);
     if (response.data.success) {
       setReportData(response?.data?.report);
-      // console.log(reportData)
     } else {
       alert("Couldnt Fetch Report Details");
     }
   };
 
+  const fetchChartData = async () => {
+    try {
+      const response = await api.post('/report/fetch_total_emissions', {
+        reportId: id
+      });
+      const scopeColors = {
+        scope1: {
+          baseColor: '#01533A',
+          gradientColors: ['#01533A', '#028A60', '#02A673']
+        },
+        scope2: {
+          baseColor: '#087A91',
+          gradientColors: ['#087A91', '#098DA7', '#0CA1BF', '#10BBDD']
+        },
+        scope3: {
+          baseColor: '#F26D58',
+          gradientColors: ['#F26D58', '#FF7863', '#FF8977', '#FF9989', '#FFAC9F', '#FFBBB0', '#FFC8BF', '#FFD3CD', '#FFE6E3']
+        }
+      };
+      console.log("hello",response.data.emissions);
+      const transformedData = Object.keys(response.data.emissions).map(scope => ({
+        label: `Scope ${scope.slice(-1)}`,
+        value: response.data.emissions[scope].value.toLocaleString(),
+        percentage: parseFloat(response.data.emissions[scope].percentage),
+        baseColor: scopeColors[scope].baseColor,
+        gradientColors: scopeColors[scope].gradientColors
+      }));
+
+      setChartData(transformedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
+    fetchChartData(id);
     scopeData1(id);
     fetchreportData(id);
     scopeData2(id);
     scopeData3(id);
   }, [id]);
 
+
   useEffect(() => {
     fetchreportData(id);
+    fetchChartData(id);
   }, []);
 
   const toggleDropdown = () => {
@@ -890,7 +927,7 @@ const TotalEmissionsInventoryReport = () => {
                   Total GHG Emissions Distribution
                 </Typography>
               </div>
-              <LineChart reportId={id} />
+              <LineChart chartData={chartData} />
             </div>
           </div>
 
