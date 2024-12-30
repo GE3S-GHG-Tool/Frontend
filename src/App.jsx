@@ -1,9 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import SignUp from "./components/SignUp/SignUp";
 import Onboarding from "./components/Onboarding/Onboarding";
 import CreateAccount from "./components/CreateAccount/CreateAccount";
-import Confirmation from "./components/Confirmation/Confirmation";
 import Login from "./components/Login/Login";
 import OrganizationStepper from "./components/OrganizationStepper/OrganizationStepper";
 import Organization from "./components/OrganizationStepper/Organization";
@@ -15,7 +14,6 @@ import VerifyAccount from "./components/VerifyAccount/VerifyAccount"
 import ChangePassword from "./components/ChangePassword/ChangePassword";
 import AccountCreationHeader from "./components/AccountCreationHeader/AccountCreationHeader";
 import AccountCreationIntro from "./components/AccountCreationIntro/AccountCreationIntro";
-import GenerateReports from "./components/GenerateReports/GenerateReport";
 import CreateAccountSuccessfully from "./components/AccCreateSuccesfully/CreateAccountSuccessfully";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -27,7 +25,6 @@ import Analytics from "./components/Dashboard/Analytics/Analytics";
 import PersonalInfo from "./components/SignUp/PersonalInfo";
 import ReportStateEmpty from "./components/ReportsComponent/ReportStateEmpty";
 import GeneratedReport from "./components/ReportsComponent/Reports/GeneratedReport";
-import { Typography } from "@mui/material";
 import PrivateRoute from "./components/common/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import ResetOTP from "./components/ResetPassword/ResetOTP";
@@ -113,6 +110,7 @@ function App() {
             <Route path="survey2" element={<DecarbonizationSurveyQsnAns />} />
             <Route path="report" element={<Report />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
     </Scope3Provider>
