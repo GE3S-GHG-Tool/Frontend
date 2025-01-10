@@ -66,11 +66,24 @@ const FuelConsumptionChart = ({
     });
 
     const handleMouseOver = (event, datum) => {
-        const coords = localPoint(event.target.ownerSVGElement, event);
+        // const coords = localPoint(event.target.ownerSVGElement, event);
+        // showTooltip({
+        //     tooltipData: datum,
+        //     tooltipLeft: coords.x,
+        //     tooltipTop: coords.y,
+        // });
+
+        const barWidth = xScale(datum.value);
+        const barHeight = yScale.bandwidth();
+        const barY = yScale(datum.fuel);
+
+        const tooltipLeft = margin.left + barWidth / 2;
+        const tooltipTop = margin.top + barY + barHeight / 2;
+
         showTooltip({
             tooltipData: datum,
-            tooltipLeft: coords.x,
-            tooltipTop: coords.y,
+            tooltipLeft,
+            tooltipTop,
         });
     };
 
@@ -114,7 +127,7 @@ const FuelConsumptionChart = ({
                                         fontSize={11}
                                         fill="#fff"
                                     >
-                                        
+
                                     </Text>
                                 )}
                             </Group>

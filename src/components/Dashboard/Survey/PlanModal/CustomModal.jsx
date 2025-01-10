@@ -34,7 +34,7 @@ const StyledButton = {
   border: "0.554px solid grey",
   backgroundSize: 'auto',
   background:
-    "radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)",
+     "radial-gradient(132.61% 50% at 50% 50.13%, #2E7B54 0%, #00191D 100%)",
   boxShadow:
     "0px 1.107px 0px -4.429px #005C31, 0px 2.214px 6.643px 0px rgba(255, 255, 255, 0.25) inset, 0px 4.429px 8.857px -4.429px #005C31, 0px -13.286px 17.714px 0px rgba(255, 255, 255, 0.22) inset, 0px 19.929px 17.714px -8.857px rgba(0, 92, 49, 0.21), 0px 4.429px 13.286px -8.857px rgba(255, 255, 255, 0.24) inset",
   width: "100%",
@@ -91,7 +91,7 @@ const CustomModal = ({
             fontSize: "1.2rem",
             padding: "0",
             margin: "0",
-            fontWeight: '300'
+            fontWeight: '350'
           }}
         >
           {title}
@@ -109,7 +109,7 @@ const CustomModal = ({
           }}
         >
           <div>
-            <p style={{ margin: "0px 0px 16px 0px", padding: "0px" }}>
+            <p style={{ margin: "0px 0px 16px 0px", padding: "0px", fontWeight: '500' }}>
               {description}
             </p>
             <div style={{ display: "flex", flexDirection: 'row', alignItems: "end" }}>

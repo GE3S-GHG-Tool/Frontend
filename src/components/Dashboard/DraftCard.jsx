@@ -27,7 +27,7 @@ const DraftCard = ({ report, handleDelete }) => {
   };
 
   return (
-    <div className="draft_card" onClick={handleCardClick}>
+    <div className="draft_card" onClick={handleCardClick} onMouseLeave={() => setShowDelete(false)} >
       <div className="draft_header" style={{ position: "relative" }}>
         <label>{report?.name}</label>
           <svg

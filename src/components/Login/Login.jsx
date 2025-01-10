@@ -25,7 +25,7 @@ export default function Login() {
     root: "",
   });
   const [isFormValid, setIsFormValid] = useState(false);
-  const [globalError, setGlobalError] = useState(""); 
+  const [globalError, setGlobalError] = useState("");
 
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -64,8 +64,16 @@ export default function Login() {
         navigate("/");
       }
     } catch (err) {
-      setGlobalError("The email or password you entered is incorrect");
-      setPassword(""); 
+      // setGlobalError("The email or password you entered is incorrect");
+      // setPassword(""); 
+      // setIsLoading(false);
+
+      const errorMessage =
+        err?.response?.data?.message ||
+        "The email or password you entered is incorrect";
+
+      setGlobalError(errorMessage); 
+      setPassword("");
       setIsLoading(false);
     }
   };
@@ -113,7 +121,7 @@ export default function Login() {
               </div>
             </div>
           </div>
-          
+
           {globalError && <p className="error-message">{globalError}</p>}
 
           <button

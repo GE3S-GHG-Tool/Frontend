@@ -591,7 +591,7 @@ const TotalEmissionsInventoryReport = () => {
     const fuel = response?.data?.fuelRelatedBreakdown.map((item) => {
       return {
         label: item.activity,
-        value: item.emissions,
+        value: item.emissions.toFixed(4),
         color: fuelpallete[item.activity] || "#F26D58",
         key: item.percentage
       };

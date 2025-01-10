@@ -543,6 +543,11 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontWeight = 500;
                 }
 
+                if (data.cell.raw === 'Scope 1') {
+                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.fontStyle = 'bold';
+                }
+
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
             body: [
@@ -639,6 +644,11 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.lineWidth = 0;
                     data.cell.styles.fontWeight = 500;
                 }
+
+                if (data.cell.raw === 'Scope 2') {
+                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.fontStyle = 'bold';
+                }
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
             body: [
@@ -727,6 +737,11 @@ class MultiPageGHGReportGenerator {
                 if (data.column.index === 0) {
                     data.cell.styles.lineWidth = 0;
                     data.cell.styles.fontWeight = 500;
+                }
+
+                if (data.cell.raw === 'Scope 3') {
+                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.fontStyle = 'bold';
                 }
             },
             head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
