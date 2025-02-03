@@ -41,6 +41,7 @@ import WasteDisposalMethodsByCategoryDummy from "../../assets/graphimgs/WasteDis
 import EmployeeCommutingEmissionsBreakdownDummy from "../../assets/graphimgs/EmployeeCommutingEmissionsBreakdownDummy.png"
 import FuelRelatedActivitiesDummy from "../../assets/graphimgs/FuelRelatedActivitiesDummy.png"
 import EmissionFromUpstreamLeasedAssets from "../../assets/graphimgs/EmissionFromUpstreamLeasedAssets.png"
+import dummy_company from "../../assets/graphimgs/dummy_company.png"
 import { useAuth } from "../../context/AuthContext";
 import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
@@ -864,7 +865,12 @@ const TotalEmissionsInventoryReport = () => {
               {
                 user?.organization?.logo ? <div>
                   <img
-                    src={`${constant.IMG_URL}/${user?.organization?.logo}` || logo}
+                    //src={`${constant.IMG_URL}/${user?.organization?.logo}` || dummy_company}
+                    src={
+                      user?.organization?.logo && user.organization.logo !== "null"
+                        ? `${constant.IMG_URL}/${user.organization.logo}`
+                        : dummy_company
+                    }
                     height={65}
                     width={65}
                     alt="Company Logo"
@@ -877,7 +883,7 @@ const TotalEmissionsInventoryReport = () => {
               }
 
               <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <h2 style={{ fontSize: '1.8rem' }}>{reportData?.name} </h2>
+                <h2> <b> {reportData?.name} </b> </h2>
                 <h2>I</h2>{" "}
                 <h2>
                   {reportData?.country} For {reportData?.

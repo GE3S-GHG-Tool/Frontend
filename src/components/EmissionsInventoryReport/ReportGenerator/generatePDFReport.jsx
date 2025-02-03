@@ -430,14 +430,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`Scope 1 (${percentData.emissions.scope1.percentage})`,
+        this.pdf.text(`Scope 1 (${percentData?.emissions?.scope1?.percentage ?? 0})`,
             this.margins.left,
             this.margins.top + 220
         );
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`${percentData.emissions.scope1.value.toFixed(6)} tCO2e`,
+        this.pdf.text(`${percentData?.emissions?.scope1?.value?.toFixed(6) ?? 0} tCO2e`,
             this.margins.left,
             this.margins.top + 235
         );
@@ -445,14 +445,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`Scope 2 (${percentData.emissions.scope2.percentage})`,
+        this.pdf.text(`Scope 2 (${percentData?.emissions?.scope2?.percentage ?? 0})`,
             this.margins.left +200,
             this.margins.top + 220
         );
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`${percentData.emissions.scope2.value.toFixed(6)} tCO2e`,
+        this.pdf.text(`${percentData?.emissions?.scope2?.value?.toFixed(6) ?? 0} tCO2e`,
             this.margins.left +200,
             this.margins.top + 235
         );
@@ -460,14 +460,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`Scope 3 (${percentData.emissions.scope3.percentage})`,
+        this.pdf.text(`Scope 3 (${percentData?.emissions?.scope3?.percentage ?? 0})`,
             this.margins.left +350,
             this.margins.top + 220
         );
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
-        this.pdf.text(`${percentData.emissions.scope3.value.toFixed(6)} tCO2e`,
+        this.pdf.text(`${percentData?.emissions?.scope3?.value?.toFixed(6) ?? 0} tCO2e`,
             this.margins.left +350,
             this.margins.top + 235
         );

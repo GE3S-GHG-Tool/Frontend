@@ -8,18 +8,34 @@ export function timeAgo(dateString) {
     const diffInDays = Math.floor(diffInHours / 24);
     const diffInWeeks = Math.floor(diffInDays / 7);
     const diffInMonths = Math.floor(diffInDays / 30); // Approximation, assuming 30 days per month
-  
+
+    const formatTime = (value, unit) => `${value} ${unit}${value === 1 ? '' : 's'} ago`;
+
     if (diffInSeconds < 60) {
-      return "few seconds ago";
+        return "few seconds ago";
     } else if (diffInMinutes < 60) {
-      return `Updated ${diffInMinutes} minutes ago`;
+        return `Updated ${formatTime(diffInMinutes, 'minute')}`;
     } else if (diffInHours < 24) {
-      return `Updated ${diffInHours} hours ago`;
+        return `Updated ${formatTime(diffInHours, 'hour')}`;
     } else if (diffInDays < 7) {
-      return `Updated ${diffInDays} days ago`;
+        return `Updated ${formatTime(diffInDays, 'day')}`;
     } else if (diffInWeeks < 5) {
-      return `Updated ${diffInWeeks} weeks ago`;
+        return `Updated ${formatTime(diffInWeeks, 'week')}`;
     } else {
-      return `Updated ${diffInMonths} months ago`;
+        return `Updated ${formatTime(diffInMonths, 'month')}`;
     }
+  
+    // if (diffInSeconds < 60) {
+    //   return "few seconds ago";
+    // } else if (diffInMinutes < 60) {
+    //   return `Updated ${diffInMinutes} minutes ago`;
+    // } else if (diffInHours < 24) {
+    //   return `Updated ${diffInHours} hours ago`;
+    // } else if (diffInDays < 7) {
+    //   return `Updated ${diffInDays} days ago`;
+    // } else if (diffInWeeks < 5) {
+    //   return `Updated ${diffInWeeks} weeks ago`;
+    // } else {
+    //   return `Updated ${diffInMonths} months ago`;
+    // }
   }
