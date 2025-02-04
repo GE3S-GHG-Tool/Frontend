@@ -124,7 +124,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                           wordSpacing: "0px",
                         }}
                       >
-                        {item.label} : {roundToFour(item.key) || 0}
+                        {item.label} : {roundToFour(item.key) || 0}%
                       </Typography>
                     </div>
                   ) : null
@@ -167,7 +167,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                         wordSpacing: "0px",
                       }}
                     >
-                      {item.label} : {roundToFour(item.key) || 0}
+                      {item.label} : {roundToFour(item.key) || 0}%
                     </Typography>
                   </div>
                 ))}
@@ -225,7 +225,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                           wordSpacing: "0px",
                         }}
                       >
-                        {item.label} : {roundToFour(item.key) || 0}
+                        {item.label} : {roundToFour(item.key) || 0}%
                       </Typography>
                     </div>
                   ) : null

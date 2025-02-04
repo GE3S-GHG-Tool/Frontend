@@ -673,9 +673,10 @@ class MultiPageGHGReportGenerator {
             finalY + 40
         );
 
+        const maxWidth3 = this.pageWidth + 50;
         const wrappedText2 = this.pdf.splitTextToSize(
             `Indirect emissions from activities not owned or controlled by the company, but which the company can influence. `,
-            maxWidth
+            maxWidth3,
         );
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
@@ -899,13 +900,47 @@ class MultiPageGHGReportGenerator {
         const lineHeight = this.pdf.getFontSize() * 1.5;
 
         // Render the wrapped text with line spacing
+        // wrappedText.forEach((line, index) => {
+        //     this.pdf.text(
+        //         line,
+        //         this.margins.left,
+        //         finalY + 60 + (index * lineHeight)
+        //     );
+        // });
+
         wrappedText.forEach((line, index) => {
-            this.pdf.text(
-                line,
-                this.margins.left,
-                finalY + 60 + (index * lineHeight)
-            );
+            const yPos = finalY + 60 + index * lineHeight; // Maintain proper line spacing
+        
+            if (line.includes("US EPA's Emission Factors for GHG Inventories")) {
+                const splitLine = line.split("US EPA's Emission Factors for GHG Inventories");
+        
+                // Render normal text before the bold part
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(splitLine[0], this.margins.left, yPos);
+        
+                // Calculate width of normal text
+                const normalTextWidth = this.pdf.getTextWidth(splitLine[0]);
+        
+                // Render the bold text
+                this.pdf.setFont("Inter", "bold");
+                this.pdf.text("US EPA's Emission Factors for GHG Inventories", this.margins.left + normalTextWidth, yPos);
+        
+                // Reset to normal font
+                this.pdf.setFont("Inter", "normal");
+        
+                // Render remaining text after bold part, if any
+                if (splitLine[1]) {
+                    const boldTextWidth = this.pdf.getTextWidth("US EPA's Emission Factors for GHG Inventories");
+                    this.pdf.text(splitLine[1], this.margins.left + normalTextWidth + boldTextWidth, yPos);
+                }
+            } else {
+                // Render normal wrapped text
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(line, this.margins.left, yPos);
+            }
         });
+        
+        
         this.addFooter();
         this.pdf.addPage();
     }
@@ -1047,13 +1082,46 @@ class MultiPageGHGReportGenerator {
         const lineHeight = this.pdf.getFontSize() * 1.5;
 
         // Render the wrapped text with line spacing
+        // wrappedText.forEach((line, index) => {
+        //     this.pdf.text(
+        //         line,
+        //         this.margins.left,
+        //         finalY + 60 + (index * lineHeight)
+        //     );
+        // });
+
         wrappedText.forEach((line, index) => {
-            this.pdf.text(
-                line,
-                this.margins.left,
-                finalY + 60 + (index * lineHeight)
-            );
+            const yPos = finalY + 60 + index * lineHeight;
+        
+            if (line.includes("US EPA's Emission Factors for GHG Inventories")) {
+                const splitLine = line.split("US EPA's Emission Factors for GHG Inventories");
+        
+                // Render normal text before the bold part
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(splitLine[0], this.margins.left, yPos);
+        
+                // Calculate width of normal text
+                const normalTextWidth = this.pdf.getTextWidth(splitLine[0]);
+        
+                // Render the bold text
+                this.pdf.setFont("Inter", "bold");
+                this.pdf.text("US EPA's Emission Factors for GHG Inventories", this.margins.left + normalTextWidth, yPos);
+        
+                // Reset to normal font
+                this.pdf.setFont("Inter", "normal");
+        
+                // Render remaining text after bold part, if any
+                if (splitLine[1]) {
+                    const boldTextWidth = this.pdf.getTextWidth("US EPA's Emission Factors for GHG Inventories");
+                    this.pdf.text(splitLine[1], this.margins.left + normalTextWidth + boldTextWidth, yPos);
+                }
+            } else {
+                // Render normal wrapped text
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(line, this.margins.left, yPos);
+            }
         });
+        
 
         this.addFooter();
         this.pdf.addPage();
@@ -1194,13 +1262,44 @@ class MultiPageGHGReportGenerator {
         const lineHeight = this.pdf.getFontSize() * 1.5;
 
         // Render the wrapped text with line spacing
+        // wrappedText.forEach((line, index) => {
+        //     this.pdf.text(
+        //         line,
+        //         this.margins.left,
+        //         finalY + 60 + (index * lineHeight)
+        //     );
+        // });
+
         wrappedText.forEach((line, index) => {
-            this.pdf.text(
-                line,
-                this.margins.left,
-                finalY + 60 + (index * lineHeight)
-            );
+            const yPos = finalY + 60 + index * lineHeight;
+            
+            if (line.includes("US EPA's resource for the oil and gas sector")) {
+                const splitLine = line.split("US EPA's resource for the oil and gas sector");
+        
+                // Draw normal text
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(splitLine[0], this.margins.left, yPos);
+        
+                // Calculate X position after normal text
+                const textWidth = this.pdf.getTextWidth(splitLine[0]);
+        
+                // Draw bold text at correct position
+                this.pdf.setFont("Inter", "bold");
+                this.pdf.text("US EPA's resource for the oil and gas sector", this.margins.left + textWidth, yPos);
+        
+                // Reset font and add remaining text
+                this.pdf.setFont("Inter", "normal");
+                if (splitLine[1]) {
+                    const boldTextWidth = this.pdf.getTextWidth("US EPA's resource for the oil and gas sector");
+                    this.pdf.text(splitLine[1], this.margins.left + textWidth + boldTextWidth, yPos);
+                }
+            } else {
+                // Print normally wrapped lines
+                this.pdf.setFont("Inter", "normal");
+                this.pdf.text(line, this.margins.left, yPos);
+            }
         });
+        
 
         this.addFooter();
         this.pdf.addPage();
