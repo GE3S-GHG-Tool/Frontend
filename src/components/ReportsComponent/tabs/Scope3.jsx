@@ -40,8 +40,8 @@ const businessHeadings = [
 const capitalGoodsHeadings = [
   "Asset Type",
   "Asset Category",
-  "Expenses",
-  "Currency",
+  "Expenses (in USD)",
+  //"Currency",
 ];
 
 const fuelRelatedHeadings = [

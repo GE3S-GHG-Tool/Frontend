@@ -24,7 +24,8 @@ function DesalinatedWater() {
   // Initialize fields with quantity and unit
   const [field, setField] = useState({
     quantity: initialField.desalinated,
-    unit: "Cubic Meter",
+    //unit: "Cubic Meter",
+    unit: "m3",
   });
   // const [field, setField] = useState({ quantity: "", unit: "Cubic Meter" });
 

@@ -230,7 +230,7 @@ function PurchasedGoods() {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Expense Value
+                      Expense Value (in USD)
                     </Typography>
                     <TextField
                       name="expense_value"
@@ -259,7 +259,7 @@ function PurchasedGoods() {
                   </Grid2>
                 )}
 
-                {field.expense_value && (
+                {/* {field.expense_value && (
                   <Grid2 item size={4}>
                     <Typography
                       variant="body1"
@@ -283,7 +283,7 @@ function PurchasedGoods() {
                       }}
                     ></TextField>
                   </Grid2>
-                )}
+                )} */}
               </Grid2>
               <div
                 style={{

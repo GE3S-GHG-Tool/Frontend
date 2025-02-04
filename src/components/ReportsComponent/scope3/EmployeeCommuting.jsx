@@ -212,7 +212,7 @@ function EmployeeCommuting() {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Distance Traveled (in km)
+                      Distance Traveled (in miles)
                     </Typography>
                     <TextField
                       name="distance_km"

@@ -296,7 +296,7 @@ const CapitalGoodsPopup = ({ onClose }) => {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Expenses
+                      Expenses (USD)
                     </Typography>
                     <TextField
                       name="expenses"

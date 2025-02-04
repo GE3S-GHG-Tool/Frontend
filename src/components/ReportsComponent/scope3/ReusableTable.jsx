@@ -84,7 +84,7 @@ function TablesData({ headings = [], data }) {
               >
                 {item.expenses}
               </td>
-              <td
+              {/* <td
                 style={{
                   textAlign: "left",
                   textOverflow: "ellipsis",
@@ -95,7 +95,7 @@ function TablesData({ headings = [], data }) {
                 }}
               >
                 USD
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

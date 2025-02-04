@@ -85,7 +85,7 @@ function Investments() {
         <Grid2 sx={{ flexGrow: 1 }} container spacing={2.5}>
           <Grid2 item size={4}>
             <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-              Investment Value/Ownership Percentage
+              Ownership Percentage
             </Typography>
             <TextField
               size="small"
@@ -94,7 +94,7 @@ function Investments() {
               onChange={handleChange}
               variant="outlined"
               fullWidth
-              placeholder="Enter investment value or percentage"
+              placeholder="Enter Ownership percentage"
               sx={{
                 border: "1px solid rgba(217, 217, 217, 0.0)",
                 borderRadius: "5px",
@@ -111,7 +111,7 @@ function Investments() {
 
           <Grid2 item size={4}>
             <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-              Investee Company&apos;s Emission
+              Investee Company&apos;s Emission (tCO2E)
             </Typography>
             <TextField
               name="investee_company_emissions"
