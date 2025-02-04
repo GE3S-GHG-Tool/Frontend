@@ -410,7 +410,9 @@ const TotalEmissionsInventoryReport = () => {
     const transformedData2 = response?.data?.fuelEmissionsByType.map((item) => {
       return {
         fuel: item.fuelTypeName,
-        value: item.totalEmissions?.toFixed(4), // example scaling
+        //value: item.totalEmissions?.toFixed(4), // example scaling
+        value: item.quantity?.toFixed(2),
+        unit: item.unit,
         color: colorPalette[item.fuelTypeName] || "#006D4F",
       };
     });
@@ -423,7 +425,8 @@ const TotalEmissionsInventoryReport = () => {
     const refData2 = response?.data?.refrigerantEmissionsByType.map((item) => {
       return {
         label: item.refrigerantTypeName,
-        value: item?.totalEmissions?.toFixed(4),
+        //value: item?.totalEmissions?.toFixed(4),
+        value: item?.quantity?.toFixed(2),
         color: colorPalette2[item.refrigerantTypeName] || "#006D4F",
       };
     });

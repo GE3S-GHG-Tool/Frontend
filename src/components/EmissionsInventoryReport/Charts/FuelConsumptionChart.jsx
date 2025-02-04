@@ -143,7 +143,7 @@ const FuelConsumptionChart = ({
                             <span>{tooltipData.fuel}</span>
                         </div>
                         <img src={dot} width={3} height={3} alt="dot" />
-                        <div>{tooltipData.value} Gallons</div>
+                        <div>{tooltipData.value} {tooltipData.unit}</div>
                     </div>
                 </Tooltip>
             )}

@@ -294,7 +294,11 @@ class MultiPageGHGReportGenerator {
 
         this.addConclusionPage();
 
-        return this.pdf;
+        // Get report name
+        const report_name = percentData.name;
+
+        //return this.pdf;
+        return { pdf: this.pdf, report_name };
     }
 
     // Helper function to handle missing data
@@ -327,12 +331,16 @@ class MultiPageGHGReportGenerator {
         return data;
     }
 
-    sectionPageone(user,percentData) {
+    sectionPageone(user, percentData) {
         this.addBg(reportImageOne);
         this.pdf.setFontSize(18);
         this.pdf.setFont('Inter')
         this.pdf.setTextColor("#fff");
-        this.pdf.text(`${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`,
+        const periodText = percentData.time_period === "Yearly" 
+        ? `${percentData.time_period}, ${percentData.year}` 
+        : `${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`;
+
+        this.pdf.text(periodText,
             this.margins.left + 110,
             this.margins.top + 410
         );
@@ -379,7 +387,7 @@ class MultiPageGHGReportGenerator {
     }
 
     addExecutiveSummaryPage({ scope1Data, scope2Data, scope3Data, percentData, user }) {
-        this.sectionPageone(user,percentData);
+        this.sectionPageone(user, percentData);
         this.sectionPagetwo(user)
         if (user?.organization?.premiumPlan?.name === 'OffSet') {
             this.addImagePage(reportImageThreeScope1_2);
@@ -446,14 +454,14 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
         this.pdf.text(`Scope 2 (${percentData?.emissions?.scope2?.percentage ?? 0})`,
-            this.margins.left +200,
+            this.margins.left + 200,
             this.margins.top + 220
         );
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
         this.pdf.text(`${percentData?.emissions?.scope2?.value?.toFixed(6) ?? 0} tCO2e`,
-            this.margins.left +200,
+            this.margins.left + 200,
             this.margins.top + 235
         );
 
@@ -461,21 +469,21 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
         this.pdf.text(`Scope 3 (${percentData?.emissions?.scope3?.percentage ?? 0})`,
-            this.margins.left +350,
+            this.margins.left + 350,
             this.margins.top + 220
         );
         this.pdf.setFontSize(10);
         this.pdf.setFont("Inter");
         this.pdf.setTextColor("#000");
         this.pdf.text(`${percentData?.emissions?.scope3?.value?.toFixed(6) ?? 0} tCO2e`,
-            this.margins.left +350,
+            this.margins.left + 350,
             this.margins.top + 235
         );
 
         this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
-        this.pdf.text(`2.1 Scope 1 Emissions: ${scope1Data.grandTotalEmissions.toFixed(6)} tCO2`,
+        this.pdf.text(`2.1 Scope 1 Emissions: ${scope1Data.grandTotalEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 275
         );
@@ -485,7 +493,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont("Inter");
         this.pdf.text('Direct emissions from owned or controlled sources, such as on-site combustion of fossil fuels. ',
             this.margins.left,
-            this.margins.top +305
+            this.margins.top + 305
         );
 
         autoTable(this.pdf, {
@@ -544,12 +552,12 @@ class MultiPageGHGReportGenerator {
                 }
 
                 if (data.cell.raw === 'Scope 1') {
-                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.textColor = '#029366';
                     data.cell.styles.fontStyle = 'bold';
                 }
 
             },
-            head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
+            head: [['Scope', 'KPIs', 'Emissions (tCO2e)']],  // Table header row
             body: [
                 ['Scope 1', 'Fuel Consumption', scope1Data.totalFuelEmissions.toFixed(6)],
                 ['', 'Refrigerant Data', scope1Data.totalRefrigerantEmissions.toFixed(6)],
@@ -571,7 +579,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFont("Montserrat"); // Make sure Montserrat is loaded in your PDF
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
-        this.pdf.text(`2.2 Scope 2 Emissions: ${scope2Data.grandTotalEmissions.toFixed(6)} tCO2`,
+        this.pdf.text(`2.2 Scope 2 Emissions: ${scope2Data.grandTotalEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 60
         );
@@ -646,11 +654,11 @@ class MultiPageGHGReportGenerator {
                 }
 
                 if (data.cell.raw === 'Scope 2') {
-                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.textColor = '#029366';
                     data.cell.styles.fontStyle = 'bold';
                 }
             },
-            head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
+            head: [['Scope', 'KPIs', 'Emissions (tCO2e)']],  // Table header row
             body: [
                 ['Scope 2', 'Electricity Consumption', electricityEmissions.toFixed(6)],
                 ['', 'Chilled Water Consumption', chilledWaterEmissions.toFixed(6)],
@@ -668,7 +676,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(14);
         this.pdf.setTextColor("#000");
         this.pdf.setFont("Montserrat");
-        this.pdf.text(`2.3 Scope 3 Emissions: ${scope3Data.grandTotalEmissions.toFixed(6)} tCO2`,
+        this.pdf.text(`2.3 Scope 3 Emissions: ${scope3Data.grandTotalEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 40
         );
@@ -741,11 +749,11 @@ class MultiPageGHGReportGenerator {
                 }
 
                 if (data.cell.raw === 'Scope 3') {
-                    data.cell.styles.textColor = '#029366'; 
+                    data.cell.styles.textColor = '#029366';
                     data.cell.styles.fontStyle = 'bold';
                 }
             },
-            head: [['Scope', 'KPIs', 'Emissions (tCO2)']],  // Table header row
+            head: [['Scope', 'KPIs', 'Emissions (tCO2e)']],  // Table header row
             body: [
                 ['Scope 3', 'Waste Generated', scope3Data.totalWasteEmissions.toFixed(6)],
                 ['', 'Business Travel', scope3Data.totalBusinessTravelEmissions.toFixed(6)],
@@ -778,7 +786,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Fuel Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelEmissions.toFixed(2)} tCO2`,
+            `Emission from Fuel Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelEmissions.toFixed(2)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -863,7 +871,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Fuel Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Fuel Type", "Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -910,24 +918,24 @@ class MultiPageGHGReportGenerator {
 
         wrappedText.forEach((line, index) => {
             const yPos = finalY + 60 + index * lineHeight; // Maintain proper line spacing
-        
+
             if (line.includes("US EPA's Emission Factors for GHG Inventories")) {
                 const splitLine = line.split("US EPA's Emission Factors for GHG Inventories");
-        
+
                 // Render normal text before the bold part
                 this.pdf.setFont("Inter", "normal");
                 this.pdf.text(splitLine[0], this.margins.left, yPos);
-        
+
                 // Calculate width of normal text
                 const normalTextWidth = this.pdf.getTextWidth(splitLine[0]);
-        
+
                 // Render the bold text
                 this.pdf.setFont("Inter", "bold");
                 this.pdf.text("US EPA's Emission Factors for GHG Inventories", this.margins.left + normalTextWidth, yPos);
-        
+
                 // Reset to normal font
                 this.pdf.setFont("Inter", "normal");
-        
+
                 // Render remaining text after bold part, if any
                 if (splitLine[1]) {
                     const boldTextWidth = this.pdf.getTextWidth("US EPA's Emission Factors for GHG Inventories");
@@ -939,8 +947,8 @@ class MultiPageGHGReportGenerator {
                 this.pdf.text(line, this.margins.left, yPos);
             }
         });
-        
-        
+
+
         this.addFooter();
         this.pdf.addPage();
     }
@@ -954,7 +962,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Refrigerant Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalRefrigerantEmissions.toFixed(2)} tCO2`,
+            `Emission from Refrigerant Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalRefrigerantEmissions.toFixed(2)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1043,7 +1051,7 @@ class MultiPageGHGReportGenerator {
                 }
             },
 
-            head: [["Refrigerant Type", "Consumption", "Emissions (tCO2)"]],
+            head: [["Refrigerant Type", "Consumption", "Emissions (tCO2e)"]],
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2,
@@ -1092,24 +1100,24 @@ class MultiPageGHGReportGenerator {
 
         wrappedText.forEach((line, index) => {
             const yPos = finalY + 60 + index * lineHeight;
-        
+
             if (line.includes("US EPA's Emission Factors for GHG Inventories")) {
                 const splitLine = line.split("US EPA's Emission Factors for GHG Inventories");
-        
+
                 // Render normal text before the bold part
                 this.pdf.setFont("Inter", "normal");
                 this.pdf.text(splitLine[0], this.margins.left, yPos);
-        
+
                 // Calculate width of normal text
                 const normalTextWidth = this.pdf.getTextWidth(splitLine[0]);
-        
+
                 // Render the bold text
                 this.pdf.setFont("Inter", "bold");
                 this.pdf.text("US EPA's Emission Factors for GHG Inventories", this.margins.left + normalTextWidth, yPos);
-        
+
                 // Reset to normal font
                 this.pdf.setFont("Inter", "normal");
-        
+
                 // Render remaining text after bold part, if any
                 if (splitLine[1]) {
                     const boldTextWidth = this.pdf.getTextWidth("US EPA's Emission Factors for GHG Inventories");
@@ -1121,7 +1129,7 @@ class MultiPageGHGReportGenerator {
                 this.pdf.text(line, this.margins.left, yPos);
             }
         });
-        
+
 
         this.addFooter();
         this.pdf.addPage();
@@ -1136,7 +1144,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Total Process Emissions for the ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalProcessEmissions.toFixed(2)} tCO2`,
+            `Total Process Emissions for the ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalProcessEmissions.toFixed(2)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1225,7 +1233,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Type", "Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Type", "Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1272,21 +1280,21 @@ class MultiPageGHGReportGenerator {
 
         wrappedText.forEach((line, index) => {
             const yPos = finalY + 60 + index * lineHeight;
-            
+
             if (line.includes("US EPA's resource for the oil and gas sector")) {
                 const splitLine = line.split("US EPA's resource for the oil and gas sector");
-        
+
                 // Draw normal text
                 this.pdf.setFont("Inter", "normal");
                 this.pdf.text(splitLine[0], this.margins.left, yPos);
-        
+
                 // Calculate X position after normal text
                 const textWidth = this.pdf.getTextWidth(splitLine[0]);
-        
+
                 // Draw bold text at correct position
                 this.pdf.setFont("Inter", "bold");
                 this.pdf.text("US EPA's resource for the oil and gas sector", this.margins.left + textWidth, yPos);
-        
+
                 // Reset font and add remaining text
                 this.pdf.setFont("Inter", "normal");
                 if (splitLine[1]) {
@@ -1299,7 +1307,7 @@ class MultiPageGHGReportGenerator {
                 this.pdf.text(line, this.margins.left, yPos);
             }
         });
-        
+
 
         this.addFooter();
         this.pdf.addPage();
@@ -1317,7 +1325,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Electricity Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalElectricityEmissions.toFixed(6)} tCO2`,
+            `Emission from Electricity Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalElectricityEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1388,7 +1396,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: electricityTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1448,7 +1456,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Chilled Water Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalChilledWaterEmissions.toFixed(6)} tCO2`,
+            `Emission from Chilled Water Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalChilledWaterEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 190
         );
@@ -1519,7 +1527,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: chilledWaterTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1574,7 +1582,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Purchased Desalinated Water for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDesalinatedWaterEmissions.toFixed(6)} tCO2`,
+            `Emission from Purchased Desalinated Water for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDesalinatedWaterEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1646,7 +1654,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: desalinatedWaterTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1697,7 +1705,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Heat Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalHeatEmissions.toFixed(6)} tCO2`,
+            `Emission from Heat Consumption for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalHeatEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 190
         );
@@ -1768,7 +1776,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Consumption", "Emissions (tCO2)"]],  // Table header row
+            head: [["Consumption", "Emissions (tCO2e)"]],  // Table header row
             body: heatTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1829,7 +1837,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Waste Generated for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalWasteEmissions.toFixed(6)} tCO2`,
+            `Emission from Waste Generated for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalWasteEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -1913,7 +1921,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Waste Categories", "Waste Quantity", "Emissions (tCO2)"]],  // Table header row
+            head: [["Waste Categories", "Waste Quantity", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -1979,7 +1987,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Business Travel for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalTravelEmissions.toFixed(6)} tCO2`,
+            `Emission from Business Travel for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalTravelEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -2063,7 +2071,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Travel Class", "Number of trips", "Emissions (tCO2)"]],  // Table header row
+            head: [["Travel Class", "Number of trips", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2130,7 +2138,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Purchased Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalPurchasedGoodsEmissions.toFixed(6)} tCO2`,
+            `Emission from Purchased Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalPurchasedGoodsEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 190
         );
@@ -2200,7 +2208,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Expense Value", "Emissions (tCO2)"]],  // Table header row
+            head: [["Expense Value", "Emissions (tCO2e)"]],  // Table header row
             body: purchasedGoodsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2259,7 +2267,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Capital Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCapitalGoodsEmissions.toFixed(6)} tCO2`,
+            `Emission from Capital Goods for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCapitalGoodsEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -2329,7 +2337,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Expense Value", "Emissions (tCO2)"]],  // Table header row
+            head: [["Expense Value", "Emissions (tCO2e)"]],  // Table header row
             body: capitalGoodsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2382,7 +2390,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Investments for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalInvestmentsEmissions.toFixed(6)} tCO2`,
+            `Emission from Investments for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalInvestmentsEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 190
         );
@@ -2452,7 +2460,7 @@ class MultiPageGHGReportGenerator {
                 //     data.cell.styles.fontStyle = 'normal';
                 // }
             },
-            head: [["Ownership Percentage", "Emissions (tCO2)"]],  // Table header row
+            head: [["Ownership Percentage", "Emissions (tCO2e)"]],  // Table header row
             body: investmentsTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2512,7 +2520,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Employee Commuting for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCommutingEmissions.toFixed(6)} tCO2`,
+            `Emission from Employee Commuting for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalCommutingEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -2596,7 +2604,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Vehicle Type", "No. of Trips", "Emissions (tCO2)"]],  // Table header row
+            head: [["Vehicle Type", "No. of Trips", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2659,7 +2667,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Fuel Related Activities for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelRelatedEmissions.toFixed(6)} tCO2`,
+            `Emission from Fuel Related Activities for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalFuelRelatedEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -2742,7 +2750,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Category", "Emissions (tCO2)"]],  // Table header row
+            head: [["Category", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2808,7 +2816,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Upstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalUpstreamEmissions.toFixed(6)} tCO2`,
+            `Emission from Upstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalUpstreamEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             this.margins.top + 100
         );
@@ -2890,7 +2898,7 @@ class MultiPageGHGReportGenerator {
                     data.cell.styles.fontStyle = 'normal';
                 }
             },
-            head: [["Asset Type", "Emissions (tCO2)"]],  // Table header row
+            head: [["Asset Type", "Emissions (tCO2e)"]],  // Table header row
             body: tableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -2945,7 +2953,7 @@ class MultiPageGHGReportGenerator {
         this.pdf.setFontSize(11);
         this.pdf.setTextColor("#000");
         this.pdf.text(
-            `Emission from Downstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDownstreamEmissions.toFixed(6)} tCO2`,
+            `Emission from Downstream Leased Assets for ${percentData.time_period} ${percentData.periodicity} ${percentData.year}: ${totalDownstreamEmissions.toFixed(6)} tCO2e`,
             this.margins.left,
             finalY + 190
         );
@@ -3003,7 +3011,7 @@ class MultiPageGHGReportGenerator {
             horizontalPageBreak: true,    // Maintain horizontal lines across pages
             horizontalPageBreakRepeat: true,
 
-            head: [["Physical Area", "Emissions (tCO2)"]],  // Table header row
+            head: [["Physical Area", "Emissions (tCO2e)"]],  // Table header row
             body: downstreamTableData,
             margin: {
                 left: (this.pageWidth - (this.pageWidth - this.margins.left - this.margins.right)) / 2 // Centers the table
@@ -3065,20 +3073,20 @@ class MultiPageGHGReportGenerator {
         // Simulated data - replace with actual API calls
         return {
             emissionsData: {
-                fuelConsumption: '24,546 tCO2',
-                refrigerantData: '12,345 tCO2',
-                processEmission: '8,765 tCO2'
+                fuelConsumption: '24,546 tCO2e',
+                refrigerantData: '12,345 tCO2e',
+                processEmission: '8,765 tCO2e'
             },
             scope2EmissionsData: {
-                electricityConsumption: '35,678 tCO2',
-                chilledWaterConsumption: '11,234 tCO2',
-                purchasedDesalinatedWater: '5,678 tCO2'
+                electricityConsumption: '35,678 tCO2e',
+                chilledWaterConsumption: '11,234 tCO2e',
+                purchasedDesalinatedWater: '5,678 tCO2e'
             },
             scope3EmissionsData: {
-                wasteGenerated: '15,432 tCO2',
-                businessTravel: '9,876 tCO2',
-                purchasedGoods: '42,345 tCO2',
-                employeeCommuting: '6,543 tCO2'
+                wasteGenerated: '15,432 tCO2e',
+                businessTravel: '9,876 tCO2e',
+                purchasedGoods: '42,345 tCO2e',
+                employeeCommuting: '6,543 tCO2ee'
             }
         };
     }

@@ -65,7 +65,8 @@ const ShareReportModal = ({ open, setOpenModal, reportId }) => {
         try {
             // Generate PDF with compression
             const generator = new MultiPageGHGReportGenerator();
-            const pdf = await generator.generateReport(reportId);
+            const { pdf, report_name }  = await generator.generateReport(reportId);
+
             
             // Get PDF as blob with compression
             const pdfBlob = pdf.output('blob', {
@@ -78,7 +79,7 @@ const ShareReportModal = ({ open, setOpenModal, reportId }) => {
             const formData = new FormData();
             formData.append('email', email);
             formData.append('clientname', user?.name);
-            formData.append('pdfFile', pdfBlob, 'report.pdf');
+            formData.append('pdfFile', pdfBlob, `${report_name}.pdf`);
 
             // Send request with properly configured axios
             const response = await axios.post(

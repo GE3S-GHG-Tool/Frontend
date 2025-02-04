@@ -96,8 +96,8 @@ const DownloadReportButton = ({ reportId }) => {
         try {
             if (format === 'pdf') {
                 const pdfGenerator = new MultiPageGHGReportGenerator();
-                const pdf = await pdfGenerator.generateReport(reportId);
-                pdf.save('ghg-report.pdf');
+                const {pdf, report_name} = await pdfGenerator.generateReport(reportId);
+                pdf.save(`${report_name}.pdf`);
             } else if (format === 'csv') {
                 const csvGenerator = new GHGCSVReportGenerator();
                 await csvGenerator.generateReport(reportId);

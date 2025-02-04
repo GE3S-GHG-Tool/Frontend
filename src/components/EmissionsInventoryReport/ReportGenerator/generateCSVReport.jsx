@@ -300,6 +300,19 @@ async function fetchScope3Data(reportId) {
     }
 }
 
+async function fetchPercentData(reportId) {
+    try {
+        const response = await axios.post('https://backend.ghg.ge3s.org/api/report/fetch_total_emissions', {
+            reportId: reportId
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching percent data:', error);
+        throw error;
+    }
+}
+
+
 
 class GHGCSVReportGenerator {
     async generateReport(reportId) {
@@ -308,6 +321,9 @@ class GHGCSVReportGenerator {
             const scope1Data = await fetchScope1Data(reportId);
             const scope2Data = await fetchScope2Data(reportId);
             const scope3Data = await fetchScope3Data(reportId);
+            const percentData = await fetchPercentData(reportId);
+
+            const report_name = percentData.name;
 
             const workbook = new ExcelJS.Workbook();
 
@@ -329,7 +345,7 @@ class GHGCSVReportGenerator {
             const buffer = await workbook.xlsx.writeBuffer();
             const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            saveAs(blob, 'GHG_Report.xlsx');
+            saveAs(blob, `${report_name}.xlsx`);
         } catch (error) {
             console.error('Error generating Excel report:', error);
             throw error;
