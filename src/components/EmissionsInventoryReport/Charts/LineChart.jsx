@@ -90,7 +90,7 @@ const LineChart = ({chartData}) => {
                 }}
               />
               <Typography>
-                {`${item.label} (${item.percentage.toFixed(6)}%)`}
+                {`${item.label} (${item.percentage.toFixed(2)}%)`}
               </Typography>
             </Box>
           ))}

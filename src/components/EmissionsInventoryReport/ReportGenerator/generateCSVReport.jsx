@@ -327,7 +327,7 @@ class GHGCSVReportGenerator {
 
             const workbook = new ExcelJS.Workbook();
 
-            this.createCompanyInfoSheet(workbook, companyInfo);
+            this.createCompanyInfoSheet(workbook, companyInfo, percentData);
             this.createScope1Sheet(workbook, scope1Data);
            // this.createScope2Sheet(workbook, scope2Data);
            // this.createScope3Sheet(workbook, scope3Data);
@@ -353,8 +353,13 @@ class GHGCSVReportGenerator {
     }
 
 
-    createCompanyInfoSheet(workbook, companyInfo) {
+    createCompanyInfoSheet(workbook, companyInfo, percentData) {
         const sheet = workbook.addWorksheet('Company Info');
+
+        const periodText = percentData.time_period === "Yearly" 
+        ? `${percentData.time_period}, ${percentData.year}` 
+        : `${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`;
+
         const rows = [
             [''],
             ['Company Name', companyInfo.organization.name],
@@ -364,6 +369,7 @@ class GHGCSVReportGenerator {
             ['First Reporting Year', companyInfo.organization.startingyear],
             ['Baseline Year', companyInfo.organization.baselineyear],
             ['Employee Count', companyInfo.organization.employeecount],
+            ['Reporting Timeline', periodText]
         ];
 
         rows.forEach((row, index) => {

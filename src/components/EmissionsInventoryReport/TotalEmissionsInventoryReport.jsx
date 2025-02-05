@@ -640,7 +640,9 @@ const TotalEmissionsInventoryReport = () => {
         }
       };
       console.log("hello",response.data.emissions);
-      const transformedData = Object.keys(response.data.emissions).map(scope => ({
+      const transformedData = Object.keys(response.data.emissions)
+      .filter(scope => response.data.emissions[scope].value > 0) 
+      .map(scope => ({
         label: `Scope ${scope.slice(-1)}`,
         value: response.data.emissions[scope].value.toLocaleString(),
         percentage: parseFloat(response.data.emissions[scope].percentage),
