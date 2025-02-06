@@ -8,10 +8,12 @@ import FootprintChart from "./charts/FootprintChart";
 import { getDraftReports, getGeneratedReports } from "../../api/reports.apis";
 import { useAuth } from "../../context/AuthContext";
 import api from "../../api";
-import noReports from "../../assets/images/noReports.svg"
-import createReport from "../../assets/images/createReport.svg"
+import noReports from "../../assets/images/noReports.svg";
+import createReport from "../../assets/images/createReport.svg";
+import { useScope3 } from "../../context/Scope3Context";
 
 const Dashboard = () => {
+  const { resetScopeData } = useScope3();
   const navigate = useNavigate();
   const { user } = useAuth();
   const [openModal, setOpenModal] = useState(false);
@@ -40,32 +42,34 @@ const Dashboard = () => {
   const transformData = (emissions, period) => {
     switch (period) {
       case "Monthly":
-        return emissions.map(item => ({
-          quarter: new Date(item.period).toLocaleString('default', { month: 'long' }),
+        return emissions.map((item) => ({
+          quarter: new Date(item.period).toLocaleString("default", {
+            month: "long",
+          }),
           Scope1: item.scope1Emissions || 0,
           Scope2: item.scope2Emissions || 0,
-          Scope3: item.scope3Emissions || 0
+          Scope3: item.scope3Emissions || 0,
         }));
       case "Quartely":
-        return emissions.map(item => ({
+        return emissions.map((item) => ({
           quarter: item.period,
           Scope1: item.scope1Emissions || 0,
           Scope2: item.scope2Emissions || 0,
-          Scope3: item.scope3Emissions || 0
+          Scope3: item.scope3Emissions || 0,
         }));
       case "Half-Yearly":
-        return emissions.map(item => ({
+        return emissions.map((item) => ({
           quarter: item.period,
           Scope1: item.scope1Emissions || 0,
           Scope2: item.scope2Emissions || 0,
-          Scope3: item.scope3Emissions || 0
+          Scope3: item.scope3Emissions || 0,
         }));
       case "Yearly":
-        return emissions.map(item => ({
+        return emissions.map((item) => ({
           quarter: item.period.replace("yearly ", ""),
           Scope1: item.scope1Emissions || 0,
           Scope2: item.scope2Emissions || 0,
-          Scope3: item.scope3Emissions || 0
+          Scope3: item.scope3Emissions || 0,
         }));
       default:
         return [];
@@ -78,12 +82,15 @@ const Dashboard = () => {
         params: {
           organizationId: user?.organization?.id,
           time_period: timePeriod,
-          year:year
-        }
+          year: year,
+        },
       });
 
       if (response.data.success) {
-        const transformedData = transformData(response.data.emissions, timePeriod);
+        const transformedData = transformData(
+          response.data.emissions,
+          timePeriod
+        );
         setCarbonTrackerData(transformedData);
       } else {
         console.error("Failed to fetch carbon tracker data");
@@ -111,10 +118,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (user?.organization?.id) {  // Add this check
+    if (user?.organization?.id) {
+      // Add this check
       fetchCarbonTrackerData();
     }
-  }, [year, timePeriod, user?.organization?.id]);  // Add user?.organization?.id to dependencies
+  }, [year, timePeriod, user?.organization?.id]); // Add user?.organization?.id to dependencies
 
   useEffect(() => {
     const keysToRemove = [
@@ -130,26 +138,26 @@ const Dashboard = () => {
       "refrigerent",
       "consumption",
       "processEmissionData",
-      "scope2Data"
+      "scope2Data",
     ];
 
-    keysToRemove.forEach(key => localStorage.removeItem(key));
+    keysToRemove.forEach((key) => localStorage.removeItem(key));
   }, []);
 
   const handleDeleteDrafts = async (reportId) => {
     try {
-      const response = await api.post('report/delete_draft_report', {
+      const response = await api.post("report/delete_draft_report", {
         reportId: reportId,
-        organizationId: user?.organization?.id
+        organizationId: user?.organization?.id,
       });
 
       if (response.data.success === true) {
-        fetchDraftReports()
+        fetchDraftReports();
       } else {
-        console.error('Failed to delete report:', response.statusText);
+        console.error("Failed to delete report:", response.statusText);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -164,177 +172,205 @@ const Dashboard = () => {
     <div>
       {draftReports.length > 0 && <h2 className="top_header_draft">Drafts</h2>}
       <div className="dashboard_top_cards">
-        <div onClick={() => setOpenModal(true)} className="create_report_cta">
+        <div
+          onClick={() => {
+            resetScopeData();
+            setOpenModal(true);
+          }}
+          className="create_report_cta"
+        >
           <img src={createReport} alt="create report" />
           <p>Create GHG Report</p>
         </div>
         <div>
-          <div style={{
-            display: "flex",
-            justifyContent: "start",
-            alignItems: "stretch",
-            gap: "20px",
-          }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "stretch",
+              gap: "20px",
+            }}
+          >
             {draftReports?.slice(0, 3)?.map((item) => (
-              <DraftCard key={item?._id} report={item} handleDelete={handleDeleteDrafts} />
+              <DraftCard
+                key={item?._id}
+                report={item}
+                handleDelete={handleDeleteDrafts}
+              />
             ))}
-            {draftReports.length > 0 && <div className="view_all_report_cta">
-              <span onClick={() => navigate("/report?tab=drafts")}>View All</span>
-            </div>}
+            {draftReports.length > 0 && (
+              <div className="view_all_report_cta">
+                <span onClick={() => navigate("/report?tab=drafts")}>
+                  View All
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
       {isLoading ? (
+        <div></div>
+      ) : reports?.length > 0 ? (
+        // This block only renders when there are reports
         <div>
+          <div className="chart_header_box">
+            <h3 className="dashboard_reports_header">Carbon Tracker</h3>
+            <FormControl
+              sx={{
+                minWidth: 120,
+                display: "flex",
+                gap: "10px",
+                flexDirection: "row",
+              }}
+              size="small"
+            >
+              <Select
+                labelId="year-label"
+                id="year-select"
+                value={year}
+                sx={{
+                  fontSize: "0.75rem",
+                  padding: "4px",
+                  height: "35px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#D9D9D9",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#f7f7f7",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#f7f7f7",
+                  },
+                  "& .MuiSelect-select": {
+                    padding: "6px 10px",
+                    fontSize: "0.75rem",
+                  },
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      maxHeight: 150,
+                    },
+                  },
+                }}
+                inputProps={{
+                  sx: {
+                    padding: "0 8px",
+                  },
+                }}
+                onChange={(event) => setYear(event.target.value)}
+              >
+                {years.map((yearOption) => (
+                  <MenuItem
+                    key={yearOption}
+                    value={yearOption}
+                    className="text-xs p-2"
+                  >
+                    {yearOption}
+                  </MenuItem>
+                ))}
+              </Select>
+              <Select
+                labelId="time-period-label"
+                id="time-period-select"
+                value={timePeriod}
+                sx={{
+                  fontSize: "0.75rem",
+                  padding: "4px",
+                  height: "35px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#D9D9D9",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#f7f7f7",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#f7f7f7",
+                  },
+                  "& .MuiSelect-select": {
+                    padding: "6px 10px",
+                    fontSize: "0.75rem",
+                  },
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      maxHeight: 150,
+                    },
+                  },
+                }}
+                inputProps={{
+                  sx: {
+                    padding: "0 8px",
+                  },
+                }}
+                onChange={(event) => setTimePeriod(event.target.value)}
+              >
+                <MenuItem value="Monthly">Monthly</MenuItem>
+                <MenuItem value="Quartely">Quarterly</MenuItem>
+                <MenuItem value="Half-Yearly">Half-Yearly</MenuItem>
+                <MenuItem value="Yearly">Yearly</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div className="chart_box">
+            <FootprintChart data={carbonTrackerData} />
+          </div>
+          <div>
+            <h3 className="dashboard_reports_header">Generated reports</h3>
+            <ReportList searchQuery={""} />
+            <div className="reports_viewall_cta">
+              <span onClick={() => navigate("/report?tab=reports")}>
+                View All
+              </span>
+            </div>
+          </div>
         </div>
       ) : (
-        reports?.length > 0 ? (
-          // This block only renders when there are reports
+        // This block renders when there are no reports
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem 0",
+            flexDirection: "column",
+          }}
+        >
           <div>
-            <div className="chart_header_box">
-              <h3 className="dashboard_reports_header">Carbon Tracker</h3>
-              <FormControl sx={{ minWidth: 120, display: 'flex', gap: '10px', flexDirection: 'row' }} size="small">
-                <Select
-                  labelId="year-label"
-                  id="year-select"
-                  value={year}
-                  sx={{
-                    fontSize: "0.75rem",
-                    padding: "4px",
-                    height: "35px",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#D9D9D9",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#f7f7f7",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#f7f7f7",
-                    },
-                    "& .MuiSelect-select": {
-                      padding: "6px 10px",
-                      fontSize: "0.75rem",
-                    },
-                  }}
-                  MenuProps={{
-                    PaperProps: {
-                      sx: {
-                        maxHeight: 150,
-                      },
-                    },
-                  }}
-                  inputProps={{
-                    sx: {
-                      padding: "0 8px",
-                    },
-                  }}
-                  onChange={(event) => setYear(event.target.value)}
-                >
-                  {years.map((yearOption) => (
-                    <MenuItem
-                      key={yearOption}
-                      value={yearOption}
-                      className="text-xs p-2"
-                    >
-                      {yearOption}
-                    </MenuItem>
-                  ))}
-
-                </Select>
-                <Select
-                  labelId="time-period-label"
-                  id="time-period-select"
-                  value={timePeriod}
-                  sx={{
-                    fontSize: "0.75rem",
-                    padding: "4px",
-                    height: "35px",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#D9D9D9",
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#f7f7f7",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#f7f7f7",
-                    },
-                    "& .MuiSelect-select": {
-                      padding: "6px 10px",
-                      fontSize: "0.75rem",
-                    },
-                  }}
-                  MenuProps={{
-                    PaperProps: {
-                      sx: {
-                        maxHeight: 150,
-                      },
-                    },
-                  }}
-                  inputProps={{
-                    sx: {
-                      padding: "0 8px",
-                    },
-                  }}
-                  onChange={(event) => setTimePeriod(event.target.value)}
-                >
-                  <MenuItem value="Monthly">Monthly</MenuItem>
-                  <MenuItem value="Quartely">Quarterly</MenuItem>
-                  <MenuItem value="Half-Yearly">Half-Yearly</MenuItem>
-                  <MenuItem value="Yearly">Yearly</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            <div className="chart_box">
-              <FootprintChart data={carbonTrackerData} />
-            </div>
-            <div>
-              <h3 className="dashboard_reports_header">Generated reports</h3>
-              <ReportList searchQuery={""} />
-              <div className="reports_viewall_cta">
-                <span onClick={() => navigate("/report?tab=reports")}>View All</span>
-              </div>
-            </div>
+            <img src={noReports} alt="No reports available" />
           </div>
-        ) : (
-          // This block renders when there are no reports
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2rem 0',
-            flexDirection: 'column'
-          }}>
-            <div>
-              <img src={noReports} alt="No reports available" />
-            </div>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              flexDirection: 'column'
-            }}>
-              <p style={{
-                margin: '0px 0px 30px 0px',
-                fontSize: '12px',
-                color: '#808080'
-              }}>
-                No data available to display in the Carbon Tracker at this time.
-              </p>
-              <button
-                onClick={() => setOpenModal(true)}
-                style={{
-                  background: 'linear-gradient(102deg, #369D9C 0%, #28814D 100%)',
-                  color: '#fff',
-                  border: 'none',
-                  padding: '12px 2.4rem',
-                  margin: '0 auto',
-                  fontSize: '0.8rem'
-                }}
-              >
-                Create GHG Report
-              </button>
-            </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <p
+              style={{
+                margin: "0px 0px 30px 0px",
+                fontSize: "12px",
+                color: "#808080",
+              }}
+            >
+              No data available to display in the Carbon Tracker at this time.
+            </p>
+            <button
+              onClick={() => setOpenModal(true)}
+              style={{
+                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+                color: "#fff",
+                border: "none",
+                padding: "12px 2.4rem",
+                margin: "0 auto",
+                fontSize: "0.8rem",
+              }}
+            >
+              Create GHG Report
+            </button>
           </div>
-        )
+        </div>
       )}
       <StartReportModal open={openModal} setOpenModal={setOpenModal} />
     </div>

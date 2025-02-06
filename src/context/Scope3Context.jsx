@@ -66,6 +66,24 @@ export const Scope3Provider = ({ children }) => {
       : []
   );
 
+  const [universalScopeData, setUniversalScopeData] = useState({});
+
+  const resetScopeData = () => {
+    setCapitalGoods([]);
+    setInvestements([]);
+    setBusiness([]);
+    setEmployeeCommuting([])
+    setFuelData([])
+    setDownStreamData([])
+    setUpStreamData([])
+    setWasteData([]);
+    setGoods([])
+    setRefrigerent([])
+    setConsumption([])
+    setEmission([])
+    setUniversalScopeData({})
+  }
+
   const value = {
     capitalGoods,
     setCapitalGoods,
@@ -91,6 +109,10 @@ export const Scope3Provider = ({ children }) => {
     business,
     setEmission,
     emission,
+    universalScopeData,
+    setUniversalScopeData,
+    resetScopeData,
+
   };
   return (
     <Scope3Context.Provider value={value}>{children}</Scope3Context.Provider>
