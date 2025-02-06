@@ -955,7 +955,7 @@ const TotalEmissionsInventoryReport = () => {
             </div>
           </div>
 
-          {reportData?.scope1 ?
+          {
             reportData.scope1?.grand_total_emissions !== 0 ?
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
@@ -1194,10 +1194,6 @@ const TotalEmissionsInventoryReport = () => {
                   </div>
                 </div>
               </div>
-              :
-              <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
-                <img src={scope1BgDummy} style={{ width: '100%', height: '100%' }} />
-              </NoDataAvailableWrapper>
               :
               <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
                 <img src={scope1BgDummy} style={{ width: '100%', height: '100%' }} />
