@@ -656,15 +656,28 @@ const TotalEmissionsInventoryReport = () => {
     }
   };
 
+  // useEffect(() => {
+  //   fetchChartData(id);
+  //   scopeData1(id);
+  //   fetchreportData(id);
+  //   scopeData2(id);
+  //   scopeData3(id);
+  // }, [id]);
+
   useEffect(() => {
-    fetchChartData(id);
-    scopeData1(id);
-    fetchreportData(id);
-    scopeData2(id);
-    scopeData3(id);
+    const fetchData = async () => {
+      await Promise.all([
+        scopeData1(id),
+        fetchreportData(id),
+        scopeData2(id),
+        scopeData3(id),
+      ]);
+      fetchChartData(id); 
+    };
+  
+    fetchData();
   }, [id]);
-
-
+  
   useEffect(() => {
     fetchreportData(id);
     fetchChartData(id);

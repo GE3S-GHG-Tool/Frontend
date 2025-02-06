@@ -599,7 +599,8 @@ class GHGCSVReportGenerator {
             ['', '', scope3Data.capitalGoodsData[0]?.expenseValue || 0, scope3Data.capitalGoodsData[0]?.emissions || 0],
             [],
             ['Investments', '', '', 'Emissions (tCO2e)'],
-            ['', '', '', scope3Data.investmentsData?.[0]?.emissions || 0],
+           // ['', '', '', scope3Data.investmentsData?.[0]?.emissions || 0],
+            ['', '', '', calculateTotal(scope3Data.investmentsData, 'emissions')],
             [],
             ['Employee Commuting', 'Vehicle Type', 'Number of Trips', 'Emissions (tCO2e)'],
             ...scope3Data.employeeCommutingData.map(item => ['', item.vehicleType, item.num_trips, item.emissions]),
@@ -620,7 +621,7 @@ class GHGCSVReportGenerator {
                 calculateTotal(scope3Data.businessTravelData, 'emissions') +
                 (scope3Data.purchasedGoodsData[0]?.emissions || 0) +
                 (scope3Data.capitalGoodsData[0]?.emissions || 0) +
-                (scope3Data.investmentsData[0]?.emissions || 0) +
+                calculateTotal(scope3Data.investmentsData, 'emissions') +
                 calculateTotal(scope3Data.employeeCommutingData, 'emissions') +
                 calculateTotal(scope3Data.fuelRelatedData, 'emissions') +
                 calculateTotal(scope3Data.upstreamLeasedAssetsData, 'emissions') +
