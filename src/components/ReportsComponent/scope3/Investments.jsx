@@ -4,26 +4,54 @@ import Typography from "@mui/material/Typography";
 import capitalGoods from "../../../assets/images/capitalGoods.svg";
 import Box from "@mui/material/Box";
 import { useScope3 } from "../../../context/Scope3Context";
+import trash from "../../../assets/images/TrashS.svg";
 
 function Investments() {
   const { setInvestements } = useScope3();
-  const [field, setField] = useState(
+  const [fields, setFields] = useState(
     localStorage.getItem("investements")
       ? JSON.parse(localStorage.getItem("investements"))
-      : {
-          ownership_percentage: "",
-          investee_company_emissions: "",
-        }
+      : [
+          {
+            ownership_percentage: "",
+            investee_company_emissions: "",
+          },
+        ]
   );
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setField({ ...field, [name]: value });
-  };
   useEffect(() => {
-    localStorage.setItem("investements", JSON.stringify(field));
-    setInvestements(field);
-  }, [field, setInvestements]);
+    localStorage.setItem("investements", JSON.stringify(fields));
+    setInvestements(fields);
+  }, [fields, setInvestements]);
+
+  const handleChange = (event, index) => {
+    const { name, value } = event.target;
+    const updatedFields = [...fields];
+    updatedFields[index][name] = value;
+    setFields(updatedFields);
+
+    const isMoreInvestmentsNeede =
+      index == fields.length - 1 &&
+      updatedFields[index].ownership_percentage &&
+      updatedFields[index].investee_company_emissions;
+
+    if (isMoreInvestmentsNeede) {
+      setFields([
+        ...updatedFields,
+        {
+          ownership_percentage: "",
+          investee_company_emissions: "",
+        },
+      ]);
+    }
+  };
+
+  const handleDelete = (index) => {
+    const updatedFields = fields.filter((_, i) => i !== index);
+
+    setFields(updatedFields);
+  };
+
   return (
     <div
       style={{
@@ -82,60 +110,99 @@ function Investments() {
           gap: "1rem",
         }}
       >
-        <Grid2 sx={{ flexGrow: 1 }} container spacing={2.5}>
-          <Grid2 item size={4}>
-            <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-              Ownership Percentage
-            </Typography>
-            <TextField
-              size="small"
-              name="ownership_percentage"
-              value={field.ownership_percentage}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-              placeholder="Enter Ownership percentage"
+        {fields.map((investment, index) => {
+          return (
+            <Box
+              key={index}
               sx={{
-                border: "1px solid rgba(217, 217, 217, 0.0)",
-                borderRadius: "5px",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "rgba(217, 217, 217, 0.30)",
-                },
-
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "rgba(217, 217, 217, 0.30)",
-                },
+                display: "flex",
+                gap: "1rem",
               }}
-            />
-          </Grid2>
+            >
+              <Grid2 sx={{ flexGrow: 1 }} container spacing={2.5}>
+                <Grid2 item size={4}>
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 1, fontSize: "0.75rem" }}
+                  >
+                    Ownership Percentage
+                  </Typography>
+                  <TextField
+                    size="small"
+                    name="ownership_percentage"
+                    value={investment.ownership_percentage}
+                    onChange={(e) => handleChange(e, index)}
+                    variant="outlined"
+                    fullWidth
+                    placeholder="Enter Ownership percentage"
+                    sx={{
+                      border: "1px solid rgba(217, 217, 217, 0.0)",
+                      borderRadius: "5px",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(217, 217, 217, 0.30)",
+                      },
 
-          <Grid2 item size={4}>
-            <Typography variant="body1" sx={{ mb: 1, fontSize: "0.75rem" }}>
-              Investee Company&apos;s Emission (tCO2E)
-            </Typography>
-            <TextField
-              name="investee_company_emissions"
-              value={field.investee_company_emissions}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-              type="number"
-              size="small"
-              placeholder="Enter emissions"
-              sx={{
-                border: "1px solid rgba(217, 217, 217, 0.0)",
-                borderRadius: "5px",
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "rgba(217, 217, 217, 0.30)",
-                },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(217, 217, 217, 0.30)",
+                      },
+                    }}
+                  />
+                </Grid2>
 
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "rgba(217, 217, 217, 0.30)",
-                },
-              }}
-            />
-          </Grid2>
-        </Grid2>
+                <Grid2 item size={4}>
+                  <Typography
+                    variant="body1"
+                    sx={{ mb: 1, fontSize: "0.75rem" }}
+                  >
+                    Investee Company&apos;s Emission (tCO2E)
+                  </Typography>
+                  <TextField
+                    name="investee_company_emissions"
+                    value={investment.investee_company_emissions}
+                    onChange={(e) => handleChange(e, index)}
+                    variant="outlined"
+                    fullWidth
+                    type="number"
+                    size="small"
+                    placeholder="Enter emissions"
+                    sx={{
+                      border: "1px solid rgba(217, 217, 217, 0.0)",
+                      borderRadius: "5px",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(217, 217, 217, 0.30)",
+                      },
+
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(217, 217, 217, 0.30)",
+                      },
+                    }}
+                  />
+                </Grid2>
+              </Grid2>
+              <div
+                style={{
+                  width: "20px",
+                  height: "55px",
+                }}
+              >
+                {investment.ownership_percentage &&
+                  investment.investee_company_emissions && (
+                    <img
+                      onClick={() => handleDelete(index)}
+                      src={trash}
+                      alt="Delete"
+                      style={{
+                        width: "20px",
+                        height: "55px",
+                        marginTop: "6px",
+                        cursor: "pointer",
+                      }}
+                    />
+                  )}
+              </div>
+            </Box>
+          );
+        })}
       </Box>
     </div>
   );
