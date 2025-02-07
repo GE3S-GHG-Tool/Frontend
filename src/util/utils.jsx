@@ -22,3 +22,10 @@ export const validateScopeReport = (keys, obj) => {
   }
   return false;
 };
+
+export const formatIndianNumber = (value) => {
+  if (typeof value === "number") {
+    return value.toLocaleString("en-IN");
+  }
+  return parseFloat(value).toFixed(4).toLocaleString("en-IN");
+};
