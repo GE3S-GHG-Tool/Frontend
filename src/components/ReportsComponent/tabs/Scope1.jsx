@@ -4,11 +4,10 @@ import ProcessEmission from "../Pages/EmissionPages/ProcessEmission";
 import { Box, Button } from "@mui/material";
 import { useScope3 } from "../../../context/Scope3Context";
 import { useEffect, useState } from "react";
-import {
-  saveScope1Report
-} from "../../../api/createReport";
+import { saveScope1Report } from "../../../api/createReport";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import { validateScopeReport } from "../../../util/utils";
 
 const Scope1 = ({ setActiveTab }) => {
   const { id } = useParams();
@@ -20,7 +19,7 @@ const Scope1 = ({ setActiveTab }) => {
     return JSON.parse(localStorage.getItem("processEmissionData")) || [];
   });
   // const refrigerentArray = JSON.parse(localStorage.getItem("refrigerent"));
-  const { consumption, refrigerent, emission } = useScope3();
+  const { consumption, refrigerent, emission, setUniversalScopeData } = useScope3();
   const [consumptionArray, setConsumptionArray] = useState([]);
   const [refrigerentArray, setRefrigerentArray] = useState(
     JSON.parse(localStorage.getItem("refrigerent")) || []
@@ -40,7 +39,6 @@ const Scope1 = ({ setActiveTab }) => {
 
   // console.log("processData", processData);
   const submit = async (type, btn) => {
-
     const validProcessData = processData?.filter(
       (item) => item?.type?._id && item?.type2?._id
     );
@@ -54,17 +52,18 @@ const Scope1 = ({ setActiveTab }) => {
       category: item?.type2?._id || "",
       ...(item?.type3 &&
         Object.keys(item.type3).length > 0 && {
-        subCategory: item?.type3?._id,
-      }),
+          subCategory: item?.type3?._id,
+        }),
       ...(item?.type4 &&
         Object.keys(item.type4).length > 0 && {
-        subsubCategory: item?.type4?._id || "",
-      }),
+          subsubCategory: item?.type4?._id || "",
+        }),
       ...(item?.type5 &&
         Object.keys(item.type5).length > 0 && {
-        subsubsubCategory: item?.type5?._id || "",
-      }),
+          subsubsubCategory: item?.type5?._id || "",
+        }),
     }));
+
     const payload = {
       main_report_id: reportid,
       fuelEntries: consumptionArray.slice(0, -1),
@@ -73,11 +72,22 @@ const Scope1 = ({ setActiveTab }) => {
       report_type: type,
     };
 
+    if (
+      type === "final" &&
+      !validateScopeReport(
+        ["fuelEntries", "refrigerantEntries", "processEmissions"],
+        payload
+      )
+    ) {
+      return alert("Please enter some data");
+    }
+
     let response = await saveScope1Report(payload);
+
     if (type === "draft" && btn !== "cancel") {
+      setUniversalScopeData(payload);
       setActiveTab("scope2");
-    } 
-    else if(btn === "cancel"){
+    } else if (btn === "cancel") {
       localStorage.removeItem("refrigerent");
       localStorage.removeItem("consumption");
       localStorage.removeItem("processEmissionData");
@@ -134,49 +144,49 @@ const Scope1 = ({ setActiveTab }) => {
           Cancel
         </Button>
 
-        {
-          user?.organization?.premiumPlan?.name === "FootPrint" ?
-            <Button
-              onClick={() => submit("final", "final")}
-              sx={{
-                borderRadius: "32px",
-                padding: "8px 18px",
-                height: "38px",
-                fontWeight: "400",
-                fontSize: "12px",
-                // width: "100px",
-                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                "&:hover": {
-                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                  boxShadow: "none",
-                },
-                textTransform: "capitalize",
-                color: "#FFFFFF",
-              }}
-            >
-              Generate Report
-            </Button> :
-            <Button
-              onClick={() => submit("draft", "draft")}
-              sx={{
-                borderRadius: "32px",
-                padding: "8px 18px",
-                height: "38px",
-                fontWeight: "400",
-                fontSize: "12px",
-                width: "100px",
-                background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
-                "&:hover": {
-                  background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
-                  boxShadow: "none",
-                },
-                textTransform: "capitalize",
-                color: "#FFFFFF",
-              }}
-            >
-              Next
-            </Button>
-        }
+        {user?.organization?.premiumPlan?.name === "FootPrint" ? (
+          <Button
+            onClick={() => submit("final", "final")}
+            sx={{
+              borderRadius: "32px",
+              padding: "8px 18px",
+              height: "38px",
+              fontWeight: "400",
+              fontSize: "12px",
+              // width: "100px",
+              background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              "&:hover": {
+                background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: "none",
+              },
+              textTransform: "capitalize",
+              color: "#FFFFFF",
+            }}
+          >
+            Generate Report
+          </Button>
+        ) : (
+          <Button
+            onClick={() => submit("draft", "draft")}
+            sx={{
+              borderRadius: "32px",
+              padding: "8px 18px",
+              height: "38px",
+              fontWeight: "400",
+              fontSize: "12px",
+              width: "100px",
+              background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
+              "&:hover": {
+                background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
+                boxShadow: "none",
+              },
+              textTransform: "capitalize",
+              color: "#FFFFFF",
+            }}
+          >
+            Next
+          </Button>
+        )}
       </Box>
     </div>
   );

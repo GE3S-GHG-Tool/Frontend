@@ -18,6 +18,7 @@ import { saveScope3Report } from "../../../api/createReport";
 import { useEffect, useState } from "react";
 import { useScope3 } from "../../../context/Scope3Context";
 import { useNavigate } from "react-router-dom";
+import { validateScopeReport } from "../../../util/utils";
 
 const wasteHeadings = [
   "Waste Type",
@@ -76,6 +77,7 @@ const Scope3 = ({ setActiveTab }) => {
     employeecommuting,
     downStreamData,
     business,
+    universalScopeData,
   } = useScope3();
 
   useEffect(() => {
@@ -215,9 +217,38 @@ const Scope3 = ({ setActiveTab }) => {
         report_type: type,
         main_report_id: reportid,
       };
-      console.log(payload);
+
+      if (
+        type === "final" &&
+        !validateScopeReport(
+          [
+            "fuelEntries",
+            "refrigerantEntries",
+            "processEmissions",
+            "electricityConsumption",
+            "chilledWaterConsumption",
+            "heatConsumption",
+            "purchasedDesalinatedWaterConsumption",
+            "wasteGenerated",
+            "businessTravel",
+            "purchasedGoods",
+            "capitalGoods",
+            "investments",
+            "employeeCommuting",
+            "fuelRelatedActivities",
+            "upstreamLeasedAssets",
+            "downstreamLeasedAssets",
+          ],
+          {
+            ...universalScopeData,
+            ...payload,
+          }
+        )
+      ) {
+        return alert("Please enter some data");
+      }
+
       const response = await saveScope3Report(payload);
-      console.log(response);
       localStorage.removeItem("capitalGoodsData");
       localStorage.removeItem("investements");
       localStorage.removeItem("business");
