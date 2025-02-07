@@ -51,7 +51,20 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
 
   return (
     <>
-      <div style={{ display: "flex", width: "100%", gap: "1rem" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          gap: "1rem",
+          ...(type === "scope-3"
+            ? {
+                background: "white",
+                borderRadius: "16px",
+                paddingRight: "2rem"
+              }
+            : {}),
+        }}
+      >
         <div
           style={{
             width: "80%",
@@ -188,7 +201,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
         </div>
         {type === "scope-3" ? (
           <>
-            <div style={{ width: "30%", background: "#FBFBFB" }}>
+            <div style={{ width: "30%" }}>
               <div
                 style={{
                   display: "flex",
