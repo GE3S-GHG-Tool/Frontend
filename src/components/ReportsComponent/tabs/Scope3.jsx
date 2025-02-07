@@ -57,15 +57,6 @@ const leasedDataHeadings = ["Asset Type", "Source Of energy", "Value", "Unit"];
 
 const Scope3 = ({ setActiveTab }) => {
   const reportid = localStorage.getItem("reportId");
-  const [waste, setwaste] = useState([]);
-  const [purchaseData, setPurchaseData] = useState([]);
-  const [capitalData, setCapitalData] = useState([]);
-  const [investData, setInvestData] = useState([]);
-  const [comutingData, setComutingData] = useState([]);
-  const [fuelArray, setFuelArray] = useState([]);
-  const [businessArray, setBusinessArray] = useState([]);
-  const [upstreamArray, setUpstreamArray] = useState([]);
-  const [downstreamArray, setDownstreamArray] = useState([]);
   const navigate = useNavigate();
   const {
     capitalGoods,
@@ -77,147 +68,127 @@ const Scope3 = ({ setActiveTab }) => {
     employeecommuting,
     downStreamData,
     business,
-    universalScopeData,
+    scope1Payload,
+    scope2Payload,
+    scope3Payload,
+    setScope3Payload,
   } = useScope3();
 
   useEffect(() => {
-    setwaste(wasteData ? wasteData : []);
-    // console.log("wasteData instant:", wasteData); // Verify the table gets updated
-  }, [wasteData]);
-  useEffect(() => {
-    setPurchaseData(goods ? goods : []);
-    // console.log("goods instant:", goods); // Verify the table gets updated
-  }, [goods]);
+    setScope3Payload(getProcessData("draft"));
+  }, [
+    wasteData,
+    goods,
+    capitalGoods,
+    investements,
+    employeecommuting,
+    fuelData,
+    upStreamData,
+    downStreamData,
+    business,
+  ]);
 
-  useEffect(() => {
-    setCapitalData(capitalGoods ? capitalGoods : []);
-    // console.log("capitalGoods instant:", capitalGoods); // Verify the table gets updated
-  }, [capitalGoods]);
-  useEffect(() => {
-    setInvestData(investements ? investements : []);
-    // console.log("investements instant:", investements); // Verify the table gets updated
-  }, [investements]);
-  useEffect(() => {
-    setComutingData(employeecommuting ? employeecommuting : []);
-    // console.log("employeecommuting instant:", employeecommuting); // Verify the table gets updated
-  }, [employeecommuting]);
-  useEffect(() => {
-    setFuelArray(fuelData ? fuelData : []);
-    // console.log("fuelData instant:", fuelData); // Verify the table gets updated
-  }, [fuelData]);
-  useEffect(() => {
-    setUpstreamArray(upStreamData ? upStreamData : []);
-    // console.log("upStreamData instant:", upStreamData); // Verify the table gets updated
-  }, [upStreamData]);
-  useEffect(() => {
-    setDownstreamArray(downStreamData ? downStreamData : []);
-    // console.log("upStreamData instant:", downStreamData); // Verify the table gets updated
-  }, [downStreamData]);
-  useEffect(() => {
-    setBusinessArray(business ? business : []);
-    // console.log("upStreamData instant:", downStreamData); // Verify the table gets updated
-  }, [business]);
+  const getProcessData = (type) => {
+    const convertedWasteArray = wasteData.slice(0, -1).map((item) => {
+      const baseData = {
+        category: item.wasteCategory || "",
+        sub_category: item.subCategory || "",
+        disposal_method: item.disposalMethod || "",
+        quantity: item.quantityOfWaste ? parseInt(item.quantityOfWaste, 10) : 0,
+      };
+      if (item.disposalMethod === "Landfilled") {
+        return {
+          ...baseData,
+          fuel_type: item.fuelType || "",
+          distance_km: item.distanceToLandfill || "",
+          num_trips: item.numberOfTrips || "",
+        };
+      }
+      return baseData;
+    });
+
+    const convertedDownstreamArray =
+      Object.keys(downStreamData).length > 0 &&
+      (downStreamData.scope1_scope2_emissions ||
+        downStreamData.physical_area ||
+        downStreamData.total_physical_area)
+        ? [
+            {
+              scope1_scope2_emissions:
+                parseInt(downStreamData.scope1_scope2_emissions) || 0,
+              physical_area: parseInt(downStreamData.physical_area) || 0,
+              total_physical_area:
+                parseInt(downStreamData.total_physical_area) || 0,
+            },
+          ]
+        : [];
+
+    const convertedInvestmentsArray = investements
+      .filter(
+        (item) => item.ownership_percentage || item.investee_company_emissions
+      )
+      .map((item) => ({
+        ownership_percentage: parseInt(item.ownership_percentage) || 0,
+        investee_company_emissions:
+          parseInt(item.investee_company_emissions) || 0,
+      }));
+
+    const capitalArray = capitalGoods
+      .slice(0, -1)
+      .filter((item) => item.assetType) // Removes the empty item
+      .map((item) => ({
+        asset_type: item?.assetType?.asset_type_name,
+        asset_category: item.asset_category,
+        expense_value: parseInt(item.expenses, 10), // Convert expenses to integer
+      }));
+    const convertedFuelArray = fuelData
+      .slice(0, -1)
+      .filter((item) => item.category) // Filter out empty or invalid items
+      .map((item) => ({
+        category: item.category,
+        sub_category: item.subCategory || "",
+        sub_sub_category: item.subsubCategory || "",
+        quantity: item.quantity ? parseInt(item.quantity, 10) : 0,
+        unit: item.unit || "",
+      }));
+    // console.log("upstreamArray", upstreamArray);
+    const convertedUpstreamArray = upStreamData
+      .slice(0, -1) // Filter out empty or invalid items
+      .map((item) => ({
+        asset_type: item.assetType,
+        source_energy: item.sourceOfEnergy, // Change source_energy to LPG
+        quantity: item.quantity, // Set quantity to 1000
+      }));
+    const convertedbusinessArray = business
+      .slice(0, -1) // Filter out empty or invalid items
+      .map((item) => ({
+        travel_class: item.travelClass,
+        connections: Number(item.connectionCount),
+        airports: [item.origin, item.destination, ...item.tripDetails],
+        num_trips:
+          item.numberOfTrips === "0" || item.numberOfTrips === ""
+            ? 1
+            : Number(item.numberOfTrips),
+      }));
+    // console.log("convertedUpstreamArray", convertedUpstreamArray);
+    return {
+      wasteGenerated: convertedWasteArray,
+      businessTravel: convertedbusinessArray,
+      purchasedGoods: goods.slice(0, -1),
+      capitalGoods: capitalArray,
+      investments: convertedInvestmentsArray,
+      employeeCommuting: employeecommuting.slice(0, -1),
+      fuelRelatedActivities: convertedFuelArray,
+      upstreamLeasedAssets: convertedUpstreamArray,
+      downstreamLeasedAssets: convertedDownstreamArray,
+      report_type: type,
+      main_report_id: reportid,
+    };
+  };
 
   const submit = async (type) => {
     try {
-      const convertedWasteArray = waste.slice(0, -1).map((item) => {
-        const baseData = {
-          category: item.wasteCategory || "",
-          sub_category: item.subCategory || "",
-          disposal_method: item.disposalMethod || "",
-          quantity: item.quantityOfWaste
-            ? parseInt(item.quantityOfWaste, 10)
-            : 0,
-        };
-        if (item.disposalMethod === "Landfilled") {
-          return {
-            ...baseData,
-            fuel_type: item.fuelType || "",
-            distance_km: item.distanceToLandfill || "",
-            num_trips: item.numberOfTrips || "",
-          };
-        }
-        return baseData;
-      });
-
-      const convertedDownstreamArray =
-        Object.keys(downstreamArray).length > 0 &&
-        (downstreamArray.scope1_scope2_emissions ||
-          downstreamArray.physical_area ||
-          downstreamArray.total_physical_area)
-          ? [
-              {
-                scope1_scope2_emissions:
-                  parseInt(downstreamArray.scope1_scope2_emissions) || 0,
-                physical_area: parseInt(downstreamArray.physical_area) || 0,
-                total_physical_area:
-                  parseInt(downstreamArray.total_physical_area) || 0,
-              },
-            ]
-          : [];
-
-      const convertedInvestmentsArray = investData
-        .filter(
-          (item) => item.ownership_percentage || item.investee_company_emissions
-        )
-        .map((item) => ({
-          ownership_percentage: parseInt(item.ownership_percentage) || 0,
-          investee_company_emissions:
-            parseInt(item.investee_company_emissions) || 0,
-        }));
-
-      const capitalArray = capitalData
-        .slice(0, -1)
-        .filter((item) => item.assetType) // Removes the empty item
-        .map((item) => ({
-          asset_type: item?.assetType?.asset_type_name,
-          asset_category: item.asset_category,
-          expense_value: parseInt(item.expenses, 10), // Convert expenses to integer
-        }));
-      const convertedFuelArray = fuelArray
-        .slice(0, -1)
-        .filter((item) => item.category) // Filter out empty or invalid items
-        .map((item) => ({
-          category: item.category,
-          sub_category: item.subCategory || "",
-          sub_sub_category: item.subsubCategory || "",
-          quantity: item.quantity ? parseInt(item.quantity, 10) : 0,
-          unit: item.unit || "",
-        }));
-      // console.log("upstreamArray", upstreamArray);
-      const convertedUpstreamArray = upstreamArray
-        .slice(0, -1) // Filter out empty or invalid items
-        .map((item) => ({
-          asset_type: item.assetType,
-          source_energy: item.sourceOfEnergy, // Change source_energy to LPG
-          quantity: item.quantity, // Set quantity to 1000
-        }));
-      const convertedbusinessArray = businessArray
-        .slice(0, -1) // Filter out empty or invalid items
-        .map((item) => ({
-          travel_class: item.travelClass,
-          connections: Number(item.connectionCount),
-          airports: [item.origin, item.destination, ...item.tripDetails],
-          num_trips:
-            item.numberOfTrips === "0" || item.numberOfTrips === ""
-              ? 1
-              : Number(item.numberOfTrips),
-        }));
-      // console.log("convertedUpstreamArray", convertedUpstreamArray);
-      const payload = {
-        wasteGenerated: convertedWasteArray,
-        businessTravel: convertedbusinessArray,
-        purchasedGoods: purchaseData.slice(0, -1),
-        capitalGoods: capitalArray,
-        investments: convertedInvestmentsArray,
-        employeeCommuting: comutingData.slice(0, -1),
-        fuelRelatedActivities: convertedFuelArray,
-        upstreamLeasedAssets: convertedUpstreamArray,
-        downstreamLeasedAssets: convertedDownstreamArray,
-        report_type: type,
-        main_report_id: reportid,
-      };
-
+      const payload = { ...scope3Payload, report_type: type };
       if (
         type === "final" &&
         !validateScopeReport(
@@ -240,7 +211,8 @@ const Scope3 = ({ setActiveTab }) => {
             "downstreamLeasedAssets",
           ],
           {
-            ...universalScopeData,
+            ...scope1Payload,
+            ...scope2Payload,
             ...payload,
           }
         )

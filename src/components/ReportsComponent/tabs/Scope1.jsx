@@ -10,39 +10,25 @@ import { useAuth } from "../../../context/AuthContext";
 import { validateScopeReport } from "../../../util/utils";
 
 const Scope1 = ({ setActiveTab }) => {
-  const { id } = useParams();
   const { user } = useAuth();
-  // console.log(user?.organization?.premiumPlan?.name);
   const navigate = useNavigate();
   const reportid = localStorage.getItem("reportId");
-  const [processData, setProcessData] = useState(() => {
-    return JSON.parse(localStorage.getItem("processEmissionData")) || [];
-  });
-  // const refrigerentArray = JSON.parse(localStorage.getItem("refrigerent"));
-  const { consumption, refrigerent, emission, setUniversalScopeData } = useScope3();
-  const [consumptionArray, setConsumptionArray] = useState([]);
-  const [refrigerentArray, setRefrigerentArray] = useState(
-    JSON.parse(localStorage.getItem("refrigerent")) || []
-  );
+  const {
+    consumption,
+    refrigerent,
+    emission,
+    scope1Payload,
+    setScope1Payload,
+  } = useScope3();
 
   useEffect(() => {
-    setConsumptionArray(consumption ? consumption : []);
-  }, [consumption]);
+    setScope1Payload(getProcessData("draft"));
+  }, [consumption, refrigerent, emission]);
 
-  useEffect(() => {
-    setRefrigerentArray(refrigerent ? refrigerent : []);
-  }, [refrigerent]);
-
-  useEffect(() => {
-    setProcessData(emission ? emission : []);
-  }, [emission]);
-
-  // console.log("processData", processData);
-  const submit = async (type, btn) => {
-    const validProcessData = processData?.filter(
+  const getProcessData = (type) => {
+    const validProcessData = emission?.filter(
       (item) => item?.type?._id && item?.type2?._id
     );
-
     const transformedData = validProcessData?.map((item) => ({
       type: item?.type?._id || "",
 
@@ -64,13 +50,17 @@ const Scope1 = ({ setActiveTab }) => {
         }),
     }));
 
-    const payload = {
+    return {
       main_report_id: reportid,
-      fuelEntries: consumptionArray.slice(0, -1),
-      refrigerantEntries: refrigerentArray.slice(0, -1),
+      fuelEntries: consumption.slice(0, -1),
+      refrigerantEntries: refrigerent.slice(0, -1),
       processEmissions: transformedData,
       report_type: type,
     };
+  };
+
+  const submit = async (type, btn) => {
+    const payload = { ...scope1Payload, report_type: type };
 
     if (
       type === "final" &&
@@ -85,7 +75,6 @@ const Scope1 = ({ setActiveTab }) => {
     let response = await saveScope1Report(payload);
 
     if (type === "draft" && btn !== "cancel") {
-      setUniversalScopeData(payload);
       setActiveTab("scope2");
     } else if (btn === "cancel") {
       localStorage.removeItem("refrigerent");

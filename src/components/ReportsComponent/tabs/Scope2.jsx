@@ -12,57 +12,17 @@ import { validateScopeReport } from "../../../util/utils";
 import { useScope3 } from "../../../context/Scope3Context";
 
 const Scope2 = ({ setActiveTab }) => {
-  const { scope2Data, user, setScope2Data } = useAuth();
-  const { universalScopeData, setUniversalScopeData } = useScope3();
+  const { scope2Data, user } = useAuth();
+  const { scope1Payload, scope2Payload, setScope2Payload } = useScope3();
   const reportid = localStorage.getItem("reportId");
   const navigate = useNavigate();
 
-  // const submit = async (type) => {
-  //   const payload = {
-  //     organizationId: user?.organization?.id,
-  //     report_type: type,
-  //     main_report_id: reportid,
-  //     electricityConsumption: [
-  //       {
-  //         unit: "KWh",
-  //         quantity: scope2Data?.electricity,
-  //       },
-  //     ],
-  //     chilledWaterConsumption: [
-  //       {
-  //         unit: "ton-hour",
-  //         quantity: scope2Data?.water,
-  //       },
-  //     ],
-  //     heatConsumption: [
-  //       {
-  //         unit: "MMBtu",
-  //         quantity: scope2Data?.heat,
-  //       },
-  //     ],
-  //     purchasedDesalinatedWaterConsumption: [
-  //       {
-  //         unit: "m3",
-  //         quantity: scope2Data?.desalinated,
-  //       },
-  //     ],
-  //   };
-  //   console.log(payload);
-  //   const response = await saveScope2Report(payload);
-  //   console.log(response);
-  //   if (type === "draft") {
-  //     setActiveTab("scope3");
-  //   } else {
-  //     localStorage.removeItem("refrigerent");
-  //     localStorage.removeItem("consumption");
-  //     localStorage.removeItem("processEmissionData");
-  //     localStorage.removeItem("scope2Data");
-  //     navigate(`/emissionreport/${reportid}`);
-  //   }
-  // };
+  useEffect(() => {
+    setScope2Payload(getProcessData("draft"));
+  }, [scope2Data]);
 
-  const submit = async (type) => {
-    const payload = {
+  const getProcessData = (type) => {
+    return {
       organizationId: user?.organization?.id,
       report_type: type,
       main_report_id: reportid,
@@ -79,6 +39,10 @@ const Scope2 = ({ setActiveTab }) => {
         ? [{ unit: "m3", quantity: scope2Data.desalinated }]
         : [],
     };
+  };
+
+  const submit = async (type) => {
+    const payload = { ...scope2Payload, report_type: type };
 
     if (
       type === "final" &&
@@ -93,7 +57,7 @@ const Scope2 = ({ setActiveTab }) => {
           "purchasedDesalinatedWaterConsumption",
         ],
         {
-          ...universalScopeData,
+          ...scope1Payload,
           ...payload,
         }
       )
@@ -104,10 +68,6 @@ const Scope2 = ({ setActiveTab }) => {
     const response = await saveScope2Report(payload);
 
     if (type === "draft") {
-      setUniversalScopeData({
-        ...universalScopeData,
-        ...payload,
-      });
       setActiveTab("scope3");
     } else {
       localStorage.removeItem("refrigerent");
