@@ -647,7 +647,8 @@ const TotalEmissionsInventoryReport = () => {
         value: response.data.emissions[scope].value.toLocaleString(),
         percentage: parseFloat(response.data.emissions[scope].percentage),
         baseColor: scopeColors[scope].baseColor,
-        gradientColors: scopeColors[scope].gradientColors
+        gradientColors: scopeColors[scope].gradientColors,
+        index: scope.slice(-1) - 1
       }));
 
       setChartData(transformedData);
@@ -951,7 +952,7 @@ const TotalEmissionsInventoryReport = () => {
                   Total GHG Emissions Distribution
                 </Typography>
               </div>
-              <LineChart chartData={chartData} />
+              <LineChart chartData={chartData} scopeData={[scope1Data, scope2Data, scope3Data]} />
             </div>
           </div>
 
