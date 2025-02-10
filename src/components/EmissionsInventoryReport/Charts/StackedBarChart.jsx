@@ -6,6 +6,7 @@ import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
 import dot from "../../../assets/images/dot.svg"
+import { formatIndianNumber } from "../../../util/utils";
 
 const colors = ["#FFAC9F", "#FF9989", "#F26D58"];
 const purple3 = "#464646";
@@ -296,7 +297,7 @@ const StackedBarChart = ({
                   <span style={{color:"#BDBDBD"}}>{key}</span>
                 </div>
                 <img src={dot} width={3} height={3} alt="dot" style={{ flexShrink: 0 }} />
-                <div style={{color:'#717171'}}>{ parseFloat(tooltipData.bar.data[key]).toLocaleString('en-IN')} tCO2e</div>
+                <div style={{color:'#717171'}}>{formatIndianNumber(tooltipData.bar.data[key])} tCO2e</div>
               </div>
             ))}
         </TooltipInPortal>

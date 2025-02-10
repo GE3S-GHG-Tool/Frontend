@@ -1,9 +1,8 @@
 import { Typography } from '@mui/material'
 import React from 'react'
+import { formatIndianNumber } from '../../../util/utils';
 
 const Scope3Card = ({title, value}) => {
-  // Helper function to round numbers to 4 decimal places
-  const roundToFour = (num) => Number(parseFloat(num).toFixed(4));
 
   return (
     <div style={{
@@ -20,7 +19,7 @@ const Scope3Card = ({title, value}) => {
         {title}
       </Typography>
       <Typography sx={{fontSize: '1rem', fontWeight: '600'}}>
-        {typeof value === 'number' ? roundToFour(value) : value}
+        {formatIndianNumber(value)}
       </Typography>
     </div>
   )

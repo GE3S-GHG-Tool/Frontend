@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useTooltip, defaultStyles, TooltipWithBounds } from "@visx/tooltip";
 import dot from "../../../assets/images/dot.svg";
+import { formatIndianNumber, parseStringAndRoundOff } from "../../../util/utils";
 
 const LineChart = ({ chartData, scopeData }) => {
   const {
@@ -89,7 +90,7 @@ const LineChart = ({ chartData, scopeData }) => {
           </Box>
           <Box key={index}>
             <Typography>
-              {`${item.label} (${item.percentage.toFixed(2)}%)`}
+              {`${item.label} (${item.percentage}%)`}
             </Typography>
             <Typography>{item.value} tCO2e</Typography>
           </Box>
@@ -118,11 +119,11 @@ const LineChart = ({ chartData, scopeData }) => {
             </div>
             <img src={dot} width={3} height={3} alt="dot" />
             <div style={{ color: "#717171" }}>
-              <span>{tooltipData.key}</span>
+              <span>{parseStringAndRoundOff(tooltipData.key)}%</span>
             </div>
             <img src={dot} width={3} height={3} alt="dot" />
             <div>
-              {parseFloat(tooltipData.value).toLocaleString("en-IN")} tCO2e
+              {formatIndianNumber(tooltipData.value)} tCO2e
             </div>
           </div>
         </TooltipWithBounds>

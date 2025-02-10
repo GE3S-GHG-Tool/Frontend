@@ -4,6 +4,10 @@ import { Group } from "@visx/group";
 import { scaleOrdinal } from "@visx/scale";
 import { Box, Paper } from "@mui/material";
 import dot from "../../../assets/images/dot.svg";
+import {
+  formatIndianNumber,
+  parseStringAndRoundOff,
+} from "../../../util/utils";
 
 const ChartTooltip = ({ data, tooltipWidth }) => (
   <Paper sx={{ zIndex: 100, padding: "5px" }}>
@@ -62,7 +66,7 @@ const ChartTooltip = ({ data, tooltipWidth }) => (
             flexShrink: 0,
           }}
         >
-          {data.key}
+          {parseStringAndRoundOff(data.key)}%
         </span>
         <img
           src={dot}
@@ -80,7 +84,7 @@ const ChartTooltip = ({ data, tooltipWidth }) => (
             flexShrink: 0,
           }}
         >
-          {parseFloat(data.value).toLocaleString('en-IN')} tCO2e
+          {formatIndianNumber(data.value)} tCO2e
         </span>
       </Box>
     </Box>
@@ -177,7 +181,6 @@ const SemiCirclePieChart = ({
                           textAnchor="middle"
                           fill="#ffffff"
                         >
-                          {/* {arc.data.key} */}
                         </text>
                       )}
                     </g>

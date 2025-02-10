@@ -6,6 +6,7 @@ import { Text } from '@visx/text';
 import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { ParentSize } from '@visx/responsive';
 import dot from "../../../assets/images/dot.svg"
+import { formatIndianNumber } from '../../../util/utils';
 
 const margin = { top: 20, right: 0, bottom: 60, left: 50 };
 const defaultHeight = 300;
@@ -225,7 +226,7 @@ const Chart = ({ data, width, type }) => {
             <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span>
             <img src={dot} width={3} height={3} alt="dot"/>
             <div>
-              {parseFloat(tooltipData.value).toLocaleString('en-IN')}&nbsp;
+              {formatIndianNumber(tooltipData.value)}&nbsp;
               {type === "scope-1" ? "Kg" : "tCO2e"}
             </div>
           </div>

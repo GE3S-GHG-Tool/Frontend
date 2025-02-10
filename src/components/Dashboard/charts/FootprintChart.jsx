@@ -5,6 +5,7 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { scaleBand, scaleLinear, scaleOrdinal } from "@visx/scale";
 import { useTooltip, useTooltipInPortal, defaultStyles } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
+import { formatIndianNumber } from "../../../util/utils";
 
 const colors = ["#B1E9D8", "#AFC6FF", "#FFC8BF"];
 const background = "#fff";
@@ -310,7 +311,7 @@ const FootprintChart = ({
                 <div style={{ minWidth: "45px" }}>
                   <span>{key}</span>
                 </div>
-                <div>{(tooltipData.bar.data[key]).toFixed(5)} tCO2e</div>
+                <div>{formatIndianNumber(tooltipData.bar.data[key])} tCO2e</div>
               </div>
             ))}
         </TooltipInPortal>

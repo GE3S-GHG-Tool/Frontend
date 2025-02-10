@@ -6,6 +6,7 @@ import { useTooltip, TooltipWithBounds } from "@visx/tooltip";
 import { localPoint } from "@visx/event";
 import { Point } from "@visx/point";
 import dot from "../../../assets/images/dot.svg";
+import { formatIndianNumber } from "../../../util/utils";
 
 // Expected categories
 const expectedRefrigerants = [
@@ -232,7 +233,7 @@ const RefrigerantEmissionsChart = ({
               <img src={dot} width={3} height={3} alt="dot" />
             </div>
             <span style={{ color: "#717171", fontSize: "0.785rem" }}>
-              &nbsp;{parseFloat(tooltipData.value).toLocaleString('en-IN')} tCO2e
+              &nbsp;{formatIndianNumber(tooltipData.value)} tCO2e
             </span>
           </div>
         </TooltipWithBounds>

@@ -104,7 +104,7 @@ import { scaleOrdinal } from "@visx/scale";
 import { Box, Paper } from "@mui/material";
 import { localPoint } from "@visx/event";
 import dot from "../../../assets/images/dot.svg";
-import { formatIndianNumber } from "../../../util/utils";
+import { formatIndianNumber, parseStringAndRoundOff } from "../../../util/utils";
 
 const ChartTooltip = ({ data }) => (
   <Paper sx={{ zIndex: 100000, whiteSpace: "nowrap", padding: "5px" }}>
@@ -129,7 +129,7 @@ const ChartTooltip = ({ data }) => (
           fontWeight: "500",
         }}
       >
-        {data.key}
+        {parseStringAndRoundOff(data.key)}%
       </span>
       <img src={dot} width={3} height={3} alt="dot" />
       <span

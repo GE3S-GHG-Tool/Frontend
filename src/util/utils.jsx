@@ -25,7 +25,15 @@ export const validateScopeReport = (keys, obj) => {
 
 export const formatIndianNumber = (value) => {
   if (typeof value === "number") {
-    return value.toLocaleString("en-IN");
-  }
-  return parseFloat(value).toFixed(4).toLocaleString("en-IN");
+    return value.toLocaleString("en-IN", {
+      maximumFractionDigits: 2,
+    });
+  } else if (!value) return "";
+  return parseFloat(value).toLocaleString("en-IN", {
+    maximumFractionDigits: 2,
+  });
+};
+
+export const parseStringAndRoundOff = (value) => {
+  return Number(parseFloat(value).toFixed(2));
 };
