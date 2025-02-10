@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 // Create a Context for the Scope 3 data
 const Scope3Context = createContext();
@@ -66,23 +66,27 @@ export const Scope3Provider = ({ children }) => {
       : []
   );
 
-  const [universalScopeData, setUniversalScopeData] = useState({});
+  const [scope1Payload, setScope1Payload] = useState({});
+  const [scope2Payload, setScope2Payload] = useState({});
+  const [scope3Payload, setScope3Payload] = useState({});
 
   const resetScopeData = () => {
     setCapitalGoods([]);
     setInvestements([]);
     setBusiness([]);
-    setEmployeeCommuting([])
-    setFuelData([])
-    setDownStreamData([])
-    setUpStreamData([])
+    setEmployeeCommuting([]);
+    setFuelData([]);
+    setDownStreamData([]);
+    setUpStreamData([]);
     setWasteData([]);
-    setGoods([])
-    setRefrigerent([])
-    setConsumption([])
-    setEmission([])
-    setUniversalScopeData({})
-  }
+    setGoods([]);
+    setRefrigerent([]);
+    setConsumption([]);
+    setEmission([]);
+    setScope1Payload({});
+    setScope2Payload({});
+    setScope3Payload({});
+  };
 
   const value = {
     capitalGoods,
@@ -109,10 +113,13 @@ export const Scope3Provider = ({ children }) => {
     business,
     setEmission,
     emission,
-    universalScopeData,
-    setUniversalScopeData,
     resetScopeData,
-
+    scope1Payload,
+    setScope1Payload,
+    scope2Payload,
+    setScope2Payload,
+    scope3Payload,
+    setScope3Payload,
   };
   return (
     <Scope3Context.Provider value={value}>{children}</Scope3Context.Provider>

@@ -225,7 +225,7 @@ const Chart = ({ data, width, type }) => {
             <span style={{ color: '#717171' }}>{getLabel(tooltipData)}</span>
             <img src={dot} width={3} height={3} alt="dot"/>
             <div>
-              {getValue(tooltipData)}&nbsp;
+              {parseFloat(tooltipData.value).toLocaleString('en-IN')}&nbsp;
               {type === "scope-1" ? "Kg" : "tCO2e"}
             </div>
           </div>

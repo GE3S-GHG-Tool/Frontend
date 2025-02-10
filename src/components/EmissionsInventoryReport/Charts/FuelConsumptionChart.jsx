@@ -7,6 +7,7 @@ import { useTooltip, Tooltip, defaultStyles } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { Box, Typography } from '@mui/material';
 import dot from "../../../assets/images/dot.svg"
+import { formatIndianNumber } from '../../../util/utils';
 
 // Expected fuel types
 const expectedFuels = [
@@ -143,7 +144,7 @@ const FuelConsumptionChart = ({
                             <span>{tooltipData.fuel}</span>
                         </div>
                         <img src={dot} width={3} height={3} alt="dot" />
-                        <div>{tooltipData.value} {tooltipData.unit}</div>
+                        <div>{parseFloat(tooltipData.value).toLocaleString('en-IN')} {tooltipData.unit}</div>
                     </div>
                 </Tooltip>
             )}

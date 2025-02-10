@@ -291,7 +291,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                       wordSpacing: "0px",
                     }}
                   >
-                    {roundToFour(item.value) || 0} tCO2e
+                    {(roundToFour(item.value) || 0).toLocaleString("en-IN")} tCO2e
                   </Typography>
                 </div>
               ))}
@@ -325,7 +325,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                     wordSpacing: "0px",
                   }}
                 >
-                  {roundToFour(item.value) || 0} tCO2e
+                  {(roundToFour(item.value) || 0).toLocaleString("en-IN")} tCO2e
                 </Typography>
               </div>
             ))}
@@ -354,7 +354,7 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                       wordSpacing: "0px",
                     }}
                   >
-                    {roundToFour(item.value) || 0} tCO2e
+                    {(roundToFour(item.value) || 0).toLocaleString("en-IN")} tCO2e
                   </Typography>
                 </div>
               ))}

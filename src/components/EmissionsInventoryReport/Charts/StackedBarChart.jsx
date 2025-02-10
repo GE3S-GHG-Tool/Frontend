@@ -296,7 +296,7 @@ const StackedBarChart = ({
                   <span style={{color:"#BDBDBD"}}>{key}</span>
                 </div>
                 <img src={dot} width={3} height={3} alt="dot" style={{ flexShrink: 0 }} />
-                <div style={{color:'#717171'}}>{tooltipData.bar.data[key]} tCO2e</div>
+                <div style={{color:'#717171'}}>{ parseFloat(tooltipData.bar.data[key]).toLocaleString('en-IN')} tCO2e</div>
               </div>
             ))}
         </TooltipInPortal>

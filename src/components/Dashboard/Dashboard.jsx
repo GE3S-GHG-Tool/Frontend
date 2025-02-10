@@ -93,10 +93,10 @@ const Dashboard = () => {
         );
         setCarbonTrackerData(transformedData);
       } else {
-        console.error("Failed to fetch carbon tracker data");
+        setCarbonTrackerData([]);
       }
     } catch (error) {
-      console.error("Error fetching carbon tracker data:", error);
+      setCarbonTrackerData([]);
     }
   };
 

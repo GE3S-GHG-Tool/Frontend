@@ -232,7 +232,7 @@ const RefrigerantEmissionsChart = ({
               <img src={dot} width={3} height={3} alt="dot" />
             </div>
             <span style={{ color: "#717171", fontSize: "0.785rem" }}>
-              &nbsp;{tooltipData.value} tCO2e
+              &nbsp;{parseFloat(tooltipData.value).toLocaleString('en-IN')} tCO2e
             </span>
           </div>
         </TooltipWithBounds>

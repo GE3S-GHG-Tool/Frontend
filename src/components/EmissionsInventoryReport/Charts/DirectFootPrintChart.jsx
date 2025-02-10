@@ -104,6 +104,7 @@ import { scaleOrdinal } from "@visx/scale";
 import { Box, Paper } from "@mui/material";
 import { localPoint } from "@visx/event";
 import dot from "../../../assets/images/dot.svg";
+import { formatIndianNumber } from "../../../util/utils";
 
 const ChartTooltip = ({ data }) => (
   <Paper sx={{ zIndex: 100000, whiteSpace: "nowrap", padding: "5px" }}>
@@ -134,7 +135,7 @@ const ChartTooltip = ({ data }) => (
       <span
         style={{ fontFamily: "Inter", fontSize: "0.785rem", fontWeight: "500" }}
       >
-        {data.value.toFixed(4)} tCO2e
+        {formatIndianNumber(data.value)} tCO2e
       </span>
     </Box>
   </Paper>
