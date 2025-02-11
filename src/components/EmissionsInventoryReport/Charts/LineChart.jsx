@@ -39,6 +39,7 @@ const LineChart = ({ chartData, scopeData }) => {
     gradientStripe: {
       height: "100%",
       float: "left",
+      display: "flex",
     },
     legendContainer: {
       display: "flex",
@@ -74,7 +75,7 @@ const LineChart = ({ chartData, scopeData }) => {
                 key={scopeIndex}
                 sx={{
                   ...styles.gradientStripe,
-                  width: scope?.key ?? 0,
+                  flex: scope?.key,
                   backgroundColor: scope.color,
                 }}
                 onMouseLeave={hideTooltip}

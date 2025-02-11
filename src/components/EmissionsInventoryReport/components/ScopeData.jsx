@@ -8,47 +8,31 @@ import {
 
 const styles = {
   container: {
-    display: "grid",
-    gap: "1rem",
-    gridTemplateColumns: "repeat(4, 1fr)", // 4 columns for the first row
-    gridAutoFlow: "row", // Flow cards into the next row
-    width: "100%",
-    background: "#fbfbfb",
-  },
-  card: {
     display: "flex",
     flexDirection: "column",
     gap: "1rem",
+    width: "100%",
+    background: "#fbfbfb",
+    marginTop: "3rem",
+  },
+  card: {
+    flex: "1",
+    gap: "1rem",
+    display: "flex",
+    flexDirection: "column",
     padding: "1rem",
     borderRadius: "8px",
     background: "white",
+    flexGrow: "1",
   },
-  secondRow: {
-    gridColumn: "span 4", // This ensures the second row takes full width
-    display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)", // 5 cards in the second row
+  containerRow: {
     gap: "1rem",
-  },
-  "@media (max-width: 900px)": {
-    container: {
-      gridTemplateColumns: "repeat(2, 1fr)", // 2 columns per row for smaller screens
-    },
-    secondRow: {
-      gridTemplateColumns: "repeat(2, 1fr)", // 2 cards per row for smaller screens
-    },
-  },
-  "@media (max-width: 600px)": {
-    container: {
-      gridTemplateColumns: "1fr", // 1 column per row for very small screens
-    },
-    secondRow: {
-      gridTemplateColumns: "1fr", // 1 card per row for very small screens
-    },
+    display: "flex",
+    flexDirection: "row",
   },
 };
 
 const ScopeData = ({ title, desc, data, svgs, type }) => {
-
   return (
     <>
       <div
@@ -253,8 +237,6 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 display: "flex",
                 flexDirection: "column",
                 gap: "0.8rem",
-                justifyContent: "space-between",
-                // paddingTop:'1rem',
                 height: "100%",
               }}
             >
@@ -300,8 +282,8 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
         )}
       </div>
       {type === "scope-3" ? (
-        <div style={{ marginTop: "3rem" }}>
-          <div style={styles.container}>
+        <div style={styles.container}>
+          <div style={styles.containerRow}>
             {data.slice(0, 4).map((item, index) => (
               <div key={index} style={styles.card}>
                 <div>
@@ -329,36 +311,35 @@ const ScopeData = ({ title, desc, data, svgs, type }) => {
                 </Typography>
               </div>
             ))}
-
-            <div style={styles.secondRow}>
-              {data.slice(4).map((item, index) => (
-                <div key={index} style={styles.card}>
-                  <div>
-                    {svgs[index + 4]}
-                    <Typography
-                      sx={{
-                        fontFamily: "Inter",
-                        fontSize: "0.8rem",
-                        fontWeight: "600",
-                        wordSpacing: "0px",
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </div>
+          </div>
+          <div style={styles.containerRow}>
+            {data.slice(4).map((item, index) => (
+              <div key={index} style={styles.card}>
+                <div>
+                  {svgs[index + 4]}
                   <Typography
                     sx={{
                       fontFamily: "Inter",
-                      fontSize: "1.6rem",
+                      fontSize: "0.8rem",
                       fontWeight: "600",
                       wordSpacing: "0px",
                     }}
                   >
-                    {formatIndianNumber(item.value)} tCO2e
+                    {item.label}
                   </Typography>
                 </div>
-              ))}
-            </div>
+                <Typography
+                  sx={{
+                    fontFamily: "Inter",
+                    fontSize: "1.6rem",
+                    fontWeight: "600",
+                    wordSpacing: "0px",
+                  }}
+                >
+                  {formatIndianNumber(item.value)} tCO2e
+                </Typography>
+              </div>
+            ))}
           </div>
         </div>
       ) : null}
