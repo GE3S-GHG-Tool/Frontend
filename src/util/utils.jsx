@@ -37,3 +37,10 @@ export const formatIndianNumber = (value) => {
 export const parseStringAndRoundOff = (value) => {
   return Number(parseFloat(value).toFixed(2));
 };
+
+export const oilGasIndustryFlag = {
+  "66e9365472b2d3bcfd433bf7": true,
+  "66e9365472b2d3bcfd433bf8": true,
+  "66e9365472b2d3bcfd433bf9": true,
+  "66e9365472b2d3bcfd433bfa": true,
+}
