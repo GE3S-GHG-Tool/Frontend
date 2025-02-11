@@ -144,7 +144,7 @@ const FuelConsumptionChart = ({
                             <span>{tooltipData.fuel}</span>
                         </div>
                         <img src={dot} width={3} height={3} alt="dot" />
-                        <div>{parseFloat(tooltipData.value).toLocaleString('en-IN')} {tooltipData.unit}</div>
+                        <div>{formatIndianNumber(tooltipData.value)} {tooltipData.unit}</div>
                     </div>
                 </Tooltip>
             )}

@@ -48,6 +48,7 @@ import constant from "../../constant";
 import { FillContentWrapper } from "./Locks/FillContentWrapper";
 import { NoDataAvailableWrapper } from "./Locks/NoDataAvailableWrapper";
 import api from "../../api";
+import { formatIndianNumber, parseStringAndRoundOff } from "../../util/utils";
 
 const Scope1SVGs = [
   <svg
@@ -402,7 +403,7 @@ const TotalEmissionsInventoryReport = () => {
     const transformedData = response?.data?.fuelEmissionsByType.map((item) => {
       return {
         label: item.fuelTypeName,
-        value: item.totalEmissions?.toFixed(4), // example scaling
+        value: item.totalEmissions,
         color: colorPalette[item.fuelTypeName] || "#006D4F",
         key: item.percentage,
       };
@@ -410,8 +411,7 @@ const TotalEmissionsInventoryReport = () => {
     const transformedData2 = response?.data?.fuelEmissionsByType.map((item) => {
       return {
         fuel: item.fuelTypeName,
-        //value: item.totalEmissions?.toFixed(4), // example scaling
-        value: item.quantity?.toFixed(2),
+        value: item.quantity,
         unit: item.unit,
         color: colorPalette[item.fuelTypeName] || "#006D4F",
       };
@@ -419,26 +419,24 @@ const TotalEmissionsInventoryReport = () => {
     const refData = response?.data?.refrigerantEmissionsByType.map((item) => {
       return {
         label: item.refrigerantTypeName,
-        value: item?.totalEmissions?.toFixed(4),
+        value: item?.totalEmissions,
       };
     });
     const refData2 = response?.data?.refrigerantEmissionsByType.map((item) => {
       return {
         label: item.refrigerantTypeName,
-        //value: item?.totalEmissions?.toFixed(4),
-        value: item?.quantity?.toFixed(2),
+        value: item?.quantity,
         color: colorPalette2[item.refrigerantTypeName] || "#006D4F",
       };
     });
     const refData3 = response?.data?.processEmissionsByType.map((item) => {
       return {
         label: item?.processTypeName,
-        value: item?.totalEmissions?.toFixed(4),
+        value: item?.totalEmissions,
         key: item?.percentage,
         color: colorPalette3[item.processTypeName],
       };
     });
-    // console.log("refData3", refData3);
     setProcessEmissionBreakdownData(refData3);
     setFuelConsumptionBreakdown(transformedData2);
     setRefrigerantConsumptionData(refData2);
@@ -447,7 +445,6 @@ const TotalEmissionsInventoryReport = () => {
   };
   const scopeData2 = async (id) => {
     const response = await getScope2Data(id);
-    // console.log("scope2 data:", response?.data);
     setScope2Data([
       {
         label: "Chilled Water Consumption",
@@ -477,7 +474,6 @@ const TotalEmissionsInventoryReport = () => {
   };
   const scopeData3 = async (id) => {
     const response = await getScope3Data(id);
-    // console.log("scope3 data:", response?.data);
     setScope3Data([
       {
         label: "Waste Generated",
@@ -590,18 +586,14 @@ const TotalEmissionsInventoryReport = () => {
       };
     });
 
-    console.log(ecb)
-
     const fuel = response?.data?.fuelRelatedBreakdown.map((item) => {
       return {
         label: item.activity,
-        value: item.emissions.toFixed(4),
+        value: item.emissions,
         color: fuelpallete[item.activity] || "#F26D58",
         key: item.percentage
       };
     });
-
-    console.log(fuel);
 
     setWasteEmissionData(transformedData);
     setECEBreakdownByVehicleTypeData(ecb);
@@ -639,15 +631,15 @@ const TotalEmissionsInventoryReport = () => {
           gradientColors: ['#F26D58', '#FF7863', '#FF8977', '#FF9989', '#FFAC9F', '#FFBBB0', '#FFC8BF', '#FFD3CD', '#FFE6E3']
         }
       };
-      console.log("hello",response.data.emissions);
       const transformedData = Object.keys(response.data.emissions)
       .filter(scope => response.data.emissions[scope].value > 0) 
       .map(scope => ({
         label: `Scope ${scope.slice(-1)}`,
-        value: response.data.emissions[scope].value.toLocaleString(),
-        percentage: parseFloat(response.data.emissions[scope].percentage),
+        value: formatIndianNumber(response.data.emissions[scope].value),
+        percentage: parseStringAndRoundOff(response.data.emissions[scope].percentage),
         baseColor: scopeColors[scope].baseColor,
-        gradientColors: scopeColors[scope].gradientColors
+        gradientColors: scopeColors[scope].gradientColors,
+        index: scope.slice(-1) - 1
       }));
 
       setChartData(transformedData);
@@ -655,14 +647,6 @@ const TotalEmissionsInventoryReport = () => {
       console.error('Error fetching data:', error);
     }
   };
-
-  // useEffect(() => {
-  //   fetchChartData(id);
-  //   scopeData1(id);
-  //   fetchreportData(id);
-  //   scopeData2(id);
-  //   scopeData3(id);
-  // }, [id]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -872,7 +856,6 @@ const TotalEmissionsInventoryReport = () => {
             }}
           >
             <div
-              // className="sustainability-heading"
               style={{
                 padding: "0 2.4rem",
                 display: "flex",
@@ -883,7 +866,6 @@ const TotalEmissionsInventoryReport = () => {
               {
                 user?.organization?.logo ? <div>
                   <img
-                    //src={`${constant.IMG_URL}/${user?.organization?.logo}` || dummy_company}
                     src={
                       user?.organization?.logo && user.organization.logo !== "null"
                         ? `${constant.IMG_URL}/${user.organization.logo}`
@@ -951,7 +933,7 @@ const TotalEmissionsInventoryReport = () => {
                   Total GHG Emissions Distribution
                 </Typography>
               </div>
-              <LineChart chartData={chartData} />
+              <LineChart chartData={chartData} scopeData={[scope1Data, scope2Data, scope3Data]} />
             </div>
           </div>
 

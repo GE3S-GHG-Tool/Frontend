@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid2, Typography } from "@mui/material";
+import { formatIndianNumber } from "../../../../util/utils";
 
 const IntensityCard = ({ title, value, unit, bgColor }) => (
   <div
@@ -23,7 +24,7 @@ const IntensityCard = ({ title, value, unit, bgColor }) => (
         marginTop: "0.4rem",
       }}
     >
-      {value} {unit}
+      {formatIndianNumber(value)} {unit}
     </Typography>
   </div>
 );
@@ -50,7 +51,7 @@ const ScopeIntensity = ({ scopeData, scopeName, bgColor }) => (
       <Grid2 item sx={{ width: "24.2%" }}>
         <IntensityCard
           title="Intensity by Floor Area"
-          value={scopeData?.emissions_per_floor_area?.toFixed(4)}
+          value={scopeData?.emissions_per_floor_area}
           unit="tCO2e/m2"
           bgColor={bgColor}
         />
@@ -58,7 +59,7 @@ const ScopeIntensity = ({ scopeData, scopeName, bgColor }) => (
       <Grid2 item sx={{ width: "24.2%" }}>
         <IntensityCard
           title="Intensity by Revenue"
-          value={scopeData?.emissions_per_revenue?.toFixed(4)}
+          value={scopeData?.emissions_per_revenue}
           unit="tCO2e/$"
           bgColor={bgColor}
         />
@@ -66,7 +67,7 @@ const ScopeIntensity = ({ scopeData, scopeName, bgColor }) => (
       <Grid2 item sx={{ width: "24.2%" }}>
         <IntensityCard
           title="Intensity by Total Employees"
-          value={scopeData?.emissions_per_employee?.toFixed(2)}
+          value={scopeData?.emissions_per_employee}
           unit="tCO2e/employee"
           bgColor={bgColor}
         />
@@ -74,7 +75,7 @@ const ScopeIntensity = ({ scopeData, scopeName, bgColor }) => (
       <Grid2 item sx={{ width: "24.2%" }}>
         <IntensityCard
           title="Intensity by Total Production"
-          value={scopeData?.emissions_per_production?.toFixed(4)}
+          value={scopeData?.emissions_per_production}
           unit="tCO2e/tonne"
           bgColor={bgColor}
         />
