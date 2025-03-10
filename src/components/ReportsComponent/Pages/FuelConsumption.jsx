@@ -68,7 +68,6 @@ function FuelConsumption() {
 
   const fetchData = async () => {
     const response = await getConsumtionType();
-    // console.log("response list:", response.data);
     setTypeMenu(response?.data);
   };
 
@@ -78,7 +77,6 @@ function FuelConsumption() {
   const handleDelete = (index) => {
     const updatedFields = fields.filter((_, i) => i !== index);
 
-    // Add a new empty row if there are no rows left
     if (updatedFields.length === 0) {
       updatedFields.push({ fuelType: "", quantity: "", unit: "" });
     }
@@ -86,25 +84,10 @@ function FuelConsumption() {
     setFields(updatedFields);
   };
 
-  // const handleDotClick = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  // };
-
-  // const handleEdit = () => {
-  //   console.log("Edit clicked");
-  //   setIsDropdownOpen(false);
-  // };
-
-  // const handleClearAll = () => {
-  //   setFields([{ fuelType: "", quantity: "", unit: "" }]);
-  //   setIsDropdownOpen(false);
-  // };
-
   return (
     <div
       style={{
         width: "90%",
-        // border: "1px solid #D9D9D9",
         margin: "0 auto",
         padding: "25px 45px",
         backgroundColor: "#fff",

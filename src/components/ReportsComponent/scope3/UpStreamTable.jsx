@@ -61,7 +61,7 @@ function UpStreamTable({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.assetType}
+                {item?.assetType || item?.asset_type}
               </td>
               <td
                 style={{
@@ -71,7 +71,7 @@ function UpStreamTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.sourceOfEnergy}
+                {item.sourceOfEnergy || item?.source_energy}
               </td>
               <td
                 style={{
@@ -93,7 +93,7 @@ function UpStreamTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.unit}
+                {item.unit || 'Gallons'}
               </td>
             </tr>
           ))}

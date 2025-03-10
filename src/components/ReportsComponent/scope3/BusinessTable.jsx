@@ -58,7 +58,7 @@ function BusinessTable({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.travelClass || "-"}
+                {item?.travelClass || item?.travel_class || "-"}
               </td>
               <td
                 style={{
@@ -68,7 +68,7 @@ function BusinessTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item?.origin?.nameAirport || "-"}
+                {item?.origin?.nameAirport || item?.airports[0]?.nameAirport || "-"}
               </td>
               <td
                 style={{
@@ -78,19 +78,7 @@ function BusinessTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item?.destination?.nameAirport || "-"}
-              </td>
-              <td
-                style={{
-                  textAlign: "left",
-                  textOverflow: "ellipsis",
-                  maxWidth: "100px",
-                  // fontWeight: "bold",
-                  padding: "12px",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {item?.connection == "0" ? "Direct" : "Connection" || "-"}{" "}
+                {item?.destination?.nameAirport || item?.airports[1]?.nameAirport || "-"}
               </td>
               <td
                 style={{
@@ -102,7 +90,19 @@ function BusinessTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.numberOfTrips || 0}
+                {(item?.connection == "0" || item?.connections === 0 ) ? "Direct" : "Connection" || "-"}{" "}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  textOverflow: "ellipsis",
+                  maxWidth: "100px",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.numberOfTrips || item?.num_trips || 0}
               </td>
             </tr>
           ))}

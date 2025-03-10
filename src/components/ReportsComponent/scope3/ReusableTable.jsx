@@ -59,7 +59,7 @@ function TablesData({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.assetType?.asset_type_name}
+                {item?.assetType?.asset_type_name || item?.asset_type}
               </td>
               <td
                 style={{
@@ -82,7 +82,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.expenses}
+                {item.expenses || item?.expense_value}
               </td>
               {/* <td
                 style={{

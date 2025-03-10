@@ -707,7 +707,6 @@ const TotalEmissionsInventoryReport = () => {
     <div
       style={{
         backgroundColor: "#FBFBFB",
-        // backgroundColor: "grey"
       }}
     >
       <div
@@ -716,6 +715,7 @@ const TotalEmissionsInventoryReport = () => {
           padding: "1rem 4rem",
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           background: "#fff",
         }}
       >
@@ -725,6 +725,7 @@ const TotalEmissionsInventoryReport = () => {
             fontStyle: "Inter",
             fontSize: "1.4rem",
             wordSpacing: "0px",
+            lineHeight: "0px",
           }}
         >
           GHG Emissions Inventory Report
@@ -738,15 +739,37 @@ const TotalEmissionsInventoryReport = () => {
           }}
         >
           <Button
+            onClick={() => {
+              navigate(`/editreport/${id}`);
+            }}
+            sx={{
+              borderRadius: "32px",
+              border: "1px solid #28814D",
+              padding: "16px 32px",
+              height: "48px",
+              fontWeight: "500",
+              fontSize: "14px",
+              textTransform: "capitalize",
+              color: "#28814D",
+              "&:hover": {
+                background: "rgba(177, 233, 216, 0.30)",
+              },
+            }}
+          >
+            Edit
+          </Button>
+          <Button
             onClick={() => navigate("/")}
             variant="contained"
             sx={{
-              backgroundColor: "#369D9C",
+              height: "48px",
+              fontSize: "14px",
+              borderRadius: "32px",
+              padding: "16px 32px",
               textTransform: "none",
-              borderRadius: "5rem",
-              fontSize: "0.7rem",
-              padding: "0.6rem 1.6rem",
+              backgroundColor: "#369D9C",
               boxShadow: "none",
+              fontWeight: "500",
               background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
               "&:hover": {
                 background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
@@ -921,7 +944,7 @@ const TotalEmissionsInventoryReport = () => {
                 </h2>
                 <h2>I</h2>{" "}
                 <h2>
-                  {reportData?.country} For {reportData?.periodicity}{" "}
+                  {reportData?.country} For {reportData?.periodicity === "yearly" ? "year" : reportData?.periodicity}{" "}
                   {reportData?.year}
                 </h2>
               </div>

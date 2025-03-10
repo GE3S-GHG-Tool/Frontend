@@ -17,9 +17,10 @@ import { Box, Button } from "@mui/material";
 import { saveScope3Report } from "../../../api/createReport";
 import { useEffect, useState } from "react";
 import { useScope3 } from "../../../context/Scope3Context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { oilGasIndustryFlag, validateScopeReport } from "../../../util/utils";
 import { useAuth } from "../../../context/AuthContext";
+import { getscope3draft } from "../../../api/drafts";
 
 const wasteHeadings = [
   "Waste Type",
@@ -58,8 +59,14 @@ const leasedDataHeadings = ["Asset Type", "Source Of energy", "Value", "Unit"];
 
 const Scope3 = ({ setActiveTab }) => {
   const reportid = localStorage.getItem("reportId");
+
+  const { id } = useParams();
+
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const [scope3data, setScope3data] = useState()
+
   const {
     capitalGoods,
     fuelData,
@@ -111,18 +118,18 @@ const Scope3 = ({ setActiveTab }) => {
 
     const convertedDownstreamArray =
       Object.keys(downStreamData).length > 0 &&
-      (downStreamData.scope1_scope2_emissions ||
-        downStreamData.physical_area ||
-        downStreamData.total_physical_area)
+        (downStreamData.scope1_scope2_emissions ||
+          downStreamData.physical_area ||
+          downStreamData.total_physical_area)
         ? [
-            {
-              scope1_scope2_emissions:
-                parseInt(downStreamData.scope1_scope2_emissions) || 0,
-              physical_area: parseInt(downStreamData.physical_area) || 0,
-              total_physical_area:
-                parseInt(downStreamData.total_physical_area) || 0,
-            },
-          ]
+          {
+            scope1_scope2_emissions:
+              parseInt(downStreamData.scope1_scope2_emissions) || 0,
+            physical_area: parseInt(downStreamData.physical_area) || 0,
+            total_physical_area:
+              parseInt(downStreamData.total_physical_area) || 0,
+          },
+        ]
         : [];
 
     const convertedInvestmentsArray = investements
@@ -243,6 +250,22 @@ const Scope3 = ({ setActiveTab }) => {
     }
   };
 
+
+
+  const fetchEditData = async (id) => {
+    const response = await getscope3draft(id);
+    // console.log("scope2", response);
+    if (response.status === 200) {
+      setScope3data(response?.data)
+    }
+  };
+
+  useEffect(() => {
+    if (id) fetchEditData(id);
+  }, [id]);
+
+
+
   return (
     <div
       style={{
@@ -261,6 +284,7 @@ const Scope3 = ({ setActiveTab }) => {
         icon={wasteGenerated}
         headings={wasteHeadings}
         DialogContentComponent={WasteGeneratedPopup}
+        apiData={scope3data}
       />
 
       <ReusableTableSection
@@ -271,9 +295,13 @@ const Scope3 = ({ setActiveTab }) => {
         icon={plane}
         headings={businessHeadings}
         DialogContentComponent={BusinessTravelPopup}
+        apiData={scope3data}
+
       />
 
-      <PurchasedGoods />
+      <PurchasedGoods
+        apiData={scope3data}
+      />
 
       <ReusableTableSection
         title={"Capital Goods"}
@@ -283,11 +311,17 @@ const Scope3 = ({ setActiveTab }) => {
         icon={goodicon}
         headings={capitalGoodsHeadings}
         DialogContentComponent={CapitalGoodsPopup}
+        apiData={scope3data}
+
       />
 
-      <Investments />
+      <Investments
+        apiData={scope3data}
+      />
 
-      <EmployeeCommuting />
+      <EmployeeCommuting
+        apiData={scope3data}
+      />
 
       {oilGasIndustryFlag[user?.organization?.industry?.id] ? (
         <ReusableTableSection
@@ -298,6 +332,8 @@ const Scope3 = ({ setActiveTab }) => {
           icon={fuelRelated}
           headings={fuelRelatedHeadings}
           DialogContentComponent={FuelRelatedPopup}
+          apiData={scope3data}
+
         />
       ) : (
         <></>
@@ -311,9 +347,13 @@ const Scope3 = ({ setActiveTab }) => {
         icon={upstream}
         headings={leasedDataHeadings}
         DialogContentComponent={UpstreamLeasedPopup}
+        apiData={scope3data}
+
       />
 
-      <DownstreamAssets />
+      <DownstreamAssets
+        apiData= {scope3data}
+        />
 
       <Box
         sx={{
