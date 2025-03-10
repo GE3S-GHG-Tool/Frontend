@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { saveScope1Report } from "../../../api/createReport";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import { validateScopeReport } from "../../../util/utils";
+import { oilGasIndustryFlag, validateScopeReport } from "../../../util/utils";
 
 const Scope1 = ({ setActiveTab }) => {
   const { user } = useAuth();
@@ -102,8 +102,11 @@ const Scope1 = ({ setActiveTab }) => {
     >
       <FuelConsumption />
       <RefrigerantData />
-      <ProcessEmission />
-
+      {oilGasIndustryFlag[user?.organization?.industry?.id] ? (
+        <ProcessEmission />
+      ) : (
+        <></>
+      )}
       <Box
         sx={{
           padding: "25px 5rem 0px 6rem",

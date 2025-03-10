@@ -18,7 +18,8 @@ import { saveScope3Report } from "../../../api/createReport";
 import { useEffect, useState } from "react";
 import { useScope3 } from "../../../context/Scope3Context";
 import { useNavigate } from "react-router-dom";
-import { validateScopeReport } from "../../../util/utils";
+import { oilGasIndustryFlag, validateScopeReport } from "../../../util/utils";
+import { useAuth } from "../../../context/AuthContext";
 
 const wasteHeadings = [
   "Waste Type",
@@ -57,6 +58,7 @@ const leasedDataHeadings = ["Asset Type", "Source Of energy", "Value", "Unit"];
 
 const Scope3 = ({ setActiveTab }) => {
   const reportid = localStorage.getItem("reportId");
+  const { user } = useAuth();
   const navigate = useNavigate();
   const {
     capitalGoods,
@@ -287,15 +289,19 @@ const Scope3 = ({ setActiveTab }) => {
 
       <EmployeeCommuting />
 
-      <ReusableTableSection
-        title={"Fuel Related Activities"}
-        description={
-          "Purchased Goods is a key performance indicator that measures the value of goods acquired from external suppliers by an organization."
-        }
-        icon={fuelRelated}
-        headings={fuelRelatedHeadings}
-        DialogContentComponent={FuelRelatedPopup}
-      />
+      {oilGasIndustryFlag[user?.organization?.industry?.id] ? (
+        <ReusableTableSection
+          title={"Fuel Related Activities"}
+          description={
+            "Purchased Goods is a key performance indicator that measures the value of goods acquired from external suppliers by an organization."
+          }
+          icon={fuelRelated}
+          headings={fuelRelatedHeadings}
+          DialogContentComponent={FuelRelatedPopup}
+        />
+      ) : (
+        <></>
+      )}
 
       <ReusableTableSection
         title={"Upstream Leased Assets"}

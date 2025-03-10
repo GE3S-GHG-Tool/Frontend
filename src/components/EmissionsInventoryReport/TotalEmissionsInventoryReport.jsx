@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Box, Button, Typography, Paper
-} from "@mui/material";
+import { Box, Button, Typography, Paper } from "@mui/material";
 import ge3s from "../../assets/images/ge3s.png";
 import logo from "../../assets/images/starbucksLogo.png";
 import backgroundImage from "../../assets/images/sustainabilityHeading.png";
@@ -27,28 +25,32 @@ import EmissionsByWasteChart from "./Charts/EmissionsByWasteChart";
 import { MoreVertOutlined } from "@mui/icons-material";
 import DownloadReportButton from "./ReportGenerator/DownloadReportButton";
 import { PremiumContentWrapper } from "./Locks/PremiumContentWrapper";
-import scope1BgDummy from "../../assets/graphimgs/scope1bgimage.png"
-import scope2BgDummy from "../../assets/graphimgs/scope2bgimage.png"
-import scope3BgDummy from "../../assets/graphimgs/scope3bgimage.png"
-import FuelTypeEmissions from "../../assets/graphimgs/fueltypeemissionsbreakdown.png"
-import RefrigerantEmissionsByType from "../../assets/graphimgs/refrigerantemissionsbytype.png"
-import ProcessEmissionBreakdown from "../../assets/graphimgs/processemissionbreakdown.png"
-import FuelConsumptionBreakdownDummy from "../../assets/graphimgs/fuelconsumptionbreakdown.png"
-import RefrigerantConsumptionBreakdownDummy from "../../assets/graphimgs/refrigerantconsumptionbreakdown.png"
-import EmissionsByWasteCategoryDummy from "../../assets/graphimgs/EmissionsByWasteCategoryDummy.png"
-import BusinessTravelEmissionsBreakdownDummy from "../../assets/graphimgs/BusinessTravelEmissionsBreakdownDummy.png"
-import WasteDisposalMethodsByCategoryDummy from "../../assets/graphimgs/WasteDisposalMethodsByCategoryDummy.png"
-import EmployeeCommutingEmissionsBreakdownDummy from "../../assets/graphimgs/EmployeeCommutingEmissionsBreakdownDummy.png"
-import FuelRelatedActivitiesDummy from "../../assets/graphimgs/FuelRelatedActivitiesDummy.png"
-import EmissionFromUpstreamLeasedAssets from "../../assets/graphimgs/EmissionFromUpstreamLeasedAssets.png"
-import dummy_company from "../../assets/graphimgs/dummy_company.png"
+import scope1BgDummy from "../../assets/graphimgs/scope1bgimage.png";
+import scope2BgDummy from "../../assets/graphimgs/scope2bgimage.png";
+import scope3BgDummy from "../../assets/graphimgs/scope3bgimage.png";
+import FuelTypeEmissions from "../../assets/graphimgs/fueltypeemissionsbreakdown.png";
+import RefrigerantEmissionsByType from "../../assets/graphimgs/refrigerantemissionsbytype.png";
+import ProcessEmissionBreakdown from "../../assets/graphimgs/processemissionbreakdown.png";
+import FuelConsumptionBreakdownDummy from "../../assets/graphimgs/fuelconsumptionbreakdown.png";
+import RefrigerantConsumptionBreakdownDummy from "../../assets/graphimgs/refrigerantconsumptionbreakdown.png";
+import EmissionsByWasteCategoryDummy from "../../assets/graphimgs/EmissionsByWasteCategoryDummy.png";
+import BusinessTravelEmissionsBreakdownDummy from "../../assets/graphimgs/BusinessTravelEmissionsBreakdownDummy.png";
+import WasteDisposalMethodsByCategoryDummy from "../../assets/graphimgs/WasteDisposalMethodsByCategoryDummy.png";
+import EmployeeCommutingEmissionsBreakdownDummy from "../../assets/graphimgs/EmployeeCommutingEmissionsBreakdownDummy.png";
+import FuelRelatedActivitiesDummy from "../../assets/graphimgs/FuelRelatedActivitiesDummy.png";
+import EmissionFromUpstreamLeasedAssets from "../../assets/graphimgs/EmissionFromUpstreamLeasedAssets.png";
+import dummy_company from "../../assets/graphimgs/dummy_company.png";
 import { useAuth } from "../../context/AuthContext";
 import { GraphWrapper } from "./GraphsOverlay/GraphWrapper";
 import constant from "../../constant";
 import { FillContentWrapper } from "./Locks/FillContentWrapper";
 import { NoDataAvailableWrapper } from "./Locks/NoDataAvailableWrapper";
 import api from "../../api";
-import { formatIndianNumber, parseStringAndRoundOff } from "../../util/utils";
+import {
+  formatIndianNumber,
+  oilGasIndustryFlag,
+  parseStringAndRoundOff,
+} from "../../util/utils";
 
 const Scope1SVGs = [
   <svg
@@ -241,8 +243,17 @@ const Scope3SVGs = [
       fill="#F26D58"
     />
   </svg>,
-  <svg width="23" height="23" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 8.57004C8.82191 8.57004 7.81286 8.15004 6.97286 7.31004C6.13286 6.47004 5.71333 5.46147 5.71429 4.28433C5.71524 3.10718 6.13476 2.09766 6.97286 1.25575C7.81095 0.413849 8.82 -0.00472173 10 4.01736e-05C11.18 0.00480208 12.189 0.423849 13.0271 1.25718C13.8652 2.09052 14.2848 3.10004 14.2857 4.28575C14.2867 5.47147 13.8671 6.48004 13.0271 7.31147C12.1871 8.1429 11.1781 8.56147 10 8.57004ZM0 18.9V16.5486C0 15.9591 0.171429 15.4077 0.514286 14.8943C0.858095 14.38 1.32 13.981 1.9 13.6972C3.24857 13.0505 4.59809 12.5658 5.94857 12.2429C7.29809 11.9191 8.64857 11.7572 10 11.7572C11.3514 11.7572 12.7024 11.9191 14.0529 12.2429C15.4033 12.5667 16.7519 13.0515 18.0986 13.6972C18.6795 13.981 19.1414 14.38 19.4843 14.8943C19.8281 15.4077 20 15.9591 20 16.5486V18.9H0ZM1.42857 17.4715H18.5714V16.5486C18.5714 16.2324 18.469 15.9348 18.2643 15.6558C18.0605 15.3777 17.7781 15.1424 17.4171 14.95C16.2419 14.3805 15.0295 13.9443 13.78 13.6415C12.5305 13.3386 11.2705 13.1867 10 13.1858C8.72952 13.1848 7.46952 13.3362 6.22 13.64C4.97048 13.9438 3.7581 14.38 2.58286 14.9486C2.22095 15.141 1.93857 15.3762 1.73571 15.6543C1.53095 15.9334 1.42857 16.2315 1.42857 16.5486V17.4715ZM10 7.1429C10.7857 7.1429 11.4586 6.8629 12.0186 6.3029C12.5786 5.7429 12.8581 5.06956 12.8571 4.2829C12.8562 3.49623 12.5767 2.82385 12.0186 2.26575C11.4605 1.70766 10.7876 1.42766 10 1.42575C9.21238 1.42385 8.54 1.70385 7.98286 2.26575C7.42571 2.82766 7.14571 3.50004 7.14286 4.2829C7.14 5.06575 7.42 5.73861 7.98286 6.30147C8.54572 6.86433 9.2181 7.14385 10 7.14004" fill="#F26D58" />
+  <svg
+    width="23"
+    height="23"
+    viewBox="0 0 20 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 8.57004C8.82191 8.57004 7.81286 8.15004 6.97286 7.31004C6.13286 6.47004 5.71333 5.46147 5.71429 4.28433C5.71524 3.10718 6.13476 2.09766 6.97286 1.25575C7.81095 0.413849 8.82 -0.00472173 10 4.01736e-05C11.18 0.00480208 12.189 0.423849 13.0271 1.25718C13.8652 2.09052 14.2848 3.10004 14.2857 4.28575C14.2867 5.47147 13.8671 6.48004 13.0271 7.31147C12.1871 8.1429 11.1781 8.56147 10 8.57004ZM0 18.9V16.5486C0 15.9591 0.171429 15.4077 0.514286 14.8943C0.858095 14.38 1.32 13.981 1.9 13.6972C3.24857 13.0505 4.59809 12.5658 5.94857 12.2429C7.29809 11.9191 8.64857 11.7572 10 11.7572C11.3514 11.7572 12.7024 11.9191 14.0529 12.2429C15.4033 12.5667 16.7519 13.0515 18.0986 13.6972C18.6795 13.981 19.1414 14.38 19.4843 14.8943C19.8281 15.4077 20 15.9591 20 16.5486V18.9H0ZM1.42857 17.4715H18.5714V16.5486C18.5714 16.2324 18.469 15.9348 18.2643 15.6558C18.0605 15.3777 17.7781 15.1424 17.4171 14.95C16.2419 14.3805 15.0295 13.9443 13.78 13.6415C12.5305 13.3386 11.2705 13.1867 10 13.1858C8.72952 13.1848 7.46952 13.3362 6.22 13.64C4.97048 13.9438 3.7581 14.38 2.58286 14.9486C2.22095 15.141 1.93857 15.3762 1.73571 15.6543C1.53095 15.9334 1.42857 16.2315 1.42857 16.5486V17.4715ZM10 7.1429C10.7857 7.1429 11.4586 6.8629 12.0186 6.3029C12.5786 5.7429 12.8581 5.06956 12.8571 4.2829C12.8562 3.49623 12.5767 2.82385 12.0186 2.26575C11.4605 1.70766 10.7876 1.42766 10 1.42575C9.21238 1.42385 8.54 1.70385 7.98286 2.26575C7.42571 2.82766 7.14571 3.50004 7.14286 4.2829C7.14 5.06575 7.42 5.73861 7.98286 6.30147C8.54572 6.86433 9.2181 7.14385 10 7.14004"
+      fill="#F26D58"
+    />
   </svg>,
   <svg key={7} width="23" height="23" viewBox="0 0 23 23" fill="none">
     <path
@@ -293,20 +304,20 @@ const colorPalette2 = {
 };
 
 const colorPalette3 = {
-  'Emission From Waste Gas Disposal': " #028A60",
-  'Fugitive Emissions': "#02B880",
-  'Emission from Process and Vented Emission': "#A9DECE",
+  "Emission From Waste Gas Disposal": " #028A60",
+  "Fugitive Emissions": "#02B880",
+  "Emission from Process and Vented Emission": "#A9DECE",
 };
 
 const businesspallete = {
-  'First Class': "#F26D58",
-  'Business Class': "#FF8977",
-  'Economy Class': "#FF9989",
+  "First Class": "#F26D58",
+  "Business Class": "#FF8977",
+  "Economy Class": "#FF9989",
 };
 
 const ecbpallete = {
   Car: "#F26D58",
-  'Motor Cycle': "#FF8977",
+  "Motor Cycle": "#FF8977",
   Bus: "#FFAC9F",
   Train: "#FF9989",
 };
@@ -335,7 +346,8 @@ const disposlaPalette = {
 const fuelpallete = {
   "Upstream emissions of fuels purchased for own use": "#F26D58",
   "Upstream emissions of purchased electricity for own use": "#FF8977",
-  "Transmission & distribution (T&D) losses of purchased electricity for own use": "#FF9989",
+  "Transmission & distribution (T&D) losses of purchased electricity for own use":
+    "#FF9989",
 };
 
 const TotalEmissionsInventoryReport = () => {
@@ -379,7 +391,6 @@ const TotalEmissionsInventoryReport = () => {
 
   const scopeData1 = async (id) => {
     const response = await getScope1Data(id);
-    // console.log("scope1 data:", response?.data);
     setScope1Data([
       {
         label: "Fuel Consumption",
@@ -393,12 +404,16 @@ const TotalEmissionsInventoryReport = () => {
         color: "#02B880",
         key: response?.data?.totalRefrigerantEmissionsPercentage,
       },
-      {
-        label: "Process Emission",
-        value: response?.data?.totalProcessEmissions,
-        color: "#B1E9D8",
-        key: response?.data?.totalProcessEmissionsPercentage,
-      },
+      ...(oilGasIndustryFlag[user?.organization?.industry?.id]
+        ? [
+            {
+              label: "Process Emission",
+              value: response?.data?.totalProcessEmissions,
+              color: "#B1E9D8",
+              key: response?.data?.totalProcessEmissionsPercentage,
+            },
+          ]
+        : []),
     ]);
     const transformedData = response?.data?.fuelEmissionsByType.map((item) => {
       return {
@@ -511,12 +526,16 @@ const TotalEmissionsInventoryReport = () => {
         color: "#FFC8BF",
         key: response.data.totalEmployeeCommutingEmissionsPercentage,
       },
-      {
-        label: "Fuel Related Activities",
-        value: response.data.totalFuelRelatedEmissions,
-        color: "#FFD3CD",
-        key: response.data.totalFuelRelatedEmissionsPercentage,
-      },
+      ...(oilGasIndustryFlag[user?.organization?.industry?.id]
+        ? [
+            {
+              label: "Fuel Related Activities",
+              value: response.data.totalFuelRelatedEmissions,
+              color: "#FFD3CD",
+              key: response.data.totalFuelRelatedEmissionsPercentage,
+            },
+          ]
+        : []),
       {
         label: "Upstream Leashed Assets",
         value: response.data.totalUpstreamLeasedAssetsEmissions,
@@ -531,7 +550,6 @@ const TotalEmissionsInventoryReport = () => {
       },
     ]);
 
-    console.log(response?.data?.wasteBreakdown)
     const transformedData = Object.entries(
       response?.data?.wasteBreakdown?.categories
     ).map(([category, emissions]) => {
@@ -541,16 +559,14 @@ const TotalEmissionsInventoryReport = () => {
         color: wastecolorPalette[category] || "#FFE6E3", // Use predefined colors or fallback color
       };
     });
-    console.log(transformedData);
     const businessData = response?.data?.businessTravelBreakdown.map((item) => {
       return {
         label: item.mode,
         value: item.emissions,
         color: businesspallete[item.mode] || "#F26D58",
-        key: item.percentage
+        key: item.percentage,
       };
     });
-    console.log(businessData);
 
     const updata = Object.entries(
       response?.data?.upstreamLeasedAssetsBreakdown.energySources
@@ -566,23 +582,23 @@ const TotalEmissionsInventoryReport = () => {
       };
     });
 
-    const disposalmethod = response?.data?.wasteBreakdown?.disposalMethods.map((item) => {
-      return {
-        label: item.disposalMethod,
-        value: item.emissions,
-        key: item.percentage,
-        color: disposlaPalette[item.disposalMethod] || "#FFE6E3",
-      };
-    });
-
-    console.log(disposalmethod)
+    const disposalmethod = response?.data?.wasteBreakdown?.disposalMethods.map(
+      (item) => {
+        return {
+          label: item.disposalMethod,
+          value: item.emissions,
+          key: item.percentage,
+          color: disposlaPalette[item.disposalMethod] || "#FFE6E3",
+        };
+      }
+    );
 
     const ecb = response?.data?.employeeCommutingBreakdown.map((item) => {
       return {
         label: item.vehicleType,
         value: item.emissions,
         color: ecbpallete[item.vehicleType] || "#F26D58",
-        key: item.percentage
+        key: item.percentage,
       };
     });
 
@@ -591,7 +607,7 @@ const TotalEmissionsInventoryReport = () => {
         label: item.activity,
         value: item.emissions,
         color: fuelpallete[item.activity] || "#F26D58",
-        key: item.percentage
+        key: item.percentage,
       };
     });
 
@@ -614,37 +630,49 @@ const TotalEmissionsInventoryReport = () => {
 
   const fetchChartData = async () => {
     try {
-      const response = await api.post('/report/fetch_total_emissions', {
-        reportId: id
+      const response = await api.post("/report/fetch_total_emissions", {
+        reportId: id,
       });
       const scopeColors = {
         scope1: {
-          baseColor: '#01533A',
-          gradientColors: ['#01533A', '#028A60', '#02A673']
+          baseColor: "#01533A",
+          gradientColors: ["#01533A", "#028A60", "#02A673"],
         },
         scope2: {
-          baseColor: '#087A91',
-          gradientColors: ['#087A91', '#098DA7', '#0CA1BF', '#10BBDD']
+          baseColor: "#087A91",
+          gradientColors: ["#087A91", "#098DA7", "#0CA1BF", "#10BBDD"],
         },
         scope3: {
-          baseColor: '#F26D58',
-          gradientColors: ['#F26D58', '#FF7863', '#FF8977', '#FF9989', '#FFAC9F', '#FFBBB0', '#FFC8BF', '#FFD3CD', '#FFE6E3']
-        }
+          baseColor: "#F26D58",
+          gradientColors: [
+            "#F26D58",
+            "#FF7863",
+            "#FF8977",
+            "#FF9989",
+            "#FFAC9F",
+            "#FFBBB0",
+            "#FFC8BF",
+            "#FFD3CD",
+            "#FFE6E3",
+          ],
+        },
       };
       const transformedData = Object.keys(response.data.emissions)
-      .filter(scope => response.data.emissions[scope].value > 0) 
-      .map(scope => ({
-        label: `Scope ${scope.slice(-1)}`,
-        value: formatIndianNumber(response.data.emissions[scope].value),
-        percentage: parseStringAndRoundOff(response.data.emissions[scope].percentage),
-        baseColor: scopeColors[scope].baseColor,
-        gradientColors: scopeColors[scope].gradientColors,
-        index: scope.slice(-1) - 1
-      }));
+        .filter((scope) => response.data.emissions[scope].value > 0)
+        .map((scope) => ({
+          label: `Scope ${scope.slice(-1)}`,
+          value: formatIndianNumber(response.data.emissions[scope].value),
+          percentage: parseStringAndRoundOff(
+            response.data.emissions[scope].percentage
+          ),
+          baseColor: scopeColors[scope].baseColor,
+          gradientColors: scopeColors[scope].gradientColors,
+          index: scope.slice(-1) - 1,
+        }));
 
       setChartData(transformedData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -656,12 +684,12 @@ const TotalEmissionsInventoryReport = () => {
         scopeData2(id),
         scopeData3(id),
       ]);
-      fetchChartData(id); 
+      fetchChartData(id);
     };
-  
+
     fetchData();
   }, [id]);
-  
+
   useEffect(() => {
     fetchreportData(id);
     fetchChartData(id);
@@ -675,12 +703,10 @@ const TotalEmissionsInventoryReport = () => {
     window.scrollTo(0, 0);
   }, []);
 
-
   return (
     <div
       style={{
         backgroundColor: "#FBFBFB",
-        // backgroundColor: "grey"
       }}
     >
       <div
@@ -689,6 +715,7 @@ const TotalEmissionsInventoryReport = () => {
           padding: "1rem 4rem",
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           background: "#fff",
         }}
       >
@@ -698,6 +725,7 @@ const TotalEmissionsInventoryReport = () => {
             fontStyle: "Inter",
             fontSize: "1.4rem",
             wordSpacing: "0px",
+            lineHeight: "0px",
           }}
         >
           GHG Emissions Inventory Report
@@ -707,19 +735,41 @@ const TotalEmissionsInventoryReport = () => {
             display: "flex",
             alignItems: "center",
             gap: "1.2rem",
-            position: "relative"
+            position: "relative",
           }}
         >
+          <Button
+            onClick={() => {
+              navigate(`/editreport/${id}`);
+            }}
+            sx={{
+              borderRadius: "32px",
+              border: "1px solid #28814D",
+              padding: "16px 32px",
+              height: "48px",
+              fontWeight: "500",
+              fontSize: "14px",
+              textTransform: "capitalize",
+              color: "#28814D",
+              "&:hover": {
+                background: "rgba(177, 233, 216, 0.30)",
+              },
+            }}
+          >
+            Edit
+          </Button>
           <Button
             onClick={() => navigate("/")}
             variant="contained"
             sx={{
-              backgroundColor: "#369D9C",
+              height: "48px",
+              fontSize: "14px",
+              borderRadius: "32px",
+              padding: "16px 32px",
               textTransform: "none",
-              borderRadius: "5rem",
-              fontSize: "0.7rem",
-              padding: "0.6rem 1.6rem",
+              backgroundColor: "#369D9C",
               boxShadow: "none",
+              fontWeight: "500",
               background: "linear-gradient(102deg, #369D9C 0%, #28814D 100%)",
               "&:hover": {
                 background: "linear-gradient(102deg, #369D9C 0%, #0F4124 100%)",
@@ -731,9 +781,9 @@ const TotalEmissionsInventoryReport = () => {
           </Button>
           <span
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer'
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
             }}
             onClick={toggleDropdown}
           >
@@ -863,11 +913,12 @@ const TotalEmissionsInventoryReport = () => {
                 gap: "1rem",
               }}
             >
-              {
-                user?.organization?.logo ? <div>
+              {user?.organization?.logo ? (
+                <div>
                   <img
                     src={
-                      user?.organization?.logo && user.organization.logo !== "null"
+                      user?.organization?.logo &&
+                      user.organization.logo !== "null"
                         ? `${constant.IMG_URL}/${user.organization.logo}`
                         : dummy_company
                     }
@@ -879,15 +930,22 @@ const TotalEmissionsInventoryReport = () => {
                       borderRadius: "100%",
                     }}
                   />
-                </div> : ''
-              }
+                </div>
+              ) : (
+                ""
+              )}
 
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                <h2> <b> {reportData?.name} </b> </h2>
+              <div
+                style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <h2>
+                  {" "}
+                  <b> {reportData?.name} </b>{" "}
+                </h2>
                 <h2>I</h2>{" "}
                 <h2>
-                  {reportData?.country} For {reportData?.
-                    periodicity}{" "}{reportData?.year}
+                  {reportData?.country} For {reportData?.periodicity}{" "}
+                  {reportData?.year}
                 </h2>
               </div>
             </div>
@@ -933,134 +991,138 @@ const TotalEmissionsInventoryReport = () => {
                   Total GHG Emissions Distribution
                 </Typography>
               </div>
-              <LineChart chartData={chartData} scopeData={[scope1Data, scope2Data, scope3Data]} />
+              <LineChart
+                chartData={chartData}
+                scopeData={[scope1Data, scope2Data, scope3Data]}
+              />
             </div>
           </div>
 
-          {
-            reportData.scope1?.grand_total_emissions !== 0 ?
+          {reportData.scope1?.grand_total_emissions !== 0 ? (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               <div
-                style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+                style={{
+                  display: "flex",
+                  borderRadius: "16px",
+                }}
+              >
+                <ScopeData
+                  title="Scope 1 Emissions: Your Direct Footprint"
+                  desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles."
+                  svgs={Scope1SVGs}
+                  data={scope1Data}
+                  type="scope-1"
+                />
+              </div>
+
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
               >
                 <div
                   style={{
                     display: "flex",
-                    borderRadius: "16px",
-                  }}
-                >
-                  <ScopeData
-                    title="Scope 1 Emissions: Your Direct Footprint"
-                    desc="Your carbon footprint includes direct emissions from your operations, like your buildings and vehicles."
-                    svgs={Scope1SVGs}
-                    data={scope1Data}
-                    type="scope-1"
-                  />
-                </div>
-
-                <div
-                  style={{
+                    justifyContent: "space-between",
                     width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
+                    gap: "20px",
                   }}
                 >
                   <div
                     style={{
+                      flex: "1",
+                      padding: "2rem 2.2rem",
+                      height: "350px",
                       display: "flex",
-                      justifyContent: "space-between",
-                      width: "100%",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "16px",
+                      background: "white",
+                      zIndex: 99,
                     }}
                   >
-                    <div
-                      style={{
-                        width: "32.5%",
-                        padding: "2rem 2.2rem",
-                        height: "350px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderRadius: "16px",
-                        background: "white",
-                        zIndex: 99,
-                      }}
+                    <GraphWrapper
+                      data={FuelTypeEmissionBreakdownData}
+                      dummyImage={FuelTypeEmissions}
                     >
-                      <GraphWrapper
-                        data={FuelTypeEmissionBreakdownData}
-                        dummyImage={FuelTypeEmissions}
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                        }}
                       >
-                        <div
-                          style={{
-                            textAlign: "center",
-                            position: "relative",
-                            width: "100%",
-                            height: "100%",
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
                           }}
+                        >
+                          Fuel Type Emissions Breakdown
+                        </Typography>
+                        <SemiCirclePieChart
+                          data={FuelTypeEmissionBreakdownData}
+                          tooltipWidth={10}
+                        />
+                      </div>
+                    </GraphWrapper>
+                  </div>
+                  <div
+                    style={{
+                      flex: "1",
+                      padding: "2rem 2.2rem",
+                      height: "350px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "16px",
+                      background: "white",
+                      zIndex: 1,
+                    }}
+                  >
+                    <GraphWrapper
+                      data={RefrigerantEmissionsData}
+                      dummyImage={RefrigerantEmissionsByType}
+                    >
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Refrigerant Emissions by Type
+                        </Typography>
+                        <RefrigerantEmissionsChart
+                          data={RefrigerantEmissionsData}
+                        />
+                      </div>
+                    </GraphWrapper>
+                  </div>
 
-                        >
-                          <Typography
-                            sx={{
-                              fontFamily: "Inter",
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                              wordSpacing: "0px",
-                              textAlign: "start",
-                            }}
-                          >
-                            Fuel Type Emissions Breakdown
-                          </Typography>
-                          <SemiCirclePieChart
-                            data={FuelTypeEmissionBreakdownData}
-                            tooltipWidth={10}
-                          />
-                        </div>
-                      </GraphWrapper>
-                    </div>
+                  {oilGasIndustryFlag[user?.organization?.industry?.id] ? (
                     <div
                       style={{
-                        width: "32.5%",
-                        padding: "2rem 2.2rem",
-                        height: "350px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderRadius: "16px",
-                        background: "white",
-                        zIndex: 1,
-                      }}
-                    >
-                      <GraphWrapper
-                        data={RefrigerantEmissionsData}
-                        dummyImage={RefrigerantEmissionsByType}
-                      >
-                        <div
-                          style={{
-                            textAlign: "center",
-                            position: "relative",
-                            width: "100%",
-                            height: "100%",
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              fontFamily: "Inter",
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                              wordSpacing: "0px",
-                              textAlign: "start",
-                            }}
-                          >
-                            Refrigerant Emissions by Type
-                          </Typography>
-                          <RefrigerantEmissionsChart
-                            data={RefrigerantEmissionsData}
-                          />
-                        </div>
-                      </GraphWrapper>
-                    </div>
-                    <div
-                      style={{
-                        width: "32.5%",
+                        flex: "1",
                         padding: "2rem 2.2rem",
                         height: "350px",
                         display: "flex",
@@ -1100,91 +1162,105 @@ const TotalEmissionsInventoryReport = () => {
                         </div>
                       </GraphWrapper>
                     </div>
-                  </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
 
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <div
-                      style={{
-                        width: "40%",
-                        borderRadius: "16px",
-                        background: "white",
-                        padding: "2rem 2.2rem",
-                      }}
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div
+                    style={{
+                      width: "40%",
+                      borderRadius: "16px",
+                      background: "white",
+                      padding: "2rem 2.2rem",
+                    }}
+                  >
+                    <GraphWrapper
+                      data={FuelConsumptionBreakdown}
+                      dummyImage={FuelConsumptionBreakdownDummy}
                     >
-                      <GraphWrapper
-                        data={FuelConsumptionBreakdown}
-                        dummyImage={FuelConsumptionBreakdownDummy}
-                      >
-                        <div style={{ textAlign: "center" }}>
-                          <Typography
-                            sx={{
-                              fontFamily: "Inter",
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                              wordSpacing: "0px",
-                              textAlign: "start",
-                            }}
-                          >
-                            Fuel Consumption Breakdown
-                          </Typography>
-                          <FuelConsumptionChart data={FuelConsumptionBreakdown} />
-                        </div>
-                      </GraphWrapper>
-                    </div>
-                    <div
-                      style={{
-                        width: "58%",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        padding: "0",
-                        borderRadius: "16px",
-                        background: "white",
-                      }}
-                    >
-                      <GraphWrapper
-                        data={RefrigerantConsumptionData}
-                        dummyImage={RefrigerantConsumptionBreakdownDummy}
-                      >
-                        <div
-                          style={{
-                            textAlign: "center",
-                            position: "relative",
-                            padding: "2rem 2.2rem",
+                      <div style={{ textAlign: "center" }}>
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
                           }}
                         >
-                          <Typography
-                            sx={{
-                              fontFamily: "Inter",
-                              fontSize: "1rem",
-                              fontWeight: "600",
-                              wordSpacing: "0px",
-                              textAlign: "start",
-                            }}
-                          >
-                            Refrigerant Consumption Breakdown
-                          </Typography>
-                          <RefrigerantConsumptionChart
-                            data={RefrigerantConsumptionData}
-                            width={700}
-                            height={300}
-                            type="scope-1"
-                          />
-                        </div>
-                      </GraphWrapper>
-                    </div>
+                          Fuel Consumption Breakdown
+                        </Typography>
+                        <FuelConsumptionChart data={FuelConsumptionBreakdown} />
+                      </div>
+                    </GraphWrapper>
+                  </div>
+                  <div
+                    style={{
+                      width: "58%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      padding: "0",
+                      borderRadius: "16px",
+                      background: "white",
+                    }}
+                  >
+                    <GraphWrapper
+                      data={RefrigerantConsumptionData}
+                      dummyImage={RefrigerantConsumptionBreakdownDummy}
+                    >
+                      <div
+                        style={{
+                          textAlign: "center",
+                          position: "relative",
+                          padding: "2rem 2.2rem",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Inter",
+                            fontSize: "1rem",
+                            fontWeight: "600",
+                            wordSpacing: "0px",
+                            textAlign: "start",
+                          }}
+                        >
+                          Refrigerant Consumption Breakdown
+                        </Typography>
+                        <RefrigerantConsumptionChart
+                          data={RefrigerantConsumptionData}
+                          width={700}
+                          height={300}
+                          type="scope-1"
+                        />
+                      </div>
+                    </GraphWrapper>
                   </div>
                 </div>
               </div>
-              :
-              <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
-                <img src={scope1BgDummy} style={{ width: '100%', height: '100%' }} />
-              </NoDataAvailableWrapper>
-          }
-          {(user?.organization?.premiumPlan?.name === "OffSet" || user?.organization?.premiumPlan?.name === "CarbonZero") ?
+            </div>
+          ) : (
+            <NoDataAvailableWrapper
+              isPremium={false}
+              title="No Data Available"
+              desc="There’s nothing to display right now."
+              reportid={id}
+            >
+              <img
+                src={scope1BgDummy}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </NoDataAvailableWrapper>
+          )}
+          {user?.organization?.premiumPlan?.name === "OffSet" ||
+          user?.organization?.premiumPlan?.name === "CarbonZero" ? (
             <div>
-              {reportData?.scope2 ?
-                reportData?.scope2?.grand_total_emissions !== 0 ?
+              {reportData?.scope2 ? (
+                reportData?.scope2?.grand_total_emissions !== 0 ? (
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <div
                       style={{
@@ -1200,28 +1276,57 @@ const TotalEmissionsInventoryReport = () => {
                         type="scope-2"
                       />
                     </div>
-                  </div> :
-                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
-                    <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </div>
+                ) : (
+                  <NoDataAvailableWrapper
+                    isPremium={false}
+                    title="No Data Available"
+                    desc="There’s nothing to display right now."
+                    reportid={id}
+                  >
+                    <img
+                      src={scope2BgDummy}
+                      style={{ width: "100%", height: "100%" }}
+                    />
                   </NoDataAvailableWrapper>
-                :
-                <FillContentWrapper isPremium={false} title="Create Your Scope 2 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
-                  <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+                )
+              ) : (
+                <FillContentWrapper
+                  isPremium={false}
+                  title="Create Your Scope 2 Emissions Report"
+                  desc="Enter the required data to generate and view your detailed emissions insights"
+                  reportid={id}
+                >
+                  <img
+                    src={scope2BgDummy}
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 </FillContentWrapper>
-
-              }
+              )}
             </div>
-            :
-            <PremiumContentWrapper isPremium={false} title="Unlock Scope 2 Emissions Reports" desc="Gain access to detailed Scope 2 emissions reports to track and manage indirect greenhouse gas emissions from purchased energy sources." reportid={id}>
-              <img src={scope2BgDummy} style={{ width: '100%', height: '100%' }} />
+          ) : (
+            <PremiumContentWrapper
+              isPremium={false}
+              title="Unlock Scope 2 Emissions Reports"
+              desc="Gain access to detailed Scope 2 emissions reports to track and manage indirect greenhouse gas emissions from purchased energy sources."
+              reportid={id}
+            >
+              <img
+                src={scope2BgDummy}
+                style={{ width: "100%", height: "100%" }}
+              />
             </PremiumContentWrapper>
-          }
-          {(user?.organization?.premiumPlan?.name === "CarbonZero") ?
+          )}
+          {user?.organization?.premiumPlan?.name === "CarbonZero" ? (
             <div>
-              {
-                reportData?.scope3 ? reportData?.scope3?.grand_total_emissions !== 0 ?
+              {reportData?.scope3 ? (
+                reportData?.scope3?.grand_total_emissions !== 0 ? (
                   <div
-                    style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                    }}
                   >
                     <div
                       style={{
@@ -1402,7 +1507,9 @@ const TotalEmissionsInventoryReport = () => {
                         >
                           <GraphWrapper
                             data={ECEBreakdownByVehicleTypeData}
-                            dummyImage={EmployeeCommutingEmissionsBreakdownDummy}
+                            dummyImage={
+                              EmployeeCommutingEmissionsBreakdownDummy
+                            }
                           >
                             <div
                               style={{
@@ -1423,7 +1530,8 @@ const TotalEmissionsInventoryReport = () => {
                                   textAlign: "start",
                                 }}
                               >
-                                Employee Commuting Emissions Breakdown by Vehicle Type
+                                Employee Commuting Emissions Breakdown by
+                                Vehicle Type
                               </Typography>
                               <div>
                                 <FullCircleDonutChart
@@ -1441,69 +1549,77 @@ const TotalEmissionsInventoryReport = () => {
                           display: "flex",
                           justifyContent: "space-between",
                           width: "100%",
+                          gap: "20px",
                         }}
                       >
+                        {oilGasIndustryFlag[
+                          user?.organization?.industry?.id
+                        ] ? (
+                          <div
+                            style={{
+                              width: "32.5%",
+                              padding: "2rem 2.2rem",
+                              height: "350px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              borderRadius: "16px",
+                              background: "white",
+                            }}
+                          >
+                            <GraphWrapper
+                              data={FuelActivitiesEmissionData}
+                              dummyImage={FuelRelatedActivitiesDummy}
+                            >
+                              <div
+                                style={{
+                                  textAlign: "center",
+                                  position: "relative",
+                                  width: "100%",
+                                  height: "100%",
+                                  zIndex: "200",
+                                }}
+                              >
+                                <Typography
+                                  sx={{
+                                    fontFamily: "Inter",
+                                    fontSize: "1rem",
+                                    fontWeight: "600",
+                                    wordSpacing: "0px",
+                                    textAlign: "start",
+                                  }}
+                                >
+                                  Fuel-Related Activities Emissions <br />{" "}
+                                  Breakdown
+                                </Typography>
+                                <SemiCirclePieChart
+                                  data={FuelActivitiesEmissionData}
+                                  tooltipWidth={150}
+                                />
+                              </div>
+                            </GraphWrapper>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                         <div
                           style={{
-                            width: "32.5%",
-                            padding: "2rem 2.2rem",
-                            height: "350px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: "16px",
-                            background: "white",
+                            flex: "1",
                           }}
                         >
                           <GraphWrapper
-                            data={FuelActivitiesEmissionData}
-                            dummyImage={FuelRelatedActivitiesDummy}
-                          >
-                            <div
-                              style={{
-                                textAlign: "center",
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                                zIndex: "200",
-                              }}
-                            >
-                              <Typography
-                                sx={{
-                                  fontFamily: "Inter",
-                                  fontSize: "1rem",
-                                  fontWeight: "600",
-                                  wordSpacing: "0px",
-                                  textAlign: "start",
-                                }}
-                              >
-                                Fuel-Related Activities Emissions <br /> Breakdown
-                              </Typography>
-                              <SemiCirclePieChart
-                                data={FuelActivitiesEmissionData}
-                                tooltipWidth={150}
-                              />
-                            </div>
-                          </GraphWrapper>
-                        </div>
-                        <div style={{
-                          width: '60%',
-                        }}>
-                          <GraphWrapper
                             data={EmissionUpstreamAssetsData}
                             dummyImage={EmissionFromUpstreamLeasedAssets}
-                          >
-                          </GraphWrapper>
-                          {
-                            EmissionUpstreamAssetsData.length > 0 &&
+                          ></GraphWrapper>
+                          {EmissionUpstreamAssetsData.length > 0 && (
                             <div
                               style={{
                                 textAlign: "center",
                                 position: "relative",
                                 width: "100%",
                                 height: "100%",
-                                background: 'white',
-                                padding: '0.5rem 0rem 0rem 0.5rem'
+                                background: "white",
+                                padding: "0.5rem 0rem 0rem 0.5rem",
                               }}
                             >
                               <Typography
@@ -1513,7 +1629,7 @@ const TotalEmissionsInventoryReport = () => {
                                   fontWeight: "600",
                                   wordSpacing: "0px",
                                   textAlign: "start",
-                                  marginBottom: '1.5rem'
+                                  marginBottom: "1.5rem",
                                 }}
                               >
                                 Emissions from Upstream Leased Assets
@@ -1523,8 +1639,7 @@ const TotalEmissionsInventoryReport = () => {
                                 height={250}
                               />
                             </div>
-                          }
-
+                          )}
                         </div>
                       </div>
                       <div
@@ -1537,12 +1652,19 @@ const TotalEmissionsInventoryReport = () => {
                           borderRadius: "16px",
                         }}
                       >
-                        <Typography sx={{ fontSize: "1.2rem", fontWeight: "500" }}>
-                          Note: Our product currently focuses on specific Scope 3 KPIs,
-                          but additional factors will be rolled out soon.
+                        <Typography
+                          sx={{ fontSize: "1.2rem", fontWeight: "500" }}
+                        >
+                          Note: Our product currently focuses on specific Scope
+                          3 KPIs, but additional factors will be rolled out
+                          soon.
                         </Typography>
                         <div
-                          style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}
+                          style={{
+                            display: "flex",
+                            gap: "0.8rem",
+                            flexWrap: "wrap",
+                          }}
                         >
                           <Scope3Card
                             title="Upstream transportation and distribution"
@@ -1552,7 +1674,10 @@ const TotalEmissionsInventoryReport = () => {
                             title="Downstream transportation and distribution"
                             value={0}
                           />
-                          <Scope3Card title="Processing of sold products" value={0} />
+                          <Scope3Card
+                            title="Processing of sold products"
+                            value={0}
+                          />
                           <Scope3Card title="Use of sold products" value={0} />
                           <Scope3Card
                             title="End-of-life treatment of sold products"
@@ -1562,18 +1687,45 @@ const TotalEmissionsInventoryReport = () => {
                         </div>
                       </div>
                     </div>
-                  </div> :
-                  <NoDataAvailableWrapper isPremium={false} title="No Data Available" desc="There’s nothing to display right now." reportid={id}>
-                    <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
+                  </div>
+                ) : (
+                  <NoDataAvailableWrapper
+                    isPremium={false}
+                    title="No Data Available"
+                    desc="There’s nothing to display right now."
+                    reportid={id}
+                  >
+                    <img
+                      src={scope3BgDummy}
+                      style={{ width: "100%", height: "100%" }}
+                    />
                   </NoDataAvailableWrapper>
-                  :
-                  <FillContentWrapper isPremium={false} title="Create Your Scope 3 Emissions Report" desc="Enter the required data to generate and view your detailed emissions insights" reportid={id}>
-                    <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
-                  </FillContentWrapper>
-              }
-            </div> :
-            <PremiumContentWrapper isPremium={false} title="Unlock Scope 3 Emissions Reports" desc="Access comprehensive Scope 3 emissions reports to measure and manage your indirect emissions across the entire value chain, from suppliers to end consumers." reportid={id}>
-              <img src={scope3BgDummy} style={{ width: '100%', height: '100%' }} />
+                )
+              ) : (
+                <FillContentWrapper
+                  isPremium={false}
+                  title="Create Your Scope 3 Emissions Report"
+                  desc="Enter the required data to generate and view your detailed emissions insights"
+                  reportid={id}
+                >
+                  <img
+                    src={scope3BgDummy}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </FillContentWrapper>
+              )}
+            </div>
+          ) : (
+            <PremiumContentWrapper
+              isPremium={false}
+              title="Unlock Scope 3 Emissions Reports"
+              desc="Access comprehensive Scope 3 emissions reports to measure and manage your indirect emissions across the entire value chain, from suppliers to end consumers."
+              reportid={id}
+            >
+              <img
+                src={scope3BgDummy}
+                style={{ width: "100%", height: "100%" }}
+              />
               <div
                 style={{
                   display: "flex",
@@ -1609,9 +1761,7 @@ const TotalEmissionsInventoryReport = () => {
                 </div>
               </div>
             </PremiumContentWrapper>
-
-          }
-
+          )}
         </div>
       </div>
       <ConfirmEditReportModal

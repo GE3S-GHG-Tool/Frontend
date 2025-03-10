@@ -67,7 +67,11 @@ function EditReport() {
         "Your carbon footprint includes emissions from buildings and vehicles.",
       content: (
         <ScopeWrapper
-          isDisabled={reportData?.scope1 && reportData?.report_type === "final"}
+          isDisabled={
+            !(premiumPlan === "CarbonZero") &&
+            reportData?.scope1 &&
+            reportData?.report_type === "final"
+          }
           scopeNumber={1}
         >
           <Scope1 setActiveTab={setActiveTab} />
@@ -82,7 +86,11 @@ function EditReport() {
         "Indirect emissions from purchased utilities impact carbon footprint.",
       content: (
         <ScopeWrapper
-          isDisabled={reportData?.scope2 && reportData?.report_type === "final"}
+          isDisabled={
+            !(premiumPlan === "CarbonZero") &&
+            reportData?.scope2 &&
+            reportData?.report_type === "final"
+          }
           scopeNumber={1}
         >
           <Scope2 setActiveTab={setActiveTab} />
@@ -97,7 +105,11 @@ function EditReport() {
         "Carbon footprint includes value chain supplier and customer emissions.",
       content: (
         <ScopeWrapper
-          isDisabled={reportData?.scope3 && reportData?.report_type === "final"}
+          isDisabled={
+            !(premiumPlan === "CarbonZero") &&
+            reportData?.scope3 &&
+            reportData?.report_type === "final"
+          }
           scopeNumber={1}
         >
           <Scope3 setActiveTab={setActiveTab} />
