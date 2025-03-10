@@ -59,7 +59,7 @@ function WasteTable({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item?.wasteCategory}
+                {item?.wasteCategory || item?.category}
               </td>
               <td
                 style={{
@@ -69,7 +69,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.subCategory}
+                {item.subCategory || item?.sub_category}
               </td>
               <td
                 style={{
@@ -81,7 +81,7 @@ function WasteTable({ headings = [], data }) {
                   maxWidth: "200px",
                 }}
               >
-                {item.disposalMethod}
+                {item.disposalMethod || item?.disposal_method}
               </td>
               <td
                 style={{
@@ -91,19 +91,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.distanceToLandfill}
-              </td>
-              <td
-                style={{
-                  textAlign: "left",
-                  textOverflow: "ellipsis",
-                  maxWidth: "100px",
-                  // fontWeight: "bold",
-                  padding: "12px",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {item.fuelType}
+                {item.distanceToLandfill || item?.distance_km}
               </td>
               <td
                 style={{
@@ -115,7 +103,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.numberOfTrips}
+                {item.fuelType || item?.fuel_type}
               </td>
               <td
                 style={{
@@ -127,7 +115,19 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantityOfWaste}
+                {item.numberOfTrips || item?.num_trips}
+              </td>
+              <td
+                style={{
+                  textAlign: "left",
+                  textOverflow: "ellipsis",
+                  maxWidth: "100px",
+                  // fontWeight: "bold",
+                  padding: "12px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {item.quantityOfWaste || item?.quantity}
               </td>
             </tr>
           ))}

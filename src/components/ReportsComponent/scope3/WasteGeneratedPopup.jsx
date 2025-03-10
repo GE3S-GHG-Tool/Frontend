@@ -491,7 +491,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       variant="body1"
                       sx={{ mb: 1, fontSize: "0.75rem" }}
                     >
-                      Quantity of Waste
+                      Quantity of Waste (Ton)
                     </Typography>
                     <TextField
                       name="quantityOfWaste"

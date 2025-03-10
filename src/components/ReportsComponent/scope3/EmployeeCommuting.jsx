@@ -11,7 +11,7 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { getVehicleType } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
 
-function EmployeeCommuting() {
+function EmployeeCommuting({apiData}) {
   // Initialize fields with one empty row
 
   const [fields, setFields] = useState(
@@ -19,6 +19,13 @@ function EmployeeCommuting() {
       ? JSON.parse(localStorage.getItem("commuting"))
       : [{ vehicle_type: "", num_trips: "", distance_km: "" }]
   );
+
+
+  useEffect(() => {
+    if (apiData?.employeeCommuting) {
+      setFields([...apiData?.employeeCommuting, { vehicle_type: "", num_trips: "", distance_km: "" }])
+    }
+  }, [apiData]);
 
   const [vehicleMenu, setVehicleMenu] = useState([]);
   const { setEmployeeCommuting } = useScope3();

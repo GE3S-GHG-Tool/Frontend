@@ -13,7 +13,7 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { getGoods } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
 
-function PurchasedGoods() {
+function PurchasedGoods({apiData}) {
   const [assetMenu, setAssetMenu] = useState([]);
 
   const { setGoods } = useScope3();
@@ -22,6 +22,15 @@ function PurchasedGoods() {
       ? JSON.parse(localStorage.getItem("goods"))
       : [{ type_of_expense: "", expense_value: "" }]
   );
+
+
+
+
+   useEffect(() => {
+   if(apiData?.purchasedGoods){
+    setFields([...apiData?.purchasedGoods , { type_of_expense: "", expense_value: "" }])
+   }
+  }, [apiData]);
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;

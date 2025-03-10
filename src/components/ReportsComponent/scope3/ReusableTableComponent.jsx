@@ -13,6 +13,7 @@ import WasteTable from "./WasteTable";
 import BusinessTable from "./BusinessTable";
 
 function ReusableTableSection({
+  apiData,
   title,
   description,
   icon,
@@ -44,6 +45,7 @@ function ReusableTableSection({
   const handleDotClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
 
   const handleEdit = (title) => {
     // console.log(title);
@@ -94,23 +96,26 @@ function ReusableTableSection({
   }, [fuelData]);
 
   useEffect(() => {
-    setData1(capitalGoods ? capitalGoods : []);
+    setData1(capitalGoods?.length > 0 ? capitalGoods : apiData?.capitalGoods ? apiData.capitalGoods : []);
     // console.log("Capital Goods instant:", capitalGoods); // Verify the table gets updated
-  }, [capitalGoods]);
+  }, [capitalGoods, apiData]);
 
   useEffect(() => {
-    setData2(upStreamData ? upStreamData : []);
+    setData2(upStreamData?.length > 0  ? upStreamData : apiData?.upstreamLeasedAssets ? [...apiData.upstreamLeasedAssets, {}] : []);
     // console.log("Capital Goods instant:", upStreamData); // Verify the table gets updated
   }, [upStreamData]);
 
   useEffect(() => {
-    setData4(wasteData ? wasteData : []);
+    setData4(wasteData?.length > 0 ? wasteData : apiData?.wasteGenerated ? [...apiData.wasteGenerated, {}] : []);
     // console.log("wasteData instant:", wasteData); // Verify the table gets updated
-  }, [wasteData]);
+  }, [wasteData, apiData]);
   useEffect(() => {
-    setData5(business ? business : []);
+    setData5(business?.length > 0 ? business : apiData?.businessTravel ? [...apiData.businessTravel, {}] : []);
     // console.log("business instant:", business); // Verify the table gets updated
-  }, [business]);
+  }, [business, apiData]);
+
+  console.log(apiData?.capitalGoods)
+
 
   return (
     <div>

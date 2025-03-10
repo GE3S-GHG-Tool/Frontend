@@ -1,4 +1,4 @@
-import { Grid2} from "@mui/material";
+import { Grid2 } from "@mui/material";
 import React, { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import downstream from "../../../assets/images/downstream.svg";
@@ -7,16 +7,25 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import { useScope3 } from "../../../context/Scope3Context";
 
-function DownstreamAssets() {
+function DownstreamAssets({ apiData }) {
   const [field, setField] = useState(
     localStorage.getItem("downStreamData")
       ? JSON.parse(localStorage.getItem("downStreamData"))
       : {
-          scope1_scope2_emissions: "",
-          physical_area: "",
-          total_physical_area: "",
-        }
+        scope1_scope2_emissions: "",
+        physical_area: "",
+        total_physical_area: "",
+      }
   );
+
+
+
+  useEffect(() => {
+    if (apiData?.downstreamLeasedAssets) {
+      setField(apiData?.downstreamLeasedAssets[0])
+    }
+  }, [apiData]);
+
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { setDownStreamData } = useScope3();
   const handleChange = (event) => {

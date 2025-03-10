@@ -6,18 +6,27 @@ import Box from "@mui/material/Box";
 import { useScope3 } from "../../../context/Scope3Context";
 import trash from "../../../assets/images/TrashS.svg";
 
-function Investments() {
+function Investments({ apiData }) {
   const { setInvestements } = useScope3();
   const [fields, setFields] = useState(
     localStorage.getItem("investements")
       ? JSON.parse(localStorage.getItem("investements"))
       : [
-          {
-            ownership_percentage: "",
-            investee_company_emissions: "",
-          },
-        ]
+        {
+          ownership_percentage: "",
+          investee_company_emissions: "",
+        },
+      ]
   );
+
+  useEffect(() => {
+    if (apiData?.investments) {
+      setFields([...apiData?.investments, {
+        ownership_percentage: "",
+        investee_company_emissions: "",
+      },])
+    }
+  }, [apiData]);
 
   useEffect(() => {
     localStorage.setItem("investements", JSON.stringify(fields));
@@ -154,7 +163,7 @@ function Investments() {
                     variant="body1"
                     sx={{ mb: 1, fontSize: "0.75rem" }}
                   >
-                    Investee Company&apos;s Emission (tCO2E)
+                    Investee Company&apos;s Emission (tCO2e)
                   </Typography>
                   <TextField
                     name="investee_company_emissions"
