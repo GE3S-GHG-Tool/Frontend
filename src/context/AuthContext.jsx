@@ -8,7 +8,6 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 export const AuthProvider = ({ children }) => {
-  // const [token, setToken] = useState(localStorage.getItem("token"));
   const [token, setToken] = useState(() => {
     const storedToken = localStorage.getItem("token");
     return storedToken && storedToken !== "undefined" ? storedToken : null;
