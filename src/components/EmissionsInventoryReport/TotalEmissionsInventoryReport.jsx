@@ -51,6 +51,7 @@ import {
   oilGasIndustryFlag,
   parseStringAndRoundOff,
 } from "../../util/utils";
+// import { MultiPageGHGReportGenerator } from "./ReportGenerator/generatePDFReport";
 
 const Scope1SVGs = [
   <svg
@@ -944,7 +945,10 @@ const TotalEmissionsInventoryReport = () => {
                 </h2>
                 <h2>I</h2>{" "}
                 <h2>
-                  {reportData?.country} For {reportData?.periodicity === "yearly" ? "year" : reportData?.periodicity}{" "}
+                  {reportData?.country} For{" "}
+                  {reportData?.periodicity === "yearly"
+                    ? "year"
+                    : reportData?.periodicity}{" "}
                   {reportData?.year}
                 </h2>
               </div>
