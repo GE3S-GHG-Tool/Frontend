@@ -21,8 +21,14 @@ function DownstreamAssets({ apiData }) {
 
 
   useEffect(() => {
-    if (apiData?.downstreamLeasedAssets) {
+    if (apiData?.downstreamLeasedAssets[0]) {
       setField(apiData?.downstreamLeasedAssets[0])
+    } else {
+      setField({
+        scope1_scope2_emissions: "",
+        physical_area: "",
+        total_physical_area: "",
+      })
     }
   }, [apiData]);
 
@@ -113,7 +119,7 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="scope1_scope2_emissions"
-                value={field.scope1_scope2_emissions}
+                value={field?.scope1_scope2_emissions}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
@@ -142,7 +148,7 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="physical_area"
-                value={field.physical_area}
+                value={field?.physical_area}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
@@ -172,7 +178,7 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="total_physical_area"
-                value={field.total_physical_area}
+                value={field?.total_physical_area}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
