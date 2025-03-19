@@ -1,5 +1,6 @@
 import React from 'react';
 import alert from "../../../assets/graphimgs/alert.svg"
+import { height } from '@mui/system';
 
 export const GraphWrapper = ({
     title,
@@ -17,6 +18,7 @@ export const GraphWrapper = ({
         background: "white",
         position: "relative",
         zIndex: 99,
+        height:"100%"
     };
 
     const contentContainerStyles = {
