@@ -944,10 +944,8 @@ const TotalEmissionsInventoryReport = () => {
                 </h2>
                 <h2>I</h2>{" "}
                 <h2>
-                  {reportData?.country} For{" "}
-                  {reportData?.periodicity === "yearly"
-                    ? "year"
-                    : reportData?.periodicity}{" "}
+
+                  {reportData?.country} for {reportData?.periodicity === "yearly" ? "year" : reportData?.periodicity}{" "}
                   {reportData?.year}
                 </h2>
               </div>
@@ -1090,6 +1088,7 @@ const TotalEmissionsInventoryReport = () => {
                       borderRadius: "16px",
                       background: "white",
                       zIndex: 1,
+                      // overflow:"hidden"
                     }}
                   >
                     <GraphWrapper
