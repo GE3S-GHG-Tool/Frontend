@@ -1,11 +1,6 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import reportImageOne from "../../../assets/graphimgs/reportpageone.png";
-import reportImageThreeScope1 from "../../../assets/graphimgs/reportpagethreescope1.png";
-import reportImageThreeScope1_2 from "../../../assets/graphimgs/reportpagethreescope1_2.png";
-import reportImageThreeScope1_2_3 from "../../../assets/graphimgs/reportpagethreescope1_2_3.png";
-import reportImageFour from "../../../assets/graphimgs/reportpagefour.png";
-import reportImageFive from "../../../assets/graphimgs/reportpagefive.png";
 import lineChart from "../../../assets/graphimgs/emissionslinechart.png";
 import reportLastPage from "../../../assets/graphimgs/reportlastpage.png";
 import rightBg from "../../../assets/graphimgs/rightBg.png";
@@ -348,6 +343,31 @@ class MultiPageGHGReportGenerator {
         : `${percentData.time_period} ${percentData.periodicity}, ${percentData.year}`;
 
     this.pdf.text(periodText, this.margins.left + 110, this.margins.top + 410);
+
+    this.pdf.setFontSize(18);
+    this.pdf.set;
+    this.pdf.setTextColor("#00191D");
+    this.pdf.setFont("MontserratBold");
+    this.pdf.text(
+      user?.organization?.name,
+      this.margins.left,
+      this.pageHeight - this.margins.bottom - 48
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Inter", "normal", 400);
+    this.pdf.setTextColor("#000");
+    this.pdf.text(
+      `${user?.organization?.city}, ${user?.organization?.state}`,
+      this.margins.left,
+      this.pageHeight - this.margins.bottom - 20
+    );
+    this.pdf.text(
+      `${user?.organization?.country}`,
+      this.margins.left,
+      this.pageHeight - this.margins.bottom
+    );
+
     this.pdf.addPage();
     this.pdf.setFont("Inter");
   }
@@ -409,25 +429,34 @@ class MultiPageGHGReportGenerator {
       this.margins.top + 145
     );
 
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      this.margins.top + 175,
+      this.pageWidth - this.margins.right,
+      this.margins.top + 175
+    );
+
     this.pdf.setFontSize(12);
     this.pdf.setTextColor("#029366");
     this.pdf.setFont("MontserratBold");
-    this.pdf.text("Prepared by:", this.margins.left, this.margins.top + 230);
+    this.pdf.text("Prepared by:", this.margins.left, this.margins.top + 210);
 
     this.pdf.setFontSize(11);
     this.pdf.setFont("helvetica", "bold");
     this.pdf.setTextColor("#000");
-    this.pdf.text("GE3S", this.margins.left, this.margins.top + 250);
+    this.pdf.text("GE3S", this.margins.left, this.margins.top + 230);
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
     this.pdf.text(
       "UAE, KSA, USA, India, Canada",
       this.margins.left,
-      this.margins.top + 265
+      this.margins.top + 245
     );
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
-    this.pdf.text("ge3s.org", this.margins.left, this.margins.top + 280);
+    this.pdf.text("ge3s.org", this.margins.left, this.margins.top + 260);
 
     this.pdf.setFontSize(12);
     this.pdf.setTextColor("#029366");
@@ -435,7 +464,7 @@ class MultiPageGHGReportGenerator {
     this.pdf.text(
       "Project Manager",
       this.margins.left + 245,
-      this.margins.top + 230
+      this.margins.top + 210
     );
 
     this.pdf.setFontSize(11);
@@ -444,23 +473,23 @@ class MultiPageGHGReportGenerator {
     this.pdf.text(
       "Praveen Kumar Diwakar",
       this.margins.left + 245,
-      this.margins.top + 250
+      this.margins.top + 230
     );
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
     this.pdf.text(
       "Analyst, GE3S",
       this.margins.left + 245,
-      this.margins.top + 265
+      this.margins.top + 245
     );
 
     this.pdf.setLineWidth(0.2);
     this.pdf.setDrawColor(217, 217, 217);
     this.pdf.line(
       this.margins.left,
-      this.margins.top + 295,
+      this.margins.top + 275,
       this.pageWidth - this.margins.right,
-      this.margins.top + 295
+      this.margins.top + 275
     );
 
     this.pdf.setFontSize(12);
@@ -469,45 +498,45 @@ class MultiPageGHGReportGenerator {
     this.pdf.text(
       "Carbon and sustainability expert",
       this.margins.left,
-      this.margins.top + 330
+      this.margins.top + 310
     );
 
     this.pdf.setFontSize(11);
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
-    this.pdf.text("Satyapal Singh", this.margins.left, this.margins.top + 350);
+    this.pdf.text("Satyapal Singh", this.margins.left, this.margins.top + 330);
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
-    this.pdf.text("CEO, GE3S", this.margins.left, this.margins.top + 365);
+    this.pdf.text("CEO, GE3S", this.margins.left, this.margins.top + 345);
 
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
     this.pdf.text(
       "Chilamburaj Anbarasu",
       this.margins.left + 245,
-      this.margins.top + 350
+      this.margins.top + 330
     );
     this.pdf.setFont("helvetica", "normal");
     this.pdf.setTextColor("#000");
     this.pdf.text(
       "Director, GE3S",
       this.margins.left + 245,
-      this.margins.top + 365
+      this.margins.top + 345
     );
 
     this.pdf.setLineWidth(0.2);
     this.pdf.setDrawColor(217, 217, 217);
     this.pdf.line(
       this.margins.left,
-      this.margins.top + 395,
+      this.margins.top + 365,
       this.pageWidth - this.margins.right,
-      this.margins.top + 395
+      this.margins.top + 365
     );
 
     this.pdf.setFontSize(12);
     this.pdf.setTextColor("#029366");
     this.pdf.setFont("MontserratBold");
-    this.pdf.text("Contact", this.margins.left, this.margins.top + 435);
+    this.pdf.text("Contact", this.margins.left, this.margins.top + 405);
 
     this.pdf.setFontSize(11);
     this.pdf.setFont("helvetica", "normal");
@@ -515,13 +544,952 @@ class MultiPageGHGReportGenerator {
     this.pdf.text(
       "sustainabilty@ge3s.me",
       this.margins.left,
-      this.margins.top + 455
+      this.margins.top + 425
+    );
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      this.margins.top + 443,
+      this.pageWidth - this.margins.right,
+      this.margins.top + 443
     );
     this.addFooter();
     this.pdf.addPage();
     this.pdf.setFont("Inter");
   }
+  tableOfContentScope1() {
+    this.addBg(rightBg);
+    this.addHeader("Table of contents");
+    this.pageNumber = 3;
 
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("MontserratBold");
+    this.pdf.setTextColor("#029366");
+
+    this.margins.top = 85;
+
+    this.pdf.text(
+      "Executive summary",
+      this.margins.left,
+      (this.margins.top += 46)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "1 Disclaimer and Methodology",
+      this.margins.left,
+      (this.margins.top += 20)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text(
+      "1.1  Disclaimer",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "4",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "1.2  Methodology",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "5",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "2 Greenhouse Gas Emissions Breakdown",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text("2.1  Scope 1", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "6",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "3  Fuel Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "7",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "4  Refrigerant Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "8",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "5  Process Emissions",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "9",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+    this.margins.top = 20;
+    this.addFooter();
+    this.pdf.addPage();
+  }
+  tableOfContentScope2() {
+    this.addBg(rightBg);
+    this.addHeader("Table of contents");
+    this.pageNumber = 3;
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("MontserratBold");
+    this.pdf.setTextColor("#029366");
+
+    this.margins.top = 85;
+
+    this.pdf.text(
+      "Executive summary",
+      this.margins.left,
+      (this.margins.top += 46)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "1 Disclaimer and Methodology",
+      this.margins.left,
+      (this.margins.top += 20)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text(
+      "1.1  Disclaimer",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "4",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "1.2  Methodology",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "5",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "2 Greenhouse Gas Emissions Breakdown",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text("2.1  Scope 1", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "6",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text("2.2  Scope 2", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "7",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "3  Fuel Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "8",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "4  Refrigerant Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "9",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "5  Process Emissions",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "10",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "6  Electricity Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "11",
+      this.pageWidth - this.margins.right - 8,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "7  Chilled Water Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "11",
+      this.pageWidth - this.margins.right - 8,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "8  Purchased Desalinated Water",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "12",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "9  Heat Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "12",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+    this.margins.top = 20;
+    this.addFooter();
+    this.pdf.addPage();
+  }
+  tableOfContentScope3() {
+    this.addBg(rightBg);
+    this.addHeader("Table of contents");
+    this.pageNumber = 3;
+    //Yash
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("MontserratBold");
+    this.pdf.setTextColor("#029366");
+
+    this.margins.top = 85;
+
+    this.pdf.text(
+      "Executive summary",
+      this.margins.left,
+      (this.margins.top += 46)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "1 Disclaimer and Methodology",
+      this.margins.left,
+      (this.margins.top += 20)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text(
+      "1.1  Disclaimer",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "4",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "1.2  Methodology",
+      this.margins.left,
+      (this.margins.top += 21)
+    );
+    this.pdf.text(
+      "5",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(12);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#029366");
+    this.pdf.text(
+      "2 Greenhouse Gas Emissions Breakdown",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+    this.pdf.text("2.1  Scope 1", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "6",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text("2.2  Scope 2", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "7",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text("2.3  Scope 3", this.margins.left, (this.margins.top += 22));
+    this.pdf.text(
+      "7",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 8),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "3  Fuel Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "8",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "4  Refrigerant Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "9",
+      this.pageWidth - this.margins.right - 7,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "5  Process Emissions",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "10",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "6  Electricity Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "11",
+      this.pageWidth - this.margins.right - 8,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "7  Chilled Water Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "11",
+      this.pageWidth - this.margins.right - 8,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "8  Purchased Desalinated Water",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "12",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "9  Heat Consumption",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "12",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "10  Waste Generated",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "13",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "11  Business Travel",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "14",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "12  Purchased Goods",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "14",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "13  Capital Goods",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "15",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "14  Investments",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "15",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "15  Employee Commuting",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "16",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "16  Fuel Related Activities",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "17",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "17  Upstream Leased Assets",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "18",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "18  Downstream Leased Assets",
+      this.margins.left,
+      (this.margins.top += 22)
+    );
+    this.pdf.text(
+      "18",
+      this.pageWidth - this.margins.right - 10,
+      this.margins.top
+    );
+    this.margins.top = 20;
+    this.addFooter();
+    this.pdf.addPage();
+  }
+  disclaimerAndMethodology1() {
+    this.addBg(leftBg);
+    this.addHeader("Disclaimer and Methodology");
+    this.pageNumber = 4;
+    this.margins.top = 100;
+
+    this.pdf.setFontSize(14);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#00191D");
+
+    this.pdf.text(
+      "1.1 Disclaimer",
+      this.margins.left,
+      (this.margins.top += 24)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+
+    const maxWidth = this.pageWidth - this.margins.left - this.margins.right;
+
+    const wrappedText = this.pdf.splitTextToSize(
+      "This report contains commitment statements and reflects management’s reasonable and current expectations. No assurance can be given that such expectations will prove correct. Such statements are subject to risks and uncertainties and should not be relied upon due to ever-changing future events that could materially change the outcome. This document has been subject reviewed by an independent third-party assurance provider for GHG accounting only.",
+      maxWidth
+    );
+
+    wrappedText.forEach((line) => {
+      this.pdf.text(line, this.margins.left, (this.margins.top += 16));
+    });
+
+    this.pdf.setFontSize(14);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#00191D");
+
+    this.pdf.text("GHG Protocol", this.margins.left, (this.margins.top += 40));
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+
+    this.pdf
+      .splitTextToSize(
+        "The emissions reported in this document adhere to the GHG Protocol Corporate Accounting and Reporting Standard. This standard provides a globally recognized framework for quantifying and reporting GHG emissions.",
+        maxWidth
+      )
+      .forEach((line) => {
+        this.pdf.text(line, this.margins.left, (this.margins.top += 16));
+      });
+
+    this.pdf.setFontSize(14);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#00191D");
+
+    this.pdf.text(
+      "GHG Gases Included and Excluded",
+      this.margins.left,
+      (this.margins.top += 40)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    autoTable(this.pdf, {
+      startY: (this.margins.top += 25),
+      theme: "plain",
+      styles: {
+        font: "Inter",
+        fontSize: 10,
+        textColor: "#000",
+        cellPadding: {
+          top: 16,
+          bottom: 16,
+          left: 16,
+          right: 16,
+        },
+        valign: "middle",
+        halign: "left",
+        fillColor: "#fff",
+        lineColor: [220, 220, 220],
+        lineWidth: 0.1,
+      },
+
+      headStyles: {
+        fillColor: "#F7FFFC",
+        textColor: "#000",
+        fontSize: 12,
+        fontStyle: "normal",
+        halign: "center",
+        textColor: "#029366",
+        font: "MontserratBold",
+        cellPadding: {
+          top: 6,
+          bottom: 6,
+        },
+      },
+
+      columnStyles: {
+        0: {
+          halign: "center",
+          cellWidth: "auto",
+        },
+        1: {
+          halign: "center",
+          cellWidth: "auto",
+        },
+        2: {
+          halign: "center",
+          cellWidth: "auto",
+        },
+        3: {
+          halign: "center",
+          cellWidth: "auto",
+        },
+      },
+      // Configure borders
+      tableLineColor: [217, 217, 217],
+      tableLineWidth: 0.1,
+      showHorizontalLines: true, // Show horizontal lines
+      horizontalPageBreak: true, // Maintain horizontal lines across pages
+      horizontalPageBreakRepeat: true,
+      head: [["GHG Gases", "Scope 1", "Scope 2", "Scope 3"]], // Table header row
+      body: [
+        [
+          "Carbon dioxide equivalent (CO2e)",
+          "Included",
+          "Included",
+          "Included",
+        ],
+        ["Methane(CH4)", "Excluded", "Excluded", "Excluded"],
+        ["Nitrous oxide (N2O)", "Excluded", "Excluded", "Excluded"],
+        ["Hydrofluorocarbons (HFCs)", "Excluded", "Excluded", "Excluded"],
+        ["Sulphur hexafluoride (SF6)", "Excluded", "Excluded", "Excluded"],
+        ["Perfluorocarbons (PFC)", "Excluded", "Excluded", "Excluded"],
+        ["Nitrogen trifluoride (NF3)", "Excluded", "Excluded", "Excluded"],
+      ],
+      margin: {
+        left:
+          (this.pageWidth -
+            (this.pageWidth - this.margins.left - this.margins.right)) /
+          2, // Centers the table
+      },
+      tableWidth: this.pageWidth - this.margins.left - this.margins.right,
+    });
+    this.margins.top = 20;
+    this.addFooter();
+    this.pdf.addPage();
+  }
+  disclaimerAndMethodology2() {
+    this.addBg(leftBg);
+    this.addHeader("Disclaimer and Methodology");
+    this.pageNumber = 5;
+    this.margins.top = 100;
+
+    this.pdf.setFontSize(14);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#00191D");
+
+    this.pdf.text(
+      "1.2 Methodology",
+      this.margins.left,
+      (this.margins.top += 24)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.text(
+      "Emissions were calculated using the following methods:",
+      this.margins.left,
+      (this.margins.top += 33)
+    );
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+
+    this.pdf.text("•", this.margins.left, (this.margins.top += 30));
+    this.pdf.text(
+      "Scope 1 emissions: Direct emissions from owned or controlled sources, such as on-site combustion ",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text(
+      "of fossil fuels.",
+      this.margins.left + 10,
+      (this.margins.top += 16)
+    );
+    this.pdf.text("•", this.margins.left, (this.margins.top += 16));
+    this.pdf.text(
+      "Scope 2 emissions: Indirect emissions from the purchase of electricity, heat, or steam.",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text("•", this.margins.left, (this.margins.top += 16));
+    this.pdf.text(
+      "Scope 3 emissions: Indirect emissions from activities not owned or controlled by the company, but",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text(
+      "which the company can influence.",
+      this.margins.left + 10,
+      (this.margins.top += 16)
+    );
+
+    this.pdf.setFontSize(14);
+    this.pdf.setFont("Montserrat");
+    this.pdf.setTextColor("#00191D");
+
+    this.pdf.text("Assumptions", this.margins.left, (this.margins.top += 33));
+
+    this.pdf.setLineWidth(0.2);
+    this.pdf.setDrawColor(217, 217, 217);
+    this.pdf.line(
+      this.margins.left,
+      (this.margins.top += 9),
+      this.pageWidth - this.margins.right,
+      this.margins.top
+    );
+
+    this.pdf.setFontSize(10);
+    this.pdf.setFont("Inter");
+    this.pdf.setTextColor("#000");
+
+    this.pdf.text(
+      "The following assumptions and adjustments were made in the emissions calculations:",
+      this.margins.left,
+      (this.margins.top += 30)
+    );
+    this.pdf.text("•", this.margins.left, (this.margins.top += 16));
+    this.pdf.text(
+      "The Coefficient of Performance (COP) for chilled water consumption is assumed to be 4.5. This",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text(
+      "value indicates that for every unit of electricity consumed, the chiller produces 4.5 units of cooling",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+    this.pdf.text(
+      "effect. This assumption is based on typical industry standards for modern, efficient chillers.",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+
+    this.pdf.text("•", this.margins.left, (this.margins.top += 16));
+    this.pdf.text(
+      "Emission factors for heat consumption are calculated based on the assumption that natural gas is",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text(
+      "used to generate steam or heat at an efficiency of 80%. This means that for every unit of natural",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+    this.pdf.text(
+      "gas consumed, 80% of the energy is converted into useful heat.",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+
+    this.pdf.text("•", this.margins.left, (this.margins.top += 16));
+    this.pdf.text(
+      "The purchased desalinated water is produced using Multi-Stage Flash (MSF) technology. This is",
+      this.margins.left + 10,
+      this.margins.top
+    );
+    this.pdf.text(
+      "based on the fact that MSF is the most widely used thermal desalination method, accounting for",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+    this.pdf.text(
+      "over 90% of such operations.",
+      this.margins.left + 10,
+      (this.margins.top += 18)
+    );
+
+    this.margins.top = 20;
+    this.addFooter();
+    this.pdf.addPage();
+  }
   addExecutiveSummaryPage({
     scope1Data,
     scope2Data,
@@ -532,15 +1500,14 @@ class MultiPageGHGReportGenerator {
     this.sectionPageone(user, percentData);
     this.sectionPagetwo(user);
     if (user?.organization?.premiumPlan?.name === "OffSet") {
-      this.addImagePage(reportImageThreeScope1_2);
+      this.tableOfContentScope2();
     } else if (user?.organization?.premiumPlan?.name === "CarbonZero") {
-      this.addImagePage(reportImageThreeScope1_2_3);
+      this.tableOfContentScope3();
     } else {
-      this.addImagePage(reportImageThreeScope1);
+      this.tableOfContentScope1();
     }
-
-    this.addImagePage(reportImageFour);
-    this.addImagePage(reportImageFive);
+    this.disclaimerAndMethodology1();
+    this.disclaimerAndMethodology2();
 
     this.pageNumber = 6;
     this.addBg(leftBg);
@@ -2378,7 +3345,6 @@ class MultiPageGHGReportGenerator {
       }
     );
 
-    console.log(purchasedGoodsData);
     const totalPurchasedGoodsEmissions =
       this.calculateEmissionsTotal(purchasedGoodsData);
 
@@ -3220,7 +4186,6 @@ class MultiPageGHGReportGenerator {
         emissions: 0,
       }
     );
-    // console.log(downstreamLeasedData)
 
     const totalDownstreamEmissions =
       this.calculateEmissionsTotal(downstreamLeasedData);
