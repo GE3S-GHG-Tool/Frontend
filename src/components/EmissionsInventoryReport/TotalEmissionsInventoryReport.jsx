@@ -406,13 +406,13 @@ const TotalEmissionsInventoryReport = () => {
       },
       ...(oilGasIndustryFlag[user?.organization?.industry?.id]
         ? [
-            {
-              label: "Process Emission",
-              value: response?.data?.totalProcessEmissions,
-              color: "#B1E9D8",
-              key: response?.data?.totalProcessEmissionsPercentage,
-            },
-          ]
+          {
+            label: "Process Emission",
+            value: response?.data?.totalProcessEmissions,
+            color: "#B1E9D8",
+            key: response?.data?.totalProcessEmissionsPercentage,
+          },
+        ]
         : []),
     ]);
     const transformedData = response?.data?.fuelEmissionsByType.map((item) => {
@@ -528,13 +528,13 @@ const TotalEmissionsInventoryReport = () => {
       },
       ...(oilGasIndustryFlag[user?.organization?.industry?.id]
         ? [
-            {
-              label: "Fuel Related Activities",
-              value: response.data.totalFuelRelatedEmissions,
-              color: "#FFD3CD",
-              key: response.data.totalFuelRelatedEmissionsPercentage,
-            },
-          ]
+          {
+            label: "Fuel Related Activities",
+            value: response.data.totalFuelRelatedEmissions,
+            color: "#FFD3CD",
+            key: response.data.totalFuelRelatedEmissionsPercentage,
+          },
+        ]
         : []),
       {
         label: "Upstream Leashed Assets",
@@ -918,7 +918,7 @@ const TotalEmissionsInventoryReport = () => {
                   <img
                     src={
                       user?.organization?.logo &&
-                      user.organization.logo !== "null"
+                        user.organization.logo !== "null"
                         ? `${constant.IMG_URL}/${user.organization.logo}`
                         : dummy_company
                     }
@@ -1259,7 +1259,7 @@ const TotalEmissionsInventoryReport = () => {
             </NoDataAvailableWrapper>
           )}
           {user?.organization?.premiumPlan?.name === "OffSet" ||
-          user?.organization?.premiumPlan?.name === "CarbonZero" ? (
+            user?.organization?.premiumPlan?.name === "CarbonZero" ? (
             <div>
               {reportData?.scope2 ? (
                 reportData?.scope2?.grand_total_emissions !== 0 ? (
@@ -1612,36 +1612,37 @@ const TotalEmissionsInventoryReport = () => {
                           <GraphWrapper
                             data={EmissionUpstreamAssetsData}
                             dummyImage={EmissionFromUpstreamLeasedAssets}
-                          ></GraphWrapper>
-                          {EmissionUpstreamAssetsData.length > 0 && (
-                            <div
-                              style={{
-                                textAlign: "center",
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                                background: "white",
-                                padding: "0.5rem 0rem 0rem 0.5rem",
-                              }}
-                            >
-                              <Typography
-                                sx={{
-                                  fontFamily: "Inter",
-                                  fontSize: "1rem",
-                                  fontWeight: "600",
-                                  wordSpacing: "0px",
-                                  textAlign: "start",
-                                  marginBottom: "1.5rem",
+                          >
+                            {EmissionUpstreamAssetsData.length > 0 && (
+                              <div
+                                style={{
+                                  textAlign: "center",
+                                  position: "relative",
+                                  width: "100%",
+                                  height: "100%",
+                                  background: "white",
+                                  padding: "0.5rem 0rem 0rem 0.5rem",
                                 }}
                               >
-                                Emissions from Upstream Leased Assets
-                              </Typography>
-                              <StackedBarChart
-                                data={EmissionUpstreamAssetsData}
-                                height={250}
-                              />
-                            </div>
-                          )}
+                                <Typography
+                                  sx={{
+                                    fontFamily: "Inter",
+                                    fontSize: "1rem",
+                                    fontWeight: "600",
+                                    wordSpacing: "0px",
+                                    textAlign: "start",
+                                    marginBottom: "1.5rem",
+                                  }}
+                                >
+                                  Emissions from Upstream Leased Assets
+                                </Typography>
+                                <StackedBarChart
+                                  data={EmissionUpstreamAssetsData}
+                                  height={250}
+                                />
+                              </div>
+                            )}
+                          </GraphWrapper>
                         </div>
                       </div>
                       <div
