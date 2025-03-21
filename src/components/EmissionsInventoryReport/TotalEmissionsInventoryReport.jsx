@@ -51,7 +51,6 @@ import {
   oilGasIndustryFlag,
   parseStringAndRoundOff,
 } from "../../util/utils";
-// import { MultiPageGHGReportGenerator } from "./ReportGenerator/generatePDFReport";
 
 const Scope1SVGs = [
   <svg
