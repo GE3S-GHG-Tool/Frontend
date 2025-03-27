@@ -40,6 +40,7 @@ import PaymentSuccess from "./components/PaymentPages/PaymentSuccess";
 import PaymentCancelled from "./components/PaymentPages/PaymentCancelled";
 import PaymentSuccessSurvey from "./components/PaymentPages/PaymentSuccessSurvey";
 import PaymentSuccessFromGeneratedReport from "./components/PaymentPages/PaymentSuccessFromGeneratedReport";
+import ManageAccount from "./components/ManageAccount/ManageAccount";
 
 function App() {
   return (
@@ -109,6 +110,7 @@ function App() {
             <Route path="survey1" element={<SurveyQuestionSection />} />
             <Route path="survey2" element={<DecarbonizationSurveyQsnAns />} />
             <Route path="report" element={<Report />} />
+            <Route path="manage-account" element={<ManageAccount />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

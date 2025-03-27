@@ -1,0 +1,138 @@
+.manage-account_container {
+    /* padding: 0 32px; */
+    padding: 0 28px;
+    /* background-color: #fafafa; */
+  }
+  
+  .manage-account_heading-div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 16px 0 24px;
+    margin-bottom: 16px;
+  }
+  
+  .manage-account_heading-div h1 {
+    font-weight: 500;
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .account-details_container {
+    padding: 28px 28px;
+  }
+  
+  .account-details_container h2 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .account-details_upload-div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .account-details_upload-btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 30px;
+    background-color: transparent;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    color: #585555;
+    font-size: 12px;
+  }
+  
+  .company-details_form {
+  }
+  
+  .owner-details_form {
+    margin-top: 28px;
+    margin-bottom: 24px;
+  }
+  
+  .account-details_save-btn {
+    padding: 12px 32px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+  }
+  
+  .account-details_save-btn:disabled {
+    background: #e8e8e8;
+    color: #a2a2a2;
+  }
+  
+  
+  .deleteBtn{
+    border: none;
+    background-color: #FFECEC;
+    border-radius: 12px;
+    padding: 12px 40px;
+    cursor: pointer;
+    font: Inter;
+    font-weight: 500;
+    font-size: 16px;
+    color: black;
+    font-family: Inter;
+  }
+
+
+
+  .gradient-btn {
+    padding: 8px 1.5rem;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(102deg, #369d9c 0%, #28814d 100%);
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 24px;
+  }
+  
+  .gradient-btn:hover {
+    background: linear-gradient(270deg, #00191d 0%, #67b48d 100%);
+  }
+  
+  .gradient-btn:disabled {
+    background: #e8e8e8;
+    color: #a2a2a2;
+  }
+  
+  .outlined-gradient-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 8px 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+    color: #369d9c;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(white, white),
+      linear-gradient(90deg, #369d9c, #28814d);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  
+  .outlined-gradient-btn:hover {
+    background-image: linear-gradient(#f2fff3, #f2fff3),
+      linear-gradient(270deg, #00191d 0%, #67b48d 100%);
+  }

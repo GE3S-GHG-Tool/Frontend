@@ -777,10 +777,27 @@ function DashboardLayout() {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
+              autoFocus={false}
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
             >
+              <MenuItem
+                onClick={() => {
+                  handleClose()
+                  navigate("/manage-account");
+                }}
+              >
+                <div className="profile_menu_btn">
+                  <Avatar
+                    src={`${constant.IMG_URL}/${user?.profileImage}`}
+                    alt="User Img"
+                    style={{ width: "1rem", height: "1rem" }}
+                  />
+                  <span>Manage Account</span>
+                </div>
+
+              </MenuItem>
               <MenuItem onClick={() => setOpenModal(true)}>
                 <div className="profile_menu_btn">
                   <svg width="18" height="18" viewBox="0 0 24 25" fill="none">
@@ -809,6 +826,7 @@ function DashboardLayout() {
                   <span>Logout</span>
                 </div>
               </MenuItem>
+
             </Menu>{" "}
             <ConfirmationModal
               open={openModal}
