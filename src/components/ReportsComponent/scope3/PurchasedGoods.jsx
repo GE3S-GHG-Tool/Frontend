@@ -12,6 +12,7 @@ import edit_icon from "../../../assets/images/edit_icon.svg";
 import del_icon from "../../../assets/images/del_icon.svg";
 import { getGoods } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 
 function PurchasedGoods({apiData}) {
   const [assetMenu, setAssetMenu] = useState([]);
@@ -35,7 +36,11 @@ function PurchasedGoods({apiData}) {
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    if (name === "expense_value") {
+      updatedFields[index][name] = cleanNumber(value);
+    } else {
+      updatedFields[index][name] = value;
+    }
     setFields(updatedFields);
 
     // Check if the current row is complete
@@ -243,12 +248,17 @@ function PurchasedGoods({apiData}) {
                     </Typography>
                     <TextField
                       name="expense_value"
-                      value={field.expense_value}
+                      value={formatNumber(field.expense_value)}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
                       placeholder="Enter expense value"
-                      type="number"
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       sx={{
                         margin: "0",
                         border: "1px solid rgba(217, 217, 217, 0.0)",

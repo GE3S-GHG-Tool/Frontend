@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import { useAuth } from "../../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import { getscope2draft } from "../../../api/drafts";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "./utils";
 
 function ChilledWaterConsumption() {
   const { id } = useParams();
@@ -35,7 +36,13 @@ function ChilledWaterConsumption() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setField({ ...field, [name]: value });
+    if (name === "quantity") {
+      // Clean the input value and store the unformatted value
+      const cleanValue = cleanNumber(value);
+      setField({ ...field, [name]: cleanValue });
+    } else {
+      setField({ ...field, [name]: value });
+    }
   };
   const fetchEditData = async (id) => {
     const response = await getscope2draft(id);
@@ -200,11 +207,16 @@ function ChilledWaterConsumption() {
               </Typography>
               <TextField
                 name="quantity"
-                value={field.quantity}
+                value={formatNumber(field.quantity)}
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                  handleCommaSeperatedKeyDown(e)
+                }}
+                onPaste={(e) => {
+                  handleCommaSeperatedPaste(e)
+                }}
                 variant="outlined"
                 fullWidth
-                type="number"
                 placeholder="Add quantity"
                 sx={{
                   margin: "0",

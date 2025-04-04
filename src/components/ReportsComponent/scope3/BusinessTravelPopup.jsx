@@ -16,7 +16,7 @@ import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getAllAirport, getTraveltype } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
-
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 const BusinessTravelPopup = ({ onClose }) => {
   // State with one initial row
   const [travelmenu, setTravelMenu] = useState([]);
@@ -92,6 +92,8 @@ const BusinessTravelPopup = ({ onClose }) => {
         [name]: value,
         tripDetails: [],
       };
+    } else if (name === "numberOfTrips") {
+      updatedFields[index][name] = cleanNumber(value);
     } else {
       updatedFields[index][name] = value;
     }
@@ -539,9 +541,9 @@ const BusinessTravelPopup = ({ onClose }) => {
                       name="connectionCount"
                       value={field.connectionCount}
                       onChange={(e) => handleChange(index, e)}
+                      type="number"
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder="Enter number of connnections"
                       sx={{
                         margin: "0",
@@ -614,11 +616,16 @@ const BusinessTravelPopup = ({ onClose }) => {
                       </Typography>
                       <TextField
                         name="numberOfTrips"
-                        value={field.numberOfTrips}
+                        value={formatNumber(field.numberOfTrips)}
+                        onKeyDown={(e) => {
+                          handleCommaSeperatedKeyDown(e)
+                        }}
+                        onPaste={(e) => {
+                          handleCommaSeperatedPaste(e)
+                        }}
                         onChange={(e) => handleChange(index, e)}
                         variant="outlined"
                         fullWidth
-                        type="number"
                         placeholder="Enter number of trips"
                         sx={{
                           margin: "0",

@@ -10,6 +10,7 @@ import edit_icon from "../../../assets/images/edit_icon.svg";
 import del_icon from "../../../assets/images/del_icon.svg";
 import { getVehicleType } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 
 function EmployeeCommuting({apiData}) {
   // Initialize fields with one empty row
@@ -34,7 +35,11 @@ function EmployeeCommuting({apiData}) {
     const { name, value } = event.target;
     // console.log(name);
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    if (name === "num_trips" || name === "distance_km") {
+      updatedFields[index][name] = cleanNumber(value);
+    } else {
+      updatedFields[index][name] = value;
+    }
     setFields(updatedFields);
 
     // Check if the current row is complete
@@ -190,11 +195,16 @@ function EmployeeCommuting({apiData}) {
                     </Typography>
                     <TextField
                       name="num_trips"
-                      value={field.num_trips}
+                      value={formatNumber(field.num_trips)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder="Enter number of trips"
                       sx={{
                         margin: "0",
@@ -223,11 +233,16 @@ function EmployeeCommuting({apiData}) {
                     </Typography>
                     <TextField
                       name="distance_km"
-                      value={field.distance_km}
+                      value={formatNumber(field.distance_km)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder="Enter distance traveled"
                       sx={{
                         margin: "0",

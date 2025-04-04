@@ -15,6 +15,7 @@ import fuelRelated from "../../../assets/images/fuelActivities.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getFuelCategoryList } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 
 const FuelRelatedPopup = ({ onClose }) => {
   // State with one initial row
@@ -72,7 +73,7 @@ const FuelRelatedPopup = ({ onClose }) => {
     } else if (name === "quantity") {
       updatedFields[index] = {
         ...updatedFields[index],
-        quantity: value
+        quantity: cleanNumber(value)
       };
       setFields(updatedFields);
     }
@@ -334,11 +335,16 @@ const FuelRelatedPopup = ({ onClose }) => {
                     </Typography>
                     <TextField
                       name="quantity"
-                      value={field.quantity}
+                      value={formatNumber(field.quantity)}
                       onChange={(e) => handleChange(index, e)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder={(field.unit === "MJ") ? "Quantity" : "Electricity Consumption"}
                       sx={{
                         margin: "0",

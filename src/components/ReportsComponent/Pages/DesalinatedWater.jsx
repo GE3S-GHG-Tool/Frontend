@@ -11,6 +11,7 @@ import del_icon from "../../../assets/images/del_icon.svg";
 import { useAuth } from "../../../context/AuthContext";
 import { getscope2draft } from "../../../api/drafts";
 import { useParams } from "react-router-dom";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "./utils";
 
 function DesalinatedWater() {
   const { id } = useParams();
@@ -38,7 +39,13 @@ function DesalinatedWater() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setField({ ...field, [name]: value });
+    if (name === "quantity") {
+      // Clean the input value and store the unformatted value
+      const cleanValue = cleanNumber(value);
+      setField({ ...field, [name]: cleanValue });
+    } else {
+      setField({ ...field, [name]: value });
+    }
   };
   const fetchEditData = async (id) => {
     const response = await getscope2draft(id);
@@ -191,11 +198,16 @@ function DesalinatedWater() {
               </Typography>
               <TextField
                 name="quantity"
-                value={field.quantity}
+                value={formatNumber(field.quantity)}
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                  handleCommaSeperatedKeyDown(e)
+                }}
+                onPaste={(e) => {
+                  handleCommaSeperatedPaste(e)
+                }}
                 variant="outlined"
                 fullWidth
-                type="number"
                 placeholder="Add quantity"
                 sx={{
                   margin: "0",

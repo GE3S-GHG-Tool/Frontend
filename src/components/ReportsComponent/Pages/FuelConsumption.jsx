@@ -14,6 +14,7 @@ import { useScope3 } from "../../../context/Scope3Context";
 import { getConsumtionType } from "../../../api/createReport";
 import { useParams } from "react-router-dom";
 import { getscope1draft } from "../../../api/drafts";
+import { formatNumber, cleanNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "./utils.js"
 
 function FuelConsumption() {
   const { id } = useParams();
@@ -38,7 +39,14 @@ function FuelConsumption() {
       updatedFields[index].unit = selectedAsset?.Unit;
     }
 
-    updatedFields[index][name] = value;
+    if (name === "quantity") {
+      // Clean the input value and store the unformatted value
+      const cleanValue = cleanNumber(value);
+      updatedFields[index][name] = cleanValue;
+    } else {
+      updatedFields[index][name] = value;
+    }
+
     setFields(updatedFields);
 
     const isRowComplete = updatedFields[index].fuelType;
@@ -238,7 +246,7 @@ function FuelConsumption() {
                             >
                               Select fuel type
                             </em>
-                          ); 
+                          );
                         }
                         return (
                           typeMenu.find((item) => item._id === selected)
@@ -281,11 +289,16 @@ function FuelConsumption() {
                     </Typography>
                     <TextField
                       name="quantity"
-                      value={field.quantity}
+                      value={formatNumber(field.quantity)}
                       onChange={(e) => handleChange(index, e)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder="Enter quantity"
                       sx={{
                         margin: "0",

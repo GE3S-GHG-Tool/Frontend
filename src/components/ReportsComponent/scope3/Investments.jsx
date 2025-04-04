@@ -5,7 +5,7 @@ import capitalGoods from "../../../assets/images/capitalGoods.svg";
 import Box from "@mui/material/Box";
 import { useScope3 } from "../../../context/Scope3Context";
 import trash from "../../../assets/images/TrashS.svg";
-
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 function Investments({ apiData }) {
   const { setInvestements } = useScope3();
   const [fields, setFields] = useState(
@@ -36,7 +36,16 @@ function Investments({ apiData }) {
   const handleChange = (event, index) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    if (name === "ownership_percentage") {
+      const numValue = cleanNumber(value);
+      if (numValue <= 100) {
+        updatedFields[index][name] = numValue;
+      }
+    } else if (name === "investee_company_emissions") {
+      updatedFields[index][name] = cleanNumber(value);
+    } else {
+      updatedFields[index][name] = value;
+    }
     setFields(updatedFields);
 
     const isMoreInvestmentsNeede =
@@ -144,6 +153,10 @@ function Investments({ apiData }) {
                     variant="outlined"
                     fullWidth
                     placeholder="Enter Ownership percentage"
+                    inputProps={{ 
+                      max: 100,
+                      min: 0
+                    }}
                     sx={{
                       border: "1px solid rgba(217, 217, 217, 0.0)",
                       borderRadius: "5px",
@@ -167,11 +180,16 @@ function Investments({ apiData }) {
                   </Typography>
                   <TextField
                     name="investee_company_emissions"
-                    value={investment.investee_company_emissions}
+                    value={formatNumber(investment.investee_company_emissions)}
+                    onKeyDown={(e) => {
+                      handleCommaSeperatedKeyDown(e)
+                    }}
+                    onPaste={(e) => {
+                      handleCommaSeperatedPaste(e)
+                    }}
                     onChange={(e) => handleChange(e, index)}
                     variant="outlined"
                     fullWidth
-                    type="number"
                     size="small"
                     placeholder="Enter emissions"
                     sx={{

@@ -14,6 +14,8 @@ import { useScope3 } from "../../../context/Scope3Context";
 import { getRefrigenrentType } from "../../../api/createReport";
 import { getscope1draft } from "../../../api/drafts";
 import { useParams } from "react-router-dom";
+import { formatNumber, cleanNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "./utils.js"
+
 
 function RefrigerantData() {
   const { id } = useParams();
@@ -34,7 +36,14 @@ function RefrigerantData() {
       updatedFields[index].unit = "Kg";
     }
 
-    updatedFields[index][name] = value;
+    if (name === "quantity") {
+      // Clean the input value and store the unformatted value
+      const cleanValue = cleanNumber(value);
+      updatedFields[index][name] = cleanValue;
+    } else {
+      updatedFields[index][name] = value;
+    }
+
     setFields(updatedFields);
 
     const isRowComplete = updatedFields[index].refrigerantType;
@@ -247,25 +256,25 @@ function RefrigerantData() {
                     onChange={(e) => handleChange(index, e)}
                     IconComponent={KeyboardArrowDownIcon}
                     displayEmpty
-                      renderValue={(selected) => {
-                        if (!selected) {
-                          return (
-                            <em
-                              style={{
-                                color: "#BDBDBD",
-                                fontFamily: " Arial, sans-serif",
-                                fontSize: '0.875rem'
-                              }}
-                            >
-                              Add type of refrigerant
-                            </em>
-                          ); 
-                        }
+                    renderValue={(selected) => {
+                      if (!selected) {
                         return (
-                          typeMenu.find((item) => item._id === selected)
-                            ?.Type || ""
+                          <em
+                            style={{
+                              color: "#BDBDBD",
+                              fontFamily: " Arial, sans-serif",
+                              fontSize: '0.875rem'
+                            }}
+                          >
+                            Add type of refrigerant
+                          </em>
                         );
-                      }}
+                      }
+                      return (
+                        typeMenu.find((item) => item._id === selected)
+                          ?.Type || ""
+                      );
+                    }}
                     sx={{
                       border: "1px solid rgba(217, 217, 217, 0.0)",
                       borderRadius: "5px",
@@ -275,15 +284,15 @@ function RefrigerantData() {
                     }}
                   >
                     <MenuItem disabled value="">
-                        <em
-                          style={{
-                            color: "rgba(0, 0, 0, 0.54)",
-                            fontFamily: "Arial, sans-serif",
-                          }}
-                        >
-                          Add type of refrigerant
-                        </em>{" "}
-                      </MenuItem>
+                      <em
+                        style={{
+                          color: "rgba(0, 0, 0, 0.54)",
+                          fontFamily: "Arial, sans-serif",
+                        }}
+                      >
+                        Add type of refrigerant
+                      </em>{" "}
+                    </MenuItem>
                     {typeMenu.map((item, index) => (
                       <MenuItem key={index} value={item._id}>
                         {item.Type}
@@ -302,11 +311,16 @@ function RefrigerantData() {
                   </Typography>
                   <TextField
                     name="quantity"
-                    value={field.quantity}
+                    value={formatNumber(field.quantity)}
                     onChange={(e) => handleChange(index, e)}
                     variant="outlined"
                     fullWidth
-                    type="number"
+                    onKeyDown={(e) => {
+                      handleCommaSeperatedKeyDown(e)
+                    }}
+                    onPaste={(e) => {
+                      handleCommaSeperatedPaste(e)
+                    }}
                     placeholder="Enter quantity"
                     sx={{
                       margin: "0",

@@ -15,6 +15,7 @@ import upstream from "../../../assets/images/upstream.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getUpstreams } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 
 const UpstreamLeasedPopup = ({ onClose }) => {
   // State with one initial row
@@ -40,7 +41,11 @@ const UpstreamLeasedPopup = ({ onClose }) => {
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    if (name === "quantity") {
+      updatedFields[index][name] = cleanNumber(value);
+    } else {
+      updatedFields[index][name] = value;
+    }
     setFields(updatedFields);
 
     if (name === "sourceOfEnergy") {
@@ -285,11 +290,16 @@ const UpstreamLeasedPopup = ({ onClose }) => {
                     <TextField
                       size="small"
                       name="quantity"
-                      value={field.quantity}
+                      value={formatNumber(field.quantity)}
                       onChange={(e) => handleChange(index, e)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       variant="outlined"
                       fullWidth
-                      type="number"
                       placeholder="Enter quantity"
                       sx={{
                         border: "1px solid rgba(217, 217, 217, 0.0)",

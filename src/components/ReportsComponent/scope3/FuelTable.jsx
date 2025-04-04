@@ -1,4 +1,5 @@
 import { Grid2, Typography } from "@mui/material";
+import { formatNumber } from "../Pages/utils";
 
 function FuelTable({ headings = [], data }) {
   const filteredData = data?.slice(0, -1);
@@ -89,7 +90,7 @@ function FuelTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantity}
+                {formatNumber(item.quantity) }
               </td>
               <td
                 style={{
