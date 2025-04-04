@@ -1,5 +1,5 @@
 import { Grid2, Typography } from "@mui/material";
-
+import { formatNumber } from "../Pages/utils";
 function TablesData({ headings = [], data }) {
   // console.log("TablesData", data);
   const filteredData = data?.filter((item) => {
@@ -82,7 +82,7 @@ function TablesData({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.expenses || item?.expense_value}
+                {formatNumber(item.expenses || item?.expense_value)}
               </td>
               {/* <td
                 style={{

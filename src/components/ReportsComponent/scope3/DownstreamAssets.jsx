@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import { useScope3 } from "../../../context/Scope3Context";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 
 function DownstreamAssets({ apiData }) {
   const [field, setField] = useState(
@@ -36,7 +37,7 @@ function DownstreamAssets({ apiData }) {
   const { setDownStreamData } = useScope3();
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setField({ ...field, [name]: value });
+    setField({ ...field, [name]: cleanNumber(value) });
   };
   useEffect(() => {
     localStorage.setItem("downStreamData", JSON.stringify(field));
@@ -119,7 +120,13 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="scope1_scope2_emissions"
-                value={field?.scope1_scope2_emissions}
+                value={formatNumber(field?.scope1_scope2_emissions)}
+                onKeyDown={(e) => {
+                  handleCommaSeperatedKeyDown(e)
+                }}
+                onPaste={(e) => {
+                  handleCommaSeperatedPaste(e)
+                }}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
@@ -148,11 +155,16 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="physical_area"
-                value={field?.physical_area}
+                value={formatNumber(field?.physical_area)}
+                onKeyDown={(e) => {
+                  handleCommaSeperatedKeyDown(e)
+                }}
+                onPaste={(e) => {
+                  handleCommaSeperatedPaste(e)
+                }}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
-                type="number"
                 placeholder="Add Value"
                 sx={{
                   margin: "0",
@@ -178,11 +190,16 @@ function DownstreamAssets({ apiData }) {
               </Typography>
               <TextField
                 name="total_physical_area"
-                value={field?.total_physical_area}
+                value={formatNumber(field?.total_physical_area)}
+                onKeyDown={(e) => {
+                  handleCommaSeperatedKeyDown(e)
+                }}
+                onPaste={(e) => {
+                  handleCommaSeperatedPaste(e)
+                }}
                 onChange={handleChange}
                 variant="outlined"
                 fullWidth
-                type="number"
                 placeholder="Add Value"
                 sx={{
                   margin: "0",

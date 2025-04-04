@@ -15,7 +15,7 @@ import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { getWasteList } from "../../../api/createReport";
 import { useScope3 } from "../../../context/Scope3Context";
-
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
 const WasteGeneratedPopup = ({ onClose }) => {
   const [assetMenu, setAssetMenu] = useState([]);
   // const [subCategoryMenu, setSubCategoryMenu] = useState([]);
@@ -43,7 +43,11 @@ const WasteGeneratedPopup = ({ onClose }) => {
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const updatedFields = [...fields];
-    updatedFields[index][name] = value;
+    if (name === "distanceToLandfill" || name === "numberOfTrips" || name === "quantityOfWaste") {
+      updatedFields[index][name] = cleanNumber(value);
+    } else {
+      updatedFields[index][name] = value;
+    }
     setFields(updatedFields);
     if (name === "wasteCategory") {
       const selectedCategory = assetMenu.find((asset) => asset._id === value);
@@ -68,6 +72,7 @@ const WasteGeneratedPopup = ({ onClose }) => {
       }));
       setFields(updatedFields);
     }
+  
 
     const hasExpensesValue = updatedFields[index].quantityOfWaste.trim() !== "";
 
@@ -389,11 +394,16 @@ const WasteGeneratedPopup = ({ onClose }) => {
                       </Typography>
                       <TextField
                         name="distanceToLandfill"
-                        value={field.distanceToLandfill}
+                        value={formatNumber(field.distanceToLandfill)}
                         onChange={(e) => handleChange(index, e)}
                         variant="outlined"
                         fullWidth
-                        type="number"
+                        onKeyDown={(e) => {
+                          handleCommaSeperatedKeyDown(e)
+                        }}
+                        onPaste={(e) => {
+                          handleCommaSeperatedPaste(e)
+                        }}
                         placeholder="Enter distance"
                         sx={{
                           margin: "0",
@@ -459,11 +469,16 @@ const WasteGeneratedPopup = ({ onClose }) => {
                         </Typography>
                         <TextField
                           name="numberOfTrips"
-                          value={field.numberOfTrips}
+                          value={formatNumber(field.numberOfTrips)}
+                          onKeyDown={(e) => {
+                            handleCommaSeperatedKeyDown(e)
+                          }}
+                          onPaste={(e) => {
+                            handleCommaSeperatedPaste(e)
+                          }}
                           onChange={(e) => handleChange(index, e)}
                           variant="outlined"
                           fullWidth
-                          type="number"
                           placeholder="Number of trips"
                           sx={{
                             margin: "0",
@@ -495,7 +510,13 @@ const WasteGeneratedPopup = ({ onClose }) => {
                     </Typography>
                     <TextField
                       name="quantityOfWaste"
-                      value={field.quantityOfWaste}
+                      value={formatNumber(field.quantityOfWaste)}
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth

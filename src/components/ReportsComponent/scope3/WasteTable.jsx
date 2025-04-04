@@ -1,5 +1,5 @@
 import { Grid2, Typography } from "@mui/material";
-
+import { formatNumber } from "../Pages/utils";
 function WasteTable({ headings = [], data }) {
   // console.log("WasteTable", data);
   const filteredData = data?.slice(0, -1);
@@ -91,7 +91,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.distanceToLandfill || item?.distance_km}
+                {formatNumber(item.distanceToLandfill || item?.distance_km)}
               </td>
               <td
                 style={{
@@ -115,7 +115,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.numberOfTrips || item?.num_trips}
+                {formatNumber(item.numberOfTrips || item?.num_trips)}
               </td>
               <td
                 style={{
@@ -127,7 +127,7 @@ function WasteTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantityOfWaste || item?.quantity}
+                {formatNumber(item.quantityOfWaste || item?.quantity)}
               </td>
             </tr>
           ))}

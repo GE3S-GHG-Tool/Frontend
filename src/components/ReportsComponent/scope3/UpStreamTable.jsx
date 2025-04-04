@@ -1,5 +1,5 @@
 import { Grid2, Typography } from "@mui/material";
-
+import { formatNumber } from "../Pages/utils";
 function UpStreamTable({ headings = [], data }) {
   // console.log("UpStreamTable", data);
   const filteredData = data?.filter((item) => {
@@ -81,7 +81,7 @@ function UpStreamTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.quantity}
+                {formatNumber(item.quantity)}
               </td>
               <td
                 style={{

@@ -1,5 +1,5 @@
 import { Grid2, Typography } from "@mui/material";
-
+import { formatNumber } from "../Pages/utils";
 function BusinessTable({ headings = [], data }) {
   const filteredData = data?.slice(0, -1);
   // console.log("BT", filteredData);
@@ -102,7 +102,7 @@ function BusinessTable({ headings = [], data }) {
                   whiteSpace: "nowrap",
                 }}
               >
-                {item.numberOfTrips || item?.num_trips || 0}
+                {formatNumber(item.numberOfTrips || item?.num_trips || 0)}
               </td>
             </tr>
           ))}

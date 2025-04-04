@@ -15,6 +15,8 @@ import trash from "../../../assets/images/TrashS.svg";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useScope3 } from "../../../context/Scope3Context";
 import { getAssetType } from "../../../api/createReport";
+import { cleanNumber, formatNumber, handleCommaSeperatedKeyDown, handleCommaSeperatedPaste } from "../Pages/utils";
+
 const CapitalGoodsPopup = ({ onClose }) => {
   const { capitalGoods, setCapitalGoods } = useScope3();
 
@@ -70,6 +72,8 @@ const CapitalGoodsPopup = ({ onClose }) => {
       updatedFields[index].assetType = selectedAsset; // Store the full asset object
 
       setCategoryMenu(selectedAsset?.categories);
+    } else if (name === "expenses") {
+      updatedFields[index][name] = cleanNumber(value);
     } else {
       updatedFields[index][name] = value;
     }
@@ -300,11 +304,16 @@ const CapitalGoodsPopup = ({ onClose }) => {
                     </Typography>
                     <TextField
                       name="expenses"
-                      value={field.expenses}
+                      value={formatNumber(field.expenses)}
                       onChange={(e) => handleChange(index, e)}
                       variant="outlined"
                       fullWidth
-                      type="number"
+                      onKeyDown={(e) => {
+                        handleCommaSeperatedKeyDown(e)
+                      }}
+                      onPaste={(e) => {
+                        handleCommaSeperatedPaste(e)
+                      }}
                       placeholder="Enter expenses"
                       sx={{
                         margin: "0",
